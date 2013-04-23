@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ruyichuanqing_fc3d_scrollview" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:scrollbars="none"
+	android:background="@drawable/bg">
+
+	<LinearLayout android:id="@+id/ruyichuanqing_fc3d_layout_id"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical">
+		<!-- wangyl  7.12  Adjust the page of ruyichuanqing -->
+		<RelativeLayout android:id="@+id/title_layout"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:background="@drawable/shouye_top">
+			<ImageView android:id="@+id/ruyipackage_btn_return_fc3d"
+				android:src="@drawable/returnselecter" android:background="#00000000"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_centerVertical="true" android:paddingRight="10dip" />
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/ruyichuanqing_fc3d_zixuan_title"
+				android:typeface="serif" android:clickable="true" android:textSize="20dip"
+				android:textColor="@color/white" android:layout_centerVertical="true"
+				android:paddingLeft="10dip" android:textAppearance="?android:attr/textAppearanceMedium" />
+		</RelativeLayout>
+
+		<TextView android:id="@+id/text_sum_money_fc3d_zixuan"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:textColor="#000000" android:gravity="center_horizontal" />
+		<LinearLayout android:id="@+id/danshi_balls_layout"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/balls_area" android:paddingTop="20dip"
+				android:paddingBottom="20dip">
+				<TextView android:id="@+id/fc3d_zixuan_baiwei"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="@string/baiwei" android:textColor="#000000"
+					android:paddingLeft="10dip" />
+				<TableLayout android:id="@+id/table_fc3d_zixuan_baiwei"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_marginRight="6dip" />
+			</LinearLayout>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/balls_area" android:paddingTop="20dip"
+				android:paddingBottom="20dip">
+				<TextView android:id="@+id/fc3d_zixuan_shiwei"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="@string/shiwei" android:textColor="#000000"
+					android:paddingLeft="10dip" />
+				<TableLayout android:id="@+id/table_fc3d_zixuan_shiwei"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_marginRight="6dip" />
+			</LinearLayout>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/balls_area" android:paddingTop="20dip"
+				android:paddingBottom="20dip">
+				<TextView android:id="@+id/fc3d_zixuan_gewei"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="@string/gewei" android:textColor="#000000"
+					android:paddingLeft="10dip" />
+				<TableLayout android:id="@+id/table_fc3d_zixuan_gewei"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_marginRight="6dip" />
+			</LinearLayout>
+		</LinearLayout>
+
+ <RelativeLayout android:id="@+id/ssq_jixuan_layout_qihao"
+					android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center_horizontal">
+				<ImageButton android:id="@+id/fc3d_seekbar_subtract_zixuan"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/subtract11" android:paddingTop="10dip"
+					android:background="#00000000" />	
+			 <LinearLayout android:orientation="vertical"
+						android:layout_width="wrap_content" android:layout_height="40dip"
+						android:id="@+id/layout_progress" android:layout_centerHorizontal="true"
+						android:layout_toRightOf="@+id/fc3d_seekbar_subtract_zixuan">
+		 <LinearLayout android:orientation="horizontal"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:layout_gravity="center_horizontal">		
+				<TextView android:id="@+id/fc3d_zixuan_text_beishu"
+					android:layout_width="20dip" android:layout_height="wrap_content"
+					
+					 android:textColor="#000000"
+					 />
+				<TextView android:id="@+id/fc3d_beishu_title"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="@string/meiqibeishu" android:textColor="#000000" />
+			
+			</LinearLayout>
+			<SeekBar android:id="@+id/fc3d_zixuan_seek_beishu"
+					style="?android:attr/progressBarStyleHorizontal"
+					android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+					android:max="50" android:progress="1" android:layout_width="150dip"
+					android:layout_height="15dip" android:paddingLeft="15dip"
+					android:paddingRight="15dip" android:paddingBottom="4dip"
+					android:layout_toRightOf="@+id/fc3d_seekbar_subtract_zixuan"
+					android:layout_centerVertical="true" />
+            </LinearLayout>
+				
+
+				<ImageButton android:id="@+id/fc3d_seekbar_add_zixuan"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+					android:background="#00000000" android:paddingTop="10dip" />
+
+			</RelativeLayout>
+	
+
+		<RelativeLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:paddingTop="20dip">
+			<Button android:id="@+id/fc3d_sure_zixuan"
+				android:layout_width="100dip" android:layout_height="wrap_content"
+				android:text="@string/ok" android:layout_alignParentRight="true" />
+			<Button android:id="@+id/fc3d_newselectd_zixuan"
+				android:layout_width="100dip" android:layout_height="wrap_content"
+				android:text="@string/ruyichuanqing_newselect"
+				android:layout_alignParentLeft="true" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+</ScrollView>

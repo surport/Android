@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/upomp_lthj_accounttitle" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/upomp_lthj_layout_width_height_fw" >
+	<ScrollView android:scrollbars="none" style="@style/upomp_lthj_layout_width_height_fw"
+  	android:background="@drawable/upomp_lthj_bg_main">
+  	<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+		style="@style/upomp_lthj_layout_width_height_fw">
+  	<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/upomp_lthj_layout_width_height_fw" android:paddingLeft="@dimen/upomp_lthj_tableLayout_pad_left" android:paddingRight="@dimen/upomp_lthj_tableLayout_pad_right" 
+				android:paddingTop="@dimen/upomp_lthj_tableLayout_pad_top" >
+		<!-- <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView style="@style/upomp_lthj_textView_bold" android:text="@string/upomp_lthj_trade_title" android:textSize="@dimen/upomp_lthj_textView_bold_font_size"  android:gravity="center"/>
+		</LinearLayout> -->
+		<TableLayout android:orientation="vertical"
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:gravity="center" android:shrinkColumns="1" android:background="@drawable/upomp_lthj_corner_round_all"
+			android:padding="1.0dip"
+			>
+			<TableRow
+			style="@style/upomp_lthj_tablerow"
+  				 android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_top_blue">
+				<TextView  style="@style/upomp_lthj_layout_width_height_fw"
+				android:text="@string/upomp_lthj_trade_result" android:gravity="center_vertical" android:textColor="#ffffff"
+					android:layout_span="2" android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+			</TableRow>    
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+  			<TableRow  style="@style/upomp_lthj_tablerow"
+  				 android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="订单编号  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantOrderId"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+  			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="交易时间  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_orderTime"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>   
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>  
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="应付金额  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_pay_money_tv" style="@style/upomp_lthj_textView_title_left" 
+					android:textColor="@drawable/upomp_lthj_red"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="交易结果  " style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_payresult" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_bottom">
+				<TextView android:id="@id/upomp_lthj_payinfotitle" android:text="失败原因  " style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_payinfo" style="@style/upomp_lthj_textView_title_left" android:paddingRight="20.0dip"
+					/>
+			</TableRow>
+			<!-- <TableRow  android:layout_width="fill_parent" android:layout_height="wrap_content"
+			>
+				<TextView android:text="商品描述    " style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantDesc" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow> -->
+		</TableLayout>	
+			<!-- <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@id/upomp_lthj_trade_info_textview"
+						style="@style/upomp_lthj_textView_info"/> -->
+		<!-- <LinearLayout android:background="@drawable/upomp_lthj_tips_bg" android:layout_marginLeft="@dimen/upomp_lthj_prompt_layout_margin_left" android:layout_marginTop="@dimen/upomp_lthj_prompt_layout_margin_top" android:layout_gravity="bottom|center_horizontal" android:layout_marginRight="@dimen/upomp_lthj_prompt_layout_margin_right"  android:gravity="center_horizontal"  android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_ww">
+			<TextView  style="@style/upomp_lthj_textView_bold" android:layout_marginLeft="@dimen/upomp_lthj_prompt_title_margin_left"/>
+			<TextView style="@style/upomp_lthj_layout_width_height_fw"  android:text="@string/upomp_lthj_trade_prompt" android:layout_marginLeft="@dimen/upomp_lthj_prompt_hint_margin_left" android:layout_marginTop="@dimen/upomp_lthj_prompt_hint_margin_top" android:layout_marginRight="@dimen/upomp_lthj_prompt_hint_margin_right" android:textColor="@android:color/darker_gray"/>
+		</LinearLayout> -->
+	</LinearLayout>
+	<LinearLayout style="@style/upomp_lthj_buttons_tab_layout"
+			android:orientation="vertical"  android:gravity="center">
+			<Button android:id="@id/upomp_lthj_button_ok" android:textColor="@drawable/upomp_lthj_white" android:background="@drawable/upomp_lthj_ok" style="@style/upomp_lthj_button_single" android:text="@string/upomp_lthj_confirm_back"  />
+	</LinearLayout>
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>
+

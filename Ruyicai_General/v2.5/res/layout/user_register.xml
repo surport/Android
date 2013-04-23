@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/grey" android:orientation="vertical">
+	<RelativeLayout android:orientation="horizontal"
+		android:gravity="left" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/shouye_top"
+		android:paddingTop="10px">
+		<Button android:id="@+id/usercenter_btn_return" android:text="返回"
+			android:background="#00000000" android:src="@drawable/returnselecter"
+			android:layout_width="70sp" android:layout_height="30sp"
+			android:layout_alignParentLeft="true" android:paddingLeft="10px"
+			android:textColor="@color/white" android:layout_marginLeft="5sp"
+			android:layout_centerVertical="true" />
+		<TextView android:id="@+id/ruyipackage_title"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:text="用户注册" android:textColor="@color/white"
+			android:layout_marginRight="10px" android:textSize="20dip" />
+	</RelativeLayout>
+	<RelativeLayout android:layout_centerVertical="true"
+		android:layout_height="wrap_content" android:layout_width="wrap_content">
+		<ScrollView android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:paddingBottom="80sp" android:fadeScrollbars="true">
+			<LinearLayout android:layoutAnimation="@anim/layout_animation_linear"
+				android:animationCache="false" android:clipToPadding="false"
+				android:orientation="vertical" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:stretchColumns="1" android:paddingTop="10dip" android:paddingBottom="30dip">
+				<LinearLayout android:orientation="horizontal"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layoutAnimation="@anim/layout_animation_row_left_slide"
+					android:gravity="right" android:paddingTop="3dip">
+					<TextView android:id="@+id/register_username_view"
+						android:layout_height="wrap_content" android:layout_width="100dip"
+						android:text="@string/register_login_phoneNumber" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+					<EditText android:id="@+id/register_username_edit"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:autoText="false" android:scrollHorizontally="true"
+						android:capitalize="none" android:numeric="integer"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_marginRight="10dip" android:hint="@string/please_enter_phone_number"
+						android:textSize="16sp" />
+				</LinearLayout>
+				<LinearLayout android:orientation="horizontal"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layoutAnimation="@anim/layout_animation_row_right_slide"
+					android:gravity="right">
+					<TextView android:id="@+id/register_password_view"
+						android:layout_height="wrap_content" android:layout_width="100dip"
+						android:text="@string/register_login_password" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+					<EditText android:id="@+id/register_password_edit"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:autoText="false" android:scrollHorizontally="true"
+						android:password="true" android:capitalize="none"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_marginRight="10dip" android:hint="@string/please_enter_phone_password"
+						android:textSize="16sp" android:singleLine="true" />
+				</LinearLayout>
+				<LinearLayout android:orientation="horizontal"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layoutAnimation="@anim/layout_animation_row_left_slide"
+					android:gravity="right">
+					<TextView android:id="@+id/register_confirm_password_view"
+						android:layout_height="wrap_content" android:layout_width="100dip"
+						android:text="@string/register_confirm_password" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+					<EditText android:id="@+id/register_confirm_password_edit"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:autoText="false" android:scrollHorizontally="true"
+						android:password="true" android:capitalize="none"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_marginRight="10dip"
+						android:hint="@string/please_enter_phone_password_two"
+						android:singleLine="true" android:textSize="16sp" />
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:gravity="left">
+					<CheckBox android:id="@+id/user_register_check_card_id"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:text="我要绑定身份证" android:textColor="@color/black"
+						android:layout_gravity="center_horizontal"
+						android:layout_marginLeft="102dip"></CheckBox>
+				</LinearLayout>
+				
+				<LinearLayout android:layout_width="fill_parent"
+					android:id="@+id/user_register_linear_card_id"
+					android:layout_height="wrap_content" android:orientation="vertical"
+					android:visibility="gone">
+					
+					<LinearLayout android:orientation="horizontal"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:layoutAnimation="@anim/layout_animation_row_right_slide"
+						android:gravity="right">
+						<TextView android:id="@+id/register_id_num_view"
+							android:layout_height="wrap_content" android:layout_width="100dip"
+							android:text="@string/register_id_num" android:gravity="left"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+						<EditText android:id="@+id/register_id_num_edit"
+							android:layout_height="wrap_content" android:layout_width="fill_parent"
+							android:autoText="false" android:scrollHorizontally="true"
+							android:capitalize="none" android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_marginRight="10dip" android:hint="@string/please_enter_id"
+							android:singleLine="true" android:textSize="16sp" />
+					</LinearLayout>
+					
+					<LinearLayout android:orientation="horizontal"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:layoutAnimation="@anim/layout_animation_row_right_slide"
+						android:gravity="right">
+
+						<TextView android:id="@+id/register_name_view"
+							android:layout_height="wrap_content" android:layout_width="100dip"
+							android:text="@string/register_login_name" android:gravity="left"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+						<EditText android:id="@+id/register_name_edit"
+							android:layout_height="wrap_content" android:layout_width="fill_parent"
+							android:autoText="false" android:scrollHorizontally="true"
+							android:capitalize="none" android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_marginRight="10dip" android:hint="@string/please_enter_name"
+							android:singleLine="true" android:textSize="16sp" />
+					</LinearLayout>
+
+				</LinearLayout>
+				
+				
+
+				
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:gravity="left">
+					<CheckBox android:id="@+id/user_register_check"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:text="我要使用如意卡" android:textColor="@color/black"
+						android:layout_gravity="center_horizontal" 
+						android:layout_marginLeft="102dip"></CheckBox>
+				</LinearLayout>
+				
+				
+
+				<LinearLayout android:layout_width="fill_parent"
+					android:id="@+id/user_register_linear_choose"
+					android:layout_height="wrap_content" android:orientation="vertical"
+					android:visibility="gone">
+
+					<LinearLayout android:orientation="horizontal"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:layoutAnimation="@anim/layout_animation_row_right_slide"
+						android:gravity="right">
+						<TextView android:layout_height="wrap_content"
+							android:layout_width="100dip" android:text="@string/register_id_card"
+							android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium"
+							android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+						<EditText android:id="@+id/register_id_card_edit"
+							android:layout_height="wrap_content" android:layout_width="fill_parent"
+							android:autoText="false" android:scrollHorizontally="true"
+							android:capitalize="none" android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_marginRight="10dip" android:numeric="integer"
+							android:hint="@string/please_enter_card_num" android:singleLine="true"
+							android:textSize="16sp" />
+					</LinearLayout>
+					<LinearLayout android:orientation="horizontal"
+						android:layout_width="fill_parent" android:layout_height="wrap_content"
+						android:layoutAnimation="@anim/layout_animation_row_right_slide"
+						android:gravity="right">
+						<TextView android:layout_height="wrap_content"
+							android:layout_width="100dip" android:text="@string/register_id_card_password"
+							android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium"
+							android:textColor="#666666" android:paddingLeft="10dip" android:textSize="16sp" />
+						<EditText android:id="@+id/register_id_card_password_edit"
+							android:layout_height="wrap_content" android:layout_width="fill_parent"
+							android:autoText="false" android:scrollHorizontally="true"
+							android:capitalize="none" android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_marginRight="10dip" android:numeric="integer"
+							android:hint="@string/please_enter_card_password"
+							android:singleLine="true" android:textSize="16sp" />
+					</LinearLayout>
+				</LinearLayout>
+				<Button android:id="@+id/register_button_"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textStyle="bold" android:text="@string/register"
+					android:layout_gravity="center_horizontal" android:textColor="@color/white" android:textSize="20sp"/>
+
+				<TextView android:id="@+id/register_refer_info_view"
+					android:layout_height="wrap_content" android:layout_width="fill_parent"
+					android:text="@string/register_refer_info_1"
+					android:textColorHighlight="#ffaded" android:textColorHint="#ff0000"
+					android:textColor="@color/black" android:textStyle="bold"
+					android:textSize="18sp" android:gravity="left"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:paddingTop="15px" android:visibility="gone" />
+				<TextView android:id="@+id/register_refer_info_view2"
+					android:layout_height="wrap_content" android:layout_width="fill_parent"
+					android:text="@string/register_refer_info_2"
+					android:textColorHighlight="#ffaded" android:textColorHint="#ff0000"
+					android:textColor="#fffe00" android:textStyle="normal"
+					android:textSize="16sp" android:gravity="left" android:autoLink="all"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:paddingTop="15px" android:visibility="gone" />
+			</LinearLayout>
+		</ScrollView>
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="80dip"
+			android:layoutAnimation="@anim/layout_animation_row_right_slide"
+			android:padding="10dp"
+			android:background="@drawable/buy_bot_bg" android:layout_alignParentBottom="true">
+			<TextView android:id="@+id/register_free_info_view"
+				android:layout_height="fill_parent" android:layout_width="wrap_content"
+				android:text="@string/register_free_info" 
+				android:textColorHighlight="#ffaded" android:textColorHint="#faaded"
+				android:textStyle="bold" android:textSize="16sp" android:gravity="left"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:textColor="#cc0000" />
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>

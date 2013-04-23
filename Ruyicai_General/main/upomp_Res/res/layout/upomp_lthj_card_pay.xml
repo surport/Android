@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+   		<LinearLayout style="@style/upomp_lthj_infoframe">
+			<TextView android:text="@string/upomp_lthj_savecard_pay_prompt" style="@style/upomp_lthj_layout_width_height_ww"
+				android:textColor="@android:color/black"/>
+		</LinearLayout>	
+      <TableLayout android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_fw" 
+		android:stretchColumns="1"  android:background="@drawable/upomp_lthj_corner_round_all"
+		android:padding="1.0dip">
+		<TableRow style="@style/upomp_lthj_tablerow"  android:background="@drawable/upomp_lthj_corner_round_top_white">
+			<TextView android:text="@string/upomp_lthj_pay_money" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_pay_money_tv" android:editable="false" android:focusable="false" android:cursorVisible="false" style="@style/upomp_lthj_textView_major_left" android:layout_span="2"/>
+		</TableRow>    
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow style="@style/upomp_lthj_tablerow" 
+  				 android:background="@drawable/upomp_lthj_corner_round_while" >
+			<TextView  android:text="@string/upomp_lthj_savecard_type" style="@style/upomp_lthj_textView_title" android:layout_gravity="center_vertical"/>
+			<RelativeLayout android:orientation="horizontal" style="@style/upomp_lthj_layout_width_height_fw" android:layout_weight="1.0"  >
+			<ImageView android:background="@drawable/upomp_lthj_right_arrows" style="@style/upomp_lthj_layout_width_height_ww" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_marginBottom="0dip" />
+			<Spinner android:id="@id/upomp_lthj_panBankSpinner" android:layout_span="2" style="@style/upomp_lthj_editTextLeft" android:prompt="@string/upomp_lthj_selectpanBank"  android:layout_marginTop="4dip"/>
+			</RelativeLayout>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow style="@style/upomp_lthj_tablerow"
+  				 android:background="@drawable/upomp_lthj_corner_round_while" >
+			<TextView  android:text="@string/upomp_lthj_savecard_pan" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_panNumEditText" style="@style/upomp_lthj_editTextLeft"  android:layout_span="2" 
+			 android:hint="@string/upomp_lthj_savecard_pan"  android:editable="false"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow  style="@style/upomp_lthj_tablerow"
+  				 android:background="@drawable/upomp_lthj_corner_round_while" >
+			<TextView  android:text="@string/upomp_lthj_savecard_pin" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_panPinEditText" style="@style/upomp_lthj_editTextLeft"  android:layout_span="2"  android:maxLength="6"
+			android:editable="false" android:hint="@string/upomp_lthj_savecard_pin"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow  style="@style/upomp_lthj_tablerow" android:background="@drawable/upomp_lthj_corner_round_bottom">
+			<TextView  android:text="@string/upomp_lthj_validateCode" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_validateCodeEditText" style="@style/upomp_lthj_editTextLeft" android:numeric="integer" android:imeOptions="actionDone" 
+				 android:maxLength="4" android:inputType="phone"
+			/>
+			<LinearLayout android:layout_width="@dimen/upomp_lthj_imgViewCheck_width" android:layout_height="@dimen/upomp_lthj_imgViewCheck_height" android:gravity="center">
+				<ImageView android:id="@id/upomp_lthj_imgview_checkword" android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal" android:layout_width="@dimen/upomp_lthj_imgViewCheck_width" android:layout_height="@dimen/upomp_lthj_imgViewCheck_height"
+					android:visibility="gone"/>
+				<ProgressBar android:id="@id/upomp_lthj_progress" 
+			        android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal"
+			        android:layout_width="@dimen/upomp_lthj_progressBar_size"
+			        android:layout_height="@dimen/upomp_lthj_progressBar_size" android:indeterminateDrawable="@drawable/upomp_lthj_progressbar"/>
+			</LinearLayout>
+		</TableRow>
+	</TableLayout>
+	<RelativeLayout style="@style/upomp_lthj_layout_width_height_fw"
+		android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+			android:orientation="horizontal"
+			android:gravity="center">
+		<Button android:id="@id/upomp_lthj_button_cancel" style="@style/upomp_lthj_button_cancle_single" android:text="@string/upomp_lthj_str_no"/>
+		<Button android:id="@id/upomp_lthj_button_ok" style="@style/upomp_lthj_button_ok_single"  android:text="@string/upomp_lthj_str_ok"/>
+	</RelativeLayout>
+</LinearLayout>

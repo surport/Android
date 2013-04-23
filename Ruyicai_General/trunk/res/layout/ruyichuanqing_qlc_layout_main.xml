@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ruyichuanqing_qlc_layout_id"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    >
+    <RelativeLayout android:id="@+id/ruyichuanqing_layout_qlc"
+    	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+    >
+    		<TextView 
+    			android:id="@+id/tv_ruyichuanqing_present_mode"
+    			android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/ruyichuanqing_choose_present_mode"
+        		android:layout_alignParentLeft="true"
+        		android:textColor="#000000"
+    		/>
+    		<RelativeLayout android:id="@+id/ruyichuanqing_layout_check"
+		    	android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_toRightOf="@+id/tv_ruyichuanqing_present_mode"
+		    >
+		    		<CheckBox
+		    			android:id="@+id/ruyichuanqing_qlc_jixuan"
+		    			android:layout_width="wrap_content"
+		        		android:layout_height="wrap_content"
+		        		android:text="@string/toggle_on"
+		        		android:layout_alignParentLeft="true"
+		        		android:checked="true"
+		        		android:textColor="#000000"
+		    		/>
+		    		<CheckBox
+		    			android:id="@+id/ruyichuanqing_qlc_zixuan"
+		    			android:layout_width="wrap_content"
+		        		android:layout_height="wrap_content"
+		        		android:text="@string/toggle_off"
+		        		android:layout_below="@+id/ruyichuanqing_qlc_jixuan"
+		        		android:textColor="#000000"
+		    		/>
+		    
+		    </RelativeLayout>
+    
+    </RelativeLayout>
+    
+    
+    <RelativeLayout android:id="@+id/ruyichuanqing_layout_qlc_zhushu"
+    	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+    >
+    		<TextView 
+    			android:id="@+id/tv_ruyichuanqing_present_zhushu"
+    			android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/ruyichuanqing_choose_present_zhushu"
+        		android:layout_alignParentLeft="true"
+        		android:textColor="#000000"
+    		/>
+		    <Spinner 
+		    	android:id="@+id/ruyichuanqing_spinner_zhushu"
+		    	android:layout_width="80px"
+        		android:layout_height="wrap_content"
+        		android:layout_toRightOf="@+id/tv_ruyichuanqing_present_zhushu"
+        		android:textColor="#000000"
+		    />
+    
+    </RelativeLayout>
+    
+    <RelativeLayout android:id="@+id/ruyichuanqing_layout_qlc"
+    	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    >
+    		<Button 
+    			android:id="@+id/ruyichuanqing_qlc_sure"
+    			android:layout_width="100px"
+        		android:layout_height="wrap_content"
+        		android:text="@string/ok"
+        		android:layout_alignParentRight="true"
+    		/>
+    
+    </RelativeLayout>
+    
+    
+    <TextView
+    	android:id="@+id/tv_ruyichuanqing_tips"
+    	android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ruyichuanqing_tips"
+        android:gravity="center_horizontal"
+        android:textColor="#000000"
+    />
+    
+    
+</LinearLayout>

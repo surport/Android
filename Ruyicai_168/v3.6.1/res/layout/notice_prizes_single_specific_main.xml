@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/notice_prizes_single_specific_main_relative01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/notice_prizes_single_specific_title_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:typeface="serif" >
+        </TextView>
+        <!-- 周黎鸣7.3将Button换成ImageButton -->
+
+        <Button
+            android:id="@+id/notice_prizes_single_specific_main_returnID"
+            android:layout_width="96dp"
+            android:layout_height="30dp"
+            android:paddingLeft="5dp"
+            android:layout_alignParentRight="true"
+            android:gravity="left|center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/notice_jc_date_selector"
+            android:textColor="@color/white" >
+        </Button>
+    </RelativeLayout>
+
+    <ListView  
+        android:id="@+id/notice_prizes_single_specific_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/notice_prizes_single_specific_main_relative01"
+        android:background="@drawable/list_bg_white"
+        android:divider="#d2d2d2"
+        android:dividerHeight="0dip"
+        android:cacheColorHint="@color/transparent">
+    </ListView>
+
+</RelativeLayout>

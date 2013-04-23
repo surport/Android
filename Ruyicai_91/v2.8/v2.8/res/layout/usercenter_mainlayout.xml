@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- miao用户中心的布局文件 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/bg">
+	<RelativeLayout android:id="@+id/main_buy_title"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/shouye_top">
+		<TextView android:text="@string/yonghuzhongxin" android:id="@+id/usercenter_mainlayou_text_title"
+			style="@style/UserTitleTextLeft" />
+
+		<Button android:id="@+id/layout_usercenter_img_return"
+			android:background="@drawable/returnselecter" android:layout_width="100dip"
+			android:layout_height="30dip" android:layout_alignParentRight="true"
+			android:layout_marginRight="10dip" android:layout_centerVertical="true"
+			android:text="@string/backtohomepage" android:textColor="@color/white"
+			android:textSize="15dip">
+		</Button>
+	</RelativeLayout>
+	<LinearLayout android:id="@+id/usercenterContent"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+	</LinearLayout>
+</LinearLayout>

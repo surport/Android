@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:background="@color/white" android:padding="6dip">
+	<LinearLayout android:id="@+id/LinearLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:background="@drawable/jc_bg1">
+		<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView android:text="日期:" android:id="@+id/jc_main_list_item_text_time"
+				android:layout_width="160sp" android:layout_height="wrap_content"
+				android:textSize="16sp" android:textColor="@color/black"
+				android:paddingLeft="10sp" android:paddingTop="5sp"></TextView>
+			<TextView android:text="编号:" android:id="@+id/jc_main_list_item_text_id"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textSize="16sp" android:textColor="@color/red"
+				android:paddingLeft="10sp" android:paddingTop="5sp"></TextView>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="vertical" android:gravity="bottom"
+			android:layout_margin="5sp">
+			<LinearLayout android:id="@+id/LinearLayout01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:paddingTop="5sp" android:background="@drawable/jc_bgtop">
+				<TextView android:text="" android:id="@+id/jc_main_list_item_text_team"
+					android:layout_width="70sp" android:layout_height="wrap_content"
+					android:textSize="16sp" android:textColor="@color/black"
+					android:gravity="center_horizontal"></TextView>
+				<LinearLayout android:id="@+id/LinearLayout01"
+					android:layout_width="100sp" android:layout_height="wrap_content"
+					android:gravity="center_horizontal|center_vertical">
+					<TextView android:text=""
+						android:id="@+id/jc_main_list_item_text_team_name1"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:textSize="16sp" android:textColor="@color/black"></TextView>
+					<TextView android:text=""
+						android:id="@+id/jc_main_list_item_text_team_score"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:textSize="13sp" android:textColor="@color/blue_red"
+						android:paddingLeft="5sp"></TextView>
+				</LinearLayout>
+				<TextView android:text="vs" android:id="@+id/TextView01"
+					android:layout_width="20sp" android:layout_height="wrap_content"
+					android:textSize="15sp" android:textColor="@color/red"
+					android:gravity="center_horizontal|center_vertical"></TextView>
+				<TextView android:text=""
+					android:id="@+id/jc_main_list_item_text_team_name2"
+					android:layout_width="100sp" android:layout_height="wrap_content"
+					android:textSize="16sp" android:textColor="@color/black"
+					android:gravity="center_horizontal|center_vertical"></TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:paddingTop="3sp" android:background="@drawable/jc_bgbottom">
+				<LinearLayout android:id="@+id/LinearLayout01"
+					android:layout_width="70sp" android:layout_height="wrap_content"
+					android:orientation="vertical" android:gravity="center_horizontal">
+					<TextView android:text="比赛时间" android:id="@+id/TextView01"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:textSize="13sp" android:textColor="@color/black"></TextView>
+					<TextView android:text=""
+						android:id="@+id/jc_main_list_item_text_time_end"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:textSize="13sp" android:textColor="@color/black"></TextView>
+				</LinearLayout>
+				<LinearLayout android:id="@+id/LinearLayout01"
+					android:layout_width="230sp" android:layout_height="wrap_content"
+					android:gravity="center_horizontal" android:paddingTop="3sp">
+					<TextView android:text="比赛结果:"
+						android:id="@+id/jc_main_list_item_text_jieguo"
+						android:layout_width="100sp" android:layout_height="wrap_content"
+						android:textSize="13sp" android:textColor="@color/black" android:gravity="left"></TextView>
+					<TextView android:text="比分:" android:id="@+id/jc_main_list_item_text_score"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:textSize="13sp" android:textColor="@color/black" android:gravity="left"></TextView>
+
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+</LinearLayout>

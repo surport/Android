@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/upomp_lthj_lyTitleBar" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@drawable/upomp_lthj_bg_main" style="@style/upomp_lthj_layout_width_height_ff" >
+	<!--  
+	<LinearLayout style="@style/upomp_lthj_buttons_tab_layout"
+		android:orientation="horizontal" >
+		<Button android:id="@id/upomp_lthj_titleloginin" style="@style/upomp_lthj_buttons_tab_left"
+			android:text="@string/upomp_lthj_main_loginin" android:layout_weight="1.0" />
+		<Button android:id="@id/upomp_lthj_titleregister" style="@style/upomp_lthj_buttons_tab_right"
+			android:text="@string/upomp_lthj_main_register" android:layout_weight="1.0" />
+	</LinearLayout>
+	-->
+	<ScrollView style="@style/upomp_lthj_layout_width_height_fw" android:scrollbars="none"
+ 		  >
+	<LinearLayout android:id="@id/upomp_lthj_logincontent" style="@style/upomp_lthj_layout_width_height_fw"
+	>
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>

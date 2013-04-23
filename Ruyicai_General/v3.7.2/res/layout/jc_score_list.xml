@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/jc_score_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/jc_explain_list_bg"
+        android:padding="5dip"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/jc_europe_list_item_text_company"
+            android:layout_width="80dip"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="公司"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+
+        <LinearLayout
+            android:layout_width="120dip"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_center_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="初盘"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dip"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_right_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="即时盘"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/jc_asia_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/jc_explain_list_bg"
+        android:padding="5dip"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/jc_europe_list_item_text_company"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:gravity="center_horizontal"
+            android:text="公司"
+            android:textColor="@color/black"
+            android:textSize="20dip" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="初盘"
+            android:textColor="@color/black"
+            android:textSize="20dip" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="即时盘"
+            android:textColor="@color/black"
+            android:textSize="20dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/jc_europe_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/jc_explain_list_bg"
+        android:padding="5dip"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/jc_europe_list_item_text_company"
+            android:layout_width="80dip"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="公司"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+
+        <LinearLayout
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_left_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="胜"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_left_leve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="平"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_left_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="负"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="60dip"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_center_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="胜率"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text1_center_leve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="平率"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_center_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="负率"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_right_win"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="凯利指数胜"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text1_right_leve"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="凯利指数平"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/jc_europe_list_item_text_right_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="凯利指数负"
+                android:textColor="@color/black"
+                android:textSize="15dip" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/jc_europe_list_item_text_give"
+            android:layout_width="50dip"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="返还率"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@drawable/litt" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/jc_score_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jc_score_list_bg"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingLeft="10dip"
+            android:text="选择日期："
+            android:textColor="@color/black"
+            android:textSize="18dip" />
+
+        <Spinner
+            android:id="@+id/jc_score_list_spinner"
+            android:layout_width="170dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" >
+        </Spinner>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/jc_score_text_no_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="25dip"
+        android:text="你还没有关注任何比赛"
+        android:textColor="@color/grey_more"
+        android:textSize="25dip"
+        android:textStyle="bold|normal"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/fenxi_listview_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/fenxi_listview_header_hometeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/fenxi_listview_header_guestteam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/buy_jc_main_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/list_bg_white"
+        android:divider="#d2d2d2"
+        android:dividerHeight="0dip"
+        android:fadingEdge="none"
+        android:scrollingCache="false" >
+    </ListView>
+
+</LinearLayout>

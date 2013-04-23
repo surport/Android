@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/pl3_hezhi_zu6_linearlayout" android:layout_width="wrap_content"
+	android:layout_height="wrap_content" android:orientation="vertical">
+	<TextView android:id="@+id/text_sum_money_hezhi_zu6"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:textColor="#000000" android:gravity="center_horizontal" />
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:background="@drawable/edit_area" android:gravity="center_vertical|center_horizontal">
+		<TextView android:text="@string/fc3d_text_hezhi_title"
+			android:id="@+id/pl3_text_hezhi" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:gravity="center_vertical"
+			android:textColor="@color/black" android:textSize="16dip"></TextView>
+		<EditText android:id="@+id/pl3_edit_hezhi"
+			android:singleLine="true" android:cursorVisible="false"
+			android:editable="false" android:background="@drawable/huikuang"
+			android:textColor="@color/red" android:ellipsize="none"
+			android:layout_width="220dip" android:layout_height="27dip"
+			android:textSize="13dip"></EditText>
+	</LinearLayout>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<ScrollView android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:paddingBottom="90dip">
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:background="@drawable/balls_area">
+				<TableLayout android:id="@+id/table_hezhi_zu6"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_marginRight="6dip" android:paddingTop="10dip"
+					android:paddingBottom="10dip" />
+			</LinearLayout>
+		</ScrollView>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true" android:background="@drawable/bottom_bg">
+			<RelativeLayout android:orientation="horizontal"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true" android:paddingBottom="10dip">
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/layout_progress_all" android:paddingRight="20dip">
+					<RelativeLayout android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+						<ImageButton android:id="@+id/pl3_seekbar_subtract_hezhi_zu6_beishu"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/subtract11" android:background="#00000000"
+							android:paddingTop="10dip" />
+						<LinearLayout android:orientation="vertical"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:id="@+id/layout_progress"
+							android:layout_centerHorizontal="true"
+							layout_toRightOf="@+id/pl3_seekbar_subtract_hezhi_zu6_beishu"
+							android:paddingLeft="15dip" android:paddingRight="15dip">
+							<LinearLayout android:orientation="horizontal"
+								android:layout_width="wrap_content" android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal">
+								<TextView android:id="@+id/text_beishu"
+									android:layout_width="20dip" android:layout_height="wrap_content"
+									android:textColor="@color/black" />
+								<TextView android:id="@+id/pl3_beishu_title"
+									android:layout_width="wrap_content" android:layout_height="wrap_content"
+									android:text="@string/meiqibeishu" android:textColor="@color/black" />
+							</LinearLayout>
+							<SeekBar android:id="@+id/seek_beishu"
+								style="?android:attr/progressBarStyleHorizontal"
+								android:progressDrawable="@drawable/seekbar_style"
+								android:thumb="@drawable/thumb" android:max="50"
+								android:progress="1" android:layout_width="130dip"
+								android:layout_height="15dip" android:paddingLeft="15dip"
+								android:paddingRight="15dip" android:paddingBottom="4dip"
+								android:layout_centerVertical="true" />
+						</LinearLayout>
+						<ImageButton android:id="@+id/pl3_seekbar_add_hezhi_zu6_beishu"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+							android:background="#00000000" android:paddingTop="10dip" />
+					</RelativeLayout>
+					<RelativeLayout android:layout_width="wrap_content"
+						android:layout_height="wrap_content">
+						<ImageButton android:id="@+id/pl3_seekbar_subtract_hezhi_zu6_qihao"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/subtract11" android:background="#00000000"
+							android:paddingTop="10dip" />
+						<LinearLayout android:orientation="vertical"
+							android:layout_width="wrap_content" android:layout_height="40dip"
+							android:id="@+id/layout_progress"
+							android:layout_centerHorizontal="true"
+							android:layout_toRightOf="@+id/pl3_seekbar_subtract_hezhi_zu6_qihao">
+							<LinearLayout android:orientation="horizontal"
+								android:layout_width="wrap_content" android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal">
+								<TextView android:id="@+id/text_qishu"
+									android:layout_width="20dip" android:layout_height="wrap_content"
+									android:textColor="#000000" />
+								<TextView android:id="@+id/text_qishu_title"
+									android:layout_width="wrap_content" android:layout_height="wrap_content"
+									android:text="@string/zhuihaoqishu" android:textColor="#000000" />
+							</LinearLayout>
+							<SeekBar android:id="@+id/seek_qishu"
+								style="?android:attr/progressBarStyleHorizontal"
+								android:progressDrawable="@drawable/seekbar_style"
+								android:thumb="@drawable/thumb" android:max="99"
+								android:progress="1" android:layout_width="130dip"
+								android:layout_height="15dip" android:paddingLeft="15dip"
+								android:paddingRight="15dip" android:paddingBottom="4dip"
+								android:layout_centerVertical="true" />
+						</LinearLayout>
+						<ImageButton android:id="@+id/pl3_seekbar_add_hezhi_zu6_qihao"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+							android:background="#00000000" android:paddingTop="10dip" />
+					</RelativeLayout>
+				</LinearLayout>
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_centerVertical="true" android:layout_toRightOf="@+id/layout_progress_all">
+					<ImageButton android:id="@+id/b_touzhu_hezhi_zu6"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="#00000000" android:src="@drawable/imageselecter" />
+					<ImageButton android:id="@+id/pl3_new_select"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="#00000000" android:src="@drawable/selecet_chongxuan"
+						android:paddingTop="10dip" />
+				</LinearLayout>
+			</RelativeLayout>
+		</RelativeLayout>
+	</RelativeLayout>
+</LinearLayout>
+

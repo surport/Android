@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	字符列表项
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ruyihelper_string_linerlayout" 
+	android:orientation="horizontal"
+	android:gravity="left"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+		
+	<TextView 
+		android:id="@+id/ruyihelper_string_text"
+		android:textColor="@color/black"
+		android:gravity="center"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:typeface="serif"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+	</TextView>
+
+</LinearLayout>

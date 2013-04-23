@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:background="#191919"
+	>
+	<TextView 
+		android:id="@+id/usercenter_winningCheck_id"
+		android:textColor="#FFFFFF"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
+	<RelativeLayout
+		android:id="@+id/linearlayout_usercenter_btn"
+		android:layout_below="@+id/usercenter_winningCheck_id"
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+	>
+	<Button
+		android:id="@+id/usercenter_btn_winningcheck_uppage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:text="@string/usercenter_upPage"
+	/>
+	<Button
+		android:id="@+id/usercenter_btn_winningcheck_downpage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:text="@string/usercenter_downPage"
+		
+	/>
+	
+	</RelativeLayout>
+
+</RelativeLayout>

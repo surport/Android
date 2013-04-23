@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+	   
+	<EditText 
+		android:id="@+id/clln_shengri_dialog_edit_year_id" 
+		android:layout_width="80dip" 
+		android:layout_height="wrap_content">
+	</EditText>
+	
+	<TextView 
+		android:id="@+id/clln_shengri_dialog_year_name_id" 
+		android:text="@string/year" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content">
+	</TextView>
+	
+	<EditText 
+		android:id="@+id/clln_shengri_dialog_edit_month_id" 
+		android:layout_height="wrap_content" 
+		android:layout_width="80dip">
+	</EditText>
+	
+	<TextView 
+		android:id="@+id/clln_shengri_dialog_month_name_id" 
+		android:text="@string/month" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content">
+	</TextView>
+	
+	<EditText 
+		android:id="@+id/clln_shengri_dialog_edit_day_id" 
+		android:layout_height="wrap_content" 
+		android:layout_width="80dip">
+	</EditText>
+	
+	<TextView 
+		android:id="@+id/clln_shengri_dialog_day_name_id" 
+		android:text="@string/day" 
+		android:layout_height="wrap_content" 
+		android:layout_width="wrap_content">
+	</TextView>
+
+</LinearLayout>

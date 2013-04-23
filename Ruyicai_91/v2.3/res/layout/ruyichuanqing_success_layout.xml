@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@color/white" android:orientation="vertical"
+	android:layout_width="wrap_content" android:layout_height="fill_parent">
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<RelativeLayout android:id="@+id/RelativeLayout01"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:background="@drawable/shouye_top">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/ruyichuanqing"
+				android:layout_alignParentLeft="true" android:textColor="@color/white"
+				android:textSize="20dip" android:paddingLeft="10dip"
+				android:layout_centerVertical="true" />
+		</RelativeLayout>
+		<TextView android:id="@+id/ruyichuanqing_success_title"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:text="@string/ruyichuanqing_success_message"
+			android:textColor="#000000" />
+		<!-- wangyl 7.13 限制输入祝福语言的字数-->
+		<EditText android:id="@+id/ruyichuanqing_success_message_text"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:textColor="#000000" android:maxLength="20" android:lines="3" 
+			android:hint="在此写下您对亲人的祝福吧:-)" android:lineSpacingExtra="10sp"
+			android:textStyle="italic" android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView android:id="@+id/ruyichuanqing_success_phone"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="@string/ruyichuanqing_success_phonenumber"
+			android:layout_alignParentLeft="true" android:textColor="#000000" />
+
+		<LinearLayout android:id="@+id/ruyichuanqing_success_layout_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:weightSum="6">
+			<!-- wangyl 7.13限制输入电话号码的字数-->
+			<EditText android:id="@+id/ruyichuanqing_success_phonenumber_text"
+				android:layout_width="200dp" android:layout_height="wrap_content"
+				android:textColor="#000000" android:layout_weight="4"
+				android:singleLine="true" android:numeric="integer"
+				android:maxLength="14" />
+
+			<Button android:id="@+id/ruyichuanqing_phone_add"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="添加" android:layout_weight="1" android:visibility="gone"/>
+			<Button android:id="@+id/ruyichuanqing_phone_btn"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="@string/ruyichuanqing_phonetext"
+				android:layout_weight="1" />
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/ruyichuanqing_success_layout1"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:paddingTop="20dip">
+		<RelativeLayout android:id="@+id/ruyichuanqing_success_layout_btn"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<Button android:id="@+id/ruyichuanqing_success_ok_btn"
+				android:layout_width="100px" android:layout_height="wrap_content"
+				android:text="@string/ok" android:layout_alignParentLeft="true" />
+			<Button android:id="@+id/ruyichuanqing_success_cancel_btn"
+				android:layout_width="100px" android:layout_height="wrap_content"
+				android:text="@string/str_return" android:layout_alignParentRight="true" />
+		</RelativeLayout>
+	</LinearLayout>
+	<ListView android:id="@+id/ruyichuanqing_success_phonenumber_listview"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textColor="#000000" android:cacheColorHint="#00000000"
+		android:listSelector="#00000000" />
+</LinearLayout>

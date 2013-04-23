@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="lib" path="lib/com_unionpay_upomp_lthj_lib.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/alipay_plugin.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

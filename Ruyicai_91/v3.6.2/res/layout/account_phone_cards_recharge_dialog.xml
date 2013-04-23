@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+     >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:orientation="vertical" 
+        android:layout_alignParentTop="true" android:paddingLeft="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="手机话费充值卡充值"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:layout_below="@id/title" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择运营商:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/phone_card_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/recharge_card_type"
+                android:paddingRight="20dip"
+                android:prompt="@string/phone_card_select_recharge_card_type" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充值卡面额:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/phone_card_value_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/recharge_card_value"
+                android:prompt="@string/phone_card_select_recharge_card_value" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="充值卡序号:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/phone_card_rechargecard_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoText="false"
+                android:capitalize="none"
+                android:gravity="fill_horizontal"
+                android:scrollHorizontally="true" android:numeric="integer"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="充值卡密码:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/phone_card_rechargecard_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:autoText="false"
+                android:capitalize="none"
+                android:gravity="fill_horizontal"
+                android:numeric="integer"
+                android:scrollHorizontally="true"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+     
+    </LinearLayout>
+       
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content"
+        android:background="#FFFFFF"
+        android:paddingBottom="50dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+         <TextView
+            android:id="@+id/contentText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:textColor="#cc0000"
+            android:textSize="14dip" />
+    
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/alert_bottom_bg"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="确 定"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/canel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="取 消"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

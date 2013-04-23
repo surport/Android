@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:background="#e0ffffff"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+
+	<!-- 周黎明 7.3将Button换成ImageButton -->
+	<ImageButton android:id="@+id/chooose_luck_lottery_num_return"
+		     android:src="@drawable/return_btn"
+		     android:background="#00000000"
+		     android:layout_width="wrap_content" 
+	             android:layout_height="wrap_content"
+	/>
+	<GridView 
+		android:id="@+id/chooose_luck_lottery_num_gridview_id" 
+		android:numColumns="4"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</GridView>
+	
+</LinearLayout>

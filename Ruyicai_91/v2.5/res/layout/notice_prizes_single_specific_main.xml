@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:id="@+id/notice_prizes_single_specific_main_relative01"
+		android:layout_height="wrap_content" android:paddingTop="10px"
+		android:paddingLeft="10px" android:paddingBottom="10px"
+		android:background="#f1f1f1" android:visibility="gone">
+		<TextView android:id="@+id/notice_prizes_single_specific_title_id"
+			android:textColor="@color/red" android:gravity="center_vertical"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="20sp"
+			android:layout_marginLeft="50dp">
+		</TextView>
+		<!-- 周黎鸣7.3将Button换成ImageButton -->
+		<Button android:id="@+id/notice_prizes_single_specific_main_returnID"
+			android:layout_alignParentRight="true" android:src="@drawable/returnselecter"
+			android:background="#00000000" android:layout_width="70sp"
+			android:text="返 回" android:layout_height="30sp" android:textColor="@color/white"
+			android:layout_marginRight="10dp">
+		</Button>
+	</RelativeLayout>
+
+	<!--
+		<ScrollView
+		android:layout_below="@+id/notice_prizes_single_specific_main_relative01"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	-->
+	<!--
+		<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/LinearLayout01"
+		android:orientation="vertical" android:background="@color/white">
+	-->
+	<ListView android:id="@+id/notice_prizes_single_specific_listview"
+		android:layout_below="@+id/notice_prizes_single_specific_main_relative01"
+		android:cacheColorHint="#00000000" android:listSelector="#00000000"
+		android:focusable="false" android:focusableInTouchMode="false"
+		android:clickable="false" android:clipChildren="false"
+		android:background="@color/white" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	</ListView>
+	<!--</LinearLayout>
+	-->
+	<!--</ScrollView>-->
+</RelativeLayout>
+

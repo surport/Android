@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content" android:background="#ffffff">
+	<RelativeLayout android:id="@+id/main_buy_title"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/shouye_top">
+		<TextView android:text="@string/joinchekinfoquery" style="@style/UserTitleTextLeft"
+			android:id="@+id/usercenter_mainlayou_text_title"
+			android:layout_width="wrap_content" 
+			></TextView>
+
+	</RelativeLayout>
+	<TabHost android:id="@+id/usercenter_tab_host"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			<TabWidget android:id="@android:id/tabs"
+				android:background="@color/white" android:layout_alignParentTop="true"
+				android:layout_width="fill_parent" android:layout_height="wrap_content" />
+			<FrameLayout android:id="@android:id/tabcontent"
+				android:background="@color/white" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:layout_below="@android:id/tabs"
+				android:layout_alignParentBottom="true">
+				<LinearLayout android:id="@+id/joincheck_query"
+					android:layout_width="fill_parent" android:layout_height="wrap_content" />
+				<LinearLayout android:id="@+id/joinfollow_query_"
+					android:layout_width="fill_parent" android:layout_height="wrap_content" />
+			</FrameLayout>
+			
+		</RelativeLayout>
+	</TabHost>
+
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/layout_main_text_title_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+
+        <Button
+            android:visibility="invisible"
+            android:id="@+id/layout_main_img_return"
+            android:layout_width="80dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:text="返回大厅"
+            android:textColor="@color/white"
+            android:textSize="15dip" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/layout_main_text_issue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dip"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="14dip" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/layout_main_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="10sp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="14dip" >
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/litt" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dlc_top_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip" >
+
+        <Spinner
+            android:id="@+id/buy_dlc_spinner"
+            android:layout_width="140sp"
+            android:layout_height="40dip"
+            android:entries="@array/dlc_type" >
+        </Spinner>
+
+        <LinearLayout
+            android:id="@+id/sscchildtype"
+            android:layout_width="fill_parent"
+            android:layout_height="45dip"
+            android:paddingLeft="10dip" >
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buyview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+</LinearLayout>

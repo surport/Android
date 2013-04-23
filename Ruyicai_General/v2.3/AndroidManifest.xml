@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.palmdream.RuyicaiAndroid" android:versionName="2.3" android:versionCode="3">
+
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<!-- 范亚军 -->
+		<activity android:name="com.ruyicai.activity.home.HomePage"
+			android:label="@string/app_name" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name="com.ruyicai.activity.home.RuyicaiAndroid"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.ssq.SsqActivity"
+			android:label="ssq" android:configChanges="keyboardHidden|orientation" 
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.qlc.QLC"
+			android:label="qlc" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.fc3d.Fc3d"
+			android:label="fc3d" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.fc3d.Fc3d"
+			android:label="fc3d" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.dlt.DLT"
+			android:label="dlt" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<!-- wangyl 8.9 排列三 -->
+		<activity android:name="com.ruyicai.activity.game.pl3.PL3"
+			android:label="pl3" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+
+		<!-- 冯琴冲 首页 -->
+		<activity android:name="com.ruyicai.activity.common.UserLogin"
+			android:label="UserLogin" android:theme="@android:style/Theme.Dialog"
+			android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="com.ruyicai.activity.common.CheckWireless"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.dialog.ShowNoConnectionDialog"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.dialog.ShowConnectionDialog"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.common.ChooseLuckyNum"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+		<!-- 冯琴冲 账户充值 -->
+		<activity android:name="com.ruyicai.activity.common.AccountRecharge"
+			android:label="AccountRecharge" android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name="com.ruyicai.activity.common.PhoneCardsRechargeDialog"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<!-- 王艳玲 -->
+		<activity android:name="com.ruyicai.activity.common.RuyiHelper"
+			android:configChanges="orientation|keyboardHidden|keyboard"
+			android:screenOrientation="portrait" />
+
+
+		<activity android:name="com.ruyicai.activity.present.RuyiExpressFeelSuccess"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.present.RuyiExpressFeelFc3dZixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.present.RuyiExpressFeelSsqZixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.present.RuyiExpressFeelQlcZixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+		<!-- wangyl 8.25 排列三、大乐透 -->
+		<activity android:name="com.ruyicai.activity.present.RuyiExpressFeelPl3Zixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.present.RuyiExpressFeelDltZixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+		<!-- 周黎鸣 -->
+		<activity android:name="com.ruyicai.activity.notice.NoticePrizesOfLottery"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.home.BuyLotteryMainList"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+		<!-- 如意传情 -->
+		<activity android:name="com.ruyicai.activity.present.RuYiChuanQingMainPage"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+
+		<activity android:name="com.ruyicai.activity.notice.NoticePrizesOfLotteryFucai"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<!--
+			com.ruyicai.activity.notice.NoticePrizesOfLotteryQilecaiNoticePrizesOfLotteryQilecai"
+			/>
+			com.ruyicai.activity.notice.NoticePrizesOfLotteryShuangseqiucePrizesOfLotteryShuangseqiu"
+			/>
+		-->
+		<!-- 付磊 -->
+
+
+		<!--时时彩 -->
+
+		<activity android:name="com.ruyicai.activity.game.ssc.SscZhiXuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.ssc.SscTwoStar"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.ssc.SscThreeStar"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.ssc.SscBigSmall"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.ssc.SscFiveStar"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+		<!-- 足彩 -->
+
+		<activity android:name="com.ruyicai.activity.game.zc.ShengFC"
+			android:label="sfc" android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name="com.ruyicai.activity.game.zc.JinQC"
+			android:label="jqc" android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name="com.ruyicai.activity.game.zc.LiuCB"
+			android:label="lcb" android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation" />
+		<activity android:name="com.ruyicai.activity.game.zc.RenX9"
+			android:label="rxj" android:screenOrientation="portrait"
+			android:configChanges="keyboardHidden|orientation" />
+
+
+		<!-- 超级大乐透-->
+		<activity android:name="com.ruyicai.activity.game.dlt.DLTdantuo"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.dlt.DLT12xuan2"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.dlt.DLTzhixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.dlt.DLTzhixuanjixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+		<activity android:name="com.ruyicai.activity.game.dlt.DLT12xuan2jixuan"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait" />
+
+		<!-- web 浏览器 -->
+		<activity android:name="com.ruyicai.activity.webbrowser.WebBrowser"
+			android:configChanges="keyboardHidden|orientation" />
+
+	</application>
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-sdk android:minSdkVersion="3" />
+    <supports-screens
+            android:smallScreens="true"
+            android:normalScreens="true"
+            android:largeScreens="true"
+            android:resizeable="true"
+            android:anyDensity="true" />
+
+
+</manifest> 

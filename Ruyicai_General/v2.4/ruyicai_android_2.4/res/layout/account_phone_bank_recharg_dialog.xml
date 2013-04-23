@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:background="@drawable/shouye_top">
+		<TextView android:text="手机银行充值" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_centerHorizontal="true"
+			android:textColor="@color/white" android:textSize="20dip"
+			android:layout_centerVertical="true"></TextView>
+	</RelativeLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:background="@color/white" android:padding="10dip"
+		android:layout_height="wrap_content" android:orientation="vertical">
+		<TextView android:layout_width="fill_parent"
+			android:textColor="@color/black" android:layout_height="wrap_content"
+			android:text="@string/phone_card_please_entrCardInfo"
+			android:textAppearance="?android:attr/textAppearanceMedium" />
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="vertical">
+			<Spinner android:id="@+id/phone_bank_spinner"
+				android:layout_width="228dip" android:layout_height="wrap_content"
+				android:layout_marginTop="5dip" android:drawSelectorOnTop="true"
+				android:prompt="@string/phone_banke_select_bank_type"
+				android:entries="@array/bank_type" />
+		</LinearLayout>
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:textColor="@color/black"
+			android:layout_marginTop="5dip" android:text="@string/phone_bank_enter_value"
+			android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		<EditText android:id="@+id/phone_bank_enter_value"
+			android:layout_marginTop="5dip" android:layout_height="wrap_content"
+			android:layout_width="228dip" android:scrollHorizontally="true"
+			android:autoText="false" android:capitalize="none" android:gravity="fill_horizontal"
+			android:numeric="integer" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:textColor="#cc0000"
+			android:textSize="14dip" android:text="@string/phone_bank_hint"
+			android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+	</LinearLayout>
+
+	<LinearLayout android:layout_width="fill_parent" android:gravity="center_horizontal"
+		android:paddingTop="5dip" android:layout_height="wrap_content"
+		android:orientation="horizontal" android:background="@drawable/alert_bottom_bg">
+		<Button android:id="@+id/ok" android:text="确 定" android:background="@drawable/join_info_btn_selecter"
+			android:textSize="18sp" android:layout_width="wrap_content"		android:layout_weight="1" android:layout_height="40dp"
+			android:gravity="center"></Button>
+		<Button android:id="@+id/canel" android:text="取 消" android:background="@drawable/join_info_btn_selecter"
+			android:textSize="18sp" android:layout_width="wrap_content" android:layout_marginLeft="10dp"
+			android:layout_weight="1" android:layout_height="40dp"
+			android:gravity="center"></Button>
+	</LinearLayout>
+</LinearLayout>
+

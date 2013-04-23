@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:paddingTop="15px"
+	android:paddingBottom="15px" android:background="@drawable/list_bg">
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<ImageView android:id="@+id/expert_analyze_icon_id"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true" android:paddingLeft="30dip">
+		</ImageView>
+		<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:textColor="@color/black"
+			android:id="@+id/expert_analyze_typename_id" android:layout_height="wrap_content"
+			android:layout_width="wrap_content" android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true">
+		</TextView>
+
+	</RelativeLayout>
+</LinearLayout>

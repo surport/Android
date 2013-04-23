@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:background="@color/white" android:orientation="vertical">
+	<LinearLayout android:id="@+id/balls_layout_qlc"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="@string/table_ball_danma"
+			android:textColor="#000000" android:paddingLeft="10px" />
+		<TableLayout android:id="@+id/table_red_danma_qlc"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginRight="6dip" />
+
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="@string/table_ball_tuoma"
+			android:textColor="#000000" android:paddingLeft="10px" />
+		<TableLayout android:id="@+id/table_red_tuoma_qlc"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginRight="6dip" />
+
+		<!--
+			<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/blue_ball_dantuo" android:textColor="#000000"
+			/> <TableLayout android:id="@+id/table_blue_dantuo"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+
+			android:layout_marginRight="6dip"/>
+		-->
+	</LinearLayout>
+	<TextView android:id="@+id/qlc_dantuo_text_sum_money"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textColor="#000000" android:paddingLeft="10px" />
+
+
+
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:paddingLeft="10px">
+
+
+		<TextView android:id="@+id/qlc_dantuo_beishu_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="@string/meiqibeishu" android:textColor="#000000" />
+
+		<RelativeLayout android:id="@+id/qlc_jixuan_layout"
+			android:layout_width="300px" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/qlc_dantuo_text_beishu_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+				android:textSize="20px" android:textColor="#000000"
+				android:layout_alignParentLeft="true" />
+
+			<ImageButton android:id="@+id/qlc_dantuo_seekbar_subtract_beishu"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:layout_toRightOf="@+id/qlc_dantuo_text_beishu_change"
+				android:background="#00000000" />
+
+
+			<SeekBar android:id="@+id/qlc_dantuo_seek_beishu"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="50" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/qlc_dantuo_seekbar_subtract_beishu" />
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/zuida50bei"
+				android:textColor="#000000" android:layout_below="@+id/qlc_dantuo_seek_beishu"
+				android:layout_centerHorizontal="true" />
+
+			<ImageButton android:id="@+id/qlc_dantuo_seekbar_add_beishu"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/qlc_dantuo_seek_beishu"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+
+
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:visibility="gone">
+
+		<TextView android:id="@+id/qlc_dantuo_text_qishu_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="@string/zhuihaoqishu" android:textColor="#000000" />
+
+		<RelativeLayout android:id="@+id/qlc_jixuan_layout_qihao"
+			android:layout_width="300px" android:layout_height="wrap_content">
+			<TextView android:id="@+id/qlc_dantuo_text_qishu_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:textColor="#000000" android:layout_marginLeft="10dip"
+				android:layout_marginRight="5dip" android:layout_alignParentLeft="true"
+				android:textSize="20px" />
+
+			<ImageButton android:id="@+id/qlc_dantuo_seekbar_subtract_qihao"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:layout_toRightOf="@+id/qlc_dantuo_text_qishu_change"
+				android:background="#00000000" />
+
+
+			<SeekBar android:id="@+id/qlc_dantuo_seek_qishu"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="99" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/qlc_dantuo_seekbar_subtract_qihao" />
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/zuiduo99qi"
+				android:textColor="#000000" android:layout_below="@+id/qlc_dantuo_seek_qishu"
+				android:layout_centerHorizontal="true" />
+
+			<ImageButton android:id="@+id/qlc_dantuo_seekbar_add_qihao"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/qlc_dantuo_seek_qishu"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+	</LinearLayout>
+	<RelativeLayout android:id="@+id/qlc_jixuan_layout"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:paddingLeft="10px">
+
+		<CheckBox android:id="@+id/qlc_dantuo_cb_jixuan"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="@string/jixuan" android:layout_alignParentLeft="true"
+			android:textColor="#000000" />
+		<Button android:id="@+id/qlc_dantuo_btn_newSelect"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="@string/ruyichuanqing_newselect_jixuan"
+			android:visibility="invisible" android:layout_toRightOf="@+id/qlc_dantuo_cb_jixuan"
+			android:layout_marginLeft="10dip" />
+		<ImageButton android:id="@+id/qlc_dantuo_b_touzhu"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:background="#00000000" android:src="@drawable/imageselecter"
+			android:layout_alignParentRight="true" />
+
+	</RelativeLayout>
+	<ListView android:layout_height="wrap_content"
+		android:id="@+id/ssq_join_fushi_list_fanan" android:layout_width="fill_parent"
+		android:scrollbars="none"></ListView>
+
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dip"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" android:gravity="center_horizontal">
+
+    <RelativeLayout
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:orientation="vertical" android:id="@+id/jc_main_layout">
+
+        <TextView
+            android:id="@+id/zfb_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="300dip"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:paddingBottom="70dip"
+        android:paddingTop="10dip"
+        android:scrollbars="vertical" android:layout_below="@+id/jc_main_layout">
+
+        <LinearLayout
+            android:id="@+id/jc_linear_check_all"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="center_horizontal">
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="300dip" 
+        android:layout_height="wrap_content"
+        android:background="@drawable/alert_bottom_bg"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="10dip" android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/all_check"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="全选"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/clear_check"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="全清"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

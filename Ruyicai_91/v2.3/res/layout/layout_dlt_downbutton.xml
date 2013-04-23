@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_height="fill_parent" android:layout_width="fill_parent">
+	<Button android:id="@+id/sb_goucaidating" android:layout_width="1000dp"
+		android:layout_height="wrap_content" android:background="@drawable/dlt_downbutton_goucaidating"
+		android:layout_weight="1" />
+	<Button android:id="@+id/sb_dltzhixuan" android:background="@drawable/dlt_downbutton_zhixuan"
+		android:layout_height="wrap_content" android:layout_width="1000dp" 
+		android:layout_weight="1" />
+	<Button android:id="@+id/sb_dltdantuo" android:layout_width="1000dp"
+		android:layout_height="wrap_content" android:background="@drawable/dlt_downbutton_dantuo"
+		android:layout_weight="1" />
+	<Button android:id="@+id/sb_dlt12xuan2" android:layout_width="1000dp"
+		android:layout_height="wrap_content" android:background="@drawable/dlt_downbutton_12xuan2"
+		android:layout_weight="1" />
+</LinearLayout>
+

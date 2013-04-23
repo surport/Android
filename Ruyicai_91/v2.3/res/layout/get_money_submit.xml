@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ScrollView01" android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:orientation="vertical">
+		<LinearLayout android:id="@+id/LinearLayout08"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:orientation="vertical" android:padding="10px">
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:text="@string/get_money_name" android:id="@+id/TextView02"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15dip"></TextView>
+				<EditText android:text="" android:id="@+id/get_money_name_edit"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:width="180dip" android:singleLine="true"></EditText>
+
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout03"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:text="@string/get_money_bank" android:id="@+id/TextView03"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15dip" android:paddingTop="15px"></TextView>
+				<Spinner android:id="@+id/get_money_bank_spinner"
+					android:layout_width="180dip" android:layout_height="wrap_content"
+					android:drawSelectorOnTop="true" android:prompt="@string/get_money_bank_type"
+					android:entries="@array/brank_type"></Spinner>
+
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout04"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:text="@string/get_money_bank_start"
+					android:id="@+id/TextView04" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15dip"></TextView>
+				<EditText android:text="" android:id="@+id/get_money_bank_start_edit"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:width="180dip" android:hint="如：北京市海淀区" android:singleLine="true"></EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout05"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:text="@string/get_money_bank_num"
+					android:id="@+id/TextView05" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15dip"></TextView>
+				<EditText android:text="" android:id="@+id/get_money_bank_num_edit"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:width="180dip" android:singleLine="true" android:maxLength="20"
+					android:numeric="integer"></EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout06"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:text="@string/get_money_money"
+					android:id="@+id/get_money_money_text" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15dip"></TextView>
+				<EditText android:text="" android:id="@+id/get_money_money_edit"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:width="180dip" android:singleLine="true" android:numeric="integer" android:hint="单位(元)"></EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout07"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:padding="10px">
+				<TextView android:text="@string/get_money_alert"
+					android:id="@+id/TextView07" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="16dip"></TextView>
+
+			</LinearLayout>
+
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

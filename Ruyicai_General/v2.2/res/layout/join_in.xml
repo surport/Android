@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/white" android:orientation="vertical">
+	<LinearLayout android:id="@+id/LinearLayout12"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/buy_top">
+		<ImageButton android:id="@+id/join_buy_change_image_back"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/returnselecter" android:background="#00000000"
+			android:layout_marginTop="10px" android:layout_marginLeft="10px"></ImageButton>
+		<LinearLayout android:id="@+id/LinearLayout12"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:gravity="center_horizontal|center_vertical">
+			<TextView android:text="" android:id="@+id/join_buy_change_text_title"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:textSize="20px"></TextView>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/LinearLayout02"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:paddingLeft="15px">
+		<TextView android:textColor="@color/black"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+			android:paddingTop="10px" android:text="我要认购" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="15px">
+		</TextView>
+		<EditText android:text="" android:id="@+id/join_in_edit_num"
+			android:layout_width="80px" android:layout_height="wrap_content"
+			android:numeric="integer"></EditText>
+		<TextView android:textColor="@color/black"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/join_in_text_money"
+			android:paddingTop="10px" android:text="份，总金额0.0元"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textSize="15px">
+		</TextView>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/LinearLayout02"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="right">
+		<Button android:text="购买" android:id="@+id/join_in_button_buy"
+			android:layout_width="80px" android:layout_height="wrap_content"></Button>
+	</LinearLayout>
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:orientation="vertical" android:paddingLeft="15px">
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_time"
+					android:paddingTop="10px" android:text="截止时间" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="方案编号:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_num"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="发起人:" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_start"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="描述:" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_depict"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<Button android:text=">>详情" android:id="@+id/join_in_button_depict"
+					android:layout_width="80px" android:layout_height="wrap_content"
+					android:visibility="gone"></Button>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="进度:" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_progress"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="己参与:" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_join"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<Button android:text=">>详情" android:id="@+id/join_in_button_join"
+					android:layout_width="80px" android:layout_height="wrap_content"
+					android:visibility="gone"></Button>
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="内容:" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_content"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px"
+					android:paddingRight="5px">
+				</TextView>
+				<Button android:text=">>详情" android:id="@+id/join_in_button_content"
+					android:layout_width="80px" android:layout_height="wrap_content"
+					android:visibility="gone"></Button>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="信息:" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_info"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="方案提成:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_get"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="保底份数:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_least"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="剩余份数:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_in_text_residual"
+					android:paddingTop="10px" android:text="" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>

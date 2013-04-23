@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  android:id="@+id/tanchuxinxi_layout">
+        <TextView 
+        
+                android:id="@+id/tanchuxinxi_txt1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px"
+                android:text="时时彩震撼上线     如意彩给力送钱"
+                
+                />
+	<LinearLayout
+	android:id="@+id/buttonLayout"
+	android:layout_width="fill_parent"
+	android:paddingTop="10px"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	>
+	 <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px"
+                android:text="查看详情"
+                
+                android:id="@+id/tanchuxinxi_txt2"
+                />
+                 <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="10px"
+                android:text="不在显示信息"
+                android:id="@+id/tanchuxinxi_txt3"
+                 /> 
+	<CheckBox 
+	android:layout_width="wrap_content"
+	 android:layout_height="wrap_content"
+	 
+	 android:id="@+id/tanchuxinxi_checkbox" 
+	
+	  ></CheckBox>
+	
+     </LinearLayout>
+</LinearLayout>

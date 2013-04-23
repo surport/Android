@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:background="@color/white" android:paddingBottom="5dip">
+	<LinearLayout android:id="@+id/LinearLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/join_hall_listview_item_bg">
+		<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_width="75sp" android:layout_height="wrap_content"
+			android:orientation="vertical" android:layout_weight="1.0"
+			android:gravity="center_vertical|center_horizontal"
+			android:paddingTop="10sp">
+			<ImageView android:id="@+id/join_hall_listview_img_icon"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageView>
+			<TextView android:text="@+id/TextView01"
+				android:id="@+id/join_hall_listview_text_icon_title"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/black_red" android:textSize="18sp"></TextView>
+		</LinearLayout>
+		<LinearLayout android:id="@+id/LinearLayout02"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:orientation="vertical" android:layout_weight="2.0"
+			android:gravity="center_horizontal|clip_vertical" android:paddingTop="5sp"
+			android:paddingBottom="10sp">
+			<TextView android:text="@+id/TextView02" android:id="@+id/join_hall_listview_text_issue"
+				android:layout_width="170dp" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:paddingTop="5sp"
+				android:textSize="13sp"></TextView>
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="170dp" android:layout_height="wrap_content">
+				<TextView android:text="@string/openprizelasttime"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/black" android:textSize="11sp"></TextView>
+				<TextView android:text="@+id/TextView03" android:id="@+id/join_hall_listview_text_time"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="11sp"></TextView>
+			</LinearLayout>
+			<ImageButton android:id="@+id/join_hall_listview_img_join"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/join_listview_item_selector"
+				android:background="#00000000" android:paddingTop="10sp"></ImageButton>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

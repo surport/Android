@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:paddingTop="15px" android:paddingBottom="15px">
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<TextView android:text="" android:id="@+id/query_info_text1"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#6cb301" android:paddingLeft="30px"
+			android:textStyle="bold"></TextView>
+		<TextView android:text="" android:id="@+id/query_info_text2"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:paddingLeft="110px" android:textStyle="bold"
+			android:textColor="#9a9a9a"></TextView>
+		<TextView android:text="" android:id="@+id/query_info_text3"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:paddingLeft="180px" android:textStyle="bold"
+			android:textColor="#9a9a9a"></TextView>
+		<TextView android:text="" android:id="@+id/query_info_text4"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:paddingLeft="250px" android:textStyle="bold"
+			android:textColor="#9a9a9a">
+		</TextView>
+	</RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="wrap_content"
+	android:layout_height="wrap_content" android:paddingLeft="10dip"
+	android:paddingBottom="15dip" android:paddingTop="15dip"  android:background="@drawable/list_luck_bg">
+
+
+		
+	<ImageView android:id="@+id/icon"
+		android:layout_alignParentLeft="true" android:layout_marginTop="6dip"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:paddingTop="10px">
+	</ImageView>
+	<RelativeLayout android:layout_width="fill_parent" android:layout_toRightOf="@id/icon"
+		android:layout_height="fill_parent" android:orientation="vertical"
+	
+		>
+	<RelativeLayout  
+	android:orientation="horizontal" 
+	android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/RelativeLayout02"
+	android:paddingTop="8dip">
+        <TextView android:layout_height="wrap_content"  
+          android:layout_marginLeft="10dip"
+					android:layout_width="wrap_content" android:textColor="@color/black"
+				  android:text="开奖日期"
+					android:textSize="13dip" android:gravity="center"
+					android:typeface="serif" 
+				  android:visibility="visible"
+				  android:id="@+id/notice_prizes" >
+				</TextView>
+				<TextView android:layout_height="wrap_content" 
+				    android:layout_toRightOf="@+id/notice_prizes"
+					android:layout_width="wrap_content" android:textColor="@color/black"
+					android:layout_marginBottom="5dip" android:text="notice_prizes_date_and_time"
+					android:textSize="13dip" android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" 
+					android:id="@+id/notice_prizes_dateAndTimeId" android:visibility="visible">
+				</TextView>
+		 <TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_marginBottom="5dip"
+				android:layout_marginLeft="20dip"
+				android:textColor="@color/black" android:textSize="13dip"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:typeface="serif" android:id="@+id/notice_prezes_lotteryNameId"
+				android:text=""
+				android:visibility="gone">
+		</TextView> 
+		<TextView android:layout_width="wrap_content" android:layout_alignParentRight="true"
+			android:layout_height="wrap_content" android:layout_marginBottom="5dip"
+			android:paddingRight="5dip"
+			android:textColor="@color/black" android:textSize="13dip"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/notice_prizes_issueId"
+			android:text="notice_prizes_issue"
+			
+			 android:visibility="visible">
+		</TextView>
+		</RelativeLayout>
+		
+		<LinearLayout android:layout_height="wrap_content" android:layout_alignParentRight="true"  
+		  android:layout_marginRight="2dip" android:layout_marginBottom="3dip" 
+			android:layout_width="wrap_content"
+			android:id="@+id/ball_linearlayout"
+			android:layout_alignParentBottom="true"
+			 ></LinearLayout>
+		</RelativeLayout>
+</LinearLayout>

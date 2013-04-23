@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/company_info_title"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shouye_top"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/helpCenterItemTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:textSize="19sp" >
+        </TextView>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/helpCenterItemContent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:lineSpacingExtra="3dip"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+    </ScrollView>
+
+</LinearLayout>

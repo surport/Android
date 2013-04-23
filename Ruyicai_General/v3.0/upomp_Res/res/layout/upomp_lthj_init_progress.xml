@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    	<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/upomp_lthj_progress_bg"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content"
+    	android:gravity="center">
+    	<ProgressBar android:id="@id/upomp_lthj_progress"
+			        android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal"
+			        android:layout_width="@dimen/upomp_lthj_progressBar_size"
+			        android:layout_height="@dimen/upomp_lthj_progressBar_size" android:indeterminateDrawable="@drawable/upomp_lthj_progressbar"/>
+		<TextView android:text="请稍候..." style="@style/upomp_lthj_layout_width_height_ww"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center">
+    	<TextView android:text="@string/upomp_lthj_version" style="@style/upomp_lthj_layout_width_height_ww"/>
+    </LinearLayout>
+    <TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+    <TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+    <TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+    <TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center">
+    	<TextView android:text="@string/upomp_lthj_company" style="@style/upomp_lthj_layout_width_height_ww"/>
+    	<TextView android:text="@string/upomp_lthj_time" style="@style/upomp_lthj_layout_width_height_ww"/>
+    </LinearLayout>
+</LinearLayout>

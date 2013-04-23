@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@color/list_color">
+	<RelativeLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/list_top" android:paddingTop="10px"
+		android:paddingLeft="10px">
+		<ImageView android:id="@+id/ruyizhushou_btn_return"
+			android:src="@drawable/returnselecter" android:background="#00000000"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" />
+		<TextView android:id="@+id/ruyipackage_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:text="@string/bangzhuzhongxin"
+			android:textColor="@color/red" android:textSize="20sp" />
+	</RelativeLayout>
+	<ListView android:id="@+id/ruyihelper_listview_ruyihelper_id"
+		android:cacheColorHint="#00000000" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@color/white">
+	</ListView>
+</LinearLayout>

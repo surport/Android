@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+    <item
+        android:id="@+id/prizeLook"
+        android:icon="@drawable/bot_ico_look"
+        android:title="开奖订阅"/>
+    -->
+    <!-- 检测更新 -->
+    <item
+        android:id="@+id/update"
+        android:icon="@drawable/bot_ico_update"
+        android:title="@string/menu_checkupdate"/>
+     <!-- 注销登陆 -->
+    <item
+        android:id="@+id/userExit"
+        android:icon="@drawable/bot_ico_user_exit"
+        android:title="@string/menu_userexit"/>
+     <!-- 我要反馈 -->
+    <item
+        android:id="@+id/feedback"
+        android:icon="@drawable/bot_ico_write"
+        android:title="@string/menu_feedback"/>
+    <!-- 帮助 -->
+    <item
+        android:id="@+id/help"
+        android:icon="@drawable/bot_ico_help"
+        android:title="@string/menu_help"/>
+     <!--关于授权 -->
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/bot_ico_about"
+        android:title="@string/menu_about"/>
+     <!--开奖订阅 -->
+    <item
+        android:id="@+id/prizeLook"
+        android:icon="@drawable/bot_ico_look"
+        android:title="@string/menu_orderprize"/>
+</menu>

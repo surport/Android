@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:background="@drawable/menu_bg" android:paddingTop="5px">
+	<ImageButton android:id="@+id/logon" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:background="@drawable/menu_login"
+		android:layout_marginLeft="13px"></ImageButton>
+	<ImageButton android:id="@+id/exit" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:background="@drawable/menu_exit"
+		android:layout_marginLeft="30px"></ImageButton>
+</LinearLayout>

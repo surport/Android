@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--
+	图标列表项
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/account_recharge_listview_linerlayout"
+	android:orientation="horizontal" android:gravity="left"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:paddingTop="15px" android:paddingBottom="15px"
+	android:background="@drawable/list_bg">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<ImageView android:id="@+id/account_recharge_type" 
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" android:layout_marginLeft="20dip"></ImageView>
+		<TextView android:id="@+id/account_recharge_listview_text"
+			android:textColor="@color/black" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_toRightOf="@+id/account_recharge_type"
+			android:layout_marginTop="10dip" android:layout_marginLeft="15dip">
+		</TextView>
+		<TextView android:layout_width="wrap_content" android:id="@+id/ishandingfree"
+			android:layout_height="wrap_content" android:textSize="12sp"
+			android:text="@string/freeHanding" android:textColor="@color/black"
+			android:layout_toRightOf="@+id/account_recharge_listview_text" 
+			android:layout_centerVertical="true"/>
+		<ImageView android:id="@+id/account_recharge_iicon" android:src="@drawable/xiangyou"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginTop="15dip" android:layout_alignParentRight="true"
+			android:paddingRight="20dip" />
+	</RelativeLayout>
+</LinearLayout>

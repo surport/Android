@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <string-array name="no_hint">
+   <item>不再提示</item>
+ </string-array>
+      <string-array name="recharge_card_type">
+        <item>移动充值卡</item>
+        <item>联通充值卡</item>
+    </string-array>
+    <string-array name="bank_type">
+       <item>招商银行</item>
+       <item>建设银行</item>
+       <item>工商银行</item>
+    </string-array>
+    
+       <string-array name="game_card_type">
+       <item>征途卡</item>
+       <item>盛大卡</item>
+       <item>骏网一卡通</item>
+    </string-array>
+
+</resources>

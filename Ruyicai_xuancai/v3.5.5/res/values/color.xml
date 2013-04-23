@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="yellow">#77ffff00</color>
+    <color name="red">#FF0000</color>
+    <color name="black_red">#9933</color>
+    <color name="pink">#FF2EFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="blue_red">#0000FF</color>
+    <color name="darkgreen">#008800</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="grey">#F3F3F3</color>
+    <color name="touming">#00000000</color>
+    <color name="list_color">#ffffff</color>
+    <color name="aciton_title_color">#734444</color>
+    <color name="aciton_list_color">#F3F3F3</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_num_gray">#333</color>
+    <color name="red_touzhu">#a60000</color>
+    <!-- 竞彩足球多选框背景颜色 -->
+    <color name="jc_dialog_bg1">#f8f8f8</color>
+    <color name="jc_dialog_bg2">#f7f8ec</color>
+    <color name="jc_dialog_bg3">#eef6f9</color>
+    <color name="gree_black">#269433</color>
+    <color name="grey_more">#b0b0b0</color>
+    <color name="grey_little">#f5f5f5</color>
+    <color name="jc_explain_list_bg">#fcf7f1</color>
+    <color name="home_alert_color">#c00100</color>
+
+</resources>

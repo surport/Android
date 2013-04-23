@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:paddingLeft="10dip"
+	android:paddingRight="10dip">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/shouye_top"
+		android:gravity="center_horizontal|clip_vertical" android:id="@+id/linearLayout">
+		<TextView android:text="您的订单" android:id="@+id/alert_dialog_touzhu_text_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:textSize="25sp"
+			android:paddingTop="7dip">
+		</TextView>
+	</LinearLayout>
+	<ScrollView android:id="@+id/ScrollView01"
+		android:background="#ffffff" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_below="@+id/linearLayout"
+		android:paddingBottom="70sp">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:paddingLeft="10sp"
+			android:paddingRight="10sp" android:paddingTop="10sp"
+			android:orientation="vertical">
+			<TextView android:text="" android:id="@+id/alert_dialog_touzhu_text_one"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:textSize="16sp"
+				android:lineSpacingMultiplier="1.2">
+			</TextView>
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:background="@drawable/alert_litte" />
+			<TextView android:text="" android:id="@+id/alert_dialog_touzhu_text_two"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:paddingBottom="15dip"
+				android:textSize="14sp" android:lineSpacingMultiplier="1.2"
+				android:paddingTop="10sp">
+			</TextView>
+			<RadioGroup android:id="@+id/RadioGroup01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:orientation="vertical">
+				<RadioButton android:text="普通投注"
+					android:id="@+id/alert_dialog_touzhu1_check" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textColor="@color/red"
+					android:paddingBottom="10dip"></RadioButton>
+				<RadioButton android:text="我要赠送给他人"
+					android:id="@+id/alert_dialog_touzhu_check" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textColor="@color/red"
+					android:paddingBottom="10dip"></RadioButton>
+				<RadioButton android:text="发起合买" android:id="@+id/alert_dialog_join_check"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/red" android:paddingBottom="10dip"></RadioButton>
+			</RadioGroup>
+			<TextView android:text="@string/alert_dialog_touzhu_text_alert"
+				android:id="@+id/alert_dialog_touzhu_text_alert"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/red" android:paddingBottom="10dip"
+				android:visibility="gone">
+			</TextView>
+		</LinearLayout>
+	</ScrollView>
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="70sp" android:background="@drawable/buy_bot_bg"
+		android:layout_alignParentBottom="true">
+		<Button android:text="@string/cancel" android:id="@+id/alert_dialog_touzhu_button_cancel"
+			android:layout_width="120dip" android:layout_height="40sp"
+			android:background="@drawable/loginselecter"
+			android:layout_alignParentLeft="true" android:layout_centerVertical="true"
+			android:layout_marginLeft="18sp" android:textColor="@color/white"
+			android:textSize="20sp"></Button>
+		<Button android:text="@string/ok" android:id="@+id/alert_dialog_touzhu_button_ok"
+			android:layout_width="120dip" android:layout_height="40sp"
+			android:background="@drawable/loginselecter"
+			android:layout_alignParentRight="true" android:layout_centerVertical="true"
+			android:layout_marginRight="18sp" android:textSize="20sp"
+			android:textColor="@color/white"></Button>
+	</RelativeLayout>
+</RelativeLayout>

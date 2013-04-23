@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_bar"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+	<com.palmdream.RuyicaiAndroid.MyMarqueeView  
+		android:id="@+id/marquee"
+    		android:layout_width="320px"
+    		android:layout_height="30px"
+    	/>
+    	    <!-- 
+    	<com.android.internal.widget.NumberPicker android:id="@+id/picker"
+    	    android:layout_width="wrap_content"    
+    	    android:layout_height="wrap_content"/> 
+    	     --> 
+    	<RelativeLayout android:layout_width="fill_parent"
+    		      android:layout_height="wrap_content"
+    		      android:background="#ffffff"
+    		      >
+    		<TextView android:id="@+id/tv_hellol"
+    		      android:layout_width="wrap_content"
+    		      android:layout_height="wrap_content"
+    		      android:layout_alignParentLeft="true"
+    		      android:textColor="#000000"
+    		      />
+    		<ImageView android:id="@+id/iv_hellor"
+    		                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true">
+    		</ImageView>
+    		      <!-- 
+    		<TextView android:id="@+id/tv_hellor"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                       android:background="@drawable/frame_rectangle_user"
+                      android:textColor="#000000"
+                      />
+                      -->
+                <!-- 
+    		<Button android:layout_width="wrap_content"
+    		      android:layout_height="20px"
+    		      android:text="登录/注册"
+    		      android:layout_alignParentRight="true"
+    		      />    	
+    		       -->	      
+   	</RelativeLayout>
+    	<RelativeLayout android:layout_width="fill_parent"
+   			android:layout_height="fill_parent">
+		<LinearLayout android:id="@+id/contentViewLayout" 
+			android:orientation="vertical"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:background="#EEE"
+			android:layout_marginBottom="55dip">
+		</LinearLayout>
+		<HorizontalScrollView android:id="@+id/bottomBar"
+    				android:scrollbarTrackHorizontal="@drawable/scrollbar_horizontal_track"
+    				android:scrollbarThumbHorizontal="@drawable/scrollbar_horizontal_thumb"
+    				android:scrollbarSize="2dip"
+    				android:layout_alignParentBottom="true" 
+    				android:layout_width="fill_parent"
+    				android:background="@drawable/bottom_bar" 
+    				android:layout_height="55dip">
+    			<RadioGroup
+        			android:layout_width="fill_parent"
+        			android:layout_height="wrap_content"
+        			android:orientation="horizontal"
+        			android:id="@+id/bottomMenu">
+    			</RadioGroup>
+		</HorizontalScrollView>
+	</RelativeLayout>
+</LinearLayout>

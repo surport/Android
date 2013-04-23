@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="10dip"
+    android:paddingLeft="6dip"
+    android:paddingRight="6dip" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jc_bg1"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/jc_main_list_item_text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingTop="5sp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="16sp" >
+            </TextView>
+
+            <Button
+                android:id="@+id/buy_jc_main_list_item_btn_xi"
+                android:layout_width="35dip"
+                android:layout_height="35dip"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:background="@drawable/buy_jx_btn_selector"
+                android:text="析"
+                android:textColor="@color/black"
+                android:textSize="16sp" android:visibility="gone">
+            </Button>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:gravity="bottom"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jc_bgtop"
+                android:paddingTop="5sp" >
+
+                <TextView
+                    android:id="@+id/jc_main_list_item_text_team"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16sp" >
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" >
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_team_name1"
+                        android:layout_width="100sp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="16sp" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_team_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:paddingLeft="5sp"
+                        android:paddingTop="3dip"
+                        android:text=""
+                        android:textColor="@color/blue_red"
+                        android:textSize="13sp" >
+                    </TextView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/jc_main_list_item_text_vs"
+                    android:layout_width="20sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="vs"
+                    android:textColor="@color/red"
+                    android:textSize="15sp" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/jc_main_list_item_text_team_name2"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16sp" >
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jc_bgbottom"
+                android:paddingTop="3sp" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="70sp"
+                    android:layout_height="45dip"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:visibility="gone" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_time_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="4dip"
+                        android:text="22:00:00"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" >
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lq_sf_layout_bottom1"
+                    android:layout_width="225sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3sp" >
+
+                    <Button
+                        android:id="@+id/jc_main_list_item_button1"
+                        android:layout_width="56sp"
+                        android:layout_height="34sp"
+                        android:background="@drawable/jc_btn_select"
+                        android:text="" >
+                    </Button>
+
+                    <Button
+                        android:id="@+id/jc_main_list_item_button2"
+                        android:layout_width="56sp"
+                        android:layout_height="34sp"
+                        android:layout_marginLeft="5sp"
+                        android:background="@drawable/jc_btn_select"
+                        android:text="" >
+                    </Button>
+
+                    <Button
+                        android:id="@+id/jc_main_list_item_button3"
+                        android:layout_width="56sp"
+                        android:layout_height="34sp"
+                        android:layout_marginLeft="5sp"
+                        android:background="@drawable/jc_btn_select"
+                        android:text="" >
+                    </Button>
+
+                    <Button
+                        android:id="@+id/jc_main_list_item_button_dan"
+                        android:layout_width="28sp"
+                        android:layout_height="34sp"
+                        android:layout_marginLeft="5sp"
+                        android:background="@drawable/jc_btn"
+                        android:text="胆" >
+                    </Button>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lq_sf_layout_bottom2"
+                    android:layout_width="225sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3sp"
+                    android:visibility="gone" >
+
+                    <Button
+                        android:id="@+id/jc_main_list_item_button"
+                        android:layout_width="180sp"
+                        android:layout_height="30dip"
+                        android:background="@drawable/jc_list_select"
+                        android:hint="@string/jclq_list_item_btn_title"
+                        android:paddingRight="20dip"
+                        android:singleLine="true" >
+                    </Button>
+
+                    <Button
+                        android:id="@+id/jc_main_list_item_btn_dan"
+                        android:layout_width="28sp"
+                        android:layout_height="30sp"
+                        android:layout_marginLeft="5sp"
+                        android:background="@drawable/jc_btn"
+                        android:text="胆" >
+                    </Button>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

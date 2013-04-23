@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+   		<LinearLayout style="@style/upomp_lthj_infoframe">
+			<TextView android:text="@string/upomp_lthj_quick_pay_login_prompt" style="@style/upomp_lthj_layout_width_height_ww"
+				android:textColor="@android:color/black"/>
+	</LinearLayout>
+	
+      <TableLayout android:orientation="horizontal" style="@style/upomp_lthj_layout_width_height_fw" 
+		 android:shrinkColumns="1" android:background="@drawable/upomp_lthj_corner_round_all"
+			android:padding="1.0dip"
+		>
+		<TableRow style="@style/upomp_lthj_tablerow"  android:background="@drawable/upomp_lthj_corner_round_top_white">
+			<TextView  android:text="@string/upomp_lthj_pay_money" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_pay_money_tv" android:editable="false" android:focusable="false" android:cursorVisible="false" style="@style/upomp_lthj_textView_major_left" android:layout_span="2"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow style="@style/upomp_lthj_tablerow"
+  				android:background="@drawable/upomp_lthj_corner_round_while">
+			<TextView  android:text="用  户  名" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_login_edittext" style="@style/upomp_lthj_editTextLeft" android:imeOptions="actionDone"
+				android:hint="@string/upomp_lthj_username_hint" android:maxLength="20"
+				 />
+			<Button android:id="@id/upomp_lthj_button_titleregistermessage" android:textSize="14.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@drawable/upomp_lthj_black"  android:text="@string/upomp_lthj_main_register" android:gravity="center" />
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow style="@style/upomp_lthj_tablerow"
+				android:background="@drawable/upomp_lthj_corner_round_while" >
+			<TextView  android:text="密\u0020\u0020\u0020\u0020\u0020\u0020\u0020码" style="@style/upomp_lthj_textView_title"/>
+			<EditText android:id="@id/upomp_lthj_password_edittext" style="@style/upomp_lthj_editTextLeft"  android:editable="false"
+				android:hint="@string/upomp_lthj_password_hint"/>
+			<Button android:id="@id/upomp_lthj_textview_forgetpassword" android:textSize="14.0sp" android:textColor="@drawable/upomp_lthj_black"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/upomp_lthj_forget_password" android:gravity="center"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow  style="@style/upomp_lthj_tablerow"
+				android:background="@drawable/upomp_lthj_corner_round_bottom">
+			<TextView  android:text="校 验 码" style="@style/upomp_lthj_textView_title"/>
+				<EditText android:id="@id/upomp_lthj_validateCodeEditText" style="@style/upomp_lthj_editTextLeft" android:numeric="integer" 
+					android:inputType="phone" android:imeOptions="actionDone" android:maxLength="4" 
+				/>
+				<LinearLayout android:layout_width="@dimen/upomp_lthj_imgViewCheck_width" android:layout_height="@dimen/upomp_lthj_imgViewCheck_height" android:gravity="center">
+					<ImageView android:id="@id/upomp_lthj_imgview_checkword" android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal" android:layout_width="@dimen/upomp_lthj_imgViewCheck_width" android:layout_height="@dimen/upomp_lthj_imgViewCheck_height"
+						android:visibility="gone"/>
+					<ProgressBar android:id="@id/upomp_lthj_progress" 
+				        android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal"
+				        android:layout_width="@dimen/upomp_lthj_progressBar_size"
+				        android:layout_height="@dimen/upomp_lthj_progressBar_size" android:indeterminateDrawable="@drawable/upomp_lthj_progressbar"/>
+				</LinearLayout>
+		</TableRow>
+	</TableLayout>
+	<RelativeLayout style="@style/upomp_lthj_layout_width_height_fw"
+		android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+			android:orientation="horizontal"
+			android:gravity="center">
+		<Button android:id="@id/upomp_lthj_button_cancel" style="@style/upomp_lthj_button_cancle_single" android:text="@string/upomp_lthj_str_no"/>
+		<Button android:id="@id/upomp_lthj_nextButton" style="@style/upomp_lthj_button_ok_single"  android:text="@string/upomp_lthj_next"/>
+	</RelativeLayout>
+</LinearLayout>

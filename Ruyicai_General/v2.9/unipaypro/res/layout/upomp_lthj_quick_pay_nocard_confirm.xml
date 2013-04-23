@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+      <TableLayout android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_fw" 
+      		android:stretchColumns="1"  android:background="@drawable/upomp_lthj_corner_round_all"
+		android:padding="1.0dip"
+		>
+		<TableRow style="@style/upomp_lthj_tablerow"  android:background="@drawable/upomp_lthj_corner_round_top_blue">
+			<TextView android:id="@id/upomp_lthj_wecome_textview" style="@style/upomp_lthj_layout_width_height_ww"
+				android:gravity="center_vertical" android:textColor="#ffffff" android:layout_weight="1.0"
+					android:layout_span="3" android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow style="@style/upomp_lthj_tablerow" android:background="@drawable/upomp_lthj_corner_round_bottom">
+			<LinearLayout android:layout_width="fill_parent" android:orientation="vertical"  android:paddingRight="20.0dip"
+  				android:layout_height="fill_parent" android:layout_span="3">
+	  			<TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+				<TextView style="@style/upomp_lthj_layout_width_height_fw"
+					android:text="您还没有默认卡,无法进行支付,现在去设置吧!" android:gravity="center_vertical" android:textColor="@drawable/upomp_lthj_blue"
+						android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+				<TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+			</LinearLayout>
+		</TableRow>
+	</TableLayout>
+	<RelativeLayout  style="@style/upomp_lthj_layout_width_height_fw"
+		android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+			android:orientation="horizontal"
+			android:gravity="center">
+		<Button android:id="@id/upomp_lthj_button_cancel" style="@style/upomp_lthj_button_cancle_single" android:text="@string/upomp_lthj_back"/>
+		<Button android:id="@id/upomp_lthj_button_ok" style="@style/upomp_lthj_button_ok_single"  android:text="@string/upomp_lthj_verify"/>
+	</RelativeLayout>
+	
+</LinearLayout>

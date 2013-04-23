@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="no_hint">
+		<item>不再提示</item>
+	</string-array>
+	<string-array name="recharge_card_type">
+		<item>移动充值卡</item>
+		<item>联通充值卡</item>
+		<item>电信充值卡</item>
+	</string-array>
+	<string-array name="recharge_card_value">
+		<item>10元</item>
+		<item>20元</item>
+		<item>30元</item>
+		<item>50元</item>
+		<item>100元</item>
+		<item>200元</item>
+		<item>300元</item>
+		<item>500元</item>
+	</string-array>
+	<string-array name="bank_type">
+		<item>招商银行</item>
+		<item>建设银行</item>
+		<item>工商银行</item>
+	</string-array>
+
+	<string-array name="game_card_type">
+		<item>征途卡</item>
+		<item>盛大卡</item>
+		<item>骏网一卡通</item>
+	</string-array>
+	<string-array name="brank_type">
+		<item>中国招商银行</item>
+		<item>中国建设银行</item>
+		<item>中国工商银行</item>
+		<item>中国农业银行</item>
+		<item>中国交通银行</item>
+		<item>中国民生银行</item>
+		<item>深圳发展银行</item>
+		<item>上海浦东发展银行</item>
+		<item>中国光大银行</item>
+		<item>广东发展银行</item>
+		<item>兴业银行</item>
+	</string-array>
+
+</resources>

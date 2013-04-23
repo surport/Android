@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layoutAnimation="@anim/layout_animation_linear"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+               	
+                <LinearLayout
+		           android:orientation="vertical"
+		           android:layout_width="fill_parent"
+		           android:layout_height="fill_parent"
+					 > 
+				       <LinearLayout
+				           android:orientation="horizontal"
+				           android:layout_width="fill_parent"
+				           android:layout_height="fill_parent" >
+							    <TextView 
+							        android:id="@+id/touzhu_zhuma"
+							        android:layout_height="fill_parent"
+							        android:layout_width="wrap_content"
+							        android:text="注码："
+							        android:gravity="left"
+							        android:textAppearance="?android:attr/textAppearanceMedium" />
+										          
+							  <TextView
+							      android:id="@+id/touzhu_zhuma_red_edit"
+							      android:layout_height="fill_parent"
+							      android:layout_width="wrap_content"
+							      android:text=""
+							      android:autoText="false"
+							      android:capitalize="none"
+							      android:gravity="fill_horizontal"
+							      android:textColor="#ff0000"
+							      android:textAppearance="?android:attr/textAppearanceMedium" />
+							      <TextView
+							      android:id="@+id/touzhu_zhuma_blue_edit"
+							      android:layout_height="fill_parent"
+							      android:layout_width="wrap_content"
+							      android:text="123"
+							      android:autoText="false"
+							      android:capitalize="none"
+							      android:gravity="fill_horizontal"
+							      android:textColor="#00ff00"
+							      android:textAppearance="?android:attr/textAppearanceMedium" />
+				    	</LinearLayout>
+					
+			
+		 			   <LinearLayout
+				           android:orientation="horizontal"
+				           android:layout_width="fill_parent"
+				           android:layout_height="fill_parent" >
+							    <TextView 
+							        android:id="@+id/touzhu_zhushu"
+							        android:layout_height="fill_parent"
+							        android:layout_width="wrap_content"
+							        android:text="注数："
+							        android:gravity="left"
+							        android:textAppearance="?android:attr/textAppearanceMedium" />
+										          
+							  <TextView
+							      android:id="@+id/touzhu_zhushu_edit"
+							      android:layout_height="fill_parent"
+							      android:layout_width="wrap_content"
+							      android:text=""
+							      android:autoText="false"
+							      android:capitalize="none"
+							      android:gravity="fill_horizontal"
+							      android:textAppearance="?android:attr/textAppearanceMedium" />
+				    	</LinearLayout>
+				    	<LinearLayout
+				           android:orientation="horizontal"
+				           android:layout_width="fill_parent"
+				           android:layout_height="fill_parent" >
+							    <TextView 
+							        android:id="@+id/touzhu_beishu"
+							        android:layout_height="fill_parent"
+							        android:layout_width="wrap_content"
+							        android:text="倍数："
+							        android:gravity="left"
+							        android:textAppearance="?android:attr/textAppearanceMedium" />
+										          
+							  <TextView
+							      android:id="@+id/touzhu_beishu_edit"
+							      android:layout_height="fill_parent"
+							      android:layout_width="wrap_content"
+							      android:text=""
+							      android:autoText="false"
+							      android:capitalize="none"
+							      android:gravity="fill_horizontal"
+							        android:editable="true"
+							      android:textAppearance="?android:attr/textAppearanceMedium" />
+				    	</LinearLayout>
+				    	<LinearLayout
+				           android:orientation="horizontal"
+				           android:layout_width="fill_parent"
+				           android:layout_height="fill_parent" >
+							    <TextView 
+							        android:id="@+id/touzhu_zhuihao"
+							        android:layout_height="fill_parent"
+							        android:layout_width="wrap_content"
+							        android:text="追号："
+							        android:gravity="left"
+							        android:textAppearance="?android:attr/textAppearanceMedium" />
+										          
+							  <TextView
+							      android:id="@+id/touzhu_zhuihao_edit"
+							      android:layout_height="fill_parent"
+							      android:layout_width="wrap_content"
+							      android:text=""
+							      android:autoText="false"
+							      android:capitalize="none"
+							      android:gravity="fill_horizontal"
+							      android:textAppearance="?android:attr/textAppearanceMedium" />
+				    	</LinearLayout>
+				    	<LinearLayout
+				           android:orientation="horizontal"
+				           android:layout_width="fill_parent"
+				           android:layout_height="fill_parent" >
+							    <TextView 
+							        android:id="@+id/touzhu_zongjine"
+							        android:layout_height="fill_parent"
+							        android:layout_width="wrap_content"
+							        android:text="总金额："
+							        android:gravity="left"
+							        android:textAppearance="?android:attr/textAppearanceMedium" />
+										          
+							  <TextView
+							      android:id="@+id/touzhu_zongjine_edit"
+							      android:layout_height="fill_parent"
+							      android:layout_width="wrap_content"
+							      android:text=""
+							      android:autoText="false"
+							      android:capitalize="none"
+							      android:gravity="fill_horizontal"
+							      android:textAppearance="?android:attr/textAppearanceMedium" />
+				    	</LinearLayout>       
+				     
+	             </LinearLayout>
+			
+</LinearLayout>

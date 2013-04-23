@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:paddingTop="7dp" android:paddingBottom="7dp">
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<TextView android:text="" android:id="@+id/buyLotterMianList_text"
+			android:layout_width="100px" android:layout_height="wrap_content"
+			android:textColor="@color/black" android:textSize="15sp"
+			android:layout_marginLeft="20dp" 
+			android:ellipsize="end" android:marqueeRepeatLimit="marquee_forever"></TextView>
+		<TextView android:text="" android:id="@+id/buyLotterMianList_text_two"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:paddingLeft="130dp" android:textColor="@color/black"
+			android:textSize="15sp" android:ellipsize="end" android:marqueeRepeatLimit="marquee_forever"></TextView>
+	</RelativeLayout>
+
+
+</LinearLayout>

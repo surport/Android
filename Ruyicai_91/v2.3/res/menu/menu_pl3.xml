@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+ <item android:id="@+id/pl3_confirm"
+        android:title="@string/confirm"
+        android:icon="@drawable/touzhusure" 
+        android:menuCategory="container"/>
+
+    <item android:id="@+id/pl3_reselect_num"
+        android:title="@string/reselect_num"
+        android:icon="@drawable/touzhureselected" />
+
+    <item android:id="@+id/pl3_game_introduce"
+        android:title="@string/game_introduction"
+        android:icon="@drawable/touzhugameinstroduction" />
+
+    <item android:id="@+id/pl3_cancel"
+        android:title="@string/cancel"
+        android:icon="@drawable/touzhucancel" />
+</menu>

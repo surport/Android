@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:scrollbars="vertical">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:id="@+id/account_phone_title" android:layout_height="wrap_content"
+			android:background="@drawable/shouye_top">
+			<TextView android:text="@string/bank_cards_recharge"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true" android:textColor="@color/white"
+				android:textSize="20dip" android:layout_centerVertical="true"></TextView>
+		</RelativeLayout>
+		<ScrollView android:layout_width="wrap_content"
+			android:layout_below="@+id/account_phone_title"
+			android:paddingBottom="50dip" android:layout_height="wrap_content">
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="vertical"
+				android:background="@color/white" android:padding="10dip">
+				<TextView android:layout_height="wrap_content"
+					android:textColor="#cc0000" android:layout_width="wrap_content"
+					android:text="@string/bank_card_phone_no_rechargeInfo"
+					android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textSize="16dip" />
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_text_moneny"
+						android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+					<EditText android:id="@+id/bank_card_phone_recharge_value"
+						android:text="@string/chargehintmoney" android:layout_height="wrap_content"
+						android:layout_width="80dip" android:scrollHorizontally="true"
+						android:autoText="false" android:capitalize="none"
+						android:layout_weight="1" android:numeric="integer"
+						android:gravity="fill_horizontal" android:textAppearance="?android:attr/textAppearanceMedium" />
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_yuan" android:gravity="left"
+						android:textSize="16dip" android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/phone_bank_select_dialog_bank"
+						android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+					<Spinner android:id="@+id/Spinner01" android:layout_height="wrap_content"
+						android:layout_width="170dip" android:entries="@array/brank_card_phone_type"></Spinner>
+				</LinearLayout>
+				<TextView android:layout_height="wrap_content"
+					android:textColor="#666666" android:layout_width="wrap_content"
+					android:text="@string/bank_card_phone_alert1" android:gravity="left"
+					android:layout_marginTop="5dip" android:textSize="14dip"
+					android:textAppearance="?android:attr/textAppearanceMedium" />
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal"
+					android:layout_marginTop="10dip">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_bankid" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+
+					<EditText android:id="@+id/bank_card_phone_bankid"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:scrollHorizontally="true" android:autoText="false"
+						android:capitalize="none" android:gravity="fill_horizontal"
+						android:numeric="integer" android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_name" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+
+					<EditText android:id="@+id/bank_card_phone_phone_name"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:scrollHorizontally="true" android:autoText="false"
+						android:capitalize="none" android:gravity="fill_horizontal"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_idcard" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+
+					<EditText android:id="@+id/bank_card_phone_phone_idcard"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:scrollHorizontally="true" android:autoText="false"
+						android:capitalize="none" android:gravity="fill_horizontal"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_home" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+
+					<EditText android:id="@+id/bank_card_phone_phone_home"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:scrollHorizontally="true" android:autoText="false"
+						android:capitalize="none" android:gravity="fill_horizontal"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+				<TextView android:layout_height="wrap_content"
+					android:textColor="#666666" android:layout_width="wrap_content"
+					android:text="@string/bank_card_phone_alert2" android:gravity="left"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textSize="14dip" />
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_marginTop="10dip" android:layout_height="wrap_content"
+					android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_province" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+					<EditText android:id="@+id/bank_card_phone_phone_province"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:scrollHorizontally="true" android:autoText="false"
+						android:capitalize="none" android:gravity="fill_horizontal"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+				<TextView android:layout_height="wrap_content"
+					android:textColor="#666666" android:layout_width="wrap_content"
+					android:text="@string/dnabankaddress" android:gravity="left"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textSize="14dip" />
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_marginTop="10dip" android:layout_height="wrap_content"
+					android:orientation="horizontal">
+					<TextView android:layout_height="wrap_content"
+						android:textColor="@color/black" android:layout_width="wrap_content"
+						android:text="@string/bank_card_phone_num" android:gravity="left"
+						android:textAppearance="?android:attr/textAppearanceMedium" />
+
+					<EditText android:id="@+id/bank_card_phone_phone_num"
+						android:layout_height="wrap_content" android:layout_width="fill_parent"
+						android:scrollHorizontally="true" android:autoText="false"
+						android:capitalize="none" android:gravity="fill_horizontal"
+						android:numeric="integer" android:textAppearance="?android:attr/textAppearanceMedium" />
+				</LinearLayout>
+
+				<TextView android:layout_height="wrap_content"
+					android:textColor="#cc0000" android:layout_width="wrap_content"
+					android:text="@string/bank_card_phone_dialog_import_hint"
+					android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textSize="14dip" />
+
+			</LinearLayout>
+		</ScrollView>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_alignParentBottom="true" android:layout_height="wrap_content"
+			android:orientation="horizontal" android:background="@drawable/alert_bottom_bg">
+			<Button android:id="@+id/ok" android:text="确 定"
+				android:background="@drawable/join_info_btn_selecter"
+				android:textSize="18sp" android:layout_width="wrap_content"
+				android:layout_weight="1" android:layout_height="40dp"
+				android:gravity="center" android:layout_marginTop="5dip"
+				android:textColor="@color/black"></Button>
+			<Button android:id="@+id/canel" android:text="取 消"
+				android:background="@drawable/join_info_btn_selecter"
+				android:textSize="18sp" android:layout_width="wrap_content"
+				android:layout_weight="1" android:layout_height="40dp"
+				android:layout_marginLeft="10dp" android:gravity="center"
+				android:layout_marginTop="5dip" android:textColor="@color/black"></Button>
+		</LinearLayout>
+	</RelativeLayout>
+
+</LinearLayout>
+

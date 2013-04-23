@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout android:id="@+id/LinearLayout01"
+		android:background="@drawable/edit_area" android:gravity="center"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<TextView android:text="@string/plesechosejixuanzhushu"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/black" android:gravity="center_vertical" />
+		<Spinner android:id="@+id/layout_zhixuan_jixuan_spinner"
+			android:layout_width="90dp" android:layout_height="40dp"
+			android:entries="@array/layout_zhixuan_jixuan_spinner"
+			android:prompt="@string/dltzhixuanjixuanzhushu" android:gravity="center_vertical"></Spinner>
+	</LinearLayout>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<ScrollView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:fadeScrollbars="false"
+			android:paddingBottom="130dip">
+			<LinearLayout android:layout_width="fill_parent"
+				android:background="@drawable/balls_area" android:layout_height="wrap_content"
+				android:orientation="vertical" android:id="@+id/layout_dlt_zhixuan_linear_zhuma">
+			</LinearLayout>
+		</ScrollView>
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true" android:background="@drawable/bottom_bg">
+			<RelativeLayout android:orientation="horizontal"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true" android:paddingBottom="10dip">
+
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:paddingRight="20dip" android:id="@+id/layout_progress_all">
+					<ToggleButton android:id="@+id/dlt_zhixuan_jixuan_zhuijia"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="@drawable/dlt_zhuijia_toggle_button"
+						android:textOn="" android:textOff="" android:layout_gravity="right"></ToggleButton>
+					<RelativeLayout android:id="@+id/ssq_jixuan_layout"
+						android:layout_width="wrap_content" android:layout_height="wrap_content">
+						<ImageButton android:id="@+id/dlt_zhixuan_jixuan_seekbar_sub_beishu"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/subtract11" android:background="#00000000"
+							android:paddingTop="10dip" />
+						<LinearLayout android:orientation="vertical"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:id="@+id/layout_progress"
+							android:layout_centerHorizontal="true"
+							layout_toRightOf="@+id/dlt_zhixuan_seekbar_subtract_beishu"
+							android:paddingLeft="15dip" android:paddingRight="15dip">
+							<LinearLayout android:orientation="horizontal"
+								android:layout_width="wrap_content" android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal">
+								<TextView android:id="@+id/dlt_zhixuan_jixuan_beishu_text"
+									android:layout_width="20dip" android:layout_height="wrap_content"
+									android:textColor="@color/black" />
+								<TextView android:id="@+id/dlt_zhixuan_jixuan_beishu_title"
+									android:layout_width="wrap_content" android:layout_height="wrap_content"
+									android:text="@string/meiqibeishu" android:textColor="@color/black" />
+							</LinearLayout>
+							<SeekBar android:id="@+id/dlt_zhixuan_jixuan_seek_beishu"
+								style="?android:attr/progressBarStyleHorizontal"
+								android:progressDrawable="@drawable/seekbar_style"
+								android:thumb="@drawable/thumb" android:max="50"
+								android:progress="1" android:layout_width="130dip"
+								android:layout_height="15dip" android:paddingLeft="15dip"
+								android:paddingRight="15dip" android:paddingBottom="4dip"
+								android:layout_toRightOf="@+id/dlt_zhixuan_seekbar_subtract_beishu"
+								android:layout_centerVertical="true" />
+						</LinearLayout>
+						<ImageButton android:id="@+id/dlt_zhixuan_jixuan_seekbar_add_beishu"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+							android:background="#00000000" android:paddingTop="10dip" />
+					</RelativeLayout>
+					<RelativeLayout android:id="@+id/ssq_jixuan_layout_qihao"
+						android:layout_width="wrap_content" android:layout_height="wrap_content">
+						<ImageButton android:id="@+id/dlt_zhixuan_jixuan_seekbar_subtract_qihao"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/subtract11" android:background="#00000000"
+							android:paddingTop="10dip" />
+						<LinearLayout android:orientation="vertical"
+							android:layout_width="wrap_content" android:layout_height="40dip"
+							android:id="@+id/layout_progress"
+							android:layout_centerHorizontal="true"
+							android:layout_toRightOf="@+id/dlt_zhixuan_jixuan_seekbar_subtract_qihao">
+							<LinearLayout android:orientation="horizontal"
+								android:layout_width="wrap_content" android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal">
+								<TextView android:id="@+id/dlt_zhixuan_jixuan_text_qishu"
+									android:layout_width="20dip" android:layout_height="wrap_content"
+									android:textColor="#000000" />
+								<TextView android:id="@+id/dlt_zhixuan_jixuan_text_qishu_title"
+									android:layout_width="wrap_content" android:layout_height="wrap_content"
+									android:text="@string/zhuihaoqishu" android:textColor="#000000" />
+							</LinearLayout>
+							<SeekBar android:id="@+id/dlt_zhixuan_jixuan_seek_qishu"
+								style="?android:attr/progressBarStyleHorizontal"
+								android:progressDrawable="@drawable/seekbar_style"
+								android:thumb="@drawable/thumb" android:max="99"
+								android:progress="1" android:layout_width="130dip"
+								android:layout_height="15dip" android:paddingLeft="15dip"
+								android:paddingRight="15dip" android:paddingBottom="4dip"
+								android:layout_toRightOf="@+id/dlt_zhixuan_seekbar_subtract_qihao"
+								android:layout_centerVertical="true" />
+						</LinearLayout>
+						<ImageButton android:id="@+id/dlt_zhixuan_jixuan_seekbar_add_qishu"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+							android:background="#00000000" android:paddingTop="10dip" />
+					</RelativeLayout>
+				</LinearLayout>
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_centerVertical="true" android:layout_toRightOf="@+id/layout_progress_all" >
+					<Button android:id="@+id/dlt_zhixuan_jixuan_b_touzhu"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="@drawable/imageselecter"
+						android:layout_alignParentRight="true" android:layout_marginTop="40dip" />
+					<Button android:id="@+id/dlt_zhixuan_jixuan_chongxuan"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:background="@drawable/selecet_chongxuan"
+						android:layout_alignParentRight="true" android:paddingTop="10dip" />
+				</LinearLayout>
+			</RelativeLayout>
+		</RelativeLayout>
+	</RelativeLayout>
+</LinearLayout>

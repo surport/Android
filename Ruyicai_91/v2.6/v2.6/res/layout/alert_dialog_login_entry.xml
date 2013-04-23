@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/grey">
+	<LinearLayout android:layoutAnimation="@anim/layout_animation_linear"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:paddingBottom="50sp">
+		<RelativeLayout android:orientation="horizontal"
+			android:gravity="left" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:background="@drawable/shouye_top"
+			android:paddingTop="10px">
+			<Button android:id="@+id/usercenter_btn_return"
+				android:background="#00000000" android:src="@drawable/returnselecter"
+				android:layout_width="70sp" android:layout_height="30sp"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="10dp" android:text="返回" android:textColor="@color/white"
+				android:layout_centerVertical="true" />
+			<TextView android:id="@+id/alert_login_title"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium"
+				android:typeface="serif" android:text="用户登录" android:textColor="@color/white"
+				android:layout_marginRight="10px" android:textSize="20dip" />
+		</RelativeLayout>
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:paddingTop="20dip" android:paddingBottom="2dip">
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layoutAnimation="@anim/layout_animation_row_right_slide"
+				android:paddingBottom="3dip">
+				<TextView android:id="@+id/phoneNum_view"
+					android:layout_height="wrap_content" android:layout_width="60dip"
+					android:layout_marginLeft="10dip" android:text="@string/login_phoneNumber"
+					android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textColor="@color/black" />
+
+				<EditText android:id="@+id/phoneNum_edit"
+					android:layout_height="wrap_content" android:layout_width="fill_parent"
+					android:text="" android:scrollHorizontally="true"
+					android:singleLine="true" android:capitalize="none"
+					android:gravity="fill_horizontal" android:numeric="integer"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:hint="@string/please_enter_phone_number" android:textSize="16sp" />
+			</LinearLayout>
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layoutAnimation="@anim/layout_animation_row_left_slide"
+				android:paddingBottom="3dip">
+				<TextView android:id="@+id/password_view"
+					android:layout_height="wrap_content" android:layout_width="60dip"
+					android:layout_marginLeft="10dip" android:text="@string/login_password"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textColor="@color/black" />
+				<EditText android:id="@+id/password_edit"
+					android:layout_height="wrap_content" android:layout_width="fill_parent"
+					android:hint="@string/please_enter_phone_password"
+					android:scrollHorizontally="true" android:autoText="false"
+					android:singleLine="true" android:capitalize="none"
+					android:gravity="fill_horizontal" android:password="true"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textSize="16sp" />
+			</LinearLayout>
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layoutAnimation="@anim/layout_animation_row_left_slide"
+				android:gravity="center_horizontal" android:paddingLeft="10dip"
+				android:paddingBottom="5dip">
+				<CheckBox android:id="@+id/remember_password_checkBox"
+					android:checked="false" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/remember_password"
+					android:textColor="@color/black" />
+				<TextView android:id="@+id/remember_password_view"
+					android:layout_height="wrap_content" android:layout_width="wrap_content"
+					android:paddingLeft="20sp" android:gravity="left"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:textColor="#0066cc" android:text="@string/login_find_password"
+					android:textSize="17sp" />
+				<Button android:id="@+id/forgetPwd_button"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="3.4" android:text="@string/forget_password"
+					android:layout_marginRight="5dip" android:textSize="13sp"
+					android:visibility="gone" />
+			</LinearLayout>
+		</LinearLayout>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:paddingTop="10sp"
+			android:layoutAnimation="@anim/layout_animation_row_right_slide"
+			android:gravity="center_horizontal">
+			<Button android:id="@+id/register_button"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginRight="5dip" android:layout_marginLeft="5dip"
+				android:text="@string/reg_new_user" android:textColor="@color/white"
+				android:textSize="20sp" />
+			<Button android:id="@+id/login_button" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:layout_marginRight="5dip" android:layout_marginLeft="5dip"
+				android:text="@string/login" android:textColor="@color/white"
+				android:textSize="20sp" />
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

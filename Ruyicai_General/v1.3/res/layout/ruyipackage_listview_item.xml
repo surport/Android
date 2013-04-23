@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+	<ImageView 
+		android:id="@+id/ruyipackage_icon_id" 
+		android:layout_alignParentLeft="true"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	</ImageView>
+	
+	<RelativeLayout	
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+	  android:layout_toRightOf="@+id/ruyipackage_icon_id" 
+	
+	>
+			<TextView 
+				android:id="@+id/ruyipackage_title"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:textColor="@color/black"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:typeface="serif"
+				>
+			</TextView>
+			<TextView 
+				android:id="@+id/ruyipackage_text"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:layout_below="@+id/ruyipackage_title"
+				android:textColor="@color/black"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:typeface="serif"
+				android:textSize="14px"
+				>
+			</TextView>
+	</RelativeLayout>
+	<LinearLayout android:orientation="horizontal"
+                      android:id="@+id/ruyipackage_listview_layout_button_group"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true">
+	</LinearLayout>
+</RelativeLayout>

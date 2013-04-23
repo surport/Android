@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="yellow">#77ffff00</color>
+    <color name="red">#FF0000</color>
+    <color name="black_red">#9933</color>
+    <color name="pink">#FF2EFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="blue_red">#0000FF</color>
+    <color name="darkgreen">#008800</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="grey">#F3F3F3</color>
+    <color name="touming">#00000000</color>
+    <color name="list_color">#ffffff</color>
+    <color name="aciton_title_color">#734444</color>
+    <color name="aciton_list_color">#F3F3F3</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_num_gray">#333</color>
+    <color name="red_touzhu">#a60000</color>
+
+</resources>

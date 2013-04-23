@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 合买大厅 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/join_detail_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:text="定制跟单详情"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="80dip" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LinearLayout01"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" >                           
+                <LinearLayout
+                    android:id="@+id/fanganxiangqing"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/bet_detail_text_lotno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="彩种："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                     <TextView
+                        android:id="@+id/follow_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="跟单名人："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                      <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip" >
+
+                        <TextView
+                            android:id="@+id/join_detail_text_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="名人战绩："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <LinearLayout
+                            android:id="@+id/join_detail_linear_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_toRightOf="@+id/join_detail_text_record" >
+                        </LinearLayout>
+                    </RelativeLayout>
+                      <TextView
+                        android:id="@+id/follow_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="定制时间："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/follow_kind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="跟单类型："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                   <TextView
+                        android:id="@+id/follow_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="状态："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="定制金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/follow_atm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/follow_times"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="定制次数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                     <TextView
+                        android:id="@+id/follow_forceJoin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="强制参与："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+            </LinearLayout>
+          </LinearLayout>
+                
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout0000"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/LinearLayout0111"
+            android:paddingBottom="50dip"
+            android:paddingLeft="10dip" >
+
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout0111"
+            android:layout_width="fill_parent"
+            android:layout_height="70dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/join_detail_bottom_bg"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/bet_detail_img_cannle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"
+                android:text="返回"
+             >
+            </Button>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

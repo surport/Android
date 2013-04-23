@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="85dp" android:paddingTop="10dp"
+	android:paddingBottom="10dp">
+	<LinearLayout android:id="@+id/notice_pirzes_single_specific_ball_linearlayout"
+		android:layout_marginTop="10dip"
+		android:layout_width="fill_parent"  android:layout_height="wrap_content" android:orientation="horizontal"
+		android:gravity="center">
+	</LinearLayout>
+	
+	<!-- zlm 8.5 code modify -->
+	<RelativeLayout
+		android:id="@+id/notice_pirzes_single_specific_finaldateandmoneysum_linearlayout"
+		android:layout_below="@id/notice_pirzes_single_specific_ball_linearlayout"
+		android:layout_width="wrap_content" android:layout_height="5dip">
+		<TextView android:layout_height="wrap_content"
+		  android:layout_marginLeft="3dip"
+			android:layout_width="wrap_content" android:textColor="@color/black"
+			android:textSize="14dip" android:layout_alignParentLeft="true"
+			android:id="@+id/notice_prizes_single_specific_finalPrizesDate_id">
+		</TextView>
+
+		<TextView android:id="@+id/notice_prizes_single_specific_totalSum_id"
+			android:textColor="@color/black" android:layout_alignParentRight="true"
+			android:textSize="14dip" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+		</TextView>
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:id="@+id/notice_pirzes_single_specific_noticedateandissue_linearlayout"
+		android:layout_below="@+id/notice_pirzes_single_specific_finaldateandmoneysum_linearlayout"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"  android:layout_alignParentRight="true">
+		<TextView android:layout_width="wrap_content" android:layout_marginLeft="10dip"
+			android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+			android:textColor="@color/black" android:textSize="14dip"
+			android:id="@+id/notice_prizes_single_specific_noticedDate_id">
+		</TextView>
+
+		<TextView android:id="@+id/notice_prizes_single_specific_issue_id"
+			android:textColor="@color/black" android:layout_alignParentRight="true"
+			 android:textSize="14dip"
+			android:layout_width="120dp" android:layout_height="wrap_content">
+		</TextView>
+	</RelativeLayout>
+	
+	
+	<ImageView android:layout_alignParentRight="true" android:src="@drawable/usercenter_ico_triangle" 
+	    android:layout_width="wrap_content" android:layout_height="fill_parent" 
+	    android:layout_centerVertical="true" android:layout_marginRight="10dp" android:id="@+id/notice_prizes_single_specific_img"/>
+</RelativeLayout>

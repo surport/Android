@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/usercenter_mainlayou_text_title"
+            style="@style/UserTitleTextLeft"
+            android:text="@string/usercenter_mymessage" >
+        </TextView>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/litt" />
+
+    <TabHost
+        android:id="@+id/usercenter_tab_host"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:background="@color/white" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@android:id/tabs"
+                android:background="@drawable/bg"
+                android:paddingBottom="50dp" >
+
+                <LinearLayout
+                    android:id="@+id/message"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+                <LinearLayout
+                    android:id="@+id/latter"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/buy_bot_bg"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/usercenter_feedback_submitbtn"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/join_info_btn_selecter"
+                    android:padding="5dp"
+                    android:text="@string/usercenter_submitfeedback"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </TabHost>
+
+</LinearLayout>

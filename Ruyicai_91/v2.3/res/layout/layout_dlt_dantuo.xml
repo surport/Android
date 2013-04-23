@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<TextView android:id="@+id/dlt_dantuo_text_sum_money"
+		android:layout_gravity="center_horizontal" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textColor="#000000" />
+	<LinearLayout android:id="@+id/balls_layout"
+		android:paddingLeft="20dp" android:orientation="vertical"
+		android:layout_width="fill_parent" android:paddingRight="15dp"
+		android:layout_height="wrap_content" android:background="@drawable/edit_area">
+		<LinearLayout android:layout_width="fill_parent"
+			android:paddingTop="10dp" android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<TextView android:text="@string/front_ball_danma"
+				android:layout_weight="1" android:id="@+id/dlt_new_front_dan_text"
+				android:layout_width="100dp" android:layout_height="wrap_content"
+				android:textColor="@color/black" />
+			<EditText android:hint="@string/dlt_dantou_front_dan_edit_text"
+				android:scrollHorizontally="false" android:id="@+id/dlt_dantou_front_dan_edit_text"
+				android:layout_width="270dp" android:layout_height="wrap_content"
+				android:singleLine="true" android:cursorVisible="false"
+				android:layout_weight="3" android:textSize="13sp" android:editable="false"
+				android:background="@drawable/huikuang" android:textColor="@color/red" />
+		</LinearLayout>
+
+		<LinearLayout android:layout_width="fill_parent"
+			android:paddingTop="5dp" android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<TextView android:text="@string/front_ball_tuoma"
+				android:layout_weight="1" android:id="@+id/dlt_new_front_tuo_text"
+				android:layout_width="100dp" android:layout_height="wrap_content"
+				android:textColor="@color/black" />
+			<EditText android:hint="@string/dlt_dantou_front_tuo_edit_text"
+				android:id="@+id/dlt_dantou_front_tuo_edit_text"
+				android:layout_weight="3" android:scrollHorizontally="false"
+				android:layout_width="270dp" android:layout_height="wrap_content"
+				android:singleLine="true" android:cursorVisible="false"
+				android:textSize="13sp" android:editable="false" android:background="@drawable/huikuang"
+				android:textColor="@color/red" />
+		</LinearLayout>
+
+		<LinearLayout android:layout_width="fill_parent"
+			android:paddingTop="5dp" android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<TextView android:text="@string/rear_ball_danma" android:id="@+id/dlt_new_rear_dan_text"
+				android:layout_width="100dp" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:layout_weight="1" />
+			<EditText android:hint="@string/dlt_dantou_rear_dan_edit_text"
+				android:scrollHorizontally="false" android:id="@+id/dlt_dantou_rear_dan_edit_text"
+				android:layout_width="270dp" android:layout_height="wrap_content"
+				android:singleLine="true" android:cursorVisible="false"
+				android:textSize="13sp" android:editable="false" android:background="@drawable/huikuang"
+				android:textColor="@color/blue" android:layout_weight="3" />
+		</LinearLayout>
+		<LinearLayout android:layout_width="fill_parent"
+			android:paddingTop="5dp" android:paddingBottom="10dp"
+			android:layout_height="wrap_content" android:orientation="horizontal">
+			<TextView android:text="@string/rear_ball_tuoma" android:id="@+id/dlt_new_rear_tuo_text"
+				android:layout_width="100dp" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:layout_weight="1" />
+			<EditText android:hint="@string/dlt_dantou_rear_tuo_edit_text"
+				android:scrollHorizontally="false" android:id="@+id/dlt_dantou_rear_tuo_edit_text"
+				android:layout_width="270dp" android:layout_height="wrap_content"
+				android:singleLine="true" android:cursorVisible="false"
+				android:textSize="13sp" android:editable="false" android:background="@drawable/huikuang"
+				android:textColor="@color/blue" android:layout_weight="3" />
+		</LinearLayout>
+	</LinearLayout>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<ScrollView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:fadeScrollbars="false">
+			<LinearLayout android:layout_width="fill_parent"
+				android:id="@+id/bujuscroll" android:background="@drawable/balls_area"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="vertical"
+					android:id="@+id/ssq_zhixuan_linear_red">
+					<TableLayout android:id="@+id/table_front_danma"
+						android:paddingTop="10dp" android:paddingBottom="10dp"
+						android:background="@drawable/balls_area" android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:layout_marginRight="6dip" />
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="vertical"
+					android:id="@+id/ssq_zhixuan_linear_blue">
+					<LinearLayout android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:orientation="vertical">
+						<TableLayout android:id="@+id/table_front_tuoma"
+							android:paddingTop="10dp" android:paddingBottom="10dp"
+							android:background="@drawable/balls_area" android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:layout_marginRight="6dip" />
+					</LinearLayout>
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="vertical"
+					android:id="@+id/ssq_zhixuan_linear_blue">
+					<LinearLayout android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:orientation="vertical">
+						<TableLayout android:id="@+id/table_rear_danma"
+							android:paddingTop="10dp" android:paddingBottom="10dp"
+							android:background="@drawable/balls_area" android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:layout_marginRight="6dip" />
+					</LinearLayout>
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="vertical"
+					android:id="@+id/ssq_zhixuan_linear_blue">
+					<LinearLayout android:layout_width="fill_parent"
+						android:layout_height="wrap_content" android:orientation="vertical">
+						<TableLayout android:id="@+id/table_rear_tuoma"
+							android:paddingTop="10dp" android:paddingBottom="10dp"
+							android:background="@drawable/balls_area" android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:layout_marginRight="6dip" />
+					</LinearLayout>
+				</LinearLayout>
+
+				<RelativeLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_alignParentBottom="true" android:background="@drawable/bottom_bg">
+					<RelativeLayout android:orientation="horizontal"
+						android:id="@+id/layout_togglebutton" android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:paddingLeft="20dp"
+						android:layout_centerHorizontal="true" android:paddingBottom="10dip">
+						<ScrollView android:layout_width="fill_parent"
+							android:layout_height="wrap_content" android:fadeScrollbars="false">
+							<LinearLayout android:orientation="vertical"
+								android:layout_width="wrap_content" android:layout_height="wrap_content"
+								android:paddingRight="20dip" android:id="@+id/layout_progress_all">
+								<ToggleButton android:id="@+id/dlt_dantuo_zhuijia_touzhu_cb"
+									android:layout_width="wrap_content" android:layout_height="wrap_content"
+									android:background="@drawable/dlt_zhuijia_toggle_button"
+									android:layout_gravity="center_horizontal" android:textOn=""
+									android:textOff=""></ToggleButton>
+								<LinearLayout android:id="@+id/ssq_jixuan_layout"
+									android:layout_width="wrap_content" android:layout_height="wrap_content">
+									<ImageButton android:id="@+id/dlt_dantuo_seekbar_subtract_beishu"
+										android:layout_width="wrap_content" android:layout_height="wrap_content"
+										android:src="@drawable/subtract11" android:background="#00000000"
+										android:paddingTop="10dip" />
+									<LinearLayout android:orientation="vertical"
+										android:layout_width="wrap_content" android:layout_height="wrap_content"
+										android:id="@+id/layout_progress"
+										android:layout_centerHorizontal="true"
+										layout_toRightOf="@+id/dlt_dantuo_seekbar_subtract_beishu">
+										<LinearLayout android:orientation="horizontal"
+											android:layout_width="wrap_content" android:layout_height="wrap_content"
+											android:layout_gravity="center_horizontal">
+											<TextView android:id="@+id/dlt_dantuo_text_beishu_change"
+												android:layout_width="20dip" android:layout_height="wrap_content"
+												android:textColor="@color/black" />
+											<TextView android:id="@+id/dlt_dantuo_beishu_title"
+												android:layout_width="wrap_content" android:layout_height="wrap_content"
+												android:text="@string/meiqibeishu" android:textColor="@color/black" />
+										</LinearLayout>
+										<SeekBar android:id="@+id/dlt_dantuo_seek_beishu"
+											style="?android:attr/progressBarStyleHorizontal"
+											android:progressDrawable="@drawable/seekbar_style"
+											android:thumb="@drawable/thumb" android:max="99"
+											android:progress="1" android:layout_width="130dip"
+											android:layout_height="15dip" android:paddingLeft="15dip"
+											android:paddingRight="15dip" android:paddingBottom="4dip"
+
+											android:layout_centerVertical="true" />
+									</LinearLayout>
+									<ImageButton android:id="@+id/dlt_dantuo_seekbar_add_beishu"
+										android:layout_width="wrap_content" android:layout_height="wrap_content"
+										android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+										android:background="#00000000" android:paddingTop="10dip"
+										android:layout_marginRight="20dp" />
+									<ImageButton android:id="@+id/dlt_dantuo_b_touzhu"
+										android:layout_toRightOf="@+id/dlt_dantuo_seekbar_add_beishu"
+										android:layout_width="wrap_content" android:layout_height="wrap_content"
+										android:background="#00000000" android:src="@drawable/imageselecter"
+										android:layout_gravity="bottom" />
+								</LinearLayout>
+								<RelativeLayout android:id="@+id/ssq_jixuan_layout_qihao"
+									android:layout_width="wrap_content" android:layout_height="wrap_content">
+									<ImageButton android:id="@+id/dlt_dantuo_seekbar_subtract_qihao"
+										android:layout_width="wrap_content" android:layout_height="wrap_content"
+										android:src="@drawable/subtract11" android:background="#00000000"
+										android:paddingTop="10dip" />
+									<LinearLayout android:orientation="vertical"
+										android:layout_width="wrap_content" android:layout_height="40dip"
+										android:id="@+id/layout_progress"
+										android:layout_centerHorizontal="true"
+										android:layout_toRightOf="@+id/dlt_dantuo_seekbar_subtract_qihao">
+										<LinearLayout android:orientation="horizontal"
+											android:layout_width="wrap_content" android:layout_height="wrap_content"
+											android:layout_gravity="center_horizontal">
+											<TextView android:id="@+id/dlt_dantuo_text_qishu_change"
+												android:layout_width="20dip" android:layout_height="wrap_content"
+												android:textColor="#000000" />
+											<TextView android:id="@+id/dlt_dantuo_text_qishu_title"
+												android:layout_width="wrap_content" android:layout_height="wrap_content"
+												android:text="@string/zhuihaoqishu" android:textColor="#000000" />
+										</LinearLayout>
+										<SeekBar android:id="@+id/dlt_dantuo_seek_qishu"
+											style="?android:attr/progressBarStyleHorizontal"
+											android:progressDrawable="@drawable/seekbar_style"
+											android:thumb="@drawable/thumb" android:max="99"
+											android:progress="1" android:layout_width="130dip"
+											android:layout_height="15dip" android:paddingLeft="15dip"
+											android:paddingRight="15dip" android:paddingBottom="4dip"
+											android:layout_gravity="center_horizontal"
+											android:layout_centerVertical="true" />
+									</LinearLayout>
+									<ImageButton android:id="@+id/dlt_dantuo_seekbar_add_qihao"
+										android:layout_marginRight="20dp" android:layout_width="wrap_content"
+										android:layout_height="wrap_content" android:src="@drawable/add11"
+										android:layout_toRightOf="@+id/layout_progress"
+										android:background="#00000000" android:paddingTop="10dip" />
+									<ImageButton android:id="@+id/dlt_dantuo_btn_newSelect"
+										android:layout_toRightOf="@+id/dlt_dantuo_seekbar_add_qihao"
+										android:layout_width="wrap_content" android:layout_height="wrap_content"
+										android:background="#00000000" android:src="@drawable/selecet_chongxuan"
+										android:paddingTop="10dip" android:layout_centerVertical="true" />
+								</RelativeLayout>
+							</LinearLayout>
+						</ScrollView>
+					</RelativeLayout>
+				</RelativeLayout>
+			</LinearLayout>
+		</ScrollView>
+	</RelativeLayout>
+</LinearLayout>

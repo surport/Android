@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 号码篮列表选项布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip"
+    android:paddingTop="5dip" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buy_add_list_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/buy_add_list_item_text_num"
+            android:layout_width="40dip"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip"
+            android:textColor="@color/white"
+            android:textSize="17dip" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="210dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" android:paddingTop="5dip" android:paddingBottom="5dip">
+
+            <TextView
+                android:id="@+id/buy_add_list_item_text_code"
+                android:layout_width="210dip"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="17dip" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/buy_add_list_item_text_zhushu"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dip"
+                    android:textColor="@color/black"
+                    android:textSize="17dip" />
+
+                <TextView
+                    android:id="@+id/buy_add_list_item_text_amt"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="17dip" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buy_add_dialog_delet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/shanchu" />
+    </LinearLayout>
+
+</LinearLayout>

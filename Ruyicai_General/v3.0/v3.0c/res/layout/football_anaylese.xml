@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--
+		主队近十场内进 球情况：zhudui_jinshi_jinqiu 客队近十场内进球情况：kedui_jinshi_jinqiu
+		主队的胜负关系：zhudui_sheng,zhudui_ping,zhudui_fu
+		客队的胜负关系：kedui_sheng,kedui_fu,kedui_ping
+		主队近十场的战绩：zhudui_jinshi_sheng,zhudui_jinshi_ping,zhudui_jinshi_fu
+		客队近十场的战绩：kedui_jinshi_sheng,kedui_jinshi_ping,kedui_jinshi_fu
+		平均指数：sheng_zhishu,fu_zhishu,ping_zhishu
+	-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_weight="5" android:layout_width="fill_parent"
+		android:orientation="horizontal">
+		<LinearLayout android:layout_weight="1"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:orientation="vertical">
+			<TextView android:text="     " android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView android:text="平均指数" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<TextView android:text="主队战绩（近十）" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView android:text="客队战绩（近十）" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+		</LinearLayout>
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_weight="1" android:layout_width="fill_parent"
+			android:orientation="horizontal">
+			<LinearLayout android:layout_weight="1"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:orientation="vertical">
+				<TextView android:text="胜" android:layout_width="30px"
+					android:layout_height="wrap_content" android:background="#ffffff"
+					android:paddingLeft="10px" android:textColor="@color/black" />
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/sheng_zhishu"
+					android:hint="" />
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/zhudui_jinshi_sheng"
+					android:hint="" />
+				<TextView android:layout_width="40dp"
+					android:layout_height="wrap_content" android:id="@+id/kedui_jinshi_sheng"
+					android:hint="" />
+			</LinearLayout>
+			<LinearLayout android:layout_weight="1"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:orientation="vertical">
+				<TextView android:text="平" android:layout_width="30px"
+					android:layout_height="wrap_content" android:background="#ffffff"
+					android:paddingLeft="10px" android:textColor="@color/black" />
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/ping_zhishu"
+					android:hint="" />
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/zhudui_jinshi_ping"
+					android:hint="" />
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/kedui_jinshi_ping"
+					android:hint="" />
+			</LinearLayout>
+			<LinearLayout android:layout_weight="1"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:orientation="vertical">
+				<TextView android:text="负" android:layout_width="30px"
+					android:layout_height="wrap_content" android:background="#ffffff"
+					android:paddingLeft="10px" android:textColor="@color/black" />
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/fu_zhishu"
+					android:hint="" />
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/zhudui_jinshi_fu"
+					android:hint="" />
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/kedui_jinshi_fu"
+					android:hint="" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:orientation="horizontal">
+		<TextView android:text="主队（近十）" android:layout_width="110dip"
+			android:layout_height="wrap_content" />
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@+id/zhudui_jinshi_jinqiu"
+			android:hint="" android:paddingLeft="20px" />
+	</LinearLayout>
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:orientation="horizontal">
+		<TextView android:text="客队（近十）" android:layout_width="110dip"
+			android:layout_height="wrap_content" />
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@+id/kedui_jinshi_jinqiu"
+			android:hint="" android:paddingLeft="20px" />
+
+	</LinearLayout>
+
+</LinearLayout>

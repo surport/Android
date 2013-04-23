@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+
+	<RelativeLayout android:layout_width="fill_parent"
+		android:id="@+id/notice_prizes_single_specific_main_relative01"
+		android:layout_height="wrap_content" android:paddingTop="10px"
+		android:paddingLeft="10px" android:paddingBottom="10px"
+		android:background="@drawable/bottom_bar">
+
+		<TextView android:id="@+id/notice_prizes_single_specific_title_id"
+			android:layout_alignParentLeft="true" android:textColor="@color/black"
+			android:layout_marginLeft="100dip" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textSize="20px"
+			android:gravity="center_vertical">
+		</TextView>
+
+		<!-- 周黎鸣7.3将Button换成ImageButton -->
+		<ImageButton android:src="@drawable/return_btn"
+			android:id="@+id/notice_prizes_single_specific_main_returnID"
+			android:layout_alignParentLeft="true" android:background="#00000000"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+		</ImageButton>
+
+	</RelativeLayout>
+
+	<ListView android:id="@+id/notice_prizes_single_specific_listview"
+		android:cacheColorHint="#00000000" android:listSelector="#00000000"
+		android:focusable="false" android:focusableInTouchMode="false"
+		android:clickable="false" android:clipChildren="false"
+		android:layout_below="@+id/notice_prizes_single_specific_main_relative01"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:background="@color/white">
+	</ListView>
+
+	<TextView android:id="@+id/notice_prizes_single_specific_attention"
+		android:textColor="@color/black" android:layout_marginTop="15dip"
+		android:layout_below="@+id/notice_prizes_single_specific_listview"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+	</TextView>
+
+
+</RelativeLayout>

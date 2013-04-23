@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+     android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/alipay_secure_title"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shouye_top"
+        android:gravity="center_vertical" android:paddingLeft="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/accountTitle_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="20sp"
+            android:textColor="@color/white" android:text=""
+            >
+        </TextView>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alipay_secure_title"
+        android:paddingBottom="60dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/ZFB_please_enter_value"
+                android:textSize="18sp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/alipay_secure_recharge_value"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="fill_horizontal"
+                android:numeric="integer"
+                android:text="@string/chargehintmoney"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="16sp" 
+                android:id="@+id/alipay_content"/>
+"
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/alert_bottom_bg"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <Button
+            android:id="@+id/alipay_secure_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="确 定"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/alipay_secure_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/join_info_btn_selecter"
+            android:gravity="center"
+            android:text="取 消"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

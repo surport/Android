@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:orientation="vertical" android:background="@color/white">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/shouye_top"
+		android:gravity="center_horizontal|clip_vertical">
+		<TextView android:text="常用问候语" android:id="@+id/alert_dialog_touzhu_text_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:textSize="20dip"
+			android:paddingTop="7dip">
+		</TextView>
+	</LinearLayout>
+	<EditText android:text="" android:id="@+id/dialog_advice_edit_check"
+		android:layout_width="fill_parent" android:layout_height="50sp"
+		android:visibility="gone" android:hint="搜索"></EditText>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<ListView android:id="@+id/dialog_advice_list"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:background="@color/white" android:dividerHeight="1dip"
+			android:divider="#BEBEBE" android:fadingEdge="none"
+			android:scrollingCache="false" android:paddingBottom="60sp">
+		</ListView>
+		<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:layout_height="60dip"
+			android:background="@drawable/buy_bot_bg" android:gravity="center_horizontal"
+			android:layout_alignParentBottom="true">
+			<Button android:id="@+id/dialog_advice_img_ok" android:text="@string/ok"
+				android:layout_width="120dp" android:layout_height="wrap_content" android:textColor="@color/white"
+				android:background="@drawable/loginselecter" android:textSize="20sp" 
+				android:layout_gravity="center_vertical" android:paddingLeft="15sp"	/>
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>

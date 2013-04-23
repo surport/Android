@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:background="@drawable/list_luck_tan_bg"
+	android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+	<!-- 周黎明 7.3将Button换成ImageButton -->
+	<Button android:id="@+id/chooose_luck_lottery_num_return"
+		android:layout_width="70dp" android:layout_height="30dp" android:layout_gravity="right"
+		android:paddingTop="10dip" android:paddingRight="30dp" android:text="@string/str_return" android:textColor="@color/white"/>
+	<GridView android:id="@+id/chooose_luck_lottery_num_gridview_id"
+		android:numColumns="4" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	</GridView>
+
+</LinearLayout>

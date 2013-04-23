@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+   
+	<ImageView 
+		android:id="@+id/choose_luck_lottery_num_icon_id" 
+		android:layout_alignParentLeft="true"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</ImageView>
+	
+	<TextView 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_toRightOf="@+id/choose_luck_lottery_num_icon_id" 
+		android:textColor="@color/black"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:typeface="serif"
+		android:id="@+id/choose_luck_lottery_num_zhonglei">
+	</TextView>
+	
+
+	
+	
+	<Button 
+		android:layout_width="wrap_content" 
+		android:layout_alignParentRight="true"
+		android:text="@string/shengri"
+		android:layout_height="wrap_content" 
+		android:id="@+id/choose_luck_lottery_num_shengri">
+	</Button>
+	
+	<Button 
+		android:layout_width="wrap_content" 
+		android:text="@string/xingming"
+		android:layout_toLeftOf="@+id/choose_luck_lottery_num_shengri" 
+		android:layout_height="wrap_content" 
+		android:id="@+id/choose_luck_lottery_num_xingming">
+	</Button>
+	
+	<Button 
+		android:layout_width="wrap_content"
+		android:text="@string/shengxiao" 
+		android:layout_toLeftOf="@+id/choose_luck_lottery_num_xingming"
+		android:layout_height="wrap_content" 
+		android:id="@+id/choose_luck_lottery_num_shengxiao">
+	</Button>
+	
+	<Button 
+		android:layout_width="wrap_content"
+		android:text="@string/xingzuo" 
+		android:layout_toLeftOf="@+id/choose_luck_lottery_num_shengxiao"
+		android:layout_height="wrap_content" 
+		android:id="@+id/choose_luck_lottery_num_xingzuo">
+	</Button>
+	
+	
+	
+</RelativeLayout>

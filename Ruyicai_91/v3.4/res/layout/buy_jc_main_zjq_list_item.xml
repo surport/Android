@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="10dip"
+    android:paddingLeft="6dip"
+    android:paddingRight="6dip" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jc_bg1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/jc_main_list_item_text_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingTop="5sp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="17sp" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:gravity="bottom"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jc_bgtop"
+                android:paddingTop="5sp" >
+
+                <TextView
+                    android:id="@+id/jc_main_list_item_text_team"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16sp" >
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" >
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_team_name1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="16sp" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_team_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5sp"
+                        android:text=""
+                        android:textColor="@color/blue_red"
+                        android:textSize="13sp" >
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" >
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button1"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:textColor="@color/black"
+                        android:textSize="10dip" />
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button2"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:textColor="@color/black"
+                        android:textSize="10dip" />
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button3"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:textColor="@color/black"
+                        android:textSize="10dip" />
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button4"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:textColor="@color/black"
+                        android:textSize="10dip" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jc_bgbottom"
+                android:paddingTop="3sp" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="70sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="截至时间"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_time_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22:00:00"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" >
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="80sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/jc_main_list_item_text_team_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="16sp" >
+                    </TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical" >
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button5"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="10dip" android:gravity="left"/>
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button6"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="16dip" android:layout_gravity="left"/>
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button7"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="5dip" />
+
+                    <com.ruyicai.custom.jc.button.MyButton
+                        android:id="@+id/jc_zjq_button8"
+                        android:layout_width="35dip"
+                        android:layout_height="35dip"
+                        android:textColor="@color/black"
+                        android:textSize="10dip" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

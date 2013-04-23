@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+     android:layout_gravity="center"
+	   android:orientation="vertical" android:layout_width="fill_parent"
+	   android:layout_height="fill_parent"
+  >
+   <LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:paddingTop="10dip" android:background="@drawable/shouye_top">
+		<TextView android:paddingLeft="10dip" android:id="@+id/mainpagetext1"
+
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="您的账户余额为：" android:textColor="@color/black"></TextView>
+		<TextView android:id="@+id/mainpagetext2"
+			android:layout_width="60dip" android:layout_height="wrap_content"
+			android:text="未登录" android:textColor="@color/black"></TextView>
+		<ImageButton android:id="@+id/mainpage_chongzhi"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="65dip" android:background="@drawable/chongzhi">
+		</ImageButton>
+	</LinearLayout>
+		<ScrollView  
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="#E5E5E5">
+	     <LinearLayout 
+	         android:orientation="vertical"
+	         android:layout_width="fill_parent"
+	         android:layout_height="fill_parent"
+	     >
+					<WebView android:id="@+id/webView" android:layout_width="wrap_content"
+						android:layout_height="wrap_content" > 
+					    
+					</WebView>
+				</LinearLayout>
+		</ScrollView>
+</LinearLayout>

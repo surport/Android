@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:gravity="center_horizontal|center_vertical">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@+id/layout1_top"
+			android:gravity="center_horizontal">
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_hemai_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_toLeftOf="@+id/mainpage_fc3d_sign"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_hemai_text"
+					android:visibility="gone" android:layout_height="wrap_content"
+					android:text="" android:gravity="center_horizontal"
+					android:textColor="@color/black" android:textSize="15sp"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_ssq_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_centerHorizontal="true" android:paddingRight="30dip"
+					android:paddingLeft="30dip" android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:text=""
+					android:id="@+id/mainpage_ssq_text" android:gravity="center_horizontal"
+					android:textColor="@color/black" android:textSize="15sp"
+					android:visibility="gone"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_fc3d_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_toRightOf="@+id/mainpage_fc3d_sign"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_fc3d_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+		<LinearLayout android:layout_width="fill_parent"
+			android:id="@+id/layout2_top" android:layout_height="wrap_content"
+			android:layout_alignParentTop="true" android:gravity="center_horizontal"
+			android:paddingTop="20dip">
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_11x5_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_11x5_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_dlt_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:paddingRight="30dip" android:paddingLeft="30dip"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_dlt_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_ssc_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_ssc_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:id="@+id/layout3_top"
+			android:gravity="center_horizontal" android:paddingTop="20dip"
+			android:paddingBottom="10sp">
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_qlc_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_qlc_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_pl3_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:paddingRight="30dip" android:paddingLeft="30dip"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_pl3_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="vertical">
+				<ImageView android:id="@+id/mainpage_zucai_sign"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:visibility="gone"></ImageView>
+				<TextView android:layout_width="fill_parent" android:id="@+id/mainpage_zucai_text"
+					android:layout_height="wrap_content" android:text=""
+					android:gravity="center_horizontal" android:textColor="@color/black"
+					android:textSize="15sp" android:visibility="gone"></TextView>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>

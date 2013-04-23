@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:scrollbars="vertical">
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:padding="10dip">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="vertical">
+			<!--
+				<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/phone_card_please_entrCardInfo"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			-->
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:gravity="center_horizontal">
+				<Spinner android:id="@+id/phone_card_spinner"
+					android:layout_width="228dip" android:layout_height="wrap_content"
+					android:drawSelectorOnTop="true"
+					android:prompt="@string/phone_card_select_recharge_card_type"
+					android:entries="@array/recharge_card_type" />
+			</LinearLayout>
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:text="@string/phone_card_CValue"
+				android:gravity="left" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:textAppearance="?android:attr/textAppearanceMedium" />
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:gravity="center_horizontal">
+				<Spinner android:id="@+id/phone_card_value_spinner"
+					android:layout_width="228dip" android:layout_height="wrap_content"
+					android:drawSelectorOnTop="true"
+					android:prompt="@string/phone_card_select_recharge_card_value"
+					android:entries="@array/recharge_card_value" />
+			</LinearLayout>
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:text="@string/phone_card_enter_CInfo"
+				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<EditText android:id="@+id/phone_card_rechargecard_info"
+				android:layout_height="wrap_content" android:layout_width="228dip"
+				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
+				android:scrollHorizontally="true" android:autoText="false"
+				android:capitalize="none" android:gravity="fill_horizontal"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:text="@string/phone_card_CPassword"
+				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<EditText android:id="@+id/phone_card_rechargecard_password"
+				android:layout_height="wrap_content" android:layout_width="228dip"
+				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
+				android:scrollHorizontally="true" android:autoText="false"
+				android:capitalize="none" android:gravity="fill_horizontal"
+				android:password="true" android:numeric="integer"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+			<!--
+				<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:gravity="center_horizontal"> <TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="@string/phone_card_CValue" android:gravity="left"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+				<Spinner android:id="@+id/phone_card_value_spinner"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawSelectorOnTop="true"
+				android:prompt="@string/phone_card_select_recharge_card_value"
+				android:entries="@array/recharge_card_value" /> </LinearLayout>
+			-->
+			<!--
+				<EditText android:id="@+id/phone_card_rechargecard_value"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:scrollHorizontally="true"
+				android:autoText="false" android:capitalize="none"
+				android:gravity="fill_horizontal" android:numeric="integer"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+			-->
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:text="@string/phone_card_hint"
+				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

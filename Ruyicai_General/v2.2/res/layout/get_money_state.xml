@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:gravity="center_horizontal" android:padding="40px">
+	<TextView android:text="" android:id="@+id/get_money_state_text"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:textSize="17px"></TextView>
+</LinearLayout>

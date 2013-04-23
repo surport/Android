@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+      <string name="hello">this is ruyicai client demo,it is testing the function of "publish a RenRen status</string>
+    <string name="app_name">RRpublishstate</string>
+    <string name="renren_sdk_submit">确定</string>
+    <string name="renren_sdk_cancel">取消</string>
+    <string name="renren_sdk_username">账号</string>
+    <string name="renren_sdk_password">密码</string>
+    <string name="renren_sdk_login">登录</string>
+    <string name="renren_sdk_status_publish_success">发布成功</string>
+    <string name="renren_sdk_status_publish_failed">发布失败</string>
+    <string name="renren_sdk_status_publish">发布</string>
+    <string name="renren_sdk_status_cancel">取消</string>
+    <string name="renren_sdk_long_status">状态长度的字数上限为</string>
+    <string name="renren_sdk_publish_status_hint">发布中，请稍后</string>
+    <string name="renren_sdk_object_init_error">程序重新初始化失败</string>
+    <string name="renren_sdk_publish_null_status_alert">您还未输入内容，请输入后再试</string>
+    <string name="renren_sdk_title_label">发布到人人网</string>
+   <string name="auth_failed">验证失败</string>
+    <!-- Status publish activity -->
+    <string name="status_pub_title">发布状态</string>
+    <string name="status_label">状态</string>
+    <string name="status_pub_button">发布</string>
+    <string name="response_result">返回结果</string>
+    <string name="renren_demo_status_hint">你正在干嘛？</string>
+    <string name="logout">登出</string>
+    
+    <string name="user_info_group">用户信息</string>
+</resources>

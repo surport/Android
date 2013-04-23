@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  <TextView android:id="@id/upomp_lthj_textview_dialogtitle" android:textColor="@drawable/upomp_lthj_white" style="@style/upomp_lthj_textView_bold" android:gravity="center_horizontal"/>
+  <TextView android:id="@id/upomp_lthj_textview_dialogcontent" style="@style/upomp_lthj_layout_width_height_fw" android:layout_marginLeft="@dimen/upomp_lthj_tableLayout_pad_left"/>
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- 中奖查询列表子选项布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="100dp" android:gravity="center_vertical"
+	android:background="#FFFFFF" android:id="@+id/usercenter_trackquery_item"
+	android:weightSum="3">
+	<LinearLayout android:orientation="vertical"
+		android:layout_weight="2" android:layout_centerVertical="true"
+		android:paddingLeft="5dp" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<LinearLayout android:orientation="horizontal"
+			android:layout_gravity="top" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<TextView android:id="@+id/usercenter_trackquery_lotteryname"
+				android:layout_width="wrap_content" android:layout_centerVertical="true"
+				android:layout_alignParentLeft="true" android:text="双色球"
+				android:layout_height="wrap_content" android:textColor="@color/black"
+				android:textSize="20sp" />
+			<TextView android:id="@+id/usercenter_trackquery_trackstate"
+				android:textSize="14sp" android:layout_width="wrap_content"
+				android:layout_centerVertical="true" android:layout_alignParentLeft="true"
+				android:layout_height="wrap_content" />
+		</LinearLayout>
+		<LinearLayout android:orientation="vertical"
+			android:layout_gravity="bottom" android:layout_marginTop="15dp"
+			android:layout_centerVertical="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<LinearLayout android:orientation="horizontal"
+				android:layout_centerVertical="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:text="@string/usercenter_trackbatchnums"
+					android:layout_width="wrap_content" android:textSize="15dp"
+					android:layout_height="wrap_content" android:gravity="top"
+					android:textColor="@color/black" />
+				<TextView android:id="@+id/usercenter_trackquery_tracknum"
+					android:layout_width="wrap_content" android:textSize="15dp"
+					android:layout_height="wrap_content" android:gravity="top"
+					android:textColor="@color/black" />
+			</LinearLayout>
+			<LinearLayout android:orientation="horizontal"
+				android:layout_marginTop="5dp" android:layout_centerVertical="true"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:id="@+id/teamrank" android:layout_width="fill_parent"
+					android:text="@string/usercenter_alltrackmoney"
+					android:textSize="15dp" android:layout_height="wrap_content"
+					android:gravity="bottom" android:textColor="@color/black" />
+				<TextView android:id="@+id/usercenter_trackquery_money"
+					android:layout_width="wrap_content" android:textSize="15dp"
+					android:layout_height="wrap_content" android:text="500元"
+					android:gravity="top" android:textColor="@color/black" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	<LinearLayout android:gravity="right" android:orientation="vertical"
+		android:layout_weight="1" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<LinearLayout android:orientation="horizontal" android:layout_marginTop="5dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<TextView android:text="@string/usercenter_trackedbatchnums"
+				android:layout_width="wrap_content" android:layout_gravity="top|right"
+				android:layout_height="wrap_content" android:textColor="@color/black"/>
+			<TextView android:id="@+id/usercenter_trackquery_tracknumed" android:text="10" android:gravity="center"
+				android:layout_width="wrap_content" android:layout_gravity="top" android:paddingRight="10dp"
+				android:layout_height="wrap_content" android:textColor="@color/black"/>
+		</LinearLayout>
+		<Button android:id="@+id/usercenter_trackquery_cancle" android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:background="@drawable/usercenter_cancletrack_selector" />
+		<Button android:id="@+id/usercenter_trackquery_lookdetail"  android:layout_marginTop="5dp"
+			android:layout_width="wrap_content" android:layout_gravity="bottom|right"
+			android:layout_height="wrap_content" android:background="@drawable/usercenter_selector_lookdetails" />
+	</LinearLayout>
+</LinearLayout>

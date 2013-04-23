@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/upomp_lthj_accounttitle" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/upomp_lthj_layout_width_height_fw" >
+	<ScrollView android:scrollbars="none" style="@style/upomp_lthj_layout_width_height_fw"
+  	android:background="@drawable/upomp_lthj_bg_main">
+  	<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/upomp_lthj_layout_width_height_fw" android:paddingLeft="@dimen/upomp_lthj_tableLayout_pad_left" android:paddingRight="@dimen/upomp_lthj_tableLayout_pad_right" 
+				android:paddingTop="@dimen/upomp_lthj_tableLayout_pad_top" >
+		<!-- <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView style="@style/upomp_lthj_textView_bold" android:text="@string/upomp_lthj_trade_title" android:textSize="@dimen/upomp_lthj_textView_bold_font_size"  android:gravity="center"/>
+		</LinearLayout> -->
+		<TableLayout android:orientation="vertical"
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:gravity="center" android:shrinkColumns="1" android:background="@drawable/upomp_lthj_corner_round_all"
+			android:padding="1.0dip"
+			>
+			<TableRow
+			style="@style/upomp_lthj_tablerow"
+  				 android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_top_blue">
+				<TextView  style="@style/upomp_lthj_layout_width_height_fw"
+				android:id="@id/upomp_lthj_textview_dialogtitle" android:textColor="#ffffff" android:textSize="@dimen/upomp_lthj_textview_font_size"
+					android:text="银行卡信息" android:layout_span="2"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+  			<TableRow  style="@style/upomp_lthj_tablerow"
+  				 android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round">
+				<TextView android:text="发卡银行  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_pan_textview"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+  			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round">
+				<TextView android:text="卡类型  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_textview01"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>   
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>  
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_bottom_gray">
+				<TextView android:text="卡号  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_textview02" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+		</TableLayout>	
+		<LinearLayout style="@style/upomp_lthj_layout_width_height_fw" android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+			android:orientation="horizontal" android:gravity="center">
+			<Button  style="@style/upomp_lthj_button_twice" android:id="@id/upomp_lthj_removebindBtn"
+				android:layout_weight="1.0" android:textColor="@drawable/upomp_lthj_white"
+				android:background="@drawable/upomp_lthj_ok" android:text="@string/upomp_lthj_removebind" />
+			<Button style="@style/upomp_lthj_button_twice" android:id="@id/upomp_lthj_setthiscarddefaultBtn"
+				android:layout_marginLeft="10.0dip" android:layout_weight="1.0"
+				android:textColor="@drawable/upomp_lthj_white" android:background="@drawable/upomp_lthj_ok"
+				android:text="@string/upomp_lthj_setthiscarddefault" />
+		</LinearLayout>
+		<LinearLayout style="@style/upomp_lthj_layout_width_height_fw" android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+			android:orientation="horizontal" android:gravity="center">
+			<Button style="@style/upomp_lthj_button_twice" android:id="@id/upomp_lthj_leavesearchBtn"
+				android:layout_weight="1.0" android:textColor="@drawable/upomp_lthj_white" 
+				android:background="@drawable/upomp_lthj_ok" android:text="@string/upomp_lthj_leavesearch" />
+			<Button style="@style/upomp_lthj_button_twice" android:id="@id/upomp_lthj_bindbankcard_back"
+				android:layout_marginLeft="10.0dip" android:layout_weight="1.0"
+				android:textColor="@drawable/upomp_lthj_gray"  android:background="@drawable/upomp_lthj_cancel"
+				android:text="@string/upomp_lthj_back" />
+		</LinearLayout>
+		<TextView style="@style/upomp_lthj_layout_width_height_fw" />
+		<LinearLayout 
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:background="@drawable/upomp_lthj_corner_round_all" 
+			android:orientation="vertical"
+			android:paddingLeft="@dimen/upomp_lthj_prompt_hint_margin_left" 
+				android:paddingRight="@dimen/upomp_lthj_prompt_hint_margin_right" 
+				android:paddingBottom="@dimen/upomp_lthj_prompt_hint_margin_bottom">
+			<ImageView android:src="@drawable/upomp_lthj_friend_tip" style="@style/upomp_lthj_layout_width_height_ww"
+				android:layout_alignParentTop="true"/>"
+			<TextView style="@style/upomp_lthj_layout_width_height_fw"  
+				android:text="您可以对该银行卡进行以下操作: 默认卡设置、解除关联、余额查询。" 
+				android:textColor="@android:color/darker_gray"
+				/>
+		</LinearLayout>
+		<TextView style="@style/upomp_lthj_layout_width_height_fw" />
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>
+

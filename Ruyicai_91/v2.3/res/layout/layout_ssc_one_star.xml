@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="fill_parent"
+	android:background="@null" android:orientation="vertical">
+	<TextView android:id="@+id/ssc_text_sum_money"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:textColor="#000000" android:gravity="center_horizontal" />
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:background="@drawable/edit_area" android:gravity="center_vertical|center_horizontal">
+
+		<TextView android:text="@string/ssc_table_ge" android:id="@+id/ssc_onestar"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:gravity="center_vertical" android:textColor="@color/red"
+
+			android:textSize="16dip"></TextView>
+		<EditText android:hint="" android:id="@+id/ssc_zhixuanonestar_edit"
+			android:layout_width="220dip" android:layout_height="27dip"
+			android:singleLine="true" android:cursorVisible="false"
+			android:textSize="13dip" android:editable="false" android:background="@drawable/huikuang"
+			android:textColor="@color/red"></EditText>
+	</LinearLayout>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<ScrollView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:paddingBottom="80dip">
+
+			<LinearLayout android:id="@+id/balls_layout_qlc"
+				android:orientation="vertical" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:background="@drawable/balls_area">
+				<TableLayout android:id="@+id/ssc_table_ge"
+					android:layout_width="fill_parent" android:layout_height="wrap_content"
+					android:layout_marginRight="6dip" android:layout_marginTop="10dip"
+					android:layout_marginBottom="10dip" />
+			</LinearLayout>
+		</ScrollView>
+
+        <RelativeLayout android:orientation="horizontal"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_centerHorizontal="true" android:paddingBottom="10dip">
+		<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:paddingRight="20dip" android:id="@+id/layout_progress_all">
+					<RelativeLayout android:id="@+id/ssq_jixuan_layout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <ImageButton android:id="@+id/ssc_seekbar_subtract_beishu"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/subtract11"  android:paddingTop="10dip"
+					android:background="#00000000" />
+			  <LinearLayout android:orientation="vertical"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:id="@+id/layout_progress" android:layout_centerHorizontal="true"
+						layout_toRightOf="@+id/ssq_fushi_seekbar_subtract_beishu"
+						android:paddingLeft="15dip" android:paddingRight="15dip">
+              <LinearLayout android:orientation="horizontal"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:layout_gravity="center_horizontal">   
+			  <TextView android:id="@+id/ssc_text_beishu"
+					android:layout_width="20dip" android:layout_height="wrap_content"
+								android:textColor="@color/black"
+					 />       
+			    <TextView android:id="@+id/ssc_beishu_title"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="@string/meiqibeishu" android:textColor="#000000" />
+				
+			</LinearLayout>
+			<SeekBar android:id="@+id/ssc_seek_beishu"
+					style="?android:attr/progressBarStyleHorizontal"
+					android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+					android:max="99" android:progress="1" android:layout_width="130dip"
+					android:layout_height="15dip" android:paddingLeft="15dip"
+					android:paddingRight="15dip" android:paddingBottom="4dip"
+					android:layout_toRightOf="@+id/ssc_seekbar_subtract_beishu"
+					android:layout_centerVertical="true" />
+			</LinearLayout>
+			<ImageButton android:id="@+id/ssc_seekbar_add_beishu"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+					android:background="#00000000" android:paddingTop="10dip" />
+			</RelativeLayout>
+            
+
+            <RelativeLayout android:id="@+id/ssq_jixuan_layout_qihao"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<ImageButton android:id="@+id/ssc_seekbar_subtract_qihao"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/subtract11" android:paddingTop="10dip"
+					android:background="#00000000" />
+			<LinearLayout android:orientation="vertical"
+						android:layout_width="wrap_content" android:layout_height="40dip"
+						android:id="@+id/layout_progress" android:layout_centerHorizontal="true"
+						android:layout_toRightOf="@+id/ssc_seekbar_subtract_qihao">
+			<LinearLayout android:orientation="horizontal"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:layout_gravity="center_horizontal">
+                <TextView android:id="@+id/ssc_text_qishu"
+					android:layout_width="20dip" android:layout_height="wrap_content"
+					android:textColor="#000000" />
+				<TextView android:id="@+id/ssc_text_qishu_title"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="@string/zhuihaoqishu" android:textColor="#000000" />
+				
+			</LinearLayout>
+            <SeekBar android:id="@+id/ssc_seek_qishu"
+					style="?android:attr/progressBarStyleHorizontal"
+					android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+					android:max="99" android:progress="1" android:layout_width="130dip"
+					android:layout_height="15dip" android:paddingLeft="15dip"
+					android:paddingRight="15dip" android:paddingBottom="4dip"
+					android:layout_toRightOf="@+id/ssq_fushi_seekbar_subtract_qihao"
+					android:layout_centerHorizontal="true" />
+			</LinearLayout>
+			<ImageButton android:id="@+id/ssc_seekbar_add_qihao"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:src="@drawable/add11" android:layout_toRightOf="@+id/layout_progress"
+	android:background="#00000000" android:paddingTop="10dip" />
+		   </RelativeLayout>
+		   </LinearLayout>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_centerVertical="true" android:layout_toRightOf="@+id/layout_progress_all">
+			<ImageButton android:id="@+id/ssc_btn_touzhu"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:background="#00000000" android:src="@drawable/imageselecter"
+				android:layout_alignParentRight="true" 
+				android:layout_centerVertical="true"/>
+
+             <ImageButton android:id="@+id/ssc_jisuan_cb"
+					android:paddingTop="10dip" android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerVertical="true"
+					android:layout_alignParentLeft="true" android:background="#00000000"
+					android:src="@drawable/chongxuan" />
+     </LinearLayout>
+		
+   </RelativeLayout>
+</RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:paddingLeft="@dimen/upomp_lthj_keyboard_padding" android:paddingRight="@dimen/upomp_lthj_keyboard_padding">
+	<ListView android:id="@id/upomp_lthj_listview" style="@style/upomp_lthj_layout_width_height_ff"
+		>
+	</ListView>
+</LinearLayout>

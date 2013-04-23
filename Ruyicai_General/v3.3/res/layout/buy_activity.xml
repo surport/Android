@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/buy_bg" >
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="center_horizontal" android:background="@drawable/gundongbg"
+		android:id="@+id/notice_layout">
+		<ViewFlipper android:id="@+id/notice_other_flipper"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:flipInterval="3000">
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:gravity="center_vertical|center_horizontal"
+				android:textSize="14sp" android:textColor="@color/black" android:id="@+id/notice_other_title" />
+		</ViewFlipper>	
+	</LinearLayout>
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" 
+        android:layout_below="@id/notice_layout">
+    </android.support.v4.view.ViewPager>
+    <LinearLayout
+        android:id="@+id/buy_activity_light_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout4_top"
+        android:gravity="center_horizontal"
+        android:paddingBottom="10sp" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout4_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/main_ico_bg"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dip" >
+
+        <Button
+            android:id="@+id/mainpage_usercenter"
+            style="@style/HomeThreeBtn"
+            android:text="@string/lottery_info" >
+        </Button>
+
+        <Button
+            android:id="@+id/mainpage_help"
+            style="@style/HomeThreeBtn"
+            android:layout_marginLeft="6sp"
+            android:text="@string/action_center" >
+        </Button>
+
+        <Button
+            android:id="@+id/mainpage_luck_sign"
+            style="@style/HomeThreeBtn"
+            android:layout_marginLeft="6sp"
+            android:text="@string/luckey_choose" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

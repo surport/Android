@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="#ffffff" android:layout_height="fill_parent">
+	<!-- 顶部按钮 -->
+	<RelativeLayout android:id="@+id/goucaitouzhu_layout_title"
+		android:layout_width="fill_parent" android:layout_height="55px"
+		android:background="@drawable/buy_top" android:paddingTop="10px">
+		<!-- 7.3修改的代码Button换成ImageButton -->
+		<ImageButton android:id="@+id/goucaitouzhu_title_return"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:src="@drawable/buy_return" android:background="#00000000"
+	android:layout_alignParentLeft="true" android:paddingLeft="10px" />
+		<TextView android:id="@+id/goucaitouzhu_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:typeface="serif"
+			android:textColor="#525252" android:textSize="20px"
+			android:textAppearance="?android:attr/textAppearanceMedium" />
+	</RelativeLayout>
+	<HorizontalScrollView android:id="@+id/topBar"
+		android:scrollbarTrackHorizontal="@drawable/scrollbar_horizontal_track"
+		android:scrollbarThumbHorizontal="@drawable/scrollbar_horizontal_thumb"
+		android:scrollbarSize="2dip" android:layout_alignParentTop="true"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+	</HorizontalScrollView>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<RadioGroup android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:id="@+id/topMenu" android:layout_alignParentRight="true">
+		</RadioGroup>
+	</RelativeLayout>
+
+	<ScrollView android:id="@+id/scroll_global"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<LinearLayout android:id="@+id/layout_buy"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" />
+	</ScrollView>
+
+</LinearLayout>

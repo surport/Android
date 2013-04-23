@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:scrollbars="vertical">
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:padding="10dip">
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="vertical">
+
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:text="@string/ZFB_please_enter_value"
+				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<EditText android:id="@+id/zfb_recharge_value"
+				android:layout_height="wrap_content" android:layout_width="228dip"
+				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
+				android:scrollHorizontally="true" android:autoText="false"
+				android:capitalize="none" android:gravity="fill_horizontal"
+				android:numeric="integer" android:textAppearance="?android:attr/textAppearanceMedium" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="20dip" android:text="@string/ZFB_relate_phoneNum"
+				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+			<EditText android:id="@+id/zfb_account_number"
+				android:layout_height="wrap_content" android:layout_width="228dip"
+				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
+				android:scrollHorizontally="true" android:autoText="false"
+				android:capitalize="none" android:gravity="fill_horizontal"
+				android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+			<TextView android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:layout_marginLeft="20dip"
+				android:layout_marginRight="10dip" android:text="@string/ZFB_hint"
+				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

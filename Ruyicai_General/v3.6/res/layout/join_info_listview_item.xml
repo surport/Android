@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/hemailistbg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/join_info_item_text_name"
+            android:layout_width="80dip"
+            android:layout_height="28dip"
+            android:gravity="center"
+            android:paddingLeft="5sp"
+            android:paddingTop="5dip"
+            android:text="11选5"
+            android:textColor="@color/white" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/join_info_item_text_faqiren"
+            android:layout_width="130dip"
+            android:layout_height="28dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:paddingTop="5dip"
+            android:text="发起人"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="70dip"
+            android:layout_height="28dip"
+            android:paddingTop="5dip" >
+
+            <LinearLayout
+                android:id="@+id/join_info_item_linear_star"
+                android:layout_width="70dip"
+                android:layout_height="28dip"
+                android:gravity="center_vertical" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/join_info_item_text_ding"
+            android:layout_width="30dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textColor="#d89300"
+            android:visibility="gone">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="14dip" >
+
+        <LinearLayout
+            android:layout_width="95dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="方案总额"
+                android:textColor="@color/black" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/join_info_item_text_all_amt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="5dip"
+                android:textColor="@color/black" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="90dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="进度"
+                android:textColor="@color/black" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/join_info_item_text_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingTop="5dip"
+                android:textColor="@color/red" >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="参与合买"
+                android:textColor="@color/black" >
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dip"
+                android:text="定制跟单"
+                android:textColor="@color/black" >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

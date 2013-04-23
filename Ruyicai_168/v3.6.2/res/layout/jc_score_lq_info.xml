@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/layout_main_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:text="@string/jc_main_score"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+        <Button
+            android:id="@+id/layout_main_img_return"
+            android:layout_width="70dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/returnselecter"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="15dip" >
+        </Button>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/main_score_layout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_buy_title"
+        android:background="@drawable/jc_score_lq_top_bg1"
+        android:orientation="vertical"
+        android:paddingTop="5dip" >
+
+        <RelativeLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/jc_score_text_team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="10dip" />
+
+            <TextView
+                android:id="@+id/jc_score_text_time"
+                android:layout_width="160dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingRight="10dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:background="@drawable/jc_score_lq_top_bg2" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="125dip"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/jc_score_text_hteam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dip"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/jc_score_text_h_ball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/red"
+                    android:textSize="20dip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/jc_score_text_state"
+                android:layout_width="50dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="125dip"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/jc_score_text_vteam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dip"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="18dip" />
+
+                <TextView
+                    android:id="@+id/jc_score_text_v_ball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/red"
+                    android:textSize="20dip" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_score_layout_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_score_layout_top"
+        android:padding="5dip" >
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="40dp" android:gravity="center_vertical">
+	<RelativeLayout android:layout_height="fill_parent"
+		android:layout_width="fill_parent">
+		<TextView android:id="@+id/lienum" android:layout_width="wrap_content"
+			android:layout_centerVertical="true" android:layout_alignParentLeft="true"
+			android:layout_height="wrap_content" android:textColor="@color/black" />
+		<LinearLayout android:orientation="vertical"
+			android:layout_centerVertical="true" android:paddingLeft="5dp"
+			android:layout_toRightOf="@+id/lienum" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<TextView android:id="@+id/teamname" android:layout_width="wrap_content"
+				android:textSize="12dp" android:layout_height="wrap_content"
+				android:gravity="top" android:textColor="@color/black" />
+			<TextView android:id="@+id/teamrank" android:layout_width="fill_parent"
+				android:textSize="10dp" android:layout_height="wrap_content"
+				android:gravity="bottom" android:textColor="@color/black" />
+		</LinearLayout>
+
+		<LinearLayout android:id="@+id/shengfucai_layout" 
+			android:layout_centerVertical="true"  android:layout_centerHorizontal="true" android:paddingLeft="35dp"
+			 android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<TableLayout android:orientation="horizontal" 
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:id="@+id/shengfucai_ball">
+			</TableLayout>
+		</LinearLayout>
+		<ImageView android:layout_alignParentRight="true"
+			android:paddingRight="10dp" android:layout_centerVertical="true"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/fenxi" android:id="@+id/fenxi" />
+	</RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:gravity="left"
+        android:orientation="horizontal"
+        android:paddingTop="10px" >
+
+        <Button
+            android:id="@+id/usercenter_btn_return"
+            android:layout_width="70sp"
+            android:layout_height="30sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="#00000000"
+            android:paddingLeft="10px"
+            android:src="@drawable/returnselecter"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/ruyipackage_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10px"
+            android:gravity="center"
+            android:text="用户注册"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:textSize="20dip"
+            android:typeface="serif" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fadeScrollbars="true" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:animationCache="false"
+                android:clipToPadding="false"
+                android:layoutAnimation="@anim/layout_animation_linear"
+                android:orientation="vertical"
+                android:paddingBottom="30dip"
+                android:paddingTop="10dip"
+                android:stretchColumns="1" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layoutAnimation="@anim/layout_animation_row_left_slide"
+                    android:orientation="horizontal"
+                    android:paddingTop="3dip" >
+
+                    <TextView
+                        android:id="@+id/register_username_view"
+                        android:layout_width="100dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingLeft="10dip"
+                        android:text="@string/register_login_phoneNumber"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#666666"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/register_username_edit"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dip"
+                        android:autoText="false"
+                        android:capitalize="none"
+                        android:hint="@string/please_enter_phone_number"
+                        android:numeric="integer"
+                        android:scrollHorizontally="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layoutAnimation="@anim/layout_animation_row_right_slide"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/register_password_view"
+                        android:layout_width="100dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingLeft="10dip"
+                        android:text="@string/register_login_password"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#666666"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/register_password_edit"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dip"
+                        android:autoText="false"
+                        android:capitalize="none"
+                        android:hint="@string/please_enter_phone_password"
+                        android:password="true"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layoutAnimation="@anim/layout_animation_row_left_slide"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/register_confirm_password_view"
+                        android:layout_width="100dip"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingLeft="10dip"
+                        android:text="@string/register_confirm_password"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#666666"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/register_confirm_password_edit"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dip"
+                        android:autoText="false"
+                        android:capitalize="none"
+                        android:hint="@string/please_enter_phone_password_two"
+                        android:password="true"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left" >
+
+                    <CheckBox
+                        android:id="@+id/user_register_check_card_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="102dip"
+                        android:text="我要绑定身份证"
+                        android:textColor="@color/black" >
+                    </CheckBox>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/user_register_linear_card_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layoutAnimation="@anim/layout_animation_row_right_slide"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_id_num_view"
+                            android:layout_width="100dip"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingLeft="10dip"
+                            android:text="@string/register_id_num"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#666666"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/register_id_num_edit"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:autoText="false"
+                            android:capitalize="none"
+                            android:hint="@string/please_enter_id"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layoutAnimation="@anim/layout_animation_row_right_slide"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_name_view"
+                            android:layout_width="100dip"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingLeft="10dip"
+                            android:text="@string/register_login_name"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#666666"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/register_name_edit"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:autoText="false"
+                            android:capitalize="none"
+                            android:hint="@string/please_enter_name"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left" >
+
+                    <CheckBox
+                        android:id="@+id/user_register_check_referrer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="102dip"
+                        android:text="我要输入推荐人"
+                        android:textColor="@color/black" >
+                    </CheckBox>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/user_register_linear_referrer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layoutAnimation="@anim/layout_animation_row_right_slide"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/register_referrer_view"
+                            android:layout_width="100dip"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:paddingLeft="10dip"
+                            android:text="@string/register_referrer"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#666666"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/register_referrer_edit"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dip"
+                            android:autoText="false"
+                            android:capitalize="none"
+                            android:hint="@string/please_enter_referrer"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left" >
+
+                    <CheckBox
+                        android:id="@+id/user_register_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="102dip"
+                        android:text="我要绑定手机号"
+                        android:textColor="@color/black"
+                        android:visibility="gone" >
+                    </CheckBox>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left" >
+
+                    <CheckBox
+                        android:id="@+id/user_register_check_protocol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="102dip"
+                        android:text=""
+                        android:textColor="@color/black" >
+                    </CheckBox>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="同意"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/black"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/user_register_text_protocol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="《用户服务协议》"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#0066cc"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/register_button_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/register"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/register_refer_info_view"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingTop="15px"
+                    android:text="@string/register_refer_info_1"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="#ffaded"
+                    android:textColorHint="#ff0000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/register_refer_info_view2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:gravity="left"
+                    android:paddingTop="15px"
+                    android:text="@string/register_refer_info_2"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#fffe00"
+                    android:textColorHighlight="#ffaded"
+                    android:textColorHint="#ff0000"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:layoutAnimation="@anim/layout_animation_row_right_slide"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:paddingTop="50dip" >
+
+                    <TextView
+                        android:id="@+id/register_free_info_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/register_free_info"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#cc0000"
+                        android:textColorHighlight="#ffaded"
+                        android:textColorHint="#faaded"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>

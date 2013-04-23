@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@color/white">
+	<!-- zlm 7.12 code modify:return button -->
+	<RelativeLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_marginBottom="8dip"
+		android:id="@+id/usercenter_accountdetails_title_and_return"
+		android:background="@drawable/bottom_bar" android:paddingTop="10px">
+
+		<ImageButton android:text="@string/str_return"
+			android:layout_alignParentLeft="true" android:layout_width="64dip"
+			android:layout_height="wrap_content" android:src="@drawable/return_btn"
+			android:id="@+id/usercenter_return" android:background="#00000000" />
+		<TextView android:id="@+id/usercenter_title"
+			android:textSize="20px" android:textColor="@color/white"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:gravity="center" android:text="@string/usercenter_accountDetails"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" />
+	</RelativeLayout>
+
+	<RelativeLayout android:id="@+id/usercenter_accdetails_button_five"
+		android:layout_below="@+id/usercenter_accountdetails_title_and_return"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<ImageButton android:id="@+id/usercenter_all"
+			android:layout_alignParentLeft="true" android:layout_width="64dip"
+			android:layout_height="wrap_content" android:text="@string/usercenter_accountDetails_all"
+			android:src="@drawable/allenable" android:background="#00000000" />
+		<ImageButton android:id="@+id/usercenter_recharge"
+			android:layout_toRightOf="@+id/usercenter_all" android:layout_width="64dip"
+			android:layout_height="wrap_content" android:text="@string/usercenter_accountDetails_recharge"
+			android:src="@drawable/rechargedisable" android:background="#00000000" />
+		<ImageButton android:id="@+id/usercenter_pay"
+			android:layout_toRightOf="@+id/usercenter_recharge"
+			android:layout_width="64dip" android:layout_height="wrap_content"
+			android:text="@string/usercenter_accountDetails_pay" android:src="@drawable/zhifudisable"
+			android:background="#00000000" />
+		<ImageButton android:id="@+id/usercenter_awardschool"
+			android:layout_toRightOf="@+id/usercenter_pay" android:layout_width="64dip"
+			android:layout_height="wrap_content" android:text="@string/usercenter_accountDetails_awardSchool"
+			android:src="@drawable/jiangpaidisable" android:background="#00000000" />
+		<ImageButton android:id="@+id/usercenter_withdraw"
+			android:layout_toRightOf="@+id/usercenter_awardschool"
+			android:layout_width="64dip" android:layout_height="wrap_content"
+			android:text="@string/usercenter_accountDetails_withdraw"
+			android:src="@drawable/tixiandisable" android:background="#00000000" />
+	</RelativeLayout>
+	<ListView android:id="@+id/usercenter_accountdetails_listview_id"
+		android:cacheColorHint="#00000000" android:listSelector="#00000000"
+		android:layout_below="@+id/usercenter_accdetails_button_five"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+	<RelativeLayout android:id="@+id/usercenter_accdetails_button_three"
+		android:layout_below="@+id/usercenter_accountdetails_listview_id"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<Button android:id="@+id/usercenter_upPage"
+			android:layout_alignParentLeft="true" android:layout_width="70dip"
+			android:layout_height="wrap_content" android:text="@string/usercenter_upPage" />
+		<!--zlm 7.12 code modify:downPage button align parent right  -->
+		<Button android:id="@+id/usercenter_downPage"
+			android:layout_alignParentRight="true" android:layout_width="70dip"
+			android:layout_height="wrap_content" android:text="@string/usercenter_downPage" />
+
+	</RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:background="@color/white"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<!--
+		<com.android.internal.widget.NumberPicker android:id="@+id/picker"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+	-->
+	<!-- -->
+	<LinearLayout android:id="@+id/contentViewLayout1"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/bottom_bar_new"
+		android:paddingLeft="15px">
+
+		<RadioGroup android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:id="@+id/bottomMenu" android:paddingTop="2px">
+		</RadioGroup>
+	</LinearLayout>
+	<LinearLayout android:id="@+id/contentViewLayout"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="#EEE">
+	</LinearLayout>
+
+</LinearLayout>

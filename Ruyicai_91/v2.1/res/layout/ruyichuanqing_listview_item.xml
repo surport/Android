@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ruyichuanqing_listview_item_linerlayout" 
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+		<RelativeLayout 
+				android:id="@+id/ruyichuanqing_listview_name_layout" 
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				>
+				<TextView 
+					android:id="@+id/ruyichuanqing_listview_item_name"
+					android:textColor="@color/black"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					>
+				</TextView>
+				<TextView 
+					android:id="@+id/ruyichuanqing_listview_item_phone"
+					android:textColor="@color/black"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_below="@+id/ruyichuanqing_listview_item_name"
+					>
+				</TextView>
+		</RelativeLayout>
+	<!-- <Button
+		android:id="@+id/ruyichuanqing_listview_item_btn"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+	/> -->
+	<LinearLayout android:orientation="horizontal"
+                      android:id="@+id/ruyichuanqing_button_group"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true">
+	</LinearLayout>
+</RelativeLayout>

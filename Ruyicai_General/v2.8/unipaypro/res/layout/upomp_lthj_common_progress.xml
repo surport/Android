@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:background="@drawable/upomp_lthj_progress_bg"
+    android:padding="@dimen/upomp_lthj_common_dialog_padding"
+    >
+    <TextView style="@style/upomp_lthj_layout_width_height_ff" android:layout_weight="1.0"/>
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+    	android:gravity="center" android:layout_weight="1.0">
+    	<ProgressBar android:id="@id/upomp_lthj_progress"
+			        android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal"
+			        android:layout_width="@dimen/upomp_lthj_progressBar_size"
+			        android:layout_height="@dimen/upomp_lthj_progressBar_size"
+			        android:visibility="gone" android:indeterminateDrawable="@drawable/upomp_lthj_progressbar"/>
+		<TextView android:text="请稍候..." style="@style/upomp_lthj_layout_width_height_ww"
+			android:id="@id/upomp_lthj_textview01" android:textColor="@drawable/upomp_lthj_black"
+			android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+    </LinearLayout>
+    <Button android:id="@id/upomp_lthj_button_cancel"
+    	 android:text="@string/upomp_lthj_str_no"
+    	 android:layout_width="wrap_content" android:textSize="@dimen/upomp_lthj_button_single_font_size" android:textColor="@drawable/upomp_lthj_gray"
+     android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_small_whitebtn"/>
+</LinearLayout>

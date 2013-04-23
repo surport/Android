@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@color/white">
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:gravity="center_vertical"
+		android:background="@drawable/shouye_top" android:id="@+id/layout_top">
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" android:paddingTop="10px">
+			<TextView android:paddingLeft="10dip" android:id="@+id/mainpagetext1"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="您的可用余额：" android:textColor="@color/white"></TextView>
+			<TextView android:id="@+id/mainpagetext2"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="未登录" android:textColor="@color/white"></TextView>
+		</LinearLayout>
+		<ImageButton android:id="@+id/mainpage_chongzhi"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginLeft="65dip" android:background="@drawable/chongzhi"
+			android:layout_alignParentRight="true">
+		</ImageButton>
+	</RelativeLayout>
+	<LinearLayout android:id="@+id/contentViewLayout"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_below="@+id/layout_top" android:layout_weight="0.95">
+	</LinearLayout>
+	<LinearLayout android:id="@+id/contentViewLayout1"
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:gravity="bottom" android:layout_weight="0.05">
+		<RadioGroup android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:id="@+id/bottomMenu">
+		</RadioGroup>
+	</LinearLayout>
+</LinearLayout>

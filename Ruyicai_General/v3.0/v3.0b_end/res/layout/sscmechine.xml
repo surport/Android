@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@null"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dip"
+        android:paddingTop="10dip" >
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zhixuan_jixuan_title"
+            android:textColor="@color/black"
+            android:textSize="14dip" >
+        </TextView>
+
+        <Spinner
+            android:id="@+id/buy_danshi_jixuan_spinner"
+            android:layout_width="70dip"
+            android:layout_height="40dip"
+            android:layout_gravity="center_vertical"
+            android:entries="@array/layout_zhixuan_jixuan_spinner"
+            android:prompt="@string/zhixuan_jixuan_title" >
+        </Spinner>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:id="@+id/ScrollView01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="70dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip" >
+
+                <LinearLayout
+                    android:id="@+id/buy_danshi_jixuan_linear_zhuma"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        <RelativeLayout
+            android:id="@+id/buy_zixuan_relativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buy_bot_bg"
+            android:padding="10dip" >
+
+            <ImageButton
+                android:id="@+id/buy_danshi_jixuan_img_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="#00000000"
+                android:src="@drawable/selecet_chongxuan" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/buy_danshi_jixuan_img_touzhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="#00000000"
+                android:src="@drawable/imageselecter" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:background="@color/white">
+	<RelativeLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/shouye_top" android:paddingLeft="10dip"
+		android:paddingRight="10dip">
+		<TextView android:id="@+id/ruyipackage_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:text=""
+			android:layout_centerVertical="true" android:textColor="@color/white"
+			android:textSize="20dip" android:imeOptions="actionNext" />
+	</RelativeLayout>
+	<EditText android:layout_width="fill_parent"
+		android:layout_height="120dip" android:id="@+id/yonghufankui"
+		android:gravity="top" android:hint="@string/yonghufankui_edit_hint_msg" />
+	<EditText android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:id="@+id/feedbackconnection"
+		android:hint="@string/feedbacconnection"></EditText>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="60dip" android:background="@drawable/buy_bot_bg"
+		android:gravity="center_horizontal|center_vertical"
+		android:layout_alignParentBottom="true">
+		<Button android:id="@+id/tijiao" android:layout_width="90sp"
+			android:layout_height="40sp" android:text="发  表" android:textSize="18sp"
+			android:background="@drawable/join_info_btn_selecter"></Button>
+		<Button android:id="@+id/ruyizhushou_btn_return"
+			android:layout_width="90sp" android:layout_height="40sp"
+			android:text="关  闭" android:layout_marginLeft="40sp"
+			android:textSize="18sp" android:background="@drawable/join_info_btn_selecter"></Button>
+	</LinearLayout>
+</LinearLayout>

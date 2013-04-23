@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@color/white">
+	<LinearLayout android:id="@+id/LinearLayout12"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/buy_top" android:paddingLeft="10px">
+		<ImageButton android:id="@+id/join_buy_change_image_back"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/returnselecter" android:background="#00000000"
+			android:layout_marginTop="10px"></ImageButton>
+		<LinearLayout android:id="@+id/LinearLayout12"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:gravity="center_horizontal|center_vertical">
+			<TextView android:text="" android:id="@+id/join_buy_change_text_title"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:textColor="@color/white" android:textSize="20px"></TextView>
+		</LinearLayout>
+	</LinearLayout>
+
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<LinearLayout android:id="@+id/LinearLayout02"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="vertical" android:paddingLeft="15px">
+			<LinearLayout android:id="@+id/LinearLayout01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="发起人昵称:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<EditText android:text="" android:id="@+id/join_buy_change_edit_name"
+					android:layout_width="200px" android:layout_height="wrap_content"
+					android:selectAllOnFocus="true">
+				</EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout03"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="投注注数:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<EditText android:text="" android:id="@+id/join_buy_change_edit_num"
+					android:layout_width="200px" android:layout_height="wrap_content"
+					android:enabled="false" android:layout_marginLeft="12px">
+				</EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout04"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="投注金额:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<EditText android:text="" android:id="@+id/join_buy_change_edit_money"
+					android:layout_width="200px" android:layout_height="wrap_content"
+					android:enabled="false" android:layout_marginLeft="12px">
+				</EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout05"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="账户余额:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/join_buy_change_text_money"
+					android:paddingTop="10px" android:text="单位(元)"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px" android:paddingLeft="12px">
+				</TextView>
+				<Button android:text="充值" android:id="@+id/join_buy_change_button_money"
+					android:layout_width="60px" android:layout_height="wrap_content"
+					android:layout_marginLeft="10px"></Button>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout06"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="方案宣言:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<EditText android:text="" android:id="@+id/join_buy_change_edit_tell"
+					android:layout_width="200px" android:layout_height="100px"
+					android:layout_marginLeft="12px" android:maxLength="20"
+					android:hint="最多能输入20汉字">
+				</EditText>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout07"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="单份金额:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<Spinner android:id="@+id/join_buy_change_spinner_money"
+					android:layout_width="150px" android:layout_height="wrap_content"
+					android:layout_marginLeft="14px" android:entries="@array/join_buy_change_spinner_money"></Spinner>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout08"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="发起人提成:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<Spinner android:id="@+id/join_buy_change_spinner_deduct"
+					android:layout_width="150px" android:layout_height="wrap_content"
+					android:entries="@array/join_buy_change_spinner_deduct"></Spinner>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout09"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="我要认购:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<EditText android:text="" android:id="@+id/join_buy_change_edit_buy"
+					android:layout_width="50px" android:layout_height="wrap_content"
+					android:layout_marginLeft="12px" android:numeric="integer"
+					android:singleLine="true">
+				</EditText>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="份，(最低认购一份)"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout10"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="我要保底:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<EditText android:text=""
+					android:id="@+id/join_buy_change_edit_buy_least"
+					android:layout_width="50px" android:layout_height="wrap_content"
+					android:layout_marginLeft="12px" android:numeric="integer"
+					android:singleLine="true">
+				</EditText>
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="份" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:textSize="15px">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout11"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<TextView android:textColor="@color/black"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:typeface="serif" android:id="@+id/buyLotteryMainList_join_title_two"
+					android:paddingTop="10px" android:text="方案显示:"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="15px">
+				</TextView>
+				<Spinner android:id="@+id/join_buy_change_spinner_type"
+					android:layout_width="150px" android:layout_height="wrap_content"
+					android:entries="@array/join_buy_change_spinner_type"
+					android:layout_marginLeft="12px"></Spinner>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout11"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:gravity="right">
+				<Button android:text="提交" android:id="@+id/join_buy_change_button_submit"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

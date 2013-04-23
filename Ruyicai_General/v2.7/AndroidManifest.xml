@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
+    package="com.palmdream.RuyicaiAndroid"
+    android:versionCode="9"
+    android:versionName="2.6" >
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="8" />
+
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+
+        <!--  -->
+        <activity
+            android:name="com.ruyicai.activity.home.HomeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                
+                <action android:name="com.palmdream.RuyicaiAndroid.back.view" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--
+			test<activity
+			android:name="com.ruyicai.activity.TestRuyicaiNETActivity"
+			android:label="@string/app_name"
+			android:configChanges="keyboardHidden|orientation"
+			android:screenOrientation="portrait"> <intent-filter> <action
+			android:name="android.intent.action.MAIN" /> <category
+			android:name="android.intent.category.LAUNCHER" /> </intent-filter>
+			</activity>
+        -->
+        <!-- common -->
+        <activity
+            android:name="com.ruyicai.activity.common.UserLogin"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- home -->
+        <activity
+            android:name="com.ruyicai.activity.home.MainGroup"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+         
+        </activity>
+        <!-- more -->
+        <activity
+            android:name="com.ruyicai.activity.more.MoreActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- buy -->
+        <activity
+            android:name="com.ruyicai.activity.buy.BuyActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.ZixuanActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.DanshiJiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.BuyActivityGroup"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- pl5 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.pl5.PL5"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.pl5.PL5ZiJX"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.pl5.PL5ZiZhiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- qxc -->
+        <activity
+            android:name="com.ruyicai.activity.buy.qxc.QXC"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.qxc.QXCJX"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.qxc.QXCZhiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- dlt -->
+        <activity
+            android:name="com.ruyicai.activity.buy.dlt.Dlt"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.dlt.DltNormalSelect"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.dlt.DltDantuoSelect"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.dlt.DltRandomChose"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.dlt.DltTwoInDozenSelect"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- zc -->
+        <activity
+            android:name="com.ruyicai.activity.buy.zc.FootballSFLottery"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.zc.FootballGoalsLottery"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.zc.FootballChooseNineLottery"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.zc.FootballSixSemiFinal"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.zc.FootballLottery"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- ssq -->
+        <activity
+            android:name="com.ruyicai.activity.buy.ssq.SsqZiZhiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.ssq.Ssq"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.ssq.SsqZiDanTuo"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.ssq.SsqJiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+
+        <!-- ssc -->
+        <activity
+            android:name="com.ruyicai.activity.buy.ssc.Ssc"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.ssc.SscOneStar"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.ssc.SscTwoStar"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.ssc.SscThreeStar"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.ssc.SscFiveStar"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.ssc.SscBigSmall"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- qlc -->
+        <activity
+            android:name="com.ruyicai.activity.buy.qlc.QlcZiZhiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.qlc.Qlc"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.qlc.QlcZiDanTuo"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.qlc.QlcJiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- fc3d -->
+        <activity
+            android:name="com.ruyicai.activity.buy.fc3d.Fc3dZiZhiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.fc3d.Fc3d"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.fc3d.Fc3dZiZuXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.fc3d.Fc3dZiHeZhi"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.fc3d.Fc3dJiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- pl3 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.pl3.PL3ZiZhiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.pl3.PL3"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.pl3.PL3ZiZuXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.pl3.PL3ZiHeZhi"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.pl3.PL3JiXuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- pl3 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.dlc.Dlc"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- jc -->
+        <activity
+            android:name="com.ruyicai.activity.buy.jc.Jc"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.jc.JcGuoGuan"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+
+        <!-- notice -->
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticePrizesOfLottery"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticePrizesOfLotteryFucai"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticePrizesOfLotteryQilecai"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticePrizesOfLotteryShuangseqiu"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- Account -->
+        <activity
+            android:name="com.ruyicai.activity.account.AccountActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" android:launchMode="singleInstance">
+        </activity>
+        <!-- join -->
+        <activity
+            android:name="com.ruyicai.activity.join.JoinStartActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+        <activity
+            android:name="com.ruyicai.activity.join.JoinHallActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.join.JoinCheckActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.join.JoinInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.join.JoinDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+        <!-- gift -->
+        <activity
+            android:name="com.ruyicai.activity.gift.GiftActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+        <!-- information -->
+        <activity
+            android:name="com.ruyicai.activity.info.LotInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.info.LotInfoConcreteActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- NewUserCenter -->
+        <activity
+            android:name="com.ruyicai.activity.usercenter.NewUserCenter"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.WinPrizeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.BetQueryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.AccountDetailsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.usercenter.AccountWithdrawActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="com.ruyicai.activity.usercenter.ChangePasswordActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.BindIDActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.TrackQueryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.BalanceQueryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.GiftQueryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- menu -->
+        <activity
+            android:name="com.ruyicai.activity.more.FeedBack"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ruyicai.activity.more.CompanyInfo"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.more.HelpCenter"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.more.LuckChoose"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- notice -->
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticeInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticeActivityGroup"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticeBallActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticeRedBallActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticeBlueBallActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.notice.NoticeJcActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- introduce -->
+        <activity
+            android:name="com.ruyicai.activity.introduce.PhotoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <!-- zhifu -->
+        <activity
+            android:name="com.unionpay.upomp.lthj.plugin.ui.MainActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.unionpay.upomp.lthj.android.appstock.plugin" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.unionpay.upomp.lthj.plugin.ui.IndexActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.unionpay.upomp.lthj.plugin.ui.TradeManagerActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.unionpay.upomp.lthj.plugin.ui.AccountManagerActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.unionpay.upomp.lthj.plugin.ui.BankManagerActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 在桌面界面快捷方式栏添加快捷方式 -->
+        <activity android:name="com.ruyicai.util.Shortcut">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-sdk android:minSdkVersion="7" />
+
+</manifest>

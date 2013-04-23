@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dip"
+    >    
+    <TableLayout  style="@style/upomp_lthj_layout_width_height_ww" android:layout_gravity="center"
+		android:padding="1.0dip">     
+		<TableRow  style="@style/upomp_lthj_layout_width_height_ww" 
+  				 android:gravity="center_vertical" >
+				<TextView android:text="商户名称  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantName"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+  			<TableRow  style="@style/upomp_lthj_layout_width_height_ww" android:layout_marginTop="10dip" 
+				android:gravity="center_vertical" >
+				<TextView android:text="订单编号  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantOrderId"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>   
+  			<TableRow  style="@style/upomp_lthj_layout_width_height_ww" android:layout_marginTop="10dip" 
+				android:gravity="center_vertical" >
+				<TextView android:text="订单时间  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_orderTime"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>   
+			<TableRow  style="@style/upomp_lthj_layout_width_height_ww" android:layout_marginTop="10dip" 
+				android:gravity="center_vertical" >
+				<TextView android:text="应付金额  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_pay_money_tv" android:textColor="@drawable/upomp_lthj_red" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+		</TableLayout>     
+</LinearLayout>

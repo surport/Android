@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" >
+	<RelativeLayout android:layout_width="fill_parent" android:paddingLeft="10dp"
+		android:layout_height="wrap_content" android:background="@drawable/list_luck_bg"
+		>
+		<ImageView android:id="@+id/choose_luck_lottery_num_icon_id"
+			android:layout_alignParentLeft="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_centerVertical="true">
+		</ImageView>
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_toRightOf="@+id/choose_luck_lottery_num_icon_id"
+			android:textColor="@color/black" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/choose_luck_lottery_num_zhonglei"
+			android:layout_centerVertical="true" android:paddingLeft="10dip">
+		</TextView>
+		<LinearLayout android:orientation="horizontal"
+			android:id="@+id/choose_luck_num_listview_layout_button_group"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentRight="true" android:paddingRight="10dip"
+			android:layout_centerVertical="true">
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>

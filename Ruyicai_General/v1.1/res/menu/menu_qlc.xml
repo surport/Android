@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+ <item android:id="@+id/qlc_menu_confirm"
+        android:title="@string/touzhu"
+        android:icon="@drawable/touzhusure" 
+        android:menuCategory="container"/>
+
+    <item android:id="@+id/qlc_menu_reselect_num"
+        android:title="@string/reselect_num"
+        android:icon="@drawable/touzhureselected" />
+
+    <item android:id="@+id/qlc_menu_game_introduce"
+        android:title="@string/game_introduction"
+        android:icon="@drawable/touzhugameinstroduction" />
+
+    <item android:id="@+id/qlc_menu_cancel"
+        android:title="@string/str_return"
+        android:icon="@drawable/touzhucancel" />
+</menu>

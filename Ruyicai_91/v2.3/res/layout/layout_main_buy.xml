@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="@drawable/bg" android:layout_height="fill_parent">
+
+	<RelativeLayout android:id="@+id/main_buy_title"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/shouye_top" android:gravity="center_vertical">
+		<TextView android:text="" android:id="@+id/layout_main_text_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:paddingLeft="10dip"
+			android:textSize="20dip" android:layout_centerHorizontal="true"></TextView>
+		<LinearLayout android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:layout_alignParentRight="true" 
+			>
+			<ImageButton android:id="@+id/layout_ssc__flush"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/flush" android:background="#00000000"
+				android:visibility="gone" android:layout_alignParentRight="true"
+				android:paddingRight="10dip" android:layout_centerVertical="true">
+			</ImageButton>
+		</LinearLayout>
+	</RelativeLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal">
+		<TextView android:text="" android:id="@+id/layout_main_text_issue"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/black" android:textSize="14dip"></TextView>
+		<TextView android:text="" android:id="@+id/layout_main_text_time"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/black" android:textSize="14dip"
+			android:paddingLeft="10dip"></TextView>
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/litt">
+	</LinearLayout>
+
+
+	<Spinner android:id="@+id/ssc_zhonglei_spinner"
+		android:layout_width="wrap_content" android:layout_height="45dip"
+		android:entries="@array/ssc_zhonglei" android:layout_gravity="center"
+		android:prompt="@string/ssc_type" android:visibility="gone" />
+
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<RadioGroup android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:id="@+id/hezhiMenu" android:visibility="gone"
+			android:layout_centerHorizontal="true">
+		</RadioGroup>
+		<RadioGroup android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:id="@+id/zuxuanMenu" android:visibility="gone"
+			android:layout_centerHorizontal="true">
+		</RadioGroup>
+		<ImageButton android:id="@+id/danfushi"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true" android:background="@drawable/danshi_pl3"
+			android:visibility="gone" android:layout_marginTop="6dip"></ImageButton>
+	</RelativeLayout>
+	<ScrollView android:id="@+id/scroll_global"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+	</ScrollView>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<LinearLayout android:id="@+id/layout_buy"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:paddingBottom="40dip">
+		</LinearLayout>
+		<RadioGroup android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="horizontal"
+			android:id="@+id/topMenu" android:layout_alignParentBottom="true"
+			android:layout_centerHorizontal="true">
+		</RadioGroup>
+		<!--  -->
+		<LinearLayout android:visibility="gone"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:id="@+id/si_ge_button" android:layout_alignParentBottom="true">
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>

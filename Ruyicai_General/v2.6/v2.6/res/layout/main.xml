@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:background="#0000FF"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<TextView android:layout_width="fill_parent" android:id="@+id/textView"
+		android:layout_height="20dp" android:textColor="#FF0000"
+		android:hint="0000" android:background="#000000"/>
+	<Button android:layout_width="fill_parent" android:id="@+id/clear"
+		android:layout_height="wrap_content" android:text="还原" />
+	
+	<ScrollView android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<LinearLayout android:orientation="vertical"
+			android:background="#FF00FF" android:layout_height="wrap_content"
+			android:layout_width="fill_parent">
+			<Button android:layout_width="fill_parent" android:id="@+id/betandgifttest"
+				android:layout_height="wrap_content" android:text="投注与赠送" />
+			<Button android:layout_width="fill_parent" android:id="@+id/cancelTracktest"
+				android:layout_height="wrap_content" android:text="取消追号" />
+			<Button android:layout_width="fill_parent" android:id="@+id/queryDNAtest"
+				android:layout_height="wrap_content" android:text="查询DNA" />
+			<Button android:layout_width="fill_parent" android:id="@+id/rechargetest"
+				android:layout_height="wrap_content" android:text="充值" />
+			<Button android:layout_width="fill_parent" android:id="@+id/changeWithdrawtest"
+				android:layout_height="wrap_content" android:text="修改提现" />
+			<Button android:layout_width="fill_parent" android:id="@+id/cancelWithdrawtest"
+				android:layout_height="wrap_content" android:text="取消提现" />
+			<Button android:layout_width="fill_parent" android:id="@+id/querylatelyWithdrawtest"
+				android:layout_height="wrap_content" android:text="查询最近提现" />
+			<Button android:layout_width="fill_parent" android:id="@+id/betQuerytest"
+				android:layout_height="wrap_content" android:text="投注查询" />
+			<Button android:layout_width="fill_parent" android:id="@+id/winQuerytest"
+				android:layout_height="wrap_content" android:text="中奖查询" />
+			<Button android:layout_width="fill_parent" android:id="@+id/balanceQuerytest"
+				android:layout_height="wrap_content" android:text="余额查询" />
+
+			<Button android:layout_width="fill_parent" android:id="@+id/trackQuerytest"
+				android:layout_height="wrap_content" android:text="追号查询" />
+			<Button android:layout_width="fill_parent" android:id="@+id/giftQuerytest"
+				android:layout_height="wrap_content" android:text="赠送查询" />
+			<Button android:layout_width="fill_parent" android:id="@+id/accountDetailtest"
+				android:layout_height="wrap_content" android:text="账户明细" />
+			<Button android:layout_width="fill_parent" android:id="@+id/registertest"
+				android:layout_height="wrap_content" android:text="注册" />
+			<Button android:layout_width="fill_parent" android:id="@+id/logintest"
+				android:layout_height="wrap_content" android:text="登录" />
+			<Button android:layout_width="fill_parent" android:id="@+id/changPWtest"
+				android:layout_height="wrap_content" android:text="修改密码" />
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

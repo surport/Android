@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/layout_main_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:text="@string/zfb_dialog_title"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+        <Button
+            android:id="@+id/layout_main_img_return"
+            android:layout_width="80dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+            android:visibility="invisible" >
+        </Button>
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/account_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </WebView>
+
+</LinearLayout>

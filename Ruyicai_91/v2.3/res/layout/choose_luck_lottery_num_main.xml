@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/bg">
+	<!-- zlm 7.22 daimaxiugai tiaozhengbuju -->
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:id="@+id/choose_luck_lottery_num_linear" android:background="@drawable/list_top"
+		android:paddingTop="10px" >
+		<!-- 7.3周黎明将TextView换成ImageView -->
+		<ImageView android:src="@drawable/returnselecter"
+			android:layout_alignParentLeft="true"
+			android:id="@+id/tv_choose_luck_lottery_num_return" android:gravity="left"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingLeft="10px">
+		</ImageView>
+		<TextView android:text="@string/xingyunxuanhao"
+			android:textSize="20sp" android:textColor="@color/red"
+			android:layout_centerHorizontal="true" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/choose_luck_lottery_num_title_id"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+		</TextView>
+
+	</RelativeLayout>
+
+	<ListView android:id="@+id/choose_luck_lottery_num_listview_id" 
+		android:cacheColorHint="#00000000" android:listSelector="#00000000"
+		android:layout_below="@+id/choose_luck_lottery_num_linear"
+		android:layout_width="wrap_content" android:layout_height="fill_parent"
+		android:background="@drawable/bg">
+	</ListView>
+
+
+</RelativeLayout>

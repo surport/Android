@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dip"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/layout_main_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/jclq_type_title"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dip" >
+
+        <LinearLayout
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/style_jc_dialog_text"
+                android:paddingTop="25dip"
+                android:text="@string/jclq_dialog_sf_guoguan_title" />
+
+            <TextView
+                style="@style/style_jc_dialog_text"
+                android:paddingTop="25dip"
+                android:text="@string/jclq_dialog_rf_guoguan_title" />
+
+            <TextView
+                style="@style/style_jc_dialog_text"
+                android:paddingTop="24dip"
+                android:text="@string/jclq_dialog_sfc_guoguan_title" />
+
+            <TextView
+                style="@style/style_jc_dialog_text"
+                android:paddingTop="24dip"
+                android:text="@string/jclq_dialog_dxf_guoguan_title" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip"
+            android:paddingTop="10dip" >
+
+            <RadioButton
+                android:id="@+id/radio0"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:button="@drawable/jc_radio_select"
+                android:checked="true"  android:layout_marginTop="10dip"/>
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="120dip"
+                android:layout_height="wrap_content"
+                android:button="@drawable/jc_radio_select" android:layout_marginTop="10dip"/>
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:button="@drawable/jc_radio_select" android:layout_marginTop="10dip"/>
+
+            <RadioButton
+                android:id="@+id/radio3"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:button="@drawable/jc_radio_select" android:layout_marginTop="10dip"/>
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

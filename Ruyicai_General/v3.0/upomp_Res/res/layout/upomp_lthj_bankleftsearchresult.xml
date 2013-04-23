@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"   
+  android:layout_height="fill_parent" android:gravity="center_horizontal" 
+  android:paddingLeft="@dimen/upomp_lthj_tableLayout_pad_left" 
+  			android:paddingRight="@dimen/upomp_lthj_tableLayout_pad_right"
+  			android:paddingTop="@dimen/upomp_lthj_tableLayout_pad_top"
+  			android:paddingBottom="@dimen/upomp_lthj_tableLayout_pad_bottom">
+	<TableLayout android:orientation="horizontal"
+		style="@style/upomp_lthj_layout_width_height_fw" android:gravity="center"
+		android:stretchColumns="1" android:background="@drawable/upomp_lthj_corner_round_all"
+		android:padding="1.0dip">
+		<TableRow style="@style/upomp_lthj_tablerow" android:gravity="center_vertical" 
+			android:background="@drawable/upomp_lthj_corner_round_top_blue">
+			<TextView android:id="@id/upomp_lthj_wecome_textview"
+				style="@style/upomp_lthj_layout_width_height_fw" android:text="@string/upomp_lthj_leavesearch"
+				android:gravity="center_vertical" android:textColor="#ffffff"
+				android:layout_span="3" android:layout_weight="1.0" android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		 <TableRow style="@style/upomp_lthj_tablerow" android:background="@drawable/upomp_lthj_corner_round">
+			<TextView android:id="@id/upomp_lthj_textview01" style="@style/upomp_lthj_textView_title_left"
+				android:layout_width="fill_parent"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+		<TableRow style="@style/upomp_lthj_tablerow" android:background="@drawable/upomp_lthj_corner_round_bottom_gray">
+			<TextView android:id="@id/upomp_lthj_textview02" style="@style/upomp_lthj_textView_title_left"
+				android:layout_width="fill_parent"
+				/>
+		</TableRow>
+	</TableLayout>
+
+	<LinearLayout style="@style/upomp_lthj_buttons_tab_layout"
+		android:orientation="vertical"  android:gravity="center">
+		<Button android:id="@id/upomp_lthj_leavesearchResultBtn" android:textColor="@drawable/upomp_lthj_white" android:background="@drawable/upomp_lthj_ok" style="@style/upomp_lthj_button_single" android:text="@string/upomp_lthj_back"  />
+	</LinearLayout>
+	
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp" android:paddingTop="2dp" android:paddingBottom="2dp" android:paddingLeft="10dp"
+    android:paddingRight="15dp"
+    android:background="@null" >
+	<!-- 中奖排行排名id -->
+    <TextView android:layout_centerVertical="true" 
+        android:layout_alignParentLeft="true"
+        android:id="@+id/prizeRank_id"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:textSize="17.5sp" android:gravity="center"
+        android:textColor="#FFFFFFFF"
+      />
+	<!-- 中奖排行中奖用户姓名 -->
+    <TextView  android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/prizeRank_id"
+        android:id="@+id/prizeRank_name" android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#724341"
+         />
+	<!-- 中奖排行中奖金额 -->
+    <TextView android:layout_centerVertical="true"
+        android:id="@+id/prizeRank_number"
+        android:layout_width="100dp"
+        android:gravity="right"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/black"/>
+
+</RelativeLayout>

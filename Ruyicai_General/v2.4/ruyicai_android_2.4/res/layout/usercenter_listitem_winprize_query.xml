@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- 中奖查询列表子选项布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="100dp" android:gravity="center_vertical" 
+	android:id="@+id/usercenter_winprize_item" android:weightSum="3" android:background="#FFFFFF">
+	<LinearLayout android:orientation="vertical" android:layout_marginTop="5dp"
+		android:layout_weight="2" android:layout_centerVertical="true"
+		android:paddingLeft="5dp" android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<LinearLayout android:orientation="horizontal" 
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<TextView android:id="@+id/usercenter_winprize_lotteryname"
+				android:layout_width="wrap_content" android:layout_centerVertical="true"
+				android:layout_alignParentLeft="true" 
+				android:layout_height="wrap_content" android:textColor="@color/black"
+				android:textSize="20sp" />
+			<TextView android:id="@+id/usercenter_winprize_prizeqihao" android:textSize="14sp"
+				android:layout_width="wrap_content" android:layout_centerVertical="true"
+				android:layout_alignParentLeft="true" android:layout_height="wrap_content"
+				android:textColor="@color/black" android:text="@string/usercenter_winprize_qihao" />
+		</LinearLayout>
+		<LinearLayout android:orientation="vertical"  android:layout_marginTop="10dp" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_marginBottom="10dp">
+			<LinearLayout android:orientation="horizontal"
+				android:layout_centerVertical="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+				<TextView android:id="@+id/usercenter_winprize_paymoney" android:layout_width="wrap_content"
+					android:textSize="15dp" android:layout_height="wrap_content"
+					android:gravity="top" android:textColor="@color/black" />
+			</LinearLayout>
+			<LinearLayout android:orientation="horizontal" android:layout_marginTop="5dp"
+				android:layout_centerVertical="true" android:layout_width="wrap_content" 
+				android:layout_height="wrap_content">
+				<TextView android:id="@+id/usercenter_winprize_prizemoney" android:layout_width="wrap_content" 
+					android:textSize="15dp" android:layout_height="wrap_content"  
+					android:gravity="top" android:textColor="@color/black" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+	<RelativeLayout android:gravity="right" 
+		android:layout_weight="1" android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+		<Button android:id="@+id/usercenter_winprize_buyagain"  android:background="@drawable/usercenter_selector_buyagain"
+			android:layout_width="wrap_content" android:layout_marginTop="10dp" 
+			android:layout_height="wrap_content"/>
+		<Button android:id="@+id/usercenter_winprize_querydetail"  android:layout_marginBottom="10dp"
+			android:layout_width="wrap_content"  android:layout_marginTop="10dp" android:layout_below="@+id/usercenter_winprize_buyagain"
+			android:layout_height="wrap_content" android:background="@drawable/usercenter_selector_lookdetails" />
+	</RelativeLayout>
+</LinearLayout>

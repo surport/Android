@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="200px"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+  		 <TextView
+       android:id="@+id/ruyipackage_tips"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center_horizontal"
+       />
+       <RadioGroup 
+       		android:id="@+id/ruyipackage_radiogroup"
+       		android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+       >
+       				<RadioButton
+       					android:id="@+id/ruyipackage_10"
+       					android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:text="@string/ruyipackage_ten"
+            			android:checked="true"
+            			android:scrollHorizontally="true"
+       				/>
+       				<RadioButton
+       					android:id="@+id/ruyipackage_8"
+       					android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:text="@string/ruyipackage_eight"
+            			android:scrollHorizontally="true"
+       				/>
+       				<RadioButton
+       					android:id="@+id/ruyipackage_6"
+       					android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:text="@string/ruyipackage_six"
+            			android:scrollHorizontally="true"
+       				/>
+       				<RadioButton
+       					android:id="@+id/ruyipackage_4"
+       					android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:text="@string/ruyipackage_four"
+            			android:scrollHorizontally="true"
+       				/>
+       				<RadioButton
+       					android:id="@+id/ruyipackage_2"
+       					android:layout_width="wrap_content"
+            			android:layout_height="wrap_content"
+            			android:text="@string/ruyipackage_two"
+            			android:scrollHorizontally="true"
+       				/>
+       </RadioGroup>
+      
+</LinearLayout>

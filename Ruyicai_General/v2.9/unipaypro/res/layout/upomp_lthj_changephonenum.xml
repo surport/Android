@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TableLayout android:orientation="horizontal"
+		style="@style/upomp_lthj_layout_width_height_fw" android:gravity="center"
+		android:stretchColumns="1" android:background="@drawable/upomp_lthj_corner_round_all"
+		android:padding="1.0dip">
+		<TableRow style="@style/upomp_lthj_tablerow" android:gravity="center_vertical" 
+			android:background="@drawable/upomp_lthj_corner_round_top_blue">
+			<TextView android:id="@id/upomp_lthj_wecome_textview"
+				style="@style/upomp_lthj_layout_width_height_fw" android:text="@string/upomp_lthj_trade_title"
+				android:gravity="center_vertical" android:textColor="#ffffff"
+				android:layout_span="3" android:layout_weight="1.0" android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip"
+			android:background="@drawable/upomp_lthj_gray" />
+		<TableRow android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_while"
+			style="@style/upomp_lthj_tablerow">
+			<TextView android:text="@string/upomp_lthj_register_name"
+				style="@style/upomp_lthj_textView_title" />
+			<TextView android:id="@id/upomp_lthj_register_name_textview"
+				android:text="" android:layout_marginLeft="@dimen/upomp_lthj_tableLayout_pad_left"
+				style="@style/upomp_lthj_textView_title_left" android:layout_span="2" />
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip" android:background="@drawable/upomp_lthj_gray"/>
+			<TableRow style="@style/upomp_lthj_tablerow" android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="@string/upomp_lthj_register_password" style="@style/upomp_lthj_textView_title"/>
+				<EditText android:id="@id/upomp_lthj_password_edittext" style="@style/upomp_lthj_editTextLeft" 
+					android:hint="@string/upomp_lthj_password_hint" android:editable="false"  
+				    android:layout_span="2"/>
+			</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip"
+			android:background="@drawable/upomp_lthj_gray" />
+		<TableRow android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round"
+			style="@style/upomp_lthj_tablerow">
+			<TextView android:text="已注册手机号码" android:layout_gravity="center_vertical"
+				style="@style/upomp_lthj_textView_title" />
+			<TextView android:id="@id/upomp_lthj_phonenum_textview"
+				style="@style/upomp_lthj_textView_title_left" android:layout_span="2"
+				android:layout_marginLeft="@dimen/upomp_lthj_tableLayout_pad_left" />
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip"
+			android:background="@drawable/upomp_lthj_gray" />
+		<TableRow android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round_while"
+			style="@style/upomp_lthj_tablerow">
+			<TextView android:text="@string/upomp_lthj_oldphonenum"
+				style="@style/upomp_lthj_textView_title" />
+			<EditText android:id="@id/upomp_lthj_oldphonenum_edittext"
+				style="@style/upomp_lthj_editTextLeft" android:layout_span="2"
+				 android:maxLength="11" android:hint="原手机号" 
+				  android:editable="false"/>
+		</TableRow>
+		<View android:layout_width="fill_parent" android:layout_height="0.5dip"
+			android:background="@drawable/upomp_lthj_gray" />
+		<TableRow android:gravity="center_vertical" android:id="@id/upomp_lthj_pinTableRow"  android:background="@drawable/upomp_lthj_corner_round_while"
+			style="@style/upomp_lthj_tablerow">
+			<TextView android:text="@string/upomp_lthj_newphonenum"
+				style="@style/upomp_lthj_textView_title" />
+			<EditText android:id="@id/upomp_lthj_newphonenum_edittext"
+				style="@style/upomp_lthj_editTextLeft" android:layout_span="2"
+				 android:maxLength="11" android:hint="新手机号" 
+				  android:editable="false"/>
+		</TableRow>
+		<TableRow style="@style/upomp_lthj_layout_width_height_fw"  android:background="@drawable/upomp_lthj_smsbtn"
+			android:gravity="center">
+			<RelativeLayout style ="@style/upomp_lthj_layout_width_height_fw"  android:layout_span="2">
+			<Button  android:id="@id/upomp_lthj_mobileMacButton" android:text="点击获取短信验证码" 
+				android:layout_span="3" android:layout_weight="1.0" android:layout_width="fill_parent" 
+					android:layout_height="wrap_content" android:gravity="center" android:textColor="@drawable/upomp_lthj_white"
+					android:layout_centerInParent="true"/>
+			<ProgressBar android:id="@id/upomp_lthj_progressMobileMac" android:visibility="gone"
+			        android:layout_marginLeft="@dimen/upomp_lthj_view_gap_horizontal"
+			        android:layout_width="@dimen/upomp_lthj_progressBar_size"
+			        android:layout_height="@dimen/upomp_lthj_progressBar_size"
+			        android:layout_alignParentLeft="true"/>
+			</RelativeLayout>
+		</TableRow>
+		<TableRow android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round_bottom"
+			style="@style/upomp_lthj_tablerow">
+			<TextView android:text="@string/upomp_lthj_message_checknum"
+				style="@style/upomp_lthj_textView_title" />
+			<EditText android:id="@id/upomp_lthj_mobileMacEditText"
+				android:hint="@string/upomp_lthj_mobileMac_hint" style="@style/upomp_lthj_editTextLeft"
+				 android:maxLength="6"  android:editable="false"/>
+		</TableRow>
+	</TableLayout>
+
+	<!--
+		<LinearLayout android:background="@drawable/upomp_lthj_tips_bg"
+		android:layout_marginLeft="@dimen/upomp_lthj_prompt_layout_margin_left"
+		android:layout_marginTop="@dimen/upomp_lthj_prompt_layout_margin_top"
+		android:layout_gravity="bottom|center_horizontal"
+		android:layout_marginRight="@dimen/upomp_lthj_prompt_layout_margin_right"
+		android:gravity="center_horizontal" android:orientation="vertical"
+		style="@style/upomp_lthj_layout_width_height_ww"> <TextView
+		style="@style/upomp_lthj_textView_bold"
+		android:layout_marginLeft="@dimen/upomp_lthj_prompt_title_margin_left"/>
+		<TextView style="@style/upomp_lthj_layout_width_height_fw"
+		android:text="@string/upomp_lthj_changephonenum_prompt"
+		android:layout_marginLeft="@dimen/upomp_lthj_prompt_hint_margin_left"
+		android:layout_marginTop="@dimen/upomp_lthj_prompt_hint_margin_top"
+		android:layout_marginRight="@dimen/upomp_lthj_prompt_hint_margin_right"
+		android:textColor="@android:color/darker_gray"/> </LinearLayout>
+	-->
+
+	<LinearLayout android:background="@drawable/upomp_lthj_corner_round_all"
+		android:orientation="vertical" android:layout_marginTop="@dimen/upomp_lthj_prompt_hint_margin_top"
+		android:paddingLeft="@dimen/upomp_lthj_prompt_hint_margin_left"
+		android:paddingRight="@dimen/upomp_lthj_prompt_hint_margin_right"
+		android:paddingBottom="@dimen/upomp_lthj_prompt_hint_margin_bottom"
+		style="@style/upomp_lthj_layout_width_height_fw">
+		<ImageView android:src="@drawable/upomp_lthj_friend_tip"
+			style="@style/upomp_lthj_layout_width_height_ww" />
+		"
+		<TextView style="@style/upomp_lthj_layout_width_height_ww"
+			android:text="@string/upomp_lthj_changephonenum_prompt"
+			android:textColor="@android:color/darker_gray" />
+	</LinearLayout>
+
+	<LinearLayout style ="@style/upomp_lthj_layout_width_height_fw" android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+		android:orientation="horizontal"  android:gravity="center_vertical">
+		<Button style="@style/upomp_lthj_button_twice" android:id="@id/upomp_lthj_button_titleregistermessage"
+			android:layout_weight="1.0" android:textColor="@drawable/upomp_lthj_gray"
+			android:background="@drawable/upomp_lthj_cancel" android:text="返回我的信息" />
+		<Button style="@style/upomp_lthj_button_twice" android:id="@id/upomp_lthj_changephonenum_button"
+			android:layout_marginLeft="10.0dip" android:layout_weight="1.0"
+			android:textColor="@drawable/upomp_lthj_white" android:background="@drawable/upomp_lthj_ok"
+			android:text="@string/upomp_lthj_verify" />
+	</LinearLayout>
+
+</LinearLayout>

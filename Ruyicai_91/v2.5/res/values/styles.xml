@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="dialog" parent="@android:style/Theme.Dialog">
+		<item name="android:windowNoTitle">true</item><!--隐藏标题栏-->
+
+	</style>
+	<style name="HomeThreeBtn">
+		<item name="android:layout_width">80dp</item>
+		<item name="android:layout_height">40dp</item>
+		<item name="android:textColor">@color/black</item>
+	</style>
+	<style name="UserTitleText">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@color/white</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="UserTitleTextLeft" parent="UserTitleText">
+		<item name="android:paddingLeft">10dip</item>
+		<item name="android:layout_centerVertical">true</item>
+		<item name="android:layout_alignParentLeft">true</item>
+	</style>
+	<style name="UserBottomButton">
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:background">@drawable/usercenter_lookdetaildialog_closebtn_selector</item>
+		<item name="android:layout_width">wrap_content</item>	
+		<item name="android:layout_height">wrap_content</item>	
+	</style>
+	<!-- 用户反馈底部button的styles -->
+	<style name="YonghuFankuiBtn">
+		<item name="android:layout_width">90dp</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:background">@drawable/usercenter_lookdetaildialog_closebtn_selector</item>
+		<item name="android:layout_height">wrap_content</item>	
+	</style>
+</resources>

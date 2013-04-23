@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:background="#191919"
+	>
+	<!-- wangyl 7.13  修改背景和字体颜色 -->
+	<TextView 
+		android:id="@+id/usercenter_bettingDetails_id"
+		android:textColor="#FFFFFF"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		/>
+	<RelativeLayout
+		android:id="@+id/linearlayout_usercenter_btn"
+		android:layout_below="@+id/usercenter_bettingDetails_id"
+		android:orientation="horizontal" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+	>
+	<Button
+		android:id="@+id/usercenter_btn_uppage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:text="@string/usercenter_upPage"
+	/>
+	<Button
+		android:id="@+id/usercenter_btn_downpage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:text="@string/usercenter_downPage"
+	/>
+	<!-- wangyl 7.13删除返回按钮  -->
+	<!--  <Button
+		android:id="@+id/usercenter_btn_return"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:text="@string/str_return"
+		
+	/>-->
+	</RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:gravity="center_vertical">
+	<RelativeLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent">
+		<TextView android:id="@+id/jinqiu_lienum"
+			android:layout_alignParentLeft="true" android:textColor="@color/black"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+		<LinearLayout android:layout_width="wrap_content"
+			android:layout_toRightOf="@+id/jinqiu_lienum" android:layout_height="wrap_content"
+			android:orientation="vertical">
+			<TextView android:id="@+id/jinqiu_teamrank1"
+				android:paddingTop="5dp" android:textColor="@color/black"
+				android:layout_width="wrap_content" android:textSize="15dp"
+				android:layout_height="wrap_content" android:gravity="top" />
+			<TextView android:text="　VS" android:layout_width="wrap_content"
+				android:textColor="@color/black" android:textSize="10dp"
+				android:layout_height="wrap_content" />
+			<TextView android:id="@+id/jinqiu_teamrank2"
+				android:layout_width="wrap_content" android:textSize="15dp"
+				android:textColor="@color/black" android:layout_height="wrap_content"
+				android:gravity="bottom" />
+
+		</LinearLayout>
+		<LinearLayout android:id="@+id/jinqiucai_layout"
+			android:layout_centerHorizontal="true" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:orientation="vertical">
+			<TableLayout android:paddingLeft="20dp"
+				android:orientation="horizontal" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/jinqiucai_ball_1">
+
+			</TableLayout>
+
+			<TableLayout android:paddingLeft="20dp"
+				android:orientation="horizontal" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:id="@+id/jinqiucai_ball_2">
+			</TableLayout>
+
+
+		</LinearLayout>
+		<ImageView android:paddingRight="10dp" android:paddingLeft="40dp" android:layout_marginTop="10dp"
+			 android:layout_alignParentRight="true"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/fenxi" android:id="@+id/jinqiucai_fenxi" />
+	</RelativeLayout>
+
+</LinearLayout>

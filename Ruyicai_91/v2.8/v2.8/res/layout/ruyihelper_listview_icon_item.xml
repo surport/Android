@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!--
+	图标列表项
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ruyihelper_icon_linerlayout" android:orientation="horizontal"
+	android:gravity="left" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:paddingTop="15px"
+	android:paddingBottom="15px" android:background="@drawable/list_bg">
+
+	<RelativeLayout android:layout_toRightOf="@+id/ruyihelper_icon"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<TextView android:id="@+id/ruyihelper_icon_text"
+			android:textColor="@color/black" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif"
+			android:layout_width="fill_parent" android:layout_height="fill_parent">
+		</TextView>
+
+		<ImageView android:id="@+id/ruyihelper_iicon"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_marginTop="15dip" android:layout_alignParentRight="true"
+			android:paddingRight="20dip" />
+	</RelativeLayout>
+</LinearLayout>

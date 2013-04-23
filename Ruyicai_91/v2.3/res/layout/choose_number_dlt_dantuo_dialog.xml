@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="300px" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<TextView android:id="@+id/ssq_dantuo_dialog_tv_tips"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/zhixuan_danshi_dialog_tips" />
+
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+
+		<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/ssq_dantuo_dialog_reddan_tv_number_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+				android:textColor="#ff0000" android:layout_alignParentLeft="true"
+				android:textSize="20px" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_reddan_subtract"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_reddan_tv_number_change"
+				android:background="#00000000" />
+
+
+			<SeekBar android:id="@+id/ssq_dantuo_dialog_seek_reddan"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="4" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/ssq_dantuo_dialog_reddan_subtract" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_reddan_add"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_seek_reddan"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+
+
+
+		<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/ssq_dantuo_dialog_red_tuo_number_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+				android:textColor="#ff0000" android:layout_alignParentLeft="true"
+				android:textSize="20px" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_redtuo_subtract"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_red_tuo_number_change"
+				android:background="#00000000" />
+
+
+			<SeekBar android:id="@+id/ssq_dantuo_dialog_seek_redtuo"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="22" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/ssq_dantuo_dialog_redtuo_subtract" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_redtuo_add"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_seek_redtuo"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+
+
+		<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/ssq_dantuo_dialog_blue_tv_number_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+				android:textColor="#ff0000" android:layout_alignParentLeft="true"
+				android:textSize="20px" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_blue_subtract"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_blue_tv_number_change"
+				android:background="#00000000" />
+
+
+			<SeekBar android:id="@+id/ssq_dantuo_dialog_seek_blue"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="1" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/ssq_dantuo_dialog_blue_subtract" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_blue_add"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_seek_blue"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+
+
+
+		<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/ssq_dantuo_dialog_blue_tuo_number_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+				android:textColor="#ff0000" android:layout_alignParentLeft="true"
+				android:textSize="20px" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_bluetuo_subtract"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_blue_tuo_number_change"
+				android:background="#00000000" />
+
+
+			<SeekBar android:id="@+id/ssq_dantuo_dialog_seek_bluetuo"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="11" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/ssq_dantuo_dialog_bluetuo_subtract" />
+
+			<ImageButton android:id="@+id/ssq_dantuo_dialog_bluetuo_add"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/ssq_dantuo_dialog_seek_bluetuo"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/buttonLayout"
+		android:layout_width="fill_parent" android:paddingTop="10px"
+		android:layout_height="wrap_content" android:weightSum="2"
+		android:orientation="horizontal">
+		<Button android:id="@+id/okButton" android:layout_width="fill_parent"
+			android:layout_weight="1" android:layout_height="wrap_content"
+			android:text="@string/confirm"></Button>
+		<Button android:id="@+id/cancelButton" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:text="@string/cancel"></Button>
+	</LinearLayout>
+</LinearLayout>

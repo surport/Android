@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="@drawable/bg" android:layout_height="fill_parent">
+	<RelativeLayout android:layout_width="fill_parent" android:gravity="center_vertical"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:paddingRight="5dp" android:paddingLeft="5dp">
+		<Button android:paddingLeft="5dp"
+		    android:layout_centerVertical="true"
+		    android:id="@+id/layout_football_issue"
+		    android:layout_width="120dp"
+		    android:background="@drawable/football_advancebatchcode"
+		    android:paddingRight="25dp"
+		    android:layout_height="34dp"
+		    android:layout_alignParentLeft="true"
+		    android:textColor="@color/black"
+		    android:textSize="14dip" />
+
+		<TextView  android:id="@+id/layout_football_time"
+			android:layout_width="wrap_content" android:layout_height="40dp" android:gravity="center"
+			android:textColor="@color/black" android:textSize="14dip"  android:layout_alignParentRight="true"
+			></TextView>
+	</RelativeLayout>
+	
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<ScrollView android:id="@+id/ScrollView01"
+			android:paddingBottom="60dp" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="vertical"
+			    android:layout_marginLeft="2dip"
+			    android:layout_marginRight="2dip">
+				<ListView android:layout_width="fill_parent"
+					android:layout_height="1530dip"
+					android:id="@+id/buy_footballlottery_list"
+					android:divider="@color/zc_sfc_listview_item_bg" android:background="@color/list_color"
+					android:dividerHeight="5dp">
+				</ListView>
+			</LinearLayout>
+		</ScrollView>
+		<LinearLayout android:orientation="horizontal" android:background="@drawable/buy_bot_bg"
+			android:layout_alignParentBottom="true" android:layout_width="fill_parent"
+			android:layout_height="60dp" android:gravity="clip_horizontal"
+			android:baselineAligned="true" android:layout_centerHorizontal="true"
+			android:paddingBottom="10dip" android:paddingLeft="20dp">
+			<RelativeLayout android:layout_width="wrap_content"
+				android:layout_marginRight="20dp" android:layout_height="wrap_content">
+				<ImageButton android:id="@+id/buy_footballlottery_img_subtract_beishu"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/subtractselecter" android:background="#00000000"
+					android:paddingTop="20dip" />
+				<LinearLayout android:orientation="vertical"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:id="@+id/layout_progress" android:layout_centerHorizontal="true"
+					layout_toRightOf="@+id/buy_danshi_jixuan_img_subtract_beishu"
+					android:paddingLeft="15dip" android:paddingRight="15dip">
+					<LinearLayout android:orientation="horizontal"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_gravity="center_horizontal">
+						<TextView android:id="@+id/buy_footballlottery_text_beishu"
+							android:layout_width="30dip" android:layout_height="wrap_content"
+							android:textColor="@color/black" />
+						<TextView android:id="@+id/buy_footballlottery_text_beishu_title"
+							android:layout_width="wrap_content" android:layout_height="wrap_content"
+							android:text="@string/meiqibeishu" android:textColor="@color/black" />
+					</LinearLayout>
+					<SeekBar android:id="@+id/buy_footballlottery_seekbar_muti"
+						style="?android:attr/progressBarStyleHorizontal"
+						android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+						android:max="200" android:progress="1" android:layout_width="130dip"
+						android:layout_height="wrap_content" android:paddingLeft="15dip"
+						android:paddingRight="15dip" android:layout_centerVertical="true"
+						android:minHeight="6dip" android:maxHeight="6dip" />
+				</LinearLayout>
+				<ImageButton android:id="@+id/buy_footballlottery_img_add_beishu"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:src="@drawable/addselecter" android:layout_toRightOf="@+id/layout_progress"
+					android:background="#00000000" android:paddingTop="20dip" />
+			</RelativeLayout>
+			<ImageButton android:id="@+id/buy_footballlottery_img_touzhu"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:background="#00000000" android:src="@drawable/imageselecter"
+				android:layout_alignParentRight="true" android:paddingTop="20dp"
+				android:layout_centerVertical="true" />
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>

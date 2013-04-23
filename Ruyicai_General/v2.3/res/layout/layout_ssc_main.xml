@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/bg">
+	<!-- 顶部按钮 -->
+
+	<RelativeLayout android:orientation="horizontal"
+		android:gravity="left" android:layout_width="fill_parent"
+		android:layout_height="65px" android:background="@drawable/shouye_top"
+		android:paddingTop="10px">
+
+		<ImageView android:id="@+id/goucaitouzhu_title_return"
+			android:background="#00000000" android:src="@drawable/returnselecter"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" android:paddingLeft="10px" />
+		<TextView android:id="@+id/ruyipackage_title"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:textColor="@color/white"
+			android:layout_marginRight="10px" android:textSize="20px"
+			android:text="@string/ssc_title" />
+	</RelativeLayout>
+	<ListView android:id="@+id/layout_ssc_main_list"
+		android:cacheColorHint="#00000000" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+	</ListView>
+
+</LinearLayout>

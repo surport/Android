@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/white" android:orientation="vertical">
+
+	<RelativeLayout android:orientation="horizontal"
+		android:gravity="left" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/buy_top"
+		android:paddingTop="10px" android:paddingLeft="10px">
+		<ImageButton android:id="@+id/ruyizhushou_btn_return"
+			android:src="@drawable/returnselecter" android:background="#00000000"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true" />
+		<TextView android:id="@+id/ruyipackage_title"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:text="" android:layout_marginRight="10px"
+			android:textColor="@color/black" android:textSize="20px" />
+	</RelativeLayout>
+	<LinearLayout android:id="@+id/LinearLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/query_top" android:paddingTop="2px">
+		<TextView android:text="彩种" android:id="@+id/TextView01"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#272727" android:paddingLeft="30px"
+			android:textSize="16px" android:textStyle="bold">
+		</TextView>
+		<TextView android:text="总额" android:id="@+id/TextView01"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#272727" android:paddingLeft="40px"
+			android:textSize="16px" android:textStyle="bold">
+		</TextView>
+		<TextView android:text="状态" android:id="@+id/TextView01"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#272727" android:paddingLeft="40px"
+			android:textSize="16px" android:textStyle="bold">
+		</TextView>
+		<TextView android:text="结果" android:id="@+id/TextView01"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="#272727" android:paddingLeft="40px"
+			android:textSize="16px" android:textStyle="bold">
+		</TextView>
+	</LinearLayout>
+	<ListView android:id="@+id/query_info_list"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:cacheColorHint="@color/white" android:background="@color/white"></ListView>
+</LinearLayout>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="300px" android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<!--当前玩法为直选单式  -->
+	<TextView android:id="@+id/ssc_text_type_title"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="" />
+
+	<ScrollView android:id="@+id/ScrollView01"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<RelativeLayout android:id="@+id/ssc_wan_jixuan_layout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView android:id="@+id/ssc_wan_dialog_text_number"
+						android:layout_width="30px" android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+						android:textColor="#ff0000" android:layout_alignParentLeft="true"
+						android:textSize="20px" />
+					<ImageButton android:id="@+id/ssc_wan_dialog_subtract"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/subtract11" android:background="#00000000"
+						android:layout_toRightOf="@+id/ssc_wan_dialog_text_number" />
+					<SeekBar android:id="@+id/ssc_wan_dialog_seekbar"
+						style="?android:attr/progressBarStyleHorizontal"
+						android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+						android:max="10" android:progress="1" android:layout_width="180px"
+						android:layout_height="23dip" android:paddingLeft="15dip"
+						android:paddingRight="15dip" android:paddingBottom="4dip"
+						android:layout_toRightOf="@+id/ssc_wan_dialog_subtract" />
+					<ImageButton android:id="@+id/ssc_wan_dialog_red_add"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/add11" android:layout_toRightOf="@+id/ssc_wan_dialog_seekbar"
+						android:background="#00000000" android:layout_marginRight="10dip" />
+
+				</RelativeLayout>
+
+			</LinearLayout>
+
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<RelativeLayout android:id="@+id/ssc_qian_jixuan_layout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView android:id="@+id/ssc_qian_dialog_text_number"
+						android:layout_width="30px" android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+						android:textColor="#ff0000" android:layout_alignParentLeft="true"
+						android:textSize="20px" />
+					<ImageButton android:id="@+id/ssc_qian_dialog_subtract"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/subtract11" android:background="#00000000"
+						android:layout_toRightOf="@+id/ssc_qian_dialog_text_number" />
+					<SeekBar android:id="@+id/ssc_qian_dialog_seekbar"
+						style="?android:attr/progressBarStyleHorizontal"
+						android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+						android:max="10" android:progress="1" android:layout_width="180px"
+						android:layout_height="23dip" android:paddingLeft="15dip"
+						android:paddingRight="15dip" android:paddingBottom="4dip"
+						android:layout_toRightOf="@+id/ssc_qian_dialog_subtract" />
+					<ImageButton android:id="@+id/ssc_qian_dialog_red_add"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/add11" android:layout_toRightOf="@+id/ssc_qian_dialog_seekbar"
+						android:background="#00000000" android:layout_marginRight="10dip" />
+
+				</RelativeLayout>
+
+			</LinearLayout>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<RelativeLayout android:id="@+id/ssc_bai_jixuan_layout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView android:id="@+id/ssc_bai_dialog_text_number"
+						android:layout_width="30px" android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+						android:textColor="#ff0000" android:layout_alignParentLeft="true"
+						android:textSize="20px" />
+					<ImageButton android:id="@+id/ssc_bai_dialog_subtract"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/subtract11" android:background="#00000000"
+						android:layout_toRightOf="@+id/ssc_bai_dialog_text_number" />
+					<SeekBar android:id="@+id/ssc_bai_dialog_seekbar"
+						style="?android:attr/progressBarStyleHorizontal"
+						android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+						android:max="10" android:progress="1" android:layout_width="180px"
+						android:layout_height="23dip" android:paddingLeft="15dip"
+						android:paddingRight="15dip" android:paddingBottom="4dip"
+						android:layout_toRightOf="@+id/ssc_bai_dialog_subtract" />
+					<ImageButton android:id="@+id/ssc_bai_dialog_red_add"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/add11" android:layout_toRightOf="@+id/ssc_bai_dialog_seekbar"
+						android:background="#00000000" android:layout_marginRight="10dip" />
+
+				</RelativeLayout>
+
+			</LinearLayout>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<RelativeLayout android:id="@+id/ssc_shi_jixuan_layout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView android:id="@+id/ssc_shi_dialog_text_number"
+						android:layout_width="30px" android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+						android:textColor="#ff0000" android:layout_alignParentLeft="true"
+						android:textSize="20px" />
+					<ImageButton android:id="@+id/ssc_shi_dialog_subtract"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/subtract11" android:background="#00000000"
+						android:layout_toRightOf="@+id/ssc_shi_dialog_text_number" />
+					<SeekBar android:id="@+id/ssc_shi_dialog_seekbar"
+						style="?android:attr/progressBarStyleHorizontal"
+						android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+						android:max="10" android:progress="1" android:layout_width="180px"
+						android:layout_height="23dip" android:paddingLeft="15dip"
+						android:paddingRight="15dip" android:paddingBottom="4dip"
+						android:layout_toRightOf="@+id/ssc_shi_dialog_subtract" />
+					<ImageButton android:id="@+id/ssc_shi_dialog_red_add"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/add11" android:layout_toRightOf="@+id/ssc_shi_dialog_seekbar"
+						android:background="#00000000" android:layout_marginRight="10dip" />
+
+				</RelativeLayout>
+
+			</LinearLayout>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content">
+				<RelativeLayout android:id="@+id/ssc_ge_jixuan_layout"
+					android:layout_width="wrap_content" android:layout_height="wrap_content">
+					<TextView android:id="@+id/ssc_ge_dialog_text_number"
+						android:layout_width="30px" android:layout_height="wrap_content"
+						android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+						android:textColor="#ff0000" android:layout_alignParentLeft="true"
+						android:textSize="20px" />
+					<ImageButton android:id="@+id/ssc_ge_dialog_subtract"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/subtract11" android:background="#00000000"
+						android:layout_toRightOf="@+id/ssc_ge_dialog_text_number" />
+					<SeekBar android:id="@+id/ssc_ge_dialog_seekbar"
+						style="?android:attr/progressBarStyleHorizontal"
+						android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+						android:max="10" android:progress="1" android:layout_width="180px"
+						android:layout_height="23dip" android:paddingLeft="15dip"
+						android:paddingRight="15dip" android:paddingBottom="4dip"
+						android:layout_toRightOf="@+id/ssc_ge_dialog_subtract" />
+					<ImageButton android:id="@+id/ssc_ge_dialog_red_add"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:src="@drawable/add11" android:layout_toRightOf="@+id/ssc_ge_dialog_seekbar"
+						android:background="#00000000" android:layout_marginRight="10dip" />
+				</RelativeLayout>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/buttonLayout"
+				android:layout_width="fill_parent" android:paddingTop="10px"
+				android:layout_height="wrap_content" android:weightSum="2"
+				android:orientation="horizontal">
+				<Button android:id="@+id/okButton" android:layout_width="fill_parent"
+					android:layout_weight="1" android:layout_height="wrap_content"
+					android:text="@string/confirm"></Button>
+				<Button android:id="@+id/cancelButton" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:layout_weight="1"
+					android:text="@string/cancel"></Button>
+			</LinearLayout>
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

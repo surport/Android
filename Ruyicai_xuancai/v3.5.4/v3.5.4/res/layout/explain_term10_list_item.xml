@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/explain_list_item_text_one"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="赛事日期"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/explain_list_item_text_two"
+            android:layout_width="85dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="主队"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/explain_list_item_text_three"
+            android:layout_width="60dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="全场"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+
+        <TextView
+            android:id="@+id/explain_list_item_text_four"
+            android:layout_width="85dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="客队"
+            android:textColor="@color/black"
+            android:textSize="15dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@drawable/litt" android:layout_marginLeft="5dip" android:layout_marginRight="5dip">
+    </LinearLayout>
+
+</LinearLayout>

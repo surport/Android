@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="300px" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<TextView android:id="@+id/qlc_fushi_dialog_game_type_tip_change"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="@string/zhixuan_fushi_dialog_tips" />
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+		<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+			android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/qlc_fushi_dialog_tv_number_change"
+				android:layout_width="30px" android:layout_height="wrap_content"
+				android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+				android:textColor="#ff0000" android:layout_alignParentLeft="true"
+				android:textSize="20px" />
+
+			<ImageButton android:id="@+id/qlc_fushi_dialog_red_subtract"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/subtract11" android:background="#00000000"
+				android:layout_toRightOf="@+id/qlc_fushi_dialog_tv_number_change" />
+
+			<!-- fqc edit seekbar Max30 -->
+			<SeekBar android:id="@+id/qlc_fushi_dialog_seekbar_red"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+				android:max="16" android:progress="1" android:layout_width="180px"
+				android:layout_height="23dip" android:paddingLeft="15dip"
+				android:paddingRight="15dip" android:paddingBottom="4dip"
+				android:layout_toRightOf="@+id/qlc_fushi_dialog_red_subtract" />
+
+			<ImageButton android:id="@+id/qlc_fushi_dialog_red_add"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:src="@drawable/add11" android:layout_toRightOf="@+id/qlc_fushi_dialog_seekbar_red"
+				android:background="#00000000" android:layout_marginRight="10dip" />
+
+		</RelativeLayout>
+
+
+	</LinearLayout>
+	<LinearLayout android:id="@+id/buttonLayout"
+		android:layout_width="fill_parent" android:paddingTop="10px"
+		android:layout_height="wrap_content" android:weightSum="2"
+		android:orientation="horizontal">
+		<Button android:id="@+id/okButton" android:layout_width="fill_parent"
+			android:layout_weight="1" android:layout_height="wrap_content"
+			android:text="@string/confirm"></Button>
+		<Button android:id="@+id/cancelButton" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:text="@string/cancel"></Button>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:paddingLeft="20px">
+
+	<ImageView android:id="@+id/icon"
+		android:layout_alignParentLeft="true" android:layout_marginTop="6dip"
+		android:layout_marginRight="5dip" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:paddingTop="10px">
+	</ImageView>
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:layout_marginTop="3dip" android:id="@+id/notice_prizes_lottery_row1"
+		android:layout_toRightOf="@+id/icon">
+
+		<TextView android:layout_toRightOf="@+id/icon"
+			android:textColor="#0FF00F" android:layout_marginBottom="3dip"
+			android:layout_marginRight="50dip" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:textSize="20px"
+			android:gravity="center" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/notice_prezes_lotteryNameId"
+			android:paddingBottom="10px">
+		</TextView>
+
+		<LinearLayout android:orientation="horizontal"
+			android:id="@+id/ball_linearlayout" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+		</LinearLayout>
+	</LinearLayout>
+
+	<RelativeLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_marginTop="6dip"
+		android:layout_marginBottom="10dip" android:layout_below="@+id/icon"
+		android:id="@+id/notice_prizes_lottery_row2" android:paddingTop="10px">
+
+		<TextView android:layout_height="wrap_content"
+			android:layout_width="200dp" android:textColor="@color/black"
+			android:layout_marginBottom="5dip" android:text="notice_prizes_date_and_time"
+			android:textSize="15px" android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:layout_alignParentLeft="true"
+			android:id="@+id/notice_prizes_dateAndTimeId">
+		</TextView>
+
+		<TextView android:layout_width="100dp"
+			android:layout_height="wrap_content" android:layout_marginBottom="5dip"
+			android:textColor="@color/black" android:textSize="15px"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:typeface="serif" android:id="@+id/notice_prizes_issueId"
+			android:layout_alignParentRight="true" android:text="notice_prizes_issue"
+			>
+		</TextView>
+
+	</RelativeLayout>
+
+
+</RelativeLayout>

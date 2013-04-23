@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="300px" android:layout_height="wrap_content"
+	android:orientation="vertical">
+	<TextView android:id="@+id/tv_dantuo_dialog_tips"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="@string/dantuo_dialog_tips" />
+
+
+
+	<TextView android:id="@+id/tv_dantuo_danma_dialog_tips"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/dantuo_danma_dialog_tips"
+		android:layout_marginRight="10dip" />
+	<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+		<TextView android:id="@+id/tv_dantuo_danma_number"
+			android:layout_width="30px" android:layout_height="wrap_content"
+			android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+			android:textColor="#ff0000" android:layout_alignParentLeft="true"
+			android:textSize="20px" />
+
+		<ImageButton android:id="@+id/dantuo_danma_subtract"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/subtract11" android:layout_toRightOf="@+id/tv_dantuo_danma_number"
+			android:background="#00000000" />
+
+
+		<SeekBar android:id="@+id/seek_dantuo_danma" style="?android:attr/progressBarStyleHorizontal"
+			android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+			android:max="2" android:progress="1" android:layout_width="180px"
+			android:layout_height="23dip" android:paddingLeft="15dip"
+			android:paddingRight="15dip" android:paddingBottom="4dip"
+			android:layout_toRightOf="@+id/dantuo_danma_subtract" />
+
+		<ImageButton android:id="@+id/dantuo_danma_add"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/add11" android:layout_toRightOf="@+id/seek_dantuo_danma"
+			android:background="#00000000" android:layout_marginRight="10dip" />
+
+	</RelativeLayout>
+
+
+	<!--
+		<LinearLayout android:id="@+id/tv_dantuo_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		> <TextView android:id="@+id/tv_dantuo_danma_dialog_tips"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/dantuo_danma_dialog_tips"
+		android:layout_marginRight="10dip" /> <TextView
+		android:id="@+id/tv_dantuo_danma_number"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="1"
+		android:layout_alignParentLeft="true" /> </LinearLayout>
+
+		<RelativeLayout android:id="@+id/dantuo_danma_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" > <ImageButton
+		android:id="@+id/dantuo_danma_add" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:src="@drawable/add11"
+		android:layout_marginLeft="18dip"
+		android:layout_alignParentLeft="true" android:background="#00000000"
+
+		/> <SeekBar android:id="@+id/seek_dantuo_danma"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:progressDrawable="@drawable/seekbar_style"
+		android:thumb="@drawable/thumb" android:max="10" android:progress="1"
+		android:layout_width="200px" android:layout_height="23dip"
+		android:paddingLeft="25dip" android:paddingRight="25dip"
+		android:paddingBottom="4dip"
+		android:layout_toRightOf="@+id/dantuo_danma_add" /> <ImageButton
+		android:id="@+id/dantuo_danma_subtract"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/subtract11" android:background="#00000000"
+		android:layout_marginRight="18dip"
+		android:layout_toRightOf="@+id/seek_dantuo_danma" /> </RelativeLayout>
+	-->
+
+
+
+	<TextView android:id="@+id/tv_dantuo_tuoma_dialog_tips"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@string/dantuo_tuoma_dialog_tips"
+		android:layout_marginRight="10dip" />
+
+
+
+	<RelativeLayout android:id="@+id/fc3d_jixuan_layout"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+		<TextView android:id="@+id/tv_dantuo_tuoma_number"
+			android:layout_width="30px" android:layout_height="wrap_content"
+			android:layout_marginLeft="10dip" android:layout_marginRight="5dip"
+			android:textColor="#ff0000" android:layout_alignParentLeft="true"
+			android:textSize="20px" />
+
+		<ImageButton android:id="@+id/dantuo_tuoma_subtract"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/subtract11" android:layout_toRightOf="@+id/tv_dantuo_tuoma_number"
+			android:background="#00000000" />
+
+
+		<SeekBar android:id="@+id/seek_dantuo_tuoma" style="?android:attr/progressBarStyleHorizontal"
+			android:progressDrawable="@drawable/seekbar_style" android:thumb="@drawable/thumb"
+			android:max="9" android:progress="1" android:layout_width="180px"
+			android:layout_height="23dip" android:paddingLeft="15dip"
+			android:paddingRight="15dip" android:paddingBottom="4dip"
+			android:layout_toRightOf="@+id/dantuo_tuoma_subtract" />
+
+		<ImageButton android:id="@+id/dantuo_tuoma_add"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/add11" android:layout_toRightOf="@+id/seek_dantuo_tuoma"
+			android:background="#00000000" android:layout_marginRight="10dip" />
+
+	</RelativeLayout>
+
+
+
+
+
+
+
+
+
+	<!--
+		<LinearLayout android:id="@+id/tv_dantuo_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		> <TextView android:id="@+id/tv_dantuo_tuoma_dialog_tips"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/dantuo_danma_dialog_tips"
+		android:layout_marginRight="10dip" /> <TextView
+		android:id="@+id/tv_dantuo_tuoma_number"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="1"
+		android:layout_alignParentLeft="true" /> </LinearLayout>
+
+		<RelativeLayout android:id="@+id/dantuo_tuoma_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" > <ImageButton
+		android:id="@+id/dantuo_tuoma_add" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:src="@drawable/add11"
+		android:layout_marginLeft="18dip"
+		android:layout_alignParentLeft="true" android:background="#00000000"
+
+		/> <SeekBar android:id="@+id/seek_dantuo_tuoma"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:progressDrawable="@drawable/seekbar_style"
+		android:thumb="@drawable/thumb" android:max="10" android:progress="1"
+		android:layout_width="200px" android:layout_height="23dip"
+		android:paddingLeft="25dip" android:paddingRight="25dip"
+		android:paddingBottom="4dip"
+		android:layout_toRightOf="@+id/dantuo_tuoma_add" /> <ImageButton
+		android:id="@+id/dantuo_tuoma_subtract"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/subtract11" android:background="#00000000"
+		android:layout_marginRight="18dip"
+		android:layout_toRightOf="@+id/seek_dantuo_tuoma" /> </RelativeLayout>
+
+		<TextView android:id="@+id/tv_dantuo_danma_dialog_tips"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/dantuo_danma_dialog_tips" /> <RelativeLayout
+		android:id="@+id/dantuo_danma_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" > <TextView
+		android:id="@+id/tv_dantuo_danma_number"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="1"
+		android:layout_alignParentLeft="true" /> <SeekBar
+		android:id="@+id/seek_dantuo_danma"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:progressDrawable="@drawable/seekbar_style"
+		android:thumb="@drawable/thumb" android:max="2" android:progress="1"
+		android:layout_width="200px" android:layout_height="23dip"
+		android:paddingLeft="25dip" android:paddingRight="25dip"
+		android:paddingBottom="4dip" android:layout_alignParentRight="true" />
+		</RelativeLayout> <TextView
+		android:id="@+id/tv_dantuo_tuoma_dialog_tips"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/dantuo_tuoma_dialog_tips" /> <RelativeLayout
+		android:id="@+id/dantuo_tuoma_layout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" > <TextView
+		android:id="@+id/tv_dantuo_tuoma_number"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="1"
+		android:layout_alignParentLeft="true" /> <SeekBar
+		android:id="@+id/seek_dantuo_tuoma"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:progressDrawable="@drawable/seekbar_style"
+		android:thumb="@drawable/thumb" android:max="9" android:progress="1"
+		android:layout_width="200px" android:layout_height="23dip"
+		android:paddingLeft="25dip" android:paddingRight="25dip"
+		android:paddingBottom="4dip" android:layout_alignParentRight="true" />
+		</RelativeLayout>
+	-->
+	<LinearLayout android:id="@+id/buttonLayout"
+		android:layout_width="fill_parent" android:paddingTop="10px"
+		android:layout_height="wrap_content" android:weightSum="2"
+		android:orientation="horizontal">
+		<Button android:id="@+id/dantuo_okButton" android:layout_width="fill_parent"
+			android:layout_weight="1" android:layout_height="wrap_content"
+			android:text="@string/confirm"></Button>
+		<Button android:id="@+id/dantuo_cancelButton"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_weight="1" android:text="@string/cancel"></Button>
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+ <item android:id="@+id/dlt_menu_confirm"
+ 	android:orderInCategory="0"
+        android:title="@string/touzhu"
+        android:icon="@drawable/touzhusure" 
+        android:menuCategory="container"/>
+
+    <item android:id="@+id/dlt_menu_reselect_num"
+ 	android:orderInCategory="1"
+        android:title="@string/reselect_num"
+        android:icon="@drawable/touzhureselected" />
+
+    <item android:id="@+id/dlt_menu_game_introduce"
+ 	android:orderInCategory="2"
+        android:title="@string/game_introduction"
+        android:icon="@drawable/touzhugameinstroduction" />
+
+    <item android:id="@+id/dlt_menu_cancel"
+ 	android:orderInCategory="3"
+        android:title="@string/str_return"
+        android:icon="@drawable/touzhucancel" />
+</menu>

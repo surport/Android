@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <!-- <LinearLayout android:id="@id/upomp_lthj_wecomeLinearLayout" style="@style/upomp_lthj_layout_width_height_fw" android:orientation="vertical" android:visibility="gone">
+    		<TextView android:id="@id/upomp_lthj_wecome_textview" style="@style/upomp_lthj_layout_width_height_ww" android:textColor="@drawable/upomp_lthj_white"/>
+	</LinearLayout> -->
+	<LinearLayout style="@style/upomp_lthj_buttons_tab_layout"
+		android:orientation="horizontal" >
+		<Button android:id="@id/upomp_lthj_button_common_pay" style="@style/upomp_lthj_buttons_tab_left"
+			android:text="@string/upomp_lthj_common_pay_title" android:layout_weight="1.0" />
+		<Button android:id="@id/upomp_lthj_button_quick_pay" style="@style/upomp_lthj_buttons_tab_mid"
+			android:text="@string/upomp_lthj_quick_pay_title" android:layout_weight="1.0" />
+		<Button android:id="@id/upomp_lthj_button_saveCard_pay" style="@style/upomp_lthj_buttons_tab_right"
+			android:text="@string/upomp_lthj_saveCard_pay_title" android:layout_weight="1.0" />
+	</LinearLayout>
+	<ScrollView style="@style/upomp_lthj_layout_width_height_fw"
+ 		  android:scrollbars="none">
+		<LinearLayout android:id="@id/upomp_lthj_pay_content" style="@style/upomp_lthj_layout_width_height_fw" 
+			android:paddingLeft="@dimen/upomp_lthj_tableLayout_pad_left" 
+  			android:paddingRight="@dimen/upomp_lthj_tableLayout_pad_right"
+  			android:paddingTop="@dimen/upomp_lthj_tableLayout_pad_top"
+  			android:paddingBottom="@dimen/upomp_lthj_tableLayout_pad_bottom">
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>
+

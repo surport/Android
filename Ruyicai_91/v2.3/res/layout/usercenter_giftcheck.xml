@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/usercenter_giftcheck_scrollview" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/bg">
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<RelativeLayout
+			android:id="@+id/usercenter_presentedlottery_relativelayout_title"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:background="@drawable/list_top">
+			<TextView android:id="@+id/usercenter_giftcheck_presentedlottery_title"
+				android:textSize="20dip" android:textColor="@color/red"
+				android:layout_width="wrap_content" android:layout_height="fill_parent"
+				android:layout_centerHorizontal="true"
+				android:layout_centerVertical="true" android:text="@string/usercenter_giftCheck" />
+			<ImageButton android:id="@+id/usercenter_giftcheck_return"
+				android:layout_alignParentLeft="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:src="@drawable/returnselecter"
+				android:background="#00000000" android:paddingLeft="10dip"
+				android:layout_centerVertical="true" />
+		</RelativeLayout>
+		<LinearLayout android:layout_below="@+id/usercenter_presentedlottery_relativelayout_title"
+			android:id="@+id/LinearLayout01" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:background="@drawable/usercenter_bg"
+			android:paddingTop="10dip" android:paddingBottom="10dip" android:orientation="vertical">
+			<TextView android:layout_below="@+id/usercenter_presentedlottery_relativelayout_title"
+				android:id="@+id/bujuzhiyong" android:textColor="#000000"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:gravity="center_horizontal"
+				android:text="@string/usercenter_giftCheck_presentedLottery" />
+			<TextView android:id="@+id/usercenter_giftcheck_presentedlottery_body"
+				android:textColor="#000000" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+				android:layout_below="@+id/bujuzhiyong" android:text="@string/usercenter_giftCheck_presentedLottery" />
+			<RelativeLayout android:id="@+id/usercenter_presentedlottery_relativelayout_btn"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:layout_below="@+id/usercenter_giftcheck_presentedlottery_body">
+				<Button android:id="@+id/usercenter_giftcheck_presentedlottery_downPage"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_alignParentRight="true" android:text="@string/usercenter_downPage" />
+				<Button android:id="@+id/usercenter_giftcheck_presentedlottery_upPage"
+					android:layout_alignParentLeft="true" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/usercenter_upPage" />
+			</RelativeLayout>
+		</LinearLayout>
+		<LinearLayout android:layout_below="@+id/LinearLayout01"
+			android:id="@+id/LinearLayout01" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:background="@drawable/usercenter_bg"
+			android:paddingTop="10dip" android:paddingBottom="10dip" android:orientation="vertical" android:layout_marginTop="10dip">
+			<TextView android:id="@+id/usercenter_giftcheck_receivedlottery_title"
+				android:textColor="#000000" android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/usercenter_presentedlottery_relativelayout_btn"
+				android:gravity="center_horizontal"
+				android:text="@string/usercenter_giftCheck_receivedLottery" />
+			<TextView android:id="@+id/usercenter_giftcheck_receivedlottery_body"
+				android:textColor="#000000" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+				android:layout_below="@+id/usercenter_giftcheck_receivedlottery_title" />
+			<RelativeLayout android:id="@+id/usercenter_receivedlottery_relativelayout_btn"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_below="@+id/usercenter_giftcheck_receivedlottery_body">
+				<Button android:id="@+id/usercenter_giftcheck_receivedlottery_downPage"
+					android:layout_alignParentRight="true" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/usercenter_downPage" />
+				<Button android:id="@+id/usercenter_giftcheck_receivedlottery_upPage"
+					android:layout_alignParentLeft="true" android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:text="@string/usercenter_upPage" />
+			</RelativeLayout>
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>

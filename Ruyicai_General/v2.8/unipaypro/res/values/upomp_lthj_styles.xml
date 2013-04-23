@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="upomp_lthj_layout_width_height_ff">
+		<item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+	</style>
+	<style name="upomp_lthj_layout_width_height_fw">
+		<item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="upomp_lthj_layout_width_height_ww">
+		<item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="upomp_lthj_layout_width_height_wf">
+		<item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+	</style>
+    <style name="upomp_lthj_main_tab_bottom" parent="@style/upomp_lthj_layout_width_height_ww">
+        <item name="android:textSize">@dimen/upomp_lthj_bottom_tab_font_size</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_horizontal</item>
+        <!--  <item name="android:background">@drawable/upomp_lthj_home_btn_bg</item> -->
+        <item name="android:paddingTop">@dimen/upomp_lthj_bottom_tab_padding_up</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">@dimen/upomp_lthj_bottom_tab_padding_drawable</item>
+        <!-- <item name="android:layout_weight">1.0</item> -->
+    </style>
+    <style name="upomp_lthj_buttons_tab_layout" parent="@style/upomp_lthj_layout_width_height_fw">
+    	<item name="android:paddingTop">@dimen/upomp_lthj_buttons_tab_pad_top</item>
+    	<item name="android:paddingLeft">@dimen/upomp_lthj_buttons_tab_pad_left</item>
+    	<item name="android:paddingRight">@dimen/upomp_lthj_buttons_tab_pad_right</item>
+    </style>
+    <style name="upomp_lthj_buttons_tab_left">
+    	<item name="android:textSize">@dimen/upomp_lthj_buttons_tab_font_size</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_white</item>
+    	<item name="android:background">@drawable/upomp_lthj_title_button_group_left</item>
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">@dimen/upomp_lthj_buttons_tab_h</item>
+    	<item name="android:gravity">center</item>
+    </style>
+    <style name="upomp_lthj_buttons_tab_mid">
+    	<item name="android:textSize">@dimen/upomp_lthj_buttons_tab_font_size</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_white</item>
+    	<item name="android:background">@drawable/upomp_lthj_title_button_group_middle</item>
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">@dimen/upomp_lthj_buttons_tab_h</item>
+    	<item name="android:gravity">center</item>
+    </style>
+    <style name="upomp_lthj_buttons_tab_right">
+    	<item name="android:textSize">@dimen/upomp_lthj_buttons_tab_font_size</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_white</item>
+    	<item name="android:background">@drawable/upomp_lthj_title_button_group_right</item>
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">@dimen/upomp_lthj_buttons_tab_h</item>
+    	<item name="android:gravity">center</item>
+    </style>
+    
+    <style name="upomp_lthj_button_single">
+    	<item name="android:textSize">@dimen/upomp_lthj_button_single_font_size</item>
+    	<item name="android:layout_width">fill_parent</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:gravity">center</item>
+    	<item name="android:paddingLeft">10.0dip</item>
+		<item name="android:paddingRight">10.0dip</item>
+    </style>
+    
+    <style name="upomp_lthj_button_ok_single">
+    	<item name="android:textSize">@dimen/upomp_lthj_button_single_font_size</item>
+    	<item name="android:textColor">#ffffff</item>
+    	<item name="android:background">@drawable/upomp_lthj_ok</item>
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:gravity">center</item>
+    	<item name="android:layout_alignParentRight">true</item>
+    </style>
+    
+    <style name="upomp_lthj_button_cancle_single">
+    	<item name="android:textSize">@dimen/upomp_lthj_button_single_font_size</item>
+    	<item name="android:textColor">#595959</item>
+    	<item name="android:background">@drawable/upomp_lthj_cancel</item>
+    	<item name="android:layout_width">wrap_content</item>
+    	<item name="android:layout_height">wrap_content</item>
+    	<item name="android:gravity">center</item>
+    	<item name="android:layout_alignParentLeft">true</item>
+    </style>
+    
+    <style name="upomp_lthj_button_twice">
+    	<item name="android:textSize">@dimen/upomp_lthj_button_single_font_size</item>
+    	<item name="android:layout_width">fill_parent</item>
+    	<item name="android:layout_height">@dimen/upomp_lthj_button_single_h</item>
+    	<item name="android:gravity">center</item>
+    </style>
+    
+    <style name="upomp_lthj_textView_bold" parent="@style/upomp_lthj_layout_width_height_fw">
+    	<item name="android:textStyle">bold</item>
+    	<item name="android:textSize">@dimen/upomp_lthj_textView_bold_font_size</item>
+    	<item name="android:textColor">#ff242e38</item>
+    </style>
+    <style name="upomp_lthj_textView_info" parent="@style/upomp_lthj_layout_width_height_ww">
+    	<item name="android:textSize">@dimen/upomp_lthj_buttons_tab_font_size</item>
+    	<item name="android:gravity">left</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_black</item>
+    	<item name="android:layout_marginLeft">@dimen/upomp_lthj_buttons_tab_pad_left</item>
+    </style>
+    <style name="upomp_lthj_textView_title" parent="@style/upomp_lthj_layout_width_height_ww">
+    	<item name="android:textSize">@dimen/upomp_lthj_textview_font_size</item>
+    	<item name="android:gravity">left|center_vertical</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_black</item>
+    	<item name="android:layout_marginRight">@dimen/upomp_lthj_textview_margin_right</item> 
+    </style>
+    
+    <style name="upomp_lthj_editTextRight" parent="@style/upomp_lthj_layout_width_height_fw">
+    	<item name="android:layout_marginLeft">@dimen/upomp_lthj_view_gap_horizontal</item>
+    	<item name="android:gravity">right</item>
+        <item name="android:textColorHint">@drawable/upomp_lthj_gray</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_height">@dimen/upomp_lthj_edittext_height</item>
+    </style>
+    <style name="upomp_lthj_radioRight" parent="@style/upomp_lthj_layout_width_height_fw">
+    	<item name="android:layout_marginLeft">@dimen/upomp_lthj_view_gap_horizontal</item>
+    	<item name="android:textSize">@dimen/upomp_lthj_edittext_font_size</item>
+    	<item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColorHint">@drawable/upomp_lthj_gray</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="upomp_lthj_editTextLeft" parent="@style/upomp_lthj_layout_width_height_fw">
+    	<item name="android:layout_marginLeft">@dimen/upomp_lthj_view_gap_horizontal</item>
+    	<item name="android:textSize">@dimen/upomp_lthj_edittext_font_size</item>
+    	<item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColorHint">@drawable/upomp_lthj_gray</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxWidth">@dimen/upomp_lthj_middle_edittext</item>
+        <item name="android:layout_weight">1.0</item>
+       
+    </style> 
+    
+    <style name="upomp_lthj_textView_addbank" parent="@style/upomp_lthj_layout_width_height_ww">
+    	<item name="android:textColor">@drawable/upomp_lthj_black</item>
+    	<item name="android:textSize">@dimen/upomp_lthj_textview_font_size</item>
+    	<item name="android:gravity">right</item>
+    </style>
+    <style name="upomp_lthj_keyboard_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/upomp_lthj_filled_box</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="upomp_lthj_common_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/upomp_lthj_progress_bg</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="upomp_lthj_other_bankcard_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/upomp_lthj_corner_round_all</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="upomp_lthj_textView_title_left" parent="@style/upomp_lthj_layout_width_height_ww">
+    	<item name="android:textSize">@dimen/upomp_lthj_textview_font_size</item>
+    	<item name="android:gravity">left</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_black</item>
+    	<item name="android:layout_marginLeft">@dimen/upomp_lthj_major_textview_padd_left</item>
+    </style>
+    <style name="upomp_lthj_textView_major_left" parent="@style/upomp_lthj_layout_width_height_ww">
+    	<item name="android:textSize">@dimen/upomp_lthj_textview_font_size</item>
+    	<item name="android:gravity">left</item>
+    	<item name="android:textColor">@drawable/upomp_lthj_red</item>
+    	<item name="android:layout_marginLeft">@dimen/upomp_lthj_major_textview_padd_left</item>
+    </style>
+    <style name="upomp_lthj_mySpinnerStyle" parent="@android:style/Widget.Spinner"> 
+	</style> 
+	<style name="upomp_lthj_tablerow">
+		 <item name="android:layout_width">fill_parent</item>
+       	 <item name="android:layout_height">20.0dip</item>
+		 <item name="android:paddingTop">5.0dip</item>
+		 <item name="android:paddingLeft">10.0dip</item>
+		 <item name="android:paddingBottom">5.0dip</item>
+		 <item name="android:paddingRight">10.0dip</item>
+	</style> 
+</resources>

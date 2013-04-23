@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	如意助手列表列的布局
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ruyihelper_linerlayout" 
+	android:orientation="horizontal"
+	android:gravity="left"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" >
+	
+	<ImageView 
+		android:id="@+id/ruyihelper_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+		
+	<TextView 
+		android:id="@+id/ruyihelper_text"
+		android:textColor="@color/black"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+	</TextView>
+
+</LinearLayout>
