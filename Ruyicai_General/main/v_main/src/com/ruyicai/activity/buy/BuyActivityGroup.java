@@ -81,6 +81,11 @@ public class BuyActivityGroup extends ActivityGroup {
     protected TextView lastCodeTxt;
 	protected Button refreshBtn;
 	/*Add by fansm 20130417 end*/
+	
+	/**add by yejc 20130422 start*/
+	protected String event;
+	public static final String REQUEST_EVENT = "event";
+	/**add by yejc 20130422 start*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -694,6 +699,9 @@ public class BuyActivityGroup extends ActivityGroup {
 		topTitle.setText(titles[index]);
 		Intent intent = new Intent(BuyActivityGroup.this, allId[index]);
 		intent.putExtra("index", index);
+		/**add by yejc 20130422 start*/
+		intent.putExtra(REQUEST_EVENT, event);
+		/**add by yejc 20130422 end*/
 		firstSpec = mTabHost.newTabSpec(titles[index])
 				.setIndicator(indicatorTab).setContent(intent);
 		mTabHost.addTab(firstSpec);

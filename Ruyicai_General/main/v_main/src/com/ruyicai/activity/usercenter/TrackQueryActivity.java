@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.method.DigitsKeyListener;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -708,6 +710,13 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		editBeishu.setText(beishu);
 		title.setText(getString(R.string.continue_title));
 		contentTitle.setText(getString(R.string.continue_content_title));
+		
+		/**add by yejc 20130424 start*/
+		TextView trackNumber = (TextView)viewDialog.findViewById(R.id.user_center_track_number_text);
+		trackNumber.setMovementMethod(ScrollingMovementMethod.getInstance()); 
+		String betCode = info.getBetCode().trim();
+		trackNumber.setText(betCode);
+		/**add by yejc 20130424 end*/
 		// title.setTextSize(PublicMethod.getPxInt(15, context));
 		// contentTitle.setTextSize(PublicMethod.getPxInt(14, context));
 		editIssue.setKeyListener(new DigitsKeyListener());
@@ -716,14 +725,12 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				continueDialog.cancel();
 			}
 		});
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String issueNum = editIssue.getText().toString();
 				String beishu = editBeishu.getText().toString();
 				if (issueNum.equals("")) {

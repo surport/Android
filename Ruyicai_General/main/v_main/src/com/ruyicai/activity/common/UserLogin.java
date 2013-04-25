@@ -59,6 +59,7 @@ import com.ruyicai.net.newtransaction.LoginAcrossWeibo;
 import com.ruyicai.net.newtransaction.LoginInterface;
 import com.ruyicai.net.newtransaction.RegisterInterface;
 import com.ruyicai.util.CallServicePhoneConfirm;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.RWSharedPreferences;
 import com.tencent.tauth.TAuthView;
@@ -793,6 +794,33 @@ public class UserLogin extends Activity implements TextWatcher {
 		final LinearLayout layoutId = (LinearLayout) findViewById(R.id.user_register_linear_card_id);
 		final LinearLayout layoutReferrer = (LinearLayout) findViewById(R.id.user_register_linear_referrer);
 
+		/**add by yejc 20130424 start*/
+		cardIdEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (!hasFocus) {
+					String cardId = cardIdEdit.getText().toString();
+					if (!CheckUtil.isValidCard(cardId)) {
+						Toast.makeText(UserLogin.this, R.string.input_card_id_error, Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+		});
+		
+		nameEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (!hasFocus) {
+					String name = nameEdit.getText().toString();
+					if (!CheckUtil.isValidName(name)) {
+						Toast.makeText(UserLogin.this, R.string.input_name_error, Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+		});
+		/**add by yejc 20130424 end*/
 		// 绑定手机号复选框
 		// CheckBox check = (CheckBox) findViewById(R.id.user_register_check);
 		// check.setButtonDrawable(R.drawable.check_select);
@@ -899,12 +927,16 @@ public class UserLogin extends Activity implements TextWatcher {
 					if (cardId.equals("") || cardId == null) {
 						Toast.makeText(getBaseContext(), "身份证不能为空！",
 								Toast.LENGTH_LONG).show();
-					} else if (!isCardId(cardId)) {
+//					} else if (!isCardId(cardId)) { //close by yejc 20130424
+					} else if (!CheckUtil.isValidCard(cardId)) {  //add by yejc 20130424	 
 						Toast.makeText(getBaseContext(), "您输入的身份证不正确，请重新输入！",
 								Toast.LENGTH_LONG).show();
 					} else if (realName.equals("") || realName == null) {
 						Toast.makeText(getBaseContext(), "真实姓名不能为空！",
 								Toast.LENGTH_LONG).show();
+					} else if(!CheckUtil.isValidName(realName)) { //add by yejc 20130424
+						Toast.makeText(UserLogin.this,
+								R.string.input_name_error, Toast.LENGTH_LONG).show();
 					} else {
 						beginRegister(phoneNum, password, cardId, realName,
 								null);

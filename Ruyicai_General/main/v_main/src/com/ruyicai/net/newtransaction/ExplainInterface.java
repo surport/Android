@@ -39,4 +39,26 @@ public class ExplainInterface {
 
 		return re;
 	}
+	
+	/**add by yejc 20130422 start*/
+	public static String getRecommendStr(String event, String type, 
+			String pageindex, String maxresult) {
+		String str = "";
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
+			jsonProtocol.put(ProtocolManager.REGUESTTYPE, type);
+			jsonProtocol.put(ProtocolManager.EVENT, event);
+			jsonProtocol.put(ProtocolManager.PAGEINDEX, pageindex);
+			jsonProtocol.put(ProtocolManager.MAXRESULT, maxresult);
+			str = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return str;
+	}
+	/**add by yejc 20130422 end*/
 }

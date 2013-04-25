@@ -1,6 +1,7 @@
 package com.ruyicai.activity.usercenter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,10 +47,12 @@ import com.ruyicai.activity.info.LotInfoDomain;
 import com.ruyicai.activity.more.FeedBack;
 import com.ruyicai.activity.usercenter.UserScoreActivity.ScroeQueryAdapter;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.net.newtransaction.DeleteMessage;
 import com.ruyicai.net.newtransaction.LetterQueryInterface;
 import com.ruyicai.net.newtransaction.MsgUpdateReadState;
 import com.ruyicai.net.newtransaction.QueryintegrationInterface;
 import com.ruyicai.net.newtransaction.UpdateReadState;
+import com.ruyicai.util.ProtocolManager;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
@@ -91,13 +95,43 @@ public class FeedbackListActivity extends Activity {
 	TextView lettercount;
 	TextView feedbackcount;
 	String msgReadStateId = "";// 我的消息所有未读id
+	
+	/**add by yejc 20130419 start*/
+	private boolean isLatterEdit = false;  //标记站内信是否点击了编辑按钮
+	private boolean isLatterSelectAll = false; //标记站内信是否点击了全选按钮
+	private boolean isMessageSelectAll = false; //标记我的留言是否点击了全选按钮
+	private boolean isMessageEdit = false; //标记我的留言是否点击了编辑按钮
+	private LinearLayout submitLayout;
+	private LinearLayout latterEditLayout;
+	private LinearLayout messageEditLayout;
+	private Button latterSelectAllBtn;
+	private Button messageSelectAllBtn;
+	private Button editBut;
+	private String selectAllKey = "selectAllKey";
+	private String infoType = "infoType";
+	private final String LATTERCOMMAND = "letter";
+	private final String MSGCOMMAND = "feedback";
+	private final String BROADCAST_ACTION  = "BROADCAST_ACTION";
+	FeedbackListAdapter listAdapter;
+	/*存放选择的站内信*/
+	private Map<Integer, Boolean> selectLatterMap = new HashMap<Integer, Boolean>();
+	/*存放选择的我的留言*/
+	private Map<Integer, Boolean> selectMessageMap = new HashMap<Integer, Boolean>();
+	private List<Integer> selectedMsgList = new ArrayList<Integer>();
+//	private List<Integer> selectedMsgList = new ArrayList<Integer>();
+	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
+	/**add by yejc 20130419 end*/
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mymessage);
+		/**add by yejc 20130422 start*/
+		if(Constants.isDebug) {
+			PublicMethod.outLog(getClass().getSimpleName(), "onCreate");
+		}
+		/**add by yejc 20130422 end*/
 		initBtn();
 
 		shellRW = new RWSharedPreferences(this, "addInfo");
@@ -115,7 +149,7 @@ public class FeedbackListActivity extends Activity {
 		}
 		mTabHost.setOnTabChangedListener(scroeTabChangedListener);
 		userno = shellRW.getStringValue("userno");
-		getInfoNet(userno, latterIndex);
+		getInfoNet(userno, latterIndex, false);
 		// initLinear(message,linearId[0],initmessage())
 	}
 
@@ -140,16 +174,41 @@ public class FeedbackListActivity extends Activity {
 				// initLinear(scroedetail, linearId[0], view);
 				type = 0;
 				if (latterlist.size() > 0) {
-					initLinear(latter, linearId[0], initlatterview());
+					initLinear(latter, linearId[0], initlatterview(true));
 				} else {
-					getInfoNet(userno, latterIndex);
+					getInfoNet(userno, latterIndex, false);
 				}
+				/**add by yejc 20130422 start*/
+				if (isLatterEdit) {
+					editBut.setText(R.string.my_message_edit_cancel);
+					latterEditLayout.setVisibility(View.VISIBLE);
+					submitLayout.setVisibility(View.GONE);
+				} else {
+					editBut.setText(R.string.my_message_edit_text);
+					submitLayout.setVisibility(View.VISIBLE);
+				}
+				messageEditLayout.setVisibility(View.GONE);
+				adapter.notifyDataSetChanged();
+				/**add by yejc 20130422 end*/
 			} else if (tabId.equals(titles[1])) {
 				type = 1;
 				initLinear(message, linearId[1], initmessage());
 				feedbackcount.setVisibility(View.GONE);
-				if (!msgReadStateId.equals(""))
+				if (!msgReadStateId.equals("")) {
 					msgUpdateReadState(msgReadStateId);// 更新已读状态
+				}
+				
+				/**add by yejc 20130422 start*/
+				if (isMessageEdit) {
+					editBut.setText(R.string.my_message_edit_cancel);
+					messageEditLayout.setVisibility(View.VISIBLE);
+					submitLayout.setVisibility(View.GONE);
+				} else {
+					editBut.setText(R.string.my_message_edit_text);
+					submitLayout.setVisibility(View.VISIBLE);
+				}
+				latterEditLayout.setVisibility(View.GONE);
+				/**add by yejc 20130422 end*/
 			}
 
 		}
@@ -171,7 +230,7 @@ public class FeedbackListActivity extends Activity {
 		linear.addView(view);
 	}
 
-	private View initlatterview() {
+	private View initlatterview(boolean flag) {
 		tabSpecLinearView = (LinearLayout) mInflater.inflate(
 				R.layout.usercenter_listview_layout, null);
 		tabSpecListView = (ListView) tabSpecLinearView
@@ -185,10 +244,7 @@ public class FeedbackListActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
-				// TODO Auto-generated method stub
 				addmore();
 			}
 		});
@@ -236,14 +292,12 @@ public class FeedbackListActivity extends Activity {
 					.getStringExtra("feedBackArray"));
 			initListViewAfterNet(feedBackArray);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tabSpecLinearView;
 	}
 
 	private void initListViewAfterNet(JSONArray feedarray) {
-		// TODO Auto-generated method stub
 		feedList.clear();
 		for (int i = 0; i < feedarray.length(); i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -258,8 +312,8 @@ public class FeedbackListActivity extends Activity {
 				map.put("createTime", item.getString(CREATETIME));
 				map.put("reply", item.getString(REPLY));
 				map.put("content", item.getString(CONTENT));
+				map.put("id", item.getString("id"));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			feedList.add(map);
@@ -269,7 +323,7 @@ public class FeedbackListActivity extends Activity {
 					msgReadStateId.length() - 1);
 		}
 
-		FeedbackListAdapter listAdapter = new FeedbackListAdapter(this,
+		listAdapter = new FeedbackListAdapter(this,
 				feedList);
 		feedbackList.setAdapter(listAdapter);
 	}
@@ -279,20 +333,345 @@ public class FeedbackListActivity extends Activity {
 		feedback = (Button) findViewById(R.id.usercenter_feedback_submitbtn);
 		feedback.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent1 = new Intent(FeedbackListActivity.this,
 						FeedBack.class);
 				startActivity(intent1);
 			}
 		});
+		
+		/**add by yejc 20130419 start*/
+		EditOnClickListener editListener = new EditOnClickListener();
+		submitLayout = (LinearLayout)findViewById(R.id.usercenter_feedback_submitbtn_layout);
+		latterEditLayout = (LinearLayout)findViewById(R.id.usercenter_feedback_latter_edit_layout);
+		messageEditLayout = (LinearLayout)findViewById(R.id.usercenter_feedback_message_edit_layout);
+		editBut = (Button)findViewById(R.id.my_message_edit_button);
+		latterSelectAllBtn = (Button)findViewById(R.id.my_latter_select_all_button);
+		messageSelectAllBtn = (Button)findViewById(R.id.my_message_select_all_button);
+		Button readMsgBtn = (Button)findViewById(R.id.my_latter_read_msg_button);
+		Button delLatterBtn = (Button)findViewById(R.id.my_latter_delete_msg_button);
+		Button delMsgBtn = (Button)findViewById(R.id.my_message_delete_msg_button);
+		
+		editBut.setOnClickListener(editListener);
+		latterSelectAllBtn.setOnClickListener(editListener);
+		messageSelectAllBtn.setOnClickListener(editListener);
+		readMsgBtn.setOnClickListener(editListener);
+		delLatterBtn.setOnClickListener(editListener);
+		delMsgBtn.setOnClickListener(editListener);
+		/**add by yejc 20130419 end*/
 	}
+	
+	/**add by yejc 20130419 start*/
+	private class EditOnClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			Button button = (Button) v;
+			switch (v.getId()) {
+			case R.id.my_message_edit_button:  //编辑按钮
+				if (type == 0) {
+					if (getResources().getString(R.string.my_message_edit_text)
+							.equals(button.getText().toString())) {
+						isLatterEdit = true;
+						button.setText(R.string.my_message_edit_cancel);
+						submitLayout.setVisibility(View.GONE);
+						latterEditLayout.setVisibility(View.VISIBLE);
+					} else {
+						isLatterEdit = false;
+						button.setText(R.string.my_message_edit_text);
+						submitLayout.setVisibility(View.VISIBLE);
+						latterEditLayout.setVisibility(View.GONE);
+						latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					}
+					initLatterMapStatus(false);
+					messageEditLayout.setVisibility(View.GONE);
+					adapter.notifyDataSetChanged();
+				} else {
+					if (getResources().getString(R.string.my_message_edit_text)
+							.equals(button.getText().toString())) {
+						isMessageEdit = true;
+						button.setText(R.string.my_message_edit_cancel);
+						submitLayout.setVisibility(View.GONE);
+						messageEditLayout.setVisibility(View.VISIBLE);
+					} else {
+						isMessageEdit = false;
+						button.setText(R.string.my_message_edit_text);
+						submitLayout.setVisibility(View.VISIBLE);
+						messageEditLayout.setVisibility(View.GONE);
+						messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					}
+					initMessageMapStatus(false);
+					latterEditLayout.setVisibility(View.GONE);
+					listAdapter.notifyDataSetChanged();
+				}
+				
+				break;
+
+				//站内信全选按钮
+			case R.id.my_latter_select_all_button:
+				isLatterSelectAll = !isLatterSelectAll;
+				if (isLatterSelectAll) {
+					initLatterMapStatus(true);
+					button.setText(R.string.my_message_edit_cancel_select_all);
+				} else {
+					initLatterMapStatus(false);
+					button.setText(R.string.my_message_edit_select_all);
+				}
+				adapter.notifyDataSetChanged();
+
+				break;
+
+				//站内信标记为已读按钮
+			case R.id.my_latter_read_msg_button:
+				if(selectLatterMap.containsValue(true)) {
+					updateReadState(getSelectedLatterIds());
+				}
+				break;
+
+				//站内信删除按钮
+			case R.id.my_latter_delete_msg_button:
+				if (selectLatterMap.containsValue(true)) {
+					deleteLatter();
+				}
+				break;
+				
+				//我的留言全选按钮
+			case R.id.my_message_select_all_button:
+				isMessageSelectAll = !isMessageSelectAll;
+				if (isMessageSelectAll) {
+					initMessageMapStatus(true);
+					button.setText(R.string.my_message_edit_cancel_select_all);
+				} else {
+					initMessageMapStatus(false);
+					button.setText(R.string.my_message_edit_select_all);
+				}
+				listAdapter.notifyDataSetChanged();
+				break;
+				//我的留言删除按钮
+			case R.id.my_message_delete_msg_button:
+				if (selectMessageMap.containsValue(true)) {
+					deleteMsg();
+				}
+				break;	
+
+			default:
+				break;
+			}
+		}
+	}
+
+	/*初始化*/
+	private void initLatterMapStatus(boolean flag) {
+		int count = adapter.getCount();
+		selectLatterMap.clear();
+		for (int i = 0; i<count; i++) {
+			selectLatterMap.put(i, flag);
+		}
+	}
+	
+	private void initMessageMapStatus(boolean flag) {
+		int count = listAdapter.getCount();
+		selectMessageMap.clear();
+		for (int i = 0; i<count; i++) {
+			selectMessageMap.put(i, flag);
+		}
+	}
+	
+//	private void initMapStatus(BaseAdapter adapter, Map<Integer, Boolean> map, boolean flag) {
+//		int count = adapter.getCount();
+//		map.clear();
+//		for (int i = 0; i<count; i++) {
+//			map.put(i, flag);
+//		}
+//	}
+	
+	/*获取选择站内信的所有ID*/
+	private String getSelectedLatterIds() {
+		String ids = "";
+		selectedMsgList.clear();
+		for (int i = 0; i < selectLatterMap.size(); i++) {
+			if (selectLatterMap.get(i)) {
+				ids += latterlist.get(i).getNewsId()+",";
+				selectedMsgList.add(i);
+			}
+		}
+		ids = ids.substring(0, ids.length() - 1);
+		return ids;
+	}
+	/*获取选择我的留言的所有ID*/
+	private String getSelectedMsgIds() {
+		String ids = "";
+		selectedMsgList.clear();
+		for (int i = 0; i < selectMessageMap.size(); i++) {
+			if (selectMessageMap.get(i)) {
+				ids += feedList.get(i).get("id")+",";
+				selectedMsgList.add(i);
+			}
+		}
+		ids = ids.substring(0, ids.length() - 1);
+		return ids;
+	}
+	/*删除站内信方法*/
+	private void deleteLatter() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String str = DeleteMessage.deleteMsg(LATTERCOMMAND,
+						ProtocolManager.REGUESTTYPE, getSelectedLatterIds());
+				try {
+					JSONObject obj = new JSONObject(str);
+					String strarry = obj.getString("error_code");
+					if ("0000".equals(strarry)) {
+						handler.sendEmptyMessage(1);
+					} else {
+						Toast.makeText(FeedbackListActivity.this,
+								R.string.feedback_network_connection_error,
+								Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	/*删除我的留言方法*/
+	private void deleteMsg() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String str = DeleteMessage.deleteMsg(MSGCOMMAND,
+						ProtocolManager.TYPE, getSelectedMsgIds());
+				try {
+					JSONObject obj = new JSONObject(str);
+					String strarry = obj.getString("error_code");
+					if ("0000".equals(strarry)) {
+						handler.sendEmptyMessage(2);
+					} else {
+						Toast.makeText(FeedbackListActivity.this,
+								R.string.feedback_network_connection_error,
+								Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	
+	public class ShowSelectTextBroadCast extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			int type = intent.getIntExtra(infoType, -1);
+			if (type == 0) {
+				if (intent.getBooleanExtra(selectAllKey, false)) {
+					latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					isLatterSelectAll = false;
+				} else {
+					if(!selectLatterMap.containsValue(false)) {
+						isLatterSelectAll = true;
+						latterSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
+					}
+				}
+			} else {
+				if (intent.getBooleanExtra(selectAllKey, false)) {
+					messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					isMessageSelectAll = false;
+				} else {
+					if(!selectMessageMap.containsValue(false)) {
+						isMessageSelectAll = true;
+						messageSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
+					}
+				}
+			}
+			
+		}
+		
+	}
+	/**add by yejc 20130419 end*/
 
 	Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			// TODO Auto-generated method stub
 			super.handleMessage(msg);
+			Intent intent = new Intent("noreadupdate");
 			switch (msg.what) {
+			/**add by yejc 20130423 start*/
+			case 0:
+				boolean isReadMsg = false;
+				isLatterEdit = false;
+				editBut.setText(R.string.my_message_edit_text);
+				submitLayout.setVisibility(View.VISIBLE);
+				latterEditLayout.setVisibility(View.GONE);
+				initLatterMapStatus(false);
+				for(int i=0; i<selectedMsgList.size();i++) {
+					if ("0".equals(((LotInfoDomain)latterlist.get(selectedMsgList.get(i))).getReadState())) {
+						((LotInfoDomain)latterlist.get(selectedMsgList.get(i))).setReadState("1");
+						notReadLetterCount--;
+						isReadMsg = true;
+					}
+				}
+				adapter.notifyDataSetChanged();
+				initLatterMapStatus(false);
+				if (isReadMsg) {
+					if (mTabHost.getCurrentTab() == 0) {
+						if (notReadLetterCount >= 0) {
+							shellRW.putStringValue("notReadLetterCount",
+									String.valueOf(notReadLetterCount));
+							lettercount.setVisibility(View.VISIBLE);
+							lettercount.setText(String.valueOf(notReadLetterCount));
+						} else {
+							lettercount.setVisibility(View.GONE);
+						}
+					}
+					mTabHost.invalidate();
+					sendBroadcast(intent);
+				}
+				selectedMsgList.clear();
+				break;
+				
+			case 1:
+				boolean isDeleteReadMsg = false;
+				Collections.sort(selectedMsgList);
+				for(int i=selectedMsgList.size() -1; i>-1;i--) {
+					if ("0".equals(((LotInfoDomain)latterlist.get(selectedMsgList.get(i))).getReadState())) {
+						notReadLetterCount--;
+						isDeleteReadMsg = true;
+					}
+					int index = (int)selectedMsgList.get(i);
+					latterlist.remove(index);
+				}
+				adapter.notifyDataSetChanged();
+				initLatterMapStatus(false);
+				if (isDeleteReadMsg) {
+					if (mTabHost.getCurrentTab() == 0) {
+						if (notReadLetterCount >= 0) {
+							shellRW.putStringValue("notReadLetterCount",
+									String.valueOf(notReadLetterCount));
+							lettercount.setVisibility(View.VISIBLE);
+							lettercount.setText(String.valueOf(notReadLetterCount));
+						} else {
+							lettercount.setVisibility(View.GONE);
+						}
+					}
+					mTabHost.invalidate();
+					sendBroadcast(intent);
+				}
+				selectedMsgList.clear();
+				break;	
+				
+			case 2:
+				Collections.sort(selectedMsgList);
+				for(int i=selectedMsgList.size()-1; i>-1;i--) {
+					int index = (int)selectedMsgList.get(i);
+					feedList.remove(index);
+				}
+				initMessageMapStatus(false);
+				listAdapter.notifyDataSetChanged();
+				break;
+
+			default:
+				break;
+				/**add by yejc 20130423 end*/
 			}
 		}
 	};
@@ -301,21 +680,27 @@ public class FeedbackListActivity extends Activity {
 	 * 点击向后按钮调用的方法
 	 */
 	private void addmore() {
-
+		
 		latterIndex++;
 		if (latterIndex > latterPages - 1) {
 			latterIndex = latterPages - 1;
 			progressbar.setVisibility(view.INVISIBLE);
+			/**add by yejc 20130422 start*/
+			Intent intent = new Intent(BROADCAST_ACTION);
+			intent.putExtra(selectAllKey, false);
+			intent.putExtra(infoType, type);
+			sendBroadcast(intent);
+			/**add by yejc 20130422 end*/
 			// tabSpecListView.removeFooterView(view);
 			Toast.makeText(FeedbackListActivity.this,
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
 		} else {
-			getInfoNet(userno, latterIndex);
+			getInfoNet(userno, latterIndex, true);
 		}
 
 	}
 
-	private void getInfoNet(final String userno1, final int pageIndex) {
+	private void getInfoNet(final String userno1, final int pageIndex, final boolean flag) {
 		if (latterIndex == 0) {
 			showDialog(0);
 		} else if (progressbar != null) {
@@ -348,7 +733,6 @@ public class FeedbackListActivity extends Activity {
 							if (dialog != null) {
 								dismissDialog(0);
 							}
-							// TODO Auto-generated method stub
 
 							if (progressbar != null && view != null) {
 								progressbar.setVisibility(ProgressBar.GONE);
@@ -356,15 +740,33 @@ public class FeedbackListActivity extends Activity {
 							}
 							if (latterIndex == 0) {
 								initLinear(latter, linearId[0],
-										initlatterview());
+										initlatterview(false));
 							} else {
-								adapter.notifyDataSetChanged();
+								/**add by yejc 20130422 start*/
+								if (flag) {
+									Map<Integer, Boolean> tempMap = new HashMap<Integer, Boolean>();
+									int count = adapter.getCount();
+									tempMap.clear();
+									for (int i = 0; i<count; i++) {
+										tempMap.put(i, false);
+									}
+									tempMap.putAll(selectLatterMap);
+									selectLatterMap = tempMap;
+									adapter.notifyDataSetChanged();
+									Intent intent = new Intent(BROADCAST_ACTION);
+									intent.putExtra(selectAllKey, true);
+									intent.putExtra(infoType, type);
+									sendBroadcast(intent);
+									/**add by yejc 20130422 end*/
+								} else {
+									adapter.notifyDataSetChanged();
+								}
+								
 							}
 						}
 					});
 
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					handler.post(new Runnable() {
 
 						@Override
@@ -372,7 +774,6 @@ public class FeedbackListActivity extends Activity {
 							if (dialog != null) {
 								dismissDialog(0);
 							}
-							// TODO Auto-generated method stub
 							if (progressbar != null && view != null) {
 								progressbar.setVisibility(ProgressBar.GONE);
 								view.setEnabled(true);
@@ -433,49 +834,136 @@ public class FeedbackListActivity extends Activity {
 			} else {
 				holder.layout.setBackgroundResource(R.drawable.zx_list_bg_gray);
 			}
-			if (mList.get(position).getReadState().equals("0")) {
-				holder.icon.setVisibility(View.VISIBLE);
-				holder.icon.setImageResource(R.drawable.notread);
-			} else {
-				holder.icon.setVisibility(View.GONE);
-			}
-			holder.content.setText(Html.fromHtml((String) mList.get(position)
-					.getTitle()));
-			holder.content.setTextColor(mList.get(position).getTextcolor());
-			final ImageView iconread = holder.icon;
-			holder.content.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(final View v) {
-					TextView textview = (TextView) v;
-					mList.get(index).setTextcolor(Color.RED);
-					textview.setTextColor(mList.get(index).getTextcolor());
-					contentjson = mList.get(index).getContent();
-					title = mList.get(index).getTitle();
-					if (mList.get(index).getReadState().equals("0")) {
-						iconread.setVisibility(View.GONE);
-						if (mTabHost.getCurrentTab() == 0) {
-							if (notReadLetterCount > 0) {
-								notReadLetterCount--;
-								shellRW.putStringValue("notReadLetterCount",
-										String.valueOf(notReadLetterCount));
-
-							} else {
-								lettercount.setVisibility(View.GONE);
-							}
-						}
-
-						mTabHost.invalidate();
-						Intent intent = new Intent("noreadupdate");
-						sendBroadcast(intent);
-
-						//改变已经阅读信息的状态
-						mList.get(index).setReadState("1");
-						
-						updateReadState(mList.get(index).getNewsId());
-					}
-					turnContentActivity();
+			/**add by yejc 20130419 start*/
+			if (isLatterEdit) {
+				if (mList.get(position).getReadState().equals("0")) {
+					holder.content.setTextColor(Color.RED);
+				} else {
+					holder.content.setTextColor(Color.BLACK);
 				}
-			});
+				holder.content.setText(mList.get(position).getTitle());
+				holder.content.setEnabled(false);
+				holder.icon.setVisibility(View.VISIBLE);
+				if (selectLatterMap.containsKey(position)) {
+					if (selectLatterMap.get(position)) {
+						holder.icon.setImageResource(R.drawable.check_button_b);
+					} else {
+						holder.icon.setImageResource(R.drawable.check_button);
+					}
+				} else {
+					holder.icon.setImageResource(R.drawable.check_button);
+				}
+				holder.icon.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						ImageView iv = (ImageView)v;
+						if (selectLatterMap.containsKey(position)) {
+							Intent intent = new Intent(BROADCAST_ACTION);
+							intent.putExtra(infoType, type);
+							if (selectLatterMap.get(position)) {
+								selectLatterMap.put(position, false);
+								intent.putExtra(selectAllKey, true);
+								iv.setImageResource(R.drawable.check_button);
+							} else {
+								selectLatterMap.put(position, true);
+								intent.putExtra(selectAllKey, false);
+								iv.setImageResource(R.drawable.check_button_b);
+							}
+							sendBroadcast(intent);
+						}
+					}
+				});
+			} else {
+				if (mList.get(position).getReadState().equals("0")) {
+					holder.icon.setVisibility(View.VISIBLE);
+					holder.icon.setImageResource(R.drawable.notread);
+				} else {
+					holder.icon.setVisibility(View.GONE);
+				}
+				holder.content.setText(Html.fromHtml((String) mList.get(position)
+						.getTitle()));
+				holder.content.setEnabled(true);
+				holder.content.setTextColor(mList.get(position).getTextcolor());
+				final ImageView iconread = holder.icon;
+				holder.content.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(final View v) {
+						TextView textview = (TextView) v;
+						mList.get(index).setTextcolor(Color.RED);
+						textview.setTextColor(mList.get(index).getTextcolor());
+						contentjson = mList.get(index).getContent();
+						title = mList.get(index).getTitle();
+						if (mList.get(index).getReadState().equals("0")) {
+							iconread.setVisibility(View.GONE);
+							if (mTabHost.getCurrentTab() == 0) {
+								if (notReadLetterCount > 0) {
+									notReadLetterCount--;
+									shellRW.putStringValue("notReadLetterCount",
+											String.valueOf(notReadLetterCount));
+
+								} else {
+									lettercount.setVisibility(View.GONE);
+								}
+							}
+
+							mTabHost.invalidate();
+							Intent intent = new Intent("noreadupdate");
+							sendBroadcast(intent);
+
+							//改变已经阅读信息的状态
+							mList.get(index).setReadState("1");
+							
+							updateReadState(mList.get(index).getNewsId());
+						}
+						turnContentActivity();
+					}
+				});
+			}
+			/**add by yejc 20130419 end*/
+//			if (mList.get(position).getReadState().equals("0")) {
+//				holder.icon.setVisibility(View.VISIBLE);
+//				holder.icon.setImageResource(R.drawable.notread);
+//			} else {
+//				holder.icon.setVisibility(View.GONE);
+//			}
+//			holder.content.setText(Html.fromHtml((String) mList.get(position)
+//					.getTitle()));
+//			holder.content.setTextColor(mList.get(position).getTextcolor());
+//			final ImageView iconread = holder.icon;
+//			holder.content.setOnClickListener(new OnClickListener() {
+//				@Override
+//				public void onClick(final View v) {
+//					TextView textview = (TextView) v;
+//					mList.get(index).setTextcolor(Color.RED);
+//					textview.setTextColor(mList.get(index).getTextcolor());
+//					contentjson = mList.get(index).getContent();
+//					title = mList.get(index).getTitle();
+//					if (mList.get(index).getReadState().equals("0")) {
+//						iconread.setVisibility(View.GONE);
+//						if (mTabHost.getCurrentTab() == 0) {
+//							if (notReadLetterCount > 0) {
+//								notReadLetterCount--;
+//								shellRW.putStringValue("notReadLetterCount",
+//										String.valueOf(notReadLetterCount));
+//
+//							} else {
+//								lettercount.setVisibility(View.GONE);
+//							}
+//						}
+//
+//						mTabHost.invalidate();
+//						Intent intent = new Intent("noreadupdate");
+//						sendBroadcast(intent);
+//
+//						//改变已经阅读信息的状态
+//						mList.get(index).setReadState("1");
+//						
+//						updateReadState(mList.get(index).getNewsId());
+//					}
+//					turnContentActivity();
+//				}
+//			});
 			return convertView;
 		}
 
@@ -505,8 +993,22 @@ public class FeedbackListActivity extends Activity {
 			@SuppressWarnings("static-access")
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
-				UpdateReadState.getInstance().updateReadState(id);
+				String str = UpdateReadState.getInstance().updateReadState(id);
+				if (isLatterEdit) {
+					try {
+						JSONObject obj = new JSONObject(str);
+						String strarry = obj.getString("error_code");
+						if ("0000".equals(strarry)) {
+							handler.sendEmptyMessage(0);
+						} else {
+							Toast.makeText(FeedbackListActivity.this,
+									R.string.feedback_network_connection_error,
+									Toast.LENGTH_LONG).show();
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}).start();
 	}
@@ -519,13 +1021,12 @@ public class FeedbackListActivity extends Activity {
 			@SuppressWarnings("static-access")
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				MsgUpdateReadState.getInstance().updateReadState(id);
 			}
 		}).start();
 	}
 
-	private class FeedbackListAdapter extends BaseAdapter {
+	public class FeedbackListAdapter extends BaseAdapter {
 
 		private LayoutInflater inflater;
 		private List<Map<String, Object>> mlist;
@@ -538,24 +1039,21 @@ public class FeedbackListActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mlist.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mlist.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup arg2) {
+		public View getView(final int position, View convertView, ViewGroup arg2) {
 			ViewHolder holder = null;
 			String createTime = (String) mlist.get(position).get(CREATETIME);
 			String reply = (String) mlist.get(position).get(REPLY);
@@ -570,6 +1068,10 @@ public class FeedbackListActivity extends Activity {
 						.findViewById(R.id.feededmessage);
 				holder.reply = (TextView) convertView
 						.findViewById(R.id.servicer_reply);
+				/**add by yejc 20130422 start*/
+				holder.icon = (ImageView)convertView
+						.findViewById(R.id.informationitemlable);
+				/**add by yejc 20130422 end*/
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
@@ -588,6 +1090,45 @@ public class FeedbackListActivity extends Activity {
 				
 				}
 			});
+			
+			/**add by yejc 20130422 start*/
+			if (isMessageEdit) {
+				holder.icon.setVisibility(View.VISIBLE);
+				if (selectMessageMap.containsKey(position)) {
+					if (selectMessageMap.get(position)) {
+						holder.icon.setImageResource(R.drawable.check_button_b);
+					} else {
+						holder.icon.setImageResource(R.drawable.check_button);
+					}
+				} else {
+					holder.icon.setImageResource(R.drawable.check_button);
+				}
+				holder.icon.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						ImageView iv = (ImageView)v;
+						if (selectMessageMap.containsKey(position)) {
+							Intent intent = new Intent(BROADCAST_ACTION);
+							intent.putExtra(infoType, type);
+							if (selectMessageMap.get(position)) {
+								selectMessageMap.put(position, false);
+								intent.putExtra(selectAllKey, true);
+								iv.setImageResource(R.drawable.check_button);
+							} else {
+								selectMessageMap.put(position, true);
+								intent.putExtra(selectAllKey, false);
+								iv.setImageResource(R.drawable.check_button_b);
+							}
+							sendBroadcast(intent);
+						}
+					}
+				});
+			} else {
+				holder.icon.setVisibility(View.GONE);
+			}
+			
+			/**add by yejc 20130422 end*/
 			convertView.setTag(holder);
 			return convertView;
 		}
@@ -596,6 +1137,7 @@ public class FeedbackListActivity extends Activity {
 			TextView time;
 			TextView feedcontent;
 			TextView reply;
+			ImageView icon;
 		}
 	}
 
@@ -609,6 +1151,9 @@ public class FeedbackListActivity extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		/**add by yejc 20130419 start*/
+		unregisterReceiver(selectTextBroadCast);
+		 /**add by yejc 20130419 end*/
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
@@ -616,6 +1161,11 @@ public class FeedbackListActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+		/**add by yejc 20130419 start*/
+		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
+        registerReceiver(selectTextBroadCast, filter);
+        /**add by yejc 20130419 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 

@@ -1,17 +1,8 @@
 package com.ruyicai.activity.buy.jc.explain.lq;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.os.Bundle;
-import android.widget.Toast;
-
-import com.ruyicai.activity.buy.jc.explain.zq.AsiaActivity;
-import com.ruyicai.activity.buy.jc.explain.zq.EuropeActivity;
-import com.ruyicai.activity.buy.jc.explain.zq.ExplainListActivity;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.net.newtransaction.ExplainInterface;
+import com.ruyicai.activity.buy.jc.explain.zq.RecommendActivity;
 
 public class JcLqExplainActivity extends JcExplainActivity {
 	public static int Lq_TYPE;
@@ -22,14 +13,15 @@ public class JcLqExplainActivity extends JcExplainActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		event = getIntent().getStringExtra("event");//add by yejc 20130423
 	}
 
 	public void setTitleText() {
 		title.setText(titleStr);
-		titles = new String[] { "分析", "欧指", "让分", "总分" };
+		titles = new String[] { "分析", "欧指", "让分", "总分", "推荐"};
 		allId = new Class[] { LqExplainListActivity.class,
 				LqEuropeActivity.class, LqScoreActivity.class,
-				LqAllScoreActivity.class };
+				LqAllScoreActivity.class, RecommendActivity.class};
 		type = "dataAnalysisJcl";
 	}
 }

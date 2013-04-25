@@ -328,7 +328,6 @@ public class SfView extends JcMainView {
 			guestLayout.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.setWin(!info.isWin());
 						if (info.isWin()) {

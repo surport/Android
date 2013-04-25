@@ -13,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,7 +27,7 @@ import android.widget.Toast;
 public class JcExplainActivity extends BuyActivityGroup {
 	protected String titleStr = "球队数据分析";
 	protected String[] titles = { "分析", "欧指", "亚盘" , "推荐"};
-	protected String[] topTitles = { titleStr, titleStr, titleStr, titleStr };
+	protected String[] topTitles = { titleStr, titleStr, titleStr, titleStr, titleStr};
 	protected Class[] allId = { ExplainListActivity.class,
 			EuropeActivity.class, AsiaActivity.class , RecommendActivity.class};
 	protected Handler handler = new Handler();
@@ -39,6 +40,10 @@ public class JcExplainActivity extends BuyActivityGroup {
 		isIssue(false);
 		setTitleText();
 		getExplainNet(getIntentInfo(), type);
+		/**add by yejc 20130422 start*/
+		event = getIntentInfo();
+		Log.i("yejc", "======event==="+event);
+		/**add by yejc 20130422 end*/
 	}
 
 	public void setTitleText() {

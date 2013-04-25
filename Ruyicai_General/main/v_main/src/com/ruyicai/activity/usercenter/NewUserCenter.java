@@ -103,6 +103,11 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.usercenter_mainlayout);
+		/**add by yejc 20130424 start*/
+		if(Constants.isDebug) {
+			PublicMethod.outLog(getClass().getSimpleName(), "onCreate");
+		}
+		/**add by yejc 20130424 end*/
 		context = this;
 		usercentertop = (LinearLayout) findViewById(R.id.usercentertable);
 		usercenterrigist_no = (LinearLayout) findViewById(R.id.regist_no);

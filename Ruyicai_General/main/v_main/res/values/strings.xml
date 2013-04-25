@@ -1108,4 +1108,16 @@
     
     <string name="join_share_weibo" >"#如意彩# 我在@如意彩 发现了“%1$s”发起的%2$s合买，花钱不多，中奖几率更大，快来跟单吧！详情："</string>
     <string name="refresh_lastCode_msg" >最新期号开奖结果获取中....</string>
+    
+    <string name="my_message_edit_text" >"编辑"</string>
+    <string name="my_message_edit_cancel" >"取消"</string>
+    <string name="my_message_edit_select_all" >"全选"</string>
+    <string name="my_message_edit_cancel_select_all" >"取消全选"</string>
+    <string name="my_message_edit_mark_read_msg" >"标记为已读"</string>
+    <string name="my_message_edit_delete" >"删除"</string>
+    <string name="recommend_network_connection">"网络连接中..."</string>
+    <string name="feedback_network_connection_error">"网络异常请稍后重试"</string>
+    <string name="input_card_id_error">"您输入的身份证号格式有误，请重新输入"</string>
+    <string name="input_name_error">"您输入的姓名格式有误，请重新输入"</string>
+    <string name="user_center_track_number">"追号号码:"</string>
 </resources>
