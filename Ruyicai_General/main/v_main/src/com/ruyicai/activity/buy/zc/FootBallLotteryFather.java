@@ -14,7 +14,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -59,6 +62,17 @@ public abstract class FootBallLotteryFather extends Activity implements
 	Button layout_football_issue;
 	TextView layout_football_time;
 	Toast toast;
+	/**add by yejc 20130425 start*/
+	public final String DATE = "DATE";
+	public final String TYPE = "TYPE";
+	public final String RESULT = "RESULT";
+	public final String ISSUE = "ISSUE";
+	public final String TEAM_ID = "TEAM_ID";
+	int[] aResIdForWait = { R.drawable.jc_zjq_btn_40_gray, R.drawable.jc_zjq_btn_b_40 };
+	int[] aResId = { R.drawable.jc_zjq_btn_40, R.drawable.jc_zjq_btn_b_40 };
+	public static final String LOTNO_ZC = "LOTNO_ZC";
+	/**add by yejc 20130425 end*/
+	
 	/**
 	 * 足彩投注按钮
 	 */
@@ -454,5 +468,55 @@ public abstract class FootBallLotteryFather extends Activity implements
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
+	
+	/**add by yejc 20130425 start*/
+	public class AdvanceBatchCode {
+		private String BatchCode;
+		private String EndTime;
+		private String state;
+
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
+		}
+		
+		public String getBatchCode() {
+			return BatchCode;
+		}
+
+		public void setBatchCode(String batchCode) {
+			BatchCode = batchCode;
+		}
+
+		public String getEndTime() {
+			return EndTime;
+		}
+
+		public void setEndTime(String endTime) {
+			EndTime = endTime;
+		}
+	}
+	
+    public void setListViewHeight(ListView listView) {
+    	BaseAdapter listAdapter = (BaseAdapter) listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1))
+                + 20;
+        listView.setLayoutParams(params);
+    }
+	/**add by yejc 20130425 end*/
 
 }

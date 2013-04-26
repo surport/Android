@@ -20,9 +20,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,22 +79,17 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	private final static String TEAM2 = "TEAM2";
 	private final static String SCORES1 = "SCORES1";
 	private final static String SCORES2 = "SCORES2";
-	
-	// add by yejc 20130327
-//	private final String NUMBER = "NUMBER";
-	private final String DATE = "DATE";
-	private final String TYPE = "TYPE";
-	private final String RESULT = "RESULT";
-	private final String ISSUE = "ISSUE";
-	private final String TEAM_ID = "TEAM_ID";
-	// end
+	/**add by yejc 20130425 start*/
+	private boolean isaWait = false;
+	private SpannableString[] spanBactchCodes;
+	/**add by yejc 20130425 end*/
 		
 	String inflater = Context.LAYOUT_INFLATER_SERVICE;
 	/** 小球起始id */
 	public static final int JINQC_START_ID = 0x84000001;
 	public int iAllBallWidth;
 	LayoutInflater layoutInflater;
-	ListViewDemo listViewDemo;
+//	ListViewDemo listViewDemo;
 	ScrollView mHScrollView;
 	LinearLayout buyView;
 	ListView mlist;
@@ -139,134 +138,137 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		ListViewAdapter adapter = new ListViewAdapter(this, list);
 		mlist.setAdapter(adapter);
 		// end
+		setListViewHeight(mlist); //add by yejc 20130425
 	}
 
-	public class ListViewDemo extends BaseAdapter {
-		private Context context;
-		private List<Map<String, Object>> mList;
-		private LayoutInflater mInflater; // 扩充主列表布局
-
-		public ListViewDemo(Context context, List<Map<String, Object>> list) {
-			this.context = context;
-			mInflater = LayoutInflater.from(context);
-			mList = list;
-		}
-
-		@Override
-		public int getCount() {
-			return mList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mList.get(position);
-		}
-
-		/*
-		 * @see android.widget.Adapter#getItemId(int)
-		 */
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-
-			int[] ResId = { R.drawable.grey, R.drawable.red };
-			int ballNum = 4;
-
-			int START_ID;
-			START_ID = JINQC_START_ID + position * 4;
-			final int index = position;
-			String team1 = (String) mList.get(position).get("TEAM1");
-			String team2 = (String) mList.get(position).get("TEAM2");
-			String scores1 = (String) mList.get(position).get("SCORES1");
-			String scores2 = (String) mList.get(position).get("SCORES2");
-			ViewHolder holder = null;
-
-			convertView = mInflater.inflate(
-					R.layout.buy_football_sixhalf_listitem, null);
-			RelativeLayout halfandalltext = (RelativeLayout) convertView
-					.findViewById(R.id.football_sixandhalf_text);
-			halfandalltext.setVisibility(RelativeLayout.GONE);
-			holder = new ViewHolder();
-			holder.lie = ((TextView) convertView
-					.findViewById(R.id.liuchangban_lienum));
-			holder.teamnamerank1 = (TextView) convertView
-					.findViewById(R.id.liuchangban_teamrank1);
-			holder.teamnamerank2 = (TextView) convertView
-					.findViewById(R.id.liuchangban_teamrank2);
-			holder.layout = (LinearLayout) convertView
-					.findViewById(R.id.liuchangban_ball_layout);
-			holder.info = (ImageView) convertView
-					.findViewById(R.id.liuchangban_fenxi);
-			convertView.setTag(holder);
-
-			LinearLayout linearGoals = (LinearLayout) convertView
-					.findViewById(R.id.sixhalforgoalsitem);
-			setFootballListItemBackground(linearGoals, position);
-
-			int liuCBBallFieldWidth = iScreenWidth / 2;
-			BallTable jinqcRow1 = makeBallTable((LinearLayout) convertView,
-					R.id.liuchangban_ball_1, liuCBBallFieldWidth, ballNum,
-					ResId, START_ID, (String)mList.get(position).get(RESULT));
-			ballTables.add(jinqcRow1);
-			Vector<OneBallView> BallViews1 = jinqcRow1.getBallViews();
-			for (int i = 0; i < BallViews1.size(); i++) {
-				final OneBallView ball = BallViews1.get(i);
-				ball.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						// ball.startAnim();
-						ball.changeBallColor();
-						changeTextSumMoney(getZhuShu());
-					}
-				});
-			}
-			BallTable jinqcRow2 = makeBallTable((LinearLayout) convertView,
-					R.id.liuchangban_ball_2, liuCBBallFieldWidth, ballNum,
-					ResId, START_ID, (String)mList.get(position).get(RESULT));
-			ballTables.add(jinqcRow2);
-			Vector<OneBallView> BallViews2 = jinqcRow2.getBallViews();
-			for (int i = 0; i < BallViews2.size(); i++) {
-				final OneBallView ball2 = BallViews2.get(i);
-				ball2.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						ball2.startAnim();
-						ball2.changeBallColor();
-						changeTextSumMoney(getZhuShu());
-					}
-				});
-			}
-
-			holder.lie.setText((String.valueOf(position + 1)));
-
-			if (scores1 == null || scores2.equals(null)) {
-				holder.teamnamerank1.setText(team1);
-				holder.teamnamerank2.setText(team2);
-			} else {
-				holder.teamnamerank1.setText(team1 + "[" + scores1 + "]");
-				holder.teamnamerank2.setText(team2 + "[" + scores2 + "]");
-			}
-			holder.info.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					getFootballAnalysisData(index);
-				}
-			});
-			return convertView;
-		}
-
-		class ViewHolder {
-			TextView lie;
-			TextView teamnamerank1;
-			TextView teamnamerank2;
-			LinearLayout layout;
-			ImageView info;
-		}
-	}
+	/**close by yejc 20130425 start*/
+//	public class ListViewDemo extends BaseAdapter {
+//		private Context context;
+//		private List<Map<String, Object>> mList;
+//		private LayoutInflater mInflater; // 扩充主列表布局
+//
+//		public ListViewDemo(Context context, List<Map<String, Object>> list) {
+//			this.context = context;
+//			mInflater = LayoutInflater.from(context);
+//			mList = list;
+//		}
+//
+//		@Override
+//		public int getCount() {
+//			return mList.size();
+//		}
+//
+//		@Override
+//		public Object getItem(int position) {
+//			return mList.get(position);
+//		}
+//
+//		/*
+//		 * @see android.widget.Adapter#getItemId(int)
+//		 */
+//		@Override
+//		public long getItemId(int position) {
+//			return position;
+//		}
+//
+//		@Override
+//		public View getView(int position, View convertView, ViewGroup parent) {
+//
+//			int[] ResId = { R.drawable.grey, R.drawable.red };
+//			int ballNum = 4;
+//
+//			int START_ID;
+//			START_ID = JINQC_START_ID + position * 4;
+//			final int index = position;
+//			String team1 = (String) mList.get(position).get("TEAM1");
+//			String team2 = (String) mList.get(position).get("TEAM2");
+//			String scores1 = (String) mList.get(position).get("SCORES1");
+//			String scores2 = (String) mList.get(position).get("SCORES2");
+//			ViewHolder holder = null;
+//
+//			convertView = mInflater.inflate(
+//					R.layout.buy_football_sixhalf_listitem, null);
+//			RelativeLayout halfandalltext = (RelativeLayout) convertView
+//					.findViewById(R.id.football_sixandhalf_text);
+//			halfandalltext.setVisibility(RelativeLayout.GONE);
+//			holder = new ViewHolder();
+//			holder.lie = ((TextView) convertView
+//					.findViewById(R.id.liuchangban_lienum));
+//			holder.teamnamerank1 = (TextView) convertView
+//					.findViewById(R.id.liuchangban_teamrank1);
+//			holder.teamnamerank2 = (TextView) convertView
+//					.findViewById(R.id.liuchangban_teamrank2);
+//			holder.layout = (LinearLayout) convertView
+//					.findViewById(R.id.liuchangban_ball_layout);
+//			holder.info = (ImageView) convertView
+//					.findViewById(R.id.liuchangban_fenxi);
+//			convertView.setTag(holder);
+//
+//			LinearLayout linearGoals = (LinearLayout) convertView
+//					.findViewById(R.id.sixhalforgoalsitem);
+//			setFootballListItemBackground(linearGoals, position);
+//
+//			int liuCBBallFieldWidth = iScreenWidth / 2;
+//			BallTable jinqcRow1 = makeBallTable((LinearLayout) convertView,
+//					R.id.liuchangban_ball_1, liuCBBallFieldWidth, ballNum,
+//					ResId, START_ID, (String)mList.get(position).get(RESULT));
+//			ballTables.add(jinqcRow1);
+//			Vector<OneBallView> BallViews1 = jinqcRow1.getBallViews();
+//			for (int i = 0; i < BallViews1.size(); i++) {
+//				final OneBallView ball = BallViews1.get(i);
+//				ball.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// ball.startAnim();
+//						ball.changeBallColor();
+//						changeTextSumMoney(getZhuShu());
+//					}
+//				});
+//			}
+//			BallTable jinqcRow2 = makeBallTable((LinearLayout) convertView,
+//					R.id.liuchangban_ball_2, liuCBBallFieldWidth, ballNum,
+//					ResId, START_ID, (String)mList.get(position).get(RESULT));
+//			ballTables.add(jinqcRow2);
+//			Vector<OneBallView> BallViews2 = jinqcRow2.getBallViews();
+//			for (int i = 0; i < BallViews2.size(); i++) {
+//				final OneBallView ball2 = BallViews2.get(i);
+//				ball2.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						ball2.startAnim();
+//						ball2.changeBallColor();
+//						changeTextSumMoney(getZhuShu());
+//					}
+//				});
+//			}
+//
+//			holder.lie.setText((String.valueOf(position + 1)));
+//
+//			if (scores1 == null || scores2.equals(null)) {
+//				holder.teamnamerank1.setText(team1);
+//				holder.teamnamerank2.setText(team2);
+//			} else {
+//				holder.teamnamerank1.setText(team1 + "[" + scores1 + "]");
+//				holder.teamnamerank2.setText(team2 + "[" + scores2 + "]");
+//			}
+//			holder.info.setOnClickListener(new OnClickListener() {
+//				@Override
+//				public void onClick(View v) {
+//					getFootballAnalysisData(index);
+//				}
+//			});
+//			return convertView;
+//		}
+//
+//		class ViewHolder {
+//			TextView lie;
+//			TextView teamnamerank1;
+//			TextView teamnamerank2;
+//			LinearLayout layout;
+//			ImageView info;
+//		}
+//	}
+	/**close by yejc 20130425 end*/
 	
 	// add by yejc 20130327
 		private class ListViewAdapter extends BaseAdapter {
@@ -319,15 +321,12 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 							.findViewById(R.id.liuchangban_banchang);
 					holder.guest = (TextView) convertView
 							.findViewById(R.id.liuchangban_quanchang);
-					
 					convertView.setTag(holder);
 				} else {
 					holder = (ViewHolder) convertView.getTag();
 				}
-
 				holder.type.setText((String) mList.get(position).get(TYPE));
 				holder.type.getPaint().setFakeBoldText(true);
-
 				holder.date.setText((String) mList.get(position).get(DATE));
 				holder.number.setText((String) mList.get(position).get(TEAM_ID));
 				holder.homeTeam.setText((String) mList.get(position).get(TEAM1)
@@ -339,44 +338,51 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 				holder.home.setText("主");
 				holder.guest.setText("客");
 				holder.guestTeam.getPaint().setFakeBoldText(true);
-
-				int[] aResId = { R.drawable.jc_zjq_btn_40, R.drawable.jc_zjq_btn_b_40 };
-				
 				int ballNum = 4;
 				int START_ID = JINQC_START_ID + position * 4;
-				
 				int liuCBBallFieldWidth = iScreenWidth / 2;
-				BallTable jinqcRow1 = makeBallTable((LinearLayout) convertView,
-						R.id.liuchangban_ball_1, liuCBBallFieldWidth, ballNum,
-						aResId, START_ID, (String)mList.get(position).get(RESULT));
-				ballTables.add(jinqcRow1);
-				Vector<OneBallView> BallViews1 = jinqcRow1.getBallViews();
-				for (int i = 0; i < BallViews1.size(); i++) {
-					final OneBallView ball = BallViews1.get(i);
-					ball.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							// ball.startAnim();
-							ball.changeBallColor();
-							changeTextSumMoney(getZhuShu());
-						}
-					});
-				}
-				BallTable jinqcRow2 = makeBallTable((LinearLayout) convertView,
-						R.id.liuchangban_ball_2, liuCBBallFieldWidth, ballNum,
-						aResId, START_ID, (String)mList.get(position).get(RESULT));
-				ballTables.add(jinqcRow2);
-				Vector<OneBallView> BallViews2 = jinqcRow2.getBallViews();
-				for (int i = 0; i < BallViews2.size(); i++) {
-					final OneBallView ball2 = BallViews2.get(i);
-					ball2.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-//							ball2.startAnim();
-							ball2.changeBallColor();
-							changeTextSumMoney(getZhuShu());
-						}
-					});
+				if (isaWait) {
+					BallTable jinqcRow1 = makeBallTable((LinearLayout) convertView,
+							R.id.liuchangban_ball_1, liuCBBallFieldWidth, ballNum,
+							aResIdForWait, START_ID, (String)mList.get(position).get(RESULT));
+					ballTables.add(jinqcRow1);
+					BallTable jinqcRow2 = makeBallTable((LinearLayout) convertView,
+							R.id.liuchangban_ball_2, liuCBBallFieldWidth, ballNum,
+							aResIdForWait, START_ID, (String)mList.get(position).get(RESULT));
+					ballTables.add(jinqcRow2);
+				} else {
+					BallTable jinqcRow1 = makeBallTable((LinearLayout) convertView,
+							R.id.liuchangban_ball_1, liuCBBallFieldWidth, ballNum,
+							aResId, START_ID, (String)mList.get(position).get(RESULT));
+					ballTables.add(jinqcRow1);
+					Vector<OneBallView> BallViews1 = jinqcRow1.getBallViews();
+					for (int i = 0; i < BallViews1.size(); i++) {
+						final OneBallView ball = BallViews1.get(i);
+						ball.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								// ball.startAnim();
+								ball.changeBallColor();
+								changeTextSumMoney(getZhuShu());
+							}
+						});
+					}
+					BallTable jinqcRow2 = makeBallTable((LinearLayout) convertView,
+							R.id.liuchangban_ball_2, liuCBBallFieldWidth, ballNum,
+							aResId, START_ID, (String)mList.get(position).get(RESULT));
+					ballTables.add(jinqcRow2);
+					Vector<OneBallView> BallViews2 = jinqcRow2.getBallViews();
+					for (int i = 0; i < BallViews2.size(); i++) {
+						final OneBallView ball2 = BallViews2.get(i);
+						ball2.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+//								ball2.startAnim();
+								ball2.changeBallColor();
+								changeTextSumMoney(getZhuShu());
+							}
+						});
+					}
 				}
 				final int index = position;
 				holder.analysis.setOnClickListener(new View.OnClickListener() {
@@ -388,6 +394,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 						String event = Constants.LOTNO_JQC + "_" + mList.get(index).get(ISSUE)
 								+ "_" + mList.get(index).get(TEAM_ID);
 						intent.putExtra("event", event);
+						intent.putExtra(LOTNO_ZC, LOTNO_ZC);
 						FootballGoalsLottery.this.startActivity(intent);
 					}
 				});
@@ -663,7 +670,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 					isOne = false;
 					getTeamInfo(0);
 				} else {
-					showBatchcodesDialog(bactchCodes);
+					showBatchcodesDialog(/*bactchCodes*/);
 				}
 				break;
 			}
@@ -1263,6 +1270,9 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 								.getJSONArray("result");
 						bactchArray.clear();
 						bactchCodes = new String[batchCodeArray.length()];
+						/**add by yejc 20130425 start*/
+						spanBactchCodes = new SpannableString[batchCodeArray.length()];
+						/**add by yejc 20130425 end*/
 						for (int i = 0; i < batchCodeArray.length(); i++) {
 							JSONObject item = batchCodeArray.getJSONObject(i);
 							AdvanceBatchCode aa = new AdvanceBatchCode();
@@ -1272,6 +1282,21 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 							aa.setEndTime(formatEndtime(item
 									.getString("endTime")));
 							bactchCodes[i] = item.getString("batchCode");
+							/**add by yejc 20130425 start*/
+							aa.setState(item.getString("state"));
+							if ("5".equals(item.getString("state"))) {
+								String batchCode = item.getString("batchCode");
+								String waitIssue = getResources().getString(R.string.football_wait_issue);
+								SpannableString text = new SpannableString(batchCode + waitIssue);
+								text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+								text.setSpan(new ForegroundColorSpan(Color.RED), batchCode.length(), batchCode.length()+waitIssue.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+								spanBactchCodes[i] = text;
+							} else {
+								SpannableString text = new SpannableString(item.getString("batchCode"));
+								text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+								spanBactchCodes[i] = text;
+							}
+							/**add by yejc 20130425 end*/
 							bactchArray.add(aa);
 							if (qihaoxinxi[1] != null
 									|| qihaoxinxi[1].equals("")) {
@@ -1299,31 +1324,10 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		}).start();
 	}
 
-	private class AdvanceBatchCode {
-		private String BatchCode;
-		private String EndTime;
-
-		public String getBatchCode() {
-			return BatchCode;
-		}
-
-		public void setBatchCode(String batchCode) {
-			BatchCode = batchCode;
-		}
-
-		public String getEndTime() {
-			return EndTime;
-		}
-
-		public void setEndTime(String endTime) {
-			EndTime = endTime;
-		}
-	}
-
-	private void showBatchcodesDialog(String[] batchCodes) {
+	private void showBatchcodesDialog(/*String[] batchCodes*/) {
 		AlertDialog batchCodedialog = new AlertDialog.Builder(
 				FootballGoalsLottery.this).setTitle("进球彩预售期")
-				.setItems(batchCodes, new DialogInterface.OnClickListener() {
+				.setItems(spanBactchCodes/*batchCodes*/, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
 						getTeamInfo(which);
@@ -1335,6 +1339,13 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	private void getTeamInfo(int which) {
 		AdvanceBatchCode batchMsg = (AdvanceBatchCode) bactchArray.get(which);
+		/**add by yejc 20130425 start*/
+		if ("5".equals(batchMsg.getState())) {
+			isaWait = true;
+		} else {
+			isaWait = false;
+		}
+		/**add by yejc 20130425 end*/
 		switch (which) {
 		case 0:
 			layout_football_issue.setTextColor(0xffcc0000);

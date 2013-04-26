@@ -20,22 +20,22 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextPaint;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -55,7 +55,6 @@ import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.ExplainInterface;
 import com.ruyicai.net.newtransaction.FootballLotteryAdvanceBatchcode;
@@ -84,22 +83,15 @@ public class FootballSFLottery extends FootballFourteen implements
 	private final static String TEAM2 = "TEAM2";
 	private final static String SCORES1 = "SCORES1";
 	private final static String SCORES2 = "SCORES2";
+	/**add by yejc 20130425 start*/
+	private boolean isaWait = false;
+	private SpannableString[] spanBactchCodes;
+	/**add by yejc 20130425 end*/
 	
-	//add by yejc 20130325
-//	private final String NUMBER = "NUMBER";
-	private final String DATE = "DATE";
-	private final String TYPE = "TYPE";
-	private final String RESULT = "RESULT";
-	private final String ISSUE = "ISSUE";
-	private final String TEAM_ID = "TEAM_ID";
-//	private final String VICTORY = "VICTORY";
-//	private final String EQUAL = "EQUAL";
-//	private final String LOSE = "LOSE";
-	//end
 	String inflater = Context.LAYOUT_INFLATER_SERVICE;
 
 	LayoutInflater layoutInflater;
-	ListViewDemo listViewDemo;
+//	ListViewDemo listViewDemo; //close by yejc 20130425
 	ScrollView mHScrollView;
 	LinearLayout buyView;
 
@@ -123,7 +115,7 @@ public class FootballSFLottery extends FootballFourteen implements
 	private String[] bactchCodes;// 预售期的期号数组
 	private List<Object> bactchArray = new ArrayList<Object>();// 这个list中存放预售期期号和截止时间的信息
 	String advanceBatchCodeData;
-
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initBatchCode(Constants.LOTNO_SFC);
@@ -281,7 +273,7 @@ public class FootballSFLottery extends FootballFourteen implements
 					isOne = false;
 					getTeamInfo(0);
 				} else {
-					showBatchcodesDialog(bactchCodes);
+					showBatchcodesDialog(/*bactchCodes*/);
 				}
 				break;
 			}
@@ -361,129 +353,131 @@ public class FootballSFLottery extends FootballFourteen implements
 	public int iAllBallWidth;
 	public View views[] = new View[14];
 
-	public class ListViewDemo extends BaseAdapter {
-
-		private Context context;
-		private List<Map<String, Object>> mList;
-		private LayoutInflater mInflater; // 扩充主列表布局
-
-		public ListViewDemo(Context context, List<Map<String, Object>> list) {
-			this.context = context;
-			mInflater = LayoutInflater.from(context);
-			mList = list;
-		}
-
-		@Override
-		public int getCount() {
-			return mList.size();
-
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mList.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-
-		}
-
-		@Override
-		public View getView(final int position, View convertView,
-				ViewGroup parent) {
-
-			int[] aResId = { R.drawable.grey, R.drawable.red };
-
-			int START_ID;
-
-			final int index = position;
-			START_ID = SHENGFC_START_ID + position * 3;
-			String team1 = (String) mList.get(position).get("TEAM1");
-			String team2 = (String) mList.get(position).get("TEAM2");
-			String scores1 = (String) mList.get(position).get("SCORES1");
-			String scores2 = (String) mList.get(position).get("SCORES2");
-
-			ViewHolder holder = null;
-			holder = new ViewHolder();
-			convertView = mInflater
-					.inflate(R.layout.buy_football_sforchosenine_listitem,
-							parent, false);
-			holder.lie = ((TextView) convertView.findViewById(R.id.lienum));
-			holder.teamname = (TextView) convertView
-					.findViewById(R.id.teamname);
-			holder.teamrank = (TextView) convertView
-					.findViewById(R.id.teamrank);
-			holder.layout = (LinearLayout) convertView
-					.findViewById(R.id.shengfucai_layout);
-			holder.info = (ImageView) convertView.findViewById(R.id.fenxi);
-			LinearLayout linearSF = (LinearLayout) convertView
-					.findViewById(R.id.sforchoosenine_item);
-			setFootballListItemBackground(linearSF, position);
-			int aFieldWidth = iScreenWidth / 3;
-			BallTable shengfcRow = null;
-
-//			shengfcRow = makeBallTable(holder.layout, R.id.shengfucai_ball,
-//					aResId, START_ID);
-			if (ballTables.size() < mList.size()) {
-				ballTables.add(shengfcRow);
-			}
-			Vector<OneBallView> BallViews = shengfcRow.getBallViews();
-			for (int i = 0; i < BallViews.size(); i++) {
-				final OneBallView ball = BallViews.get(i);
-				ball.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						// ball.startAnim();
-						ball.changeBallColor();
-						changeTextSumMoney(getZhuShu());
-					}
-				});
-			}
-
-			if (position < 9) {
-				holder.lie.setText((String.valueOf(position + 1)) + "  ");
-			} else {
-				holder.lie.setText((String.valueOf(position + 1)));
-			}
-
-			if (team1.length() == 2) {
-				team1 = "　" + team1;
-			}
-			if (team2.length() == 2) {
-				team2 += "　";
-			}
-
-			holder.teamname.setText(team1 + "VS" + team2);
-			try {
-				if (scores1 != null) {
-					holder.teamrank.setText("  " + scores1 + "   " + scores2);
-				}
-
-			} catch (Exception e) {
-
-			}
-
-			holder.info.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-
-					getInfo(index);
-				}
-			});
-			return convertView;
-		}
-
-		class ViewHolder {
-			TextView lie;
-			TextView teamname;
-			TextView teamrank;
-			ImageView info;
-			LinearLayout layout;
-		}
-
-	}
+	/**colse by yejc 20130425 start*/
+//	public class ListViewDemo extends BaseAdapter {
+//
+//		private Context context;
+//		private List<Map<String, Object>> mList;
+//		private LayoutInflater mInflater; // 扩充主列表布局
+//
+//		public ListViewDemo(Context context, List<Map<String, Object>> list) {
+//			this.context = context;
+//			mInflater = LayoutInflater.from(context);
+//			mList = list;
+//		}
+//
+//		@Override
+//		public int getCount() {
+//			return mList.size();
+//
+//		}
+//
+//		@Override
+//		public Object getItem(int position) {
+//			return mList.get(position);
+//		}
+//
+//		@Override
+//		public long getItemId(int position) {
+//			return position;
+//
+//		}
+//
+//		@Override
+//		public View getView(final int position, View convertView,
+//				ViewGroup parent) {
+//
+//			int[] aResId = { R.drawable.grey, R.drawable.red };
+//
+//			int START_ID;
+//
+//			final int index = position;
+//			START_ID = SHENGFC_START_ID + position * 3;
+//			String team1 = (String) mList.get(position).get("TEAM1");
+//			String team2 = (String) mList.get(position).get("TEAM2");
+//			String scores1 = (String) mList.get(position).get("SCORES1");
+//			String scores2 = (String) mList.get(position).get("SCORES2");
+//
+//			ViewHolder holder = null;
+//			holder = new ViewHolder();
+//			convertView = mInflater
+//					.inflate(R.layout.buy_football_sforchosenine_listitem,
+//							parent, false);
+//			holder.lie = ((TextView) convertView.findViewById(R.id.lienum));
+//			holder.teamname = (TextView) convertView
+//					.findViewById(R.id.teamname);
+//			holder.teamrank = (TextView) convertView
+//					.findViewById(R.id.teamrank);
+//			holder.layout = (LinearLayout) convertView
+//					.findViewById(R.id.shengfucai_layout);
+//			holder.info = (ImageView) convertView.findViewById(R.id.fenxi);
+//			LinearLayout linearSF = (LinearLayout) convertView
+//					.findViewById(R.id.sforchoosenine_item);
+//			setFootballListItemBackground(linearSF, position);
+//			int aFieldWidth = iScreenWidth / 3;
+//			BallTable shengfcRow = null;
+//
+////			shengfcRow = makeBallTable(holder.layout, R.id.shengfucai_ball,
+////					aResId, START_ID);
+//			if (ballTables.size() < mList.size()) {
+//				ballTables.add(shengfcRow);
+//			}
+//			Vector<OneBallView> BallViews = shengfcRow.getBallViews();
+//			for (int i = 0; i < BallViews.size(); i++) {
+//				final OneBallView ball = BallViews.get(i);
+//				ball.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						// ball.startAnim();
+//						ball.changeBallColor();
+//						changeTextSumMoney(getZhuShu());
+//					}
+//				});
+//			}
+//
+//			if (position < 9) {
+//				holder.lie.setText((String.valueOf(position + 1)) + "  ");
+//			} else {
+//				holder.lie.setText((String.valueOf(position + 1)));
+//			}
+//
+//			if (team1.length() == 2) {
+//				team1 = "　" + team1;
+//			}
+//			if (team2.length() == 2) {
+//				team2 += "　";
+//			}
+//
+//			holder.teamname.setText(team1 + "VS" + team2);
+//			try {
+//				if (scores1 != null) {
+//					holder.teamrank.setText("  " + scores1 + "   " + scores2);
+//				}
+//
+//			} catch (Exception e) {
+//
+//			}
+//
+//			holder.info.setOnClickListener(new OnClickListener() {
+//				@Override
+//				public void onClick(View v) {
+//
+//					getInfo(index);
+//				}
+//			});
+//			return convertView;
+//		}
+//
+//		class ViewHolder {
+//			TextView lie;
+//			TextView teamname;
+//			TextView teamrank;
+//			ImageView info;
+//			LinearLayout layout;
+//		}
+//
+//	}
+	/**colse by yejc 20130425 end*/
 	
 	//add by yejc 20130325
 	private class ListViewAdapter extends BaseAdapter {
@@ -524,9 +518,6 @@ public class FootballSFLottery extends FootballFourteen implements
 				holder.homeTeam = (TextView)convertView.findViewById(R.id.home_team);
 				holder.guestTeam = (TextView)convertView.findViewById(R.id.guest_team);
 				holder.analysis = (TextView)convertView.findViewById(R.id.zc_sfc_analysis);
-//				holder.victory = (TextView)convertView.findViewById(R.id.zc_spf_victory);
-//				holder.equal = (TextView)convertView.findViewById(R.id.zc_spf_equal);
-//				holder.lose = (TextView)convertView.findViewById(R.id.zc_spf_lose);
 				holder.layout = (LinearLayout) convertView.findViewById(R.id.shengfucai_layout);
 				convertView.setTag(holder);
 			} else {
@@ -542,31 +533,33 @@ public class FootballSFLottery extends FootballFourteen implements
 			holder.homeTeam.getPaint().setFakeBoldText(true); 
 			holder.guestTeam.setText((String) mList.get(position).get(TEAM2)+"\n"+"(客)");
 			holder.guestTeam.getPaint().setFakeBoldText(true); 
-//			holder.victory.setText((String) mList.get(position).get(VICTORY));
-//			holder.victory.getPaint().setFakeBoldText(true); 
-//			holder.equal.setText((String) mList.get(position).get(EQUAL));
-//			holder.equal.getPaint().setFakeBoldText(true); 
-//			holder.lose.setText((String) mList.get(position).get(LOSE));
-//			holder.lose.getPaint().setFakeBoldText(true);
 			
-			int[] aResId = { R.drawable.jc_zjq_btn_40, R.drawable.jc_zjq_btn_b_40 };
 			int START_ID = SHENGFC_START_ID + position * 3;
-			BallTable shengfcRow = makeBallTable(holder.layout, R.id.shengfucai_ball,
-					aResId, START_ID, (String) mList.get(position).get(RESULT));
-			if (ballTables.size() < mList.size()) {
-				ballTables.add(shengfcRow);
+			if (isaWait) {
+				BallTable shengfcRow = makeBallTable(holder.layout, R.id.shengfucai_ball,
+						aResIdForWait, START_ID, (String) mList.get(position).get(RESULT));
+				if (ballTables.size() < mList.size()) {
+					ballTables.add(shengfcRow);
+				}
+			} else {
+				BallTable shengfcRow = makeBallTable(holder.layout, R.id.shengfucai_ball,
+						aResId, START_ID, (String) mList.get(position).get(RESULT));
+				if (ballTables.size() < mList.size()) {
+					ballTables.add(shengfcRow);
+				}
+				Vector<OneBallView> BallViews = shengfcRow.getBallViews();
+				for (int i = 0; i < BallViews.size(); i++) {
+					final OneBallView ball = BallViews.get(i);
+					ball.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							ball.changeBallColor();
+							changeTextSumMoney(getZhuShu());
+						}
+					});
+				}
 			}
-			Vector<OneBallView> BallViews = shengfcRow.getBallViews();
-			for (int i = 0; i < BallViews.size(); i++) {
-				final OneBallView ball = BallViews.get(i);
-				ball.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						ball.changeBallColor();
-						changeTextSumMoney(getZhuShu());
-					}
-				});
-			}
+			
 			final int index = position;
 			holder.analysis.setOnClickListener(new View.OnClickListener() {
 				
@@ -577,6 +570,7 @@ public class FootballSFLottery extends FootballFourteen implements
 					String event = Constants.LOTNO_SFC + "_" + mList.get(index).get(ISSUE)
 							+ "_" + mList.get(index).get(TEAM_ID);
 					intent.putExtra("event", event);
+					intent.putExtra(LOTNO_ZC, LOTNO_ZC);
 					FootballSFLottery.this.startActivity(intent);
 				}
 			});
@@ -586,20 +580,15 @@ public class FootballSFLottery extends FootballFourteen implements
 		
 	}
 	
-
 	private class ViewHolder {
 		TextView type;
 		TextView date;
 		TextView number;
 		TextView homeTeam;
 		TextView guestTeam;
-//		TextView victory;
-//		TextView equal;
-//		TextView lose;
 		TextView analysis;
 		LinearLayout layout;
 	}
-
 	//end
 
 	/**
@@ -1212,31 +1201,10 @@ public class FootballSFLottery extends FootballFourteen implements
 		return this;
 	}
 
-	private class AdvanceBatchCode {
-		private String BatchCode;
-		private String EndTime;
-
-		public String getBatchCode() {
-			return BatchCode;
-		}
-
-		public void setBatchCode(String batchCode) {
-			BatchCode = batchCode;
-		}
-
-		public String getEndTime() {
-			return EndTime;
-		}
-
-		public void setEndTime(String endTime) {
-			EndTime = endTime;
-		}
-	}
-
-	private void showBatchcodesDialog(String[] batchCodes) {
+	private void showBatchcodesDialog(/*String[] batchCodes*/) {
 		AlertDialog batchCodedialog = new AlertDialog.Builder(
 				FootballSFLottery.this).setTitle("胜负彩预售期")
-				.setItems(batchCodes, new DialogInterface.OnClickListener() {
+				.setItems(spanBactchCodes/*batchCodes*/, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
 						getTeamInfo(which);
@@ -1247,6 +1215,13 @@ public class FootballSFLottery extends FootballFourteen implements
 
 	private void getTeamInfo(int which) {
 		AdvanceBatchCode batchMsg = (AdvanceBatchCode) bactchArray.get(which);
+		/**add by yejc 20130425 start*/
+		if ("5".equals(batchMsg.getState())) {
+			isaWait = true;
+		} else {
+			isaWait = false;
+		}
+		/**add by yejc 20130425 end*/
 		switch (which) {
 		case 0:
 			layout_football_issue.setTextColor(0xffcc0000);
@@ -1284,6 +1259,9 @@ public class FootballSFLottery extends FootballFourteen implements
 								.getJSONArray("result");
 						bactchArray.clear();
 						bactchCodes = new String[batchCodeArray.length()];
+						/**add by yejc 20130425 start*/
+						spanBactchCodes = new SpannableString[batchCodeArray.length()];
+						/**add by yejc 20130425 end*/
 						for (int i = 0; i < batchCodeArray.length(); i++) {
 							JSONObject item = batchCodeArray.getJSONObject(i);
 							AdvanceBatchCode aa = new AdvanceBatchCode();
@@ -1292,10 +1270,25 @@ public class FootballSFLottery extends FootballFourteen implements
 									.getString("batchCode")));
 							aa.setEndTime(formatEndtime(item
 									.getString("endTime")));
+							/**add by yejc 20130425 start*/
+							aa.setState(item.getString("state"));
+							if ("5".equals(item.getString("state"))) {
+								String batchCode = item.getString("batchCode");
+								String waitIssue = getResources().getString(R.string.football_wait_issue);
+								SpannableString text = new SpannableString(batchCode + waitIssue);
+								text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+								text.setSpan(new ForegroundColorSpan(Color.RED), batchCode.length(), batchCode.length()+waitIssue.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+								spanBactchCodes[i] = text;
+							} else {
+								SpannableString text = new SpannableString(item.getString("batchCode"));
+								text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+								spanBactchCodes[i] = text;
+							}
+							/**add by yejc 20130425 end*/
 							bactchCodes[i] = item.getString("batchCode");
 							bactchArray.add(aa);
 							if (qihaoxinxi[1] != null
-									|| qihaoxinxi[1].equals("")) {
+									|| "".equals(qihaoxinxi[1])) {
 								qihaoxinxi[1] = item.getString("endTime");
 							}
 						}

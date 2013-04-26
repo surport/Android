@@ -380,6 +380,7 @@ public class OneBallView extends ImageView {
 			//add by yejc 20130326
 		case R.drawable.jc_zjq_btn_40: 
 		case R.drawable.jc_zjq_btn_b_40:
+		case R.drawable.jc_zjq_btn_40_gray:	
 			if (bitmap == null) {
 				bitmap = new BitmapDrawable(is).getBitmap();
 			}

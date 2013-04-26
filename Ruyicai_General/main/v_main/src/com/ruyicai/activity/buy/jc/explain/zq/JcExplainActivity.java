@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.zc.FootBallLotteryFather;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.net.newtransaction.ExplainInterface;
 import com.ruyicai.util.PublicMethod;
@@ -26,7 +27,7 @@ import android.widget.Toast;
  */
 public class JcExplainActivity extends BuyActivityGroup {
 	protected String titleStr = "球队数据分析";
-	protected String[] titles = { "分析", "欧指", "亚盘" , "推荐"};
+	protected String[] titles = null;
 	protected String[] topTitles = { titleStr, titleStr, titleStr, titleStr, titleStr};
 	protected Class[] allId = { ExplainListActivity.class,
 			EuropeActivity.class, AsiaActivity.class , RecommendActivity.class};
@@ -40,10 +41,23 @@ public class JcExplainActivity extends BuyActivityGroup {
 		isIssue(false);
 		setTitleText();
 		getExplainNet(getIntentInfo(), type);
-		/**add by yejc 20130422 start*/
+		/**add by yejc 20130425 start*/
 		event = getIntentInfo();
-		Log.i("yejc", "======event==="+event);
-		/**add by yejc 20130422 end*/
+		if (FootBallLotteryFather.LOTNO_ZC.equals(getIntent().getStringExtra(
+				FootBallLotteryFather.LOTNO_ZC))) {
+			titles = new String[3];
+			String [] temp = { "分析", "欧指", "亚盘" };
+			for (int i = 0; i < 3; i++) {
+				titles[i] = temp[i];
+			}
+		} else {
+			titles = new String[4];
+			String[] temp  = { "分析", "欧指", "亚盘" , "推荐"};
+			for (int i = 0; i < 4; i++) {
+				titles[i] = temp[i];
+			}
+		}
+		/**add by yejc 20130425 end*/
 	}
 
 	public void setTitleText() {
