@@ -1120,4 +1120,5 @@
     <string name="input_card_id_error">"您输入的身份证号格式有误，请重新输入"</string>
     <string name="input_name_error">"您输入的姓名格式有误，请重新输入"</string>
     <string name="user_center_track_number">"追号号码:"</string>
+    <string name="football_wait_issue">"(待售)"</string>
 </resources>
