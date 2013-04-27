@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
@@ -26,6 +27,7 @@ public class AccountDialog extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.account_openurlxml);
 		initWebView();
