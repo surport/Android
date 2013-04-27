@@ -60,6 +60,7 @@ public class AccountListActivity extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.account_list_main);
 		context = this;
