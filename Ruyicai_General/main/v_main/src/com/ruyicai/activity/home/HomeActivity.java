@@ -128,9 +128,10 @@ public class HomeActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		/*Add by fansm 20130416 start*/
-		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
-		/*Add by fansm 20130416 end*/
+		/* Add by fansm 20130416 start */
+		if (Constants.isDebug)
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		/* Add by fansm 20130416 end */
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);// 全屏显示
@@ -150,7 +151,7 @@ public class HomeActivity extends Activity {
 		initBitmap();// 初始化小球
 		checkWirelessNetwork();// 实现网络的检测
 		checkCaizhongSetting();// 获取彩种设置
-//		JPushInterface.setDebugMode(true);
+		// JPushInterface.setDebugMode(true);
 		JPushInterface.init(this);
 	}
 
@@ -603,13 +604,20 @@ public class HomeActivity extends Activity {
 	 * 检验彩种设置信息
 	 */
 	public static List<Map<String, String>> shellRWList;
+	/*private String[] titles = { "合买大厅", "双色球", "福彩3D", "七乐彩", "大乐透", "排列三",
+			"排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "专家荐号", "广东11选5",
+			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三", "北京单场" };*/
 	private String[] titles = { "合买大厅", "双色球", "福彩3D", "七乐彩", "大乐透", "排列三",
 			"排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "专家荐号", "广东11选5",
-			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三" };
+			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三"};
+	/*
 	private String iGameName[] = { "hmdt", "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "zjjh",
-			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3" }; // 8.9
-
+			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame" }; // 8.9
+*/
+	private String iGameName[] = { "hmdt", "ssq", "fc3d", "qlc", "cjdlt",
+			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "zjjh",
+			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3"}; // 8.9
 	private void checkCaizhongSetting() {
 		RWSharedPreferences shellRW = new RWSharedPreferences(this,
 				ShellRWConstants.CAIZHONGSETTING);
