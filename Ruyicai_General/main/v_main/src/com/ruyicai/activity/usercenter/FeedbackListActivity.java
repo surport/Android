@@ -177,6 +177,10 @@ public class FeedbackListActivity extends Activity {
 					initLinear(latter, linearId[0], initlatterview(true));
 				} else {
 					getInfoNet(userno, latterIndex, false);
+					if (isLatterSelectAll) {
+						isLatterSelectAll = false;
+						latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					}
 				}
 				/**add by yejc 20130422 start*/
 				if (isLatterEdit) {
@@ -599,6 +603,8 @@ public class FeedbackListActivity extends Activity {
 			case 0:
 				boolean isReadMsg = false;
 				isLatterEdit = false;
+				isLatterSelectAll = false;
+				latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
 				editBut.setText(R.string.my_message_edit_text);
 				submitLayout.setVisibility(View.VISIBLE);
 				latterEditLayout.setVisibility(View.GONE);
