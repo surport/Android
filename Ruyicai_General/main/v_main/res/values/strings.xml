@@ -1109,6 +1109,13 @@
     <string name="join_share_weibo" >"#如意彩# 我在@如意彩 发现了“%1$s”发起的%2$s合买，花钱不多，中奖几率更大，快来跟单吧！详情："</string>
     <string name="refresh_lastCode_msg" >最新期号开奖结果获取中....</string>
     
+    <!-- 北京单场 -->
+    <string name="beijingsinglegame_textview_wintieloss">让球胜平负</string>
+    <string name="beijingsinglegame_textview_totalgoals">总进球数</string>
+    <string name="beijingsinglegame_textview_overall">全场总比分</string>
+    <string name="beijingsinglegame_textview_halftheaudience">@string/banquanchang</string>
+    <string name="beijingsinglegame_textview_updownsigledouble">上下单双</string>
+    
     <string name="my_message_edit_text" >"编辑"</string>
     <string name="my_message_edit_cancel" >"取消"</string>
     <string name="my_message_edit_select_all" >"全选"</string>

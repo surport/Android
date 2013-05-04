@@ -48,6 +48,7 @@ import android.widget.ViewFlipper;
 
 import com.lthj.unipay.plugin.el;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
@@ -108,6 +109,16 @@ public class BuyActivity extends Activity implements OnClickListener {
 	String newscontent = "";
 	private int top = 20;
 	private List<String> mLabelArray = new ArrayList<String>();
+	/*
+	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
+			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
+			R.drawable.ico_timec, R.drawable.icon_jc, R.drawable.nmk3_ico,
+			R.drawable.ico_eleven, R.drawable.ico_expert, R.drawable.gd_eleven,
+			R.drawable.ico_three, R.drawable.ico_seven, R.drawable.twentyfive,
+			R.drawable.icon_pl5, R.drawable.icon_qxc, R.drawable.ico_goalin,
+			R.drawable.ico_basketball, R.drawable.ten_icon,
+			R.drawable.beijingsinglegame_ico };
+			*/
 	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
 			R.drawable.ico_timec, R.drawable.icon_jc, R.drawable.nmk3_ico,
@@ -115,9 +126,22 @@ public class BuyActivity extends Activity implements OnClickListener {
 			R.drawable.ico_three, R.drawable.ico_seven, R.drawable.twentyfive,
 			R.drawable.icon_pl5, R.drawable.icon_qxc, R.drawable.ico_goalin,
 			R.drawable.ico_basketball, R.drawable.ten_icon };
+	/*
 	private String[] imageTitle = { "合买大厅", "双色球", "大乐透", "福彩3D", "江西11选5",
 			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
-			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分" };
+			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" };
+			*/
+	private String[] imageTitle = { "合买大厅", "双色球", "大乐透", "福彩3D", "江西11选5",
+			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
+			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分"};
+	/*
+	private final Class[] cla = { JoinInfoActivity.class, Ssq.class, Dlt.class,
+			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
+			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
+			GdEleven.class, PL3.class, Qlc.class, TwentyTwo.class, PL5.class,
+			QXC.class, FootballLottery.class, LqMainActivity.class,
+			TenActivity.class, BeiJingSingleGameActivity.class };
+			*/
 	private final Class[] cla = { JoinInfoActivity.class, Ssq.class, Dlt.class,
 			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
 			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
@@ -208,8 +232,10 @@ public class BuyActivity extends Activity implements OnClickListener {
 						shellRW.putStringValue("nmk3", Constants.CAIZHONG_CLOSE);
 						shellRW.putStringValue("nmk3-willsale", "true");
 					} else if (isSale.equals("true")) {
-						if (shellRW.getStringValue("nmk3-willsale").equals("true")) {
-							shellRW.putStringValue("nmk3", Constants.CAIZHONG_OPEN);
+						if (shellRW.getStringValue("nmk3-willsale").equals(
+								"true")) {
+							shellRW.putStringValue("nmk3",
+									Constants.CAIZHONG_OPEN);
 							shellRW.putStringValue("nmk3-willsale", "false");
 						}
 					}
@@ -387,6 +413,14 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map19.put("lotno", "T01015");
 		map19.put("caizhongSetting", shellRW.getStringValue("gd-10").toString());
 		caizhongSettingList.add(map19);
+
+		/*
+		Map<String, String> map20 = new HashMap<String, String>();
+		map20.put("lotno", "B00001");
+		map20.put("caizhongSetting", shellRW
+				.getStringValue("beijingsinglegame").toString());
+		caizhongSettingList.add(map20);
+		*/
 
 	}
 
