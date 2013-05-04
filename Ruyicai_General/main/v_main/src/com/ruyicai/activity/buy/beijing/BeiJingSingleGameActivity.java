@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyGameDialog;
 import com.ruyicai.activity.buy.beijing.adapter.HalfTheAudienceAdapter;
 import com.ruyicai.activity.buy.beijing.adapter.OverAllAdapter;
 import com.ruyicai.activity.buy.beijing.adapter.TotalGoalsAdapter;
@@ -30,6 +31,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -82,6 +84,14 @@ public class BeiJingSingleGameActivity extends Activity {
 	private ImageButton bettingImageButton;
 	/** 下拉菜单 */
 	private PopupWindow menuPopupwindow;
+	/**玩法介绍*/
+	private BuyGameDialog gameDialog;
+	/**context对象*/
+	protected Context context;
+	/**彩种类型*/
+	private String lotNo = Constants.LOTNO_JCL;
+	/**玩法回调对象*/
+	private Handler gameHandler = new Handler();
 	/** 对阵列表视图对象 */
 	private View againstView;
 	/** 对阵列表 */
@@ -413,7 +423,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		layoutInflater = LayoutInflater.from(this);
-
+        context = this;
 		setContentView(R.layout.buy_jc_main_new);
 
 		initTitleBarShow();
@@ -996,6 +1006,20 @@ public class BeiJingSingleGameActivity extends Activity {
 					popupwindow.dismiss();
 				}
 				return false;
+			}
+		});
+		final LinearLayout layoutGame = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout1);
+		layoutGame.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
+				if (gameDialog == null) {
+					gameDialog = new BuyGameDialog(context, lotNo, gameHandler);
+				}
+				gameDialog.showDialog();
+				popupwindow.dismiss();
 			}
 		});
 
