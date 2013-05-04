@@ -165,6 +165,23 @@ public class PublicMethod {
 		}
 		return returnValue;
 	}
+	
+	/**
+	 * 检查数组碰撞
+	 * @param aNums
+	 * @param aTo
+	 * @param aCheckNum
+	 * @return
+	 */
+	public static boolean checkCollision(String[] aStr, int aTo, String aCheckStr) {
+		boolean returnValue = false;
+		for (int i = 0; i < aTo; i++) {
+			if (aStr[i] == aCheckStr) {
+				returnValue = true;
+			}
+		}
+		return returnValue;
+	}
 
 	/**
 	 * 获取 多个随机数
@@ -184,6 +201,27 @@ public class PublicMethod {
 			iReturnNums[i] = iCurrentNum;
 		}
 		return iReturnNums;
+	}
+	
+	/**
+	 * 获取多个随机数
+	 * @param aRandomNums
+	 * @param list
+	 * @return int[]
+	 */
+	public static String[] getRandomsWithoutCollision(int aRandomNums,List<String> list) {
+		String deta[] = new String[aRandomNums];
+		for (int i = 0; i < aRandomNums; i++) {
+			int randomIndex = PublicMethod.getRandomByRange(0, list.size() - 1);
+			String randomStr = list.get(randomIndex);
+			while (PublicMethod.checkCollision(deta, i, randomStr)) {
+				randomIndex = PublicMethod.getRandomByRange(0, list.size() - 1);
+			}
+			Log.i("yejc", "=====getRandomsWithoutCollision========randomIndex="+randomIndex
+					+" ===========list.get(randomIndex)="+list.get(randomIndex));
+			deta[i] = list.get(randomIndex);
+		}
+		return deta;
 	}
 
 	/**
