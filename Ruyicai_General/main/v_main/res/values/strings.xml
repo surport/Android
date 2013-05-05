@@ -226,6 +226,7 @@
     <string name="phone_cards_recharge">手机充值卡充值</string>
     <string name="atm_recharge">银行转账</string>
     <string name="account_chongzhi">银行充值</string>
+    <string name="umpay_recharge">联动优势充值</string>
     <string name="account_chongzhi_good">（推荐）</string>
     <string name="freeHanding">（免手续费）</string>
     <string name="yin_bank_cards_recharge">银联充值</string>
