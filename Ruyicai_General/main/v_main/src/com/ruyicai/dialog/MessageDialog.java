@@ -1,13 +1,10 @@
 package com.ruyicai.dialog;
 
-import com.ruyicai.activity.usercenter.AccountWithdrawActivity;
 import com.ruyicai.activity.usercenter.BindIDActivity;
 import com.ruyicai.activity.usercenter.NewUserCenter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
-import android.view.View;
 
 public class MessageDialog extends BaseDialog {
 	/**
