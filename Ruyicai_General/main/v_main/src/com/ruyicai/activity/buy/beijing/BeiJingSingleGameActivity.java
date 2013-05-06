@@ -21,6 +21,8 @@ import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
+import com.ruyicai.activity.notice.NoticeBeijingSingleActivity;
+
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.jc.button.MyButton;
@@ -996,6 +998,12 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		final PopupWindow popupwindow = new PopupWindow(popupView,
 				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		final LinearLayout layoutGame = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout1);
+		final LinearLayout layoutHosity = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout2);
+		final LinearLayout layoutParentLuck = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_one_layout3);
 		popupwindow.setOutsideTouchable(true);
 		popupwindow.showAsDropDown(menuButton);
 
@@ -1008,8 +1016,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				return false;
 			}
 		});
-		final LinearLayout layoutGame = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_layout1);
+
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -1022,9 +1029,25 @@ public class BeiJingSingleGameActivity extends Activity {
 				popupwindow.dismiss();
 			}
 		});
+		
+		layoutHosity.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				layoutHosity
+						.setBackgroundResource(R.drawable.buy_group_layout_b);
+				turnHosity();
+				popupwindow.dismiss();
+			}
 
+		});
+		layoutParentLuck.setVisibility(LinearLayout.GONE);
 	}
-
+	public void turnHosity() {
+		Intent intent = new Intent(context, NoticeBeijingSingleActivity.class);
+		intent.putExtra(Constants.PLAY_METHOD_TYPE, lotnoString);
+		startActivity(intent);
+	}
 	/**
 	 * 创建玩法切换对话框
 	 */
