@@ -54,7 +54,7 @@ public class BindIDActivity extends Activity {
 				shellRW.putStringValue("certid", cerdidStr);
 				shellRW.putStringValue("name", nameStr);
 				/*add by yejc 20130506 start*/
-				if (jumpFlag.endsWith(MessageDialog.JUMP_FLAG)) {
+				if (MessageDialog.JUMP_FLAG.equals(jumpFlag)) {
 					Intent intent = new Intent(BindIDActivity.this,
 							AccountWithdrawActivity.class);
 					startActivity(intent);
