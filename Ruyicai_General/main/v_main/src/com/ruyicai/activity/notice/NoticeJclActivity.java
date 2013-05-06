@@ -31,7 +31,7 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
-import com.ruyicai.activity.notice.NoticeJcActivity.JcInfo;
+import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -86,7 +86,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		startActivity(intent);
 	}
 
-	public String getEvent(String type, JcInfo info) {
+	public String getEvent(String type, JsonBeanInfo info) {
 		return type + "_" + info.getDay() + "_" + info.getWeekId() + "_"
 				+ info.getTeamId();
 	}
@@ -147,7 +147,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	 * 竞彩子列表view
 	 */
 	private void showJcListView(JSONObject jsonObj) {
-		List<JcInfo> list_jc = getSubInfoForListView(jsonObj);// 获取缓存中的数据
+		List<JsonBeanInfo> list_jc = getSubInfoForListView(jsonObj);// 获取缓存中的数据
 		// 初始化列表
 		ListView listview = (ListView) findViewById(R.id.notice_prizes_single_specific_listview);
 		JcInfoAdapter adapter = new JcInfoAdapter(this, list_jc);
@@ -179,9 +179,9 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	public class JcInfoAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater; // 扩充主列表布局
-		private List<JcInfo> mList;
+		private List<JsonBeanInfo> mList;
 
-		public JcInfoAdapter(Context context, List<JcInfo> list) {
+		public JcInfoAdapter(Context context, List<JsonBeanInfo> list) {
 			mInflater = LayoutInflater.from(context);
 			mList = list;
 
@@ -211,7 +211,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			index = position;
-			final JcInfo info = (JcInfo) mList.get(position);
+			final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
 			convertView = mInflater.inflate(R.layout.notice_jc_listview_item,
 					null);
 			final ViewHolder holder = new ViewHolder();
@@ -284,8 +284,8 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	/**
 	 * 子列表中相应的数据
 	 */
-	protected List<JcInfo> getSubInfoForListView(JSONObject jsonObj) {
-		ArrayList<JcInfo> list = new ArrayList<JcInfo>();
+	protected List<JsonBeanInfo> getSubInfoForListView(JSONObject jsonObj) {
+		ArrayList<JsonBeanInfo> list = new ArrayList<JsonBeanInfo>();
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
 				dateStr = jsonObj.getString("date");
@@ -293,7 +293,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JcInfo itemInfo = new JcInfo();
+				JsonBeanInfo itemInfo = new JsonBeanInfo();
 				JSONObject jsonItem = jsonArray.getJSONObject(i);
 				itemInfo.setDay(jsonItem.getString("day"));
 				itemInfo.setWeekId(jsonItem.getString("weekId"));
@@ -317,117 +317,6 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		return list;
 	}
 
-	class JcInfo {
-		String time = "";
-		String day = "";
-		String team = "";
-		String home = "";
-		String away = "";
-		String score = "";
-		String timeEnd = "";
-		String week = "";
-		String teamId = "";
-		String letPoint = "";
-		String result = "";
-		String weekId = "";
-
-		public String getWeekId() {
-			return weekId;
-		}
-
-		public void setWeekId(String weekId) {
-			this.weekId = weekId;
-		}
-
-		public String getResult() {
-			return result;
-		}
-
-		public void setResult(String result) {
-			this.result = result;
-		}
-
-		public String getTeamId() {
-			return teamId;
-		}
-
-		public void setTeamId(String teamId) {
-			this.teamId = teamId;
-		}
-
-		public String getLetPoint() {
-			return letPoint;
-		}
-
-		public void setLetPoint(String letPoint) {
-			this.letPoint = letPoint;
-		}
-
-		public String getWeek() {
-			return week;
-		}
-
-		public void setWeek(String week) {
-			this.week = week;
-		}
-
-		public String getDay() {
-			return day;
-		}
-
-		public void setDay(String day) {
-			this.day = day;
-		}
-
-		public String getTime() {
-			return time;
-		}
-
-		public void setTime(String time) {
-			this.time = time;
-		}
-
-		public String getTeam() {
-			return team;
-		}
-
-		public void setTeam(String team) {
-			this.team = team;
-		}
-
-		public String getHome() {
-			return home;
-		}
-
-		public void setHome(String home) {
-			this.home = home;
-		}
-
-		public String getAway() {
-			return away;
-		}
-
-		public void setAway(String away) {
-			this.away = away;
-		}
-
-		public String getScore() {
-			return score;
-		}
-
-		public void setScore(String score) {
-			this.score = score;
-		}
-
-		public String getTimeEnd() {
-			return timeEnd;
-		}
-
-		public void setTimeEnd(String timeEnd) {
-			this.timeEnd = timeEnd;
-		}
-
-	}
 
 	/**
 	 * 将日期串转化为日期数组

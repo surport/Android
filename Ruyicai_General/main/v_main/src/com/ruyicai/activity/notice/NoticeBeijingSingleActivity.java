@@ -31,7 +31,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.bean.PlayMethodEnum;
-import com.ruyicai.activity.buy.commonBean.JcInfo;
+import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
 import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.constant.Constants;
@@ -94,7 +94,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		//startActivity(intent);
 	}
 
-	public String getEvent(String type, JcInfo info) {
+	public String getEvent(String type, JsonBeanInfo info) {
 		return type + "_" + info.getDay() + "_" + info.getWeekId() + "_"
 				+ info.getTeamId();
 	}
@@ -153,7 +153,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	 * 竞彩子列表view
 	 */
 	private void showJcListView(JSONObject jsonObj) {
-		List<JcInfo> list_jc = getSubInfoForListView(jsonObj);// 获取缓存中的数据
+		List<JsonBeanInfo> list_jc = getSubInfoForListView(jsonObj);// 获取缓存中的数据
 		// 初始化列表
 		ListView listview = (ListView) findViewById(R.id.notice_prizes_single_specific_listview);
 		JcInfoAdapter adapter = new JcInfoAdapter(this, list_jc);
@@ -185,9 +185,9 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	public class JcInfoAdapter extends BaseAdapter {
 
 		private LayoutInflater mInflater; // 扩充主列表布局
-		private List<JcInfo> mList;
+		private List<JsonBeanInfo> mList;
 
-		public JcInfoAdapter(Context context, List<JcInfo> list) {
+		public JcInfoAdapter(Context context, List<JsonBeanInfo> list) {
 			mInflater = LayoutInflater.from(context);
 			mList = list;
 
@@ -217,7 +217,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			index = position;
-			final JcInfo info = (JcInfo) mList.get(position);
+			final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
 			convertView = mInflater.inflate(R.layout.notice_jc_listview_item,
 					null);
 			final ViewHolder holder = new ViewHolder();
@@ -278,8 +278,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	/**
 	 * 子列表中相应的数据
 	 */
-	protected List<JcInfo> getSubInfoForListView(JSONObject jsonObj) {
-		ArrayList<JcInfo> list = new ArrayList<JcInfo>();
+	protected List<JsonBeanInfo> getSubInfoForListView(JSONObject jsonObj) {
+		ArrayList<JsonBeanInfo> list = new ArrayList<JsonBeanInfo>();
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
 				dateStr = jsonObj.getString("beforeBatchCode");
@@ -287,7 +287,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JcInfo itemInfo = new JcInfo();
+				JsonBeanInfo itemInfo = new JsonBeanInfo();
 				JSONObject jsonItem = jsonArray.getJSONObject(i);
 				itemInfo.setTeamId(jsonItem.getString("teamId"));
 				itemInfo.setTeam(jsonItem.getString("league"));
