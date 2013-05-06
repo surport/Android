@@ -795,6 +795,10 @@
             android:name="com.ruyicai.activity.notice.NoticeJclActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
+       <activity
+            android:name="com.ruyicai.activity.notice.NoticeBeijingSingleActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
         <!-- introduce -->
         <activity
             android:name="com.ruyicai.activity.introduce.PhotoActivity"
