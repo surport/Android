@@ -238,7 +238,16 @@ public class AccountListActivity extends Activity {
 		} else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
 			Intent intent = new Intent(context, Accoutmovecash.class);
 			startActivity(intent);
+			/**add by yejc 20130505 start*/
+		} else if ((getString(R.string.umpay_recharge) + "(免手续费)")
+				.equals(textString)) { 
+			if (isLogin()) {
+				Intent alipay_secure = new Intent(context,
+						UmPayActivity.class);
+				startActivity(alipay_secure);
+			}
 		}
+		/**add by yejc 20130505 end*/
 	}
 
 	/**
@@ -301,6 +310,15 @@ public class AccountListActivity extends Activity {
 		map.put(PICTURE, R.drawable.recharge_atm);
 		map.put(ISHANDINGFREE, getString(R.string.account_zhuanzhang_alert));
 		list.add(map);
+		
+		/**add by yejc 20130505 start*/
+		//联动优势充值
+		map = new HashMap<String, Object>();
+		map.put(TITLE, getString(R.string.umpay_recharge));
+		map.put(PICTURE, R.drawable.recharge_umpay);
+		map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
+		list.add(map);
+		/**add by yejc 20130505 end*/
 		return list;
 	}
 
@@ -357,7 +375,7 @@ public class AccountListActivity extends Activity {
 			String str1 = title;
 			builder1.append(str1);
 			if (position == 0 || position == 1 || position == 2
-					|| position == 3) {
+					|| position == 3 || position == 8) {
 				String alertStr1 = "(免手续费)";
 				builder1.append(alertStr1);
 				builder1.setSpan(new ForegroundColorSpan(Color.RED),

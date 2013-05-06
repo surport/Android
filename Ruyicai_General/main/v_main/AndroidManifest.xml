@@ -735,6 +735,16 @@
             android:name="com.ruyicai.activity.account.PhoneCardRechargeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
+        <!-- 联动优势充值 -->
+        <activity
+            android:name="com.ruyicai.activity.account.UmPayActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.umpay.creditcard.android.UmpayActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        
         <!-- menu -->
         <activity
             android:name="com.ruyicai.activity.more.FeedBack"

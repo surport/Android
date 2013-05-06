@@ -22,12 +22,15 @@ import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformatio
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
 import com.ruyicai.activity.notice.NoticeBeijingSingleActivity;
-
+import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.net.newtransaction.BeiJingSingleGameInterface;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -1039,7 +1042,26 @@ public class BeiJingSingleGameActivity extends Activity {
 				turnHosity();
 				popupwindow.dismiss();
 			}
-
+		});
+		LinearLayout layoutQuery = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout4);
+		layoutQuery.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				RWSharedPreferences shellRW = new RWSharedPreferences(context,
+						"addInfo");
+				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
+				if (userno == null || userno.equals("")) {
+					Intent intentSession = new Intent(context, UserLogin.class);
+					startActivity(intentSession);
+				} else {
+					Intent intent = new Intent(context, BetQueryActivity.class);
+					intent.putExtra("lotno", lotNo);
+					startActivity(intent);
+				}
+				popupwindow.dismiss();
+			}
 		});
 		layoutParentLuck.setVisibility(LinearLayout.GONE);
 	}
