@@ -3,6 +3,8 @@ package com.ruyicai.net.newtransaction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.InternetUtils;
 import com.ruyicai.net.newtransaction.NoticeInterface;
@@ -39,6 +41,31 @@ public class NoticeJcInfo {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
 			jsonProtocol.put(ProtocolManager.TYPE, "jcResult");
 			jsonProtocol.put(ProtocolManager.JCTYPE, jcType);
+			jsonProtocol.put(ProtocolManager.DATE, date);
+			result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+			// 联网失败了
+		}
+
+		return result;
+	}
+    /**
+     * 获取所有的开奖信息
+     * @param command
+     * @param lotno
+     * @return
+     */
+	public String getLotteryNoticeByLotNo(String command,String lotno,String date) {
+		String result = "";
+		Log.d("RUYICAI","lotno="+lotno);
+		try {
+			JSONObject jsonProtocol = ProtocolManager.getInstance()
+					.getDefaultJsonProtocol();
+			jsonProtocol.put(ProtocolManager.COMMAND, command);
+			jsonProtocol.put(ProtocolManager.REQUEST_TYPE, "matchResult");
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
 			jsonProtocol.put(ProtocolManager.DATE, date);
 			result = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
