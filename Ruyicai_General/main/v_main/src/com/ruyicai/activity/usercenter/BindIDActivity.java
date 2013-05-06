@@ -6,12 +6,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -20,10 +18,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.handler.HandlerMsg;
-import com.ruyicai.handler.MyHandler;
+import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.net.newtransaction.BindIDInterface;
-import com.ruyicai.net.newtransaction.ChangePasswordInterface;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
@@ -43,6 +39,7 @@ public class BindIDActivity extends Activity {
 	Button submit, cancle;
 	final int DIALOG1_KEY = 0;
 	String cerdidStr, nameStr;
+	String jumpFlag = ""; //add by yejc 20130506
 
 	/**
 	 * 处理登录的消息及注册的消息
@@ -56,6 +53,13 @@ public class BindIDActivity extends Activity {
 						Toast.LENGTH_LONG).show();
 				shellRW.putStringValue("certid", cerdidStr);
 				shellRW.putStringValue("name", nameStr);
+				/*add by yejc 20130506 start*/
+				if (jumpFlag.endsWith(MessageDialog.JUMP_FLAG)) {
+					Intent intent = new Intent(BindIDActivity.this,
+							AccountWithdrawActivity.class);
+					startActivity(intent);
+				}
+				/*add by yejc 20130506 end*/
 				finish();
 				break;
 			case 2:
@@ -81,6 +85,7 @@ public class BindIDActivity extends Activity {
 		cancle = (Button) findViewById(R.id.usercenter_bindID_back);
 		cancle.setOnClickListener(changepawdlistener);
 		shellRW = new RWSharedPreferences(this, "addInfo");
+		jumpFlag = getIntent().getStringExtra(MessageDialog.JUMP_FLAG); //add by yejc 20130506
 		initPojo();
 	}
 

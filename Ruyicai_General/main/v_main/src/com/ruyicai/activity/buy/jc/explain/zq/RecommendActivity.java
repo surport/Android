@@ -19,7 +19,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +78,7 @@ public class RecommendActivity extends Activity {
 		latterIndex++;
 		if (latterIndex > latterPages - 1) {
 			latterIndex = latterPages - 1;
-			progressbar.setVisibility(view.INVISIBLE);
-//			jcNewsListView.removeFooterView(view);
+			progressbar.setVisibility(View.INVISIBLE);
 			Toast.makeText(this, R.string.usercenter_hasgonelast,
 					Toast.LENGTH_SHORT).show();
 		} else {
@@ -130,7 +128,7 @@ public class RecommendActivity extends Activity {
 								dismissDialog(0);
 							}
 							if (progressbar != null && view != null) {
-								progressbar.setVisibility(ProgressBar.GONE);
+								progressbar.setVisibility(View.INVISIBLE);
 								view.setEnabled(true);
 							}
 							if (latterIndex == 0) {
@@ -151,14 +149,13 @@ public class RecommendActivity extends Activity {
 								dismissDialog(0);
 							}
 							if (progressbar != null && view != null) {
-								progressbar.setVisibility(ProgressBar.GONE);
+								progressbar.setVisibility(View.INVISIBLE);
 								view.setEnabled(true);
 							}
 						}
 					});
 					e.printStackTrace();
 				}
-				Log.i("yejc", "=================str="+str);
 			}
 		}).start();
 		
