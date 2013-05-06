@@ -93,8 +93,7 @@ public class BeiJingSingleGameActivity extends Activity {
 	private BuyGameDialog gameDialog;
 	/**context对象*/
 	protected Context context;
-	/**彩种类型*/
-	private String lotNo = Constants.LOTNO_JCL;
+
 	/**玩法回调对象*/
 	private Handler gameHandler = new Handler();
 	/** 对阵列表视图对象 */
@@ -1026,7 +1025,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				// TODO Auto-generated method stub
 				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
 				if (gameDialog == null) {
-					gameDialog = new BuyGameDialog(context, lotNo, gameHandler);
+					gameDialog = new BuyGameDialog(context, lotnoString, gameHandler);
 				}
 				gameDialog.showDialog();
 				popupwindow.dismiss();
@@ -1057,7 +1056,7 @@ public class BeiJingSingleGameActivity extends Activity {
 					startActivity(intentSession);
 				} else {
 					Intent intent = new Intent(context, BetQueryActivity.class);
-					intent.putExtra("lotno", lotNo);
+					intent.putExtra("lotno", lotnoString);
 					startActivity(intent);
 				}
 				popupwindow.dismiss();
