@@ -422,6 +422,8 @@ public class HomeActivity extends Activity {
 			Constants.todayjosn = new JSONObject(todaykaijianginfo);// 今日开奖信息
 
 			imageJson(obj.getJSONObject("image"));// 是否下载开奖图片
+			Intent intent = new Intent("com.ruyicai.activity.home.HomeActivity.UpdateNews");
+			sendBroadcast(intent);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} finally {

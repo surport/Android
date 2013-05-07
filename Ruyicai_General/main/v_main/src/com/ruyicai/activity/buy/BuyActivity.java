@@ -11,8 +11,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -67,6 +69,7 @@ import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootballLottery;
+import com.ruyicai.activity.common.UserLogin.AuthReceiver;
 import com.ruyicai.activity.expert.ExpertActivity;
 import com.ruyicai.activity.info.LotInfoActivity;
 import com.ruyicai.activity.join.JoinInfoActivity;
@@ -109,6 +112,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	String newscontent = "";
 	private int top = 20;
 	private List<String> mLabelArray = new ArrayList<String>();
+	private NewsUpdateReceiver newsUpdateReceiver = null;
 	/*
 	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
@@ -1232,10 +1236,24 @@ public class BuyActivity extends Activity implements OnClickListener {
 		// mFlipper.startFlipping();
 		// mFlipper.setTag(0);
 		mFlipper.setOnClickListener(filterclick);
+		if ("".equals(Constants.NEWS)) {
+			registerIntentReceivers();
+		} else {
+			//TextView text = (TextView) findViewById(R.id.notice_other_title);
+			//text.setText(Constants.NEWS);
+			newsUpdateHandler();
+		}
+
+	}
+	
+    private void newsUpdateHandler() {
 		TextView text = (TextView) findViewById(R.id.notice_other_title);
 		text.setText(Constants.NEWS);
-	}
-
+		if (newsUpdateReceiver != null) {
+			unregisterIntentReceivers();
+		}
+    }
+    
 	OnClickListener filterclick = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -1243,4 +1261,23 @@ public class BuyActivity extends Activity implements OnClickListener {
 			informationNet();
 		}
 	};
+	
+	private void registerIntentReceivers() {
+		newsUpdateReceiver = new NewsUpdateReceiver();
+		registerReceiver(newsUpdateReceiver, new IntentFilter(
+				"com.ruyicai.activity.home.HomeActivity.UpdateNews"));
+	}
+	
+	private void unregisterIntentReceivers() {
+		unregisterReceiver(newsUpdateReceiver);
+	}
+	
+	public class NewsUpdateReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			newsUpdateHandler();
+		}
+
+	}
 }
