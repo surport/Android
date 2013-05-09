@@ -10,7 +10,7 @@ import com.ruyicai.util.ProtocolManager;
 public class WinAndPulsaward {
 	private static final String TAG = "SoftwareUpdateInterface";
 
-	private static String COMMAND = "AllQuery";
+	private static String COMMAND = "select";
 	private String TYPE = "buyCenter";
 
 	private WinAndPulsaward() {
@@ -28,7 +28,8 @@ public class WinAndPulsaward {
 
 	/**
 	 * 
-	 * 今日开奖加奖信息
+	 * 今日开奖加奖信息 
+	 * 彩钟状态
 	 */
 	public String winandpulsquarey() {
 
@@ -36,7 +37,7 @@ public class WinAndPulsaward {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.TYPE, TYPE);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, TYPE);
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.Inflater;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -217,8 +218,6 @@ public class PublicMethod {
 			while (PublicMethod.checkCollision(deta, i, randomStr)) {
 				randomIndex = PublicMethod.getRandomByRange(0, list.size() - 1);
 			}
-			Log.i("yejc", "=====getRandomsWithoutCollision========randomIndex="+randomIndex
-					+" ===========list.get(randomIndex)="+list.get(randomIndex));
 			deta[i] = list.get(randomIndex);
 		}
 		return deta;
@@ -1910,7 +1909,42 @@ public class PublicMethod {
 		return title;
 
 	}
-
+	/**
+	 * 获得彩种开关的key
+	 * @param type
+	 * @return
+	 */
+	public static String getCloseKeyName(String type) {
+		String closeKeyName = "";
+		if (type != null) {
+			if (type.equals(Constants.LOTNO_22_5)) {
+				closeKeyName = "22-5";
+			} else if (type.equals(Constants.LOTNO_NMK3)) {
+				closeKeyName = "nmk3";
+			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
+				closeKeyName = "beijingsinglegame";
+			} 
+		}
+		return closeKeyName;
+	}
+	/**
+	 * 获得停售key
+	 * @param type
+	 * @return
+	 */
+	public static String getWillsaleName(String type) {
+		String willKeyName = "";
+		if (type != null) {
+			if (type.equals(Constants.LOTNO_22_5)) {
+				willKeyName = "22-5-willsale";
+			} else if(type.equals(Constants.LOTNO_NMK3)){
+				willKeyName = "nmk3-willsale";
+			}  else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
+				willKeyName = "beijingsinglegame-willsale";
+			} 
+		}
+		return willKeyName;
+	}
 	/**
 	 * 获取期号
 	 * 
@@ -2745,5 +2779,22 @@ public class PublicMethod {
 				Spanned.SPAN_COMPOSING);
 		text.setText(builder, BufferType.EDITABLE);
 	}
-
+	/**
+	 * 获得指定彩票信息
+	 * @param loto
+	 * @return
+	 * @throws JSONException
+	 */
+	public static JSONObject getJsonObjectByLoto(String loto) throws JSONException {
+		if (Constants.todayjosn == null) return null;
+		JSONArray jsonArray = Constants.todayjosn.getJSONArray("result");
+		JSONObject jsonObject = null;
+		for (int i = 0 ;i < jsonArray.length();i++) {
+			jsonObject = jsonArray.getJSONObject(i);			
+            if (!jsonObject.isNull(loto)) {
+            	return new JSONObject(jsonObject.getString(loto));
+            }
+		}
+		return null;
+	}
 }

@@ -59,7 +59,6 @@ public class NoticeJcInfo {
      */
 	public String getLotteryNoticeByLotNo(String command,String lotno,String date) {
 		String result = "";
-		Log.d("RUYICAI","lotno="+lotno);
 		try {
 			JSONObject jsonProtocol = ProtocolManager.getInstance()
 					.getDefaultJsonProtocol();

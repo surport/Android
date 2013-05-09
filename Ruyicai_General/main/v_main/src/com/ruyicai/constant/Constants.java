@@ -181,7 +181,8 @@ public class Constants {
 	public static final String LOTNO_PL5 = "T01011"; // 排列五
 	public static final String LOTNO_JC = "J00001"; // 竞彩
 	public static final String LOTNO_NMK3 = "F47107";//内蒙快三
-
+	public static final String  LOTNO_BJ_SINGLE = "BD";//北京单场
+	
 	public static final String LOTNO_ZC = "ZC"; // 进球彩
 	public static final String LOTNO_JQC = "T01005"; // 进球彩
 	public static final String LOTNO_LCB = "T01006"; // 足彩六场半
@@ -273,4 +274,12 @@ public class Constants {
 	public static String MAC;
 
 	public static final String SUCCESS_CODE = "0000";
+	
+	
+	public static final String SALE_STOPED = "0";
+	public static final String SALEINGL = "1";
+	public static final String SALE_WILLING = "2";
+	public static final String ADD_AWARD_OK = "1";
+	public static final String ADD_AWARD_NO = "0";
+	
 }

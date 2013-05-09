@@ -3,6 +3,15 @@ package com.ruyicai.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
+
+import com.ruyicai.activity.buy.BuyActivity;
+import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
+
 /**
  * 
  * @author fansm
@@ -90,6 +99,45 @@ public class CheckUtil {
 		    return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * 检查彩种的发售情况
+	 */
+	public static void checkLotteryTicketSale(boolean isFirstLaunch, String lotno, Context context) {
+		if (isFirstLaunch) {
+			// 这里判断彩种设置
+			RWSharedPreferences shellRW = new RWSharedPreferences(
+					context, ShellRWConstants.CAIZHONGSETTING);
+
+			if (Constants.todayjosn != null) {
+				try {
+					//String josn = Constants.todayjosn.getString(lotno);
+					//JSONObject jsonobj = new JSONObject(josn);
+					JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+                    if (jsonobj != null) {
+						String isSale = jsonobj.getString("saleState");
+						if (isSale.equals(Constants.SALE_WILLING)) {
+							shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno), Constants.CAIZHONG_CLOSE);
+							shellRW.putStringValue(PublicMethod.getWillsaleName(lotno), "true");
+						} else if (isSale.equals(Constants.SALEINGL)) {
+							if (shellRW.getStringValue(PublicMethod.getWillsaleName(lotno)).equals(
+									"true")) {
+								shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno),
+										Constants.CAIZHONG_OPEN);
+								shellRW.putStringValue(PublicMethod.getWillsaleName(lotno), "false");
+							}
+						}
+					} else {
+						shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno), Constants.CAIZHONG_CLOSE);
+					}
+					
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			isFirstLaunch = false;
+		}
 	}
 
 }
