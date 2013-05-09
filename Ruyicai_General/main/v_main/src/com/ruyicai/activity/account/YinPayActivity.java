@@ -6,21 +6,18 @@ import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
-import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 import com.unionpay.upomp.lthj.util.PluginHelper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -46,10 +43,10 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 	private final String YINTYPE = "0900";
 	Button secureOk, secureCancel;
 	EditText accountnum;
-	private ProgressDialog mProgress = null;
-	private boolean isOnClick = true;
+//	private ProgressDialog mProgress = null;
+//	private boolean isOnClick = true;
 	private TextView alipay_content = null;
-	private boolean isWebView = false;// 浏览器打开支付宝
+//	private boolean isWebView = false;// 浏览器打开支付宝
 	private String sessionId = "";
 	private String phonenum = "";
 	private String userno = "";
@@ -98,7 +95,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 						}
 					});
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -110,42 +106,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
 				.rechargeDescribe("lthjChargeDescription");
 		return jsonObjectByLotno;
-	}
-
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	@Override
-	protected void onRestart() {
-		// TODO Auto-generated method stub
-		super.onRestart();
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 
 	// 银联充值
@@ -171,7 +131,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨
 				RechargePojo rechargepojo = new RechargePojo();
-				;
 				rechargepojo.setAmount(zfb_recharge_value_string);
 				rechargepojo.setRechargetype("06");
 				rechargepojo.setCardtype(YINTYPE);
@@ -204,7 +163,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 			public void run() {
 				String error_code = "00";
 				message = "";
-				// TODO Auto-generated method stub
 				try {
 					rechargepojo.setSessionid(sessionId);
 					rechargepojo.setUserno(userno);
@@ -229,18 +187,15 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		turnYinView(xml);
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 

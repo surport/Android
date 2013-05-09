@@ -92,16 +92,17 @@ public class NoticeMainActivity extends Activity {
 			R.drawable.join_11ydj, R.drawable.join_gd11x5, R.drawable.join_sfc,
 			R.drawable.join_rx9, R.drawable.join_6cb, R.drawable.join_jqc,
 			R.drawable.join_jcz, R.drawable.join_jcl, R.drawable.notice_ten,
-			R.drawable.nmk3 }; // zlm
+			R.drawable.nmk3, R.drawable.beijingsinglegame_lotterynotice }; // zlm
 	// 8.9
 	// 添加排列三、超级大乐透图标
 	private static final String[] titles = { "双色球", "福彩3D", "七乐彩", "大乐透",
 			"排列三", "排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "广东11选5",
-			"足彩胜负", "任选九", "六场半", "进球彩", "竞彩足球", "竞彩篮球", "广东快乐十分", "快三" };
+			"足彩胜负", "任选九", "六场半", "进球彩", "竞彩足球", "竞彩篮球", "广东快乐十分", "快三", 
+			"北京单场"};
 	// 新加获取时时彩信息
 	public static final String iGameName[] = { "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "gd-11-5",
-			"sfc", "rxj", "lcb", "jqc", "jcz", "jcl", "gd-10", "nmk3" }; // 8.9
+			"sfc", "rxj", "lcb", "jqc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame" }; // 8.9
 	public static boolean isFirstNotice = true;
 	public boolean isnoticefresh = true;
 
@@ -1361,6 +1362,32 @@ public class NoticeMainActivity extends Activity {
 							aRedColorResId);
 					holder.numbers.addView(tempBallView);
 				}
+			}
+			
+			//北京单场
+			else if (iGameType.equals(iGameName[20])) {
+				holder.rLayout.setVisibility(RelativeLayout.GONE);
+				holder.lookBtn.setVisibility(Button.VISIBLE);
+				holder.lookBtn.setBackgroundResource(R.drawable.join_info_btn_selecter);
+				holder.lookBtn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						isnoticefresh = false;
+						Intent intent = new Intent(context, NoticeBeijingSingleActivity.class);
+						intent.putExtra(Constants.PLAY_METHOD_TYPE, Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS);
+						context.startActivity(intent);
+					}
+				});
+				holder.scoreBtn.setVisibility(View.GONE);
+//				holder.scoreBtn.setBackgroundResource(R.drawable.join_info_btn_selecter);
+//				holder.scoreBtn.setOnClickListener(new OnClickListener() {
+//					@Override
+//					public void onClick(View v) {
+//						isnoticefresh = false;
+//						Intent intent = new Intent(context, JcScoreActivity.class);
+//						context.startActivity(intent);
+//					}
+//				});
 			}
 
 			return convertView;

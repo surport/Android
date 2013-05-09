@@ -16,6 +16,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,6 +51,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private String[] dateShow = {}, dateNet = {};// dateShow为显示用的日期数组
 													// ，dateNet为联网上传用的日期格式数组
 	private Button reBtn;
+	private Button playBtn;
+	private LinearLayout playLinear;
 
 	private int initViewState = 1;// 设置初始化竞彩查询date的状态，当initViewState =
 									// OTHER_JC_NOTICE时，不再初始化日期数组
@@ -57,6 +61,14 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private final int OTHER_JC_NOTICE = 2;// 点击日期刷新（）
 	private Context context;
     private String playMethodType  = "";
+    private int bachCodeIndex = 0;
+    
+    private String[] playType = {Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS, 
+    		Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS, 
+    		Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL, 
+    		Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE, 
+    		Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE};
+    private String[] playTypeText = new String[5];
 	
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -70,6 +82,12 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
         playMethodType =  bundle.getString(Constants.PLAY_METHOD_TYPE);
 
 		initView();
+		playTypeText[0] = getString(R.string.beijingsinglegame_textview_wintieloss);
+		playTypeText[1] = getString(R.string.beijingsinglegame_textview_totalgoals);
+		playTypeText[2] = getString(R.string.beijingsinglegame_textview_overall);
+		playTypeText[3] = getString(R.string.beijingsinglegame_textview_halftheaudience);
+		playTypeText[4] = getString(R.string.beijingsinglegame_textview_updownsigledouble);
+		
 		if (Constants.noticeJcz.equals("")) {
 			initViewState = FIRST_JC_NOTICE;
 			noticeBeijingSingleNet("");
@@ -104,10 +122,22 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		RelativeLayout rLayout = (RelativeLayout) findViewById(R.id.notice_prizes_single_specific_main_relative01);
 		rLayout.setVisibility(RelativeLayout.VISIBLE);
 		TextView noticePrizesTitle = (TextView) findViewById(R.id.notice_prizes_single_specific_title_id);
-		noticePrizesTitle.setText(R.string.jingcai_kaijianggonggao);
+		noticePrizesTitle.setText(R.string.beijing_single_kaijianggonggao);
 		noticePrizesTitle.setTextSize(20);
 		// 返回主列表
-		reBtn = (Button) findViewById(R.id.notice_prizes_single_specific_main_returnID);
+		/**close by yejc 20130506 start*/
+		((Button)findViewById(R.id.notice_prizes_single_specific_main_returnID)).setVisibility(View.GONE);
+		playLinear = (LinearLayout)findViewById(R.id.notice_beijing_single_item_play);
+		playLinear.setVisibility(View.VISIBLE);
+		reBtn = (Button) findViewById(R.id.notice_beijing_single_main_batch_code);
+		playBtn = (Button) findViewById(R.id.buy_lq_main_btn_type);
+		playBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				showPlayDialog();
+			}
+		});
 		if (dateShow.length == 0) {
 			reBtn.setClickable(false);
 		} else {
@@ -116,10 +146,10 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		reBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				showBatchcodesDialog();
 			}
 		});
+		/**close by yejc 20130506 end*/
 	}
 
 	/**
@@ -195,19 +225,16 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -215,14 +242,13 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
-			convertView = mInflater.inflate(R.layout.notice_jc_listview_item,
+			convertView = mInflater.inflate(R.layout.notice_beijing_single_listview_item,
 					null);
 			final ViewHolder holder = new ViewHolder();
-			holder.time = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time);
+//			holder.teamId = (TextView) convertView
+//					.findViewById(R.id.jc_main_list_item_text_team_id);
 			holder.team = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_team);
 			holder.home = (TextView) convertView
@@ -233,28 +259,31 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 					.findViewById(R.id.jc_main_list_item_text_vs);
 			holder.timeEnd = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_time_end);
-			holder.teamId = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_id);
+//			holder.teamPlay = (TextView) convertView
+//					.findViewById(R.id.jc_main_list_item_text_play);
 			holder.result = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_jieguo);
 			holder.score = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_score);
+			holder.odds = (TextView) convertView
+					.findViewById(R.id.notice_beijing_single_item_odds);
 			convertView.setTag(holder);
-			holder.time.append(info.getTime());
+//			holder.time.append(info.getTime());
 			holder.team.append(info.getTeam());
 			holder.home.append(info.getHome());
 			holder.away.append(info.getAway());
 			holder.letPoint.setText(info.getLetPoint());
 			holder.letPoint.setTextColor(Color.BLUE);
+//			holder.teamId.setText(getResources().getString(R.string.notice_beijing_single_item_team_id)+info.getTeamId());
+			holder.odds.setText(getResources().getString(R.string.notice_beijing_single_item_odds)+info.getPeiLv());
 			//holder.timeEnd.append(info.getTimeEnd());
-			holder.teamId.append(info.getWeek() + info.getTeamId());
+//			holder.teamId.append(info.getWeek() + info.getTeamId());
 			holder.result.append("主" + info.getResult());
 			//holder.score.append(info.getScore());
 			convertView.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCFOOT, info),
 							info.getHome(), info.getAway());
 				}
@@ -263,15 +292,16 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		}
 
 		class ViewHolder {
-			TextView time;
+//			TextView teamId;
 			TextView team;
 			TextView home;
 			TextView away;
 			TextView letPoint;
 			TextView timeEnd;
-			TextView teamId;
+//			TextView teamPlay;
 			TextView result;
 			TextView score;
+			TextView odds;
 		}
 	}
 
@@ -312,7 +342,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 		Constants.noticeJcz = jsonObj.toString();
 		showJcListView(jsonObj);
@@ -320,13 +349,10 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -345,6 +371,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
+						bachCodeIndex = which;
 						reBtn.setText(dateShow[which]);
 						initViewState = OTHER_JC_NOTICE;
 						noticeBeijingSingleNet(dateNet[which]);
@@ -352,17 +379,30 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				}).create();
 		batchCodedialog.show();
 	}
+	
+	private void showPlayDialog() {
+		AlertDialog batchCodedialog = new AlertDialog.Builder(
+				NoticeBeijingSingleActivity.this).setItems(playTypeText,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						playBtn.setText(playTypeText[which]);
+						playMethodType = playType[which];
+						if (dateNet.length > bachCodeIndex) {
+							noticeBeijingSingleNet(dateNet[bachCodeIndex]);
+						}
+					}
+				}).create();
+		batchCodedialog.show();
+	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}

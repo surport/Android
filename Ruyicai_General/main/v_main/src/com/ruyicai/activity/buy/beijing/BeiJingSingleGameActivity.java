@@ -480,7 +480,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		eventSelectButton.setOnClickListener(new ButtonOnClickListener());
 
 		realtimeScoreButton = (Button) findViewById(R.id.buy_lq_main_btn_score);
-		realtimeScoreButton.setOnClickListener(new ButtonOnClickListener());
+		realtimeScoreButton.setVisibility(View.GONE);  //隐藏即时比分
+//		realtimeScoreButton.setOnClickListener(new ButtonOnClickListener());
 
 		guestTeamForwardTextView = (TextView) findViewById(R.id.buy_jc_main_text_title);
 		guestTeamForwardTextView.setVisibility(View.INVISIBLE);
@@ -976,11 +977,11 @@ public class BeiJingSingleGameActivity extends Activity {
 			case R.id.buy_lq_main_btn_team:
 				createeventSelectDialog();
 				break;
-			case R.id.buy_lq_main_btn_score:
-				Intent intent = new Intent(BeiJingSingleGameActivity.this,
-						JcScoreActivity.class);
-				startActivity(intent);
-				break;
+//			case R.id.buy_lq_main_btn_score:
+//				Intent intent = new Intent(BeiJingSingleGameActivity.this,
+//						JcScoreActivity.class);
+//				startActivity(intent);
+//				break;
 			case R.id.buy_zixuan_img_again:
 				refreshAgainstInformationShow(false,true);
 				break;
@@ -1003,7 +1004,11 @@ public class BeiJingSingleGameActivity extends Activity {
 		final LinearLayout layoutGame = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout1);
 		final LinearLayout layoutHosity = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_layout2);
+				.findViewById(R.id.beijing_single_mani_history);
+		layoutHosity.setVisibility(View.GONE);
+		
+//		final LinearLayout layoutHosity = (LinearLayout) popupView
+//				.findViewById(R.id.buy_group_layout2);
 		final LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
 		popupwindow.setOutsideTouchable(true);
@@ -1022,7 +1027,6 @@ public class BeiJingSingleGameActivity extends Activity {
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
 				if (gameDialog == null) {
 					gameDialog = new BuyGameDialog(context, lotnoString, gameHandler);
@@ -1032,22 +1036,20 @@ public class BeiJingSingleGameActivity extends Activity {
 			}
 		});
 		
-		layoutHosity.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				layoutHosity
-						.setBackgroundResource(R.drawable.buy_group_layout_b);
-				turnHosity();
-				popupwindow.dismiss();
-			}
-		});
+//		layoutHosity.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				layoutHosity
+//						.setBackgroundResource(R.drawable.buy_group_layout_b);
+//				turnHosity();
+//				popupwindow.dismiss();
+//			}
+//		});
 		LinearLayout layoutQuery = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout4);
 		layoutQuery.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				RWSharedPreferences shellRW = new RWSharedPreferences(context,
 						"addInfo");
 				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
@@ -1056,7 +1058,7 @@ public class BeiJingSingleGameActivity extends Activity {
 					startActivity(intentSession);
 				} else {
 					Intent intent = new Intent(context, BetQueryActivity.class);
-					intent.putExtra("lotno", lotnoString);
+					intent.putExtra("lotno", Constants.LOTNO_BJ_SINGLE);
 					startActivity(intent);
 				}
 				popupwindow.dismiss();

@@ -278,7 +278,19 @@ public class NoticeDataProvider {
 				e.printStackTrace();
 			}
 		}
-
+		
+		/**add by yejc 20130506 start*/
+		if (shellRW.getStringValue(NoticeMainActivity.iGameName[20]).toString()
+				.equals(Constants.CAIZHONG_OPEN)) {
+			try {
+				map = new HashMap<String, Object>();
+				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[20]);
+				list.add(map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		/**add by yejc 20130506 end*/
 		return list;
 	}
 }

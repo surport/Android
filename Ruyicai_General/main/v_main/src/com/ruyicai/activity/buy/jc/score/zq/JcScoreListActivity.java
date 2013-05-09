@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -185,7 +184,6 @@ public class JcScoreListActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String re = ScoreListInterface.getScore(type, date,
 							reguestType);
@@ -201,7 +199,6 @@ public class JcScoreListActivity extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								listInfo = getScoreInfo(jsonArray);
 								initNameSpinner();
 								initList();
@@ -211,7 +208,6 @@ public class JcScoreListActivity extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								initNameSpinner();
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
@@ -254,12 +250,12 @@ public class JcScoreListActivity extends Activity {
 				info.setGuestHalfScore(json.getString("guestHalfScore"));
 				info.setRed(json.getString("red"));
 				info.setYellow(json.getString("yellow"));
-				try {
-					int homeInt = Integer.parseInt(info.getHomeScore());
-					int guestInt = Integer.parseInt(info.getGuestScore());
-				} catch (Exception e) {
-
-				}
+//				try {
+//					int homeInt = Integer.parseInt(info.getHomeScore());
+//					int guestInt = Integer.parseInt(info.getGuestScore());
+//				} catch (Exception e) {
+//
+//				}
 				listInfo.add(info);
 			}
 
@@ -344,26 +340,22 @@ public class JcScoreListActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			// TODO Auto-generated method stub
 			final ScoreInfo info = mList.get(position);
 			ViewHolder holder1 = null;
 			if (convertView == null) {
@@ -534,7 +526,6 @@ public class JcScoreListActivity extends Activity {
 				info.setEvent(json.getString("event"));
 				listInfo.add(info);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

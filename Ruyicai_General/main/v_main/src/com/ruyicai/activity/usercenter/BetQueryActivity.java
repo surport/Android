@@ -14,17 +14,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.method.DigitsKeyListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +33,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -49,7 +46,6 @@ import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.BetDetailsInterface;
 import com.ruyicai.net.newtransaction.BetQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
@@ -65,10 +61,10 @@ import com.umeng.analytics.MobclickAgent;
  * 
  */
 public class BetQueryActivity extends Activity implements HandlerMsg {
-	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
+//	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
 	private LinearLayout usecenerLinear;
 	private Button returnButton;
-	private Button kindButton;
+//	private Button kindButton;
 	private TextView titleTextView;
 	private LinearLayout kind;// 按彩种查询
 	private Spinner betkindspinner;
@@ -76,17 +72,17 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	private boolean isbetkindall = false;// 下拉框选择查询全部彩种，默认为fasle,点击一次变为true;
 	private String[] allcountries = { "全部彩种", "双色球", "福彩3D", "江西11选5",
 			"广东11选5", "快三", "大乐透", "时时彩", "七乐彩", "排列三", "竞彩足球", "排列五", "七星彩",
-			"11运夺金", "竞彩篮球", "22选5", "足彩", "广东快乐十分" };
+			"11运夺金", "竞彩篮球", "22选5", "足彩", "广东快乐十分", "北京单场" };
 	private int allpages = 0, ssqpages = 0, dpages = 0, xuanpages = 0,
 			dltpages = 0, sscpages = 0, qlcpages = 0, plspages = 0,
 			jczqpages = 0, plwpages = 0, qxcpages = 0, djpages = 0,
-			jclqpages = 0, twentypages = 0, sfcpages = 0, rxjpages = 0,
-			lcbpages = 0, jqcpages = 0, gdpages = 0, tenpages = 0;
+			jclqpages = 0, twentypages = 0, sfcpages = 0, /*rxjpages = 0,
+			lcbpages = 0, jqcpages = 0, */gdpages = 0, tenpages = 0, beijingpages = 0;
 	private int allindex = 0, ssqindex = 0, dindex = 0, xuanindex = 0,
 			dltindex = 0, sscindex = 0, qlcindex = 0, plsindex = 0,
 			jczqindex = 0, plwindex = 0, qxcindex = 0, djindex = 0,
-			jclqindex = 0, twentyindex = 0, sfcindex = 0, rxjindex = 0,
-			lcbindex = 0, jqcindxe = 0, gdindex = 0, tenindex = 0;
+			jclqindex = 0, twentyindex = 0, sfcindex = 0, /*rxjindex = 0,
+			lcbindex = 0, jqcindxe = 0,*/ gdindex = 0, tenindex = 0, beijingIndex = 0;
 	String jsonString;
 	final String BATCHCODE = "batchCode", LOTMUTI = "lotMulti",
 			ORDERTIME = "orderTime", PRIZEAMT = "prizeAmt",
@@ -115,10 +111,12 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	List<BetQueryInfo> jclqdatalist = new ArrayList<BetQueryInfo>();
 	List<BetQueryInfo> twentydatalist = new ArrayList<BetQueryInfo>();
 	List<BetQueryInfo> sfcdatalist = new ArrayList<BetQueryInfo>();
-	List<BetQueryInfo> rxjdatalist = new ArrayList<BetQueryInfo>();
-	List<BetQueryInfo> lcbdatalist = new ArrayList<BetQueryInfo>();
-	List<BetQueryInfo> jqcdatalist = new ArrayList<BetQueryInfo>();
+//	List<BetQueryInfo> rxjdatalist = new ArrayList<BetQueryInfo>();
+//	List<BetQueryInfo> lcbdatalist = new ArrayList<BetQueryInfo>();
+//	List<BetQueryInfo> jqcdatalist = new ArrayList<BetQueryInfo>();
 	List<BetQueryInfo> tendatalist = new ArrayList<BetQueryInfo>();
+	
+	List<BetQueryInfo> beijingSinglelist = new ArrayList<BetQueryInfo>();
 
 	private int typekind = 0;
 	Context context = this;
@@ -128,8 +126,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	View view;
 	ProgressBar progressbar;
 	boolean isfirst = false;
-
-	private final int MAX_AMT = 10000000;
+//	private final int MAX_AMT = 10000000;
 
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -225,15 +222,25 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			sfcindex = page;
 			break;
+		/**close by yejc 20130506 start*/
+//		case 17:
+//			rxjindex = page;
+//			break;
+//		case 18:
+//			lcbindex = page;
+//			break;
+//		case 19:
+//			jqcindxe = page;
+//			break;
+		/**close by yejc 20130506 start*/
+		/**add by yejc 20130506 start*/
 		case 17:
-			rxjindex = page;
+			tenindex = page;
 			break;
 		case 18:
-			lcbindex = page;
+			beijingIndex = page;
 			break;
-		case 19:
-			jqcindxe = page;
-			break;
+		/**add by yejc 20130506 end*/	
 		}
 	}
 
@@ -291,15 +298,25 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			page = sfcindex;
 			break;
+		/**close by yejc 20130506 start*/	
+//		case 17:
+//			page = rxjindex;
+//			break;
+//		case 18:
+//			page = lcbindex;
+//			break;
+//		case 19:
+//			page = jqcindxe;
+//			break;
+		/**close by yejc 20130506 end*/
+		/**add by yejc 20130506 start*/	
 		case 17:
-			page = rxjindex;
-			break;
+			page = tenindex;
+			break;	
 		case 18:
-			page = lcbindex;
-			break;
-		case 19:
-			page = jqcindxe;
-			break;
+			page = beijingIndex;
+			break;	
+		/**add by yejc 20130506 end*/	
 		}
 		return page;
 	}
@@ -358,15 +375,25 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			sfcpages = page;
 			break;
+		/**close by yejc 20130506 start*/
+//		case 17:
+//			rxjpages = page;
+//			break;
+//		case 18:
+//			lcbpages = page;
+//			break;
+//		case 19:
+//			jqcpages = page;
+//			break;
+		/**close by yejc 20130506 start*/
+		/**add by yejc 20130506 start*/
 		case 17:
-			rxjpages = page;
+			tenpages = page;
 			break;
 		case 18:
-			lcbpages = page;
+			beijingpages = page;
 			break;
-		case 19:
-			jqcpages = page;
-			break;
+		/**add by yejc 20130506 end*/	
 		}
 	}
 
@@ -424,15 +451,25 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			page = sfcpages;
 			break;
+		/**close by yejc 20130506 start*/	
+//		case 17:
+//			page = rxjpages;
+//			break;
+//		case 18:
+//			page = lcbpages;
+//			break;
+//		case 19:
+//			page = jqcpages;
+//			break;
+		/**close by yejc 20130506 end*/	
+		/**add by yejc 20130506 start*/	
 		case 17:
-			page = rxjpages;
+			page = tenpages;
 			break;
 		case 18:
-			page = lcbpages;
+			page = beijingpages;
 			break;
-		case 19:
-			page = jqcpages;
-			break;
+		/**add by yejc 20130506 start*/	
 		}
 		return page;
 	}
@@ -490,19 +527,29 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			initListView(queryinfolist, sfcdatalist);
 			break;
+			/**close by yejc 20130507 start*/
+//		case 17:
+//			initListView(queryinfolist, rxjdatalist);
+//			break;
+//		case 18:
+//			initListView(queryinfolist, lcbdatalist);
+//			break;
+//		case 19:
+//			initListView(queryinfolist, jqcdatalist);
+//			break;
+//		case 20:
+//			initListView(queryinfolist, tendatalist);
+//			break;
+			/**close by yejc 20130507 end*/
+			
+		/**add by yejc 20130506 start*/	
 		case 17:
-			initListView(queryinfolist, rxjdatalist);
-			break;
-		case 18:
-			initListView(queryinfolist, lcbdatalist);
-			break;
-		case 19:
-			initListView(queryinfolist, jqcdatalist);
-			break;
-		case 20:
 			initListView(queryinfolist, tendatalist);
 			break;
-
+		case 18:
+			initListView(queryinfolist, beijingSinglelist);
+			break;	
+		/**add by yejc 20130506 start*/	
 		}
 
 	}
@@ -568,7 +615,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			betkindspinner.setSelection(14);
 		} else if (type.equals(Constants.LOTNO_22_5)) {
 			betkindspinner.setSelection(15);
-		} else if (type.equals(Constants.LOTNO_SFC)) {
+		} /*else if (type.equals(Constants.LOTNO_SFC)) { //close by yejc 20130506 start
 			betkindspinner.setSelection(16);
 		} else if (type.equals(Constants.LOTNO_RX9)) {
 			betkindspinner.setSelection(17);
@@ -577,8 +624,14 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		} else if (type.equals(Constants.LOTNO_JQC)) {
 			betkindspinner.setSelection(19);
 		} else if (type.equals(Constants.LOTNO_ten)) {
-			betkindspinner.setSelection(20);
-		}
+			betkindspinner.setSelection(20); //close by yejc 20130506 end
+		}*/ else if (type.equals(Constants.LOTNO_ZC)) { /**add by yejc 20130506 start*/
+			betkindspinner.setSelection(16); 
+		} else if (type.equals(Constants.LOTNO_ten)) {
+			betkindspinner.setSelection(17); 
+		} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
+			betkindspinner.setSelection(18); 
+		} /**add by yejc 20130506 end*/
 	}
 
 	// 按彩种查询投注记录
@@ -717,7 +770,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 				} else if (position == 15) {
 					isbetkindall = true;
 					lotno = Constants.LOTNO_22_5;
-					if (jclqdatalist.size() > 0) {
+					if (twentydatalist.size() > 0) {
 						selecttypelist(position);
 					} else {
 						getWinDataNet(0);
@@ -734,6 +787,14 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 					isbetkindall = true;
 					lotno = Constants.LOTNO_ten;
 					if (tendatalist.size() > 0) {
+						selecttypelist(position);
+					} else {
+						getWinDataNet(0);
+					}
+				} else if (position == 18) {
+					isbetkindall = true;
+					lotno = Constants.LOTNO_BJ_SINGLE;
+					if (beijingSinglelist.size() > 0) {
 						selecttypelist(position);
 					} else {
 						getWinDataNet(0);
@@ -776,7 +837,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				BetAndWinAndTrackAndGiftQueryPojo betQueryPojo = new BetAndWinAndTrackAndGiftQueryPojo();
 				betQueryPojo.setUserno(userno);
 				betQueryPojo.setPageindex(String.valueOf(pageindex));
@@ -787,12 +847,11 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 				Message msg = handler.obtainMessage();
 				jsonString = BetQueryInterface.getInstance().betQuery(
 						betQueryPojo);
-				;
 				thandler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						progressbar.setVisibility(view.INVISIBLE);
+						progressbar.setVisibility(View.INVISIBLE);
 						view.setEnabled(true);
 					}
 				});
@@ -852,11 +911,8 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				addmore();
-
 			}
 		});
 		initListView(queryinfolist, betdatalist);
@@ -871,7 +927,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		if (pageIndex < allpagenum) {
 			netting(pageIndex);
 		} else {
-			progressbar.setVisibility(view.INVISIBLE);
+			progressbar.setVisibility(View.INVISIBLE);
 			pageIndex = allpagenum - 1;
 			view.setEnabled(true);
 			Toast.makeText(BetQueryActivity.this,
@@ -917,8 +973,10 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 							.getString(BET_CODE));
 					betQueryinfo.setPrizeState(winprizejson.getJSONObject(i)
 							.getString(prizeState));
-					betQueryinfo.setWin_code(winprizejson.getJSONObject(i)
-							.getString(WINCODE));
+					if (winprizejson.getJSONObject(i).has(WINCODE)) {
+						betQueryinfo.setWin_code(winprizejson.getJSONObject(i)
+								.getString(WINCODE));
+					}
 					betQueryinfo.setRepeatBuy(winprizejson.getJSONObject(i)
 							.getBoolean(ISREPEATBUY));
 					betQueryinfo.setOrderId(winprizejson.getJSONObject(i)
@@ -963,7 +1021,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 						twentydatalist.add(betQueryinfo);
 					} else if (typekind == 16) {
 						sfcdatalist.add(betQueryinfo);
-					} else if (typekind == 17) {
+					} /*else if (typekind == 17) {
 						rxjdatalist.add(betQueryinfo);
 					} else if (typekind == 18) {
 						lcbdatalist.add(betQueryinfo);
@@ -971,9 +1029,14 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 						jqcdatalist.add(betQueryinfo);
 					} else if (typekind == 20) {
 						tendatalist.add(betQueryinfo);
+					}*/ else if (typekind == 17) {
+						tendatalist.add(betQueryinfo);
+					} else if (typekind == 18) {
+						beijingSinglelist.add(betQueryinfo);
 					}
 
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 
@@ -1231,14 +1294,12 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}

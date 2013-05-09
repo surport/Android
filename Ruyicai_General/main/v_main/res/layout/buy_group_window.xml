@@ -36,7 +36,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/beijing_single_mani_history"
         android:layout_width="wrap_content"
         android:layout_height="38dip"
         android:background="@drawable/buy_group_top_dw2"
