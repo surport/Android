@@ -375,7 +375,7 @@ public class HomeActivity extends Activity {
 				.softwareupdate(statJsonObject,
 						shellRW.getStringValue("randomNumber"),
 						packageName.substring(14));
-		todaykaijianginfo = WinAndPulsaward.getInstance().winandpulsquarey();// 今日开奖信息。
+		todaykaijianginfo = WinAndPulsaward.getInstance().winandpulsquarey();// 彩种信息。
 		try {
 			obj = new JSONObject(softwareUpdateInfo);
 			JSONObject autoLogin = obj.getJSONObject("autoLogin");
@@ -419,7 +419,7 @@ public class HomeActivity extends Activity {
 			}
 			Constants.NEWS = obj.getString("news");
 			Constants.currentLotnoInfo = obj.getJSONObject("currentBatchCode");// 获取网络的期号信息
-			Constants.todayjosn = new JSONObject(todaykaijianginfo);// 今日开奖信息
+			Constants.todayjosn = new JSONObject(todaykaijianginfo);// 彩种信息。
 
 			imageJson(obj.getJSONObject("image"));// 是否下载开奖图片
 			Intent intent = new Intent("com.ruyicai.activity.home.HomeActivity.UpdateNews");
@@ -606,20 +606,15 @@ public class HomeActivity extends Activity {
 	 * 检验彩种设置信息
 	 */
 	public static List<Map<String, String>> shellRWList;
-	/*private String[] titles = { "合买大厅", "双色球", "福彩3D", "七乐彩", "大乐透", "排列三",
-			"排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "专家荐号", "广东11选5",
-			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三", "北京单场" };*/
 	private String[] titles = { "合买大厅", "双色球", "福彩3D", "七乐彩", "大乐透", "排列三",
 			"排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "专家荐号", "广东11选5",
-			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三"};
-	/*
+			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三", "北京单场" };
+	
 	private String iGameName[] = { "hmdt", "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "zjjh",
 			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame" }; // 8.9
-*/
-	private String iGameName[] = { "hmdt", "ssq", "fc3d", "qlc", "cjdlt",
-			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "zjjh",
-			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3"}; // 8.9
+
+
 	private void checkCaizhongSetting() {
 		RWSharedPreferences shellRW = new RWSharedPreferences(this,
 				ShellRWConstants.CAIZHONGSETTING);
