@@ -84,6 +84,7 @@ import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.dialog.ShortcutDialog;
 import com.ruyicai.net.newtransaction.PrizeRankInterface;
 import com.ruyicai.net.newtransaction.TopNewsInformationInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -113,7 +114,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	private int top = 20;
 	private List<String> mLabelArray = new ArrayList<String>();
 	private NewsUpdateReceiver newsUpdateReceiver = null;
-	/*
+	
 	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
 			R.drawable.ico_timec, R.drawable.icon_jc, R.drawable.nmk3_ico,
@@ -122,36 +123,20 @@ public class BuyActivity extends Activity implements OnClickListener {
 			R.drawable.icon_pl5, R.drawable.icon_qxc, R.drawable.ico_goalin,
 			R.drawable.ico_basketball, R.drawable.ten_icon,
 			R.drawable.beijingsinglegame_ico };
-			*/
-	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
-			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
-			R.drawable.ico_timec, R.drawable.icon_jc, R.drawable.nmk3_ico,
-			R.drawable.ico_eleven, R.drawable.ico_expert, R.drawable.gd_eleven,
-			R.drawable.ico_three, R.drawable.ico_seven, R.drawable.twentyfive,
-			R.drawable.icon_pl5, R.drawable.icon_qxc, R.drawable.ico_goalin,
-			R.drawable.ico_basketball, R.drawable.ten_icon };
-	/*
+
+	
 	private String[] imageTitle = { "合买大厅", "双色球", "大乐透", "福彩3D", "江西11选5",
 			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
 			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" };
-			*/
-	private String[] imageTitle = { "合买大厅", "双色球", "大乐透", "福彩3D", "江西11选5",
-			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
-			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分"};
-	/*
+
+
 	private final Class[] cla = { JoinInfoActivity.class, Ssq.class, Dlt.class,
 			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
 			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
 			GdEleven.class, PL3.class, Qlc.class, TwentyTwo.class, PL5.class,
 			QXC.class, FootballLottery.class, LqMainActivity.class,
 			TenActivity.class, BeiJingSingleGameActivity.class };
-			*/
-	private final Class[] cla = { JoinInfoActivity.class, Ssq.class, Dlt.class,
-			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
-			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
-			GdEleven.class, PL3.class, Qlc.class, TwentyTwo.class, PL5.class,
-			QXC.class, FootballLottery.class, LqMainActivity.class,
-			TenActivity.class };
+
 	private int[] imgViewsId = { R.id.mainpage_hemai_sign,
 			R.id.mainpage_ssq_sign, R.id.mainpage_fc3d_sign,
 			R.id.mainpage_11x5_sign, R.id.mainpage_dlt_sign,
@@ -215,43 +200,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		initRollingText();
 		isShortcut();
 		MobclickAgent.onEvent(this, "goucaidating"); // BY贺思明 点击主导航上的“购彩大厅”。
-	}
-
-	/**
-	 * 检查内蒙快三的发售情况
-	 */
-	private void checkNmk3Sale() {
-		if (isFirstLaunch) {
-			// 这里判断彩种设置
-			RWSharedPreferences shellRW = new RWSharedPreferences(
-					BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
-
-			if (Constants.todayjosn != null) {
-				try {
-					String josn = Constants.todayjosn
-							.getString(Constants.LOTNO_NMK3);
-					JSONObject jsonobj = new JSONObject(josn);
-					String isSale = jsonobj.getString("isSale");
-					if (isSale.equals("willSale")) {
-						shellRW.putStringValue("nmk3", Constants.CAIZHONG_CLOSE);
-						shellRW.putStringValue("nmk3-willsale", "true");
-					} else if (isSale.equals("true")) {
-						if (shellRW.getStringValue("nmk3-willsale").equals(
-								"true")) {
-							shellRW.putStringValue("nmk3",
-									Constants.CAIZHONG_OPEN);
-							shellRW.putStringValue("nmk3-willsale", "false");
-						}
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			} else {
-				shellRW.putStringValue("nmk3", Constants.CAIZHONG_CLOSE);
-				shellRW.putStringValue("nmk3-willsale", "true");
-			}
-			isFirstLaunch = false;
-		}
 	}
 
 	/**
@@ -356,7 +304,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map7.put("caizhongSetting", shellRW.getStringValue("jcz").toString());
 		caizhongSettingList.add(map7);
 
-		checkNmk3Sale();
+		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_NMK3,this);
 		Map<String, String> map8 = new HashMap<String, String>();
 		map8.put("lotno", "F47107");
 		map8.put("caizhongSetting", shellRW.getStringValue("nmk3").toString());
@@ -387,7 +335,8 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map13.put("lotno", "F47102");
 		map13.put("caizhongSetting", shellRW.getStringValue("qlc").toString());
 		caizhongSettingList.add(map13);
-
+		
+		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_22_5,this);
 		Map<String, String> map14 = new HashMap<String, String>();
 		map14.put("lotno", "T01013");
 		map14.put("caizhongSetting", shellRW.getStringValue("22-5").toString());
@@ -418,14 +367,13 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map19.put("caizhongSetting", shellRW.getStringValue("gd-10").toString());
 		caizhongSettingList.add(map19);
 
-		/*
+		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_BJ_SINGLE,this);
 		Map<String, String> map20 = new HashMap<String, String>();
 		map20.put("lotno", "B00001");
 		map20.put("caizhongSetting", shellRW
 				.getStringValue("beijingsinglegame").toString());
 		caizhongSettingList.add(map20);
-		*/
-
+		
 	}
 
 	/**
@@ -982,28 +930,31 @@ public class BuyActivity extends Activity implements OnClickListener {
 				boolean isStop = true;// true代表正在销售
 				if (Constants.todayjosn != null) {
 					if (!lotno.equals("hmdt") && !lotno.equals("zjjh")) {
-						if (lotno.equals("F47104") || lotno.equals("F47102")
-								|| lotno.equals("T01001")) {
+						if (lotno.equals(Constants.LOTNO_SSQ) || lotno.equals(Constants.LOTNO_QLC)
+								|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
+								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)) {
 							try {
-								String josn = Constants.todayjosn
-										.getString(lotno);
-								JSONObject jsonobj = new JSONObject(josn);
+								//String josn = Constants.todayjosn.getString(lotno);
+								//JSONObject jsonobj = new JSONObject(josn);
+								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+								if (jsonobj == null) continue;
 								String isTodayOpenPrize = jsonobj
 										.getString("isTodayOpenPrize");
 								String isaddString = jsonobj
-										.getString("isAddAward");
-								String isSale = jsonobj.getString("isSale");
-								if (isSale.equals("false")) {
+										.getString("addAwardState");
+								String isSale = jsonobj.getString("saleState");
+								if (isSale.equals(Constants.SALE_WILLING)) continue;
+								if (isSale.equals(Constants.SALE_STOPED)) {
 									imgView.setImageResource(R.drawable.tingshou);
 									isStop = false;
 								} else if (isTodayOpenPrize.equals("true")
-										&& isaddString.equals("true")) {
+										&& isaddString.equals(Constants.ADD_AWARD_OK)) {
 									imgView.setImageResource(R.drawable.kaijiang);
 								} else if (isTodayOpenPrize.equals("true")
-										&& isaddString.equals("false")) {
+										&& isaddString.equals(Constants.ADD_AWARD_NO)) {
 									imgView.setImageResource(R.drawable.kaijiang);
 								} else if (isTodayOpenPrize.equals("false")
-										&& isaddString.equals("true")) {
+										&& isaddString.equals(Constants.ADD_AWARD_OK)) {
 									imgView.setImageResource(R.drawable.jiajiang);
 								}
 							} catch (JSONException e) {
@@ -1013,16 +964,18 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 						} else {
 							try {
-								String josn = Constants.todayjosn
-										.getString(lotno);
-								JSONObject jsonobj = new JSONObject(josn);
+								//String josn = Constants.todayjosn
+								//		.getString(lotno);
+								//JSONObject jsonobj = new JSONObject(josn);
+								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+								if (jsonobj == null) continue;
 								String isaddString = jsonobj
-										.getString("isAddAward");
-								String isSale = jsonobj.getString("isSale");
-								if (isSale.equals("false")) {
+										.getString("addAwardState");
+								String isSale = jsonobj.getString("saleState");
+								if (isSale.equals(Constants.SALE_STOPED)) {
 									imgView.setImageResource(R.drawable.tingshou);
 									isStop = false;
-								} else if (isaddString.equals("true")) {
+								} else if (isaddString.equals(Constants.ADD_AWARD_OK)) {
 									imgView.setImageResource(R.drawable.jiajiang);
 								}
 							} catch (JSONException e) {
