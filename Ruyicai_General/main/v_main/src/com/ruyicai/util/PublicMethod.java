@@ -1929,7 +1929,7 @@ public class PublicMethod {
 		return closeKeyName;
 	}
 	/**
-	 * 获得停售key
+	 * 获得彩种预售key
 	 * @param type
 	 * @return
 	 */
@@ -1947,7 +1947,7 @@ public class PublicMethod {
 		return willKeyName;
 	}
 	/**
-	 * 获得停售key
+	 * 获得关闭彩种key
 	 * @param type
 	 * @return
 	 */
