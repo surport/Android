@@ -943,7 +943,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 								String isaddString = jsonobj
 										.getString("addAwardState");
 								String isSale = jsonobj.getString("saleState");
-								if (isSale.equals(Constants.SALE_WILLING)) continue;
 								if (isSale.equals(Constants.SALE_STOPED)) {
 									imgView.setImageResource(R.drawable.tingshou);
 									isStop = false;
