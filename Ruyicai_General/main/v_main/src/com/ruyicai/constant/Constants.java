@@ -27,11 +27,11 @@ public class Constants {
     public static String TAG = "RUYICAI";
     /*Add by fansm 20130412 end*/
 
-	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
-//	public static final String SERVER_URL = "http://192.168.0.42:80/jrtLot/";
+//	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
+	public static final String SERVER_URL = "http://192.168.0.42:80/jrtLot/";
 
-	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-//	public static String LOT_SERVER = "http://192.168.0.42:80/lotserver/RuyicaiServlet";//测试线
+//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+	public static String LOT_SERVER = "http://192.168.0.42:80/lotserver/RuyicaiServlet";//测试线
 
 	/**
 	 * 彩种设置
@@ -218,7 +218,7 @@ public class Constants {
 	public static final String PLAY_METHOD_TYPE = "playMethodType";
 
 	/**
-	 * 中奖排行的一些标示
+	 * 彩种代码
 	 */
 	public static final String WEEK = "weekArray";
 	public static final String MONTH = "monthArray";
@@ -239,6 +239,16 @@ public class Constants {
 	public static final String RXJLABEL = "rxj";
 	public static final String LCBLABEL = "lcb";
 	public static final String GD115 = "gd115";
+	public static final String NMK3LABEL = "nmk3";
+	public static final String BDLABEL = "beijingsinglegame";
+	/**
+	 * 彩票状态
+	 */
+	public static final String NMK3WILLSALES = "nmk3-willsale";
+	public static final String TWENWILLSALES = "22-5-willsale";
+	public static final String TWENCLOSED = "22-5-closed";
+	public static final String BDWILLSATES = "beijingsinglegame-willsale";
+	
 
 	/**
 	 * 竞彩足球TYpe标示

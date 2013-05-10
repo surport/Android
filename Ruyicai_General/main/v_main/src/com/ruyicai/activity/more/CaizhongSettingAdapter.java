@@ -6,6 +6,8 @@ import java.util.Map;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.util.CheckUtil;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 import android.content.Context;
@@ -91,10 +93,10 @@ public class CaizhongSettingAdapter extends BaseAdapter {
 			String lotnoString = v.getTag(R.id.caizhong_set_checkbox)
 					.toString();
 
-			if (lotnoString.equals("nmk3")
-					&& shellRW.getStringValue("nmk3-willsale").equals("true")) {
-				Toast.makeText(mContext, "快三即将发售，敬请期待", Toast.LENGTH_LONG)
-						.show();
+			if (CheckUtil.isWillSale(lotnoString, shellRW)) {
+				PublicMethod.showMessage(mContext, PublicMethod.getMessageByLoto(mContext,shellRW,lotnoString));
+			} else if (CheckUtil.isTickedClosed(lotnoString, shellRW)) {
+				PublicMethod.showMessage(mContext, PublicMethod.getMessageByLoto(mContext,shellRW,lotnoString));
 			} else {
 				String checkOpenOrClosed = shellRW.getStringValue(lotnoString);
 				if (checkOpenOrClosed.equals(Constants.CAIZHONG_OPEN)) {

@@ -55,6 +55,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
+import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.DirectPayActivity;
@@ -1918,11 +1919,11 @@ public class PublicMethod {
 		String closeKeyName = "";
 		if (type != null) {
 			if (type.equals(Constants.LOTNO_22_5)) {
-				closeKeyName = "22-5";
+				closeKeyName = Constants.TWENTYBEL;
 			} else if (type.equals(Constants.LOTNO_NMK3)) {
-				closeKeyName = "nmk3";
+				closeKeyName = Constants.NMK3LABEL;
 			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
-				closeKeyName = "beijingsinglegame";
+				closeKeyName = Constants.BDLABEL;
 			} 
 		}
 		return closeKeyName;
@@ -1936,14 +1937,28 @@ public class PublicMethod {
 		String willKeyName = "";
 		if (type != null) {
 			if (type.equals(Constants.LOTNO_22_5)) {
-				willKeyName = "22-5-willsale";
+				willKeyName = Constants.TWENWILLSALES;
 			} else if(type.equals(Constants.LOTNO_NMK3)){
-				willKeyName = "nmk3-willsale";
+				willKeyName = Constants.NMK3WILLSALES;
 			}  else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
-				willKeyName = "beijingsinglegame-willsale";
+				willKeyName = Constants.BDWILLSATES;
 			} 
 		}
 		return willKeyName;
+	}
+	/**
+	 * 获得停售key
+	 * @param type
+	 * @return
+	 */
+	public static String getCloseTicketFLG(String type) {
+		String closeTicketKeyName = "";
+		if (type != null) {
+			if (type.equals(Constants.LOTNO_22_5)) {
+				closeTicketKeyName = Constants.TWENCLOSED;
+			} 
+		}
+		return closeTicketKeyName;
 	}
 	/**
 	 * 获取期号
@@ -2797,4 +2812,37 @@ public class PublicMethod {
 		}
 		return null;
 	}
+	/**
+	 * 获得彩种的提示信息
+	 * @param mContext
+	 * @param shellRW
+	 * @param lotno
+	 * @return
+	 */
+	public static String getMessageByLoto(Context mContext,RWSharedPreferences shellRW,String lotno) {
+	    String message = "";
+		if (lotno.equals(Constants.NMK3LABEL)) {
+			if (shellRW.getStringValue(Constants.NMK3WILLSALES).equals("true")) {
+				message = mContext.getResources().getString(R.string.nmk3willSaleMessage);
+			}
+	    } else if (lotno.equals(Constants.BDLABEL)) {
+	    	if (shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
+	    		message = mContext.getResources().getString(R.string.bdwillSaleMessage);
+	    	}
+	    } else if (lotno.equals(Constants.TWENTYBEL)) {
+	    	if (shellRW.getStringValue(Constants.TWENCLOSED).equals("true")) {
+	    		message = mContext.getResources().getString(R.string.twentyClosedMessage);
+	    	}
+	    }
+	    return message;
+	}
+	/**
+	 * 显示消息
+	 * @param mContext
+	 * @param message
+	 */
+	public static void showMessage(Context mContext, String message) {
+		Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+	}
+
 }

@@ -1133,4 +1133,8 @@
     <string name="notice_beijing_single_item_team_id">"场次: "</string>
     <string name="notice_beijing_single_item_play">"玩法: "</string>
     <string name="beijing_single_kaijianggonggao">"北京单场开奖公告"</string>
+    
+    <string name="nmk3willSaleMessage">"快三即将发售，敬请期待"</string>  
+    <string name="bdwillSaleMessage">"北京单场即将发售，敬请期待"</string>  
+    <string name="twentyClosedMessage">"22选5已经关闭"</string>  
 </resources>

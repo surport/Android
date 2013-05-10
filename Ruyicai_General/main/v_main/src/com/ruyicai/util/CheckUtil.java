@@ -130,6 +130,7 @@ public class CheckUtil {
 						}
 					} else {
 						shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno), Constants.CAIZHONG_CLOSE);
+						shellRW.putStringValue(PublicMethod.getCloseTicketFLG(lotno),"true");
 					}
 					
 				} catch (JSONException e) {
@@ -139,5 +140,28 @@ public class CheckUtil {
 			isFirstLaunch = false;
 		}
 	}
-
+	/**
+	 * 检查彩种是否即将发售情况
+	 */
+	public static boolean isWillSale(String lotno,RWSharedPreferences shellRW) {
+		if (lotno.equals(Constants.NMK3LABEL)
+					&& shellRW.getStringValue(Constants.NMK3WILLSALES).equals("true")) {
+			return true;
+		}  else if (lotno.equals(Constants.BDLABEL)
+				&& shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
+			return true;
+	    } 
+        return false;
+	}
+	
+	/**
+	 * 检查彩种是否即将发售情况
+	 */
+	public static boolean isTickedClosed(String lotno,RWSharedPreferences shellRW) {
+		if (lotno.equals(Constants.TWENTYBEL)
+					&& shellRW.getStringValue(Constants.TWENCLOSED).equals("true")) {
+			return true;
+		}
+        return false;
+	}
 }
