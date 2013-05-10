@@ -11,11 +11,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/jc_bg1"
         android:orientation="vertical" >
+
         <LinearLayout
             android:id="@+id/LinearLayout01"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:visibility="gone">
+            android:layout_height="wrap_content"
+            android:visibility="gone" >
 
             <TextView
                 android:id="@+id/jc_main_list_item_text_team_id"
@@ -39,7 +40,6 @@
                 android:textSize="16sp" >
             </TextView>
         </LinearLayout>
-        <!-- 1111111111111111 -->
 
         <LinearLayout
             android:id="@+id/LinearLayout01"
@@ -147,9 +147,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            
-            
-            <!-- xiabian -->
             <LinearLayout
                 android:id="@+id/LinearLayout01"
                 android:layout_width="300sp"
@@ -211,21 +208,15 @@
                     </TextView>
                 </LinearLayout>
             </LinearLayout>
-            
-            
-            
-            
-            
-            <TextView android:id="@+id/notice_beijing_single_item_odds"
+
+            <TextView
+                android:id="@+id/notice_beijing_single_item_odds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dip"
+                android:text="@string/notice_beijing_single_item_odds"
                 android:textColor="@color/black"
-                android:textSize="16sp" 
-                android:text="@string/notice_beijing_single_item_odds"/>
-            
-            
-            
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 

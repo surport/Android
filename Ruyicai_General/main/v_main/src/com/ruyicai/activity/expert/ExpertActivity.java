@@ -1,18 +1,8 @@
 package com.ruyicai.activity.expert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONObject;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.umeng.analytics.MobclickAgent;
-
-import android.app.Activity;
-import android.app.ActivityGroup;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.TextView;

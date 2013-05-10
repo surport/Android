@@ -8,7 +8,6 @@ import java.text.NumberFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -128,14 +127,12 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = PublicMethod.toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						issueText.setText("第" + issue + "期");
 						betAndGift.setBatchcode(issue);
 					}
@@ -172,7 +169,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			codeInfo.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					addviewmiss.createCodeInfoDialog(JoinStartActivity.this);
 					addviewmiss.showDialog();
 				}
@@ -183,7 +179,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (OrderDetails.isAlert) {
 					alertExit(getString(R.string.buy_alert_exit_detail));
 				} else {
@@ -490,9 +485,19 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		betAndGift.setAmount("" + addviewmiss.getAllAmt() * iProgressBeishu
 				* 100);
 		betAndGift.setIsSellWays("1");
-		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-				betAndGift.getAmt() * 100));
-
+		
+		/**add by yejc 20130510 start*/
+		if (isFromTrackQuery) {
+			betAndGift.setBet_code(betAndGift.getBet_code());
+		} else {
+			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+					betAndGift.getAmt() * 100));
+		}
+		/**add by yejc 20130510 start*/
+		/**close by yejc 20130510 start*/
+//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+//				betAndGift.getAmt() * 100));
+		/**close by yejc 20130510 end*/
 	}
 
 	/**
@@ -553,7 +558,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 * @param int checkedId 当前被选择的RadioId
 	 */
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		switch (group.getId()) {
 		case R.id.buy_join_radiogroup_baodi:
 			switch (checkedId) {
@@ -720,7 +724,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		// Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 		showfenxdialog(message);
 	}
@@ -729,7 +732,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		clearProgress();
 
@@ -751,14 +753,12 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		share.setBackgroundResource(R.drawable.loginselecter);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 				JoinStartActivity.this.finish();
 			}
 		});
 		share.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 				Intent intent = new Intent(JoinStartActivity.this,
 						JoinStarShare.class);
@@ -778,8 +778,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*
@@ -789,13 +787,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		betAndGift.setIssuper("");
 		betAndGift.setAmt(2);
@@ -805,7 +801,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
@@ -813,7 +808,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -839,19 +833,14 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void touzhuIssue(String issue) {
-		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
 		showDialog(0); // 显示网络提示框 2010/7/4
 		// 加入是否改变切入点判断 陈晨 8.11
@@ -911,9 +900,13 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
+			/**add by yejc 20130510 start*/
+			if (isFromTrackQuery) {
+				break;
+			}
+			/**add by yejc 20130510 end*/
 			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
 				alertExit(getString(R.string.buy_alert_exit_detail));
 			} else {

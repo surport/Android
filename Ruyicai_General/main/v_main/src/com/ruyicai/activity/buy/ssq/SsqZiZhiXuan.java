@@ -91,26 +91,6 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 		return areaNums;
 	}
 
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-	}
-
 	/**
 	 * 判断是否满足投注的投注条件
 	 */

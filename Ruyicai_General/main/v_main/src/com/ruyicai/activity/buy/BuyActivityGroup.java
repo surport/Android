@@ -39,6 +39,7 @@ import com.ruyicai.activity.more.LuckChoose2;
 import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.activity.notice.NoticeZCActivity;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
+import com.ruyicai.activity.usercenter.TrackQueryActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
@@ -85,6 +86,7 @@ public class BuyActivityGroup extends ActivityGroup {
 	/**add by yejc 20130422 start*/
 	protected String event;
 	public static final String REQUEST_EVENT = "event";
+	public boolean isFromTrackQuery = false;
 	/**add by yejc 20130422 start*/
 
 	@Override
@@ -98,6 +100,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		setContentView(R.layout.buy_main_group);
 		relativeLayout1 = (RelativeLayout) findViewById(R.id.last_batchcode);
 		context = this;
+		isFromTrackQuery = getIntent().getBooleanExtra(TrackQueryActivity.FLAG_FROM_TRACK_QUERY, false);
 		mTabHost = (TabHost) findViewById(R.id.tab_host);
 		tabWidget = mTabHost.getTabWidget();
 		mTabHost.setup(getLocalActivityManager());
@@ -701,6 +704,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		intent.putExtra("index", index);
 		/**add by yejc 20130422 start*/
 		intent.putExtra(REQUEST_EVENT, event);
+		intent.putExtra(TrackQueryActivity.FLAG_FROM_TRACK_QUERY, isFromTrackQuery);
 		/**add by yejc 20130422 end*/
 		firstSpec = mTabHost.newTabSpec(titles[index])
 				.setIndicator(indicatorTab).setContent(intent);
@@ -924,14 +928,12 @@ public class BuyActivityGroup extends ActivityGroup {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		getInfo();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
@@ -939,7 +941,6 @@ public class BuyActivityGroup extends ActivityGroup {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		isRun = false;
 	}

@@ -276,7 +276,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
-				// TODO Auto-generated method stub
 				editLanguage.setFocusable(true);
 				return false;
 			}
@@ -285,7 +284,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
-				// TODO Auto-generated method stub
 				editPhone.setFocusable(true);
 				return false;
 			}
@@ -455,7 +453,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				adviceDialog.cancel();
 				languageStr = Constants.avdiceStr[position];
 				editLanguage.setText(languageStr);
@@ -515,7 +512,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onDismiss(DialogInterface dialog) {
-				// TODO Auto-generated method stub;
 				phoneStr = "";
 				for (int i = 0; i < checkedPersons.size(); i++) {
 					phoneStr += checkedPersons.get(i).phone;
@@ -533,7 +529,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				adviceDialog.cancel();
 				editPhone.setText(persons.get(position).phone);
 
@@ -551,7 +546,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				// adviceDialog.cancel();
 				dialogOk();
 			}
@@ -572,7 +566,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 			}
 
 			@Override
@@ -583,7 +576,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 				Vector<Person> newPersons = new Vector<Person>();// 所有联系人
 				String nameStr = checkEdit.getText().toString();
 				if (nameStr != null && !nameStr.equals("")) {
@@ -742,26 +734,21 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-
 			final int index = position;
 			ViewHolder holder = null;
 			final Person person = (Person) mList.get(position).get(INFO);
@@ -852,19 +839,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 		public TouDialog(Activity activity, String title, String message) {
 			super(activity, title, message);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public void onOkButton() {
-			// TODO Auto-generated method stub
 			giftNet();
 		}
 
 		@Override
 		public void onCancelButton() {
-			// TODO Auto-generated method stub
-
 		}
 
 	}
@@ -1071,8 +1054,19 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setAmount("" + addviewmiss.getAllAmt() * iProgressBeishu
 				* 100);
 		betAndGift.setIsSellWays("1");
-		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-				betAndGift.getAmt() * 100));
+		/**add by yejc 20130510 start*/
+		if (isFromTrackQuery) {
+			betAndGift.setBet_code(betAndGift.getBet_code());
+		} else {
+			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+					betAndGift.getAmt() * 100));
+		}
+		/**add by yejc 20130510 end*/
+		/**close by yejc 20130510 start*/
+//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+//				betAndGift.getAmt() * 100));
+		/**close by yejc 20130510 end*/
+		
 		betAndGift.setBettype("gift");
 		betAndGift.setDescription("");
 		betAndGift.setTo_mobile_code(editPhone.getText().toString()
@@ -1180,19 +1174,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		clearProgress();
 
 	}
 
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1217,9 +1207,13 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
+			/**add by yejc 20130510 start*/
+			if (isFromTrackQuery) {
+				break;
+			}
+			/**add by yejc 20130510 end*/
 			if (isDialog) {
 				dialogOk();
 			} else {

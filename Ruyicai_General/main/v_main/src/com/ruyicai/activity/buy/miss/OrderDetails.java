@@ -35,7 +35,6 @@ public class OrderDetails extends BuyActivityGroup {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		isAlert = true;
 		isRun = false;

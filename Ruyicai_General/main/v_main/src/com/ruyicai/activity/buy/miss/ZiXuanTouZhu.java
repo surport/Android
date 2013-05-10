@@ -70,7 +70,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.order_touzhu);
 		ApplicationAddview app = (ApplicationAddview) getApplicationContext();
@@ -104,7 +103,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			codeInfo.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					addviewmiss.createCodeInfoDialog(ZiXuanTouZhu.this);
 					addviewmiss.showDialog();
 				}
@@ -119,7 +117,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (OrderDetails.isAlert) {
 					alertExit(getString(R.string.buy_alert_exit_detail));
 				} else {
@@ -162,14 +159,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = PublicMethod.toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						issueText.setText("第" + issue + "期");
 						betAndGift.setBatchcode(issue);
 					}
@@ -232,14 +227,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		// + iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu
 		// + "元";
 	}
-
 	/**
 	 * 投注方法
 	 */
 	private void touZhu() {
 		toLogin = false;
 		initBet();
-		// TODO Auto-generated method stub
 		touZhuNet();
 		// clearProgress();
 	}
@@ -303,8 +296,19 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 		betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 		betAndGift.setBatchnum("" + iProgressQishu);// batchnum 追号期数 默认为1（不追号）
-		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-				betAndGift.getAmt() * 100));
+		
+		/**add by yejc 20130510 start*/
+		if (isFromTrackQuery) {
+			betAndGift.setBet_code(betAndGift.getBet_code());
+		} else {
+			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+					betAndGift.getAmt() * 100));
+		}
+		/**add by yejc 20130510 end*/
+		/**close by yejc 20130510 start*/
+//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+//				betAndGift.getAmt() * 100));
+		/**close by yejc 20130510 end*/
 
 	}
 
@@ -378,7 +382,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		PublicMethod.showDialog(this);
 	}
 
@@ -386,7 +389,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		clearProgress();
 
@@ -394,20 +396,16 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -426,19 +424,15 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void touzhuIssue(String issue) {
-		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
 		progressdialog = UserCenterDialog.onCreateDialog(this);
 		progressdialog.show();
@@ -499,9 +493,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
+			/**add by yejc 20130510 start*/
+			if (isFromTrackQuery) {
+				break;
+			}
+			/**add by yejc 20130510 end*/
 			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
 				alertExit(getString(R.string.buy_alert_exit_detail));
 			} else {

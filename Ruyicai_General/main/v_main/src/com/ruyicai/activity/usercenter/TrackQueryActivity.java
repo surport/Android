@@ -39,9 +39,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.activity.buy.miss.AddViewMiss;
+import com.ruyicai.activity.buy.miss.OrderDetails;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.usercenter.detail.Trackdetail;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo2;
+import com.ruyicai.code.ssq.SsqZiZhiXuanCode;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -65,6 +70,9 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 	private LinearLayout usecenerLinear;
 	private Button returnButton;
 	private TextView titleTextView;
+	/**add by yejc 20130509 start*/
+	public static final String FLAG_FROM_TRACK_QUERY = "flag_from_track_query";
+	/**add by yejc 20130509 end*/
 
 	String jsonString;
 	String jsontrack;
@@ -672,8 +680,28 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			btn.setBackgroundResource(R.drawable.user_continue_issue_selector);
 			btn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					createContinueDialog(info);
+//					createContinueDialog(info); //close by yejc 20130510
+					/**add by yejc 20130510 start*/
+					ApplicationAddview app = (ApplicationAddview) getApplicationContext();
+					String amount = Integer.parseInt(info.getOneAmount()) / 100
+							* Integer.parseInt(info.getBetNum()) + "00";
+					initBetPojo("1", "1", amount, info);
+					app.setPojo(betPojo);
+					AddViewMiss addViewMiss = new AddViewMiss(TrackQueryActivity.this);
+					CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+//					codeInfo.setTouZhuCode(SsqZiZhiXuanCode.simulateZhuma(
+//							selectedRedBallList, selectedBlueBallList));
+//					codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
+//					codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
+//					codeInfo = setCodeInfoColor(codeInfo, selectedRedBallList,
+//							selectedBlueBallList);
+					addViewMiss.addCodeInfo(codeInfo);
+					app.setAddviewmiss(addViewMiss);
+					Intent intent = new Intent(TrackQueryActivity.this, OrderDetails.class);
+					intent.putExtra("position", 1);
+					intent.putExtra(FLAG_FROM_TRACK_QUERY, true);
+					startActivity(intent);
+					/**add by yejc 20130510 end*/
 				}
 			});
 		} else {
@@ -853,21 +881,21 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 
 	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
 
-	private void initBetPojo(String zhuma, String issue, String lotMulti,
-			String lotno, String amount, String oneAmount) {
+	private void initBetPojo(/*String zhuma, */String issue, String lotMulti,
+			/*String lotno,*/ String amount, /*String oneAmount,*/ TrackQueryInfo info) {
 		initPojo();
 		betPojo.setPhonenum(phonenum);
 		betPojo.setSessionid(sessionid);
 		betPojo.setUserno(userno);
-		betPojo.setBet_code(zhuma);
-		betPojo.setLotno(lotno);
+		betPojo.setBet_code(info.getBetTouCode());
+		betPojo.setLotno(info.getLotno());
 		betPojo.setBatchnum(issue);
 		betPojo.setLotmulti(lotMulti);
 		betPojo.setBettype("bet");
 		betPojo.setAmount(amount);
 		betPojo.setAmt(0);
 		betPojo.setIsSellWays("1");
-		betPojo.setOneAmount(oneAmount);
+		betPojo.setOneAmount(info.getOneAmount());
 	}
 
 	/**
@@ -888,8 +916,8 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 				issue + "期\n\n");
 		continueStr.append(getString(R.string.continue_amt)).append(
 				amount + "元\n\n");
-		initBetPojo(info.getBetTouCode(), issueNum, beishu, info.getLotno(),
-				oneAmt + "00", info.getOneAmount());// 初始化投注信息
+		initBetPojo(/*info.getBetTouCode(), */issueNum, beishu, /*info.getLotno(),*/
+				oneAmt + "00", /*info.getOneAmount(),*/ info);// 初始化投注信息
 		continueInfoDialog("\n" + continueStr, issue);
 	}
 
@@ -925,7 +953,6 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				continueDialogInfo.cancel();
 				betPojo.setBatchcode(issue);
 				touZhuNet();
@@ -1013,32 +1040,27 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		Toast.makeText(this, R.string.betSuccess, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		if (isRefresh) {
 			cancleTrackError000000();
