@@ -369,7 +369,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_BJ_SINGLE,this);
 		Map<String, String> map20 = new HashMap<String, String>();
-		map20.put("lotno", "B00001");
+		map20.put("lotno", "BD");
 		map20.put("caizhongSetting", shellRW
 				.getStringValue("beijingsinglegame").toString());
 		caizhongSettingList.add(map20);
