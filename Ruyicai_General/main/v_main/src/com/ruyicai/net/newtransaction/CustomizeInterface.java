@@ -39,7 +39,7 @@ public class CustomizeInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "createAutoJoin");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "createAutoJoin");
 			jsonProtocol.put(ProtocolManager.USERNO, info.getUserno());
 			jsonProtocol.put(ProtocolManager.STARTER_USERNO,
 					info.getStarterUserNo());

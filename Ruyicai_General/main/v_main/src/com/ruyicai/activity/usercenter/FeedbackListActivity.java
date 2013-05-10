@@ -520,7 +520,7 @@ public class FeedbackListActivity extends Activity {
 			@Override
 			public void run() {
 				String str = DeleteMessage.deleteMsg(LATTERCOMMAND,
-						ProtocolManager.REGUESTTYPE, getSelectedLatterIds());
+						ProtocolManager.REQUESTTYPE, getSelectedLatterIds());
 				try {
 					JSONObject obj = new JSONObject(str);
 					String strarry = obj.getString("error_code");

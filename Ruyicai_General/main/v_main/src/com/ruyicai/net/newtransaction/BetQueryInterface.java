@@ -76,7 +76,7 @@ public class BetQueryInterface {
 			jsonProtocol.put(ProtocolManager.PAGEINDEX,
 					betQueryPojo.getPageindex());
 			jsonProtocol.put(ProtocolManager.LOTNO, betQueryPojo.getLotno());
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE,
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE,
 					betQueryPojo.getType());
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(

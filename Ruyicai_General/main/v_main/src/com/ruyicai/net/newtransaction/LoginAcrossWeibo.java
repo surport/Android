@@ -48,7 +48,7 @@ public class LoginAcrossWeibo {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "unionLogin");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "unionLogin");
 			jsonProtocol.put("source", source);
 			jsonProtocol.put("openId", openId);
 			jsonProtocol.put("nickName", nickName);

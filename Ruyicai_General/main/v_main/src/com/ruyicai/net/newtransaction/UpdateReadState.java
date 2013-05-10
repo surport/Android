@@ -28,7 +28,7 @@ public class UpdateReadState {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "updateReadState");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "updateReadState");
 			jsonProtocol.put("id", id);
 			re = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

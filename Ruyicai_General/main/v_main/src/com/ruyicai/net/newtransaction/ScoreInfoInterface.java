@@ -31,7 +31,7 @@ public class ScoreInfoInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, type);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, type);
 			jsonProtocol.put(ProtocolManager.EVENT, event);
 			re = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

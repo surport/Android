@@ -38,7 +38,7 @@ public class NotReadCountInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "notReadCount");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "notReadCount");
 			RWSharedPreferences shellRW = new RWSharedPreferences(context,
 					ShellRWConstants.SHAREPREFERENCESNAME);
 			jsonProtocol.put(ProtocolManager.USERNO,

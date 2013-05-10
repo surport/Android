@@ -29,7 +29,7 @@ public class ChangeScroeofoneInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE,
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE,
 					"transMoneyNeedScores");
 			jsonProtocol.put(ProtocolManager.USERNO, userno);
 

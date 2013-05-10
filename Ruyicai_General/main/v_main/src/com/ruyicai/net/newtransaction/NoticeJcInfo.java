@@ -63,7 +63,7 @@ public class NoticeJcInfo {
 			JSONObject jsonProtocol = ProtocolManager.getInstance()
 					.getDefaultJsonProtocol();
 			jsonProtocol.put(ProtocolManager.COMMAND, command);
-			jsonProtocol.put(ProtocolManager.REQUEST_TYPE, "matchResult");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "matchResult");
 			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
 			jsonProtocol.put(ProtocolManager.DATE, date);
 			result = InternetUtils.GetMethodOpenHttpConnectSecurity(

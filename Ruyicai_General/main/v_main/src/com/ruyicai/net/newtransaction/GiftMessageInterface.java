@@ -35,7 +35,7 @@ public class GiftMessageInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "new");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "new");
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

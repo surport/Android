@@ -60,7 +60,7 @@ public class WinQueryInterface {
 					winQueryPojo.getMaxresult());
 			jsonProtocol.put(ProtocolManager.PAGEINDEX,
 					winQueryPojo.getPageindex());
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE,
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE,
 					winQueryPojo.getType());
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(

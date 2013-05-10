@@ -34,7 +34,7 @@ public class QueryJoinFollowInterface {
 			jsonProtocol.put(ProtocolManager.USERNO, userno);
 			jsonProtocol.put(ProtocolManager.MAXRESULT, maxresult);
 			jsonProtocol.put(ProtocolManager.PAGEINDEX, newPage);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "selectAutoJoin");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "selectAutoJoin");
 			jsonProtocol.put(ProtocolManager.PHONE_NUM, phonenum);
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(

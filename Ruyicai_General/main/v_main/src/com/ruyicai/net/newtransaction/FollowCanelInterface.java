@@ -30,7 +30,7 @@ public class FollowCanelInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "cancelAutoJoin");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "cancelAutoJoin");
 			jsonProtocol.put("id", id);
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(

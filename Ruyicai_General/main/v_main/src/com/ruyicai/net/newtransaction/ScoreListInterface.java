@@ -31,7 +31,7 @@ public class ScoreListInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, reguestType);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, reguestType);
 			jsonProtocol.put(ProtocolManager.TYPE, type);
 			jsonProtocol.put(ProtocolManager.DATE, date);
 			re = InternetUtils.GetMethodOpenHttpConnectSecurity(

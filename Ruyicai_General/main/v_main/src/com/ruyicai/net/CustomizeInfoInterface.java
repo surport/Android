@@ -32,7 +32,7 @@ public class CustomizeInfoInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE,
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE,
 					"selectCaseLotStarterInfo");
 			jsonProtocol.put(ProtocolManager.STARTER_USERNO, starterUserNo);
 			jsonProtocol.put(ProtocolManager.LOTNO, lotno);

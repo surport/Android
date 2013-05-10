@@ -68,8 +68,7 @@ public class ProtocolManager {
 	 * type 在账户明细、余额查询、投注查询、赠送查询、查询DNA、查询最近提现、追号查询接口 中奖查询中使用
 	 */
 	public static String TYPE = "type";
-	/** 新接口type名字 目前对应竞彩,北单*/
-	public static String REQUEST_TYPE = "requestType";
+
 
 	public static String EVENT = "event";
 
@@ -181,10 +180,7 @@ public class ProtocolManager {
 	 * rechargetype 充值接口中使用
 	 */
 	public static String RECHARGETYPE = "rechargetype";
-	/**
-	 * rechargetype 充值接口中使用
-	 */
-	public static String REGUESTTYPE = "requestType";
+
 	/**
 	 * cardno 充值接口中使用
 	 */
@@ -237,7 +233,7 @@ public class ProtocolManager {
 	public static String ALIAS = "alias";
 
 	/**
-	 * 合买查询中使用
+	 * new instance type
 	 */
 	public static String REQUESTTYPE = "requestType";
 	/**

@@ -33,7 +33,7 @@ public class LetterQueryInterface {
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
 			jsonProtocol.put(ProtocolManager.USERNO, userno);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "list");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "list");
 			jsonProtocol.put(ProtocolManager.MAXRESULT, maxresult);
 			jsonProtocol.put(ProtocolManager.PAGEINDEX, pageindex);
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(

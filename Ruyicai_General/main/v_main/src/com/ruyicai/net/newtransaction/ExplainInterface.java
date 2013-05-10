@@ -28,7 +28,7 @@ public class ExplainInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, type);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, type);
 			jsonProtocol.put(ProtocolManager.EVENT, event);
 			re = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
@@ -48,7 +48,7 @@ public class ExplainInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, type);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, type);
 			jsonProtocol.put(ProtocolManager.EVENT, event);
 			jsonProtocol.put(ProtocolManager.PAGEINDEX, pageindex);
 			jsonProtocol.put(ProtocolManager.MAXRESULT, maxresult);

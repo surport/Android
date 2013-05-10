@@ -39,7 +39,7 @@ public class QueryLossValueInterface {
 
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, REGUESTTYPE);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, REGUESTTYPE);
 			jsonProtocol.put(ProtocolManager.SELLWAY, sellWay);
 			jsonProtocol.put(ProtocolManager.LOTNO, lotNo);
 			jsonProtocol.put(ProtocolManager.BATCHNUM, batchNum);

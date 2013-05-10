@@ -33,7 +33,7 @@ public class ModifyInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "updateAutoJoin");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "updateAutoJoin");
 			jsonProtocol.put(ProtocolManager.MODIFY_ID, info.getId());
 			jsonProtocol.put(ProtocolManager.JOIN_AMT,
 					PublicMethod.toFen(info.getJoinAmt()));

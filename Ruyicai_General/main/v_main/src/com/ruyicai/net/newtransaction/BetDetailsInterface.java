@@ -61,7 +61,7 @@ public class BetDetailsInterface {
 				.getDefaultJsonProtocol();
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
-			jsonProtocol.put(ProtocolManager.REGUESTTYPE, "betCodeAnalysis");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "betCodeAnalysis");
 			jsonProtocol.put(ProtocolManager.MODIFY_ID, id);
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
