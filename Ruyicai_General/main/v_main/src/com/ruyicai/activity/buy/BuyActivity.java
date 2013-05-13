@@ -367,7 +367,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map19.put("caizhongSetting", shellRW.getStringValue("gd-10").toString());
 		caizhongSettingList.add(map19);
 
-		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_BJ_SINGLE,this);
+		//CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_BJ_SINGLE,this);
 		Map<String, String> map20 = new HashMap<String, String>();
 		map20.put("lotno", "BD");
 		map20.put("caizhongSetting", shellRW
