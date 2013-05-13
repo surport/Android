@@ -247,12 +247,12 @@ public class ContentListView {
 					String teamVs = "vs";
 					/**Modify by yejc 20130513*/
 					if (lotno.equals(Constants.LOTNO_JCLQ_RF)) {
-						if (!"".equals(letScore) && !"0".equals(letScore)) {
+						if (letScore != null && !"".equals(letScore) && !"0".equals(letScore)) {
 							teamVs = letScore;
 						}
 					}
 					if (lotno.equals(Constants.LOTNO_JCLQ_DXF)) {
-						if (!"".equals(totalScore) && !"0".equals(totalScore)) {
+						if (totalScore != null && !"".equals(totalScore) && !"0".equals(totalScore)) {
 							teamVs = totalScore;
 						}
 					}
