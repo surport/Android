@@ -45,12 +45,6 @@
 			<version>1.0</version>
 		</dependency>
 		<dependency>
-			<groupId>com.unionpay.upomp</groupId>
-			<artifactId>android</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>com.umeng</groupId>
 			<artifactId>analytics</artifactId>
 			<version>4.5</version>
@@ -80,6 +74,11 @@
 		<dependency>
 			<groupId>com.ruyicai</groupId>
 			<artifactId>umpay</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ruyicai</groupId>
+			<artifactId>unionpay</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
