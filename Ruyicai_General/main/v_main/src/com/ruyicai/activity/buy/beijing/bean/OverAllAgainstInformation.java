@@ -1,5 +1,12 @@
 package com.ruyicai.activity.buy.beijing.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * 全场总比分对阵信息类
  * 
@@ -279,7 +286,8 @@ public class OverAllAgainstInformation extends AgainstInformation {
 			overAllAgainstInformation.setScore_v99(getScore_v99());
 			overAllAgainstInformation.setScore_v09(getScore_v09());
 			boolean[] copyClicks = new boolean[getIsClicks().length];
-			System.arraycopy(getIsClicks(), 0, copyClicks, 0, getIsClicks().length);
+			System.arraycopy(getIsClicks(), 0, copyClicks, 0,
+					getIsClicks().length);
 			overAllAgainstInformation.setIsClicks(copyClicks);
 
 		} catch (Exception e) {
@@ -287,5 +295,111 @@ public class OverAllAgainstInformation extends AgainstInformation {
 		}
 
 		return overAllAgainstInformation;
+	}
+
+	public boolean isSelected() {
+		for (int i = 0; i < isClicks.length; i++) {
+			if (isClicks[i]) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public int getClickNum() {
+		int clickNum = 0;
+		for (int i = 0; i < isClicks.length; i++) {
+			if (isClicks[i]) {
+				clickNum++;
+			}
+		}
+
+		return clickNum;
+	}
+
+	public static List<List<OverAllAgainstInformation>> analysisOverAllAgainstInformation(
+			JSONArray againstJsonArray) throws JSONException {
+		List<List<OverAllAgainstInformation>> overAllagainstInformationList = new ArrayList<List<OverAllAgainstInformation>>();
+		int jsonArrayLength = againstJsonArray.length();
+
+		for (int jsonarray_i = 0; jsonarray_i < jsonArrayLength; jsonarray_i++) {
+			List<OverAllAgainstInformation> overAllAgainstInformations = new ArrayList<OverAllAgainstInformation>();
+			JSONArray againstWithDataJsonArray = againstJsonArray
+					.getJSONArray(jsonarray_i);
+			int againstWithDataLength = againstWithDataJsonArray.length();
+
+			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
+				JSONObject againstJsonObject = againstWithDataJsonArray
+						.getJSONObject(json_i);
+
+				OverAllAgainstInformation againstInformation = new OverAllAgainstInformation();
+				againstInformation.setTeamId(againstJsonObject
+						.getString("teamId"));
+				againstInformation.setDayForamt(againstJsonObject
+						.getString("dayForamt"));
+				againstInformation.setHomeTeam(againstJsonObject
+						.getString("homeTeam"));
+				againstInformation.setGuestTeam(againstJsonObject
+						.getString("guestTeam"));
+				againstInformation.setLeague(againstJsonObject
+						.getString("league"));
+				againstInformation.setEndTime(againstJsonObject
+						.getString("endTime"));
+				againstInformation.setScore_v10(againstJsonObject
+						.getString("score_v10"));
+				againstInformation.setScore_v20(againstJsonObject
+						.getString("score_v20"));
+				againstInformation.setScore_v21(againstJsonObject
+						.getString("score_v21"));
+				againstInformation.setScore_v30(againstJsonObject
+						.getString("score_v30"));
+				againstInformation.setScore_v31(againstJsonObject
+						.getString("score_v31"));
+				againstInformation.setScore_v32(againstJsonObject
+						.getString("score_v32"));
+				againstInformation.setScore_v40(againstJsonObject
+						.getString("score_v40"));
+				againstInformation.setScore_v41(againstJsonObject
+						.getString("score_v41"));
+				againstInformation.setScore_v42(againstJsonObject
+						.getString("score_v42"));
+				againstInformation.setScore_v00(againstJsonObject
+						.getString("score_v00"));
+				againstInformation.setScore_v11(againstJsonObject
+						.getString("score_v11"));
+				againstInformation.setScore_v22(againstJsonObject
+						.getString("score_v22"));
+				againstInformation.setScore_v33(againstJsonObject
+						.getString("score_v33"));
+				againstInformation.setScore_v01(againstJsonObject
+						.getString("score_v01"));
+				againstInformation.setScore_v02(againstJsonObject
+						.getString("score_v02"));
+				againstInformation.setScore_v12(againstJsonObject
+						.getString("score_v12"));
+				againstInformation.setScore_v03(againstJsonObject
+						.getString("score_v03"));
+				againstInformation.setScore_v13(againstJsonObject
+						.getString("score_v13"));
+				againstInformation.setScore_v23(againstJsonObject
+						.getString("score_v23"));
+				againstInformation.setScore_v04(againstJsonObject
+						.getString("score_v04"));
+				againstInformation.setScore_v14(againstJsonObject
+						.getString("score_v14"));
+				againstInformation.setScore_v24(againstJsonObject
+						.getString("score_v24"));
+				againstInformation.setScore_v90(againstJsonObject
+						.getString("score_v90"));
+				againstInformation.setScore_v99(againstJsonObject
+						.getString("score_v99"));
+				againstInformation.setScore_v09(againstJsonObject
+						.getString("score_v09"));
+				overAllAgainstInformations.add(againstInformation);
+			}
+			overAllagainstInformationList.add(overAllAgainstInformations);
+		}
+		return overAllagainstInformationList;
 	}
 }

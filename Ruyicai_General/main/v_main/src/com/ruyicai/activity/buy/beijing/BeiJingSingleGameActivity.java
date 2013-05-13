@@ -1,6 +1,7 @@
 package com.ruyicai.activity.buy.beijing;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -8,7 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.BuyGameDialog;
 import com.ruyicai.activity.buy.beijing.adapter.HalfTheAudienceAdapter;
 import com.ruyicai.activity.buy.beijing.adapter.OverAllAdapter;
 import com.ruyicai.activity.buy.beijing.adapter.TotalGoalsAdapter;
@@ -20,28 +20,19 @@ import com.ruyicai.activity.buy.beijing.bean.PlayMethodEnum;
 import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
-import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
-import com.ruyicai.activity.notice.NoticeBeijingSingleActivity;
-import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.constant.Constants;
-import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.net.newtransaction.BeiJingSingleGameInterface;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -58,19 +49,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * 北京单场页面
+ * 北京单场选号页面
  * 
  * @author Administrator
  * 
  */
 public class BeiJingSingleGameActivity extends Activity {
 	private static final String TAG = "BeiJingSingleGameActivity";
-	/** 玩法彩种编号 */
-	private String lotnoString = Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS;
-	/** 标题 */
+
+	/** 从网络获取数据成功标识 */
+	private static final int SUCCESS = 0;
+	/** 从网络获取数据失败标识 */
+	private static final int FAILD = 1;
+
+	/** 玩法类型:默认为胜平负 */
+	static PlayMethodEnum playMethodType = PlayMethodEnum.WINTIELOSS;
+
+	/** 标题文本框 */
 	private TextView titleTextView;
-	/** 菜单按钮 */
-	private Button menuButton;
+	/** 下拉菜单按钮 */
+	private Button popupWindowButton;
 	/** 玩法切换按钮 */
 	private Button playMethodChangeButton;
 	/** 赛事选择按钮 */
@@ -79,44 +77,25 @@ public class BeiJingSingleGameActivity extends Activity {
 	private Button realtimeScoreButton;
 	/** 客队在前 */
 	private TextView guestTeamForwardTextView;
+	/** 对阵列表视图 */
+	private View againstView;
+	/** 对阵列表 */
+	private ListView againstListView;
 	/** 对阵填充布局 */
 	private LinearLayout againstLinearLayout;
 	/** 重选按钮 */
 	private ImageButton reelectImageButton;
-	/** 选择场次 */
+	/** 选择场次文本框 */
 	private TextView selectNumTextView;
 	/** 投注按钮 */
 	private ImageButton bettingImageButton;
-	/** 下拉菜单 */
-	private PopupWindow menuPopupwindow;
-	/**玩法介绍*/
-	private BuyGameDialog gameDialog;
-	/**context对象*/
-	protected Context context;
-
-	/**玩法回调对象*/
-	private Handler gameHandler = new Handler();
-	/** 对阵列表视图对象 */
-	private View againstView;
-	/** 对阵列表 */
-	private ListView againstListView;
-	/** 玩法切换对话框 */
-	private Dialog playMethodChangeDialog;
 
 	/** 赛事选择对话框 */
 	private Dialog eventSelectDialog;
-	/** 赛事选择按钮集合 */
-	private MyButton[] eventSelectButtons;
-
-	/** LayoutInflater对象 */
-	private LayoutInflater layoutInflater;
-	/** 玩法类型:默认为胜平负 */
-	private PlayMethodEnum playMethodType = PlayMethodEnum.WINTIELOSS;
-
-	/** 联赛名称集合 */
-	private List<String> eventsList;
-	/** 当前选中的赛事集合 */
-	private List<String> selectedEventsList;
+	/** 玩法切换对话框 */
+	private Dialog playMethodChangeDialog;
+	/** 下拉菜单 */
+	private PopupWindow menuPopupwindow;
 
 	/** 胜平负对阵列表适配器 */
 	private WinTieLossAdapter winTieLossAdapter;
@@ -129,6 +108,12 @@ public class BeiJingSingleGameActivity extends Activity {
 	/** 上下单双对阵列表适配器 */
 	private UpDownSingleDoubleAdapter upDownSingleDoubleAdapter;
 
+	/** 赛事选择按钮集合 */
+	private MyButton[] eventSelectButtons;
+	/** 赛事名称集合 */
+	private List<String> eventsList;
+	/** 当前选中的赛事集合 */
+	private List<String> nowSelectedEventsList;
 	/** 让球胜平负对阵信息对象集合 */
 	private List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList;
 	/** 当前让球胜平负对阵信息对象集合 */
@@ -150,12 +135,16 @@ public class BeiJingSingleGameActivity extends Activity {
 	/** 当前上下单双对阵信息对象集合 */
 	private List<List<UpDownSingleDoubleAgainstInformation>> nowUpDownSigleDoubleagainstInformationList;
 
-	/** 从网络获取数据成功标识 */
-	private static final int SUCCESS = 0;
-	/** 从网络获取数据失败标识 */
-	private static final int FAILD = 1;
+	/** 当前选中的场次数 */
+	private int selectedGameNum = 0;
+	/** 当前期号 */
+	private String nowIssueString;
 	/** 网络请求返回消息 */
 	private String messageString;
+
+	/** LayoutInflater对象 */
+	private LayoutInflater layoutInflater;
+
 	/** Handler对象 */
 	private Handler handler = new Handler() {
 		@Override
@@ -176,100 +165,112 @@ public class BeiJingSingleGameActivity extends Activity {
 	/**
 	 * 刷新对阵列表的显示
 	 * 
-	 * @param b
+	 * @param isReset
+	 *            是否重置适配器
+	 * @param isCleared
+	 *            是否清除原有数据
 	 */
 	public void refreshAgainstInformationShow(boolean isReset, boolean isCleared) {
 		againstLinearLayout.removeAllViews();
 
 		switch (playMethodType) {
 		case WINTIELOSS:
-			getNowShowWinTieLossAgainstInformation(isCleared);
-			if (winTieLossAdapter == null) {
-				winTieLossAdapter = new WinTieLossAdapter(
-						BeiJingSingleGameActivity.this,
-						nowWinTieLossAgainstInformationList);
+			getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
+
+			if (isReset) {
+				if (winTieLossAdapter == null) {
+					winTieLossAdapter = new WinTieLossAdapter(
+							BeiJingSingleGameActivity.this,
+							nowWinTieLossAgainstInformationList);
+				}
+
+				againstListView.setAdapter(winTieLossAdapter);
 			} else {
 				winTieLossAdapter.notifyDataSetChanged();
 			}
 
-			if (isReset) {
-				againstListView.setAdapter(winTieLossAdapter);
-			}
-
 			break;
 		case TOTALGOALS:
-			getNowShowTotalGoalsAgainstInformation(isCleared);
-			if (totalGoalsAdapter == null) {
-				totalGoalsAdapter = new TotalGoalsAdapter(
-						BeiJingSingleGameActivity.this,
-						nowTotalGoalsAgainstInformationList);
+			getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
+
+			if (isReset) {
+				if (totalGoalsAdapter == null) {
+					totalGoalsAdapter = new TotalGoalsAdapter(
+							BeiJingSingleGameActivity.this,
+							nowTotalGoalsAgainstInformationList);
+				}
+				againstListView.setAdapter(totalGoalsAdapter);
 			} else {
 				totalGoalsAdapter.notifyDataSetChanged();
 			}
-
-			if (isReset) {
-				againstListView.setAdapter(totalGoalsAdapter);
-
-			}
 			break;
 		case OVERALL:
-			getNowShowOverAllAgainstInformation(isCleared);
-			if (overAllAdapter == null) {
-				overAllAdapter = new OverAllAdapter(
-						BeiJingSingleGameActivity.this,
-						nowOverAllagainstInformationList);
+			getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
+
+			if (isReset) {
+				if (overAllAdapter == null) {
+					overAllAdapter = new OverAllAdapter(
+							BeiJingSingleGameActivity.this,
+							nowOverAllagainstInformationList);
+				}
+				againstListView.setAdapter(overAllAdapter);
 			} else {
 				overAllAdapter.notifyDataSetChanged();
 			}
-			
-			if (isReset) {
-				againstListView.setAdapter(overAllAdapter);
-			}
-			
 
 			break;
 		case HALFTHEAUDIENCE:
-			getNowShowHalfTheAudienceAgainstInformation(isCleared);
-			if (halfTheAudienceAdapter == null) {
-				halfTheAudienceAdapter = new HalfTheAudienceAdapter(
-						BeiJingSingleGameActivity.this,
-						nowHalfTheAudienceagainstInformationList);
+			getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
+
+			if (isReset) {
+				if (halfTheAudienceAdapter == null) {
+					halfTheAudienceAdapter = new HalfTheAudienceAdapter(
+							BeiJingSingleGameActivity.this,
+							nowHalfTheAudienceagainstInformationList);
+				}
+				againstListView.setAdapter(halfTheAudienceAdapter);
 			} else {
 				halfTheAudienceAdapter.notifyDataSetChanged();
 			}
-			
-			if (isReset) {
-				againstListView.setAdapter(halfTheAudienceAdapter);
-			}
-			
+
 			break;
 		case UPDOWNSINGLEDOUBLE:
-			getNowShowUpDownSingleDoubleAgainstInformation(isCleared);
-			if (upDownSingleDoubleAdapter == null) {
-				upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
-						BeiJingSingleGameActivity.this,
-						nowUpDownSigleDoubleagainstInformationList);
+			getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
+
+			if (isReset) {
+				if (upDownSingleDoubleAdapter == null) {
+					upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
+							BeiJingSingleGameActivity.this,
+							nowUpDownSigleDoubleagainstInformationList);
+				}
+				againstListView.setAdapter(upDownSingleDoubleAdapter);
 			} else {
 				upDownSingleDoubleAdapter.notifyDataSetChanged();
 			}
 
-			if (isReset) {
-				againstListView.setAdapter(upDownSingleDoubleAdapter);
-			}
-			
 			break;
 		}
-
 		againstLinearLayout.addView(againstView);
+
+		selectNumTextView.setText("已经选择了" + selectedGameNum + "场比赛");
+
 	}
 
-	private void getNowShowUpDownSingleDoubleAgainstInformation(
+	/**
+	 * 更具当前选择的赛事获取当前上下单双显示的对阵信息
+	 * 
+	 * @param isCleared
+	 *            是否清除原有的显示信息
+	 */
+	private void getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(
 			boolean isCleared) {
 
 		if (nowUpDownSigleDoubleagainstInformationList == null) {
 			nowUpDownSigleDoubleagainstInformationList = new ArrayList<List<UpDownSingleDoubleAgainstInformation>>();
 		}
+
 		if (isCleared) {
+			// 清空原有的上下单双当前显示信息
 			nowUpDownSigleDoubleagainstInformationList.clear();
 			int listnum = upDownSigleDoubleagainstInformationList.size();
 			for (int list_i = 0; list_i < listnum; list_i++) {
@@ -281,27 +282,37 @@ public class BeiJingSingleGameActivity extends Activity {
 				for (int info_j = 0; info_j < infonum; info_j++) {
 					UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation = upDownSingleDoubleAgainstInformations
 							.get(info_j);
+
+					// 获取赛事信息，如果当前选中该赛事，则将该赛事信息加入当前显示的半全场对阵信息
 					String league = upDownSingleDoubleAgainstInformation
 							.getLeague();
-					if (selectedEventsList.contains(league)) {
+					if (nowSelectedEventsList.contains(league)) {
 						nowUpDownSingleDoubleAgainstInformations
-								.add(upDownSingleDoubleAgainstInformation.clone());
+								.add(upDownSingleDoubleAgainstInformation
+										.clone());
 					}
 				}
 				nowUpDownSigleDoubleagainstInformationList
 						.add(nowUpDownSingleDoubleAgainstInformations);
 			}
 		}
-
 	}
 
-	private void getNowShowHalfTheAudienceAgainstInformation(boolean isCleared) {
+	/**
+	 * 根据当前选择的赛事获取当前显示的半全场对阵信息
+	 * 
+	 * @param isCleared
+	 *            是否清空原来显示的半全场信息
+	 */
+	private void getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(
+			boolean isCleared) {
 
 		if (nowHalfTheAudienceagainstInformationList == null) {
 			nowHalfTheAudienceagainstInformationList = new ArrayList<List<HalfTheAudienceAgainstInformation>>();
 		}
 
 		if (isCleared) {
+			// 清空原有的半全场当前显示信息
 			nowHalfTheAudienceagainstInformationList.clear();
 			int listnum = halfTheAudienceagainstInformationList.size();
 			for (int list_i = 0; list_i < listnum; list_i++) {
@@ -313,9 +324,11 @@ public class BeiJingSingleGameActivity extends Activity {
 				for (int info_j = 0; info_j < infonum; info_j++) {
 					HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation = halfTheAudienceAgainstInformations
 							.get(info_j);
+
+					// 获取赛事信息，如果当前赛事被选中，则将该信息加入当前显示的半全场对阵信息
 					String league = halfTheAudienceAgainstInformation
 							.getLeague();
-					if (selectedEventsList.contains(league)) {
+					if (nowSelectedEventsList.contains(league)) {
 						nowHalfTheAudienceAgainstInformations
 								.add(halfTheAudienceAgainstInformation.clone());
 					}
@@ -327,12 +340,20 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	}
 
-	private void getNowShowOverAllAgainstInformation(boolean isCleared) {
-		
+	/**
+	 * 根据选中的赛事获取当前显示的全场总比分对阵信息
+	 * 
+	 * @param isCleared
+	 *            是否清除原有的对阵信息
+	 */
+	private void getNowShowOverAllAgainstInformationWithSelectedEvent(
+			boolean isCleared) {
+
 		if (nowOverAllagainstInformationList == null) {
 			nowOverAllagainstInformationList = new ArrayList<List<OverAllAgainstInformation>>();
 		}
 		if (isCleared) {
+			// 清空原有的全场总比分当前显示信息
 			nowOverAllagainstInformationList.clear();
 			int listnum = overAllagainstInformationList.size();
 			for (int list_i = 0; list_i < listnum; list_i++) {
@@ -344,8 +365,10 @@ public class BeiJingSingleGameActivity extends Activity {
 				for (int info_j = 0; info_j < infonum; info_j++) {
 					OverAllAgainstInformation overAllAgainstInformation = overAllAgainstInformations
 							.get(info_j);
+
+					// 获取全场总比分赛事，如果当前赛事被选中，则放入当前显示的全场总比分数信息集合中
 					String league = overAllAgainstInformation.getLeague();
-					if (selectedEventsList.contains(league)) {
+					if (nowSelectedEventsList.contains(league)) {
 						nowOverAllAgainstInformations
 								.add(overAllAgainstInformation.clone());
 					}
@@ -357,13 +380,22 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	}
 
-	private void getNowShowTotalGoalsAgainstInformation(boolean isCleared) {
+	/**
+	 * 获取当前显示的总进球数对阵信息
+	 * 
+	 * @param isCleared
+	 *            是否清除原有信息
+	 */
+	private void getNowShowTotalGoalsAgainstInformationWithSelectedEvent(
+			boolean isCleared) {
 		if (nowTotalGoalsAgainstInformationList == null) {
 			nowTotalGoalsAgainstInformationList = new ArrayList<List<TotalGoalsAgainstInformation>>();
 		}
 
 		if (isCleared) {
+			// 清空原有的总进球数当前显示信息
 			nowTotalGoalsAgainstInformationList.clear();
+
 			int listnum = totalGoalsAgainstInformationList.size();
 			for (int list_i = 0; list_i < listnum; list_i++) {
 				List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations = totalGoalsAgainstInformationList
@@ -374,8 +406,10 @@ public class BeiJingSingleGameActivity extends Activity {
 				for (int info_j = 0; info_j < infonum; info_j++) {
 					TotalGoalsAgainstInformation totalGoalsAgainstInformation = totalGoalsAgainstInformations
 							.get(info_j);
+
+					// 获取总进球数信息的赛事，如果当前赛事被选中，则放入当前显示的总进球数信息集合中
 					String league = totalGoalsAgainstInformation.getLeague();
-					if (selectedEventsList.contains(league)) {
+					if (nowSelectedEventsList.contains(league)) {
 						nowTotalGoalsAgainstInformations
 								.add(totalGoalsAgainstInformation.clone());
 					}
@@ -388,18 +422,24 @@ public class BeiJingSingleGameActivity extends Activity {
 	}
 
 	/**
-	 * 获取当前显示的胜平负对阵信息
+	 * 获取当前显示的胜平负的对阵信息
 	 * 
+	 * @param isCleared
+	 *            是否情况原有数据
 	 */
-	private void getNowShowWinTieLossAgainstInformation(boolean isCleared) {
+	private void getNowShowWinTieLossAgainstInformationWithSelectedEvent(
+			boolean isCleared) {
 
 		if (nowWinTieLossAgainstInformationList == null) {
 			nowWinTieLossAgainstInformationList = new ArrayList<List<WinTieLossAgainstInformation>>();
 		}
 
+		// 如果清空，则从完整的数据中再次获取胜平负信息
 		if (isCleared) {
-			int listnum = winTieLossAgainstInformationList.size();
+			// 清空原有的胜平负当前显示信息
 			nowWinTieLossAgainstInformationList.clear();
+
+			int listnum = winTieLossAgainstInformationList.size();
 			for (int list_i = 0; list_i < listnum; list_i++) {
 				List<WinTieLossAgainstInformation> winTieLossAgainstInformations = winTieLossAgainstInformationList
 						.get(list_i);
@@ -409,8 +449,10 @@ public class BeiJingSingleGameActivity extends Activity {
 				for (int info_j = 0; info_j < infonum; info_j++) {
 					WinTieLossAgainstInformation winTieLossAgainstInformation = winTieLossAgainstInformations
 							.get(info_j);
+
+					// 获取胜平负信息的赛事，如果当前赛事被选中，则放入当前显示的胜平负信息集合中
 					String league = winTieLossAgainstInformation.getLeague();
-					if (selectedEventsList.contains(league)) {
+					if (nowSelectedEventsList.contains(league)) {
 						nowWinTieLossAgainstInformations
 								.add(winTieLossAgainstInformation.clone());
 					}
@@ -427,7 +469,8 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		layoutInflater = LayoutInflater.from(this);
-        context = this;
+		playMethodType = PlayMethodEnum.WINTIELOSS;
+		
 		setContentView(R.layout.buy_jc_main_new);
 
 		initTitleBarShow();
@@ -461,27 +504,105 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void initBettingBarShow() {
 		reelectImageButton = (ImageButton) findViewById(R.id.buy_zixuan_img_again);
-		reelectImageButton.setOnClickListener(new ButtonOnClickListener());
+		reelectImageButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		selectNumTextView = (TextView) findViewById(R.id.buy_jc_main_text_team_num);
+		selectNumTextView.setText("已选择了0场比赛");
 		bettingImageButton = (ImageButton) findViewById(R.id.buy_zixuan_img_touzhu);
-		bettingImageButton.setOnClickListener(new ButtonOnClickListener());
+		bettingImageButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 	}
 
+	public void refreshSelectNum() {
+		selectedGameNum = 0;
+		switch (playMethodType) {
+		case WINTIELOSS:
+			refreshWinTieLossSelectNum();
+			break;
+		case TOTALGOALS:
+			refreshTotalGoalsSelectNum();
+			break;
+		case OVERALL:
+			refreshOverAllSelectNum();
+			break;
+		case HALFTHEAUDIENCE:
+			refreshHalfTheAudienceSelectNum();
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			refreshUpDownSingleDoubleSelectNum();
+			break;
+		}
+		selectNumTextView.setText("已经选择了" + selectedGameNum + "场比赛");
+	}
+
+	private void refreshUpDownSingleDoubleSelectNum() {
+		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
+			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
+				if (upDownSingleDoubleAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+			}
+		}
+	}
+
+	private void refreshHalfTheAudienceSelectNum() {
+		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
+			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
+				if (halfTheAudienceAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+			}
+		}
+	}
+
+	private void refreshOverAllSelectNum() {
+		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
+			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
+				if (overAllAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+
+			}
+		}
+	}
+
+	private void refreshTotalGoalsSelectNum() {
+		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
+			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
+				if (totalGoalsAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+			}
+		}
+	}
+
+	private void refreshWinTieLossSelectNum() {
+		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
+			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
+				if (winTieLossAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+			}
+		}
+	}
+	
 	/**
 	 * 初始化赛事信息栏显示
 	 */
 	private void initEventInformationBarShow() {
 		playMethodChangeButton = (Button) findViewById(R.id.buy_lq_main_btn_type);
-		playMethodChangeButton.setOnClickListener(new ButtonOnClickListener());
+		playMethodChangeButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		eventSelectButton = (Button) findViewById(R.id.buy_lq_main_btn_team);
 		eventSelectButton.setVisibility(View.VISIBLE);
-		eventSelectButton.setOnClickListener(new ButtonOnClickListener());
+		eventSelectButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		realtimeScoreButton = (Button) findViewById(R.id.buy_lq_main_btn_score);
-		realtimeScoreButton.setVisibility(View.GONE);  //隐藏即时比分
-//		realtimeScoreButton.setOnClickListener(new ButtonOnClickListener());
+		realtimeScoreButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		guestTeamForwardTextView = (TextView) findViewById(R.id.buy_jc_main_text_title);
 		guestTeamForwardTextView.setVisibility(View.INVISIBLE);
@@ -494,14 +615,16 @@ public class BeiJingSingleGameActivity extends Activity {
 		titleTextView = (TextView) findViewById(R.id.layout_main_text_title);
 		titleTextView.setText(R.string.beijingsinglegame_textview_wintieloss);
 
-		menuButton = (Button) findViewById(R.id.layout_main_img_return);
-		menuButton.setOnClickListener(new ButtonOnClickListener());
+		popupWindowButton = (Button) findViewById(R.id.layout_main_img_return);
+		popupWindowButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 	}
 
 	/**
-	 * 获取并解析对阵信息
+	 * 获取并解析对阵列表信息
 	 */
 	private void getAndnalysisAgainstInformations() {
+		// 创建联网等待对话框
 		final ProgressDialog connectDialog = UserCenterDialog
 				.onCreateDialog(this);
 		connectDialog.show();
@@ -511,77 +634,139 @@ public class BeiJingSingleGameActivity extends Activity {
 			@Override
 			public void run() {
 				// 获取当前期号
-				String nowIssueString = PublicMethod.toNetIssue(lotnoString);
-				// 获取当前玩法的当前期对阵数据
-				String returnString = BeiJingSingleGameInterface.getInstance()
-						.getAgainstInformations(lotnoString, nowIssueString);
+				nowIssueString = PublicMethod.toNetIssue(playMethodType
+						.getLotnoString());
 
-				try {
-					// 解析网络反馈信息
-					JSONObject returnJsonObject = new JSONObject(returnString);
-					String errorCodeString = returnJsonObject
-							.getString("error_code");
-					messageString = returnJsonObject.getString("message");
+				// 如果获取期号成功，则继续获取对阵信息
+				if (nowIssueString != null && !nowIssueString.equals("")) {
+					// 获取当前玩法的当前期对阵数据
+					String returnString = BeiJingSingleGameInterface
+							.getInstance().getAgainstInformations(
+									playMethodType.getLotnoString(),
+									nowIssueString);
 
+					analysisReturnJsonString(returnString);
+				}else {
 					Message message = new Message();
-					// 如果请求成功，解析对阵信息，然后发出获取并解析成功信息
-					if (errorCodeString.equals("0000")) {
-						AndnalysisAgainstInformations(returnJsonObject);
-						message.what = SUCCESS;
-					}
-					// 如果请求失败，不解析数据，发出失败消息
-					else {
-						message.what = FAILD;
-					}
-
+					message.what = FAILD; 
 					handler.sendMessage(message);
-				} catch (JSONException e) {
-					e.printStackTrace();
 				}
+				// 取消对话框
 				connectDialog.dismiss();
 			}
-
 		}).start();
 	}
 
 	/**
-	 * 解析对阵数据
+	 * 解析返回的Json字符串
 	 * 
-	 * @param jsonObject
-	 *            对阵数据Json对象
+	 * @param returnString
+	 *            返回的Json字符串
 	 */
-	private void AndnalysisAgainstInformations(JSONObject returnJsonObject) {
+	private void analysisReturnJsonString(String returnString) {
+		try {
+			// 解析网络反馈信息
+			JSONObject returnJsonObject = new JSONObject(returnString);
+			String errorCodeString = returnJsonObject.getString("error_code");
+			messageString = returnJsonObject.getString("message");
+
+			Message message = new Message();
+			// 如果请求成功，解析对阵信息，然后发出获取并解析成功信息
+			if (errorCodeString.equals("0000")) {
+				analysisSuccessReturnInformations(returnJsonObject);
+				message.what = SUCCESS;
+			}
+			// 如果请求失败，不解析数据，发出失败消息
+			else {
+				message.what = FAILD;
+			}
+
+			handler.sendMessage(message);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 解析成功返回的Json数据
+	 * 
+	 * @param returnJsonObject
+	 *            成功返回数据Json对象
+	 */
+	private void analysisSuccessReturnInformations(JSONObject returnJsonObject) {
 		try {
 			JSONArray againstJsonArray = returnJsonObject
 					.getJSONArray("result");
+
 			analysisEventInformation(returnJsonObject);
 
-			int againstLength = againstJsonArray.length();
-
-			switch (playMethodType) {
-			case WINTIELOSS:
-				analysisWinTieLossAgainstInformation(againstJsonArray,
-						againstLength);
-				break;
-			case TOTALGOALS:
-				analysisTotalGoalsAgainstInformation(againstJsonArray,
-						againstLength);
-				break;
-			case OVERALL:
-				analysisOverAllAgainstInformation(againstJsonArray,
-						againstLength);
-				break;
-			case HALFTHEAUDIENCE:
-				analysisHalfTheAudienceAgainstInformation(againstJsonArray,
-						againstLength);
-				break;
-			case UPDOWNSINGLEDOUBLE:
-				analysisUpDownSingleDoubleAgainstInformation(againstJsonArray,
-						againstLength);
-				break;
-			}
+			analysisAgainstInformations(againstJsonArray);
 		} catch (JSONException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 解析对阵信息
+	 * 
+	 * @param againstJsonArray
+	 *            对阵Json数组
+	 * @throws JSONException
+	 *             json解析异常
+	 */
+	private void analysisAgainstInformations(JSONArray againstJsonArray)
+			throws JSONException {
+
+		switch (playMethodType) {
+		case WINTIELOSS:
+			if (winTieLossAgainstInformationList == null) {
+				winTieLossAgainstInformationList = new ArrayList<List<WinTieLossAgainstInformation>>();
+			} else {
+				winTieLossAgainstInformationList.clear();
+			}
+
+			winTieLossAgainstInformationList = WinTieLossAgainstInformation
+					.analysisWinTieLossAgainstInformation(againstJsonArray);
+			break;
+		case TOTALGOALS:
+			if (totalGoalsAgainstInformationList == null) {
+				totalGoalsAgainstInformationList = new ArrayList<List<TotalGoalsAgainstInformation>>();
+			} else {
+				totalGoalsAgainstInformationList.clear();
+			}
+			totalGoalsAgainstInformationList = TotalGoalsAgainstInformation
+					.analysisTotalGoalsAgainstInformation(againstJsonArray);
+			break;
+		case OVERALL:
+			if (overAllagainstInformationList == null) {
+				overAllagainstInformationList = new ArrayList<List<OverAllAgainstInformation>>();
+			} else {
+				overAllagainstInformationList.clear();
+			}
+
+			overAllagainstInformationList = OverAllAgainstInformation
+					.analysisOverAllAgainstInformation(againstJsonArray);
+			break;
+		case HALFTHEAUDIENCE:
+			if (halfTheAudienceagainstInformationList == null) {
+				halfTheAudienceagainstInformationList = new ArrayList<List<HalfTheAudienceAgainstInformation>>();
+			} else {
+				halfTheAudienceagainstInformationList.clear();
+			}
+
+			halfTheAudienceagainstInformationList = HalfTheAudienceAgainstInformation
+					.analysisHalfTheAudienceAgainstInformation(againstJsonArray);
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			if (upDownSigleDoubleagainstInformationList == null) {
+				upDownSigleDoubleagainstInformationList = new ArrayList<List<UpDownSingleDoubleAgainstInformation>>();
+			} else {
+				upDownSigleDoubleagainstInformationList.clear();
+			}
+
+			upDownSigleDoubleagainstInformationList = UpDownSingleDoubleAgainstInformation
+					.analysisUpDownSingleDoubleAgainstInformation(againstJsonArray);
+			break;
 		}
 	}
 
@@ -596,511 +781,155 @@ public class BeiJingSingleGameActivity extends Activity {
 	private void analysisEventInformation(JSONObject returnJsonObject)
 			throws JSONException {
 		String eventStrings = returnJsonObject.getString("leagues");
-		String[] events = eventStrings.split(";");
 
+		// 创建赛事集合
 		if (eventsList == null) {
 			eventsList = new ArrayList<String>();
 		} else {
 			eventsList.clear();
 		}
 
-		if (selectedEventsList == null) {
-			selectedEventsList = new ArrayList<String>();
+		// 当前选中赛事集合
+		if (nowSelectedEventsList == null) {
+			nowSelectedEventsList = new ArrayList<String>();
 		} else {
-			selectedEventsList.clear();
+			nowSelectedEventsList.clear();
 		}
 
+		// 将赛事字符串信息分别存入赛事集合和当前选中赛事集合（默认情况下所有赛事被选中）
+		String[] events = eventStrings.split(";");
 		for (int event_i = 0; event_i < events.length; event_i++) {
 			eventsList.add(events[event_i]);
-			selectedEventsList.add(events[event_i]);
+			nowSelectedEventsList.add(events[event_i]);
 		}
+
 	}
 
 	/**
-	 * 解析上下单双对阵信息
-	 * 
-	 * @param againstJsonArray
-	 *            对阵信息Json数组
-	 * @param againstLength
-	 *            对阵Json对象的个数
-	 * @throws JSONException
-	 *             Json异常对象
-	 */
-	private void analysisUpDownSingleDoubleAgainstInformation(
-			JSONArray againstJsonArray, int againstLength) throws JSONException {
-		if (upDownSigleDoubleagainstInformationList == null) {
-			upDownSigleDoubleagainstInformationList = new ArrayList<List<UpDownSingleDoubleAgainstInformation>>();
-		} else {
-			upDownSigleDoubleagainstInformationList.clear();
-		}
-
-		for (int jsonarray_i = 0; jsonarray_i < againstLength; jsonarray_i++) {
-			List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations = new ArrayList<UpDownSingleDoubleAgainstInformation>();
-			JSONArray againstWithDataJsonArray = againstJsonArray
-					.getJSONArray(jsonarray_i);
-			int againstWithDataLength = againstWithDataJsonArray.length();
-
-			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
-				JSONObject againstJsonObject = againstWithDataJsonArray
-						.getJSONObject(json_i);
-
-				UpDownSingleDoubleAgainstInformation againstInformation = new UpDownSingleDoubleAgainstInformation();
-				againstInformation.setTeamId(againstJsonObject
-						.getString("teamId"));
-				againstInformation.setDayForamt(againstJsonObject
-						.getString("dayForamt"));
-				againstInformation.setHomeTeam(againstJsonObject
-						.getString("homeTeam"));
-				againstInformation.setGuestTeam(againstJsonObject
-						.getString("guestTeam"));
-				againstInformation.setLeague(againstJsonObject
-						.getString("league"));
-				againstInformation.setEndTime(againstJsonObject
-						.getString("endTime"));
-				againstInformation.setSxds_v1(againstJsonObject
-						.getString("sxds_v1"));
-				againstInformation.setSxds_v2(againstJsonObject
-						.getString("sxds_v2"));
-				againstInformation.setSxds_v3(againstJsonObject
-						.getString("sxds_v3"));
-				againstInformation.setSxds_v4(againstJsonObject
-						.getString("sxds_v4"));
-
-				upDownSingleDoubleAgainstInformations.add(againstInformation);
-			}
-			upDownSigleDoubleagainstInformationList
-					.add(upDownSingleDoubleAgainstInformations);
-		}
-	}
-
-	/**
-	 * 解析半全场对阵信息
-	 * 
-	 * @param againstJsonArray
-	 *            对阵信息Json数组
-	 * @param againstLength
-	 *            对阵Json对象的个数
-	 * @throws JSONException
-	 *             Json异常对象
-	 */
-	private void analysisHalfTheAudienceAgainstInformation(
-			JSONArray againstJsonArray, int againstLength) throws JSONException {
-		if (halfTheAudienceagainstInformationList == null) {
-			halfTheAudienceagainstInformationList = new ArrayList<List<HalfTheAudienceAgainstInformation>>();
-		} else {
-			halfTheAudienceagainstInformationList.clear();
-		}
-
-		for (int jsonarray_i = 0; jsonarray_i < againstLength; jsonarray_i++) {
-			List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations = new ArrayList<HalfTheAudienceAgainstInformation>();
-
-			JSONArray againstWithDataJsonArray = againstJsonArray
-					.getJSONArray(jsonarray_i);
-			int againstWithDataLength = againstWithDataJsonArray.length();
-
-			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
-				JSONObject againstJsonObject = againstWithDataJsonArray
-						.getJSONObject(json_i);
-
-				HalfTheAudienceAgainstInformation againstInformation = new HalfTheAudienceAgainstInformation();
-				againstInformation.setTeamId(againstJsonObject
-						.getString("teamId"));
-				againstInformation.setDayForamt(againstJsonObject
-						.getString("dayForamt"));
-				againstInformation.setHomeTeam(againstJsonObject
-						.getString("homeTeam"));
-				againstInformation.setGuestTeam(againstJsonObject
-						.getString("guestTeam"));
-				againstInformation.setLeague(againstJsonObject
-						.getString("league"));
-				againstInformation.setEndTime(againstJsonObject
-						.getString("endTime"));
-				againstInformation.setHalf_v00(againstJsonObject
-						.getString("half_v00"));
-				againstInformation.setHalf_v01(againstJsonObject
-						.getString("half_v01"));
-				againstInformation.setHalf_v03(againstJsonObject
-						.getString("half_v03"));
-				againstInformation.setHalf_v11(againstJsonObject
-						.getString("half_v11"));
-				againstInformation.setHalf_v10(againstJsonObject
-						.getString("half_v10"));
-				againstInformation.setHalf_v13(againstJsonObject
-						.getString("half_v13"));
-				againstInformation.setHalf_v33(againstJsonObject
-						.getString("half_v33"));
-				againstInformation.setHalf_v31(againstJsonObject
-						.getString("half_v31"));
-				againstInformation.setHalf_v30(againstJsonObject
-						.getString("half_v30"));
-
-				halfTheAudienceAgainstInformations.add(againstInformation);
-			}
-			halfTheAudienceagainstInformationList
-					.add(halfTheAudienceAgainstInformations);
-		}
-	}
-
-	/**
-	 * 解析全场总比分对阵信息
-	 * 
-	 * @param againstJsonArray
-	 *            对阵信息Json数组
-	 * @param againstLength
-	 *            对阵Json对象的个数
-	 * @throws JSONException
-	 *             Json异常对象
-	 */
-	private void analysisOverAllAgainstInformation(JSONArray againstJsonArray,
-			int againstLength) throws JSONException {
-		if (overAllagainstInformationList == null) {
-			overAllagainstInformationList = new ArrayList<List<OverAllAgainstInformation>>();
-		} else {
-			overAllagainstInformationList.clear();
-		}
-
-		for (int jsonarray_i = 0; jsonarray_i < againstLength; jsonarray_i++) {
-			List<OverAllAgainstInformation> overAllAgainstInformations = new ArrayList<OverAllAgainstInformation>();
-			JSONArray againstWithDataJsonArray = againstJsonArray
-					.getJSONArray(jsonarray_i);
-			int againstWithDataLength = againstWithDataJsonArray.length();
-
-			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
-				JSONObject againstJsonObject = againstWithDataJsonArray
-						.getJSONObject(json_i);
-
-				OverAllAgainstInformation againstInformation = new OverAllAgainstInformation();
-				againstInformation.setTeamId(againstJsonObject
-						.getString("teamId"));
-				againstInformation.setDayForamt(againstJsonObject
-						.getString("dayForamt"));
-				againstInformation.setHomeTeam(againstJsonObject
-						.getString("homeTeam"));
-				againstInformation.setGuestTeam(againstJsonObject
-						.getString("guestTeam"));
-				againstInformation.setLeague(againstJsonObject
-						.getString("league"));
-				againstInformation.setEndTime(againstJsonObject
-						.getString("endTime"));
-				againstInformation.setScore_v10(againstJsonObject
-						.getString("score_v10"));
-				againstInformation.setScore_v20(againstJsonObject
-						.getString("score_v20"));
-				againstInformation.setScore_v21(againstJsonObject
-						.getString("score_v21"));
-				againstInformation.setScore_v30(againstJsonObject
-						.getString("score_v30"));
-				againstInformation.setScore_v31(againstJsonObject
-						.getString("score_v31"));
-				againstInformation.setScore_v32(againstJsonObject
-						.getString("score_v32"));
-				againstInformation.setScore_v40(againstJsonObject
-						.getString("score_v40"));
-				againstInformation.setScore_v41(againstJsonObject
-						.getString("score_v41"));
-				againstInformation.setScore_v42(againstJsonObject
-						.getString("score_v42"));
-				againstInformation.setScore_v00(againstJsonObject
-						.getString("score_v00"));
-				againstInformation.setScore_v11(againstJsonObject
-						.getString("score_v11"));
-				againstInformation.setScore_v22(againstJsonObject
-						.getString("score_v22"));
-				againstInformation.setScore_v33(againstJsonObject
-						.getString("score_v33"));
-				againstInformation.setScore_v01(againstJsonObject
-						.getString("score_v01"));
-				againstInformation.setScore_v02(againstJsonObject
-						.getString("score_v02"));
-				againstInformation.setScore_v12(againstJsonObject
-						.getString("score_v12"));
-				againstInformation.setScore_v03(againstJsonObject
-						.getString("score_v03"));
-				againstInformation.setScore_v13(againstJsonObject
-						.getString("score_v13"));
-				againstInformation.setScore_v23(againstJsonObject
-						.getString("score_v23"));
-				againstInformation.setScore_v04(againstJsonObject
-						.getString("score_v04"));
-				againstInformation.setScore_v14(againstJsonObject
-						.getString("score_v14"));
-				againstInformation.setScore_v24(againstJsonObject
-						.getString("score_v24"));
-				againstInformation.setScore_v90(againstJsonObject
-						.getString("score_v90"));
-				againstInformation.setScore_v99(againstJsonObject
-						.getString("score_v99"));
-				againstInformation.setScore_v09(againstJsonObject
-						.getString("score_v09"));
-				overAllAgainstInformations.add(againstInformation);
-			}
-			overAllagainstInformationList.add(overAllAgainstInformations);
-		}
-	}
-
-	/**
-	 * 解析总进球数对阵信息
-	 * 
-	 * @param againstJsonArray
-	 *            对阵信息Json数组
-	 * @param againstLength
-	 *            对阵Json对象的个数
-	 * @throws JSONException
-	 *             Json异常对象
-	 */
-	private void analysisTotalGoalsAgainstInformation(
-			JSONArray againstJsonArray, int againstLength) throws JSONException {
-		if (totalGoalsAgainstInformationList == null) {
-			totalGoalsAgainstInformationList = new ArrayList<List<TotalGoalsAgainstInformation>>();
-		} else {
-			totalGoalsAgainstInformationList.clear();
-		}
-
-		for (int jsonarray_i = 0; jsonarray_i < againstLength; jsonarray_i++) {
-			List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations = new ArrayList<TotalGoalsAgainstInformation>();
-
-			JSONArray againstWithDataJsonArray = againstJsonArray
-					.getJSONArray(jsonarray_i);
-			int againstWithDataLength = againstWithDataJsonArray.length();
-
-			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
-				JSONObject againstJsonObject = againstWithDataJsonArray
-						.getJSONObject(json_i);
-
-				TotalGoalsAgainstInformation againstInformation = new TotalGoalsAgainstInformation();
-				againstInformation.setTeamId(againstJsonObject
-						.getString("teamId"));
-				againstInformation.setDayForamt(againstJsonObject
-						.getString("dayForamt"));
-				againstInformation.setHomeTeam(againstJsonObject
-						.getString("homeTeam"));
-				againstInformation.setGuestTeam(againstJsonObject
-						.getString("guestTeam"));
-				againstInformation.setLeague(againstJsonObject
-						.getString("league"));
-				againstInformation.setEndTime(againstJsonObject
-						.getString("endTime"));
-				againstInformation.setGoal_v0(againstJsonObject
-						.getString("goal_v0"));
-				againstInformation.setGoal_v1(againstJsonObject
-						.getString("goal_v1"));
-				againstInformation.setGoal_v2(againstJsonObject
-						.getString("goal_v2"));
-				againstInformation.setGoal_v3(againstJsonObject
-						.getString("goal_v3"));
-				againstInformation.setGoal_v4(againstJsonObject
-						.getString("goal_v4"));
-				againstInformation.setGoal_v5(againstJsonObject
-						.getString("goal_v5"));
-				againstInformation.setGoal_v6(againstJsonObject
-						.getString("goal_v6"));
-				againstInformation.setGoal_v7(againstJsonObject
-						.getString("goal_v7"));
-				totalGoalsAgainstInformations.add(againstInformation);
-			}
-			totalGoalsAgainstInformationList.add(totalGoalsAgainstInformations);
-		}
-	}
-
-	/**
-	 * 解析让球胜平负对阵信息
-	 * 
-	 * @param againstJsonArray
-	 *            对阵信息Json数组
-	 * @param againstLength
-	 *            对阵Json对象的个数
-	 * @throws JSONException
-	 *             Json异常对象
-	 */
-	private void analysisWinTieLossAgainstInformation(
-			JSONArray againstJsonArray, int againstLength) throws JSONException {
-		if (winTieLossAgainstInformationList == null) {
-			winTieLossAgainstInformationList = new ArrayList<List<WinTieLossAgainstInformation>>();
-		} else {
-			winTieLossAgainstInformationList.clear();
-		}
-
-		for (int jsonarray_i = 0; jsonarray_i < againstLength; jsonarray_i++) {
-			List<WinTieLossAgainstInformation> winTieLossAgainstInformations = new ArrayList<WinTieLossAgainstInformation>();
-
-			JSONArray againstWithDataJsonArray = againstJsonArray
-					.getJSONArray(jsonarray_i);
-			int againstWithDataLength = againstWithDataJsonArray.length();
-
-			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
-				JSONObject againstJsonObject = againstWithDataJsonArray
-						.getJSONObject(json_i);
-
-				WinTieLossAgainstInformation againstInformation = new WinTieLossAgainstInformation();
-				againstInformation.setTeamId(againstJsonObject
-						.getString("teamId"));
-				againstInformation.setDayForamt(againstJsonObject
-						.getString("dayForamt"));
-				againstInformation.setHomeTeam(againstJsonObject
-						.getString("homeTeam"));
-				againstInformation.setGuestTeam(againstJsonObject
-						.getString("guestTeam"));
-				againstInformation.setLeague(againstJsonObject
-						.getString("league"));
-				againstInformation.setEndTime(againstJsonObject
-						.getString("endTime"));
-				againstInformation.setV0(againstJsonObject.getString("v0"));
-				againstInformation.setV1(againstJsonObject.getString("v1"));
-				againstInformation.setV3(againstJsonObject.getString("v3"));
-				againstInformation.setLetPoint(againstJsonObject
-						.getString("letPoint"));
-
-				winTieLossAgainstInformations.add(againstInformation);
-			}
-
-			winTieLossAgainstInformationList.add(winTieLossAgainstInformations);
-		}
-	}
-
-	/**
-	 * 按钮事件监听实现类
+	 * 北京单场按钮事件监听实现类
 	 * 
 	 * @author Administrator
 	 * 
 	 */
-	class ButtonOnClickListener implements OnClickListener {
+	class BeijingSingleGameButtonOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
+			// 下拉菜单按钮
 			case R.id.layout_main_img_return:
 				createMenuPopupwindow();
 				break;
+			// 玩法选择按钮
 			case R.id.buy_lq_main_btn_type:
 				createPlayMethodChangeDialog();
 				break;
+			// 赛事选择按钮
 			case R.id.buy_lq_main_btn_team:
 				createeventSelectDialog();
 				break;
-//			case R.id.buy_lq_main_btn_score:
-//				Intent intent = new Intent(BeiJingSingleGameActivity.this,
-//						JcScoreActivity.class);
-//				startActivity(intent);
-//				break;
-			case R.id.buy_zixuan_img_again:
-				refreshAgainstInformationShow(false,true);
+			// 即使比分按钮
+			case R.id.buy_lq_main_btn_score:
 				break;
+			// 重选按钮
+			case R.id.buy_zixuan_img_again:
+				selectedGameNum = 0;
+				refreshAgainstInformationShow(false, true);
+				break;
+			// 投注按钮
 			case R.id.buy_zixuan_img_touzhu:
-				Toast.makeText(BeiJingSingleGameActivity.this, "投注", 1).show();
+				if (isLegalSelect()) {
+					Intent intent = new Intent(BeiJingSingleGameActivity.this,
+							BeiJingSingleGameIndentActivity.class);
+
+					intent.putExtra("selectedagainst",
+							getSelectedAgainstString());
+					intent.putExtra("selectedgamenum", selectedGameNum);
+					intent.putStringArrayListExtra("selectedeventclicknum",
+							(ArrayList<String>) getSelectedEventClickNum());
+					intent.putExtra("laterpartbettingcode",
+							getLaterPartBettingCode());
+					intent.putExtra("nowIssueString", nowIssueString);
+					intent.putExtra("lotno", playMethodType.getLotnoString());
+
+					startActivity(intent);
+				}
+
 				break;
 			}
 		}
 	}
 
 	/**
-	 * 创建下拉菜单
+	 * 初始化玩法切换对话框的显示
+	 * 
+	 * @param dialogView
+	 *            对话框对象
 	 */
-	private void createMenuPopupwindow() {
-		View popupView = (LinearLayout) layoutInflater.inflate(
-				R.layout.buy_group_window, null);
-
-		final PopupWindow popupwindow = new PopupWindow(popupView,
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		final LinearLayout layoutGame = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_layout1);
-		final LinearLayout layoutHosity = (LinearLayout) popupView
-				.findViewById(R.id.beijing_single_mani_history);
-		layoutHosity.setVisibility(View.GONE);
-		
-//		final LinearLayout layoutHosity = (LinearLayout) popupView
-//				.findViewById(R.id.buy_group_layout2);
-		final LinearLayout layoutParentLuck = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_one_layout3);
-		popupwindow.setOutsideTouchable(true);
-		popupwindow.showAsDropDown(menuButton);
-
-		popupView.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				if (popupwindow != null && popupwindow.isShowing()) {
-					popupwindow.dismiss();
-				}
-				return false;
-			}
-		});
-
-		layoutGame.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
-				if (gameDialog == null) {
-					gameDialog = new BuyGameDialog(context, lotnoString, gameHandler);
-				}
-				gameDialog.showDialog();
-				popupwindow.dismiss();
-			}
-		});
-		
-//		layoutHosity.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				layoutHosity
-//						.setBackgroundResource(R.drawable.buy_group_layout_b);
-//				turnHosity();
-//				popupwindow.dismiss();
-//			}
-//		});
-		LinearLayout layoutQuery = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_layout4);
-		layoutQuery.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				RWSharedPreferences shellRW = new RWSharedPreferences(context,
-						"addInfo");
-				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
-				if (userno == null || userno.equals("")) {
-					Intent intentSession = new Intent(context, UserLogin.class);
-					startActivity(intentSession);
-				} else {
-					Intent intent = new Intent(context, BetQueryActivity.class);
-					intent.putExtra("lotno", Constants.LOTNO_BJ_SINGLE);
-					startActivity(intent);
-				}
-				popupwindow.dismiss();
-			}
-		});
-		layoutParentLuck.setVisibility(LinearLayout.GONE);
-	}
-	public void turnHosity() {
-		Intent intent = new Intent(context, NoticeBeijingSingleActivity.class);
-		intent.putExtra(Constants.PLAY_METHOD_TYPE, lotnoString);
-		startActivity(intent);
-	}
-	/**
-	 * 创建玩法切换对话框
-	 */
-	public void createPlayMethodChangeDialog() {
-		View dialogView = layoutInflater.inflate(
-				R.layout.beijingsinglegame_playmethodchange_dialog, null);
-		playMethodChangeDialog = new AlertDialog.Builder(this).create();
-		playMethodChangeDialog.show();
-		playMethodChangeDialog.getWindow().setContentView(dialogView);
-
+	private void initPlayMethodChangeDialogShow(View dialogView) {
+		// 胜平负按钮
 		Button wintielossButton = (Button) dialogView
 				.findViewById(R.id.beijingsinglegame_playmethodchange_button_wintieloss);
 		wintielossButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
+
+		// 总进球数按钮
 		Button totalgoalsButton = (Button) dialogView
 				.findViewById(R.id.beijingsinglegame_playmethodchange_button_totalgoals);
 		totalgoalsButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
+
+		// 全场比分按钮
 		Button overallButton = (Button) dialogView
 				.findViewById(R.id.beijingsinglegame_playmethodchange_button_overall);
 		overallButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
+
+		// 半全场按钮
 		Button halftheaudienceButton = (Button) dialogView
 				.findViewById(R.id.beijingsinglegame_playmethodchange_button_halftheaudience);
 		halftheaudienceButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
+
+		// 上下单双按钮
 		Button updownsigledoubleButton = (Button) dialogView
 				.findViewById(R.id.beijingsinglegame_playmethodchange_button_updownsigledouble);
 		updownsigledoubleButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
+
+		// 根据当前的玩法，设置该玩法的按钮为选中状态
+		switch (playMethodType) {
+		case WINTIELOSS:
+			wintielossButton
+					.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+			wintielossButton.setTextColor(getResources().getColorStateList(
+					R.color.white));
+			break;
+		case TOTALGOALS:
+			totalgoalsButton
+					.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+			totalgoalsButton.setTextColor(getResources().getColorStateList(
+					R.color.white));
+			break;
+		case OVERALL:
+			overallButton
+					.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+			overallButton.setTextColor(getResources().getColorStateList(
+					R.color.white));
+			break;
+		case HALFTHEAUDIENCE:
+			halftheaudienceButton
+					.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+			halftheaudienceButton.setTextColor(getResources()
+					.getColorStateList(R.color.white));
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			updownsigledoubleButton
+					.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+			updownsigledoubleButton.setTextColor(getResources()
+					.getColorStateList(R.color.white));
+			break;
+		}
 	}
 
 	/**
@@ -1119,37 +948,47 @@ public class BeiJingSingleGameActivity extends Activity {
 				titleTextView
 						.setText(R.string.beijingsinglegame_textview_wintieloss);
 				playMethodType = PlayMethodEnum.WINTIELOSS;
-				lotnoString = Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS;
 				break;
 			case R.id.beijingsinglegame_playmethodchange_button_totalgoals:
 				titleTextView
 						.setText(R.string.beijingsinglegame_textview_totalgoals);
 				playMethodType = PlayMethodEnum.TOTALGOALS;
-				lotnoString = Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS;
 				break;
 			case R.id.beijingsinglegame_playmethodchange_button_overall:
 				titleTextView
 						.setText(R.string.beijingsinglegame_textview_overall);
 				playMethodType = PlayMethodEnum.OVERALL;
-				lotnoString = Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL;
 				break;
 			case R.id.beijingsinglegame_playmethodchange_button_halftheaudience:
 				titleTextView
 						.setText(R.string.beijingsinglegame_textview_halftheaudience);
 				playMethodType = PlayMethodEnum.HALFTHEAUDIENCE;
-				lotnoString = Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE;
 				break;
 			case R.id.beijingsinglegame_playmethodchange_button_updownsigledouble:
 				titleTextView
 						.setText(R.string.beijingsinglegame_textview_updownsigledouble);
 				playMethodType = PlayMethodEnum.UPDOWNSINGLEDOUBLE;
-				lotnoString = Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE;
 				break;
 			}
+			selectedGameNum = 0;
 			playMethodChangeDialog.dismiss();
 
 			getAndnalysisAgainstInformations();
 		}
+	}
+
+	/**
+	 * 创建玩法切换对话框
+	 */
+	public void createPlayMethodChangeDialog() {
+		View dialogView = layoutInflater.inflate(
+				R.layout.beijingsinglegame_playmethodchange_dialog, null);
+
+		playMethodChangeDialog = new AlertDialog.Builder(this).create();
+		playMethodChangeDialog.show();
+		playMethodChangeDialog.getWindow().setContentView(dialogView);
+
+		initPlayMethodChangeDialogShow(dialogView);
 	}
 
 	/**
@@ -1159,9 +998,11 @@ public class BeiJingSingleGameActivity extends Activity {
 		if (eventSelectDialog == null) {
 			eventSelectDialog = new AlertDialog.Builder(this).create();
 		}
+
 		View DialogView = layoutInflater.inflate(R.layout.jc_main_team_dialog,
 				null);
 
+		// 赛事选择对话框标题
 		TextView title = (TextView) DialogView
 				.findViewById(R.id.zfb_text_title);
 		title.setText(getString(R.string.jc_main_team_check));
@@ -1175,14 +1016,17 @@ public class BeiJingSingleGameActivity extends Activity {
 		eventSelectDialog.setCancelable(false);
 		eventSelectDialog.getWindow().setContentView(DialogView);
 
+		// 全选按钮
 		Button allSelectButton = (Button) DialogView
 				.findViewById(R.id.all_check);
 		allSelectButton
 				.setOnClickListener(new EventSelectDialogButtonOnClickListener());
+		// 全清按钮
 		Button allClearButton = (Button) DialogView
 				.findViewById(R.id.clear_check);
 		allClearButton
 				.setOnClickListener(new EventSelectDialogButtonOnClickListener());
+		// 确定按钮
 		Button okButton = (Button) DialogView.findViewById(R.id.ok);
 		okButton.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 	}
@@ -1238,6 +1082,547 @@ public class BeiJingSingleGameActivity extends Activity {
 	}
 
 	/**
+	 * 获取后半部分的注码格式字符串,该部分注码标识投注内容，在投注确认页面和代表串关方法的注码等合并为完整的注码
+	 * 
+	 * @return 注码格式字符串
+	 */
+	public String getLaterPartBettingCode() {
+		StringBuffer laterPartStringBuffer = new StringBuffer();
+		switch (playMethodType) {
+		case WINTIELOSS:
+			getWinTieLossLaterPartBettingCode(laterPartStringBuffer);
+			break;
+		case TOTALGOALS:
+			getTotalGoalsLaterPartBettingCode(laterPartStringBuffer);
+			break;
+		case OVERALL:
+			getOverAllLaterPartBettingCode(laterPartStringBuffer);
+			break;
+		case HALFTHEAUDIENCE:
+			getHalfTheAudienceLaterPartBetttingCode(laterPartStringBuffer);
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			getUpDownSingleDoubleLaterPartBettingCode(laterPartStringBuffer);
+			break;
+		}
+
+		return laterPartStringBuffer.toString();
+	}
+
+	/**
+	 * 获取上下单双后半部分注码字符串
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码格式StringBuffer对象
+	 */
+	private void getUpDownSingleDoubleLaterPartBettingCode(
+			StringBuffer batchCodeStringBuffer) {
+		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
+			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
+				if (upDownSingleDoubleAgainstInformation.isSelected()) {
+					batchCodeStringBuffer
+							.append(upDownSingleDoubleAgainstInformation
+									.getTeamId() + "|");
+					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
+						batchCodeStringBuffer.append("1");
+					}
+
+					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
+						batchCodeStringBuffer.append("2");
+					}
+
+					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
+						batchCodeStringBuffer.append("3");
+					}
+
+					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
+						batchCodeStringBuffer.append("4");
+					}
+
+					batchCodeStringBuffer.append("^");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取半全场后半部分注码字符串
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码格式StringBuffer对象
+	 */
+	private void getHalfTheAudienceLaterPartBetttingCode(
+			StringBuffer batchCodeStringBuffer) {
+		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
+			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
+				if (halfTheAudienceAgainstInformation.isSelected()) {
+					batchCodeStringBuffer
+							.append(halfTheAudienceAgainstInformation
+									.getTeamId() + "|");
+
+					boolean[] isClicks = halfTheAudienceAgainstInformation
+							.getIsClicks();
+					int length = isClicks.length;
+					for (int t = 0; t < length; t++) {
+						if (isClicks[t]) {
+							switch (t) {
+							case 0:
+								batchCodeStringBuffer.append("33");
+								break;
+							case 1:
+								batchCodeStringBuffer.append("31");
+								break;
+							case 2:
+								batchCodeStringBuffer.append("30");
+								break;
+							case 3:
+								batchCodeStringBuffer.append("13");
+								break;
+							case 4:
+								batchCodeStringBuffer.append("11");
+								break;
+							case 5:
+								batchCodeStringBuffer.append("10");
+								break;
+							case 6:
+								batchCodeStringBuffer.append("03");
+								break;
+							case 7:
+								batchCodeStringBuffer.append("01");
+								break;
+							case 8:
+								batchCodeStringBuffer.append("00");
+								break;
+							}
+						}
+					}
+					batchCodeStringBuffer.append("^");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取全场总比分后半部分注码字符串
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码格式StringBuffer对象
+	 */
+	private void getOverAllLaterPartBettingCode(
+			StringBuffer batchCodeStringBuffer) {
+		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
+			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
+				if (overAllAgainstInformation.isSelected()) {
+					batchCodeStringBuffer.append(overAllAgainstInformation
+							.getTeamId() + "|");
+
+					boolean[] isClicks = overAllAgainstInformation
+							.getIsClicks();
+					int length = isClicks.length;
+					for (int t = 0; t < length; t++) {
+						if (isClicks[t]) {
+							switch (t) {
+							case 0:
+								batchCodeStringBuffer.append("90");
+								break;
+							case 1:
+								batchCodeStringBuffer.append("10");
+								break;
+							case 2:
+								batchCodeStringBuffer.append("20");
+								break;
+							case 3:
+								batchCodeStringBuffer.append("30");
+								break;
+							case 4:
+								batchCodeStringBuffer.append("40");
+								break;
+							case 5:
+								batchCodeStringBuffer.append("21");
+								break;
+							case 6:
+								batchCodeStringBuffer.append("31");
+								break;
+							case 7:
+								batchCodeStringBuffer.append("32");
+								break;
+							case 8:
+								batchCodeStringBuffer.append("41");
+								break;
+							case 9:
+								batchCodeStringBuffer.append("42");
+								break;
+							case 10:
+								batchCodeStringBuffer.append("99");
+								break;
+							case 11:
+								batchCodeStringBuffer.append("00");
+								break;
+							case 12:
+								batchCodeStringBuffer.append("11");
+								break;
+							case 13:
+								batchCodeStringBuffer.append("22");
+								break;
+							case 14:
+								batchCodeStringBuffer.append("33");
+								break;
+							case 15:
+								batchCodeStringBuffer.append("09");
+								break;
+							case 16:
+								batchCodeStringBuffer.append("01");
+								break;
+							case 17:
+								batchCodeStringBuffer.append("02");
+								break;
+							case 18:
+								batchCodeStringBuffer.append("03");
+								break;
+							case 19:
+								batchCodeStringBuffer.append("04");
+								break;
+							case 20:
+								batchCodeStringBuffer.append("12");
+								break;
+							case 21:
+								batchCodeStringBuffer.append("13");
+								break;
+							case 22:
+								batchCodeStringBuffer.append("14");
+								break;
+							case 23:
+								batchCodeStringBuffer.append("23");
+								break;
+							case 24:
+								batchCodeStringBuffer.append("24");
+								break;
+							}
+						}
+					}
+					batchCodeStringBuffer.append("^");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取总进球数后半部分注码字符串
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码格式StringBuffer对象
+	 */
+	private void getTotalGoalsLaterPartBettingCode(
+			StringBuffer batchCodeStringBuffer) {
+		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
+			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
+				if (totalGoalsAgainstInformation.isSelected()) {
+					batchCodeStringBuffer.append(totalGoalsAgainstInformation
+							.getTeamId() + "|");
+
+					boolean[] isClicks = totalGoalsAgainstInformation
+							.getIsClicks();
+					int length = isClicks.length;
+					for (int t = 0; t < length; t++) {
+						if (isClicks[t]) {
+							switch (t) {
+							case 0:
+								batchCodeStringBuffer.append("0");
+								break;
+							case 1:
+								batchCodeStringBuffer.append("1");
+								break;
+							case 2:
+								batchCodeStringBuffer.append("2");
+								break;
+							case 3:
+								batchCodeStringBuffer.append("3");
+								break;
+							case 4:
+								batchCodeStringBuffer.append("4");
+								break;
+							case 5:
+								batchCodeStringBuffer.append("5");
+								break;
+							case 6:
+								batchCodeStringBuffer.append("6");
+								break;
+							case 7:
+								batchCodeStringBuffer.append("7");
+								break;
+							}
+						}
+					}
+					batchCodeStringBuffer.append("^");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取让球胜平负后半部分注码字符串
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码格式StringBuffer对象
+	 */
+	private void getWinTieLossLaterPartBettingCode(
+			StringBuffer batchCodeStringBuffer) {
+		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
+			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
+				if (winTieLossAgainstInformation.isSelected()) {
+					batchCodeStringBuffer.append(winTieLossAgainstInformation
+							.getTeamId() + "|");
+					if (winTieLossAgainstInformation.isV0IsClick()) {
+						batchCodeStringBuffer.append("3");
+					}
+
+					if (winTieLossAgainstInformation.isV1IsClick()) {
+						batchCodeStringBuffer.append("1");
+					}
+
+					if (winTieLossAgainstInformation.isV3IsClick()) {
+						batchCodeStringBuffer.append("0");
+					}
+
+					batchCodeStringBuffer.append("^");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 创建下拉菜单
+	 */
+	private void createMenuPopupwindow() {
+		View popupView = (LinearLayout) layoutInflater.inflate(
+				R.layout.buy_group_window, null);
+
+		final PopupWindow popupwindow = new PopupWindow(popupView,
+				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		popupwindow.setOutsideTouchable(true);
+		popupwindow.showAsDropDown(popupWindowButton);
+
+		popupView.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+				return false;
+			}
+		});
+
+	}
+
+	/**
+	 * 获取当前选择的比赛的字符串，用户投注确认页面的赛事详情的显示
+	 * 
+	 * @return 选择比赛字符串
+	 */
+	public String getSelectedAgainstString() {
+		StringBuffer againstStringBufffer = new StringBuffer();
+
+		switch (playMethodType) {
+		case WINTIELOSS:
+			getWinTieLossSelectedAgainstString(againstStringBufffer);
+			break;
+		case TOTALGOALS:
+			getTotalGoalsSelectedAgainstString(againstStringBufffer);
+			break;
+		case OVERALL:
+			getOverAllSelectedAgainstString(againstStringBufffer);
+			break;
+		case HALFTHEAUDIENCE:
+			getHalfTheAudienceSelectedAgainstString(againstStringBufffer);
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			getUpDownSingleDoubleSelectedAgainstString(againstStringBufffer);
+			break;
+		}
+		return againstStringBufffer.toString();
+	}
+
+	/**
+	 * 获取上下单选择的比赛字符串
+	 * 
+	 * @param againstStringBufffer
+	 *            选择比赛字符串
+	 */
+	private void getUpDownSingleDoubleSelectedAgainstString(
+			StringBuffer againstStringBufffer) {
+		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
+			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
+				if (upDownSingleDoubleAgainstInformation.isSelected()) {
+					againstStringBufffer
+							.append(upDownSingleDoubleAgainstInformation
+									.getHomeTeam())
+							.append("vs")
+							.append(upDownSingleDoubleAgainstInformation
+									.getGuestTeam()).append(":");
+
+					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
+						againstStringBufffer.append("上单");
+					}
+					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
+						againstStringBufffer.append("上双");
+					}
+					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
+						againstStringBufffer.append("下单");
+					}
+					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
+						againstStringBufffer.append("下双");
+					}
+					againstStringBufffer.append("\n\n");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取半全场选择的比赛字符串
+	 * 
+	 * @param againstStringBufffer
+	 *            选择比赛字符串
+	 */
+	private void getHalfTheAudienceSelectedAgainstString(
+			StringBuffer againstStringBufffer) {
+		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
+			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
+				if (halfTheAudienceAgainstInformation.isSelected()) {
+					againstStringBufffer
+							.append(halfTheAudienceAgainstInformation
+									.getHomeTeam())
+							.append("vs")
+							.append(halfTheAudienceAgainstInformation
+									.getGuestTeam()).append(":");
+
+					boolean[] IsClicks = halfTheAudienceAgainstInformation
+							.getIsClicks();
+					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
+						if (IsClicks[click_i] == true) {
+							againstStringBufffer
+									.append(HalfTheAudienceAdapter.selectButtonTitles[click_i])
+									.append(" ");
+						}
+					}
+					againstStringBufffer.append("\n\n");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取全场总比分选择的比赛字符串
+	 * 
+	 * @param againstStringBufffer
+	 *            选择比赛字符串
+	 */
+	private void getOverAllSelectedAgainstString(
+			StringBuffer againstStringBufffer) {
+		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
+			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
+				if (overAllAgainstInformation.isSelected()) {
+					againstStringBufffer
+							.append(overAllAgainstInformation.getHomeTeam())
+							.append("vs")
+							.append(overAllAgainstInformation.getGuestTeam())
+							.append(":");
+					boolean[] IsClicks = overAllAgainstInformation
+							.getIsClicks();
+					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
+						if (IsClicks[click_i] == true) {
+							againstStringBufffer.append(
+									OverAllAdapter.selectButtonTitles[click_i])
+									.append(" ");
+						}
+					}
+					againstStringBufffer.append("\n\n");
+
+				}
+
+			}
+		}
+	}
+
+	/**
+	 * 获取总进球选择的比赛字符串
+	 * 
+	 * @param againstStringBufffer
+	 *            选择比赛字符串
+	 */
+	private void getTotalGoalsSelectedAgainstString(
+			StringBuffer againstStringBufffer) {
+		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
+			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
+				if (totalGoalsAgainstInformation.isSelected()) {
+					againstStringBufffer
+							.append(totalGoalsAgainstInformation.getHomeTeam())
+							.append("vs")
+							.append(totalGoalsAgainstInformation.getGuestTeam())
+							.append(":");
+					boolean[] IsClicks = totalGoalsAgainstInformation
+							.getIsClicks();
+					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
+						if (IsClicks[click_i] == true) {
+							againstStringBufffer
+									.append(TotalGoalsAdapter.selectButtonTitles[click_i])
+									.append(" ");
+						}
+					}
+					againstStringBufffer.append("\n\n");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 获取胜平负选择的比赛字符串
+	 * 
+	 * @param againstStringBufffer
+	 *            选择比赛字符串
+	 */
+	private void getWinTieLossSelectedAgainstString(
+			StringBuffer againstStringBufffer) {
+		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
+			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
+				if (winTieLossAgainstInformation.isSelected()) {
+					againstStringBufffer
+							.append(winTieLossAgainstInformation.getHomeTeam())
+							.append("vs")
+							.append(winTieLossAgainstInformation.getGuestTeam())
+							.append(":");
+					if (winTieLossAgainstInformation.isV0IsClick()) {
+						againstStringBufffer.append("胜");
+					}
+					if (winTieLossAgainstInformation.isV1IsClick()) {
+						againstStringBufffer.append("平");
+					}
+					if (winTieLossAgainstInformation.isV3IsClick()) {
+						againstStringBufffer.append("负");
+					}
+
+					againstStringBufffer.append("\n\n");
+				}
+			}
+		}
+	}
+
+	/**
+	 * 是否是合法的选择
+	 * 
+	 * @return 是否合法标识
+	 */
+	public boolean isLegalSelect() {
+		if (selectedGameNum >= 1) {
+			return true;
+		} else {
+			Toast.makeText(BeiJingSingleGameActivity.this, "请至少选择一场比赛", 1)
+					.show();
+			return false;
+		}
+	}
+
+	/**
 	 * 向行里添加选择赛事按钮
 	 * 
 	 * @param buttonOfPreLine
@@ -1263,7 +1648,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				+ button_j);
 		button.setBtnText(buttonString);
 
-		if (selectedEventsList.contains(buttonString)) {
+		if (nowSelectedEventsList.contains(buttonString)) {
 			button.setOnClick(true);
 		} else {
 			button.setOnClick(false);
@@ -1305,15 +1690,15 @@ public class BeiJingSingleGameActivity extends Activity {
 				}
 				break;
 			case R.id.ok:
-				selectedEventsList.clear();
+				nowSelectedEventsList.clear();
 				for (MyButton eventButton : eventSelectButtons) {
 					if (eventButton.isOnClick()) {
-						selectedEventsList.add(eventButton.getBtnText());
+						nowSelectedEventsList.add(eventButton.getBtnText());
 					}
 				}
 
-				if (selectedEventsList.size() != 0) {
-					refreshAgainstInformationShow(false,true);
+				if (nowSelectedEventsList.size() != 0) {
+					refreshAgainstInformationShow(false, true);
 					eventSelectDialog.dismiss();
 				} else {
 					Toast.makeText(BeiJingSingleGameActivity.this,
@@ -1324,5 +1709,132 @@ public class BeiJingSingleGameActivity extends Activity {
 			}
 
 		}
+	}
+
+	/**
+	 * 获取选择的比赛的投注次数集合
+	 * 
+	 * @return 投注次数集合
+	 */
+	public List<String> getSelectedEventClickNum() {
+		List<String> bettinginfoList = new ArrayList<String>();
+		switch (playMethodType) {
+		case WINTIELOSS:
+			getWinTieLossSelectdEventClickNum(bettinginfoList);
+			break;
+		case TOTALGOALS:
+			getTotalGoalsSelectedEventClickNum(bettinginfoList);
+			break;
+		case OVERALL:
+			getOverAllSelectedEventClickNum(bettinginfoList);
+			break;
+		case HALFTHEAUDIENCE:
+			getHalfTheAudienceSelectedEventClickNum(bettinginfoList);
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			getUpDownSingleDoubleSelectedEventClickNum(bettinginfoList);
+			break;
+		}
+
+		return bettinginfoList;
+	}
+
+	private void getUpDownSingleDoubleSelectedEventClickNum(
+			List<String> bettinginfoList) {
+		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
+			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
+				if (upDownSingleDoubleAgainstInformation.isSelected()) {
+					bettinginfoList.add(String
+							.valueOf(upDownSingleDoubleAgainstInformation
+									.getClickNum()));
+				}
+			}
+		}
+	}
+
+	private void getHalfTheAudienceSelectedEventClickNum(
+			List<String> bettinginfoList) {
+		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
+			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
+				if (halfTheAudienceAgainstInformation.isSelected()) {
+					bettinginfoList.add(String
+							.valueOf(halfTheAudienceAgainstInformation
+									.getClickNum()));
+				}
+			}
+		}
+	}
+
+	private void getOverAllSelectedEventClickNum(List<String> bettinginfoList) {
+		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
+			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
+				if (overAllAgainstInformation.isSelected()) {
+					bettinginfoList.add(String
+							.valueOf(overAllAgainstInformation.getClickNum()));
+				}
+			}
+		}
+	}
+
+	private void getTotalGoalsSelectedEventClickNum(List<String> bettinginfoList) {
+		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
+			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
+				if (totalGoalsAgainstInformation.isSelected()) {
+					bettinginfoList
+							.add(String.valueOf(totalGoalsAgainstInformation
+									.getClickNum()));
+				}
+			}
+		}
+	}
+
+	private void getWinTieLossSelectdEventClickNum(List<String> bettinginfoList) {
+		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
+			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
+				if (winTieLossAgainstInformation.isSelected()) {
+					bettinginfoList
+							.add(String.valueOf(winTieLossAgainstInformation
+									.getClickNum()));
+				}
+			}
+		}
+	}
+
+	/**
+	 * 选择的场次是否合法
+	 * 
+	 * @return
+	 */
+	public boolean isSelectedEventNumLegal() {
+		boolean isLegal = true;
+
+		switch (playMethodType) {
+		case WINTIELOSS:
+			if (selectedGameNum >= 15) {
+				isLegal = false;
+			}
+			break;
+		case TOTALGOALS:
+			if (selectedGameNum >= 10) {
+				isLegal = false;
+			}
+			break;
+		case OVERALL:
+			if (selectedGameNum >= 10) {
+				isLegal = false;
+			}
+			break;
+		case HALFTHEAUDIENCE:
+			if (selectedGameNum >= 10) {
+				isLegal = false;
+			}
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			if (selectedGameNum >= 10) {
+				isLegal = false;
+			}
+			break;
+		}
+		return isLegal;
 	}
 }

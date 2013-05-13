@@ -3,14 +3,14 @@ package com.ruyicai.activity.buy.beijing.bean;
 /*
  * 北京单场对阵信息基类
  */
-public class AgainstInformation implements Cloneable{
+public class AgainstInformation implements Cloneable {
 	private String teamId;
 	private String dayForamt;
 	private String homeTeam;
 	private String guestTeam;
 	private String league;
 	private String endTime;
-	//该信息是否被展开显示
+	// 该信息是否被展开显示
 	private boolean isShow = true;
 
 	public String getTeamId() {
@@ -68,16 +68,20 @@ public class AgainstInformation implements Cloneable{
 	public void setShow(boolean isShow) {
 		this.isShow = isShow;
 	}
-	
+
 	public AgainstInformation clone() {
 		AgainstInformation againstInformation = null;
-		
+
 		try {
 			againstInformation = (AgainstInformation) super.clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
-		
+
 		return againstInformation;
+	}
+
+	public boolean isSelected() {
+		return false;
 	}
 }
