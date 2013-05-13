@@ -39,12 +39,8 @@ public class BallSensor extends SensorActivity {
 		
 	}
 	private void sendMessage() {
-		if (list != null && list.size() > 2) {
+		if (list != null) {
 			randomString = getRandom(selectNum, list);
-		} else if (list != null && list.size() == 2) {
-			randomString = new String[2];
-			randomString[0] = list.get(0);
-			randomString[1] = list.get(1);
 		} else {
 			return;
 		}
@@ -52,7 +48,6 @@ public class BallSensor extends SensorActivity {
 		mesResultIds.what = BALL_SENDSOR_RESULT;
 		mesResultIds.obj = randomString;
 		handler.sendMessage(mesResultIds);
-		
 	}
 	public void setDataCol(int[] dataCol) {
 		this.dataCol = dataCol;
