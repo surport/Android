@@ -245,14 +245,25 @@ public class ContentListView {
 					String letScore = obj.getString("letScore");
 					String totalScore = obj.getString("totalScore");
 					String teamVs = "vs";
-					/**Modify by yejc 20130412 混合篮球显示VS不显示让分*/
-					if (!lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
-						if (letScore!= null && !letScore.equals("") && !letScore.equals("0")) {
+					/**Modify by yejc 20130513*/
+					if (lotno.equals(Constants.LOTNO_JCLQ_RF)) {
+						if (!"".equals(letScore) && !"0".equals(letScore)) {
 							teamVs = letScore;
-						} else if (!totalScore.equals("")) {
+						}
+					}
+					if (lotno.equals(Constants.LOTNO_JCLQ_DXF)) {
+						if (!"".equals(totalScore) && !"0".equals(totalScore)) {
 							teamVs = totalScore;
 						}
 					}
+					
+//					if (!lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
+//						if (letScore!= null && !letScore.equals("") && !letScore.equals("0")) {
+//							teamVs = letScore;
+//						} else if (!totalScore.equals("")) {
+//							teamVs = totalScore;
+//						}
+//					}
 					String guestScore = obj.getString("guestScore");
 					String homeScore = obj.getString("homeScore");
 					String homeTeam = obj.getString("homeTeam");
@@ -399,7 +410,7 @@ public class ContentListView {
 		} else if (weekId.equals("6")) {
 			week = "周六";
 		} else if (weekId.equals("7")) {
-			week = "周七";
+			week = "周日";
 		}
 		return week;
 	}
