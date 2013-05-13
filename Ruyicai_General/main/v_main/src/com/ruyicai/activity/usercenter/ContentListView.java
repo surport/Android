@@ -1,6 +1,7 @@
 package com.ruyicai.activity.usercenter;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -43,7 +44,12 @@ public class ContentListView {
 				|| lotno.equals(Constants.LOTNO_JCZQ_BQC)
 				|| lotno.equals(Constants.LOTNO_JCZQ_ZQJ)
 				|| lotno.equals(Constants.LOTNO_JCZQ_HUN)
-				|| lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
+				|| lotno.equals(Constants.LOTNO_JCLQ_HUN)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
 			content.setVisibility(View.GONE);
 			addContentView(layoutMain, json, lotno);
 		} else if (lotno.equals(Constants.LOTNO_RX9)
@@ -54,6 +60,38 @@ public class ContentListView {
 			addJQCContentView(layoutMain, json, lotno);
 		} else {
 			content.setText(Html.fromHtml("方案内容：<br>" + betcodehtml));
+		}
+	}
+
+	private void addBeijingContentView(LinearLayout layoutMain,
+			JSONObject json, String lotno) {
+		LayoutInflater inflate = (LayoutInflater) context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View viewTop = inflate.inflate(R.layout.bet_query_jc_info, null);
+
+		try {
+			String disPlay = json.getString("display");
+			if (disPlay.equals("true")) {
+				JSONArray jsonArray = json.getJSONArray("result");
+				for (int i = 0; i < jsonArray.length(); i++) {
+					JSONObject obj = jsonArray.getJSONObject(i);
+					View viewItem = inflate.inflate(
+							R.layout.bet_query_jc_info_item, null);
+					TextView textNum = (TextView) viewItem
+							.findViewById(R.id.bet_query_text_num);
+					TextView textTeam = (TextView) viewItem
+							.findViewById(R.id.bet_query_text_team);
+					TextView textScore = (TextView) viewItem
+							.findViewById(R.id.bet_query_text_score);
+					TextView textover = (TextView) viewItem
+							.findViewById(R.id.bet_query_text_over);
+					TextView textCheck = (TextView) viewItem
+							.findViewById(R.id.bet_query_text_check);
+
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -240,14 +278,28 @@ public class ContentListView {
 							.findViewById(R.id.bet_query_text_over);
 					TextView textCheck = (TextView) viewItem
 							.findViewById(R.id.bet_query_text_check);
-					textNum.setText(getWeek(obj.getString("weekId"))
-							+ obj.getString("teamId"));
+					String totalScore = "";
+					String isDanMa = "";
+					if (lotno
+							.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+							|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+							|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+							|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
+							|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
+						textNum.setText(obj.getString("teamId"));
+					} else {
+						textNum.setText(getWeek(obj.getString("weekId"))
+								+ obj.getString("teamId"));
+						totalScore = obj.getString("totalScore");
+						isDanMa = obj.getString("isDanMa");
+					}
 					String letScore = obj.getString("letScore");
-					String totalScore = obj.getString("totalScore");
+					
 					String teamVs = "vs";
-					/**Modify by yejc 20130412 混合篮球显示VS不显示让分*/
+					/** Modify by yejc 20130412 混合篮球显示VS不显示让分 */
 					if (!lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
-						if (letScore!= null && !letScore.equals("") && !letScore.equals("0")) {
+						if (letScore != null && !letScore.equals("")
+								&& !letScore.equals("0")) {
 							teamVs = letScore;
 						} else if (!totalScore.equals("")) {
 							teamVs = totalScore;
@@ -257,18 +309,21 @@ public class ContentListView {
 					String homeScore = obj.getString("homeScore");
 					String homeTeam = obj.getString("homeTeam");
 					String guestTeam = obj.getString("guestTeam");
-					String isDanMa = obj.getString("isDanMa");
 
 					try {
 						Integer guestInt = Integer.parseInt(guestScore);
 						Integer hometInt = Integer.parseInt(homeScore);
-						if (lotno.equals(Constants.LOTNO_JCZQ_ZQJ)) { //add by yejc 20130401
+						if (lotno.equals(Constants.LOTNO_JCZQ_ZQJ)) { // add by
+																		// yejc
+																		// 20130401
 							String total = String.valueOf(guestInt + hometInt);
 							textover.setText(total);
 						} else {
 							if (obj.has("matchResult")) {
-								String matchResult = obj.getString("matchResult");
-								if (matchResult != null && !"".equals(matchResult)) {
+								String matchResult = obj
+										.getString("matchResult");
+								if (matchResult != null
+										&& !"".equals(matchResult)) {
 									textover.setText(matchResult);
 								}
 							} else {
@@ -324,10 +379,12 @@ public class ContentListView {
 						SpannableStringBuilder builder = new SpannableStringBuilder();
 						builder.append(Html.fromHtml(obj
 								.getString("betContentHtml")) + "(胆)");
-						
+
 						if (result.contains("red")) {
-							builder.setSpan(new ForegroundColorSpan(Color.RED), 0,
-									builder.length() - 3, Spanned.SPAN_COMPOSING); //add by yejc 20130410
+							builder.setSpan(new ForegroundColorSpan(Color.RED),
+									0, builder.length() - 3,
+									Spanned.SPAN_COMPOSING); // add by yejc
+																// 20130410
 						}
 						builder.setSpan(new ForegroundColorSpan(context
 								.getResources().getColor(R.color.jc_join_dan)),

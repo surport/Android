@@ -2,7 +2,6 @@ package com.ruyicai.activity.buy.beijing.adapter;
 
 import java.util.List;
 
-import com.lthj.unipay.plugin.bt;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
@@ -12,7 +11,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +36,11 @@ public class TotalGoalsAdapter extends BaseAdapter {
 	/** 显示总进球数对阵信息集合 */
 	private List<List<TotalGoalsAgainstInformation>> totalGoalsAgainstInformationList;
 	/** 选择按钮标题 */
-	String selectButtonTitles[] = { "0", "1", "2", "3", "4", "5", "6", "7+" };
+	public static String selectButtonTitles[] = { "0", "1", "2", "3", "4", "5",
+			"6", "7+" };
 
 	/** 选择对话框选择按钮的个数 */
 	private static final int SELECT_BUTTON_NUM = 8;
-
 
 	public TotalGoalsAdapter(
 			Context context,
@@ -83,6 +81,16 @@ public class TotalGoalsAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	/**
+	 * 初始化总进球数对阵列表的显示
+	 * 
+	 * @param button
+	 *            下拉按钮
+	 * @param linearLayout
+	 *            对阵填充布局
+	 * @param position
+	 *            列表索引
+	 */
 	private void initTotalGoalsAgainstListShow(final Button button,
 			final LinearLayout linearLayout, int position) {
 		final List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations = totalGoalsAgainstInformationList
@@ -92,6 +100,7 @@ public class TotalGoalsAdapter extends BaseAdapter {
 			// 如果没有对阵，不显示对阵列表展开按钮
 			button.setVisibility(View.GONE);
 		} else {
+			// 显示列表按钮文本信息
 			StringBuffer buttonString = new StringBuffer();
 			buttonString
 					.append(totalGoalsAgainstInformations.get(0).getDayForamt())
@@ -122,12 +131,17 @@ public class TotalGoalsAdapter extends BaseAdapter {
 	/**
 	 * 显示总进球数对阵列表
 	 * 
+	 * @param button
+	 *            下拉按钮
+	 * @param linearLayout
+	 *            对阵填充布局
 	 * @param totalGoalsAgainstInformations
-	 * @param viewHoler
+	 *            总进球对阵信息集合
 	 */
 	private void showTotalGoalsAgainstList(Button button,
 			LinearLayout linearLayout,
 			List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations) {
+		// 如果展开对阵列表
 		if (totalGoalsAgainstInformations.get(0).isShow()) {
 			linearLayout.setVisibility(View.VISIBLE);
 			button.setBackgroundResource(R.drawable.buy_jc_btn_open);
@@ -138,7 +152,9 @@ public class TotalGoalsAdapter extends BaseAdapter {
 						.get(info_i));
 				linearLayout.addView(itemView);
 			}
-		} else {
+		}
+		// 如果不展开
+		else {
 			linearLayout.setVisibility(LinearLayout.GONE);
 			button.setBackgroundResource(R.drawable.buy_jc_btn_close);
 		}
@@ -151,7 +167,7 @@ public class TotalGoalsAdapter extends BaseAdapter {
 	 * @return
 	 */
 	private View getTotalGoalsAgainstListItemView(
-			TotalGoalsAgainstInformation totalGoalsAgainstInformation) {
+			final TotalGoalsAgainstInformation totalGoalsAgainstInformation) {
 		View itemView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_listview_item_others, null);
 
@@ -163,8 +179,8 @@ public class TotalGoalsAdapter extends BaseAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append(totalGoalsAgainstInformation.getTeamId()).append(
-				totalGoalsAgainstInformation.getEndTime());
+		gameDate.append("编号：").append(totalGoalsAgainstInformation.getTeamId())
+				.append("\n").append(totalGoalsAgainstInformation.getEndTime()).append("(截)");
 		gameDateTextView.setText(gameDate);
 		// 主队
 		TextView homeTeamTextView = (TextView) itemView
@@ -182,6 +198,7 @@ public class TotalGoalsAdapter extends BaseAdapter {
 		bettingButton.setTag(totalGoalsAgainstInformation);
 		bettingButton.setEllipsize(TextUtils.TruncateAt.END);
 
+		// 根据选中的信息，设置投注按钮的文本
 		StringBuilder selectedString = new StringBuilder();
 		boolean[] isClicks = totalGoalsAgainstInformation.getIsClicks();
 		for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
@@ -189,51 +206,36 @@ public class TotalGoalsAdapter extends BaseAdapter {
 				selectedString.append(selectButtonTitles[button_i]).append(" ");
 			}
 		}
-
 		if (selectedString.length() != 0) {
 			bettingButton.setText(selectedString.toString());
-		}else {
+		} else {
 			bettingButton.setText("");
 		}
 
-		bettingButton
-				.setOnClickListener(new TotalGoalsAgainstListButtonOnClickListener());
+		bettingButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| totalGoalsAgainstInformation.isSelected()) {
+					createTotalGoalsSelectDialog(v);
+				} else {
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
+				}
+
+			}
+		});
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setVisibility(View.GONE);
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		danTextButton.setVisibility(View.GONE);
 
 		return itemView;
-	}
-
-	/**
-	 * 总进球数对阵列表按钮事件监听实现类
-	 * 
-	 * @author Administrator
-	 * 
-	 */
-	class TotalGoalsAgainstListButtonOnClickListener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-
-			case R.id.jc_main_list_item_button:
-				createTotalGoalsSelectDialog(v);
-				break;
-
-			case R.id.game_analysis:
-				Toast.makeText(context, "分析按钮", 1).show();
-				break;
-
-			case R.id.game_dan:
-				Toast.makeText(context, "胆按钮", 1).show();
-				break;
-
-			}
-		}
-
 	}
 
 	/**
@@ -288,11 +290,13 @@ public class TotalGoalsAdapter extends BaseAdapter {
 		selectDialog.show();
 		selectDialog.getWindow().setContentView(dialogView);
 
+		// 确定按钮
 		Button okButton = (Button) dialogView.findViewById(R.id.ok);
 		okButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				// 根据选中的按钮保存选中的相关信息，刷新对阵信息，刷新选中场次，取消对话框
 				for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
 					MyCheckBox selectButton = selectButtons[button_i];
 					if (selectButton.getChecked() == true) {
@@ -302,16 +306,30 @@ public class TotalGoalsAdapter extends BaseAdapter {
 					}
 
 				}
-				selectDialog.dismiss();
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
+				((BeiJingSingleGameActivity) context).refreshSelectNum();
+
+				selectDialog.dismiss();
 			}
 		});
+
+		// 取消按钮
 		Button cancelButton = (Button) dialogView.findViewById(R.id.canel);
 		cancelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				// 清空所以选中的按钮，并刷新对阵列表和选中比赛场次的个数，取消对话框
+				boolean[] isClicks = totalGoalsAgainstInformation.getIsClicks();
+				for (int i = 0; i < isClicks.length; i++) {
+					isClicks[i] = false;
+				}
+
+				((BeiJingSingleGameActivity) context)
+						.refreshAgainstInformationShow(false, false);
+				((BeiJingSingleGameActivity) context).refreshSelectNum();
+
 				selectDialog.dismiss();
 			}
 		});

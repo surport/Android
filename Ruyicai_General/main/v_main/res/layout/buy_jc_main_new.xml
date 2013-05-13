@@ -124,7 +124,7 @@
 	    <TextView
                 android:id="@+id/buy_jc_main_text_team_num"
                 style="@style/textSize16"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="90dip"
                 android:text="" />
 

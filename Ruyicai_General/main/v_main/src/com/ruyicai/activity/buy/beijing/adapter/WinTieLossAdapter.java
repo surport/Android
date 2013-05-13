@@ -3,6 +3,7 @@ package com.ruyicai.activity.buy.beijing.adapter;
 import java.util.List;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
 
 import android.content.Context;
@@ -29,15 +30,6 @@ public class WinTieLossAdapter extends BaseAdapter {
 	/** 显示的让球胜平负对阵信息集合 */
 	private List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList;
 
-	public List<List<WinTieLossAgainstInformation>> getWinTieLossAgainstInformationList() {
-		return winTieLossAgainstInformationList;
-	}
-
-	public void setWinTieLossAgainstInformationList(
-			List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList) {
-		this.winTieLossAgainstInformationList = winTieLossAgainstInformationList;
-	}
-
 	public WinTieLossAdapter(
 			Context context,
 			List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList) {
@@ -60,33 +52,32 @@ public class WinTieLossAdapter extends BaseAdapter {
 		return position;
 	}
 
-	class ViewHoler {
-		Button button;
-		LinearLayout linearLayout;
-	}
-
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		convertView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_view_list_item, null);
 
-		Button button = (Button) convertView
+		Button upDownButton = (Button) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_btn);
-		button.setBackgroundResource(R.drawable.buy_jc_btn_close);
+		upDownButton.setBackgroundResource(R.drawable.buy_jc_btn_close);
 		LinearLayout linearLayout = (LinearLayout) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
 
-		initWinTieLossAgainstListShow(button, linearLayout, position);
+		initWinTieLossAgainstListShow(upDownButton, linearLayout, position);
 
 		return convertView;
 	}
 
 	/**
-	 * 初始化对阵列表的显示
+	 * 初始化胜平负对阵列表的显示
 	 * 
+	 * @param button
+	 *            下拉按钮
+	 * @param linearLayout
+	 *            对阵填充布局
 	 * @param position
-	 *            当前显示的对阵列表索引
+	 *            列表索引
 	 */
 	private void initWinTieLossAgainstListShow(final Button button,
 			final LinearLayout linearLayout, int position) {
@@ -100,9 +91,9 @@ public class WinTieLossAdapter extends BaseAdapter {
 		} else {
 			StringBuffer buttonString = new StringBuffer();
 			buttonString
-			.append(winTieLossAgainstInformations.get(0).getDayForamt())
-			.append(" ").append(winTieLossAgainstInformations.size())
-			.append("场比赛");
+					.append(winTieLossAgainstInformations.get(0).getDayForamt())
+					.append(" ").append(winTieLossAgainstInformations.size())
+					.append("场比赛");
 			button.setText(buttonString);
 
 			// 如果有对阵，显示对阵列表
@@ -126,17 +117,16 @@ public class WinTieLossAdapter extends BaseAdapter {
 	}
 
 	/**
-	 * 显示胜平负对阵列表
+	 * 显示胜平负对阵里列表
 	 * 
-	 * @param winTieLossAgainstInformations
-	 * @param viewHoler
-	 * 
-	 * @param viewHoler
+	 * @param button
+	 * @param linearLayout
 	 * @param winTieLossAgainstInformations
 	 */
 	private void showWinTieLossAgainstList(Button button,
 			LinearLayout linearLayout,
 			List<WinTieLossAgainstInformation> winTieLossAgainstInformations) {
+		// 如果对阵列表需要展开
 		if (winTieLossAgainstInformations.get(0).isShow()) {
 			linearLayout.setVisibility(View.VISIBLE);
 			button.setBackgroundResource(R.drawable.buy_jc_btn_open);
@@ -147,7 +137,9 @@ public class WinTieLossAdapter extends BaseAdapter {
 						.get(info_i));
 				linearLayout.addView(itemView);
 			}
-		} else {
+		}
+		// 不展开
+		else {
 			linearLayout.setVisibility(LinearLayout.GONE);
 			button.setBackgroundResource(R.drawable.buy_jc_btn_close);
 		}
@@ -174,9 +166,9 @@ public class WinTieLossAdapter extends BaseAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append(winTieLossAgainstInformation.getTeamId()).append("\n")
-		.append(winTieLossAgainstInformation.getEndTime())
-		.append("(截)");
+		gameDate.append("编号：").append(winTieLossAgainstInformation.getTeamId())
+				.append("\n").append(winTieLossAgainstInformation.getEndTime())
+				.append("(截)");
 		gameDateTextView.setText(gameDate);
 
 		// 主队
@@ -205,22 +197,10 @@ public class WinTieLossAdapter extends BaseAdapter {
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
-		analysisTextView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(context, "分析按钮", 1).show();
-			}
-		});
+		analysisTextView.setVisibility(View.GONE);
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		danTextButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(context, "胆按钮", 1).show();
-			}
-		});
+		danTextButton.setVisibility(View.GONE);
 
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
@@ -229,19 +209,31 @@ public class WinTieLossAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((winTieLossAgainstInformation.isV0IsClick()) == false) {
-					homeTeamLayout
-					.setBackgroundResource(R.drawable.team_name_bj_yellow);
-					homeTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-					winTieLossAgainstInformation.setV0IsClick(true);
+
+				// 如果选择的赛事场次合或者该场次已经被选中了，就可以继续选择
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| winTieLossAgainstInformation.isSelected()) {
+					// 根据当前的选中状态设置背景图片，并改变相关的选中属性
+					if (!winTieLossAgainstInformation.isV0IsClick()) {
+						homeTeamLayout
+								.setBackgroundResource(R.drawable.team_name_bj_yellow);
+						homeTeamTextView
+								.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+						winTieLossAgainstInformation.setV0IsClick(true);
+					} else {
+						homeTeamLayout
+								.setBackgroundResource(R.drawable.team_name_bj);
+						homeTeamTextView
+								.setBackgroundResource(R.drawable.team_name_bj_top);
+						winTieLossAgainstInformation.setV0IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					homeTeamLayout
-					.setBackgroundResource(R.drawable.team_name_bj);
-					homeTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top);
-					winTieLossAgainstInformation.setV0IsClick(false);
+					Toast.makeText(context, "您最多可以选择15场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
+
 			}
 		});
 		// vs“按钮”布局
@@ -251,16 +243,26 @@ public class WinTieLossAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((winTieLossAgainstInformation.isV1IsClick()) == false) {
-					vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-					vsTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-					winTieLossAgainstInformation.setV1IsClick(true);
+				// 如果选择的赛事场次合或者该场次已经被选中了，就可以继续选择
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| winTieLossAgainstInformation.isSelected()) {
+					// 根据当前的选中状态设置背景图片，并改变相关的选中属性
+					if (!winTieLossAgainstInformation.isV1IsClick()) {
+						vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+						vsTextView
+								.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+						winTieLossAgainstInformation.setV1IsClick(true);
+					} else {
+						vsLayout.setBackgroundResource(R.drawable.team_name_bj);
+						vsTextView
+								.setBackgroundResource(R.drawable.team_name_bj_top);
+						winTieLossAgainstInformation.setV1IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					vsLayout.setBackgroundResource(R.drawable.team_name_bj);
-					vsTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top);
-					winTieLossAgainstInformation.setV1IsClick(false);
+					Toast.makeText(context, "您最多可以选择15场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
 
 			}
@@ -272,20 +274,29 @@ public class WinTieLossAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((winTieLossAgainstInformation.isV3IsClick()) == false) {
-					guestTeamLayout
-					.setBackgroundResource(R.drawable.team_name_bj_yellow);
-					guestTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-					winTieLossAgainstInformation.setV3IsClick(true);
+				// 如果选择的赛事场次合或者该场次已经被选中了，就可以继续选择
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| winTieLossAgainstInformation.isSelected()) {
+					// 根据当前的选中状态设置背景图片，并改变相关的选中属性
+					if (!winTieLossAgainstInformation.isV3IsClick()) {
+						guestTeamLayout
+								.setBackgroundResource(R.drawable.team_name_bj_yellow);
+						guestTeamTextView
+								.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+						winTieLossAgainstInformation.setV3IsClick(true);
+					} else {
+						guestTeamLayout
+								.setBackgroundResource(R.drawable.team_name_bj);
+						guestTeamTextView
+								.setBackgroundResource(R.drawable.team_name_bj_top);
+						winTieLossAgainstInformation.setV3IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					guestTeamLayout
-					.setBackgroundResource(R.drawable.team_name_bj);
-					guestTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top);
-					winTieLossAgainstInformation.setV3IsClick(false);
+					Toast.makeText(context, "您最多可以选择15场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
-
 			}
 		});
 

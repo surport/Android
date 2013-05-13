@@ -5,7 +5,6 @@ import java.util.List;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.OverAllAgainstInformation;
-import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.code.jc.zq.FootBF;
 import com.ruyicai.constant.Constants;
@@ -38,10 +37,10 @@ public class OverAllAdapter extends BaseAdapter {
 	/** 上下文对象 */
 	private Context context;
 	/** 选择按钮标题 */
-	String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "3:0", "4:0", "2:1",
-			"3:1", "3:2", "4:1", "4:2", "平其他", "0:0", "1:1", "2:2", "3:3",
-			"负其他", "0:1", "0:2", "0:3", "0:4", "1:2", "1:3", "1:4", "2:3",
-			"2:4" };
+	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "3:0",
+			"4:0", "2:1", "3:1", "3:2", "4:1", "4:2", "平其他", "0:0", "1:1",
+			"2:2", "3:3", "负其他", "0:1", "0:2", "0:3", "0:4", "1:2", "1:3",
+			"1:4", "2:3", "2:4" };
 	/** 显示全场总比分对阵信息集合 */
 	private List<List<OverAllAgainstInformation>> overAllAgainstInformationList;
 
@@ -82,6 +81,16 @@ public class OverAllAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	/**
+	 * 初始化全场总比分对阵列表的显示
+	 * 
+	 * @param button
+	 *            下拉按钮
+	 * @param linearLayout
+	 *            对阵容器布局
+	 * @param position
+	 *            列表索引
+	 */
 	private void initOverAllAgainstListShow(final Button button,
 			final LinearLayout linearLayout, int position) {
 		final List<OverAllAgainstInformation> overAllAgainstInformations = overAllAgainstInformationList
@@ -117,9 +126,20 @@ public class OverAllAdapter extends BaseAdapter {
 		}
 	}
 
+	/**
+	 * 显示全场总比分对阵列表
+	 * 
+	 * @param button
+	 *            下拉按钮
+	 * @param linearLayout
+	 *            对阵填充布局
+	 * @param totalGoalsAgainstInformations
+	 *            全场总比分对阵信息
+	 */
 	private void showOverAllAgainstList(Button button,
 			LinearLayout linearLayout,
 			List<OverAllAgainstInformation> totalGoalsAgainstInformations) {
+		// 如果真开对阵
 		if (totalGoalsAgainstInformations.get(0).isShow()) {
 			linearLayout.setVisibility(View.VISIBLE);
 			button.setBackgroundResource(R.drawable.buy_jc_btn_open);
@@ -130,44 +150,60 @@ public class OverAllAdapter extends BaseAdapter {
 						.get(info_i));
 				linearLayout.addView(itemView);
 			}
-		} else {
+		}
+		// 不展开
+		else {
 			linearLayout.setVisibility(LinearLayout.GONE);
 			button.setBackgroundResource(R.drawable.buy_jc_btn_close);
 		}
 	}
 
+	/**
+	 * 获取全场总比分对阵列表单元视图
+	 * 
+	 * @param overAllAgainstInformation
+	 *            显示全场总比分对阵信息对象
+	 * @return
+	 */
 	private View getOverAllAgainstListItemView(
-			OverAllAgainstInformation overAllAgainstInformation) {
+			final OverAllAgainstInformation overAllAgainstInformation) {
 		View itemView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_listview_item_others, null);
 
+		// 赛事
 		TextView leagueTextView = (TextView) itemView
 				.findViewById(R.id.game_name);
 		leagueTextView.setText(overAllAgainstInformation.getLeague());
 
+		// 比赛时间
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append(overAllAgainstInformation.getTeamId()).append(
-				overAllAgainstInformation.getEndTime());
+		gameDate.append("编号：").append(overAllAgainstInformation.getTeamId())
+				.append("\n").append(overAllAgainstInformation.getEndTime())
+				.append("(截)");
 		gameDateTextView.setText(gameDate);
 
+		// 主队
 		final TextView homeTeamTextView = (TextView) itemView
 				.findViewById(R.id.home_team_name);
 		homeTeamTextView.setText(overAllAgainstInformation.getHomeTeam());
 
+		// vs文本
 		final TextView vsTextView = (TextView) itemView
 				.findViewById(R.id.game_vs);
 
+		// 客队
 		final TextView guestTeamTextView = (TextView) itemView
 				.findViewById(R.id.guest_team_name);
 		guestTeamTextView.setText(overAllAgainstInformation.getGuestTeam());
 
+		// 投注按钮
 		TextView bettingButton = (Button) itemView
 				.findViewById(R.id.jc_main_list_item_button);
 		bettingButton.setTag(overAllAgainstInformation);
 		bettingButton.setEllipsize(TextUtils.TruncateAt.END);
-
+		// 根据选中的信息，设置投注按钮的文本
 		StringBuilder selectedString = new StringBuilder();
 		boolean[] isClicks = overAllAgainstInformation.getIsClicks();
 		for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
@@ -175,47 +211,44 @@ public class OverAllAdapter extends BaseAdapter {
 				selectedString.append(selectButtonTitles[button_i]).append(" ");
 			}
 		}
-
 		if (selectedString.length() != 0) {
 			bettingButton.setText(selectedString.toString());
-		}else {
+		} else {
 			bettingButton.setText("");
 		}
-		bettingButton
-				.setOnClickListener(new OverAllAgainstListButtonOnClickListener());
+		bettingButton.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| overAllAgainstInformation.isSelected()) {
+					createOverAllSelectDialog(v);
+				} else {
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
+				}
+
+			}
+		});
+
+		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setVisibility(View.GONE);
 
-		final Button danTextButton = (Button) itemView
-				.findViewById(R.id.game_dan);
+		// 胆
+		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		danTextButton.setVisibility(View.GONE);
 
 		return itemView;
 	}
 
-	class OverAllAgainstListButtonOnClickListener implements OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-
-			case R.id.jc_main_list_item_button:
-				createOverAllSelectDialog(v);
-				break;
-
-			case R.id.game_analysis:
-				Toast.makeText(context, "分析按钮", 1).show();
-				break;
-
-			case R.id.game_dan:
-				Toast.makeText(context, "胆按钮", 1).show();
-				break;
-
-			}
-		}
-
-	}
-
+	/**
+	 * 创建半全场选择对话框
+	 * 
+	 * @param v
+	 */
 	public void createOverAllSelectDialog(View v) {
 		View dialogView = LayoutInflater.from(context).inflate(
 				R.layout.buy_lq_sfc_dialog, null);
@@ -247,32 +280,31 @@ public class OverAllAdapter extends BaseAdapter {
 				R.id.lq_sfc_dialog_check025, R.id.lq_sfc_dialog_check026,
 				R.id.lq_sfc_dialog_check027, R.id.lq_sfc_dialog_check028 };
 		/** 选择按钮sp */
-		String selectButtonSPs[] = { overAllAgainstInformation.getScore_v00(),
+		String selectButtonSPs[] = { overAllAgainstInformation.getScore_v90(),
+				overAllAgainstInformation.getScore_v10(),
+				overAllAgainstInformation.getScore_v20(),
+				overAllAgainstInformation.getScore_v30(),
+				overAllAgainstInformation.getScore_v40(),
+				overAllAgainstInformation.getScore_v21(),
+				overAllAgainstInformation.getScore_v31(),
+				overAllAgainstInformation.getScore_v32(),
+				overAllAgainstInformation.getScore_v41(),
+				overAllAgainstInformation.getScore_v42(),
+				overAllAgainstInformation.getScore_v99(),
+				overAllAgainstInformation.getScore_v00(),
+				overAllAgainstInformation.getScore_v11(),
+				overAllAgainstInformation.getScore_v22(),
+				overAllAgainstInformation.getScore_v33(),
+				overAllAgainstInformation.getScore_v09(),
 				overAllAgainstInformation.getScore_v01(),
 				overAllAgainstInformation.getScore_v02(),
 				overAllAgainstInformation.getScore_v03(),
 				overAllAgainstInformation.getScore_v04(),
-				overAllAgainstInformation.getScore_v09(),
-				overAllAgainstInformation.getScore_v10(),
-				overAllAgainstInformation.getScore_v11(),
 				overAllAgainstInformation.getScore_v12(),
 				overAllAgainstInformation.getScore_v13(),
 				overAllAgainstInformation.getScore_v14(),
-				overAllAgainstInformation.getScore_v20(),
-				overAllAgainstInformation.getScore_v21(),
-				overAllAgainstInformation.getScore_v22(),
 				overAllAgainstInformation.getScore_v23(),
-				overAllAgainstInformation.getScore_v24(),
-				overAllAgainstInformation.getScore_v30(),
-				overAllAgainstInformation.getScore_v31(),
-				overAllAgainstInformation.getScore_v31(),
-				overAllAgainstInformation.getScore_v32(),
-				overAllAgainstInformation.getScore_v33(),
-				overAllAgainstInformation.getScore_v40(),
-				overAllAgainstInformation.getScore_v41(),
-				overAllAgainstInformation.getScore_v42(),
-				overAllAgainstInformation.getScore_v90(),
-				overAllAgainstInformation.getScore_v99() };
+				overAllAgainstInformation.getScore_v24() };
 
 		/** 选择对话框选择按钮 */
 		final MyCheckBox[] selectButtons = new MyCheckBox[SELECT_BUTTON_NUM];
@@ -282,6 +314,8 @@ public class OverAllAdapter extends BaseAdapter {
 			selectButtons[button_i].setVisibility(CheckBox.VISIBLE);
 			selectButtons[button_i].setCheckText(selectButtonSPs[button_i]);
 			selectButtons[button_i].setPosition(button_i);
+			selectButtons[button_i].setChecked(overAllAgainstInformation
+					.getIsClicks()[button_i]);
 			selectButtons[button_i].setCheckTitle(selectButtonTitles[button_i]);
 		}
 
@@ -295,11 +329,13 @@ public class OverAllAdapter extends BaseAdapter {
 		selectDialog.show();
 		selectDialog.getWindow().setContentView(dialogView);
 
+		// 确定按钮
 		Button okButton = (Button) dialogView.findViewById(R.id.ok);
 		okButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				// 根据选中的按钮保存选中的相关信息，刷新对阵信息，刷新选中场次，取消对话框
 				for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
 					MyCheckBox selectButton = selectButtons[button_i];
 					if (selectButton.getChecked() == true) {
@@ -308,16 +344,31 @@ public class OverAllAdapter extends BaseAdapter {
 						overAllAgainstInformation.getIsClicks()[button_i] = false;
 					}
 				}
-				selectDialog.dismiss();
+
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
+				((BeiJingSingleGameActivity) context).refreshSelectNum();
+
+				selectDialog.dismiss();
 			}
 		});
+
+		// 取消按钮
 		Button cancelButton = (Button) dialogView.findViewById(R.id.canel);
 		cancelButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				// 清空所以选中的按钮，并刷新对阵列表和选中比赛场次的个数，取消对话框
+				boolean[] isClicks = overAllAgainstInformation.getIsClicks();
+				for (int i = 0; i < isClicks.length; i++) {
+					isClicks[i] = false;
+				}
+
+				((BeiJingSingleGameActivity) context)
+						.refreshAgainstInformationShow(false, false);
+				((BeiJingSingleGameActivity) context).refreshSelectNum();
+
 				selectDialog.dismiss();
 			}
 		});

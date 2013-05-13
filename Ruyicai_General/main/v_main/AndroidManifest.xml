@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.palmdream.RuyicaiAndroid"
     android:installLocation="auto"
-    android:versionCode="30"
-    android:versionName="3.7.2" >
+    android:versionCode="31"
+    android:versionName="3.7.3" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -992,6 +992,12 @@
         <!-- 北京单场 -->
         <activity
             android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 北京单场您的订单 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

@@ -6,7 +6,6 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.HalfTheAudienceAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.OverAllAgainstInformation;
-import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.code.jc.zq.FootBQC;
 import com.ruyicai.constant.Constants;
@@ -40,8 +39,8 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 	/** 上下文对象 */
 	private Context context;
 	/** 选择按钮标题 */
-	String selectButtonTitles[] = { "胜胜", "胜平", "胜负", "平胜", "平平", "平负", "负胜",
-			"负平", "负负" };
+	public static String selectButtonTitles[] = { "胜胜", "胜平", "胜负", "平胜", "平平",
+			"平负", "负胜", "负平", "负负" };
 	/** 显示半全场对阵信息集合 */
 	private List<List<HalfTheAudienceAgainstInformation>> halfTheAudienceAgainstInformationList;
 
@@ -142,7 +141,7 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 	}
 
 	private View getHalfTheAudienceAgainstListItemView(
-			HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation) {
+			final HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation) {
 		View itemView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_listview_item_others, null);
 		// 联赛名称
@@ -153,8 +152,10 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append(halfTheAudienceAgainstInformation.getTeamId()).append(
-				halfTheAudienceAgainstInformation.getEndTime());
+		gameDate.append("编号：")
+				.append(halfTheAudienceAgainstInformation.getTeamId())
+				.append("\n")
+				.append(halfTheAudienceAgainstInformation.getEndTime()).append("(截)");
 		gameDateTextView.setText(gameDate);
 		// 主队
 		TextView homeTeamTextView = (TextView) itemView
@@ -184,41 +185,32 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 
 		if (selectedString.length() != 0) {
 			bettingButton.setText(selectedString.toString());
-		}else {
+		} else {
 			bettingButton.setText("");
 		}
-		bettingButton
-				.setOnClickListener(new HalfTheAudienceAgainstListButtonOnClickListener());
+		bettingButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| halfTheAudienceAgainstInformation.isSelected()) {
+					createHalfTheAudienceSelectDialog(v);
+				} else {
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setVisibility(View.GONE);
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		danTextButton.setVisibility(View.GONE);
 
 		return itemView;
-	}
-
-	class HalfTheAudienceAgainstListButtonOnClickListener implements
-			OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-
-			case R.id.jc_main_list_item_button:
-				createHalfTheAudienceSelectDialog(v);
-				break;
-
-			case R.id.game_analysis:
-				Toast.makeText(context, "分析按钮", 1).show();
-				break;
-
-			case R.id.game_dan:
-				Toast.makeText(context, "胆按钮", 1).show();
-				break;
-
-			}
-		}
 	}
 
 	private void createHalfTheAudienceSelectDialog(View v) {
@@ -245,15 +237,15 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 				R.id.lq_sfc_dialog_check08, R.id.lq_sfc_dialog_check09, };
 		/** 选择按钮sp */
 		String selectButtonSPs[] = {
-				halfTheAudienceAgainstInformation.getHalf_v00(),
-				halfTheAudienceAgainstInformation.getHalf_v01(),
-				halfTheAudienceAgainstInformation.getHalf_v03(),
-				halfTheAudienceAgainstInformation.getHalf_v10(),
-				halfTheAudienceAgainstInformation.getHalf_v11(),
-				halfTheAudienceAgainstInformation.getHalf_v13(),
-				halfTheAudienceAgainstInformation.getHalf_v30(),
+				halfTheAudienceAgainstInformation.getHalf_v33(),
 				halfTheAudienceAgainstInformation.getHalf_v31(),
-				halfTheAudienceAgainstInformation.getHalf_v33() };
+				halfTheAudienceAgainstInformation.getHalf_v30(),
+				halfTheAudienceAgainstInformation.getHalf_v13(),
+				halfTheAudienceAgainstInformation.getHalf_v11(),
+				halfTheAudienceAgainstInformation.getHalf_v10(),
+				halfTheAudienceAgainstInformation.getHalf_v03(),
+				halfTheAudienceAgainstInformation.getHalf_v01(),
+				halfTheAudienceAgainstInformation.getHalf_v00() };
 
 		/** 选择对话框选择按钮 */
 		final MyCheckBox[] selectButtons = new MyCheckBox[SELECT_BUTTON_NUM];
@@ -287,6 +279,7 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 				selectDialog.dismiss();
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
+				((BeiJingSingleGameActivity) context).refreshSelectNum();
 			}
 		});
 		Button cancelButton = (Button) dialogView.findViewById(R.id.canel);
@@ -294,6 +287,14 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
+				boolean[] isClicks = halfTheAudienceAgainstInformation
+						.getIsClicks();
+				for (int i = 0; i < isClicks.length; i++) {
+					isClicks[i] = false;
+				}
+				((BeiJingSingleGameActivity) context)
+						.refreshAgainstInformationShow(false, false);
+				((BeiJingSingleGameActivity) context).refreshSelectNum();
 				selectDialog.dismiss();
 			}
 		});

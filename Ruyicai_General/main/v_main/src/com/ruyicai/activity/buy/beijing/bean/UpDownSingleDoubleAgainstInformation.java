@@ -1,5 +1,11 @@
 package com.ruyicai.activity.buy.beijing.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 北京单场上下单双对阵信息类
@@ -8,14 +14,22 @@ package com.ruyicai.activity.buy.beijing.bean;
  * 
  */
 public class UpDownSingleDoubleAgainstInformation extends AgainstInformation {
+	/** 上单 */
 	private String sxds_v1;
+	/** 上双 */
 	private String sxds_v2;
+	/** 下单 */
 	private String sxds_v3;
+	/** 下双 */
 	private String sxds_v4;
-	
+
+	/** 上单是否选中 */
 	private boolean v1IsClick;
+	/** 上双是否选中 */
 	private boolean v2IsClick;
+	/** 下单是否选中 */
 	private boolean v3IsClick;
+	/** 下双是否选中 */
 	private boolean v4IsClick;
 
 	public String getSxds_v1() {
@@ -81,7 +95,7 @@ public class UpDownSingleDoubleAgainstInformation extends AgainstInformation {
 	public void setV4IsClick(boolean v4IsClick) {
 		this.v4IsClick = v4IsClick;
 	}
-	
+
 	public UpDownSingleDoubleAgainstInformation clone() {
 		UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation = null;
 
@@ -101,5 +115,75 @@ public class UpDownSingleDoubleAgainstInformation extends AgainstInformation {
 		}
 
 		return upDownSingleDoubleAgainstInformation;
+	}
+
+	public boolean isSelected() {
+		return (v1IsClick || v2IsClick || v3IsClick || v4IsClick);
+	}
+
+	public int getClickNum() {
+		int clickNum = 0;
+		if (v1IsClick) {
+			clickNum++;
+		}
+
+		if (v2IsClick) {
+			clickNum++;
+		}
+
+		if (v3IsClick) {
+			clickNum++;
+		}
+
+		if (v4IsClick) {
+			clickNum++;
+		}
+
+		return clickNum;
+	}
+
+	public static List<List<UpDownSingleDoubleAgainstInformation>> analysisUpDownSingleDoubleAgainstInformation(
+			JSONArray againstJsonArray) throws JSONException {
+		List<List<UpDownSingleDoubleAgainstInformation>> upDownSigleDoubleagainstInformationList = new ArrayList<List<UpDownSingleDoubleAgainstInformation>>();
+
+		int jsonArrayLength = againstJsonArray.length();
+		for (int jsonarray_i = 0; jsonarray_i < jsonArrayLength; jsonarray_i++) {
+			List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations = new ArrayList<UpDownSingleDoubleAgainstInformation>();
+			JSONArray againstWithDataJsonArray = againstJsonArray
+					.getJSONArray(jsonarray_i);
+			int againstWithDataLength = againstWithDataJsonArray.length();
+
+			for (int json_i = 0; json_i < againstWithDataLength; json_i++) {
+				JSONObject againstJsonObject = againstWithDataJsonArray
+						.getJSONObject(json_i);
+
+				UpDownSingleDoubleAgainstInformation againstInformation = new UpDownSingleDoubleAgainstInformation();
+				againstInformation.setTeamId(againstJsonObject
+						.getString("teamId"));
+				againstInformation.setDayForamt(againstJsonObject
+						.getString("dayForamt"));
+				againstInformation.setHomeTeam(againstJsonObject
+						.getString("homeTeam"));
+				againstInformation.setGuestTeam(againstJsonObject
+						.getString("guestTeam"));
+				againstInformation.setLeague(againstJsonObject
+						.getString("league"));
+				againstInformation.setEndTime(againstJsonObject
+						.getString("endTime"));
+				againstInformation.setSxds_v1(againstJsonObject
+						.getString("sxds_v1"));
+				againstInformation.setSxds_v2(againstJsonObject
+						.getString("sxds_v2"));
+				againstInformation.setSxds_v3(againstJsonObject
+						.getString("sxds_v3"));
+				againstInformation.setSxds_v4(againstJsonObject
+						.getString("sxds_v4"));
+
+				upDownSingleDoubleAgainstInformations.add(againstInformation);
+			}
+			upDownSigleDoubleagainstInformationList
+					.add(upDownSingleDoubleAgainstInformations);
+		}
+		return upDownSigleDoubleagainstInformationList;
 	}
 }

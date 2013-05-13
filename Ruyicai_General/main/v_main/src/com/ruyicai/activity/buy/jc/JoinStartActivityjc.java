@@ -367,7 +367,22 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 				.toString())));
 		betAndGift.setCommisionRation(commisionRation);
 		betAndGift.setVisibility(visible);
-		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
+		if (betAndGift.getLotno().equals(
+				Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+				|| betAndGift.getLotno().equals(
+						Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+				|| betAndGift.getLotno().equals(
+						Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+				|| betAndGift.getLotno().equals(
+						Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
+				|| betAndGift.getLotno().equals(
+						Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
+			betAndGift.setBatchcode(PublicMethod.toNetIssue(betAndGift
+					.getLotno()));
+		}else {
+			betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
+		}
+		
 		betAndGift.setDescription(descriptionEdit.getText().toString());
 
 	}

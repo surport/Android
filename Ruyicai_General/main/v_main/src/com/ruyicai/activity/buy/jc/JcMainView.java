@@ -237,7 +237,6 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								initSubView();
 								dialog.cancel();
 							}
@@ -246,7 +245,6 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								dialog.cancel();
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
@@ -269,15 +267,15 @@ public abstract class JcMainView {
 					listWeeks.add(list);
 				}
 			}
-			
-			//add by yejc 20130408
+
+			// add by yejc 20130408
 			if (listWeeks.size() > 0) {
 				List<Info> list = listWeeks.get(0);
 				if (list.size() > 0) {
 					list.get(0).isOpen = true;
 				}
 			}
-			//end
+			// end
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -307,7 +305,7 @@ public abstract class JcMainView {
 		Info itemInfo = new Info();
 		itemInfo.setTime(jsonItem.getString("dayForamt") + "  "
 				+ jsonItem.getString("week"));
-		itemInfo.setWeeks(jsonItem.getString("week")); //add by yejc 20130402
+		itemInfo.setWeeks(jsonItem.getString("week")); // add by yejc 20130402
 		itemInfo.setDay(jsonItem.getString("day"));
 		itemInfo.setWeek(jsonItem.getString("weekId"));
 		itemInfo.setTeam(jsonItem.getString("league"));
@@ -750,8 +748,8 @@ public abstract class JcMainView {
 		String fail = "";
 		String week = "";
 		String teamId = "";
-		
-		String weeks = ""; //add by yejc 20130402
+
+		String weeks = ""; // add by yejc 20130402
 
 		public int onclikNum = 0;
 		boolean isWin = false;
@@ -1206,8 +1204,8 @@ public abstract class JcMainView {
 			this.weeks = weeks;
 		}
 	}
-	
-	//add by yejc 20130402
+
+	// add by yejc 20130402
 	public final String MONDAY = "星期一";
 	public final String TUESDAY = "星期二";
 	public final String WEDNESDAY = "星期三";
@@ -1242,12 +1240,12 @@ public abstract class JcMainView {
 		}
 		return week;
 	}
-	
+
 	public String getEndTime(String date) {
 		int index = date.indexOf(":");
-		date = date.substring(index-2, index+3);
+		date = date.substring(index - 2, index + 3);
 		return date;
 	}
-	//end
+	// end
 
 }

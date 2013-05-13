@@ -3,6 +3,7 @@ package com.ruyicai.activity.buy.beijing.adapter;
 import java.util.List;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformation;
 
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 显示上下单双对阵信息适配器
@@ -142,8 +144,11 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append(upDownSingleDoubleAgainstInformation.getTeamId())
-				.append(upDownSingleDoubleAgainstInformation.getEndTime());
+		gameDate.append("编号：")
+				.append(upDownSingleDoubleAgainstInformation.getTeamId())
+				.append("\n")
+				.append(upDownSingleDoubleAgainstInformation.getEndTime())
+				.append("(截)");
 		gameDateTextView.setText(gameDate);
 		// 主队
 		TextView homeTeamTextView = (TextView) itemView
@@ -172,17 +177,27 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((upDownSingleDoubleAgainstInformation.isV1IsClick()) == false) {
-					upSingleTextView
-							.setBackgroundResource(R.drawable.upsingle_click);
-					upSingleTextView.setTag(true);
-					upDownSingleDoubleAgainstInformation.setV1IsClick(true);
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| upDownSingleDoubleAgainstInformation.isSelected()) {
+					if ((upDownSingleDoubleAgainstInformation.isV1IsClick()) == false) {
+						upSingleTextView
+								.setBackgroundResource(R.drawable.upsingle_click);
+						upSingleTextView.setTag(true);
+						upDownSingleDoubleAgainstInformation.setV1IsClick(true);
+					} else {
+						upSingleTextView
+								.setBackgroundResource(R.drawable.upsingle_normal);
+						upSingleTextView.setTag(false);
+						upDownSingleDoubleAgainstInformation
+								.setV1IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					upSingleTextView
-							.setBackgroundResource(R.drawable.upsingle_normal);
-					upSingleTextView.setTag(false);
-					upDownSingleDoubleAgainstInformation.setV1IsClick(false);
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
+
 			}
 		});
 		// 上双
@@ -200,17 +215,27 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((upDownSingleDoubleAgainstInformation.isV2IsClick()) == false) {
-					upDoubleTextView
-							.setBackgroundResource(R.drawable.upsingle_click);
-					upDoubleTextView.setTag(true);
-					upDownSingleDoubleAgainstInformation.setV2IsClick(true);
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| upDownSingleDoubleAgainstInformation.isSelected()) {
+					if ((upDownSingleDoubleAgainstInformation.isV2IsClick()) == false) {
+						upDoubleTextView
+								.setBackgroundResource(R.drawable.upsingle_click);
+						upDoubleTextView.setTag(true);
+						upDownSingleDoubleAgainstInformation.setV2IsClick(true);
+					} else {
+						upDoubleTextView
+								.setBackgroundResource(R.drawable.upsingle_normal);
+						upDoubleTextView.setTag(false);
+						upDownSingleDoubleAgainstInformation
+								.setV2IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					upDoubleTextView
-							.setBackgroundResource(R.drawable.upsingle_normal);
-					upDoubleTextView.setTag(false);
-					upDownSingleDoubleAgainstInformation.setV2IsClick(false);
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
+
 			}
 		});
 		// 下单
@@ -228,17 +253,27 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((upDownSingleDoubleAgainstInformation.isV3IsClick()) == false) {
-					downSingleTextView
-							.setBackgroundResource(R.drawable.upsingle_click);
-					downSingleTextView.setTag(true);
-					upDownSingleDoubleAgainstInformation.setV3IsClick(true);
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| upDownSingleDoubleAgainstInformation.isSelected()) {
+					if ((upDownSingleDoubleAgainstInformation.isV3IsClick()) == false) {
+						downSingleTextView
+								.setBackgroundResource(R.drawable.upsingle_click);
+						downSingleTextView.setTag(true);
+						upDownSingleDoubleAgainstInformation.setV3IsClick(true);
+					} else {
+						downSingleTextView
+								.setBackgroundResource(R.drawable.upsingle_normal);
+						downSingleTextView.setTag(false);
+						upDownSingleDoubleAgainstInformation
+								.setV3IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					downSingleTextView
-							.setBackgroundResource(R.drawable.upsingle_normal);
-					downSingleTextView.setTag(false);
-					upDownSingleDoubleAgainstInformation.setV3IsClick(false);
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
+
 			}
 		});
 		// 下双
@@ -256,27 +291,38 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				if ((upDownSingleDoubleAgainstInformation.isV4IsClick()) == false) {
-					downDoubleTextView
-							.setBackgroundResource(R.drawable.upsingle_click);
-					downDoubleTextView.setTag(true);
-					upDownSingleDoubleAgainstInformation.setV4IsClick(true);
+				if (((BeiJingSingleGameActivity) context)
+						.isSelectedEventNumLegal()
+						|| upDownSingleDoubleAgainstInformation.isSelected()) {
+					if ((upDownSingleDoubleAgainstInformation.isV4IsClick()) == false) {
+						downDoubleTextView
+								.setBackgroundResource(R.drawable.upsingle_click);
+						downDoubleTextView.setTag(true);
+						upDownSingleDoubleAgainstInformation.setV4IsClick(true);
+					} else {
+						downDoubleTextView
+								.setBackgroundResource(R.drawable.upsingle_normal);
+						downDoubleTextView.setTag(false);
+						upDownSingleDoubleAgainstInformation
+								.setV4IsClick(false);
+					}
+					((BeiJingSingleGameActivity) context).refreshSelectNum();
 				} else {
-					downDoubleTextView
-							.setBackgroundResource(R.drawable.upsingle_normal);
-					downDoubleTextView.setTag(false);
-					upDownSingleDoubleAgainstInformation.setV4IsClick(false);
+					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
+							Toast.LENGTH_SHORT).show();
 				}
+
 			}
 		});
 
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setVisibility(View.GONE);
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		danTextButton.setVisibility(View.GONE);
 
 		return itemView;
 	}
-
 }

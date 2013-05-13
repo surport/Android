@@ -260,7 +260,6 @@ public class JcMainActivity extends Activity implements
 		Button ok = (Button) view.findViewById(R.id.ok);
 		all.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				for (MyButton btn : myBtns) {
 					btn.setOnClick(true);
 					btn.switchBg();
@@ -269,7 +268,6 @@ public class JcMainActivity extends Activity implements
 		});
 		clear.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				for (MyButton btn : myBtns) {
 					btn.setOnClick(false);
 					btn.switchBg();
@@ -280,7 +278,6 @@ public class JcMainActivity extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				checkTeam.clear();
 				for (MyButton btn : myBtns) {
 					if (btn.isOnClick()) {
