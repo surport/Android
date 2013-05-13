@@ -89,6 +89,7 @@
                         android:layout_height="40dip"
                         android:layout_marginTop="2dip"
                         android:numeric="integer"
+                        android:focusable="false"
                         android:singleLine="true" >
                     </EditText>
                 </LinearLayout>
