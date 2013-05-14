@@ -1,7 +1,6 @@
 package com.ruyicai.activity.buy.beijing;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -9,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyGameDialog;
 import com.ruyicai.activity.buy.beijing.adapter.HalfTheAudienceAdapter;
 import com.ruyicai.activity.buy.beijing.adapter.OverAllAdapter;
 import com.ruyicai.activity.buy.beijing.adapter.TotalGoalsAdapter;
@@ -20,15 +20,21 @@ import com.ruyicai.activity.buy.beijing.bean.PlayMethodEnum;
 import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
+import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
+import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.net.newtransaction.BeiJingSingleGameInterface;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +63,10 @@ import android.widget.Toast;
 public class BeiJingSingleGameActivity extends Activity {
 	private static final String TAG = "BeiJingSingleGameActivity";
 
+	/**上下文对象*/
+	private Context context;
+	/**玩法回调对象*/
+	private Handler gameHandler = new Handler();
 	/** 从网络获取数据成功标识 */
 	private static final int SUCCESS = 0;
 	/** 从网络获取数据失败标识 */
@@ -94,6 +104,8 @@ public class BeiJingSingleGameActivity extends Activity {
 	private Dialog eventSelectDialog;
 	/** 玩法切换对话框 */
 	private Dialog playMethodChangeDialog;
+	/** 玩法介绍对话框 */
+	private BuyGameDialog gameDialog;
 	/** 下拉菜单 */
 	private PopupWindow menuPopupwindow;
 
@@ -468,9 +480,10 @@ public class BeiJingSingleGameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		context = this;
 		layoutInflater = LayoutInflater.from(this);
 		playMethodType = PlayMethodEnum.WINTIELOSS;
-		
+
 		setContentView(R.layout.buy_jc_main_new);
 
 		initTitleBarShow();
@@ -586,7 +599,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			}
 		}
 	}
-	
+
 	/**
 	 * 初始化赛事信息栏显示
 	 */
@@ -601,8 +614,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		realtimeScoreButton = (Button) findViewById(R.id.buy_lq_main_btn_score);
-		realtimeScoreButton
-				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
+		realtimeScoreButton.setVisibility(View.GONE);
 
 		guestTeamForwardTextView = (TextView) findViewById(R.id.buy_jc_main_text_title);
 		guestTeamForwardTextView.setVisibility(View.INVISIBLE);
@@ -646,9 +658,9 @@ public class BeiJingSingleGameActivity extends Activity {
 									nowIssueString);
 
 					analysisReturnJsonString(returnString);
-				}else {
+				} else {
 					Message message = new Message();
-					message.what = FAILD; 
+					message.what = FAILD;
 					handler.sendMessage(message);
 				}
 				// 取消对话框
@@ -828,9 +840,6 @@ public class BeiJingSingleGameActivity extends Activity {
 			case R.id.buy_lq_main_btn_team:
 				createeventSelectDialog();
 				break;
-			// 即使比分按钮
-			case R.id.buy_lq_main_btn_score:
-				break;
 			// 重选按钮
 			case R.id.buy_zixuan_img_again:
 				selectedGameNum = 0;
@@ -858,6 +867,68 @@ public class BeiJingSingleGameActivity extends Activity {
 				break;
 			}
 		}
+	}
+
+	private void createMenuPopupwindow() {
+		View popupView = (LinearLayout) layoutInflater.inflate(
+				R.layout.buy_group_window, null);
+
+		final PopupWindow popupwindow = new PopupWindow(popupView,
+				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+		final LinearLayout layoutGame = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout1);
+		final LinearLayout layoutHosity = (LinearLayout) popupView
+				.findViewById(R.id.beijing_single_mani_history);
+		layoutHosity.setVisibility(View.GONE);
+
+		final LinearLayout layoutParentLuck = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_one_layout3);
+		popupwindow.setOutsideTouchable(true);
+		popupwindow.showAsDropDown(popupWindowButton);
+
+		popupView.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+				return false;
+			}
+		});
+
+		layoutGame.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
+				if (gameDialog == null) {
+					gameDialog = new BuyGameDialog(context, playMethodType.getLotnoString(),
+							gameHandler);
+				}
+				gameDialog.showDialog();
+				popupwindow.dismiss();
+			}
+		});
+
+		LinearLayout layoutQuery = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout4);
+		layoutQuery.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RWSharedPreferences shellRW = new RWSharedPreferences(context,
+						"addInfo");
+				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
+				if (userno == null || userno.equals("")) {
+					Intent intentSession = new Intent(context, UserLogin.class);
+					startActivity(intentSession);
+				} else {
+					Intent intent = new Intent(context, BetQueryActivity.class);
+					intent.putExtra("lotno", Constants.LOTNO_BJ_SINGLE);
+					startActivity(intent);
+				}
+				popupwindow.dismiss();
+			}
+		});
+		layoutParentLuck.setVisibility(LinearLayout.GONE);
 	}
 
 	/**
@@ -1393,26 +1464,26 @@ public class BeiJingSingleGameActivity extends Activity {
 	/**
 	 * 创建下拉菜单
 	 */
-	private void createMenuPopupwindow() {
-		View popupView = (LinearLayout) layoutInflater.inflate(
-				R.layout.buy_group_window, null);
-
-		final PopupWindow popupwindow = new PopupWindow(popupView,
-				LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-		popupwindow.setOutsideTouchable(true);
-		popupwindow.showAsDropDown(popupWindowButton);
-
-		popupView.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				if (popupwindow != null && popupwindow.isShowing()) {
-					popupwindow.dismiss();
-				}
-				return false;
-			}
-		});
-
-	}
+	// private void createMenuPopupwindow() {
+	// View popupView = (LinearLayout) layoutInflater.inflate(
+	// R.layout.buy_group_window, null);
+	//
+	// final PopupWindow popupwindow = new PopupWindow(popupView,
+	// LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+	// popupwindow.setOutsideTouchable(true);
+	// popupwindow.showAsDropDown(popupWindowButton);
+	//
+	// popupView.setOnTouchListener(new OnTouchListener() {
+	// @Override
+	// public boolean onTouch(View v, MotionEvent event) {
+	// if (popupwindow != null && popupwindow.isShowing()) {
+	// popupwindow.dismiss();
+	// }
+	// return false;
+	// }
+	// });
+	//
+	// }
 
 	/**
 	 * 获取当前选择的比赛的字符串，用户投注确认页面的赛事详情的显示
