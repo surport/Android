@@ -39,8 +39,6 @@ public class JcExplainActivity extends BuyActivityGroup {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		isIssue(false);
-		setTitleText();
-		getExplainNet(getIntentInfo(), type);
 		/**add by yejc 20130425 start*/
 		event = getIntentInfo();
 		if (FootBallLotteryFather.LOTNO_ZC.equals(getIntent().getStringExtra(
@@ -58,6 +56,8 @@ public class JcExplainActivity extends BuyActivityGroup {
 			}
 		}
 		/**add by yejc 20130425 end*/
+		setTitleText();
+		getExplainNet(getIntentInfo(), type);
 	}
 
 	public void setTitleText() {

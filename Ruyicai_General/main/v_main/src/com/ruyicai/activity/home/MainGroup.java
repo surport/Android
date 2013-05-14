@@ -226,15 +226,17 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		}
 	};
 
-	private void isLogin() {
-		RWSharedPreferences shellRW = new RWSharedPreferences(MainGroup.this,
-				"addInfo");
-		String sessionid = shellRW.getStringValue("sessionid");
-		if (sessionid.equals("") || sessionid == null) {
-			Intent intent = new Intent(MainGroup.this, UserLogin.class);
-			startActivityForResult(intent, 0);
-		}
-	}
+	/**close by yejc 20130513 start*/
+//	private void isLogin() {
+//		RWSharedPreferences shellRW = new RWSharedPreferences(MainGroup.this,
+//				"addInfo");
+//		String sessionid = shellRW.getStringValue("sessionid");
+//		if (sessionid.equals("") || sessionid == null) {
+//			Intent intent = new Intent(MainGroup.this, UserLogin.class);
+//			startActivityForResult(intent, 0);
+//		}
+//	}
+	/**close by yejc 20130513 end*/
 
 	private void isShowLoginButton() {
 		if (Constants.hasLogin == false) {

@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -184,7 +182,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			switch (v.getId()) {
 			case R.id.tableRow_sharetosina:
 				oauthOrShare();
@@ -277,7 +274,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 			try {
 				tenoAuth = OAuthV1Client.requestToken(tenoAuth);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Intent intent = new Intent(MoreActivity.this,
@@ -399,7 +395,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 * 软件设置View
 	 */
 	private void showSettingView() {
-		// TODO Auto-generated method stub
 		setContentView(R.layout.applicationsetting);
 		returnType = 2;
 		kaijiangdingyue = (RelativeLayout) findViewById(R.id.tableRow_kaijiangdingyue);
@@ -504,7 +499,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 			@Override
 			public void run() {
 				String userno = shellRW.getStringValue("userno");
-				// TODO Auto-generated method stub
 				String cancleBack = CancleAutoLoginInterface
 						.cancelAutoLogin(userno);
 				try {
@@ -525,10 +519,8 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 					Toast.makeText(MoreActivity.this, massage,
 							Toast.LENGTH_SHORT).show();
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (RuntimeException e) {
-					// TODO: handle exception
 					e.printStackTrace();
 				}
 			}
@@ -597,7 +589,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 * 获得当前界面context
 	 */
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -605,7 +596,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 * 返回到当前界面
 	 */
 	public void returnMain() {
-		// TODO Auto-generated method stub
 		showMoreListView();
 	}
 
@@ -613,7 +603,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 * 取消网络连接框
 	 */
 	public void dismissDialog() {
-		// TODO Auto-generated method stub
 		progressdialog.dismiss();
 	}
 
@@ -621,7 +610,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 * 显示网络连接框
 	 */
 	public void showDialog() {
-		// TODO Auto-generated method stub
 		showDialog(0);
 	}
 
@@ -629,12 +617,9 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 * 返回码处理方法
 	 */
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		if (returnType == 2) {
 			initAutoLoginSet();
@@ -642,7 +627,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
@@ -653,15 +637,12 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
 	 * 从上一个activity返回当前activity执行的方法
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		if (requestCode == 1) {
 			if (resultCode == OAuthV1AuthorizeWebView.RESULT_CODE) {
 				// 从返回的Intent中获取验证码
@@ -701,8 +682,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-
 		switch (keyCode) {
 		case 4:
 			if (returnType == 0) {
@@ -726,7 +705,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				JSONObject obj;
 				try {
 					obj = new JSONObject(SoftwareUpdateInterface.getInstance()
@@ -742,7 +720,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								MainUpdate update = new MainUpdate(
 										MoreActivity.this, new Handler(),
 										softwareurl, softwaremessageStr,
@@ -753,7 +730,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 						});
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -765,20 +741,16 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		public MainUpdate(Activity activity, Handler handler, String url,
 				String message, String title) {
 			super(activity, handler, url, message, title);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public void onCancelButton() {
-			// TODO Auto-generated method stub
-
 		}
 
 	}
 
 	@Override
 	public void onOkClick() {
-		// TODO Auto-generated method stub
 		logOutDialog.clearLastLoginInfo();
 		Intent intent = new Intent(
 				"com.ruyicai.activity.home.MainGroup.inittop");
@@ -787,8 +759,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 	@Override
 	public void onCancelClick() {
-		// TODO Auto-generated method stub
-
 	}
 
 	class AuthDialogListener implements WeiboDialogListener {
@@ -833,14 +803,12 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		Constants.shareContent = "Hi，我刚使用了如意彩手机客户端买彩票，很方便呢！"
 				+ "你也试试吧，彩票随身投，大奖时时有！中奖了记的要请客啊！下载地址:http://wap.ruyicai.com/w/client/download.jspx";
 		Constants.source = "3";

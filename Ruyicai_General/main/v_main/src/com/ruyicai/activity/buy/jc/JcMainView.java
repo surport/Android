@@ -237,6 +237,7 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
+								// TODO Auto-generated method stub
 								initSubView();
 								dialog.cancel();
 							}
@@ -245,6 +246,7 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
+								// TODO Auto-generated method stub
 								dialog.cancel();
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
@@ -267,15 +269,15 @@ public abstract class JcMainView {
 					listWeeks.add(list);
 				}
 			}
-
-			// add by yejc 20130408
+			
+			//add by yejc 20130408
 			if (listWeeks.size() > 0) {
 				List<Info> list = listWeeks.get(0);
 				if (list.size() > 0) {
 					list.get(0).isOpen = true;
 				}
 			}
-			// end
+			//end
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
