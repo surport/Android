@@ -47,9 +47,7 @@ import cn.jpush.android.api.JPushInterface;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.CheckWireless;
-import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.introduce.PhotoActivity;
-import com.ruyicai.activity.notice.NoticeMainActivity;
 import com.ruyicai.constant.AgentNumConstants;
 import com.ruyicai.constant.ChannelConstants;
 import com.ruyicai.constant.Constants;
@@ -59,7 +57,6 @@ import com.ruyicai.dialog.UpdateDialog;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.WinAndPulsaward;
 import com.ruyicai.service.DownLoadImg;
-import com.ruyicai.util.ClockThread;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -550,12 +547,10 @@ public class HomeActivity extends Activity {
 		public HomeUpdate(Activity activity, Handler handler, String url,
 				String message, String title) {
 			super(activity, handler, url, message, title);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public void onCancelButton() {
-			// TODO Auto-generated method stub
 			Message mg = Message.obtain();
 			mg.what = 3;
 			mHandler.sendMessage(mg);
@@ -577,31 +572,14 @@ public class HomeActivity extends Activity {
 				res.openRawResource(R.drawable.blue)).getBitmap();
 	}
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-6-28
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this); // BY贺思明 2012-6-28
-	}
-
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 
 	/**

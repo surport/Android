@@ -426,7 +426,8 @@ public class WinPrizeActivity extends Activity {
 					|| lotno.equals(Constants.LOTNO_JCLQ_DXF)
 					|| lotno.equals(Constants.LOTNO_JCLQ_RF)
 					|| lotno.equals(Constants.LOTNO_JCLQ_SFC)
-					|| lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
+					|| lotno.equals(Constants.LOTNO_JCLQ_HUN)
+					|| lotno.equals(Constants.LOTNO_JCZQ_HUN)) {
 				holder.prizeqihao.setVisibility(TextView.GONE);
 			} else {
 				holder.prizeqihao.setVisibility(TextView.VISIBLE);

@@ -152,7 +152,6 @@ public class JcMainActivity extends Activity implements
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
 				if (gameDialog == null) {
 					gameDialog = new BuyGameDialog(context, lotNo, gameHandler);
@@ -164,7 +163,6 @@ public class JcMainActivity extends Activity implements
 		layoutQuery.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				RWSharedPreferences shellRW = new RWSharedPreferences(context,
 						"addInfo");
 				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
@@ -183,7 +181,6 @@ public class JcMainActivity extends Activity implements
 		layoutHosity.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				turnHosity();
@@ -205,7 +202,6 @@ public class JcMainActivity extends Activity implements
 			teamBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (dialogTeam == null) {
 						createTeamDialog();
 					} else {
@@ -348,7 +344,6 @@ public class JcMainActivity extends Activity implements
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					btn.onAction();
 				}
 			});
@@ -420,7 +415,6 @@ public class JcMainActivity extends Activity implements
 		textTitle = (TextView) findViewById(R.id.layout_main_text_title);
 		textTeamNum = (TextView) findViewById(R.id.buy_jc_main_text_team_num);
 		Button btnType = (Button) findViewById(R.id.buy_lq_main_btn_type);
-
 		btnType.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

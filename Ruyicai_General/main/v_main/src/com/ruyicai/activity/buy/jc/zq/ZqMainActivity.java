@@ -2,10 +2,6 @@ package com.ruyicai.activity.buy.jc.zq;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
-
-import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.NoticeHistroy;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.notice.NoticeJcActivity;
 import com.ruyicai.constant.Constants;
