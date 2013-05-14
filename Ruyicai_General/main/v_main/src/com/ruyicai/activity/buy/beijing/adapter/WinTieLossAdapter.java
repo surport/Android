@@ -178,7 +178,7 @@ public class WinTieLossAdapter extends BaseAdapter {
 		// 主队赔率
 		TextView v0TextView = (TextView) itemView
 				.findViewById(R.id.home_team_odds);
-		v0TextView.setText(winTieLossAgainstInformation.getV0());
+		v0TextView.setText(winTieLossAgainstInformation.getV3());
 		// VS
 		final TextView vsTextView = (TextView) itemView
 				.findViewById(R.id.game_vs);
@@ -193,7 +193,7 @@ public class WinTieLossAdapter extends BaseAdapter {
 		// 客队赔率
 		TextView v3textTextView = (TextView) itemView
 				.findViewById(R.id.guest_team_odds);
-		v3textTextView.setText(winTieLossAgainstInformation.getV3());
+		v3textTextView.setText(winTieLossAgainstInformation.getV0());
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
