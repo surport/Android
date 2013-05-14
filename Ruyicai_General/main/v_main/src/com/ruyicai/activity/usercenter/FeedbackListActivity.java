@@ -896,7 +896,7 @@ public class FeedbackListActivity extends Activity {
 					@Override
 					public void onClick(final View v) {
 						TextView textview = (TextView) v;
-						mList.get(index).setTextcolor(Color.RED);
+//						mList.get(index).setTextcolor(Color.RED);
 						textview.setTextColor(mList.get(index).getTextcolor());
 						contentjson = mList.get(index).getContent();
 						title = mList.get(index).getTitle();

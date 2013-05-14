@@ -490,6 +490,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			lotno = Constants.LOTNO_JCL;
 		} else if (lottype == 11) {
 			lotno = Constants.LOTNO_JCZ;
+		}else if(lottype == 12){
+			lotno = Constants.LOTNO_BJ_SINGLE;
 		}
 
 	}

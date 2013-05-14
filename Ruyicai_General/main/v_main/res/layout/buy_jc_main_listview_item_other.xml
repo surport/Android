@@ -74,7 +74,8 @@
                 android:textColor="@color/jc_odds_text_color"/>
         </LinearLayout>
         
-        <View android:layout_width="5dip"
+        <View android:id="@+id/divider_01"
+            android:layout_width="5dip"
             android:layout_height="5dip"/>
 
         <LinearLayout android:id="@+id/vs_layout"
@@ -105,7 +106,8 @@
                 android:textColor="@color/jc_odds_text_color"/>
         </LinearLayout>
         
-        <View android:layout_width="5dip"
+        <View android:id="@+id/divider_01"
+            android:layout_width="5dip"
             android:layout_height="5dip"/>
 
         <LinearLayout android:id="@+id/guest_layout"

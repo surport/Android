@@ -175,10 +175,13 @@ public class WinTieLossAdapter extends BaseAdapter {
 		final TextView homeTeamTextView = (TextView) itemView
 				.findViewById(R.id.home_team_name);
 		homeTeamTextView.setText(winTieLossAgainstInformation.getHomeTeam());
+	
 		// 主队赔率
 		TextView v0TextView = (TextView) itemView
 				.findViewById(R.id.home_team_odds);
+		/**modify by pengcx 20130514 start*/
 		v0TextView.setText(winTieLossAgainstInformation.getV3());
+		/**modify by pengcx 20130514 end*/
 		// VS
 		final TextView vsTextView = (TextView) itemView
 				.findViewById(R.id.game_vs);
@@ -193,14 +196,25 @@ public class WinTieLossAdapter extends BaseAdapter {
 		// 客队赔率
 		TextView v3textTextView = (TextView) itemView
 				.findViewById(R.id.guest_team_odds);
+		/**modify by pengcx 20130514 start*/
 		v3textTextView.setText(winTieLossAgainstInformation.getV0());
-		// 析
-		TextView analysisTextView = (TextView) itemView
-				.findViewById(R.id.game_analysis);
-		analysisTextView.setVisibility(View.GONE);
-		// 胆
-		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		danTextButton.setVisibility(View.GONE);
+		/**modify by pengcx 20130514 end*/
+		
+		/**close by yejc 20130514 start*/
+//		// 析
+//		TextView analysisTextView = (TextView) itemView
+//				.findViewById(R.id.game_analysis);
+//		analysisTextView.setVisibility(View.GONE);
+//		// 胆
+//		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+//		danTextButton.setVisibility(View.GONE);
+		/**close by yejc 20130514 end*/
+		
+		/**add by yejc 20130514 start*/
+		LinearLayout analysisAndDanLayout = (LinearLayout)itemView
+				.findViewById(R.id.linearLayout3);
+		analysisAndDanLayout.setVisibility(View.GONE);
+		/**add by yejc 20130514 end*/
 
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
