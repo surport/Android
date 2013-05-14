@@ -417,7 +417,7 @@ public class HomeActivity extends Activity {
 			Constants.NEWS = obj.getString("news");
 			/**Delete by fansm 20130514 start*/
 			//Constants.currentLotnoInfo = obj.getJSONObject("currentBatchCode");// 获取网络的期号信息
-			/**Delete by fansm 20130514 end*/
+			/**Delete by fansm 20130514 end */
 			Constants.todayjosn = new JSONObject(todaykaijianginfo);// 彩种信息。
 
 			imageJson(obj.getJSONObject("image"));// 是否下载开奖图片
