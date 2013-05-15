@@ -650,7 +650,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						.getLotnoString());
 
 				// 如果获取期号成功，则继续获取对阵信息
-				if (nowIssueString != null && !nowIssueString.equals("")) {
+				if (nowIssueString != null && !nowIssueString.equals("网络异常")) {
 					// 获取当前玩法的当前期对阵数据
 					String returnString = BeiJingSingleGameInterface
 							.getInstance().getAgainstInformations(
@@ -659,6 +659,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 					analysisReturnJsonString(returnString);
 				} else {
+					messageString = nowIssueString;
 					Message message = new Message();
 					message.what = FAILD;
 					handler.sendMessage(message);
@@ -1461,29 +1462,6 @@ public class BeiJingSingleGameActivity extends Activity {
 		}
 	}
 
-	/**
-	 * 创建下拉菜单
-	 */
-	// private void createMenuPopupwindow() {
-	// View popupView = (LinearLayout) layoutInflater.inflate(
-	// R.layout.buy_group_window, null);
-	//
-	// final PopupWindow popupwindow = new PopupWindow(popupView,
-	// LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-	// popupwindow.setOutsideTouchable(true);
-	// popupwindow.showAsDropDown(popupWindowButton);
-	//
-	// popupView.setOnTouchListener(new OnTouchListener() {
-	// @Override
-	// public boolean onTouch(View v, MotionEvent event) {
-	// if (popupwindow != null && popupwindow.isShowing()) {
-	// popupwindow.dismiss();
-	// }
-	// return false;
-	// }
-	// });
-	//
-	// }
 
 	/**
 	 * 获取当前选择的比赛的字符串，用户投注确认页面的赛事详情的显示
@@ -1524,12 +1502,14 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
+					/*Modify by pengcx 20130515 start*/
 					againstStringBufffer
 							.append(upDownSingleDoubleAgainstInformation
 									.getHomeTeam())
-							.append("vs")
+							.append(" vs ")
 							.append(upDownSingleDoubleAgainstInformation
 									.getGuestTeam()).append(":");
+					/*Modify by pengcx 20130515 end*/
 
 					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
 						againstStringBufffer.append("上单");
@@ -1560,13 +1540,14 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
+					/*Modify by pengcx 20130515 start*/
 					againstStringBufffer
 							.append(halfTheAudienceAgainstInformation
 									.getHomeTeam())
-							.append("vs")
+							.append(" vs ")
 							.append(halfTheAudienceAgainstInformation
 									.getGuestTeam()).append(":");
-
+					/*Modify by pengcx 20130515 end*/
 					boolean[] IsClicks = halfTheAudienceAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1593,11 +1574,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
+					/*Modify by pengcx 20130515 start*/
 					againstStringBufffer
 							.append(overAllAgainstInformation.getHomeTeam())
-							.append("vs")
+							.append(" vs ")
 							.append(overAllAgainstInformation.getGuestTeam())
 							.append(":");
+					/*Modify by pengcx 20130515 end*/
 					boolean[] IsClicks = overAllAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1626,11 +1609,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
+					/*Modify by pengcx 20130515 start*/
 					againstStringBufffer
 							.append(totalGoalsAgainstInformation.getHomeTeam())
-							.append("vs")
+							.append(" vs ")
 							.append(totalGoalsAgainstInformation.getGuestTeam())
 							.append(":");
+					/*Modify by pengcx 20130515 end*/
 					boolean[] IsClicks = totalGoalsAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1657,11 +1642,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
+					/*Modify by pengcx 20130515 start*/
 					againstStringBufffer
 							.append(winTieLossAgainstInformation.getHomeTeam())
-							.append("vs")
+							.append(" vs ")
 							.append(winTieLossAgainstInformation.getGuestTeam())
 							.append(":");
+					/*Modify by pengcx 20130515 end*/
 					if (winTieLossAgainstInformation.isV0IsClick()) {
 						againstStringBufffer.append("胜");
 					}

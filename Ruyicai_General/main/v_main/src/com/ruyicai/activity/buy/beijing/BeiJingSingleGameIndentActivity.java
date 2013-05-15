@@ -196,7 +196,11 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 			switch (v.getId()) {
 			case R.id.buy_zixuan_img_subtract_beishu:
 				int progress = mutipleSeekBar.getProgress();
-				progress--;
+				/*Add by pengcx 20130515 start*/
+				if(progress > 1){
+					progress--;
+				}
+				/*Add by pengcx 20130515 end*/
 				mutipleSeekBar.setProgress(progress);
 				break;
 			case R.id.buy_zixuan_img_add_beishu:

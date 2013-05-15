@@ -36,11 +36,13 @@ public class OverAllAdapter extends BaseAdapter {
 	private static final int SELECT_BUTTON_NUM = 25;
 	/** 上下文对象 */
 	private Context context;
+	/*Modify by pengcx 20130515 start*/
 	/** 选择按钮标题 */
-	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "3:0",
-			"4:0", "2:1", "3:1", "3:2", "4:1", "4:2", "平其他", "0:0", "1:1",
-			"2:2", "3:3", "负其他", "0:1", "0:2", "0:3", "0:4", "1:2", "1:3",
-			"1:4", "2:3", "2:4" };
+	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "2:1",
+			"3:0", "3:1", "3:2", "4:0", "4:1", "4:2", "平其他", "0:0", "1:1",
+			"2:2", "3:3", "负其他", "0:1", "0:2", "1:2", "0:3", "1:3", "2:3",
+			"0:4", "1:3", "2:4" };
+	/*Modify by pengcx 20130515 end*/
 	/** 显示全场总比分对阵信息集合 */
 	private List<List<OverAllAgainstInformation>> overAllAgainstInformationList;
 
@@ -287,15 +289,16 @@ public class OverAllAdapter extends BaseAdapter {
 				R.id.lq_sfc_dialog_check023, R.id.lq_sfc_dialog_check024,
 				R.id.lq_sfc_dialog_check025, R.id.lq_sfc_dialog_check026,
 				R.id.lq_sfc_dialog_check027, R.id.lq_sfc_dialog_check028 };
+		/*Modify by pengcx 20130515 start*/
 		/** 选择按钮sp */
 		String selectButtonSPs[] = { overAllAgainstInformation.getScore_v90(),
 				overAllAgainstInformation.getScore_v10(),
 				overAllAgainstInformation.getScore_v20(),
-				overAllAgainstInformation.getScore_v30(),
-				overAllAgainstInformation.getScore_v40(),
 				overAllAgainstInformation.getScore_v21(),
+				overAllAgainstInformation.getScore_v30(),
 				overAllAgainstInformation.getScore_v31(),
 				overAllAgainstInformation.getScore_v32(),
+				overAllAgainstInformation.getScore_v40(),
 				overAllAgainstInformation.getScore_v41(),
 				overAllAgainstInformation.getScore_v42(),
 				overAllAgainstInformation.getScore_v99(),
@@ -306,13 +309,14 @@ public class OverAllAdapter extends BaseAdapter {
 				overAllAgainstInformation.getScore_v09(),
 				overAllAgainstInformation.getScore_v01(),
 				overAllAgainstInformation.getScore_v02(),
-				overAllAgainstInformation.getScore_v03(),
-				overAllAgainstInformation.getScore_v04(),
 				overAllAgainstInformation.getScore_v12(),
+				overAllAgainstInformation.getScore_v03(),
 				overAllAgainstInformation.getScore_v13(),
-				overAllAgainstInformation.getScore_v14(),
 				overAllAgainstInformation.getScore_v23(),
+				overAllAgainstInformation.getScore_v04(),
+				overAllAgainstInformation.getScore_v14(),
 				overAllAgainstInformation.getScore_v24() };
+		/*Modify by pengcx 20130515 end*/
 
 		/** 选择对话框选择按钮 */
 		final MyCheckBox[] selectButtons = new MyCheckBox[SELECT_BUTTON_NUM];

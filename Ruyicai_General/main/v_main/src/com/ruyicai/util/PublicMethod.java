@@ -101,10 +101,11 @@ public class PublicMethod {
 			R.drawable.cup_gray, R.drawable.diamond_gray, R.drawable.star_gray };
 	public static int nums[] = { R.drawable.one, R.drawable.two,
 			R.drawable.three, R.drawable.four };
-	/*Add by fansm 20130412 start*/
+	/* Add by fansm 20130412 start */
 	private static String CLASSNAME = "className";
 	private static String METHODNAME = "methodName";
-	/*Add by fansm 20130412 end*/
+
+	/* Add by fansm 20130412 end */
 
 	/**
 	 * 求组合
@@ -167,15 +168,17 @@ public class PublicMethod {
 		}
 		return returnValue;
 	}
-	
+
 	/**
 	 * 检查数组碰撞
+	 * 
 	 * @param aNums
 	 * @param aTo
 	 * @param aCheckNum
 	 * @return
 	 */
-	public static boolean checkCollision(String[] aStr, int aTo, String aCheckStr) {
+	public static boolean checkCollision(String[] aStr, int aTo,
+			String aCheckStr) {
 		boolean returnValue = false;
 		for (int i = 0; i < aTo; i++) {
 			if (aStr[i] == aCheckStr) {
@@ -204,14 +207,16 @@ public class PublicMethod {
 		}
 		return iReturnNums;
 	}
-	
+
 	/**
 	 * 获取多个随机数
+	 * 
 	 * @param aRandomNums
 	 * @param list
 	 * @return int[]
 	 */
-	public static String[] getRandomsWithoutCollision(int aRandomNums,List<String> list) {
+	public static String[] getRandomsWithoutCollision(int aRandomNums,
+			List<String> list) {
 		String deta[] = new String[aRandomNums];
 		for (int i = 0; i < aRandomNums; i++) {
 			int randomIndex = PublicMethod.getRandomByRange(0, list.size() - 1);
@@ -293,36 +298,38 @@ public class PublicMethod {
 		}
 		return true;
 	}
-	
-	public static void myOutLog(String tag,String msg) {
-		 Log.e(tag, msg);
+
+	public static void myOutLog(String tag, String msg) {
+		Log.e(tag, msg);
 	}
-	/*Modify by fansm 20130412 start*/
-	/*add log */
+
+	/* Modify by fansm 20130412 start */
+	/* add log */
 	/**
 	 * 输出信息
 	 * 
 	 * @param tag
 	 * @param msg
 	 */
-	public static void outLog(String className,String methodName) {
-		 //Log.e(tag, msg);
-		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; "
-				+ METHODNAME + " = " + methodName);
+	public static void outLog(String className, String methodName) {
+		// Log.e(tag, msg);
+		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
+				+ " = " + methodName);
 	}
+
 	/**
 	 * 输出信息
 	 * 
 	 * @param tag
 	 * @param msg
 	 */
-	public static void outLog(String className,String methodName,String msg) {
-		 //Log.e(tag, msg);
-		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; "
-				+ METHODNAME + " = " + methodName + "; "
-				+ "MSG = "+msg);
+	public static void outLog(String className, String methodName, String msg) {
+		// Log.e(tag, msg);
+		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
+				+ " = " + methodName + "; " + "MSG = " + msg);
 	}
-	/*Modify by fansm 20130412 end*/
+
+	/* Modify by fansm 20130412 end */
 	/**
 	 * 设置listView的间距
 	 * 
@@ -1836,9 +1843,19 @@ public class PublicMethod {
 				title = "竞彩篮球混合";
 			} else if (type.equals(Constants.LOTNO_JCZQ_HUN)) {
 				title = "竞彩足球混合";
-			} else if(type.equals(Constants.LOTNO_NMK3)){
+			} else if (type.equals(Constants.LOTNO_NMK3)) {
 				title = "快三";
-			}else {
+			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
+				title = "北京单场胜平负";
+			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)) {
+				title = "北京单场总进球";
+			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)) {
+				title = "北京单场全场总比分";
+			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)) {
+				title = "北京单场半全场";
+			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+				title = "北京单场上下单双";
+			} else {
 				title = "所有彩种";
 			}
 		}
@@ -1910,8 +1927,10 @@ public class PublicMethod {
 		return title;
 
 	}
+
 	/**
 	 * 获得彩种开关的key
+	 * 
 	 * @param type
 	 * @return
 	 */
@@ -1924,12 +1943,14 @@ public class PublicMethod {
 				closeKeyName = Constants.NMK3LABEL;
 			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
 				closeKeyName = Constants.BDLABEL;
-			} 
+			}
 		}
 		return closeKeyName;
 	}
+
 	/**
 	 * 获得彩种预售key
+	 * 
 	 * @param type
 	 * @return
 	 */
@@ -1938,16 +1959,18 @@ public class PublicMethod {
 		if (type != null) {
 			if (type.equals(Constants.LOTNO_22_5)) {
 				willKeyName = Constants.TWENWILLSALES;
-			} else if(type.equals(Constants.LOTNO_NMK3)){
+			} else if (type.equals(Constants.LOTNO_NMK3)) {
 				willKeyName = Constants.NMK3WILLSALES;
-			}  else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
+			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
 				willKeyName = Constants.BDWILLSATES;
-			} 
+			}
 		}
 		return willKeyName;
 	}
+
 	/**
 	 * 获得关闭彩种key
+	 * 
 	 * @param type
 	 * @return
 	 */
@@ -1956,10 +1979,11 @@ public class PublicMethod {
 		if (type != null) {
 			if (type.equals(Constants.LOTNO_22_5)) {
 				closeTicketKeyName = Constants.TWENCLOSED;
-			} 
+			}
 		}
 		return closeTicketKeyName;
 	}
+
 	/**
 	 * 获取期号
 	 * 
@@ -1992,14 +2016,20 @@ public class PublicMethod {
 		try {
 			issueStr = GetLotNohighFrequency.getInstance().getInfo(type);
 			JSONObject allIssue = new JSONObject(issueStr);
-			if (allIssue != null) {
+			String error_code = allIssue.getString("error_code");
+			
+			/*Modify by pengcx 20130515 start*/
+			if (error_code.equals("0000")) {
 				// 成功获取到了期号信息
 				issueStr = allIssue.getString("batchcode");
+			}else if(error_code.equals("0")){
+				issueStr = allIssue.getString("message");
+			}else{
+				issueStr = "";
 			}
+			/*Modify by pengcx 20130515 end*/
 		} catch (JSONException e) {
-			issueStr = "";
 			e.printStackTrace();
-			issueStr = "";
 		}
 		return issueStr;
 	}
@@ -2794,50 +2824,62 @@ public class PublicMethod {
 				Spanned.SPAN_COMPOSING);
 		text.setText(builder, BufferType.EDITABLE);
 	}
+
 	/**
 	 * 获得指定彩票信息
+	 * 
 	 * @param loto
 	 * @return
 	 * @throws JSONException
 	 */
-	public static JSONObject getJsonObjectByLoto(String loto) throws JSONException {
-		if (Constants.todayjosn == null) return null;
+	public static JSONObject getJsonObjectByLoto(String loto)
+			throws JSONException {
+		if (Constants.todayjosn == null)
+			return null;
 		JSONArray jsonArray = Constants.todayjosn.getJSONArray("result");
 		JSONObject jsonObject = null;
-		for (int i = 0 ;i < jsonArray.length();i++) {
-			jsonObject = jsonArray.getJSONObject(i);			
-            if (!jsonObject.isNull(loto)) {
-            	return new JSONObject(jsonObject.getString(loto));
-            }
+		for (int i = 0; i < jsonArray.length(); i++) {
+			jsonObject = jsonArray.getJSONObject(i);
+			if (!jsonObject.isNull(loto)) {
+				return new JSONObject(jsonObject.getString(loto));
+			}
 		}
 		return null;
 	}
+
 	/**
 	 * 获得彩种的提示信息
+	 * 
 	 * @param mContext
 	 * @param shellRW
 	 * @param lotno
 	 * @return
 	 */
-	public static String getMessageByLoto(Context mContext,RWSharedPreferences shellRW,String lotno) {
-	    String message = "";
+	public static String getMessageByLoto(Context mContext,
+			RWSharedPreferences shellRW, String lotno) {
+		String message = "";
 		if (lotno.equals(Constants.NMK3LABEL)) {
 			if (shellRW.getStringValue(Constants.NMK3WILLSALES).equals("true")) {
-				message = mContext.getResources().getString(R.string.nmk3willSaleMessage);
+				message = mContext.getResources().getString(
+						R.string.nmk3willSaleMessage);
 			}
-	    } else if (lotno.equals(Constants.BDLABEL)) {
-	    	if (shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
-	    		message = mContext.getResources().getString(R.string.bdwillSaleMessage);
-	    	}
-	    } else if (lotno.equals(Constants.TWENTYBEL)) {
-	    	if (shellRW.getStringValue(Constants.TWENCLOSED).equals("true")) {
-	    		message = mContext.getResources().getString(R.string.twentyClosedMessage);
-	    	}
-	    }
-	    return message;
+		} else if (lotno.equals(Constants.BDLABEL)) {
+			if (shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
+				message = mContext.getResources().getString(
+						R.string.bdwillSaleMessage);
+			}
+		} else if (lotno.equals(Constants.TWENTYBEL)) {
+			if (shellRW.getStringValue(Constants.TWENCLOSED).equals("true")) {
+				message = mContext.getResources().getString(
+						R.string.twentyClosedMessage);
+			}
+		}
+		return message;
 	}
+
 	/**
 	 * 显示消息
+	 * 
 	 * @param mContext
 	 * @param message
 	 */
