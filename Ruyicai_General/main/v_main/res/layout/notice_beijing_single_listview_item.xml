@@ -13,36 +13,6 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/LinearLayout01"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" >
-
-            <TextView
-                android:id="@+id/jc_main_list_item_text_team_id"
-                android:layout_width="160sp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingTop="5sp"
-                android:text="@string/notice_beijing_single_item_team_id"
-                android:textColor="@color/black"
-                android:textSize="16sp" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/jc_main_list_item_text_play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingTop="5sp"
-                android:text="@string/notice_beijing_single_item_play"
-                android:textColor="@color/red"
-                android:textSize="16sp" >
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
@@ -50,7 +20,6 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/LinearLayout01"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/jc_bgtop"
@@ -60,52 +29,26 @@
                     android:id="@+id/jc_main_list_item_text_team"
                     android:layout_width="70sp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="16sp" >
                 </TextView>
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout01"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical"
                     android:orientation="vertical" >
 
-                    <LinearLayout
-                        android:id="@+id/LinearLayout01"
-                        android:layout_width="100sp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal|center_vertical" >
-
-                        <TextView
-                            android:id="@+id/jc_main_list_item_text_team_name1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textColor="@color/black"
-                            android:textSize="16sp" >
-                        </TextView>
-
-                        <TextView
-                            android:id="@+id/jc_main_list_item_text_team_score"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5sp"
-                            android:text=""
-                            android:textColor="@color/blue_red"
-                            android:textSize="13sp" >
-                        </TextView>
-                    </LinearLayout>
-
                     <TextView
-                        android:id="@+id/jc_main_list_item_text_team_home"
+                        android:id="@+id/jc_main_list_item_text_team_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="(主)"
+                        android:text=""
                         android:textColor="@color/black"
-                        android:textSize="14sp" >
+                        android:textSize="16sp" >
                     </TextView>
                 </LinearLayout>
 
@@ -120,7 +63,6 @@
                 </TextView>
 
                 <LinearLayout
-                    android:id="@+id/LinearLayout01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical"
@@ -128,64 +70,43 @@
 
                     <TextView
                         android:id="@+id/jc_main_list_item_text_team_name2"
-                        android:layout_width="90sp"
+                        android:layout_width="100sp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal|center_vertical"
                         android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp" >
                     </TextView>
-
-                    <TextView
-                        android:id="@+id/jc_main_list_item_text_team_guest"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(客)"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" >
-                    </TextView>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearLayout01"
-                android:layout_width="300sp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/jc_bgbottom2"
                 android:paddingTop="3sp" >
 
-                <LinearLayout
-                    android:id="@+id/LinearLayout01"
+                <TextView
+                    android:id="@+id/jc_main_list_item_text_team_id"
                     android:layout_width="70sp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/TextView01"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="比赛时间"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" >
-                    </TextView>
-
-                    <TextView
-                        android:id="@+id/jc_main_list_item_text_time_end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/black"
-                        android:textSize="13sp" >
-                    </TextView>
-                </LinearLayout>
-
+                    android:gravity="center"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" >
+                </TextView>
+                
                 <LinearLayout
-                    android:id="@+id/LinearLayout01"
                     android:layout_width="230sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingTop="3sp" >
+                    android:paddingTop="3sp" 
+                    android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="230sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
 
                     <TextView
                         android:id="@+id/jc_main_list_item_text_jieguo"
@@ -196,7 +117,7 @@
                         android:textColor="@color/black"
                         android:textSize="13sp" >
                     </TextView>
-
+                    
                     <TextView
                         android:id="@+id/jc_main_list_item_text_score"
                         android:layout_width="wrap_content"
@@ -206,28 +127,21 @@
                         android:textColor="@color/black"
                         android:textSize="13sp" >
                     </TextView>
-                </LinearLayout>
-            </LinearLayout>
 
-            <TextView
-                android:id="@+id/notice_beijing_single_item_odds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dip"
-                android:text="@string/notice_beijing_single_item_odds"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/notice_beijing_single_item_odds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="3dip"
+                    android:text="@string/notice_beijing_single_item_odds"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+                 </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/notice_prizes_single_specific_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:paddingTop="15dip"
-        android:src="@drawable/usercenter_ico_triangle" />
 
 </RelativeLayout>

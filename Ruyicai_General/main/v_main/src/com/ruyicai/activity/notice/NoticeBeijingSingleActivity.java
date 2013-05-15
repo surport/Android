@@ -13,7 +13,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +21,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,10 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.beijing.bean.PlayMethodEnum;
 import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
-import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -84,7 +79,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		initView();
 		playTypeText[0] = getString(R.string.beijingsinglegame_textview_wintieloss);
 		playTypeText[1] = getString(R.string.beijingsinglegame_textview_totalgoals);
-		playTypeText[2] = getString(R.string.beijingsinglegame_textview_overall);
+		playTypeText[2] = getString(R.string.beijingsinglegame_textview_over);
 		playTypeText[3] = getString(R.string.beijingsinglegame_textview_halftheaudience);
 		playTypeText[4] = getString(R.string.beijingsinglegame_textview_updownsigledouble);
 		
@@ -125,7 +120,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		noticePrizesTitle.setText(R.string.beijing_single_kaijianggonggao);
 		noticePrizesTitle.setTextSize(20);
 		// 返回主列表
-		/**close by yejc 20130506 start*/
+		/**add by yejc 20130506 start*/
 		((Button)findViewById(R.id.notice_prizes_single_specific_main_returnID)).setVisibility(View.GONE);
 		playLinear = (LinearLayout)findViewById(R.id.notice_beijing_single_item_play);
 		playLinear.setVisibility(View.VISIBLE);
@@ -149,7 +144,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				showBatchcodesDialog();
 			}
 		});
-		/**close by yejc 20130506 end*/
+		/**add by yejc 20130506 end*/
 	}
 
 	/**
@@ -163,7 +158,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 
 			@Override
 			public void run() {
-				str = NoticeJcInfo.getInstance().getLotteryNoticeByLotNo(Constants.BEIJINGSINGLE, playMethodType.toString(), date);
+				str = NoticeJcInfo.getInstance().getLotteryNoticeForBeiDan(Constants.BEIJINGSINGLE, playMethodType.toString(), date);
 				try {
 					jsonObj = new JSONObject(str);
 					msg = jsonObj.getString("message");
@@ -247,8 +242,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			convertView = mInflater.inflate(R.layout.notice_beijing_single_listview_item,
 					null);
 			final ViewHolder holder = new ViewHolder();
-//			holder.teamId = (TextView) convertView
-//					.findViewById(R.id.jc_main_list_item_text_team_id);
+			holder.teamId = (TextView) convertView
+					.findViewById(R.id.jc_main_list_item_text_team_id);
 			holder.team = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_team);
 			holder.home = (TextView) convertView
@@ -259,8 +254,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 					.findViewById(R.id.jc_main_list_item_text_vs);
 			holder.timeEnd = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_time_end);
-//			holder.teamPlay = (TextView) convertView
-//					.findViewById(R.id.jc_main_list_item_text_play);
 			holder.result = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_jieguo);
 			holder.score = (TextView) convertView
@@ -268,18 +261,19 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			holder.odds = (TextView) convertView
 					.findViewById(R.id.notice_beijing_single_item_odds);
 			convertView.setTag(holder);
-//			holder.time.append(info.getTime());
 			holder.team.append(info.getTeam());
-			holder.home.append(info.getHome());
-			holder.away.append(info.getAway());
+			holder.home.append(info.getHome()+"(主)");
+			holder.away.append(info.getAway()+"(客)");
 			holder.letPoint.setText(info.getLetPoint());
 			holder.letPoint.setTextColor(Color.BLUE);
-//			holder.teamId.setText(getResources().getString(R.string.notice_beijing_single_item_team_id)+info.getTeamId());
+			holder.teamId.setText(info.getTeamId());
 			holder.odds.setText(getResources().getString(R.string.notice_beijing_single_item_odds)+info.getPeiLv());
 			//holder.timeEnd.append(info.getTimeEnd());
 //			holder.teamId.append(info.getWeek() + info.getTeamId());
-			holder.result.append("主" + info.getResult());
-			//holder.score.append(info.getScore());
+			holder.result.append(/*"主" + */info.getResult());
+			if (!"".equals(info.getHomeScore()) && !"".equals(info.getGuestScore())) {
+				holder.score.append(info.getHomeScore()+":"+info.getGuestScore());
+			}
 			convertView.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -292,7 +286,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		}
 
 		class ViewHolder {
-//			TextView teamId;
+			TextView teamId;
 			TextView team;
 			TextView home;
 			TextView away;
