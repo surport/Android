@@ -264,8 +264,10 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			holder.team.append(info.getTeam());
 			holder.home.append(info.getHome()+"(主)");
 			holder.away.append(info.getAway()+"(客)");
-			holder.letPoint.setText(info.getLetPoint());
-			holder.letPoint.setTextColor(Color.BLUE);
+			if (!"".equals(info.getLetPoint())) {
+				holder.letPoint.setText(info.getLetPoint());
+				holder.letPoint.setTextColor(Color.BLUE);
+			}
 			holder.teamId.setText(info.getTeamId());
 			holder.odds.setText(getResources().getString(R.string.notice_beijing_single_item_odds)+info.getPeiLv());
 			//holder.timeEnd.append(info.getTimeEnd());
