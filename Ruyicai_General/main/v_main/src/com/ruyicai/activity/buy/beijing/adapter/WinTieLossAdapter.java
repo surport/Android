@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -220,7 +221,17 @@ public class WinTieLossAdapter extends BaseAdapter {
 		LinearLayout analysisAndDanLayout = (LinearLayout) itemView
 				.findViewById(R.id.linearLayout3);
 		analysisAndDanLayout.setVisibility(View.GONE);
-		/** add by yejc 20130514 end */
+//<<<<<<< HEAD
+//		/** add by yejc 20130514 end */
+//=======
+//		View view1 = (View)itemView.findViewById(R.id.divider_01);
+//		View view2 = (View)itemView.findViewById(R.id.divider_02);
+//		LayoutParams lp = view1.getLayoutParams();
+//		lp.width = 15;
+//		view1.setLayoutParams(lp);
+//		view2.setLayoutParams(lp);
+//		/**add by yejc 20130514 end*/
+//>>>>>>> 9faf86b678014887d46a55a16f20a05a22628664
 
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
