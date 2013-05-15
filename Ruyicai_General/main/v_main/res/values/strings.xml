@@ -1128,6 +1128,7 @@
     <string name="beijingsinglegame_textview_overall">全场总比分</string>
     <string name="beijingsinglegame_textview_halftheaudience">@string/banquanchang</string>
     <string name="beijingsinglegame_textview_updownsigledouble">上下单双</string>
+    <string name="beijingsinglegame_textview_over">比分</string>
     
     <string name="my_message_edit_text" >"编辑"</string>
     <string name="my_message_edit_cancel" >"取消"</string>
@@ -1141,7 +1142,7 @@
     <string name="input_name_error">"您输入的姓名格式有误，请重新输入"</string>
     <string name="user_center_track_number">"追号号码:"</string>
     <string name="football_wait_issue">"(待售)"</string>
-    <string name="notice_beijing_single_item_odds">"赔率: "</string>
+    <string name="notice_beijing_single_item_odds">"PS:"</string>
     <string name="notice_beijing_single_item_team_id">"场次: "</string>
     <string name="notice_beijing_single_item_play">"玩法: "</string>
     <string name="beijing_single_kaijianggonggao">"北京单场开奖公告"</string>

@@ -75,4 +75,29 @@ public class NoticeJcInfo {
 
 		return result;
 	}
+	
+	/**
+     * 获取所有的开奖信息
+     * @param command
+     * @param lotno
+     * @return
+     */
+	public String getLotteryNoticeForBeiDan(String command,String lotno,String batchcode) {
+		String result = "";
+		try {
+			JSONObject jsonProtocol = ProtocolManager.getInstance()
+					.getDefaultJsonProtocol();
+			jsonProtocol.put(ProtocolManager.COMMAND, command);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "matchResult");
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put(ProtocolManager.BATCHCODE, batchcode);
+			result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+			// 联网失败了
+		}
+
+		return result;
+	}
 }
