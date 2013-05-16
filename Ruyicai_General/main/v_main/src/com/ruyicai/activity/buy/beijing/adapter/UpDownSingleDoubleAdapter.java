@@ -163,17 +163,10 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 		guestTeamTextView.setText(upDownSingleDoubleAgainstInformation
 				.getGuestTeam());
 		// 上单
-		final TextView upSingleTextView = (TextView) itemView
+		final LinearLayout upSingleLinearLayout = (LinearLayout) itemView
 				.findViewById(R.id.upsingle);
-
-		StringBuilder upSingleString = new StringBuilder();
-		upSingleString.append("上单(")
-				.append(upDownSingleDoubleAgainstInformation.getSxds_v1())
-				.append(")");
-		upSingleTextView.setText(upSingleString);
-
-		upSingleTextView.setTag(false);
-		upSingleTextView.setOnClickListener(new OnClickListener() {
+		upSingleLinearLayout.setTag(false);
+		upSingleLinearLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -181,14 +174,14 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 						.isSelectedEventNumLegal()
 						|| upDownSingleDoubleAgainstInformation.isSelected()) {
 					if ((upDownSingleDoubleAgainstInformation.isV1IsClick()) == false) {
-						upSingleTextView
+						upSingleLinearLayout
 								.setBackgroundResource(R.drawable.upsingle_click);
-						upSingleTextView.setTag(true);
+						upSingleLinearLayout.setTag(true);
 						upDownSingleDoubleAgainstInformation.setV1IsClick(true);
 					} else {
-						upSingleTextView
+						upSingleLinearLayout
 								.setBackgroundResource(R.drawable.upsingle_normal);
-						upSingleTextView.setTag(false);
+						upSingleLinearLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV1IsClick(false);
 					}
@@ -200,18 +193,20 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			}
 		});
-		// 上双
-		final TextView upDoubleTextView = (TextView) itemView
-				.findViewById(R.id.updouble);
-
-		StringBuilder upDoubleString = new StringBuilder();
-		upDoubleString.append("上双(")
-				.append(upDownSingleDoubleAgainstInformation.getSxds_v2())
+		// 上单赔率
+		TextView upSingleTextView = (TextView) itemView
+				.findViewById(R.id.upsingle_textview);
+		StringBuilder upSingleString = new StringBuilder();
+		upSingleString.append("(")
+				.append(upDownSingleDoubleAgainstInformation.getSxds_v1())
 				.append(")");
-		upDoubleTextView.setText(upDoubleString);
+		upSingleTextView.setText(upSingleString);
 
-		upDoubleTextView.setTag(false);
-		upDoubleTextView.setOnClickListener(new OnClickListener() {
+		// 上双
+		final LinearLayout upDoubleLinearLayout = (LinearLayout) itemView
+				.findViewById(R.id.updouble);
+		upDoubleLinearLayout.setTag(false);
+		upDoubleLinearLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -219,14 +214,14 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 						.isSelectedEventNumLegal()
 						|| upDownSingleDoubleAgainstInformation.isSelected()) {
 					if ((upDownSingleDoubleAgainstInformation.isV2IsClick()) == false) {
-						upDoubleTextView
+						upDoubleLinearLayout
 								.setBackgroundResource(R.drawable.upsingle_click);
-						upDoubleTextView.setTag(true);
+						upDoubleLinearLayout.setTag(true);
 						upDownSingleDoubleAgainstInformation.setV2IsClick(true);
 					} else {
-						upDoubleTextView
+						upDoubleLinearLayout
 								.setBackgroundResource(R.drawable.upsingle_normal);
-						upDoubleTextView.setTag(false);
+						upDoubleLinearLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV2IsClick(false);
 					}
@@ -238,18 +233,22 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			}
 		});
+		// 上双赔率
+
+		TextView upDoubleTextView = (TextView) itemView
+				.findViewById(R.id.updouble_textview);
+		StringBuilder upDoubleString = new StringBuilder();
+		upDoubleString.append("(")
+				.append(upDownSingleDoubleAgainstInformation.getSxds_v2())
+				.append(")");
+		upDoubleTextView.setText(upDoubleString);
+
 		// 下单
-		final TextView downSingleTextView = (TextView) itemView
+		final LinearLayout downSingleLinearLayout = (LinearLayout) itemView
 				.findViewById(R.id.downsingle);
 
-		StringBuilder downSingleString = new StringBuilder();
-		downSingleString.append("下单(")
-				.append(upDownSingleDoubleAgainstInformation.getSxds_v3())
-				.append(")");
-		downSingleTextView.setText(downSingleString);
-
-		downSingleTextView.setTag(false);
-		downSingleTextView.setOnClickListener(new OnClickListener() {
+		downSingleLinearLayout.setTag(false);
+		downSingleLinearLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -257,14 +256,14 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 						.isSelectedEventNumLegal()
 						|| upDownSingleDoubleAgainstInformation.isSelected()) {
 					if ((upDownSingleDoubleAgainstInformation.isV3IsClick()) == false) {
-						downSingleTextView
+						downSingleLinearLayout
 								.setBackgroundResource(R.drawable.upsingle_click);
-						downSingleTextView.setTag(true);
+						downSingleLinearLayout.setTag(true);
 						upDownSingleDoubleAgainstInformation.setV3IsClick(true);
 					} else {
-						downSingleTextView
+						downSingleLinearLayout
 								.setBackgroundResource(R.drawable.upsingle_normal);
-						downSingleTextView.setTag(false);
+						downSingleLinearLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV3IsClick(false);
 					}
@@ -276,18 +275,21 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 
 			}
 		});
-		// 下双
-		final TextView downDoubleTextView = (TextView) itemView
-				.findViewById(R.id.downdouble);
 
-		StringBuilder downDoubleString = new StringBuilder();
-		downDoubleString.append("下双(")
-				.append(upDownSingleDoubleAgainstInformation.getSxds_v4())
+		// 下单赔率
+		TextView downSingleTextView = (TextView) itemView
+				.findViewById(R.id.downsingle_textview);
+		StringBuilder downSingleString = new StringBuilder();
+		downSingleString.append("(")
+				.append(upDownSingleDoubleAgainstInformation.getSxds_v3())
 				.append(")");
-		downDoubleTextView.setText(downDoubleString);
+		downSingleTextView.setText(downSingleString);
 
-		downDoubleTextView.setTag(false);
-		downDoubleTextView.setOnClickListener(new OnClickListener() {
+		// 下双
+		final LinearLayout downDoubleLayout = (LinearLayout) itemView
+				.findViewById(R.id.downdouble);
+		downDoubleLayout.setTag(false);
+		downDoubleLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -295,14 +297,14 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 						.isSelectedEventNumLegal()
 						|| upDownSingleDoubleAgainstInformation.isSelected()) {
 					if ((upDownSingleDoubleAgainstInformation.isV4IsClick()) == false) {
-						downDoubleTextView
+						downDoubleLayout
 								.setBackgroundResource(R.drawable.upsingle_click);
-						downDoubleTextView.setTag(true);
+						downDoubleLayout.setTag(true);
 						upDownSingleDoubleAgainstInformation.setV4IsClick(true);
 					} else {
-						downDoubleTextView
+						downDoubleLayout
 								.setBackgroundResource(R.drawable.upsingle_normal);
-						downDoubleTextView.setTag(false);
+						downDoubleLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV4IsClick(false);
 					}
@@ -315,21 +317,30 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 			}
 		});
 
-		/**close by yejc 20130514 start*/
-//		// 析
-//		TextView analysisTextView = (TextView) itemView
-//				.findViewById(R.id.game_analysis);
-//		analysisTextView.setVisibility(View.GONE);
-//		// 胆
-//		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-//		danTextButton.setVisibility(View.GONE);
-		/**close by yejc 20130514 end*/
-		
-		/**add by yejc 20130514 start*/
-		LinearLayout analysisAndDanLayout = (LinearLayout)itemView
+		// 下双赔率
+		TextView downDoubleTextView = (TextView) itemView
+				.findViewById(R.id.downdouble_textview);
+		StringBuilder downDoubleString = new StringBuilder();
+		downDoubleString.append("(")
+				.append(upDownSingleDoubleAgainstInformation.getSxds_v4())
+				.append(")");
+		downDoubleTextView.setText(downDoubleString);
+
+		/** close by yejc 20130514 start */
+		// // 析
+		// TextView analysisTextView = (TextView) itemView
+		// .findViewById(R.id.game_analysis);
+		// analysisTextView.setVisibility(View.GONE);
+		// // 胆
+		// Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		// danTextButton.setVisibility(View.GONE);
+		/** close by yejc 20130514 end */
+
+		/** add by yejc 20130514 start */
+		LinearLayout analysisAndDanLayout = (LinearLayout) itemView
 				.findViewById(R.id.linearLayout3);
 		analysisAndDanLayout.setVisibility(View.GONE);
-		/**add by yejc 20130514 end*/
+		/** add by yejc 20130514 end */
 
 		return itemView;
 	}

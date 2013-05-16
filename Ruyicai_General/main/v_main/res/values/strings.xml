@@ -1146,6 +1146,13 @@
     <string name="notice_beijing_single_item_team_id">"场次: "</string>
     <string name="notice_beijing_single_item_play">"玩法: "</string>
     <string name="beijing_single_kaijianggonggao">"北京单场开奖公告"</string>
+    <string name="beijing_single_upsingle">上单</string>
+    <string name="beijing_single_updouble">上双</string>
+    <string name="beijing_single_downsingle">下单</string>
+    <string name="beijing_single_downdouble">下双</string>
+    <string name="beijing_single_vs">VS</string>
+    <string name="beijing_single_dan">胆</string>
+    <string name="beijing_single_xi">析</string>
     
     <string name="nmk3willSaleMessage">"快三即将发售，敬请期待"</string>  
     <string name="bdwillSaleMessage">"北京单场即将发售，敬请期待"</string>  
