@@ -71,6 +71,10 @@ public class BeiJingSingleGameActivity extends Activity {
 	private static final int SUCCESS = 0;
 	/** 从网络获取数据失败标识 */
 	private static final int FAILD = 1;
+	/**Add by pengcx 20130516 start*/
+	/** 是否是投注成功返回*/
+	static boolean isBettingReturn= false;
+	/**Add by pengcx 20130516 end*/
 
 	/** 玩法类型:默认为胜平负 */
 	static PlayMethodEnum playMethodType = PlayMethodEnum.WINTIELOSS;
@@ -481,6 +485,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		context = this;
+	
 		layoutInflater = LayoutInflater.from(this);
 		playMethodType = PlayMethodEnum.WINTIELOSS;
 
@@ -496,6 +501,18 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		getAndnalysisAgainstInformations();
 	}
+	
+	/**Add by pengcx 20130516 start*/
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		if(isBettingReturn){
+			selectedGameNum = 0;
+			isBettingReturn = false;
+			refreshAgainstInformationShow(false, true);
+		}
+	}
+	/**Add by pengcx 20130516 end*/
 
 	/**
 	 * 初始化对阵列表的显示

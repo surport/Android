@@ -150,6 +150,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		laterpartbettingcode = getIntent().getStringExtra("laterpartbettingcode");
 		nowIssueString = getIntent().getStringExtra("nowIssueString");
 		lotnoString = getIntent().getStringExtra("lotno");
+		getIntent().getClass();
 
 		radioGroupView = new RadioGroupView(this);
 		bunchStyleLinearLayout.removeAllViews();
@@ -594,6 +595,9 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 	@Override
 	public void errorCode_0000() {
+		/**Add by pengcx 20130516 start*/
+		BeiJingSingleGameActivity.isBettingReturn = true;
+		/**Add by pengcx 20130516 end*/
 		PublicMethod.showDialog(BeiJingSingleGameIndentActivity.this);
 	}
 
