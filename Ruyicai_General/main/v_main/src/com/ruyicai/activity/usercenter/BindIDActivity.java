@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.net.newtransaction.BindIDInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
@@ -99,9 +100,21 @@ public class BindIDActivity extends Activity {
 
 		nameStr = realnameEdit.getText().toString();
 		cerdidStr = cerdidEdit.getText().toString();
+		
+		/**add by yejc 20130516 start*/
+		if (!CheckUtil.isValidName(nameStr)) {
+			Toast.makeText(this, R.string.input_name_error, Toast.LENGTH_LONG).show();
+			return;
+		}
+		
+		if (!CheckUtil.isValidCard(cerdidStr)) {
+			Toast.makeText(this, R.string.input_card_id_error, Toast.LENGTH_LONG).show();
+			return;
+		}
+		/**add by yejc 20130516 end*/
 
 		// wangyl 7.21 验证密码长度
-		if (nameStr.length() > 1 && cerdidStr.length() > 1) {
+		if (CheckUtil.isValidName(nameStr) && CheckUtil.isValidCard(cerdidStr)/*nameStr.length() > 1 && cerdidStr.length() > 1*/) {
 			showDialog(0);
 			new Thread(new Runnable() {
 				public void run() {
@@ -122,7 +135,7 @@ public class BindIDActivity extends Activity {
 						handler.sendMessage(msg);
 
 					} catch (JSONException e) {
-						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			}).start();
@@ -167,14 +180,12 @@ public class BindIDActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}

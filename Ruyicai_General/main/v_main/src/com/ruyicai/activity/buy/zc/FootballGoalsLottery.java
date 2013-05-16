@@ -1284,22 +1284,24 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 							bactchCodes[i] = item.getString("batchCode");
 							/**add by yejc 20130425 start*/
 							aa.setState(item.getString("state"));
-							if ("5".equals(item.getString("state"))) {
-								String batchCode = item.getString("batchCode");
-								String waitIssue = getResources().getString(R.string.football_wait_issue);
-								SpannableString text = new SpannableString(batchCode + waitIssue);
-								text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-								text.setSpan(new ForegroundColorSpan(Color.RED), batchCode.length(), batchCode.length()+waitIssue.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-								spanBactchCodes[i] = text;
-							} else {
-								SpannableString text = new SpannableString(item.getString("batchCode"));
-								text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-								spanBactchCodes[i] = text;
+							String batchCode = item.getString("batchCode");
+							if (batchCode != null) {
+								if ("5".equals(item.getString("state"))) {
+									String waitIssue = getResources().getString(R.string.football_wait_issue);
+									SpannableString text = new SpannableString(batchCode + waitIssue);
+									text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									text.setSpan(new ForegroundColorSpan(Color.RED), batchCode.length(), batchCode.length()+waitIssue.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									spanBactchCodes[i] = text;
+								} else {
+									SpannableString text = new SpannableString(batchCode);
+									text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+									spanBactchCodes[i] = text;
+								}
 							}
 							/**add by yejc 20130425 end*/
 							bactchArray.add(aa);
 							if (qihaoxinxi[1] != null
-									|| qihaoxinxi[1].equals("")) {
+									|| "".equals(qihaoxinxi[1])) {
 								qihaoxinxi[1] = item.getString("endTime");
 							}
 						}
