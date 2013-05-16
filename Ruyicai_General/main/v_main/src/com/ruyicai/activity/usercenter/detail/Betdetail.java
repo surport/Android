@@ -155,14 +155,23 @@ public class Betdetail extends Activity {
 				|| lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
 			batchcode.setVisibility(View.GONE);
 		} else {
-			batchcode.append(prizeqihao);
 			Button touzhu = (Button) findViewById(R.id.bet_detail_img_ok);
-			touzhu.setVisibility(View.VISIBLE);
-			touzhu.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					showagaindialog(info);
-				}
-			});
+			if (lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)){
+				touzhu.setVisibility(View.GONE);
+			} else {
+				batchcode.append(prizeqihao);
+//				Button touzhu = (Button) findViewById(R.id.bet_detail_img_ok);
+				touzhu.setVisibility(View.VISIBLE);
+				touzhu.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						showagaindialog(info);
+					}
+				});
+			}
 		}
 
 	}

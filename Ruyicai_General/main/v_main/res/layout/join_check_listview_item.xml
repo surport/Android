@@ -99,7 +99,7 @@
             android:background="@drawable/usercenter_selector_lookdetails" />
     </RelativeLayout>
 
-    <ImageView
+    <ImageView android:id="@+id/join_check_listView_item_jump"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

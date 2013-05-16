@@ -617,6 +617,9 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.usercenter_buyagain);
 				holder.type = (TextView) convertView
 						.findViewById(R.id.rengoutype);
+				holder.imageView = (ImageView) convertView
+						.findViewById(R.id.join_check_listView_item_jump);
+				
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -625,6 +628,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 				starter = PublicMethod.getNewString(8, starter);
 			}
 			holder.icon.setText(icon);
+			holder.imageView.setVisibility(View.GONE);
 			if (state.equals("1")) {
 				SpannableStringBuilder builder = new SpannableStringBuilder();
 				String resultStr = "(" + "进行中" + ")";
@@ -708,6 +712,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			RelativeLayout layout;
 			Button detail;
 			Button channelaggin;
+			ImageView imageView;
 
 		}
 	}

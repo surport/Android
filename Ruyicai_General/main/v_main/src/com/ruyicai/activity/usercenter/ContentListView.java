@@ -301,20 +301,23 @@ public class ContentListView {
 						if (letScore != null && !"".equals(letScore) && !"0".equals(letScore)) {
 							teamVs = letScore;
 						}
-					}
-					if (lotno.equals(Constants.LOTNO_JCLQ_DXF)) {
+					}else if (lotno.equals(Constants.LOTNO_JCLQ_DXF)) {
 						if (totalScore != null && !"".equals(totalScore) && !"0".equals(totalScore)) {
 							teamVs = totalScore;
 						}
+					}else if (lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
+						if (letScore!= null && !letScore.equals("") && !letScore.equals("0")) {
+							teamVs = letScore;
+						} 
+						if (!totalScore.equals("")) {
+							if (letScore!= null && !letScore.equals("") && !letScore.equals("0")) {
+								teamVs = teamVs+ ", "+totalScore;
+							} else {
+								teamVs = totalScore;
+							}
+							
+						}
 					}
-					
-//					if (!lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
-//						if (letScore!= null && !letScore.equals("") && !letScore.equals("0")) {
-//							teamVs = letScore;
-//						} else if (!totalScore.equals("")) {
-//							teamVs = totalScore;
-//						}
-//					}
 					String guestScore = obj.getString("guestScore");
 					String homeScore = obj.getString("homeScore");
 					String homeTeam = obj.getString("homeTeam");
