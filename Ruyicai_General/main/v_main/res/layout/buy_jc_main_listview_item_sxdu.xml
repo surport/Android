@@ -73,7 +73,7 @@
                     android:layout_marginLeft="3dip"
                     android:layout_weight="4"
                     android:gravity="center_horizontal|top"
-                    android:text="VS"
+                    android:text="@string/beijing_single_vs"
                     android:textColor="@android:color/black" />
 
                 <TextView
@@ -94,45 +94,109 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/upsingle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1.0"
                     android:background="@drawable/upsingle_normal"
                     android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
+                    android:orientation="vertical" >
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/beijing_single_upsingle"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/upsingle_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/updouble"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1.0"
                     android:background="@drawable/upsingle_normal"
                     android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
+                    android:orientation="vertical" >
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/beijing_single_updouble"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/updouble_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/downsingle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1.0"
                     android:background="@drawable/upsingle_normal"
                     android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
+                    android:orientation="vertical" >
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/beijing_single_downsingle"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/downsingle_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/downdouble"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1.0"
                     android:background="@drawable/upsingle_normal"
                     android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:textSize="12sp" />
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/beijing_single_downdouble"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/downdouble_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
@@ -156,7 +220,7 @@
                 android:layout_height="35dip"
                 android:background="@drawable/team_name_bj"
                 android:gravity="center"
-                android:text="析"
+                android:text="@string/beijing_single_xi"
                 android:textColor="@android:color/black" />
 
             <LinearLayout
@@ -173,7 +237,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/jc_btn"
                     android:gravity="center"
-                    android:text="胆"
+                    android:text="@string/beijing_single_dan"
                     android:textColor="@android:color/black" />
             </LinearLayout>
         </LinearLayout>
