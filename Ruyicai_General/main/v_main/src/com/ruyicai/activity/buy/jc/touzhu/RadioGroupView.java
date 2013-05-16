@@ -235,7 +235,7 @@ public class RadioGroupView {
 				radio.setTextSize(PublicMethod.getPxInt(8, context));
 			}
 			radio.setId(id);
-			radio.setPadding(PublicMethod.getPxInt(25, context), 0, 0, 0);
+			radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			int withPx = PublicMethod.getPxInt(75, context);// 将dip换算成px
 			radio.setLayoutParams(new LayoutParams(withPx,
 					LayoutParams.WRAP_CONTENT));
@@ -363,6 +363,9 @@ public class RadioGroupView {
 		for (int i = 0; i < checkId.length; i++) {
 			beijingChecks[i] = (CheckBox) v.findViewById(checkId[i]);
 			beijingChecks[i].setId(i);
+			/*Add by pengcx 20130516 start*/
+			beijingChecks[i].setTextSize(15.0f);
+			/*Add by pengcx 20130516 end*/
 			if (i >= num) {
 				beijingChecks[i].setVisibility(CheckBox.GONE);
 			} else if (i < 0) {
@@ -374,7 +377,6 @@ public class RadioGroupView {
 							public void onCheckedChanged(
 									CompoundButton buttonView, boolean isChecked) {
 								int checknum = buttonView.getId();
-//								Log.i("111","原来注数:"+((BeiJingSingleGameIndentActivity) context).bettingNum);
 								if (isChecked) {
 //									Log.i("111", "增加的注数:" +((BeiJingSingleGameIndentActivity) context)
 //											.getBettingNum(buttonView.getId() + 1));

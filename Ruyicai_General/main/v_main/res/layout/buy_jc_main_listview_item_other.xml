@@ -106,7 +106,7 @@
                 android:textColor="@color/jc_odds_text_color"/>
         </LinearLayout>
         
-        <View android:id="@+id/divider_01"
+        <View android:id="@+id/divider_02"
             android:layout_width="5dip"
             android:layout_height="5dip"/>
 
