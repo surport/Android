@@ -1073,7 +1073,6 @@ public class FootballSFLottery extends FootballFourteen implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 			}
 		});
@@ -1083,7 +1082,6 @@ public class FootballSFLottery extends FootballFourteen implements
 			public void onClick(View v) {
 				dialog.cancel();
 				initBetPojo();
-				// TODO Auto-generated method stub
 				if (isGift) {
 					toActivity(zhuma);
 				} else if (isJoin) {
@@ -1181,7 +1179,6 @@ public class FootballSFLottery extends FootballFourteen implements
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
@@ -1191,13 +1188,10 @@ public class FootballSFLottery extends FootballFourteen implements
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1246,7 +1240,6 @@ public class FootballSFLottery extends FootballFourteen implements
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				advanceBatchCodeData = FootballLotteryAdvanceBatchcode
 						.getInstance().getAdvanceBatchCodeList(Lotno);
 				try {
@@ -1307,7 +1300,6 @@ public class FootballSFLottery extends FootballFourteen implements
 						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				progressdialog.dismiss();
@@ -1317,12 +1309,10 @@ public class FootballSFLottery extends FootballFourteen implements
 
 	@Override
 	void initBatchCodeView() {
-		// TODO Auto-generated method stub
 		layout_football_issue.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				getZCAdvanceBatchCodeData(Constants.LOTNO_SFC);
 			}
 		});

@@ -899,7 +899,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 			}
 		});
@@ -908,7 +907,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 			@Override
 			public void onClick(View v) {
 				dialog.cancel();
-				// TODO Auto-generated method stub
 				if (isGift) {
 					toActivity(zhuma);
 				} else if (isJoin) {
@@ -1205,7 +1203,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
@@ -1216,19 +1213,15 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
@@ -1238,12 +1231,10 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	@Override
 	void initBatchCodeView() {
-		// TODO Auto-generated method stub
 		layout_football_issue.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				getZCAdvanceBatchCodeData(Constants.LOTNO_JQC);
 			}
 		});
@@ -1257,7 +1248,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				advanceBatchCodeData = FootballLotteryAdvanceBatchcode
 						.getInstance().getAdvanceBatchCodeList(Lotno);
 				try {
@@ -1318,7 +1308,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				progressdialog.dismiss();

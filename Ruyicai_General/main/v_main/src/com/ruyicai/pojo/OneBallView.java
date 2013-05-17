@@ -394,21 +394,6 @@ public class OneBallView extends ImageView {
 			bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
 					true);
 			break;
-//		case R.drawable.jc_zjq_btn_b:
-//			if (bitmap == null) {
-//				bitmap = new BitmapDrawable(is).getBitmap();
-//			}
-//			width = bitmap.getWidth();
-//			height = bitmap.getHeight();
-//			sw = ((float) iWidth) / width;
-//			sh = ((float) iHeight) / height;
-//			matrix = new Matrix();
-//			matrix.postScale(sw, sh);
-//			bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
-//					true);
-//			break;
-			
-			//end
 		}
 
 		return bitmap;

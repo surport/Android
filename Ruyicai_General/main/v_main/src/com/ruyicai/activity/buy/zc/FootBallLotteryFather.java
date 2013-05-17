@@ -424,28 +424,17 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 * 
 	 * @param v
 	 */
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-	}
+	public void onClick(View v) {}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
-		// TODO Auto-generated method stub
-
-	}
+			boolean fromUser) {}
 
 	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
-	}
+	public void onStartTrackingTouch(SeekBar seekBar) {}
 
 	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
-	}
+	public void onStopTrackingTouch(SeekBar seekBar) {}
 
 	String formatBatchCode(String batchCode) {
 		return "第" + batchCode + "期";
@@ -457,14 +446,12 @@ public abstract class FootBallLotteryFather extends Activity implements
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
@@ -505,15 +492,14 @@ public abstract class FootBallLotteryFather extends Activity implements
         if (listAdapter == null) {
             return;
         }
-        int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
+//        int totalHeight = 0;
+//        for (int i = 0; i < listAdapter.getCount(); i++) {
+//            View listItem = listAdapter.getView(i, null, listView);
+//            listItem.measure(0, 0);
+//            totalHeight += listItem.getMeasuredHeight();
+//        }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight
-                + (listView.getDividerHeight() * (listAdapter.getCount() - 1))
+        params.height = (listView.getDividerHeight() + 165) * (listAdapter.getCount())
                 + 20;
         listView.setLayoutParams(params);
     }

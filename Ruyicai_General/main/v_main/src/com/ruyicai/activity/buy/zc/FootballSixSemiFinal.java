@@ -1027,7 +1027,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 			public void onClick(View v) {
 				dialog.cancel();
 				initBetPojo();
-				// TODO Auto-generated method stub
 				if (isGift) {
 					toActivity(zhuma);
 				} else if (isJoin) {
@@ -1511,7 +1510,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				progressdialog.dismiss();
@@ -1521,12 +1519,10 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 
 	@Override
 	void initBatchCodeView() {
-		// TODO Auto-generated method stub
 		layout_football_issue.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				getZCAdvanceBatchCodeData(Constants.LOTNO_LCB);
 			}
 		});
