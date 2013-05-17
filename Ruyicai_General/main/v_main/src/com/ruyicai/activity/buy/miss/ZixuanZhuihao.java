@@ -513,6 +513,9 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	 * 投注联网
 	 */
 	public void touZhuNet() {
+		if (progressdialog != null && progressdialog.isShowing()) {
+			return;
+		}
 		progressdialog = UserCenterDialog.onCreateDialog(this);
 		progressdialog.show();
 		// 加入是否改变切入点判断 陈晨 8.11
