@@ -48,10 +48,12 @@ import com.ruyicai.net.newtransaction.getRecoveryBatchCode;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+
 /**
  * 追号设置界面
+ * 
  * @author win
- *
+ * 
  */
 public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		OnSeekBarChangeListener {
@@ -105,6 +107,9 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			public void onClick(View v) {
 				if (state == 0) {
 					getbatchcodes();
+					/*add by pengcx 20130517 start*/
+					zhuiqishezhi.setVisibility(View.VISIBLE);
+					/*add by pengcx 20130517 end*/
 					state = 2;
 				} else if (state == 1) {
 					zhuiqishezhi.setVisibility(View.VISIBLE);
@@ -112,7 +117,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 				} else if (state == 2) {
 					zhuiqishezhi.setVisibility(View.GONE);
 					state = 1;
-
 				}
 			}
 		});
@@ -236,6 +240,10 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 					betAndGift.setIssuper("");
 					betAndGift.setAmt(2);
 				}
+				/**add by pengcx 20130515 start*/
+				state = 0;
+				zhuiqishezhi.setVisibility(View.GONE);
+				/**add by pengcx 20130515 end*/
 				addviewmiss.setCodeAmt(betAndGift.getAmt());
 				getTouzhuAlert();
 			}
@@ -304,6 +312,9 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 	private void getviewofzhuiqi() {
 		checkinfo = new Checktouinfo[iProgressQishu];
+		/**add by pengcx 20130517 start*/
+		zhuiqishezhi.removeAllViews();
+		/**add by pengcx 20130517 end*/
 		for (int i = 0; i < iProgressQishu; i++) {
 			checkinfo[i] = new Checktouinfo();
 			final int index = i;
@@ -555,19 +566,19 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 		betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 		betAndGift.setBatchnum("" + iProgressQishu);// batchnum 追号期数 默认为1（不追号）
-		/**add by yejc 20130510 start*/
+		/** add by yejc 20130510 start */
 		if (isFromTrackQuery) {
 			betAndGift.setBet_code(betAndGift.getBet_code());
 		} else {
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		}
-		/**add by yejc 20130510 end*/
-		/**close by yejc 20130510 start*/
-//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-//				betAndGift.getAmt() * 100));
-		/**close by yejc 20130510 end*/
-		
+		/** add by yejc 20130510 end */
+		/** close by yejc 20130510 start */
+		// betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+		// betAndGift.getAmt() * 100));
+		/** close by yejc 20130510 end */
+
 		if (state == 2) {
 			betAndGift.setSubscribeInfo(getSubstringforset());
 		} else {
@@ -775,12 +786,12 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			/**add by yejc 20130510 start*/
+			/** add by yejc 20130510 start */
 			if (isFromTrackQuery) {
 				break;
 			}
-			/**add by yejc 20130510 end*/
-			
+			/** add by yejc 20130510 end */
+
 			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
 				alertExit(getString(R.string.buy_alert_exit_detail));
 			} else {

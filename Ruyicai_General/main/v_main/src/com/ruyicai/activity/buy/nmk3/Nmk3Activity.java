@@ -17,8 +17,9 @@ public class Nmk3Activity extends BuyActivityGroup {
 	private int lesstime = 0;
 	public static String batchCode;
 	private String[] titles = { "和值", "三同号", "二同号", "不同号", "三连号" };
-	private String[] topTitles = { "快三", "快三", "快三", "快三", "快三",
-			"快三" }; 
+	/**modify by pengcx 20130517 start*/
+	private String[] topTitles = { "快三", "快三", "快三", "快三", "快三", "快三" };
+	/**modify by pengcx 20130517 end*/
 	private Class[] allId = { Nmk3HeZhiActivity.class,
 			Nmk3ThreeSameActivty.class, Nmk3TwoSameActivty.class,
 			Nmk3DiffActivity.class, Nmk3ThreeLinkActivity.class };
@@ -26,9 +27,9 @@ public class Nmk3Activity extends BuyActivityGroup {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//设置彩种
+		// 设置彩种
 		setLotno(Constants.LOTNO_NMK3);
-		//初始化标题
+		// 初始化标题
 		init(titles, topTitles, allId);
 		// 获取彩种的期号和上期的开奖号码等信息
 		setIssue();
