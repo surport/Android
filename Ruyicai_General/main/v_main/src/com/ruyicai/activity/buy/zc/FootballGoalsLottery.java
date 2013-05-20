@@ -27,7 +27,6 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,11 +35,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -109,8 +106,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	private int position;
 	String lotno = Constants.LOTNO_JQC;
 
-	private List bactchCodeList = new ArrayList();
-
 	private String[] bactchCodes;// 预售期的期号数组
 	private List<Object> bactchArray = new ArrayList<Object>();// 这个list中存放预售期期号和截止时间的信息
 	String advanceBatchCodeData;
@@ -120,9 +115,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		super.onCreate(savedInstanceState);
 		initBatchCode(Constants.LOTNO_JQC);
 		initBatchCodeView();
-		// batchCode = qihaoxinxi[0];
 		createVeiw();
-		// getData(qihaoxinxi[2],qihaoxinxi[0]);
 		showDialog(DIALOG1_KEY);
 		getZCAdvanceBatchCodeData(Constants.LOTNO_JQC);
 	}
@@ -131,144 +124,13 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		mlist = (ListView) findViewById(R.id.buy_footballlottery_list);
 		list = getListForMainListAdapter();
 		ballTables.clear();// 每次初始化足彩选区列表就清空BallTable的 Vector中的数据
-//		listViewDemo = new ListViewDemo(this, list); //close by yejc 20130327
-//		mlist.setAdapter(listViewDemo); //close by yejc 20130327
-		
 		// add by yejc 20130327
 		ListViewAdapter adapter = new ListViewAdapter(this, list);
 		mlist.setAdapter(adapter);
 		// end
-		setListViewHeight(mlist); //add by yejc 20130425
+		PublicMethod.setListViewHeightBasedOnChildren(mlist, 115, this);
 	}
 
-	/**close by yejc 20130425 start*/
-//	public class ListViewDemo extends BaseAdapter {
-//		private Context context;
-//		private List<Map<String, Object>> mList;
-//		private LayoutInflater mInflater; // 扩充主列表布局
-//
-//		public ListViewDemo(Context context, List<Map<String, Object>> list) {
-//			this.context = context;
-//			mInflater = LayoutInflater.from(context);
-//			mList = list;
-//		}
-//
-//		@Override
-//		public int getCount() {
-//			return mList.size();
-//		}
-//
-//		@Override
-//		public Object getItem(int position) {
-//			return mList.get(position);
-//		}
-//
-//		/*
-//		 * @see android.widget.Adapter#getItemId(int)
-//		 */
-//		@Override
-//		public long getItemId(int position) {
-//			return position;
-//		}
-//
-//		@Override
-//		public View getView(int position, View convertView, ViewGroup parent) {
-//
-//			int[] ResId = { R.drawable.grey, R.drawable.red };
-//			int ballNum = 4;
-//
-//			int START_ID;
-//			START_ID = JINQC_START_ID + position * 4;
-//			final int index = position;
-//			String team1 = (String) mList.get(position).get("TEAM1");
-//			String team2 = (String) mList.get(position).get("TEAM2");
-//			String scores1 = (String) mList.get(position).get("SCORES1");
-//			String scores2 = (String) mList.get(position).get("SCORES2");
-//			ViewHolder holder = null;
-//
-//			convertView = mInflater.inflate(
-//					R.layout.buy_football_sixhalf_listitem, null);
-//			RelativeLayout halfandalltext = (RelativeLayout) convertView
-//					.findViewById(R.id.football_sixandhalf_text);
-//			halfandalltext.setVisibility(RelativeLayout.GONE);
-//			holder = new ViewHolder();
-//			holder.lie = ((TextView) convertView
-//					.findViewById(R.id.liuchangban_lienum));
-//			holder.teamnamerank1 = (TextView) convertView
-//					.findViewById(R.id.liuchangban_teamrank1);
-//			holder.teamnamerank2 = (TextView) convertView
-//					.findViewById(R.id.liuchangban_teamrank2);
-//			holder.layout = (LinearLayout) convertView
-//					.findViewById(R.id.liuchangban_ball_layout);
-//			holder.info = (ImageView) convertView
-//					.findViewById(R.id.liuchangban_fenxi);
-//			convertView.setTag(holder);
-//
-//			LinearLayout linearGoals = (LinearLayout) convertView
-//					.findViewById(R.id.sixhalforgoalsitem);
-//			setFootballListItemBackground(linearGoals, position);
-//
-//			int liuCBBallFieldWidth = iScreenWidth / 2;
-//			BallTable jinqcRow1 = makeBallTable((LinearLayout) convertView,
-//					R.id.liuchangban_ball_1, liuCBBallFieldWidth, ballNum,
-//					ResId, START_ID, (String)mList.get(position).get(RESULT));
-//			ballTables.add(jinqcRow1);
-//			Vector<OneBallView> BallViews1 = jinqcRow1.getBallViews();
-//			for (int i = 0; i < BallViews1.size(); i++) {
-//				final OneBallView ball = BallViews1.get(i);
-//				ball.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						// ball.startAnim();
-//						ball.changeBallColor();
-//						changeTextSumMoney(getZhuShu());
-//					}
-//				});
-//			}
-//			BallTable jinqcRow2 = makeBallTable((LinearLayout) convertView,
-//					R.id.liuchangban_ball_2, liuCBBallFieldWidth, ballNum,
-//					ResId, START_ID, (String)mList.get(position).get(RESULT));
-//			ballTables.add(jinqcRow2);
-//			Vector<OneBallView> BallViews2 = jinqcRow2.getBallViews();
-//			for (int i = 0; i < BallViews2.size(); i++) {
-//				final OneBallView ball2 = BallViews2.get(i);
-//				ball2.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						ball2.startAnim();
-//						ball2.changeBallColor();
-//						changeTextSumMoney(getZhuShu());
-//					}
-//				});
-//			}
-//
-//			holder.lie.setText((String.valueOf(position + 1)));
-//
-//			if (scores1 == null || scores2.equals(null)) {
-//				holder.teamnamerank1.setText(team1);
-//				holder.teamnamerank2.setText(team2);
-//			} else {
-//				holder.teamnamerank1.setText(team1 + "[" + scores1 + "]");
-//				holder.teamnamerank2.setText(team2 + "[" + scores2 + "]");
-//			}
-//			holder.info.setOnClickListener(new OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//					getFootballAnalysisData(index);
-//				}
-//			});
-//			return convertView;
-//		}
-//
-//		class ViewHolder {
-//			TextView lie;
-//			TextView teamnamerank1;
-//			TextView teamnamerank2;
-//			LinearLayout layout;
-//			ImageView info;
-//		}
-//	}
-	/**close by yejc 20130425 end*/
 	
 	// add by yejc 20130327
 		private class ListViewAdapter extends BaseAdapter {
@@ -314,9 +176,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 							.findViewById(R.id.guest_team);
 					holder.analysis = (TextView) convertView
 							.findViewById(R.id.zc_sfc_analysis);
-					holder.layout = (LinearLayout) convertView
-							.findViewById(R.id.liuchangban_ball_layout);
-					
 					holder.home = (TextView) convertView
 							.findViewById(R.id.liuchangban_banchang);
 					holder.guest = (TextView) convertView
@@ -413,7 +272,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 			TextView analysis;
 			TextView home;
 			TextView guest;
-			LinearLayout layout;
 		}
 
 		// end
@@ -792,17 +650,15 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	/**
 	 * 投注提示框中的信息
 	 */
-	private String getTouzhuAlert() {
-		int iZhuShu = getZhuShu();
-		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
-				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
-				+ (iZhuShu * 2) + "元";
-
-	}
+//	private String getTouzhuAlert() {
+//		int iZhuShu = getZhuShu();
+//		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
+//				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
+//				+ (iZhuShu * 2) + "元";
+//	}
 
 	@Override
 	public void onClick(View v) {
-
 	}
 
 	/**
@@ -842,10 +698,10 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	}
 
-	private String getFormatZhuma() {
-		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
-				+ "选号结果：\n" + getZhuMa();
-	}
+//	private String getFormatZhuma() {
+//		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
+//				+ "选号结果：\n" + getZhuMa();
+//	}
 
 	private void initBetPojo() {
 		RWSharedPreferences pre = new RWSharedPreferences(

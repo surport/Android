@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,7 +30,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,12 +72,12 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	LogOutDialog logOutDialog;// 注销框
 	ProgressDialog dialog, progressDialog;
 	private Dialog nicknameDialog;
-	private List<Map<String, Object>> list;/* 列表适配器的数据源 */
+//	private List<Map<String, Object>> list;/* 列表适配器的数据源 */
 	private static final String IICON = "IICON";
 	private final static String TITLE = "TITLE"; /* 标题 */
 	protected String phonenum, sessionid, userno, certid, mobileid, name;
 	protected LinearLayout usecenerLinear;
-	private final int DIALOG_BINDED = 1, DIALOG_BINDPHONE = 2;
+//	private final int DIALOG_BINDED = 1, DIALOG_BINDPHONE = 2;
 	protected Button returnButton;
 	protected TextView titleTextView;
 	private boolean isgetscroe = true;// 是否获取积分
@@ -134,16 +132,13 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(NewUserCenter.this, UserLogin.class);
 				startActivity(intent);
 			}
 		});
 		register.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(NewUserCenter.this, UserLogin.class);
 				intent.putExtra("regist", "regist");
 				startActivity(intent);
@@ -152,25 +147,20 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		logintextview = (TextView) findViewById(R.id.usercenterlogin);
 		registertextview = (TextView) findViewById(R.id.usercenterregister);
 		logintextview.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(NewUserCenter.this, UserLogin.class);
 				startActivity(intent);
 			}
 		});
 		registertextview.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(NewUserCenter.this, UserLogin.class);
 				intent.putExtra("regist", "regist");
 				startActivity(intent);
 			}
 		});
-
 	}
 
 	protected void initReturn() {
@@ -186,7 +176,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		} else {
 			returnButton.setVisibility(View.GONE);
 		}
-
 	}
 
 	private String getnickname(String nickname) {
@@ -196,7 +185,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			String name = nickname.substring(0, 5) + "**";
 			return name;
 		}
-
 	}
 
 	protected void initsroreshow() {
@@ -225,33 +213,28 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		usermoneylist.setOnItemClickListener(clickListener);
 		usercaipiaolist.setOnItemClickListener(clickListener);
 		usersetlist.setOnItemClickListener(clickListener);
-		setListViewHeightBasedOnChildren(usermoneylist);
-		setListViewHeightBasedOnChildren(usersetlist);
-
+		PublicMethod.setListViewHeightBasedOnChildren(usermoneylist, 40, this);
+		PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 	}
 
+	/**move to PublicMethod by yejc 20130520 start*/
 	// 设置listview 高度
-	public void setListViewHeightBasedOnChildren(ListView listView) {
-
-		ListAdapter listAdapter; // 取得listview绑定的适配器
-
-		if (listView.getAdapter() == null) {
-			return;
-		}
-		listAdapter = listView.getAdapter();
-
-		ViewGroup.LayoutParams params = listView.getLayoutParams(); // 取得listview所在布局的参数
-
-		params.height = PublicMethod.getPxInt(40, this)
-				* (listAdapter.getCount());
-
-		listView.setLayoutParams(params); // 改变listview所在布局的参数
-	}
+//	public void setListViewHeightBasedOnChildren(ListView listView, int dip) {
+//		ListAdapter listAdapter; // 取得listview绑定的适配器
+//		if (listView.getAdapter() == null) {
+//			return;
+//		}
+//		listAdapter = listView.getAdapter();
+//		ViewGroup.LayoutParams params = listView.getLayoutParams(); // 取得listview所在布局的参数
+//		params.height = PublicMethod.getPxInt(dip, this)
+//				* (listAdapter.getCount());
+//		listView.setLayoutParams(params); // 改变listview所在布局的参数
+//	}
+	/**move to PublicMethod by yejc 20130520 end*/
 
 	private void getFeedbackListNet() {
 		dialog.show();
 		new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 				Constants.feedBackData = FeedBackListInterface.getInstance()
@@ -268,28 +251,12 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 					msg.what = 11;
 					msg.obj = Constants.feedBackJSONArray;
 					//end
-					
-					//close 20130411
-//					if (errorCode.equals("0000")) {
-//						Constants.feedBackJSONArray = feedjson
-//								.getJSONArray("result");
-//						if (Constants.feedBackJSONArray.length() == 0) {
-//							msg.what = 13;
-//						} else {
-//							msg.what = 11;
-//							msg.obj = Constants.feedBackJSONArray;
-//						}
-//					} else {
-//						msg.what = 13;
-//						msg.obj = feedjson.getString("message");
-//					}
 					handler.sendMessage(msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
 		}).start();
-
 	}
 
 	// 用户积分显示控件
@@ -436,7 +403,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			LayoutInflater inflater = (LayoutInflater) NewUserCenter.this
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View view = inflater.inflate(R.layout.usercenter_bindphone, null);
@@ -458,7 +424,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					final String nickname2 = nickname.getText().toString();
 					if (nicknameIsRight(nickname2)) {
 						showDialog(0);
@@ -466,7 +431,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								jsonString = SetupnicknameInterface
 										.getInstance().setupnickname(userno,
 												nickname2);
@@ -482,7 +446,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 											@Override
 											public void run() {
-												// TODO Auto-generated method
 												// stub
 												Toast.makeText(
 														NewUserCenter.this,
@@ -501,7 +464,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 											@Override
 											public void run() {
-												// TODO Auto-generated method
 												// stub
 												Toast.makeText(
 														NewUserCenter.this,
@@ -515,7 +477,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 										});
 									}
 								} catch (Exception e) {
-
+									e.printStackTrace();
 								}
 							}
 						}).start();
@@ -526,7 +488,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					nicknameDialog.dismiss();
 				}
 			});
@@ -537,19 +498,16 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 	private boolean nicknameIsRight(String nickname) {
 		boolean isRight = true;
-
 		int chineseNum = (nickname.getBytes().length - nickname.length()) / 2;
 		int charNum = nickname.length() - chineseNum;
 		int positonNum = chineseNum * 2 + charNum;
-
 		if (positonNum < 4 || positonNum > 16) {
 			isRight = false;
-			Toast.makeText(this, "昵称应该为4-16个字符", 1).show();
+			Toast.makeText(this, "昵称应该为4-16个字符", Toast.LENGTH_LONG).show();
 		} else if (nickname.indexOf(" ") > -1 || nickname.indexOf("　") > -1) {
 			isRight = false;
-			Toast.makeText(this, "您输入的昵称含有非法字符，请重新输入。", 1).show();
+			Toast.makeText(this, "您输入的昵称含有非法字符，请重新输入。", Toast.LENGTH_LONG).show();
 		}
-
 		return isRight;
 	}
 
@@ -564,10 +522,8 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	// 用户点击进入相关页面监听器
 	protected void clickTextView(TextView layout, final String str) {
 		layout.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				textStr = str;
 				isLogin();
 			}
@@ -600,10 +556,8 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		pointcontent.setText("查询中...");
 		// showDialog(0);
 		new Thread(new Runnable() {
-
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				jsonString = QueryintegrationInterface.getInstance()
 						.queryintegration(phonenum, sessionid, userno);
 				Message msg = new Message();
@@ -827,7 +781,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 						String errcode = aa.getString("error_code");
 						String message = aa.getString("message");
 						if (errcode.equals("0047")) {
-
 							msg.what = 1;
 							msg.obj = message;
 							handler.sendMessage(msg);
@@ -867,7 +820,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 						String errcode = aa.getString("error_code");
 						String message = aa.getString("message");
 						if (errcode.equals("0047")) {
-
 							msg.what = 1;
 							msg.obj = message;
 							handler.sendMessage(msg);
@@ -936,7 +888,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					UserScroeDetailQueryPojo scroeDetailPojo = new UserScroeDetailQueryPojo();
 					scroeDetailPojo.setUserno(userno);
 					scroeDetailPojo.setSessionid(sessionid);
@@ -1159,11 +1110,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	}
 
 	@Override
-	protected void onStart() {
-		super.onStart();
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
@@ -1176,7 +1122,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			List<Map<String, Object>> list2 = getListForusersetAdapter();
 			UerCenterAdapter adapter2 = new UerCenterAdapter(this, list2);
 			usersetlist.setAdapter(adapter2);
-			setListViewHeightBasedOnChildren(usersetlist);
+			PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 		} else {
 			List<Map<String, Object>> list2 = getListForAccountAdapter();
 			UerCenterAdapter adapter2 = new UerCenterAdapter(this, list2);
@@ -1184,11 +1130,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			usercentertop.setVisibility(View.INVISIBLE);
 			usercenterrigist_no.setVisibility(View.VISIBLE);
 		}
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
 	}
 
 	@Override
@@ -1202,11 +1143,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 		PublicMethod.myOutLog("onPause", "onPause");
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
 	}
 
 	/**
@@ -1228,7 +1164,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	 * 从上一个activity返回当前activity执行的方法
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		switch (resultCode) {
 		case RESULT_OK:
 			isLogin();
@@ -1238,7 +1173,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 	@Override
 	public void onOkClick() {
-		// TODO Auto-generated method stub
 		Constants.hasLogin = false;
 		PublicConst.isthirdlogin = false;
 		NewUserCenter.this.finish();
@@ -1246,8 +1180,5 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	}
 
 	@Override
-	public void onCancelClick() {
-		// TODO Auto-generated method stub
-
-	}
+	public void onCancelClick() {}
 }

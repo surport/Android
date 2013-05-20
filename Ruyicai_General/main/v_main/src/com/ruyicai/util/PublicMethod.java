@@ -43,11 +43,13 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -2571,6 +2573,23 @@ public class PublicMethod {
 	public static int getPxInt(float dip, Context context) {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				dip, context.getResources().getDisplayMetrics());
+	}
+	
+	/**
+	 * 设置listview 高度
+	 * @param listView
+	 * @param dip
+	 */
+	public static void setListViewHeightBasedOnChildren(ListView listView, int dip, Context context) {
+		ListAdapter listAdapter; // 取得listview绑定的适配器
+		if (listView.getAdapter() == null) {
+			return;
+		}
+		listAdapter = listView.getAdapter();
+		ViewGroup.LayoutParams params = listView.getLayoutParams(); // 取得listview所在布局的参数
+		params.height = PublicMethod.getPxInt(dip, context)
+				* (listAdapter.getCount());
+		listView.setLayoutParams(params); // 改变listview所在布局的参数
 	}
 
 	/**

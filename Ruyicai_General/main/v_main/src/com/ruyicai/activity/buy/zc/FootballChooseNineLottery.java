@@ -13,7 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -25,11 +24,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +36,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -91,7 +87,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	String advanceBatchCodeData;
 
 	LayoutInflater layoutInflater;
-//	ListViewAdapter listViewDemo; //close by yejc 20130425
 	ScrollView mHScrollView;
 	LinearLayout buyView;
 	TextView mTextSumMoney;
@@ -280,8 +275,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		footBallList = (ListView) findViewById(R.id.buy_footballlottery_list);
 		list = getListForMainListAdapter();
 		ballTables.clear();// 每次初始化足彩选区列表就清空BallTable的 Vector中的数据
-//		listViewDemo = new ListViewAdapter(this, list); //close by yejc 20130327
-//		footBallList.setAdapter(listViewDemo); //close by yejc 20130327
 		
 		//add by yejc 20130327
 		ListViewAdapterChooseNine adapter = new ListViewAdapterChooseNine(this, list);
@@ -327,12 +320,12 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	/**
 	 * 投注提示框中的信息
 	 */
-	private String getTouzhuAlert() {
-		int iZhuShu = getZhuShu();
-		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
-				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
-				+ (iZhuShu * 2) + "元";
-	}
+//	private String getTouzhuAlert() {
+//		int iZhuShu = getZhuShu();
+//		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
+//				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
+//				+ (iZhuShu * 2) + "元";
+//	}
 
 	/**
 	 * 假设数组的id为ai 每个小球的id为ai*10+小球.Resid 这样就能保证小球id的唯一性
@@ -340,166 +333,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	public static final int RENXJ_START_ID = 0x83000001;
 	/** 小球起始id */
 	public int iAllBallWidth;
-
-	/**close by yejc 20130425 start*/
-//	public class ListViewAdapter extends BaseAdapter {
-//		private Context context;
-//		private List<Map<String, Object>> mList;
-//		private LayoutInflater mInflater; // 扩充主列表布局
-//
-//		public ListViewAdapter(Context context, List<Map<String, Object>> list) {
-//			this.context = context;
-//			mInflater = LayoutInflater.from(context);
-//			mList = list;
-//		}
-//
-//		public View getView(int position, View convertView, ViewGroup parent) {
-//			int[] aResId = { R.drawable.grey, R.drawable.red };
-//
-//			int START_ID;
-//			START_ID = RENXJ_START_ID + position * 3;
-//
-//			String team1 = (String) mList.get(position).get("TEAM1");
-//			String team2 = (String) mList.get(position).get("TEAM2");
-//			String scores1 = (String) mList.get(position).get("SCORES1");
-//			String scores2 = (String) mList.get(position).get("SCORES2");
-//			final int indexPosition = position;
-//			ViewHolder holder = null;
-//
-//			convertView = mInflater.inflate(
-//					R.layout.buy_football_sforchosenine_listitem, null);
-//
-//			holder = new ViewHolder();
-//			holder.lie = ((TextView) convertView.findViewById(R.id.lienum));
-//			holder.teamname = (TextView) convertView
-//					.findViewById(R.id.teamname);
-//			holder.teamrank = (TextView) convertView
-//					.findViewById(R.id.teamrank);
-//			holder.layout = (LinearLayout) convertView
-//					.findViewById(R.id.shengfucai_layout);
-//			holder.info = (ImageView) convertView.findViewById(R.id.fenxi);
-//			LinearLayout linearChoseNine = (LinearLayout) convertView
-//					.findViewById(R.id.sforchoosenine_item);
-//			setFootballListItemBackground(linearChoseNine, position);
-//			final BallTable renxuanjRow = makeBallTable(
-//					(LinearLayout) convertView, R.id.shengfucai_ball, aResId,
-//					START_ID, null);
-//			ballTables.add(renxuanjRow);
-//			Vector<OneBallView> BallViews = renxuanjRow.getBallViews();
-//			for (int i = 0; i < BallViews.size(); i++) {
-//				final OneBallView ball = BallViews.get(i);
-//				ball.setOnClickListener(new OnClickListener() {
-//					public void onClick(View v) {
-//
-//						// 点击前判断单式和复式，处理点击小球的改变
-//						if (isMultipleBets()) {
-//							// 如果是复式投注
-//							if (ball.getiShowString().equals("胆")) {
-//								// 如果点击胆球且本场比赛被选中，并且不能超过8个，则胆球变色
-//								if (ballTables.get(indexPosition)
-//										.getHighlightBallNums() > 0
-//										&& getDanNums() < 8) {
-//									ball.changeBallColor();
-//								}
-//							} else {
-//								// 如果点击不是胆球，则小球变色
-//								ball.changeBallColor();
-//
-//								// 判断该场比赛是否被选中，如果点击后，比赛为被选中，则取消胆球
-//								OneBallView danBall = ballTables
-//										.get(indexPosition).ballViewVector
-//										.get(3);
-//								if (danBall.getShowId() == 1
-//										&& ballTables.get(indexPosition)
-//												.getHighlightBallNums() == 1) {
-//									danBall.changeBallColor();
-//								}
-//							}
-//						} else {
-//							// 如果是单式投注
-//							if (!ball.getiShowString().equals("胆")) {
-//								// 不是胆球，则改变颜色
-//								ball.changeBallColor();
-//							} else {
-//								// 是胆球，则提示用户不能设胆
-//								Toast.makeText(context, "您不是复式投注，无法设胆",
-//										Toast.LENGTH_SHORT).show();
-//							}
-//						}
-//
-//						// 点击完成后，判断当前是否是复式投注，处理胆球改变：如果不是复式投注，取消所有设胆
-//						if (!isMultipleBets()) {
-//							for (int i = 0; i < ballTables.size(); i++) {
-//								Vector<OneBallView> rowBalls = ballTables
-//										.get(i).ballViewVector;
-//
-//								for (int j = 0; j < rowBalls.size(); j++) {
-//									OneBallView danBallView = rowBalls.get(3);
-//
-//									if (danBallView.getShowId() == 1) {
-//										danBallView.changeBallColor();
-//									}
-//								}
-//							}
-//						}
-//						changeTextSumMoney(getZhuShu());
-//					}
-//				});
-//			}
-//
-//			if (position < 9) {
-//				holder.lie.setText((String.valueOf(position + 1)) + "  ");
-//			} else {
-//				holder.lie.setText((String.valueOf(position + 1)));
-//			}
-//
-//			if (team1.length() == 2) {
-//				team1 = "　" + team1;
-//			}
-//			if (team2.length() == 2) {
-//				team2 += "　";
-//			}
-//
-//			holder.teamname.setText(team1 + "VS" + team2);
-//			try {
-//				if (scores1 != null)
-//					holder.teamrank.setText("  " + scores1 + "   " + scores2);
-//			} catch (Exception e) {
-//
-//			}
-//			holder.info.setOnClickListener(new OnClickListener() {
-//				public void onClick(View v) {
-//					getFootballAnalysisData(indexPosition);
-//				}
-//			});
-//
-//			return convertView;
-//		}
-//
-//		class ViewHolder {
-//			TextView lie;
-//			TextView teamname;
-//			TextView teamrank;
-//			ImageView info;
-//			LinearLayout layout;
-//		}
-//
-//		@Override
-//		public int getCount() {
-//			return mList.size();
-//		}
-//
-//		@Override
-//		public Object getItem(int position) {
-//			return mList.get(position);
-//		}
-//
-//		@Override
-//		public long getItemId(int position) {
-//			return position;
-//		}
-//	}
-	/**close by yejc 20130425 end*/
 	
 	// add by yejc 20130327
 	private class ListViewAdapterChooseNine extends BaseAdapter {
@@ -548,8 +381,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 						.findViewById(R.id.guest_team);
 				holder.analysis = (TextView) convertView
 						.findViewById(R.id.zc_sfc_analysis);
-				holder.layout = (LinearLayout) convertView
-						.findViewById(R.id.shengfucai_layout);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -668,9 +499,7 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		TextView homeTeam;
 		TextView guestTeam;
 		TextView analysis;
-		LinearLayout layout;
 	}
-
 	// end
 
 	/**
@@ -710,7 +539,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	 */
 	private int getDanNums() {
 		int count = 0;
-
 		for (int i = 0; i < ballTables.size(); i++) {
 			if (ballTables.get(i).ballViewVector.get(3).getShowId() == 1) {
 				count++;
@@ -802,7 +630,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	 */
 	private static int caculateZhuShu(int[] danGames, int[][] notDanGames) {
 		int betNums = 0;
-
 		// 计算胆部组合数
 		int danBetNums = 1;
 		for (int dan_i = 0; dan_i < danGames.length; dan_i++) {
@@ -1429,7 +1256,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 			}
 		});
@@ -1439,7 +1265,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 			public void onClick(View v) {
 				dialog.cancel();
 				initBetPojo();
-				// TODO Auto-generated method stub
 				if (isGift) {
 					toActivity(zhuma);
 				} else if (isJoin) {
@@ -1537,7 +1362,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
@@ -1548,24 +1372,19 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
-
 	}
 
 	private void getZCAdvanceBatchCodeData(final String Lotno) {
@@ -1633,7 +1452,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				progressdialog.dismiss();
@@ -1685,7 +1503,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				getZCAdvanceBatchCodeData(Constants.LOTNO_RX9);
 			}
 		});
