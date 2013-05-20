@@ -400,7 +400,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 * 
 	 */
 	public String isNull(String str) {
-		String string;
 		if (str == null || str.equals("")) {
 			return "0";
 		} else {
@@ -680,6 +679,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 						}
 						addviewmiss.setCodeAmt(betAndGift.getAmt());
 						getTouzhuAlert();
+						progressAtm(); //add by yejc 20130520
 					}
 				});
 	}
@@ -815,13 +815,16 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			allAtm = iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu;
-			renText.setText("占总额"
-					+ progress(isNull(buyEdit.getText().toString()), ""
-							+ allAtm) + "%");// 总金额
-			baoText.setText("占总额"
-					+ progress(isNull(safeEdit.getText().toString()), ""
-							+ allAtm) + "%");// 总金额
+			progressAtm(); //add by yejc 20130520
+			/**close by yejc 20130520 start*/
+//			allAtm = iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu;
+//			renText.setText("占总额"
+//					+ progress(isNull(buyEdit.getText().toString()), ""
+//							+ allAtm) + "%");// 总金额
+//			baoText.setText("占总额"
+//					+ progress(isNull(safeEdit.getText().toString()), ""
+//							+ allAtm) + "%");// 总金额
+			/**close by yejc 20130520 end*/
 			// changeTextSumMoney();
 			break;
 		default:
@@ -916,4 +919,17 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		}
 		return false;
 	}
+	
+	/**add by yejc 20130520 start*/
+	private void progressAtm() {
+		allAtm = iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu;
+		renText.setText("占总额"
+				+ progress(isNull(buyEdit.getText().toString()), ""
+						+ allAtm) + "%");// 总金额
+		baoText.setText("占总额"
+				+ progress(isNull(safeEdit.getText().toString()), ""
+						+ allAtm) + "%");// 总金额
+	}
+	/**add by yejc 20130520 end*/
+	
 }
