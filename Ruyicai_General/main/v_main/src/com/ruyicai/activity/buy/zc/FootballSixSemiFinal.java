@@ -195,7 +195,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		ListViewAdapter adapter = new ListViewAdapter(this, list);
 		mlist.setAdapter(adapter);
 		// end
-		PublicMethod.setListViewHeightBasedOnChildren(mlist, 115, this);
+		PublicMethod.setListViewHeightBasedOnChildren(mlist, 120, this);
 	}
 
 	// add by yejc 20130327

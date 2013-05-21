@@ -128,7 +128,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		ListViewAdapter adapter = new ListViewAdapter(this, list);
 		mlist.setAdapter(adapter);
 		// end
-		PublicMethod.setListViewHeightBasedOnChildren(mlist, 115, this);
+		PublicMethod.setListViewHeightBasedOnChildren(mlist, 120, this);
 	}
 
 	
