@@ -62,7 +62,7 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 		initTextViewContent();
 
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
-		accountTitleTextView.setText("银联充值");
+		accountTitleTextView.setText("银联卡充值");
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);

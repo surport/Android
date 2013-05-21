@@ -83,11 +83,19 @@ public class Windetail extends Activity {
 			batchcode.setVisibility(View.GONE);
 			kaijianghao.setVisibility(View.GONE);
 		} else {
-			kaijianghao.setVisibility(View.VISIBLE);
-			if (info.getWincode().equals("")) {
-				kaijianghao.append("未开奖");
+			if (lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+				kaijianghao.setVisibility(View.GONE);
 			} else {
-				kaijianghao.append(info.getWincode());
+				kaijianghao.setVisibility(View.VISIBLE);
+				if (info.getWincode().equals("")) {
+					kaijianghao.append("未开奖");
+				} else {
+					kaijianghao.append(info.getWincode());
+				}
 			}
 			batchcode.setVisibility(TextView.VISIBLE);
 			batchcode.append(info.getBatchCode());

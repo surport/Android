@@ -75,27 +75,15 @@ public class AccountListActivity extends Activity {
 		/**add by yejc 20130419 end*/
 	}
 
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-23
 		Constants.MEMUTYPE = 0;
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-23
-	}
-
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 
 	/**
@@ -110,7 +98,6 @@ public class AccountListActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				TextView AccountType = (TextView) view
 						.findViewById(R.id.account_recharge_listview_text);
 				textString = AccountType.getText().toString();
@@ -205,14 +192,14 @@ public class AccountListActivity extends Activity {
 				Intent intent = new Intent(context, AlipaySecureActivity.class);
 				startActivity(intent);
 			}
-		} else if ((getString(R.string.zhfb_cards_secure_recharge) + "(免手续费)")
+		} else if ((getString(R.string.zhfb_cards_secure_recharge) + getString(R.string.freeHanding))
 				.equals(textString)) {// 支付宝安全支付
 			if (isLogin()) {
 				Intent alipay_secure = new Intent(context,
 						AlipaySecurePayDialog.class);
 				startActivity(alipay_secure);
 			}
-		} else if ((getString(R.string.bank_cards_recharge) + "(免手续费)")
+		} else if ((getString(R.string.bank_cards_recharge) + getString(R.string.freeHanding))
 				.equals(textString)) {// 银联语音支付
 			if (isLogin()) {
 				Intent intent = new Intent(context, YinDNAPayActivity.class);
@@ -223,7 +210,7 @@ public class AccountListActivity extends Activity {
 				Intent intent = new Intent(context, LakalaActivity.class);
 				startActivity(intent);
 			}
-		} else if ("银联充值(免手续费)".equals(textString)) {// 银联支付
+		} else if ("银联卡充值(推荐使用)".equals(textString)) {// 银联支付
 			if (isLogin()) {
 				Intent intent = new Intent(context, YinPayActivity.class);
 				startActivity(intent);
@@ -239,7 +226,7 @@ public class AccountListActivity extends Activity {
 			Intent intent = new Intent(context, Accoutmovecash.class);
 			startActivity(intent);
 			/**add by yejc 20130505 start*/
-		} else if ((getString(R.string.umpay_recharge) + "(免手续费)")
+		} else if ((getString(R.string.umpay_recharge) + getString(R.string.freeHanding))
 				.equals(textString)) { 
 			if (isLogin()) {
 				Intent alipay_secure = new Intent(context,
@@ -259,12 +246,20 @@ public class AccountListActivity extends Activity {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 
 		Map<String, Object> map;
+		// 银联支付
+		map = new HashMap<String, Object>();
+		map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
+		map.put(PICTURE, R.drawable.recharge_bank);
+		map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
+		list.add(map);
+		
 		// 支付宝安全支付
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.zhfb_cards_secure_recharge));
 		map.put(PICTURE, R.drawable.recharge_alipay_safe);
 		map.put(ISHANDINGFREE, getString(R.string.account_zfb_secure));
 		list.add(map);
+		
 		// 支付宝充值
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.zhfb_cards_recharge));
@@ -272,31 +267,29 @@ public class AccountListActivity extends Activity {
 		map.put(ISHANDINGFREE, getString(R.string.account_zfb_alert));
 		list.add(map);
 
-		// 银联支付
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
-		map.put(PICTURE, R.drawable.recharge_bank);
-		map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
-		list.add(map);
-		// 银行卡电话充值
+		// 银联语音支付
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.bank_cards_recharge));
 		map.put(PICTURE, R.drawable.recharge_phone);
 		map.put(ISHANDINGFREE, getString(R.string.account_card_alert));
 		list.add(map);
+		
+		/**add by yejc 20130505 start*/
+		//联动优势充值
+		map = new HashMap<String, Object>();
+		map.put(TITLE, getString(R.string.umpay_recharge));
+		map.put(PICTURE, R.drawable.recharge_umpay);
+		map.put(ISHANDINGFREE, getString(R.string.account_umplay_alert));
+		list.add(map);
+		/**add by yejc 20130505 end*/
+		
 		// 拉卡拉充值
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.la_ka_la_recharge));
 		map.put(PICTURE, R.drawable.lakala_icon);
 		map.put(ISHANDINGFREE, getString(R.string.la_ka_la_alert));
 		list.add(map);
-		// 手机充值卡充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.phone_cards_recharge));
-		map.put(PICTURE, R.drawable.recharge_phonebank);
-		map.put(ISHANDINGFREE, getString(R.string.account_phone_alert));
-		list.add(map);
-
+		
 		// 银行支付
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.account_chongzhi));
@@ -310,15 +303,14 @@ public class AccountListActivity extends Activity {
 		map.put(PICTURE, R.drawable.recharge_atm);
 		map.put(ISHANDINGFREE, getString(R.string.account_zhuanzhang_alert));
 		list.add(map);
-		
-		/**add by yejc 20130505 start*/
-		//联动优势充值
+				
+		// 手机充值卡充值
 		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.umpay_recharge));
-		map.put(PICTURE, R.drawable.recharge_umpay);
-		map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
+		map.put(TITLE, getString(R.string.phone_cards_recharge));
+		map.put(PICTURE, R.drawable.recharge_phonebank);
+		map.put(ISHANDINGFREE, getString(R.string.account_phone_alert));
 		list.add(map);
-		/**add by yejc 20130505 end*/
+
 		return list;
 	}
 
@@ -342,17 +334,14 @@ public class AccountListActivity extends Activity {
 		}
 
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			ViewHolder holder = null;
 			String title = (String) mList.get(position).get(TITLE);
 			Integer iconid = (Integer) mList.get(position).get(PICTURE);
@@ -374,15 +363,17 @@ public class AccountListActivity extends Activity {
 			SpannableStringBuilder builder1 = new SpannableStringBuilder();
 			String str1 = title;
 			builder1.append(str1);
-			if (position == 0 || position == 1 || position == 2
-					|| position == 3 || position == 8) {
-				String alertStr1 = "(免手续费)";
-				builder1.append(alertStr1);
-				builder1.setSpan(new ForegroundColorSpan(Color.RED),
-						builder1.length() - alertStr1.length(),
-						builder1.length(), Spanned.SPAN_COMPOSING);
+			
+			String alertStr1 = "";
+			if(position == 0) {
+				alertStr1 = getString(R.string.recommend_the_use_of);
+			}else if (position == 1 || position == 2
+					|| position == 3 || position == 4) {
+				alertStr1 = getString(R.string.freeHanding);
 			} else if (position == 6) {
-				String alertStr1 = "(推荐)";
+				alertStr1 = getString(R.string.account_chongzhi_good);
+			}
+			if (!alertStr1.equals("")) {
 				builder1.append(alertStr1);
 				builder1.setSpan(new ForegroundColorSpan(Color.RED),
 						builder1.length() - alertStr1.length(),
@@ -422,7 +413,6 @@ public class AccountListActivity extends Activity {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (isonkey.equals("fasle")) {

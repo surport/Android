@@ -164,8 +164,6 @@ public class Betdetail extends Activity {
 				touzhu.setVisibility(View.GONE);
 				kaijianghao.setVisibility(View.GONE);
 			} else {
-				batchcode.append(prizeqihao);
-//				Button touzhu = (Button) findViewById(R.id.bet_detail_img_ok);
 				touzhu.setVisibility(View.VISIBLE);
 				touzhu.setOnClickListener(new OnClickListener() {
 					public void onClick(View v) {
@@ -173,6 +171,7 @@ public class Betdetail extends Activity {
 					}
 				});
 			}
+			batchcode.append(prizeqihao);
 		}
 
 	}
