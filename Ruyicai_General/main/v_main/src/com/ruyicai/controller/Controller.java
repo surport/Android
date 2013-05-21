@@ -82,10 +82,7 @@ public class Controller {
 							public void run() {
 								// TODO Auto-generated method stub
 								dialog.dismiss();
-								Toast.makeText(
-										mContext,
-										msg, Toast.LENGTH_SHORT).show();
-
+								PublicMethod.showMessage(mContext, msg);
 							}
 						});
 					}
@@ -97,9 +94,7 @@ public class Controller {
 						public void run() {
 							// TODO Auto-generated method stub
 							dialog.dismiss();
-							Toast.makeText(mContext,
-									"获取失败", Toast.LENGTH_SHORT).show();
-
+							PublicMethod.showMessage(mContext,mContext.getResources().getString(R.string.gaopincai_prize_title_fail));
 						}
 					});
 				}
