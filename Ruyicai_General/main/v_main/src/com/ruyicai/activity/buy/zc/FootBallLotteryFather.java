@@ -486,23 +486,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 			EndTime = endTime;
 		}
 	}
-	
-    public void setListViewHeight(ListView listView) {
-    	BaseAdapter listAdapter = (BaseAdapter) listView.getAdapter();
-        if (listAdapter == null) {
-            return;
-        }
-//        int totalHeight = 0;
-//        for (int i = 0; i < listAdapter.getCount(); i++) {
-//            View listItem = listAdapter.getView(i, null, listView);
-//            listItem.measure(0, 0);
-//            totalHeight += listItem.getMeasuredHeight();
-//        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = (listView.getDividerHeight() + 165) * (listAdapter.getCount())
-                + 20;
-        listView.setLayoutParams(params);
-    }
 	/**add by yejc 20130425 end*/
 
 }

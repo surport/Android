@@ -27,7 +27,6 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -286,15 +285,11 @@ public class FootballSFLottery extends FootballFourteen implements
 	 * 初始化列表
 	 */
 	public void initList() {
-
 		mlist = (ListView) findViewById(R.id.buy_footballlottery_list);
 		list = getListForMainListAdapter();
 		ballTables.clear();// 每次初始化足彩选区列表就清空BallTable的 Vector中的数据
-//		listViewDemo = new ListViewDemo(this, list);
-//		mlist.setAdapter(listViewDemo);
 		ListViewAdapter adapter = new ListViewAdapter(this, list);
 		mlist.setAdapter(adapter);
-
 	}
 
 	public void createVeiw() {
@@ -337,13 +332,12 @@ public class FootballSFLottery extends FootballFourteen implements
 	/**
 	 * 投注提示框中的信息
 	 */
-	private String getTouzhuAlertText() {
-		int iZhuShu = getZhuShu();
-		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
-				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
-				+ (iZhuShu * 2) + "元";
-
-	}
+//	private String getTouzhuAlertText() {
+//		int iZhuShu = getZhuShu();
+//		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
+//				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
+//				+ (iZhuShu * 2) + "元";
+//	}
 
 	/**
 	 * 假设数组的id为ai 每个小球的id为ai*10+小球.Resid 这样就能保证小球id的唯一性
@@ -352,132 +346,6 @@ public class FootballSFLottery extends FootballFourteen implements
 	public static final int SHENGFC_START_ID = 0x83000001;
 	public int iAllBallWidth;
 	public View views[] = new View[14];
-
-	/**colse by yejc 20130425 start*/
-//	public class ListViewDemo extends BaseAdapter {
-//
-//		private Context context;
-//		private List<Map<String, Object>> mList;
-//		private LayoutInflater mInflater; // 扩充主列表布局
-//
-//		public ListViewDemo(Context context, List<Map<String, Object>> list) {
-//			this.context = context;
-//			mInflater = LayoutInflater.from(context);
-//			mList = list;
-//		}
-//
-//		@Override
-//		public int getCount() {
-//			return mList.size();
-//
-//		}
-//
-//		@Override
-//		public Object getItem(int position) {
-//			return mList.get(position);
-//		}
-//
-//		@Override
-//		public long getItemId(int position) {
-//			return position;
-//
-//		}
-//
-//		@Override
-//		public View getView(final int position, View convertView,
-//				ViewGroup parent) {
-//
-//			int[] aResId = { R.drawable.grey, R.drawable.red };
-//
-//			int START_ID;
-//
-//			final int index = position;
-//			START_ID = SHENGFC_START_ID + position * 3;
-//			String team1 = (String) mList.get(position).get("TEAM1");
-//			String team2 = (String) mList.get(position).get("TEAM2");
-//			String scores1 = (String) mList.get(position).get("SCORES1");
-//			String scores2 = (String) mList.get(position).get("SCORES2");
-//
-//			ViewHolder holder = null;
-//			holder = new ViewHolder();
-//			convertView = mInflater
-//					.inflate(R.layout.buy_football_sforchosenine_listitem,
-//							parent, false);
-//			holder.lie = ((TextView) convertView.findViewById(R.id.lienum));
-//			holder.teamname = (TextView) convertView
-//					.findViewById(R.id.teamname);
-//			holder.teamrank = (TextView) convertView
-//					.findViewById(R.id.teamrank);
-//			holder.layout = (LinearLayout) convertView
-//					.findViewById(R.id.shengfucai_layout);
-//			holder.info = (ImageView) convertView.findViewById(R.id.fenxi);
-//			LinearLayout linearSF = (LinearLayout) convertView
-//					.findViewById(R.id.sforchoosenine_item);
-//			setFootballListItemBackground(linearSF, position);
-//			int aFieldWidth = iScreenWidth / 3;
-//			BallTable shengfcRow = null;
-//
-////			shengfcRow = makeBallTable(holder.layout, R.id.shengfucai_ball,
-////					aResId, START_ID);
-//			if (ballTables.size() < mList.size()) {
-//				ballTables.add(shengfcRow);
-//			}
-//			Vector<OneBallView> BallViews = shengfcRow.getBallViews();
-//			for (int i = 0; i < BallViews.size(); i++) {
-//				final OneBallView ball = BallViews.get(i);
-//				ball.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						// ball.startAnim();
-//						ball.changeBallColor();
-//						changeTextSumMoney(getZhuShu());
-//					}
-//				});
-//			}
-//
-//			if (position < 9) {
-//				holder.lie.setText((String.valueOf(position + 1)) + "  ");
-//			} else {
-//				holder.lie.setText((String.valueOf(position + 1)));
-//			}
-//
-//			if (team1.length() == 2) {
-//				team1 = "　" + team1;
-//			}
-//			if (team2.length() == 2) {
-//				team2 += "　";
-//			}
-//
-//			holder.teamname.setText(team1 + "VS" + team2);
-//			try {
-//				if (scores1 != null) {
-//					holder.teamrank.setText("  " + scores1 + "   " + scores2);
-//				}
-//
-//			} catch (Exception e) {
-//
-//			}
-//
-//			holder.info.setOnClickListener(new OnClickListener() {
-//				@Override
-//				public void onClick(View v) {
-//
-//					getInfo(index);
-//				}
-//			});
-//			return convertView;
-//		}
-//
-//		class ViewHolder {
-//			TextView lie;
-//			TextView teamname;
-//			TextView teamrank;
-//			ImageView info;
-//			LinearLayout layout;
-//		}
-//
-//	}
-	/**colse by yejc 20130425 end*/
 	
 	//add by yejc 20130325
 	private class ListViewAdapter extends BaseAdapter {
@@ -610,13 +478,9 @@ public class FootballSFLottery extends FootballFourteen implements
 			map.put(TEAM_ID, teamInfos.get(i).teamId);
 			map.put(RESULT, teamInfos.get(i).result);
 			map.put(ISSUE, teamInfos.get(i).issue);
-//			map.put(VICTORY, teamInfos.get(i).victory);
-//			map.put(EQUAL, teamInfos.get(i).equal);
-//			map.put(LOSE, teamInfos.get(i).lose);
 			//end
 			list.add(map);
 		}
-
 		return list;
 	}
 
@@ -656,12 +520,10 @@ public class FootballSFLottery extends FootballFourteen implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	/**
@@ -866,13 +728,6 @@ public class FootballSFLottery extends FootballFourteen implements
 							team.result = re.getString("avgOdds");
 							team.issue = batchCode;
 							team.teamId = re.getString("tempId");
-//							String result = re.getString("avgOdds");
-//							if (result != null && !result.equals("")) {
-//								String str[] = result.split("\\|");
-//								team.victory = str[0];
-//								team.equal = str[1];
-//								team.lose = str[2];
-//							}
 							//end
 							teamInfos.add(team);
 						}
@@ -978,27 +833,11 @@ public class FootballSFLottery extends FootballFourteen implements
 		}).start();
 	}
 
-	protected void onStart() {
-		super.onStart();
-	}
-
-	protected void onPause() {
-		super.onPause();
-	}
-
-	protected void onStop() {
-		super.onStop();
-	}
-
 	protected void onDestroy() {
 		super.onDestroy();
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
-	}
-
-	protected void onResume() {
-		super.onResume();
 	}
 
 	private void initBetPojo() {
@@ -1035,10 +874,10 @@ public class FootballSFLottery extends FootballFourteen implements
 		startActivity(intent);
 	}
 
-	private String getFormatZhuma() {
-		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
-				+ "选号结果：\n" + getZhuma();
-	}
+//	private String getFormatZhuma() {
+//		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
+//				+ "选号结果：\n" + getZhuma();
+//	}
 
 	/**
 	 * 单复式投注调用函数

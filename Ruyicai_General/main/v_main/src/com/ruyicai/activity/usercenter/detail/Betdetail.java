@@ -162,6 +162,7 @@ public class Betdetail extends Activity {
 					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
 					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)){
 				touzhu.setVisibility(View.GONE);
+				kaijianghao.setVisibility(View.GONE);
 			} else {
 				batchcode.append(prizeqihao);
 //				Button touzhu = (Button) findViewById(R.id.bet_detail_img_ok);

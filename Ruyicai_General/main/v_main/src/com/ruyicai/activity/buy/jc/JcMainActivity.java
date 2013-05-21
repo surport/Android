@@ -38,9 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.BuyGameDialog;
-import com.ruyicai.activity.buy.NoticeHistroy;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
 import com.ruyicai.activity.buy.jc.touzhu.TouzhuDialog;
 import com.ruyicai.activity.buy.jc.zq.view.BFView;
@@ -49,7 +47,6 @@ import com.ruyicai.activity.buy.jc.zq.view.HunHeZqView;
 import com.ruyicai.activity.buy.jc.zq.view.SPfView;
 import com.ruyicai.activity.buy.jc.zq.view.ZJQView;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.more.LuckChoose2;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
@@ -81,8 +78,8 @@ public class JcMainActivity extends Activity implements
 	private MyHandler handler = new MyHandler(this);// 自定义handler
 	public BetAndGiftPojo betAndGift = new BetAndGiftPojo();// 投注信息类
 	private String msg;
-	private boolean isGift = false;// 是否赠送
-	private boolean isTouzhu = true;// 是否投注
+//	private boolean isGift = false;// 是否赠送
+//	private boolean isTouzhu = true;// 是否投注
 	private Dialog dialogType = null;// 玩法切换提示框
 	private View viewType;
 	protected JcMainView lqMainView;
@@ -107,7 +104,6 @@ public class JcMainActivity extends Activity implements
 		setContentView(R.layout.buy_jc_main_new);
 		context = this;
 		initView();
-
 	}
 
 	public void setLotNo(String lotno) {
@@ -128,7 +124,6 @@ public class JcMainActivity extends Activity implements
 		popupView.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
 				if (popupwindow != null && popupwindow.isShowing()) {
 					popupwindow.dismiss();
 					popupwindow = null;
@@ -141,14 +136,14 @@ public class JcMainActivity extends Activity implements
 				.findViewById(R.id.buy_group_layout1);
 		final LinearLayout layoutHosity = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout2);
-		final LinearLayout layoutLuck = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_layout3);
+//		final LinearLayout layoutLuck = (LinearLayout) popupView
+//				.findViewById(R.id.buy_group_layout3);
 		final LinearLayout layoutQuery = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout4);
 		final LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
-		final LinearLayout layoutParentPicture = (LinearLayout) popupView
-				.findViewById(R.id.buy_group_one_layout5);
+//		final LinearLayout layoutParentPicture = (LinearLayout) popupView
+//				.findViewById(R.id.buy_group_one_layout5);
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -511,7 +506,6 @@ public class JcMainActivity extends Activity implements
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView,
 						boolean isChecked) {
-					// TODO Auto-generated method stub
 					if (isChecked) {
 						switch (buttonView.getId()) {
 						case R.id.radio0:
@@ -603,12 +597,6 @@ public class JcMainActivity extends Activity implements
 
 	}
 
-	private void initSeekBar() {
-		iProgressBeishu = 1;
-		mSeekBarBeishu.setProgress(iProgressBeishu);
-		mTextBeishu.setText("" + iProgressBeishu);
-	}
-
 	/**
 	 * 投注方法
 	 */
@@ -617,7 +605,6 @@ public class JcMainActivity extends Activity implements
 			touzhuDialog = new TouzhuDialog(this, lqMainView);
 			touzhuDialog.alert();
 		}
-		;
 	}
 
 	/**
@@ -667,12 +654,10 @@ public class JcMainActivity extends Activity implements
 		} catch (IOException e) {
 			return; // should not happen, so donot do error handling
 		}
-		//
 		Intent intent = new Intent(JcMainActivity.this,
 				JoinStartActivityjc.class);
 		intent.putExtra("info", byteStream.toByteArray());
 		startActivity(intent);
-
 	}
 
 	/**
@@ -685,7 +670,6 @@ public class JcMainActivity extends Activity implements
 		// 加入是否改变切入点判断 陈晨 8.11
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
-
 			@Override
 			public void run() {
 				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
@@ -715,11 +699,9 @@ public class JcMainActivity extends Activity implements
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
-
 		switch (seekBar.getId()) {
 		case R.id.buy_jc_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
@@ -730,7 +712,6 @@ public class JcMainActivity extends Activity implements
 		default:
 			break;
 		}
-
 	}
 
 	protected void onStop() {
@@ -743,66 +724,23 @@ public class JcMainActivity extends Activity implements
 	}
 
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		createView(TYPE, isDanguan);
 		PublicMethod.showDialog(context);
 	}
 
-	// public void showfenxdialog(String str){
-	// LayoutInflater inflate = (LayoutInflater)
-	// this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	// View view = inflate.inflate(R.layout.touzhu_succe,null);
-	// final AlertDialog dialog = new AlertDialog.Builder(this).create();
-	// ImageView image = (ImageView) view.findViewById(R.id.touzhu_succe_img);
-	// Button ok = (Button) view.findViewById(R.id.touzhu_succe_button_sure);
-	// Button share = (Button)
-	// view.findViewById(R.id.touzhu_succe_button_share);
-	// TextView message=(TextView)view.findViewById(R.id.TextView2222);
-	// message.setText(str);
-	// image.setImageResource(R.drawable.succee);
-	// ok.setBackgroundResource(R.drawable.loginselecter);
-	// share.setBackgroundResource(R.drawable.loginselecter);
-	// ok.setOnClickListener(new OnClickListener() {
-	// public void onClick(View v) {
-	// // TODO Auto-generated method stub
-	// dialog.cancel();
-	// JcMainActivity.this.finish();
-	// }
-	// });
-	// share.setOnClickListener(new OnClickListener() {
-	// public void onClick(View v) {
-	// // TODO Auto-generated method stub
-	// dialog.cancel();
-	// Intent intent =new Intent(JcMainActivity.this,JoinStarShare.class);
-	// JcMainActivity.this.startActivity(intent);
-	// JcMainActivity.this.finish();
-	// }
-	// });
-	//
-	// dialog.show();
-	// dialog.getWindow().setContentView(view);
-	// }
-
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -810,7 +748,6 @@ public class JcMainActivity extends Activity implements
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			lqMainView.clearInfo();
@@ -822,14 +759,12 @@ public class JcMainActivity extends Activity implements
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
