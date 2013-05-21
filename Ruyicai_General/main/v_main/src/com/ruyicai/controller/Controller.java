@@ -47,7 +47,7 @@ public class Controller {
 	/**
 	 * 投注action
 	 */
-   public void doBettingAction(final Context mContext,final MyHandler handler,final BetAndGiftPojo betAndGift) {
+   public void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
 		final ProgressDialog dialog = PublicMethod.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
 		if (dialog != null && dialog.isShowing()) return;
 		dialog.show();
