@@ -72,7 +72,7 @@ public class Controller {
 								//PublicMethod
 								//		.showDialog(mContext);
 								//information.dismiss();
-								//handler.se(error, msg);
+								handler.handleMsg(error, msg);
 							}
 						});
 					} else {
