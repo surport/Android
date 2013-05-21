@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,7 +30,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.sax.StartElementListener;
 import android.telephony.SmsManager;
 import android.text.Editable;
@@ -65,6 +68,7 @@ import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
 import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.activity.buy.gdeleven.GdEleven;
+import com.ruyicai.activity.buy.high.High_Frequencyrevenue_Recovery;
 import com.ruyicai.activity.buy.jc.lq.LqMainActivity;
 import com.ruyicai.activity.buy.jc.zq.ZqMainActivity;
 import com.ruyicai.activity.buy.miss.ZiXuanTouZhu;
@@ -78,6 +82,7 @@ import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
@@ -86,6 +91,7 @@ import com.ruyicai.pojo.OneBallView;
 /*Add by fansm 20130412 start*/
 /*add debug switch*/
 import com.ruyicai.constant.Constants;
+import com.ruyicai.handler.MyHandler;
 /*Add by fansm 20130412 end*/
 import com.umeng.analytics.MobclickAgent;
 
@@ -106,7 +112,9 @@ public class PublicMethod {
 	private static String METHODNAME = "methodName";
 
 	/* Add by fansm 20130412 end */
-
+	/* Add by fansm 20130520 start */
+	private static ProgressDialog progressDialog = null;
+	/* Add by fansm 20130520 end */
 	/**
 	 * 求组合
 	 * 
@@ -2884,7 +2892,22 @@ public class PublicMethod {
 	 * @param message
 	 */
 	public static void showMessage(Context mContext, String message) {
-		Toast.makeText(mContext, message, Toast.LENGTH_LONG).show();
+		Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 	}
-
+   /**
+    * 网络连接对话框
+    * @param mContext
+    * @param msg
+    * @return
+    */
+	public static ProgressDialog onCreateDialog(final Context mContext,String msg) {
+		if (progressDialog == null) {
+			progressDialog = new ProgressDialog(
+					mContext);
+			progressDialog.setMessage(msg);
+			progressDialog.setIndeterminate(true);
+		}
+		return progressDialog;
+	}
+	
 }
