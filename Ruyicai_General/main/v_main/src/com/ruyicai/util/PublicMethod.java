@@ -64,16 +64,13 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.DirectPayActivity;
-import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
 import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.activity.buy.gdeleven.GdEleven;
-import com.ruyicai.activity.buy.high.High_Frequencyrevenue_Recovery;
 import com.ruyicai.activity.buy.jc.lq.LqMainActivity;
 import com.ruyicai.activity.buy.jc.zq.ZqMainActivity;
-import com.ruyicai.activity.buy.miss.ZiXuanTouZhu;
 import com.ruyicai.activity.buy.pl3.PL3;
 import com.ruyicai.activity.buy.pl5.PL5;
 import com.ruyicai.activity.buy.qlc.Qlc;
