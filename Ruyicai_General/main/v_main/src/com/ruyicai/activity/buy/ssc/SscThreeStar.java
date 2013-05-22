@@ -31,7 +31,7 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lotnoStr = Constants.LOTNO_SSC;
-		childtype = new String[] { "直选" };
+		childtype = new String[] { "直选" ,"组三","组六"};
 		setContentView(R.layout.sscbuyview);
 		sscCode = new ThreeStarCode();
 		self = this;
@@ -53,33 +53,59 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 	public void onCheckAction(int checkedId) {
 		switch (checkedId) {
 		case 0:
-			radioId = 0;
-			isjixuan = false;
-			BallTable shitable;
-			BallTable getable;
-			iProgressBeishu = 1;
-			iProgressQishu = 1;
-			String baititle = "百位区：";
-			String shititle = "十位区：";
-			String getitle = "个位区：";
-			AreaNum[] areaNums = new AreaNum[3];
-			areaNums[0] = new AreaNum(10, 10, 1, 11, BallResId, 0, 0,
-					Color.RED, baititle, false, true);
-			areaNums[1] = new AreaNum(10, 10, 1, 11, BallResId, 0, 0,
-					Color.RED, shititle, false, true);
-			areaNums[2] = new AreaNum(10, 10, 1, 11, BallResId, 0, 0,
-					Color.RED, getitle, false, true);
-			createViewNew(areaNums, sscCode, ZixuanAndJiXuan.THREE, true,
-					checkedId);
-			BallTable = areaNums[0].table;
-			shitable = areaNums[1].table;
-			getable = areaNums[2].table;
-			isMissNet(new SscMissJson(), MissConstant.SSC_5X_ZX, false);// 获取遗漏值
-			isMissNet(new SscZMissJson(), MissConstant.SSC_MV_3ZHI_ZH, true);// 获取遗漏值
+			setDirectSelect(checkedId);
+			break;
+		case 1:
+			setGroupThree(checkedId);
+			break;
+		case 2:
+			setGroupSix(checkedId);
 			break;
 		}
 	}
-
+	/**
+	 * direct select
+	 * @param checkedId
+	 */
+    private void setDirectSelect(int checkedId) {
+		radioId = 0;
+		isjixuan = false;
+		BallTable shitable;
+		BallTable getable;
+		iProgressBeishu = 1;
+		iProgressQishu = 1;
+		String baititle = "百位区：";
+		String shititle = "十位区：";
+		String getitle = "个位区：";
+		AreaNum[] areaNums = new AreaNum[3];
+		areaNums[0] = new AreaNum(10, 10, 1, 11, BallResId, 0, 0,
+				Color.RED, baititle, false, true);
+		areaNums[1] = new AreaNum(10, 10, 1, 11, BallResId, 0, 0,
+				Color.RED, shititle, false, true);
+		areaNums[2] = new AreaNum(10, 10, 1, 11, BallResId, 0, 0,
+				Color.RED, getitle, false, true);
+		createViewNew(areaNums, sscCode, ZixuanAndJiXuan.THREE, true,
+				checkedId);
+		BallTable = areaNums[0].table;
+		shitable = areaNums[1].table;
+		getable = areaNums[2].table;
+		isMissNet(new SscMissJson(), MissConstant.SSC_5X_ZX, false);// 获取遗漏值
+		isMissNet(new SscZMissJson(), MissConstant.SSC_MV_3ZHI_ZH, true);// 获取遗漏值
+    }
+    /**
+     * group three
+     * @param checkedId
+     */
+    private void setGroupThree(int checkedId) {
+    	
+    }
+    /**
+     * group six
+     * @param checkedId
+     */
+    private void setGroupSix(int checkedId) {
+    	
+    }
 	public String getZhuma() {
 		String zhuma = "";
 		zhuma = sscCode.zhuma(areaNums, iProgressBeishu, 0);
