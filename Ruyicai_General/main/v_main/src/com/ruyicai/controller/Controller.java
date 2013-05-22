@@ -20,9 +20,8 @@ public class Controller {
     private Context mProviderContext;
 
     protected Controller(Context _context) {
-        mContext = _context.getApplicationContext();
-        mProviderContext = _context;
-
+        mContext = _context;
+//        mProviderContext = _context;
     }
 
     /**
