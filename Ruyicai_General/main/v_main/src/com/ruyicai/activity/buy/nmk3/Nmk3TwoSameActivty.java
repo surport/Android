@@ -165,29 +165,43 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			}
 			// 如果是单式
 			else if (getZhuShu() == 1) {
-				for (int aear_i = 0; aear_i < areaNums.length; aear_i++) {
-					int[] aearnumbers = areaNums[aear_i].table
-							.getHighlightBallNOs();
-					String numberPart = "";
-					if (aear_i == 0) {
-						String numbers = String.valueOf(aearnumbers[0]);
-						for (int number_j = 0; number_j < numbers.length(); number_j++) {
-							numberPart = PublicMethod.getZhuMa(Integer
-									.valueOf((String) numbers.subSequence(
-											number_j, number_j + 1)));
-							numbersPart.append(numberPart);
-						}
-
-					} else {
-						numberPart = PublicMethod.getZhuMa(aearnumbers[0]);
-						numbersPart.append(numberPart);
-					}
-
+				//分别获取两个选号面板的号码
+				int[] aearnumbers0 = areaNums[0].table
+						.getHighlightBallNOs();
+				int[] aearnumbers1 = areaNums[1].table
+						.getHighlightBallNOs();
+				String numberPart = "";
+				//判断面板号码的大小
+				if((aearnumbers0[0]%10) > aearnumbers1[0]){
+					montageSmallNumber(numbersPart, aearnumbers1);
+					montageBigNumber(numbersPart, aearnumbers0);
+				}else{
+					montageBigNumber(numbersPart, aearnumbers0);
+					montageSmallNumber(numbersPart, aearnumbers1);
 				}
 			}
 		}
 
 		return numbersPart.toString();
+	}
+
+	private void montageBigNumber(StringBuffer numbersPart, int[] aearnumbers0) {
+		String numberPart;
+		//在拼接前面大的号码
+		String numbers = String.valueOf(aearnumbers0[0]);
+		for (int number_j = 0; number_j < numbers.length(); number_j++) {
+			numberPart = PublicMethod.getZhuMa(Integer
+					.valueOf((String) numbers.subSequence(
+							number_j, number_j + 1)));
+			numbersPart.append(numberPart);
+		}
+	}
+
+	private void montageSmallNumber(StringBuffer numbersPart, int[] aearnumbers1) {
+		String numberPart;
+		//拼接后面小的号码
+		numberPart = PublicMethod.getZhuMa(aearnumbers1[0]);
+		numbersPart.append(numberPart);
 	}
 
 	private String getMutiplePart() {
