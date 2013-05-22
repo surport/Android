@@ -1103,16 +1103,24 @@ public class FootballSFLottery extends FootballFourteen implements
 							aa.setEndTime(formatEndtime(item
 									.getString("endTime")));
 							/**add by yejc 20130425 start*/
-							aa.setState(item.getString("state"));
 							String batchCode = item.getString("batchCode");
-							if (batchCode != null) {
-								if ("5".equals(item.getString("state"))) {
-									String waitIssue = getResources().getString(R.string.football_wait_issue);
-									SpannableString text = new SpannableString(batchCode + waitIssue);
-									text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-									text.setSpan(new ForegroundColorSpan(Color.RED), batchCode.length(), batchCode.length()+waitIssue.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-									spanBactchCodes[i] = text;
-								} else {
+							if (item.has("state")) {
+								aa.setState(item.getString("state"));
+								if (batchCode != null) {
+									if ("5".equals(item.getString("state"))) {
+										String waitIssue = getResources().getString(R.string.football_wait_issue);
+										SpannableString text = new SpannableString(batchCode + waitIssue);
+										text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+										text.setSpan(new ForegroundColorSpan(Color.RED), batchCode.length(), batchCode.length()+waitIssue.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+										spanBactchCodes[i] = text;
+									} else {
+										SpannableString text = new SpannableString(batchCode);
+										text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+										spanBactchCodes[i] = text;
+									}
+								}
+							} else {
+								if (batchCode != null) {
 									SpannableString text = new SpannableString(batchCode);
 									text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, batchCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 									spanBactchCodes[i] = text;
