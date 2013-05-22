@@ -269,6 +269,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 				ShellRWConstants.CAIZHONGSETTING);
 
 		caizhongSettingList = new ArrayList<Map<String, String>>();
+
 		Map<String, String> map1 = new HashMap<String, String>();
 		map1.put("lotno", "hmdt");
 		map1.put("caizhongSetting", shellRW.getStringValue("hmdt").toString());
@@ -1176,16 +1177,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	public void initRollingText() {
 		ViewFlipper mFlipper = ((ViewFlipper) this
 				.findViewById(R.id.notice_other_flipper));
-		// String str[] = splitStr(Constants.NEWS, 23);
-		// for (int i = 0; i < str.length; i++) {
-		// mFlipper.addView(addTextByText(str[i]));
-		// }
-		// mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
-		// R.anim.push_up_in));
-		// mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-		// R.anim.push_up_out));
-		// mFlipper.startFlipping();
-		// mFlipper.setTag(0);
 		mFlipper.setOnClickListener(filterclick);
 		if ("".equals(Constants.NEWS)) {
 			registerIntentReceivers();
