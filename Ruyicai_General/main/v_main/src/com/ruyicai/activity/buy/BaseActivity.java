@@ -116,7 +116,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 		public void action() {
 			if (areaNums != null) {
 				if (areaNums[0].isAgain) {
-					int[] iHighlightBallId = getRandom(areaNums.length);
+					int[] iHighlightBallId = PublicMethod.getRandomsWithoutCollision(areaNums.length,0,areaNums[0].areaNum - 1);
 					for (int i = 0; i < areaNums.length; i++) {
 						areaNums[i].table.clearAllHighlights();
 						areaNums[i].table.changeBallState(
@@ -133,17 +133,5 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 			}
 		}
 
-	}
-
-	/**
-	 * 随机数
-	 * 
-	 * @param int aRandomNums 随机高亮小球的数量
-	 * @return void
-	 */
-	public int[] getRandom(int aRandomNums) {
-		int[] iHighlightBallId = PublicMethod.getRandomsWithoutCollision(
-				aRandomNums, 0, areaNums[0].areaNum - 1);
-		return iHighlightBallId;
 	}
 }
