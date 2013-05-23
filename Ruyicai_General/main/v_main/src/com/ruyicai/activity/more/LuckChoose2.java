@@ -2261,13 +2261,13 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	 */
 	String[] arrayCaipiaoId = { Constants.LOTNO_SSQ, Constants.LOTNO_DLT,
 			Constants.LOTNO_FC3D, Constants.LOTNO_SSC, Constants.LOTNO_11_5,
-			Constants.LOTNO_eleven, Constants.LOTNO_GD_11_5 };
+			Constants.LOTNO_eleven, Constants.LOTNO_GD_11_5, Constants.LOTNO_ten };
 
 	String[] arrayCaipiaoCode = { "ssq", "cjdlt", "fc3d", Constants.LOTNO_SSC,
 			Constants.LOTNO_11_5, Constants.LOTNO_eleven,
-			Constants.LOTNO_GD_11_5 };
+			Constants.LOTNO_GD_11_5, Constants.LOTNO_ten };
 	String[] arrayCaipiaoName = { "双色球", "大乐透", "福彩3D", "时时彩", "江西11选5",
-			"11运夺金", "广东11选5" };
+			"11运夺金", "广东11选5", "广东快乐十分"};
 	String[] arrayCaipiaoWanfa = { "星座", "生肖", "姓名", "生日" };
 	String[] arrayCaipiaoBeishu = { "1注", "2注", "3注", "4注", "5注", "6注", "7注",
 			"8注", "9注", "10注" };
