@@ -923,8 +923,8 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 				if (isBeiShu) {
 					if (isAdd == 1) {
 						iProgressBeishu++;
-						if (iProgressBeishu > 99) {
-							iProgressBeishu = 99;
+						if (iProgressBeishu > 200) {
+							iProgressBeishu = 200;
 						}
 						mSeekBar.setProgress(iProgressBeishu);
 					} else {
