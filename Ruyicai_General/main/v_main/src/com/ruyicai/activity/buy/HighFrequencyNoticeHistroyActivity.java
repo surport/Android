@@ -262,10 +262,10 @@ public class HighFrequencyNoticeHistroyActivity extends Activity {
 				iNumbers = PublicMethod.formatNum(iNumbers, 1);
 			} else if (lotno.equals(Constants.LOTNO_ten)) {
 				if (PublicMethod.getDisplayWidth(context) == 240) {
-					holder.date.setTextSize(PublicMethod.getPxInt(15, context));
+//					holder.date.setTextSize(PublicMethod.getPxInt(15, context));
 					iNumbers = PublicMethod.formatNum(iNumbers, 2);
 				} else {
-					holder.date.setTextSize(PublicMethod.getPxInt(9, context));
+//					holder.date.setTextSize(PublicMethod.getPxInt(9, context));
 					iNumbers = PublicMethod.formatNum(iNumbers, 2);
 				}
 			} else {
