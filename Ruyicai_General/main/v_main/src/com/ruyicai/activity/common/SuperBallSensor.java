@@ -17,7 +17,7 @@ import com.ruyicai.util.SensorActivity;
  * @author Administrator
  * 
  */
-public class BallSensor extends SensorActivity {
+public class SuperBallSensor extends SensorActivity {
 	
 	public int dataCol[];/**符合提交的数据*/
 	private static int selectNum = 2;
@@ -26,7 +26,7 @@ public class BallSensor extends SensorActivity {
 	private int BALL_SENDSOR_RESULT = 1;
 	private List<String> list = null;
 	Builder reSelectDlg = null;
-	public BallSensor(Context context,Handler handler) {
+	public SuperBallSensor(Context context,Handler handler) {
 		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "BallSensor()");
 		getContext(context);
 		this.handler = handler;

@@ -165,6 +165,8 @@ public class Constants {
 
 	public static JSONObject currentLotnoInfo = new JSONObject();
 
+
+	
 	public static final String LOTNO_SSQ = "F47104"; // 双色球
 	public static final String LOTNO_QLC = "F47102"; // 七乐彩
 	public static final String LOTNO_FC3D = "F47103"; // 福彩3D
@@ -216,6 +218,11 @@ public class Constants {
 	
 	public static final String BEIJINGSINGLE = "beiDan";
 	public static final String PLAY_METHOD_TYPE = "playMethodType";
+    /**add by fansm 20130515 start*/
+	public static String[] lotnoNameList = {"hmdt",LOTNO_SSQ,LOTNO_DLT,LOTNO_FC3D,LOTNO_11_5,LOTNO_SSC,LOTNO_JCZ
+        ,LOTNO_NMK3,LOTNO_eleven,"zjjh",LOTNO_GD_11_5,LOTNO_PL3,LOTNO_QLC,LOTNO_22_5
+        ,LOTNO_PL5,LOTNO_QXC,LOTNO_ZC,LOTNO_JCL,LOTNO_ten,LOTNO_BJ_SINGLE};    
+	/**add by fansm 20130515 end */
 
 	/**
 	 * 彩种代码

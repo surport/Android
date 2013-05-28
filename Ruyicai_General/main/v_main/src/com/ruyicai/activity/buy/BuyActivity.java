@@ -193,11 +193,11 @@ public class BuyActivity extends Activity implements OnClickListener {
 		HEIGHT = getWindowManager().getDefaultDisplay().getHeight();// 屏幕的高度
 		viewPagerContainer = (ViewPager) findViewById(R.id.viewpager);
 		ZixuanAndJiXuan.clearBatchCode();
+		initRollingText();
 		initNumber();
 		initLights();
 		// initGallery();
 		initImgView();
-		initRollingText();
 		isShortcut();
 		MobclickAgent.onEvent(this, "goucaidating"); // BY贺思明 点击主导航上的“购彩大厅”。
 	}
@@ -269,6 +269,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 				ShellRWConstants.CAIZHONGSETTING);
 
 		caizhongSettingList = new ArrayList<Map<String, String>>();
+
 		Map<String, String> map1 = new HashMap<String, String>();
 		map1.put("lotno", "hmdt");
 		map1.put("caizhongSetting", shellRW.getStringValue("hmdt").toString());
@@ -336,7 +337,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map13.put("caizhongSetting", shellRW.getStringValue("qlc").toString());
 		caizhongSettingList.add(map13);
 		
-		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_22_5,this);
 		Map<String, String> map14 = new HashMap<String, String>();
 		map14.put("lotno", "T01013");
 		map14.put("caizhongSetting", shellRW.getStringValue("22-5").toString());
@@ -1181,18 +1181,8 @@ public class BuyActivity extends Activity implements OnClickListener {
 	public void initRollingText() {
 		ViewFlipper mFlipper = ((ViewFlipper) this
 				.findViewById(R.id.notice_other_flipper));
-		// String str[] = splitStr(Constants.NEWS, 23);
-		// for (int i = 0; i < str.length; i++) {
-		// mFlipper.addView(addTextByText(str[i]));
-		// }
-		// mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
-		// R.anim.push_up_in));
-		// mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-		// R.anim.push_up_out));
-		// mFlipper.startFlipping();
-		// mFlipper.setTag(0);
 		mFlipper.setOnClickListener(filterclick);
-		if ("".equals(Constants.NEWS)) {
+		if ("".equals(Constants.NEWS) || "".equals(Constants.todayjosn)) {
 			registerIntentReceivers();
 		} else {
 			//TextView text = (TextView) findViewById(R.id.notice_other_title);
@@ -1205,6 +1195,7 @@ public class BuyActivity extends Activity implements OnClickListener {
     private void newsUpdateHandler() {
 		TextView text = (TextView) findViewById(R.id.notice_other_title);
 		text.setText(Constants.NEWS);
+		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_22_5,this);
 		if (newsUpdateReceiver != null) {
 			unregisterIntentReceivers();
 		}
