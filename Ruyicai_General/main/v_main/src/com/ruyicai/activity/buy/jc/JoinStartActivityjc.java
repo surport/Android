@@ -106,6 +106,7 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		descriptionEdit = (EditText) findViewById(R.id.layout_join_edit_description);
 
 		buyEdit.setText("1");
+		
 		safeEdit.setText("0");
 		minEdit.setText("1");
 		deductSpinner = (Spinner) findViewById(R.id.layout_join_start_spinner);
@@ -145,7 +146,11 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		// 赋值
 		beishu = Integer.parseInt(betAndGift.getLotmulti());
 		allAtm = Integer.parseInt(betAndGift.getAmount()) / 100;
-
+		/**add by pengcx 20130523 start*/
+		String amount = buyEdit.getText().toString();
+		renText.setText("占总额" + progress(isNull(amount), "" + allAtm)
+				+ "%");// 总金额
+		/**add by pengcx 20130523 end*/
 		zhushu = allAtm / beishu / betAndGift.getAmt();
 		titleText
 				.setText("发起合买-" + PublicMethod.toLotno(betAndGift.getLotno()));

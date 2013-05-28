@@ -82,6 +82,7 @@
        	 <item name="android:layout_height">35.0dip</item>
        	 <item name="android:background">@drawable/upomp_lthj_button_verifycode</item>
        	 <item name="android:gravity">center</item>
+       	 <item name="android:textSize">15dip</item>
 	</style>
 	<style name="upomp_lthj_button_big_single">
 		 <item name="android:layout_width">fill_parent</item>
