@@ -3,6 +3,7 @@ package com.ruyicai.activity.account;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.alipay.android.secure.MobileSecurePayHelper;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -24,21 +25,24 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * 联动优势充值
+ * 联动优势话费充值
  * 
  * @author win
  * 
  */
-public class UmPayActivity extends Activity implements HandlerMsg {
+public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 	public ProgressDialog progressdialog;
 	private final String YINTYPE = "0900";
 	Button secureOk, secureCancel;
@@ -53,7 +57,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 	private final int CREDIT_CARD_RECHARGE = 1; //信用卡充值
 	private final int DEBIT_CARD_RECHARGE = 8; //借记卡充值
 	private String orderId = "";
-	private boolean isUmPay = false;
+	private int money = 3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +65,45 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_alipay_secure_recharge_dialog);
 		initTextViewContent();
-
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
-		accountTitleTextView.setText("联动优势充值");
+		accountTitleTextView.setText("话费充值");
+		TextView title = (TextView)findViewById(R.id.recharge_title);
+		title.setText(R.string.umpay_phone_text_moneny);
+		LinearLayout layout = (LinearLayout)findViewById(R.id.umpay_phone_linear);
+		layout.setVisibility(View.VISIBLE);
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
+		accountnum.setVisibility(View.GONE);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				MobclickAgent.onEvent(UmPayActivity.this, "chongzhi ");
 				beginUmpayRecharge(v);
 			}
 		});
 		secureCancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				UmPayActivity.this.finish();
+				UmPayPhoneActivity.this.finish();
+			}
+		});
+		RadioGroup radioGroup = (RadioGroup)findViewById(R.id.umpay_recharge_radiogroup);
+//		radioGroup.getCheckedRadioButtonId();
+		radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				switch (checkedId) {
+				case R.id.umpay_phone_three:
+					money = 3;
+					break;
+					
+				case R.id.umpay_phone_thirty:
+					money = 30;
+					break;
+
+				default:
+					break;
+				}
 			}
 		});
 	}
@@ -86,7 +113,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				JSONObject jsonObject = getJSONByLotno();
+				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+						.rechargeDescribe("umpayChargeDescription");
 				try {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
@@ -102,51 +130,30 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		}).start();
 	}
 
-	private static JSONObject getJSONByLotno() {
-		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("umpayChargeDescription");
-		return jsonObjectByLotno;
-	}
-
 	// 联动优势充值
 	private void beginUmpayRecharge(View Vi) {
-		String umPayRechargeValue = accountnum.getText().toString();
-		RWSharedPreferences pre = new RWSharedPreferences(UmPayActivity.this,
+		RWSharedPreferences pre = new RWSharedPreferences(UmPayPhoneActivity.this,
 				"addInfo");
 		String sessionIdStr = pre.getStringValue("sessionid");
 		if (sessionIdStr.equals("")) {
-			Intent intentSession = new Intent(UmPayActivity.this,
+			Intent intentSession = new Intent(UmPayPhoneActivity.this,
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (umPayRechargeValue.equals("0")) {
-				Toast.makeText(this, "充值金额不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (umPayRechargeValue.equals("")
-					|| umPayRechargeValue.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
-			} else {
-				RechargePojo rechargepojo = new RechargePojo();
-				rechargepojo.setAmount(umPayRechargeValue);
-				rechargepojo.setRechargetype("11");
-				rechargepojo.setCardtype(YINTYPE);
-				/**add by yejc 20130527 start*/
-				if (isUmPay) {
-					rechargepojo.setBankId("ump003");
-				} else {
-					rechargepojo.setBankId("ump001");
-				}
-				/**add by yejc 20130527 end*/
-				
-				recharge(rechargepojo);
+			// 检测安全支付服务是否被安装，
+			MobileSecurePayHelper mspHelper = new MobileSecurePayHelper(this);
+			boolean isInstall = mspHelper.detectMobile_sp(Constants.PAY_PLUGIN_NAME, Constants.UMPAY_PHONE_PACK_NAME);
+			
+			if (isInstall) {
+				Intent intent = new Intent(UmPayPhoneActivity.this, UmPayPhonePopActivity.class);
+				startActivity(intent);
 			}
 		}
 	}
 
 	// 充值
 	private void recharge(final RechargePojo rechargepojo) {
-		RWSharedPreferences pre = new RWSharedPreferences(UmPayActivity.this,
+		RWSharedPreferences pre = new RWSharedPreferences(UmPayPhoneActivity.this,
 				"addInfo");
 		sessionId = pre.getStringValue(ShellRWConstants.SESSIONID);
 		userno = pre.getStringValue(ShellRWConstants.USERNO);
@@ -158,7 +165,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 			Toast.makeText(this, "提醒：检测到您的接入点为3gwap，可能无法正确充值,请切换到3gnet！",
 					Toast.LENGTH_LONG).show();
 		}
-		progressdialog = UserCenterDialog.onCreateDialog(UmPayActivity.this);
+		progressdialog = UserCenterDialog.onCreateDialog(UmPayPhoneActivity.this);
 		progressdialog.show();
 		new Thread(new Runnable() {
 			@Override
@@ -213,7 +220,6 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		String message = data.getStringExtra("resultMessage");//支付结果描述
-//		String result = data.getStringExtra("resultCode");//支付结果
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
 }

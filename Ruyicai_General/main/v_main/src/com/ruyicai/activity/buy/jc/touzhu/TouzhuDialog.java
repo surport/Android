@@ -5,9 +5,9 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,7 +43,6 @@ public class TouzhuDialog {
 	public double freedomMaxprize = 0;
 	public double freedomMixprize = 0;
 	public int zhuShu = 0;
-	private String prizeamt = "";
 	public boolean isRadio = false;// false是自由过关,true是多串过关
 	private final int MAXAMT = 20000;// 最大投注金额
 
@@ -76,7 +75,7 @@ public class TouzhuDialog {
 	public void alert() {
 		initInfo();
 		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.alert_dialog_jc_touzhu, null);
 		dialog = new Dialog(context, R.style.MyDialog);
 		alertText = (TextView) v
@@ -132,7 +131,6 @@ public class TouzhuDialog {
 			zyBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					isRadio = false;
 					onclikBtn(layout, zyBtn, dcBtn);
 				}
@@ -140,7 +138,6 @@ public class TouzhuDialog {
 			dcBtn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					isRadio = true;
 					onclikBtn(layout, zyBtn, dcBtn);
 				}
@@ -149,7 +146,6 @@ public class TouzhuDialog {
 		final String title = "投注详情";
 		infoBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				showInfoDialog(title, alertMsg);
 			}
 		});
@@ -161,7 +157,6 @@ public class TouzhuDialog {
 
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			RWSharedPreferences pre = new RWSharedPreferences(context,
 					"addInfo");
 			context.sessionId = pre.getStringValue("sessionid");
@@ -173,7 +168,6 @@ public class TouzhuDialog {
 			} else if (zhuShu == 0) {
 				Toast.makeText(context, "请选择过关方式", Toast.LENGTH_SHORT).show();
 			} else {
-
 				if (isAmtDialog()) {
 					alertInfo(
 							context.getString(R.string.jc_main_touzhu_alert_text_content),
@@ -220,15 +214,11 @@ public class TouzhuDialog {
 		Builder dialog = new AlertDialog.Builder(context).setTitle(title)
 				.setMessage(string)
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
 					}
-
 				});
 		dialog.show();
-
 	}
 
 	/**
@@ -370,7 +360,6 @@ public class TouzhuDialog {
 	}
 
 	public String getBetCode(String type) {
-
 		return jcMainView.getBetCode(type);
 	}
 

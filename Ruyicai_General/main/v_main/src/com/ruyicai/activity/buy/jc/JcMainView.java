@@ -2,7 +2,6 @@ package com.ruyicai.activity.buy.jc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,9 +11,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
-import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.net.newtransaction.QueryJcInfoInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
@@ -27,7 +24,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,30 +35,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.custom.checkbox.MyCheckBox;
-import com.ruyicai.net.newtransaction.QueryJcInfoInterface;
-import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
-import com.ruyicai.util.PublicMethod;
-
 public abstract class JcMainView {
 	private ListView listView;
 	protected Context context;
 	private View view;
 	private BetAndGiftPojo betAndGift;// 投注信息类
-	private String[] spinnerStrs = { "2串1", "3串1", "4串1", "5串1", "6串1", "7串1",
-			"8串1" };
+//	private String[] spinnerStrs = { "2串1", "3串1", "4串1", "5串1", "6串1", "7串1",
+//			"8串1" };
 	protected List<Info> listInfo = new ArrayList<Info>();/* 过关列表适配器的数据源 */
 	protected List<Info> listInfo1 = new ArrayList<Info>();/* 单关列表适配器的数据源 */
 	private static JSONArray jsonArray = null;// 过关
 	private static JSONArray jsonArray1 = null;// 单关
-	private int INDEX = 0;
 	private List<String> betcodes = new ArrayList<String>();
 	private List<Boolean> isDanList = new ArrayList<Boolean>();
-	private long iZhuShu;
-	private long iAmt;
-	private final int MAXAMT = 20000;// 最大投注金额
 	private Handler handler;
 	private final static String ERROR_WIN = "0000";
 	private LinearLayout layoutView;
@@ -70,13 +55,6 @@ public abstract class JcMainView {
 	private String jcType;
 	private String jcvaluetype;
 	private List<List> listWeeks = new ArrayList<List>();// 按星期划分数据
-	private final String WEEK_1 = "1";
-	private final String WEEK_2 = "2";
-	private final String WEEK_3 = "3";
-	private final String WEEK_4 = "4";
-	private final String WEEK_5 = "5";
-	private final String WEEK_6 = "6";
-	private final String WEEK_7 = "7";
 	private final int MAX_TEAM = 10;// 最多可选10场比赛
 	private final int MAX_DAN = 7;// 最多设胆7场比赛
 	public boolean isDanguan = false;
@@ -237,7 +215,6 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								initSubView();
 								dialog.cancel();
 							}
@@ -246,7 +223,6 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								dialog.cancel();
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
@@ -396,7 +372,6 @@ public abstract class JcMainView {
 	}
 
 	public boolean isTouZhuNet() {
-		// TODO Auto-generated method stub
 		int checkedNum = initCheckedNum();
 		if (isDanguan) {
 			if (checkedNum >= 1) {// 至少选两个队
@@ -728,8 +703,6 @@ public abstract class JcMainView {
 	}
 
 	public void setTeamNum(int checkTeam) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -920,7 +893,6 @@ public abstract class JcMainView {
 			Button cancel = (Button) viewType.findViewById(R.id.canel);
 			cancel.setOnClickListener(new OnClickListener() {
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
 					dialog.cancel();
 					for (int i = 0; i < check.length; i++) {
 						if (check[i].getChecked()) {
@@ -939,7 +911,6 @@ public abstract class JcMainView {
 			Button ok = (Button) viewType.findViewById(R.id.ok);
 			ok.setOnClickListener(new OnClickListener() {
 				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
 					dialog.cancel();
 					btnStr = "";
 					onclikNum = 0;

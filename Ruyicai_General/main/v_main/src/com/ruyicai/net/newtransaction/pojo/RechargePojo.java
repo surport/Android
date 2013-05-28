@@ -16,6 +16,8 @@ public class RechargePojo {
 	private String bankaddress = "";
 	private String bankName = "";
 	private String bankAccount = "";
+	
+	private String bankId = ""; //add by yejc 20130527
 
 	public String getBankAccount() {
 		return bankAccount;
@@ -136,5 +138,15 @@ public class RechargePojo {
 	public String getBankaddress() {
 		return bankaddress;
 	}
+
+	/**add by yejc 20130527 start*/
+	public String getBankId() {
+		return bankId;
+	}
+
+	public void setBankId(String bankId) {
+		this.bankId = bankId;
+	}
+	/**add by yejc 20130527 end*/
 
 }

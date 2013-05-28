@@ -52,6 +52,7 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -72,10 +73,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	protected String analyseData;
 	int lieNum;
 	MyHandler touzhuhandler = new MyHandler(this);
-	private final static String TEAM1 = "TEAM1";
-	private final static String TEAM2 = "TEAM2";
-	private final static String SCORES1 = "SCORES1";
-	private final static String SCORES2 = "SCORES2";
 	/**add by yejc 20130425 start*/
 	private boolean isaWait = false;
 	private SpannableString[] spanBactchCodes;
@@ -86,7 +83,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	public static final int JINQC_START_ID = 0x84000001;
 	public int iAllBallWidth;
 	LayoutInflater layoutInflater;
-//	ListViewDemo listViewDemo;
 	ScrollView mHScrollView;
 	LinearLayout buyView;
 	ListView mlist;
@@ -101,11 +97,8 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	// 进度条
 	private static final int DIALOG1_KEY = 0;
 	private ProgressDialog progressdialog;
-
 	private Vector<TeamInfo> teamInfos = new Vector<TeamInfo>();
-	private int position;
 	String lotno = Constants.LOTNO_JQC;
-
 	private String[] bactchCodes;// 预售期的期号数组
 	private List<Object> bactchArray = new ArrayList<Object>();// 这个list中存放预售期期号和截止时间的信息
 	String advanceBatchCodeData;
@@ -273,7 +266,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 			TextView home;
 			TextView guest;
 		}
-
 		// end
 
 	/**
@@ -338,13 +330,12 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 						}
 					}
 				} catch (Exception e) {
-
+					e.printStackTrace();
 				}
 				if (error_code.equals("00")) {
 					Message msg = new Message();
 					msg.what = 0;
 					handler.sendMessage(msg);
-
 				} else if (error_code.equals("000000")) {
 					Message msg = new Message();
 					msg.what = 1;
@@ -383,7 +374,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	 */
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
-			String result = msg.getData().getString("get");
 			switch (msg.what) {
 			case 0:
 				progressdialog.dismiss();
@@ -554,7 +544,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 			vTeam8 = obj.getString("VTeam8");
 			avgOdds = obj.getString("avgOdds");
 
-			// title += obj.getString("num");
 			title += obj.getString("HTeam");
 			title += "VS";
 			title += obj.getString("VTeam");
@@ -647,16 +636,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		return null;
 	}
 
-	/**
-	 * 投注提示框中的信息
-	 */
-//	private String getTouzhuAlert() {
-//		int iZhuShu = getZhuShu();
-//		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
-//				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
-//				+ (iZhuShu * 2) + "元";
-//	}
-
 	@Override
 	public void onClick(View v) {
 	}
@@ -697,11 +676,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		return t_str;
 
 	}
-
-//	private String getFormatZhuma() {
-//		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
-//				+ "选号结果：\n" + getZhuMa();
-//	}
 
 	private void initBetPojo() {
 		RWSharedPreferences pre = new RWSharedPreferences(
@@ -768,7 +742,8 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 				} else if (isJoin) {
 					toJoinActivity();
 				} else if (isTouzhu) {
-					touZhuNet();
+//					touZhuNet();
+					Controller.getInstance(FootballGoalsLottery.this).doBettingAction(touzhuhandler, betPojo);
 				}
 			}
 		});
@@ -777,8 +752,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		RadioButton touzhuCheck = (RadioButton) v
 				.findViewById(R.id.alert_dialog_touzhu1_check);
 		touzhuCheck.setChecked(true);
-		TextView textAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_alert);
 		check.setPadding(50, 0, 0, 0);
 		check.setButtonDrawable(R.drawable.check_select);
 		// 实现记住密码 和 复选框的状态
@@ -847,9 +820,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 			} else if (iZhuShu * 2 > 20000) {
 				DialogExcessive();
 			} else {
-				// String sTouzhuAlert = "";
-				// sTouzhuAlert = getTouzhuAlert();
-				// alert(sTouzhuAlert,getFormatZhuma());
 				initBetPojo();
 				toorderdetail();
 			}
@@ -918,35 +888,34 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 					}
 				});
 		dialog.show();
-
 	}
 
 	/**
 	 * 投注联网
 	 */
-	public void touZhuNet() {
-		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					touzhuhandler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
-	}
+//	public void touZhuNet() {
+//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					touzhuhandler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
+//	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
@@ -968,12 +937,10 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	/** 获取分析的数据 */
@@ -989,7 +956,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 					obj = new JSONObject(analyseData);
 					error_code = obj.getString("error_code");
 				} catch (Exception e) {
-
+					e.printStackTrace();
 				}
 				if (error_code.equals("00")) {
 					Message msg = new Message();
@@ -1082,21 +1049,16 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
-
 	}
 
 	@Override
 	void initBatchCodeView() {
 		layout_football_issue.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				getZCAdvanceBatchCodeData(Constants.LOTNO_JQC);
 			}
 		});
-		// layout_football_issue.setTextColor(0xffcc0000);
-		// layout_football_issue.setText(formatBatchCode(qihaoxinxi[0]));
-		// layout_football_time.setText(formatEndtime(qihaoxinxi[1]));
 	}
 
 	private void getZCAdvanceBatchCodeData(final String Lotno) {
@@ -1122,7 +1084,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 						for (int i = 0; i < batchCodeArray.length(); i++) {
 							JSONObject item = batchCodeArray.getJSONObject(i);
 							AdvanceBatchCode aa = new AdvanceBatchCode();
-							// batchCode = item.getString("batchCode");
 							aa.setBatchCode(formatBatchCode(item
 									.getString("batchCode")));
 							aa.setEndTime(formatEndtime(item
@@ -1168,8 +1129,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 						msg.what = 24;
 						msg.obj = message;
 						handler.sendMessage(msg);
-						// Toast.makeText(FootballChooseNineLottery.this,
-						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

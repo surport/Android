@@ -227,6 +227,7 @@
     <string name="atm_recharge">银行转账</string>
     <string name="account_chongzhi">银行充值</string>
     <string name="umpay_recharge">联动优势充值</string>
+    <string name="umpay_phone_recharge">"话费充值"</string>
     <string name="account_chongzhi_good">"(推荐)"</string>
     <string name="freeHanding">"(免手续费)"</string>
     <string name="yin_bank_cards_recharge">银联卡充值</string>
@@ -869,6 +870,7 @@
     <!-- 账户充值 -->
     <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
     <string name="account_umplay_alert">"支持大多数信用卡和借记卡，无限额。"</string>
+    <string name="account_umplay_phone_alert">"支持移动手机话费充值。"</string>
     <string name="account_phone_alert">支持移动、联通、电信话费充值卡。</string>
     <string name="account_zfb_alert">支持借记卡和信用卡充值，免开通网银。</string>
     <string name="account_zfb_secure">安全便捷，免输入密码，支持银行卡充值。</string>
@@ -1159,4 +1161,15 @@
     <string name="nmk3willSaleMessage">"快三即将发售，敬请期待"</string>  
     <string name="bdwillSaleMessage">"北京单场即将发售，敬请期待"</string>  
     <string name="twentyClosedMessage">"22选5已经关闭"</string>  
+    <string name="umpay_recharge_bingphone_submit">提交</string>
+    <string name="umpay_recharge_info">"充值提示信息"</string>
+    <string name="use_bindphone_number">"使用已绑定的手机号"</string>
+    <string name="input_phone_number">"请输入手机号:"</string>
+    <string name="umpay_recharge_description">"1.输入手机号 > 2.接受随机码 > 3.回复随机码"</string>
+    <string name="umpay_recharge_complete_content">"充值随机码已发送至手机，请按手机提示完成下一步"</string>
+    <string name="umpay_phone_text_moneny_three">3元</string>
+    <string name="umpay_phone_text_moneny_thirty">30元</string>
+    <string name="umpay_phone_text_moneny_three_description">"(如意彩3元充值，得2元)"</string>
+    <string name="umpay_phone_text_moneny_thirty_description">"(如意彩30元充值，得20元)"</string>
+    <string name="umpay_phone_text_moneny">请选择充值金额：</string>
 </resources>

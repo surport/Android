@@ -318,7 +318,8 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 
 	public void isInstallSecurePay(String userno, String phonenum, String amt) {
 		MobileSecurePayHelper mspHelper = new MobileSecurePayHelper(this);
-		boolean isMobile_spExist = mspHelper.detectMobile_sp();
+		boolean isMobile_spExist = mspHelper.detectMobile_sp(Constants.ALIPAY_PLUGIN_NAME, 
+				Constants.ALIPAY_PACK_NAME);
 		if (!isMobile_spExist) {
 			return;
 		} else {

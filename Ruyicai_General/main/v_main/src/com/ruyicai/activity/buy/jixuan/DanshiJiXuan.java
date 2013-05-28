@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Vector;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -53,11 +50,11 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.jixuan.Balls;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -72,7 +69,6 @@ import com.umeng.analytics.MobclickAgent;
  */
 public class DanshiJiXuan extends Activity implements
 		SeekBar.OnSeekBarChangeListener, HandlerMsg {
-	private TextView mTextSumMoney;
 	public SeekBar mSeekBarBeishu, mSeekBarQishu;
 	private TextView mTextBeishu, mTextQishu;
 	public int iProgressBeishu = 1, iProgressQishu = 1;
@@ -395,7 +391,6 @@ public class DanshiJiXuan extends Activity implements
 	 */
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -591,7 +586,6 @@ public class DanshiJiXuan extends Activity implements
 		codeInfo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				addView.createCodeInfoDialog();
 				addView.showDialog();
 			}
@@ -599,7 +593,6 @@ public class DanshiJiXuan extends Activity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				touZhuDialog.cancel();
 				toLogin = false;
 				clearProgress();
@@ -639,7 +632,6 @@ public class DanshiJiXuan extends Activity implements
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					betAndGift.setPrizeend("1");
 				} else {
@@ -698,7 +690,6 @@ public class DanshiJiXuan extends Activity implements
 		toLogin = false;
 		initBet();
 		touZhuDialog.cancel();
-		// TODO Auto-generated method stub
 		if (isGift) {
 			String code = addView.getsharezhuma();
 			toActivity(code);
@@ -833,29 +824,29 @@ public class DanshiJiXuan extends Activity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-
-		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(DanshiJiXuan.this).doBettingAction(handler, betAndGift);
+//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					handler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
 	}
 
 	/**
@@ -948,24 +939,13 @@ public class DanshiJiXuan extends Activity implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-
-	}
-
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		if (!toLogin) {
@@ -976,17 +956,11 @@ public class DanshiJiXuan extends Activity implements
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 		if (!toLogin) {
 			sensor.stopAction();
 		}
-	}
-
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 
 	/*
@@ -996,7 +970,6 @@ public class DanshiJiXuan extends Activity implements
 	 */
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		String code = addView.getsharezhuma();
 		clearAddView();
 		PublicMethod.showDialog(DanshiJiXuan.this, lotno + code);
@@ -1014,8 +987,6 @@ public class DanshiJiXuan extends Activity implements
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*
@@ -1025,7 +996,6 @@ public class DanshiJiXuan extends Activity implements
 	 */
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1060,7 +1030,6 @@ public class DanshiJiXuan extends Activity implements
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (addView.getSize() != 0) {
@@ -1071,12 +1040,5 @@ public class DanshiJiXuan extends Activity implements
 			break;
 		}
 		return false;
-	}
-
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-
 	}
 }

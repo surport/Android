@@ -11,13 +11,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -53,7 +49,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 	public int iProgressBeishu = 1;
 	protected TextView mTextBeishu;
 	String sessionid, phonenum, userno;
-	private boolean toLogin = false;
 	private BuyImplement buyImplement;// 投注要实现的方法
 	BetAndGiftPojo betPojo = new BetAndGiftPojo();
 	public boolean isGift = false;// 是否赠送
@@ -68,6 +63,10 @@ public abstract class FootBallLotteryFather extends Activity implements
 	public final String RESULT = "RESULT";
 	public final String ISSUE = "ISSUE";
 	public final String TEAM_ID = "TEAM_ID";
+	public final String TEAM1 = "TEAM1";
+	public final String TEAM2 = "TEAM2";
+	public final String SCORES1 = "SCORES1";
+	public final String SCORES2 = "SCORES2";
 	int[] aResIdForWait = { R.drawable.jc_zjq_btn_40_gray, R.drawable.jc_zjq_btn_b_40 };
 	int[] aResId = { R.drawable.jc_zjq_btn_40, R.drawable.jc_zjq_btn_b_40 };
 	public static final String LOTNO_ZC = "LOTNO_ZC";
@@ -101,7 +100,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 				qihaoxinxi[0] = batchCode;
 				qihaoxinxi[1] = footballLotnoInfo.getString("endTime");
 				qihaoxinxi[2] = lotteryType;
-
 			} catch (JSONException e) {
 				qihaoxinxi[0] = "";
 				qihaoxinxi[1] = "";
@@ -125,16 +123,12 @@ public abstract class FootBallLotteryFather extends Activity implements
 		phonenum = pre.getStringValue("phonenum");
 		userno = pre.getStringValue("userno");
 		if (sessionid.equals("")) {
-			toLogin = true;
 			Intent intentSession = new Intent(FootBallLotteryFather.this,
 					UserLogin.class);
 			startActivityForResult(intentSession, 0);
 		} else {
-			toLogin = false;
 			buyImplement.isTouzhu();
-
 		}
-
 	}
 
 	/**
@@ -173,7 +167,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 			final SeekBar mSeekBar, final boolean isBeiShu) {
 		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
 		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				if (isBeiShu) {
@@ -183,7 +176,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 						mSeekBar.setProgress(--iProgressBeishu);
 					}
 					iProgressBeishu = mSeekBar.getProgress();
-				} else {
 				}
 			}
 		});
@@ -225,7 +217,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 			int aFieldWidth, int aBallNum, int[] aResId, int aIdStart, String text) {
 
 		BallTable iBallTable = new BallTable(aParentView, aLayoutId, aIdStart);
-		// BallTable iBallTable=new BallTable(aLayoutId,aIdStart);
 		int iBallNum = aBallNum;
 		int iFieldWidth = aFieldWidth;
 		/** 滚动条的宽度 */
@@ -236,11 +227,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 				- 2;
 		/** 行的数量 */
 		int lineNum = iBallNum / viewNumPerLine;
-		/** 最后一行的view的数目 */
-		int lastLineViewNum = iBallNum % viewNumPerLine;
-		/** 空白的大小 */
-		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)
-				* viewNumPerLine) / 2;
 		int iBallViewNo = 0;
 
 		for (int row = 0; row < lineNum; row++) {
@@ -273,13 +259,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
 				lp.gravity = Gravity.CENTER; //add by yejc 20130327
-//				if (col == 0) {
-//					/** 设置TableRow四个方向的空白像素 */
-//					lp.setMargins(margin + 1, 1, 1, 1);
-//				} else if (col == viewNumPerLine - 1) {
-//					lp.setMargins(1, 1, margin + scrollBarWidth + 1, 1);
-//				} else
-//					lp.setMargins(1, 1, 1, 1);
 				tableRow.addView(tempBallView, lp);
 				/** iBallViewNo自增，循环设置小球的属性 */
 				iBallViewNo++;
@@ -308,21 +287,12 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 */
 	BallTable makeBallTable(LinearLayout aParentView, int aLayoutId,
 			int aFieldWidth, int[] aResId, int aIdStart, String text) {
-
 		BallTable iBallTable = new BallTable(aParentView, aLayoutId, aIdStart);
-
 		int iBallViewWidth = aFieldWidth / 3 - 2;
-		int iFieldWidth = aFieldWidth;
-		/** 滚动条的宽度 */
-		int scrollBarWidth = 6;
 		/** 每一行的小球数量 */
 		int viewNumPerLine = 3;
 		/** 行的数量 */
 		int lineNum = 1;
-
-		/** 空白的大小 */
-		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)
-				* viewNumPerLine) / 2;
 		int iBallViewNo = 0;
 
 		for (int row = 0; row < lineNum; row++) {
@@ -353,13 +323,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
 				lp.gravity = Gravity.CENTER; //add by yejc 20130327
-//				if (col == 0) {
-//					/** 设置TableRow四个方向的空白像素 */
-//					lp.setMargins(margin + 1, 1, 1, 1);
-//				} else if (col == viewNumPerLine - 1) {
-//					lp.setMargins(1, 1, margin + scrollBarWidth + 1, 1);
-//				} else
-//					lp.setMargins(1, 1, 1, 1);
 				tableRow.addView(tempBallView, lp);
 				/** iBallViewNo自增，循环设置小球的属性 */
 				iBallViewNo++;
@@ -387,9 +350,7 @@ public abstract class FootBallLotteryFather extends Activity implements
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
 					}
-
 				});
 		builder.show();
 	}
@@ -398,16 +359,13 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 * 提示信息
 	 */
 	public void changeTextSumMoney(int iZhuShu) {
-
 		StringBuffer touzhuAlert = new StringBuffer();
-
 		if (iZhuShu != 0) {
 			if (toast == null) {
 				touzhuAlert.append("共").append(iZhuShu).append("注，共")
 						.append((iZhuShu * 2)).append("元");
 				toast = Toast.makeText(FootBallLotteryFather.this,
 						touzhuAlert.toString(), Toast.LENGTH_SHORT);
-				;
 				toast.show();
 			} else {
 				touzhuAlert.append("共").append(iZhuShu).append("注，共")
@@ -415,7 +373,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 				toast.setText(touzhuAlert.toString());
 				toast.show();
 			}
-
 		}
 	}
 

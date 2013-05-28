@@ -5,12 +5,8 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +20,6 @@ import android.widget.TextView;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.jc.JcMainView;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.code.jc.zq.FootSpf;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
@@ -49,25 +44,21 @@ public class SPfView extends JcMainView {
 
 	@Override
 	public int getTeamNum() {
-		// TODO Auto-generated method stub
 		return MAX_TEAM;
 	}
 
 	@Override
 	public String getLotno() {
-		// TODO Auto-generated method stub
 		return Constants.LOTNO_JCZQ;
 	}
 
 	@Override
 	public BaseAdapter getAdapter() {
-		// TODO Auto-generated method stub
 		return adapter;
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return context.getString(R.string.jczq_sf_danguan_title).toString();
 		} else {
@@ -77,7 +68,6 @@ public class SPfView extends JcMainView {
 
 	@Override
 	public String getTypeTitle() {
-		// TODO Auto-generated method stub
 		return context.getString(R.string.jczq_dialog_sf_guoguan_title)
 				.toString();
 	}
@@ -101,7 +91,6 @@ public class SPfView extends JcMainView {
 	 */
 	@Override
 	public List<double[]> getOdds(List<Info> listInfo) {
-		// TODO Auto-generated method stub
 		return footSpfCode.getOddsList(listInfo);
 	}
 
@@ -140,7 +129,6 @@ public class SPfView extends JcMainView {
 	 */
 	public void initListView(ListView listview, Context context,
 			List<List> listInfo) {
-		// TODO Auto-generated method stub
 		adapter = new JcInfoAdapter(context, listInfo);
 		listview.setAdapter(adapter);
 	}
@@ -161,19 +149,16 @@ public class SPfView extends JcMainView {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -182,7 +167,6 @@ public class SPfView extends JcMainView {
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			final ArrayList<Info> list = (ArrayList<Info>) mList.get(position);
 			convertView = mInflater.inflate(
@@ -202,7 +186,6 @@ public class SPfView extends JcMainView {
 				holder.btn.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						list.get(0).isOpen = !list.get(0).isOpen;
 						isOpen(list, holder);
 					}
@@ -235,7 +218,6 @@ public class SPfView extends JcMainView {
 			
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-//			homeTeam.getPaint().setFakeBoldText(true);
 			final TextView homeOdds = (TextView) convertView
 					.findViewById(R.id.home_team_odds);
 			final TextView textVS = (TextView) convertView
@@ -244,7 +226,6 @@ public class SPfView extends JcMainView {
 					.findViewById(R.id.game_vs_odds);
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
-//			guestTeam.getPaint().setFakeBoldText(true);
 			final TextView guestOdds = (TextView) convertView
 					.findViewById(R.id.guest_team_odds);
 			
@@ -285,9 +266,7 @@ public class SPfView extends JcMainView {
 				}
 			});
 			
-			
 			if (info.isFail()) {
-//				guestOdds.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				guestLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				guestTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 			} else {
@@ -295,7 +274,6 @@ public class SPfView extends JcMainView {
 				guestTeam.setBackgroundResource(R.drawable.team_name_bj_top);
 			}
 			if (info.isWin()) {
-//				homeOdds.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 			} else {
@@ -303,7 +281,6 @@ public class SPfView extends JcMainView {
 				homeTeam.setBackgroundResource(R.drawable.team_name_bj_top);
 			}
 			if (info.isLevel()) {
-//				textOdds.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				textVS.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 			} else {
@@ -314,17 +291,14 @@ public class SPfView extends JcMainView {
 			homeLayout.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.setWin(!info.isWin());
 						if (info.isWin()) {
 							info.onclikNum++;
-//							homeOdds.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						} else {
 							info.onclikNum--;
-//							homeOdds.setBackgroundResource(android.R.color.transparent);
 							homeLayout.setBackgroundResource(R.drawable.team_name_bj);
 							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top);
 						}
@@ -336,17 +310,14 @@ public class SPfView extends JcMainView {
 			vsLayout.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.setLevel(!info.isLevel());
 						if (info.isLevel()) {
 							info.onclikNum++;
-//							textOdds.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							textVS.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						} else {
 							info.onclikNum--;
-//							textOdds.setBackgroundResource(android.R.color.transparent);
 							vsLayout.setBackgroundResource(R.drawable.team_name_bj);
 							textVS.setBackgroundResource(R.drawable.team_name_bj_top);
 						}
@@ -358,17 +329,14 @@ public class SPfView extends JcMainView {
 			guestLayout.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.setFail(!info.isFail());
 						if (info.isFail()) {
 							info.onclikNum++;
-//							guestOdds.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							guestLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							guestTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						} else {
 							info.onclikNum--;
-//							guestOdds.setBackgroundResource(android.R.color.transparent);
 							guestLayout.setBackgroundResource(R.drawable.team_name_bj);
 							guestTeam.setBackgroundResource(R.drawable.team_name_bj_top);
 						}
@@ -384,7 +352,6 @@ public class SPfView extends JcMainView {
 				btnDan.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						if (info.isDan()) {
 							info.setDan(false);
 							btnDan.setBackgroundResource(R.drawable.jc_btn);
@@ -400,7 +367,6 @@ public class SPfView extends JcMainView {
 			analysis.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCFOOT, info),
 							info.getHome(), info.getAway());
 				}
@@ -409,144 +375,6 @@ public class SPfView extends JcMainView {
 			return convertView;
 		}
 		//end
-
-		private View addLayout(final Info info) {
-			View convertView;
-			convertView = mInflater.inflate(R.layout.buy_jc_main_listview_item,
-					null);
-			TextView time = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time);
-			TextView team = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team);
-			TextView home = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_name1);
-			TextView away = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_name2);
-			TextView score = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_vs);
-			TextView timeEnd = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time_end);
-			final Button btn1 = (Button) convertView
-					.findViewById(R.id.jc_main_list_item_button1);
-			final Button btn2 = (Button) convertView
-					.findViewById(R.id.jc_main_list_item_button2);
-			final Button btn3 = (Button) convertView
-					.findViewById(R.id.jc_main_list_item_button3);
-			final Button btnDan = (Button) convertView
-					.findViewById(R.id.jc_main_list_item_button_dan);
-			final Button btnXi = (Button) convertView
-					.findViewById(R.id.buy_jc_main_list_item_btn_xi);
-			time.setText(info.getTime() + "  "
-					+ context.getString(R.string.jc_main_team_id_title)
-					+ info.getTeamId());
-			team.setText(info.getTeam());
-			score.setText(info.getLetPoint());
-			score.setTextColor(Color.BLUE);
-			home.setText(info.getHome() + "(主)");
-			away.setText(info.getAway() + "(客)");
-			timeEnd.setText(info.getTimeEnd());
-			btn1.setText("胜" + info.getWin());
-			btn2.setText("平" + info.getLevel());
-			btn3.setText("负" + info.getFail());
-			if (info.isFail()) {
-				btn3.setBackgroundResource(R.drawable.jc_btn_b);
-			} else {
-				btn3.setBackgroundResource(R.drawable.jc_btn);
-			}
-			if (info.isWin()) {
-				btn1.setBackgroundResource(R.drawable.jc_btn_b);
-			} else {
-				btn1.setBackgroundResource(R.drawable.jc_btn);
-			}
-			if (info.isLevel()) {
-				btn2.setBackgroundResource(R.drawable.jc_btn_b);
-			} else {
-				btn2.setBackgroundResource(R.drawable.jc_btn);
-			}
-			btn1.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if (info.onclikNum > 0 || isCheckTeam()) {
-						info.setWin(!info.isWin());
-						if (info.isWin()) {
-							info.onclikNum++;
-							btn1.setBackgroundResource(R.drawable.jc_btn_b);
-						} else {
-							info.onclikNum--;
-							btn1.setBackgroundResource(R.drawable.jc_btn);
-						}
-						isNoDan(info, btnDan);
-						setTeamNum();
-					}
-				}
-			});
-			btn2.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if (info.onclikNum > 0 || isCheckTeam()) {
-						info.setLevel(!info.isLevel());
-						if (info.isLevel()) {
-							info.onclikNum++;
-							btn2.setBackgroundResource(R.drawable.jc_btn_b);
-						} else {
-							info.onclikNum--;
-							btn2.setBackgroundResource(R.drawable.jc_btn);
-						}
-						isNoDan(info, btnDan);
-						setTeamNum();
-					}
-				}
-			});
-			btn3.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if (info.onclikNum > 0 || isCheckTeam()) {
-						info.setFail(!info.isFail());
-						if (info.isFail()) {
-							info.onclikNum++;
-							btn3.setBackgroundResource(R.drawable.jc_btn_b);
-						} else {
-							info.onclikNum--;
-							btn3.setBackgroundResource(R.drawable.jc_btn);
-						}
-						isNoDan(info, btnDan);
-						setTeamNum();
-					}
-				}
-			});
-			if (isDanguan) {
-				btnDan.setVisibility(Button.GONE);
-			} else {
-				btnDan.setVisibility(Button.VISIBLE);
-				btnDan.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						if (info.isDan()) {
-							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
-						} else if (info.onclikNum > 0 && isDanCheckTeam()
-								&& isDanCheck()) {
-							info.setDan(true);
-							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
-						}
-					}
-				});
-			}
-			btnXi.setVisibility(Button.VISIBLE);
-			btnXi.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					trunExplain(getEvent(Constants.JCFOOT, info),
-							info.getHome(), info.getAway());
-				}
-			});
-			return convertView;
-		}
 
 		class ViewHolder {
 			TextView time;
@@ -565,7 +393,6 @@ public class SPfView extends JcMainView {
 
 	@Override
 	public String getPlayType() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return "J00001_0";
 		} else {

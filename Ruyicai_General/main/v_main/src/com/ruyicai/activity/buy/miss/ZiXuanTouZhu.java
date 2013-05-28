@@ -3,7 +3,6 @@ package com.ruyicai.activity.buy.miss;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
@@ -12,9 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -22,7 +19,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -32,10 +28,11 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -220,12 +217,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			jine.setText(iProgressQishu * addviewmiss.getAllAmt()
 					* iProgressBeishu + "元");
 		}
-
-		// return "注数："
-		// + addviewmiss.getAllZhu() + "注     "
-		// + "金额：" +
-		// + iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu
-		// + "元";
 	}
 	/**
 	 * 投注方法
@@ -257,32 +248,33 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		if (progressdialog != null && progressdialog.isShowing()) {
-			return;
-		}
-		progressdialog = UserCenterDialog.onCreateDialog(this);
-		progressdialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(this).doBettingAction(handler, betAndGift);
+//		if (progressdialog != null && progressdialog.isShowing()) {
+//			return;
+//		}
+//		progressdialog = UserCenterDialog.onCreateDialog(this);
+//		progressdialog.show();
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					handler.handleMsg(error, msg);
+//					isNoIssue(handler, obj);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
 	}
 
 	/**

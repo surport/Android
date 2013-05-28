@@ -233,6 +233,13 @@ public class AccountListActivity extends Activity {
 						UmPayActivity.class);
 				startActivity(alipay_secure);
 			}
+		} else if (getString(R.string.umpay_phone_recharge)
+				.equals(textString)) { 
+			if (isLogin()) {
+				Intent alipay_secure = new Intent(context,
+						UmPayPhoneActivity.class);
+				startActivity(alipay_secure);
+			}
 		}
 		/**add by yejc 20130505 end*/
 	}
@@ -309,6 +316,13 @@ public class AccountListActivity extends Activity {
 		map.put(TITLE, getString(R.string.phone_cards_recharge));
 		map.put(PICTURE, R.drawable.recharge_phonebank);
 		map.put(ISHANDINGFREE, getString(R.string.account_phone_alert));
+		list.add(map);
+		
+		// 联动优势话费充值
+		map = new HashMap<String, Object>();
+		map.put(TITLE, getString(R.string.umpay_phone_recharge));
+		map.put(PICTURE, R.drawable.recharge_phone_umpay);
+		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
 		list.add(map);
 
 		return list;

@@ -14,6 +14,7 @@ import com.alipay.android.secure.MobileSecurePayHelper;
 import com.alipay.android.secure.MobileSecurePayer;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
@@ -225,7 +226,8 @@ public class DirectPayActivity extends Activity implements HandlerMsg {
 
 	private void isInstallSecurePay() {
 		MobileSecurePayHelper mspHelper = new MobileSecurePayHelper(context);
-		boolean isMobile_spExist = mspHelper.detectMobile_sp();
+		boolean isMobile_spExist = mspHelper.detectMobile_sp(Constants.ALIPAY_PLUGIN_NAME,
+				Constants.ALIPAY_PACK_NAME);
 
 		if (!isMobile_spExist) {
 			isInstall = true;

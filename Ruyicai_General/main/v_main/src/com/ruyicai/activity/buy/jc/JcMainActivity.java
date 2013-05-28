@@ -6,13 +6,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,13 +44,12 @@ import com.ruyicai.activity.buy.jc.zq.view.SPfView;
 import com.ruyicai.activity.buy.jc.zq.view.ZJQView;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -77,9 +72,6 @@ public class JcMainActivity extends Activity implements
 	private int iProgressBeishu = 1;
 	private MyHandler handler = new MyHandler(this);// 自定义handler
 	public BetAndGiftPojo betAndGift = new BetAndGiftPojo();// 投注信息类
-	private String msg;
-//	private boolean isGift = false;// 是否赠送
-//	private boolean isTouzhu = true;// 是否投注
 	private Dialog dialogType = null;// 玩法切换提示框
 	private View viewType;
 	protected JcMainView lqMainView;
@@ -136,14 +128,10 @@ public class JcMainActivity extends Activity implements
 				.findViewById(R.id.buy_group_layout1);
 		final LinearLayout layoutHosity = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout2);
-//		final LinearLayout layoutLuck = (LinearLayout) popupView
-//				.findViewById(R.id.buy_group_layout3);
 		final LinearLayout layoutQuery = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout4);
 		final LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
-//		final LinearLayout layoutParentPicture = (LinearLayout) popupView
-//				.findViewById(R.id.buy_group_one_layout5);
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -664,29 +652,31 @@ public class JcMainActivity extends Activity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		final ProgressDialog progressDialog = UserCenterDialog
-				.onCreateDialog(this);// 显示网络提示框 2010/7/4
-		progressDialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				progressDialog.cancel();
-				try {
-					JSONObject obj = new JSONObject(str);
-					msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressDialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(JcMainActivity.this).doBettingAction(handler, betAndGift);
+		
+//		final ProgressDialog progressDialog = UserCenterDialog
+//				.onCreateDialog(this);// 显示网络提示框 2010/7/4
+//		progressDialog.show();
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				progressDialog.cancel();
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					handler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressDialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -712,10 +702,6 @@ public class JcMainActivity extends Activity implements
 		default:
 			break;
 		}
-	}
-
-	protected void onStop() {
-		super.onStop();
 	}
 
 	public void onDestroy() {

@@ -40,17 +40,17 @@ public class MobileSecurePayHelper {
 		this.mContext = context;
 	}
 
-	public boolean detectMobile_sp() {
-		boolean isMobile_spExist = isMobile_spExist();
+	public boolean detectMobile_sp(String pluginName, String packName) {
+		boolean isMobile_spExist = isMobile_spExist(packName);
 		if (!isMobile_spExist) {
-			//
 			// get the cacheDir.
 			File cacheDir = mContext.getCacheDir();
 			final String cachePath = cacheDir.getAbsolutePath() + "/temp.apk";
 
+			final String apkName = pluginName;
 			//
 			// 捆绑安装
-			retrieveApkFromAssets(mContext, Constants.ALIPAY_PLUGIN_NAME,
+			retrieveApkFromAssets(mContext, pluginName/*Constants.ALIPAY_PLUGIN_NAME*/,
 					cachePath);
 
 			mProgress = BaseHelper.showProgress(mContext, null, "正在检测安全支付服务版本",
@@ -61,7 +61,12 @@ public class MobileSecurePayHelper {
 					//
 					// �?��是否有新的版本�?
 					PackageInfo apkInfo = getApkInfo(mContext, cachePath);
-					String newApkdlUrl = checkNewUpdate(apkInfo);
+					String newApkdlUrl = "";
+					if (apkName.equals(Constants.PAY_PLUGIN_NAME)) {
+						newApkdlUrl = checkNewUpdateForHuafubao(apkInfo);
+					} else {
+						newApkdlUrl = checkNewUpdate(apkInfo);
+					}
 
 					//
 					// 动�?下载
@@ -117,12 +122,12 @@ public class MobileSecurePayHelper {
 		tDialog.show();
 	}
 
-	public boolean isMobile_spExist() {
+	public boolean isMobile_spExist(String packName) {
 		PackageManager manager = mContext.getPackageManager();
 		List<PackageInfo> pkgList = manager.getInstalledPackages(0);
 		for (int i = 0; i < pkgList.size(); i++) {
 			PackageInfo pI = pkgList.get(i);
-			if (pI.packageName.equalsIgnoreCase("com.alipay.android.app"))
+			if (pI.packageName.equalsIgnoreCase(packName/*"com.alipay.android.app"*/))
 				return true;
 		}
 
@@ -206,26 +211,76 @@ public class MobileSecurePayHelper {
 
 			req.put(AlixDefine.data, data);
 
-			objResp = sendRequest(req.toString());
+			objResp = sendRequest(req.toString(), Constants.server_url);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
 		return objResp;
 	}
+	
+	/**add by yejc 20130527 start*/
+	/**
+	 * 检查是否有新版本，如果有，返回apk下载地址
+	 * 
+	 * @param packageInfo
+	 *            {@link PackageInfo}
+	 * @return
+	 */
+	public String checkNewUpdateForHuafubao(PackageInfo packageInfo) {
+		String url = null;
 
-	public JSONObject sendRequest(final String content) {
+		try {
+			JSONObject resp = null;
+			if (packageInfo == null) {
+				resp = sendCheckNewUpdate(1);
+			} else {
+				resp = sendCheckNewUpdate(packageInfo.versionCode);
+			}
+			if ("1".equalsIgnoreCase(resp.getString("retCode"))) {
+				url = resp.getString("URL");
+			}
+			// else ok.
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return url;
+	}
+	
+	/**
+	 * 发送当前版本信息，返回是否需要升级 如果需要升级返回更新apk地址
+	 * 
+	 * @param versionName
+	 *            当前版本号
+	 * @return
+	 */
+	public JSONObject sendCheckNewUpdate(int versionName) {
+		JSONObject objResp = null;
+		try {
+			JSONObject req = new JSONObject();
+			req.put("clientName", "RemoteBilling");
+			req.put("versionCode", versionName);
+			req.put("type", "1");
+			// 0：检查富客户端是否需要更新,1：检查瘦客户端是否需要更新
+			// 2：直接更新富客户端,3：直接更新瘦客户端
+			objResp = sendRequest(req.toString(), Constants.UMPAY_SERVER_URL);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return objResp;
+	}
+	/**add by yejc 20130527 end*/
+
+	public JSONObject sendRequest(final String content, String url) {
 		NetworkManager nM = new NetworkManager(this.mContext);
 
-		//
 		JSONObject jsonResponse = null;
 		try {
 			String response = null;
-
 			synchronized (nM) {
-				//
 				response = nM
-						.SendAndWaitResponse(content, Constants.server_url);
+						.SendAndWaitResponse(content, url/*Constants.server_url*/);
 			}
 
 			jsonResponse = new JSONObject(response);
@@ -233,7 +288,6 @@ public class MobileSecurePayHelper {
 			e.printStackTrace();
 		}
 
-		//
 		if (jsonResponse != null)
 			BaseHelper.log(TAG, jsonResponse.toString());
 

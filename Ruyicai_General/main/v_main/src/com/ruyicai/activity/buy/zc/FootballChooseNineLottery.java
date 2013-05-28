@@ -55,6 +55,7 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -74,10 +75,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	private String codeStr;
 	private RadioButton check;
 	private RadioButton joinCheck;
-	private final static String TEAM1 = "TEAM1";
-	private final static String TEAM2 = "TEAM2";
-	private final static String SCORES1 = "SCORES1";
-	private final static String SCORES2 = "SCORES2";
 	/**add by yejc 20130425 start*/
 	private boolean isaWait = false;
 	private SpannableString[] spanBactchCodes;
@@ -116,7 +113,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		showDialog(DIALOG1_KEY);
 		getZCAdvanceBatchCodeData(Constants.LOTNO_RX9);
 		createView();
-
 	}
 
 	/**
@@ -318,16 +314,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	}
 
 	/**
-	 * 投注提示框中的信息
-	 */
-//	private String getTouzhuAlert() {
-//		int iZhuShu = getZhuShu();
-//		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
-//				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
-//				+ (iZhuShu * 2) + "元";
-//	}
-
-	/**
 	 * 假设数组的id为ai 每个小球的id为ai*10+小球.Resid 这样就能保证小球id的唯一性
 	 */
 	public static final int RENXJ_START_ID = 0x83000001;
@@ -512,11 +498,9 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 
 		for (int i = 0; i < ballTables.size(); i++) {
 			Vector<OneBallView> rowBalls = ballTables.get(i).ballViewVector;
-
 			// 遍历前三个小球，如果有选中，则本场比赛为选中
 			for (int j = 0; j < rowBalls.size() - 1; j++) {
 				int isSelected = rowBalls.get(j).getShowId();
-
 				if (isSelected == 1) {
 					rawNum++;
 					break;
@@ -629,7 +613,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	 * @return
 	 */
 	private static int caculateZhuShu(int[] danGames, int[][] notDanGames) {
-		int betNums = 0;
 		// 计算胆部组合数
 		int danBetNums = 1;
 		for (int dan_i = 0; dan_i < danGames.length; dan_i++) {
@@ -815,11 +798,9 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	}
 
 	public void onStartTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	public void onStopTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	public String getZhuMa() {
@@ -828,7 +809,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		StringBuffer tuoMaString = new StringBuffer();
 
 		Boolean isDantou = false;
-
 		for (int i = 0; i < ballTables.size(); i++) {
 			int balls[] = ballTables.get(i).getHighlightBallNOs();
 
@@ -891,8 +871,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 			} else if (iZhuShu * 2 > 20000) {
 				DialogExcessive();
 			} else {
-				// String sTouzhuAlert = getTouzhuAlert();
-				// alert(sTouzhuAlert,getFormatZhuma());
 				initBetPojo();
 				toorderdetail();
 			}
@@ -955,7 +933,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 			hTeam8 = obj.getString("HTeam8");
 			vTeam8 = obj.getString("VTeam8");
 			avgOdds = obj.getString("avgOdds");
-			// title += obj.getString("num");
 			title += obj.getString("HTeam");
 			title += "VS";
 			title += obj.getString("VTeam");
@@ -1270,7 +1247,8 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 				} else if (isJoin) {
 					toJoinActivity();
 				} else if (isTouzhu) {
-					touZhuNet();
+//					touZhuNet();
+					Controller.getInstance(FootballChooseNineLottery.this).doBettingAction(touzhuhandler, betPojo);
 				}
 			}
 		});
@@ -1279,8 +1257,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		RadioButton touzhuCheck = (RadioButton) v
 				.findViewById(R.id.alert_dialog_touzhu1_check);
 		touzhuCheck.setChecked(true);
-		TextView textAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_alert);
 		check.setPadding(50, 0, 0, 0);
 		check.setButtonDrawable(R.drawable.check_select);
 		// 实现记住密码 和 复选框的状态
@@ -1320,29 +1296,29 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 	/**
 	 * 投注联网
 	 */
-	public void touZhuNet() {
-		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					touzhuhandler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
-	}
+//	public void touZhuNet() {
+//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					touzhuhandler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
+//	}
 
 	public void toJoinActivity() {
 		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
@@ -1456,8 +1432,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 						msg.what = 24;
 						msg.obj = message;
 						handler.sendMessage(msg);
-						// Toast.makeText(FootballChooseNineLottery.this,
-						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -1525,17 +1499,10 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		iScreenWidth = PublicMethod.getDisplayWidth(this);
 		int aFieldWidth = iScreenWidth / 3;
 		int iBallViewWidth = aFieldWidth / 3 - 2;
-		int iFieldWidth = aFieldWidth;
-		/** 滚动条的宽度 */
-		int scrollBarWidth = 6;
 		/** 每一行的小球数量 */
 		int viewNumPerLine = 4;
 		/** 行的数量 */
 		int lineNum = 1;
-
-		/** 空白的大小 */
-		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)
-				* viewNumPerLine) / 2;
 		int iBallViewNo = 0;
 		
 		// add by yejc 20130327
@@ -1551,13 +1518,10 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 				/** 设置显示的数字 */
 				String iStrTemp = "" + (iBallViewNo + 1);
 				if (iStrTemp.equals("1")) {
-//					iStrTemp = "3";//close by yejc 20130327
 					iStrTemp = getString(str, 0, "胜"); //add by yejc 20130327
 				} else if (iStrTemp.equals("2")) {
-//					iStrTemp = "1";//close by yejc 20130327
 					iStrTemp = getString(str, 1, "平"); //add by yejc 20130327
 				} else if (iStrTemp.equals("3")) {
-//					iStrTemp = "0";//close by yejc 20130327
 					iStrTemp = getString(str, 2, "负"); //add by yejc 20130327
 				} else {
 					iStrTemp = "胆";
@@ -1576,20 +1540,12 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 					tempBallView.initBall(iBallViewWidth+18, iBallViewWidth, iStrTemp,
 							aResId);
 				}
-				
 
 				/*** 将小球tempView添加到Table中 */
 				iBallTable.addBallView(tempBallView);
 
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
 				lp.gravity = Gravity.CENTER; //add by yejc 20130327
-//				if (col == 0) {
-//					/** 设置TableRow四个方向的空白像素 */
-//					lp.setMargins(margin + 1, 1, 1, 1);
-//				} else if (col == viewNumPerLine - 1) {
-//					lp.setMargins(1, 1, margin + scrollBarWidth + 1, 1);
-//				} else
-//					lp.setMargins(1, 1, 1, 1);
 				tableRow.addView(tempBallView, lp);
 				/** iBallViewNo自增，循环设置小球的属性 */
 				iBallViewNo++;
@@ -1600,7 +1556,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 					.addView(tableRow, new TableLayout.LayoutParams(
 							PublicConst.FP, PublicConst.WC));
 		}
-
 		return iBallTable;
 	}
 

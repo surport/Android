@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/titletext_umpay_recharge_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <TextView
+            android:id="@+id/umpay_recharge_info"
+            style="@style/UserTitleText"
+            android:text="@string/usercenter_bindphonenum" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/usercenter_changepwd_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titletext_umpay_recharge_info"
+        android:orientation="vertical"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip" >
+        
+        <RadioButton
+            android:id="@+id/umpay_phone_thirty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dip"
+            android:button="@drawable/radio_select"
+            android:text="@string/use_bindphone_number"
+            android:textColor="@android:color/black" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="@string/input_phone_number" />
+
+            <EditText
+                android:id="@+id/input_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dip" 
+                android:inputType="number"/>
+            
+        </LinearLayout>
+        
+        <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textColor="@color/red"
+            android:text="@string/umpay_recharge_description"/>
+
+    </LinearLayout>
+    
+    <TextView android:id="@+id/umpay_recharge_complete_content"
+        android:layout_width="match_parent"
+            android:layout_height="100dip"
+            android:padding="15dip"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textColor="@color/red"
+            android:layout_below="@+id/titletext_umpay_recharge_info"
+            android:text="@string/umpay_recharge_complete_content"
+            android:visibility="gone"/>
+
+    <LinearLayout android:id="@+id/umpay_recharge_summit"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/usercenter_changepwd_content"
+        android:background="@drawable/buy_bot_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/usercenter_bindphone_ok"
+                style="@style/UserBottomButton" 
+                android:text="@string/umpay_recharge_bingphone_submit"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/usercenter_bindphone_back"
+                style="@style/UserBottomButton"
+                android:text="@string/return_button" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+    <LinearLayout android:id="@+id/umpay_recharge_complete"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/umpay_recharge_complete_content"
+        android:background="@drawable/buy_bot_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" 
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/usercenter_bindphone_complete"
+                style="@style/UserBottomButton"
+                android:text="@string/return_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

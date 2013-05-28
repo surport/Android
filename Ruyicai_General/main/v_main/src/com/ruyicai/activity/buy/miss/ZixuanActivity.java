@@ -50,6 +50,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
+import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
@@ -57,6 +58,7 @@ import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.gallery.GalleryViewItem;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -846,31 +848,32 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		if (progressdialog != null && progressdialog.isShowing()) {
-			return;
-		}
-		progressdialog = UserCenterDialog.onCreateDialog(this);
-		progressdialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(this).doBettingAction(handler, betAndGift);
+//		if (progressdialog != null && progressdialog.isShowing()) {
+//			return;
+//		}
+//		progressdialog = UserCenterDialog.onCreateDialog(this);
+//		progressdialog.show();
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					handler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
 	}
 
 	/**

@@ -292,4 +292,17 @@ public class Constants {
 	public static final String ADD_AWARD_OK = "1";
 	public static final String ADD_AWARD_NO = "0";
 	
+	/**add by yejc 20130527 start*/
+	/**
+	 * 联动优势话费充值
+	 */
+	public final static String UMPAY_SERVER_URL = "http://payment.umpay.com/hfwebbusi/pay/wxVersionUpdate.do";
+	// 话付宝安全支付服务apk的名称，必须与assets目录下的apk名称一致
+	public static final String PAY_PLUGIN_NAME = "huafubaopsV1.1.5_0002.apk";
+	
+	public static final String ALIPAY_PACK_NAME = "com.alipay.android.app";
+	public static final String UMPAY_PHONE_PACK_NAME = "com.umpay.huafubao";
+	public static final String UMPAY_BANKID = "ump003";
+	/**add by yejc 20130527 start*/
+	
 }

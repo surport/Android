@@ -52,6 +52,7 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -74,10 +75,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	/** Called when the activity is first created. */
 	int lieNum;
 
-	private final static String TEAM1 = "TEAM1";
-	private final static String TEAM2 = "TEAM2";
-	private final static String SCORES1 = "SCORES1";
-	private final static String SCORES2 = "SCORES2";
 	/**add by yejc 20130425 start*/
 	private boolean isaWait = false;
 	private SpannableString[] spanBactchCodes;
@@ -88,7 +85,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	final int LIUCB_START_ID = 0x85000001;
 	int iAllBallWidth;
 	LayoutInflater layoutInflater;
-//	ListViewDemo listViewDemo;
 	ScrollView mHScrollView;
 	LinearLayout buyView;
 	String qihaoxinxi[] = new String[4];// 存放期号，截止时间，彩种
@@ -120,13 +116,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		setContentView(R.layout.buy_footballlottery_layout);
 		initBatchCode(Constants.LOTNO_LCB);
 		iScreenWidth = PublicMethod.getDisplayWidth(this);
-		
-		//close by yejc 20130325
-//		TextView text_sixhalf = (TextView) findViewById(R.id.string_banquanchang);
-//		text_sixhalf.setVisibility(TextView.VISIBLE);
-//		ImageView divide = (ImageView) findViewById(R.id.image_divide_sixhalf);
-//		divide.setVisibility(ImageView.VISIBLE);
-		//end
 		JSONObject rx9LotnoInfo = PublicMethod
 				.getCurrentLotnoBatchCode(Constants.LOTNO_LCB);
 		if (rx9LotnoInfo != null) {
@@ -136,7 +125,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				qihaoxinxi[0] = batchCode;
 				qihaoxinxi[1] = rx9LotnoInfo.getString("endTime");
 				qihaoxinxi[2] = Constants.LOTNO_LCB;
-
 			} catch (JSONException e) {
 				qihaoxinxi[0] = "";
 				qihaoxinxi[1] = "";
@@ -145,13 +133,10 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		}
 		layout_football_issue = (Button) findViewById(R.id.layout_football_issue);
 		layout_football_time = (TextView) findViewById(R.id.layout_football_time);
-		// batchCode = qihaoxinxi[0];
 		initBatchCodeView();
 		createView();
 		showDialog(DIALOG1_KEY);
 		getZCAdvanceBatchCodeData(Constants.LOTNO_LCB);
-		// getData(qihaoxinxi[2] ,qihaoxinxi[0] );
-
 	}
 
 	/**
@@ -162,7 +147,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	public String[] getLotno(String string) {
 		String error_code;
 		String str[] = new String[4];
-		// ShellRWSharesPreferences
 		RWSharedPreferences shellRW = new RWSharedPreferences(this, "addInfo");
 		String notice = shellRW.getStringValue(string);
 		// 判断取值是否为空 cc 2010/7/9
@@ -200,13 +184,11 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 
 	// add by yejc 20130327
 	private class ListViewAdapter extends BaseAdapter {
-		private Context context;
 		private List<Map<String, Object>> mList;
 		private LayoutInflater mInflater; // 扩充主列表布局
 		ViewHolder holder;
 
 		public ListViewAdapter(Context context, List<Map<String, Object>> list) {
-			this.context = context;
 			mInflater = LayoutInflater.from(context);
 			mList = list;
 		}
@@ -244,8 +226,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						.findViewById(R.id.guest_team);
 				holder.analysis = (TextView) convertView
 						.findViewById(R.id.zc_sfc_analysis);
-				holder.layout = (LinearLayout) convertView
-						.findViewById(R.id.liuchangban_ball_layout);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -285,7 +265,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 					ball.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							// ball.startAnim();
 							ball.changeBallColor();
 							changeTextSumMoney(getZhuShu());
 						}
@@ -301,14 +280,12 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 					ball2.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-//							ball2.startAnim();
 							ball2.changeBallColor();
 							changeTextSumMoney(getZhuShu());
 						}
 					});
 				}
 			}
-			
 
 			final int index = position;
 			holder.analysis.setOnClickListener(new View.OnClickListener() {
@@ -324,10 +301,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 					FootballSixSemiFinal.this.startActivity(intent);
 				}
 			});
-
 			return convertView;
 		}
-
 	}
 
 	private class ViewHolder {
@@ -337,7 +312,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		TextView homeTeam;
 		TextView guestTeam;
 		TextView analysis;
-		LinearLayout layout;
 	}
 
 	// end
@@ -381,8 +355,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				String error_code = "00";
 				re = FootballInterface.getInstance()
 						.getZCData(lotno, batchcode);
-				// re = FootballInterface.getInstance().getZCData(qihaoxinxi[2],
-				// "2011085");
 				try {
 					obj = new JSONObject(re);
 					error_code = obj.getString("error_code");
@@ -413,13 +385,12 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						}
 					}
 				} catch (Exception e) {
-
+					e.printStackTrace();
 				}
 				if (error_code.equals("00")) {
 					Message msg = new Message();
 					msg.what = 0;
 					handler.sendMessage(msg);
-
 				} else if (error_code.equals("000000")) {
 					Message msg = new Message();
 					msg.what = 1;
@@ -632,7 +603,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 			hTeam8 = obj.getString("HTeam8");
 			vTeam8 = obj.getString("VTeam8");
 			avgOdds = obj.getString("avgOdds");
-			// title += obj.getString("num");
 			title += obj.getString("HTeam");
 			title += "VS";
 			title += obj.getString("VTeam");
@@ -681,16 +651,12 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				.setPositiveButton("取消", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
 					}
-
 				});
 		dialog.show();
-
 	}
 
 	public void createView() {
-
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		iProgressBeishu = 1;
@@ -719,7 +685,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		switch (id) {
 		case DIALOG1_KEY: {
 			progressdialog = new ProgressDialog(this);
-			// progressdialog.setTitle("Indeterminate");
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 			progressdialog.setCancelable(true);
@@ -727,7 +692,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		}
 		}
 		return null;
-
 	}
 
 	/**
@@ -742,7 +706,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -776,10 +739,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 			}
 		}
 		return t_str;
-
 	}
 
-	//
 	public void beginTouZhu() {
 		int iZhuShu = getZhuShu();
 		RWSharedPreferences pre = new RWSharedPreferences(
@@ -796,9 +757,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 			} else if (iZhuShu * 2 > 20000) {
 				DialogExcessive();
 			} else {
-				// String sTouzhuAlert = "";
-				// sTouzhuAlert = getTouzhuAlert();
-				// alert(sTouzhuAlert,getFormatZhuma());
 				initBetPojo();
 				toorderdetail();
 			}
@@ -885,7 +843,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 			}
 		});
@@ -900,7 +857,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				} else if (isJoin) {
 					toJoinActivity();
 				} else if (isTouzhu) {
-					touZhuNet();
+//					touZhuNet();
+					Controller.getInstance(FootballSixSemiFinal.this).doBettingAction(touzhuhandler, betPojo);
 				}
 			}
 		});
@@ -909,8 +867,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		RadioButton touzhuCheck = (RadioButton) v
 				.findViewById(R.id.alert_dialog_touzhu1_check);
 		touzhuCheck.setChecked(true);
-		TextView textAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_alert);
 		check.setPadding(50, 0, 0, 0);
 		check.setButtonDrawable(R.drawable.check_select);
 		// 实现记住密码 和 复选框的状态
@@ -999,113 +955,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 					public void onClick(DialogInterface dialog, int which) {
 
 					}
-
 				});
 		dialog.show();
-
-	}
-
-	/**
-	 * 投注确认提示框
-	 */
-	// public void alert(String string) {
-	// Builder dialog = new AlertDialog.Builder(this).setTitle("您选择的是")
-	// .setMessage(string).setPositiveButton("确定",
-	// new DialogInterface.OnClickListener() {
-	// @Override
-	// public void onClick(DialogInterface dialog,
-	// int which) {
-	// liucb_btn_touzhu.setClickable(false);
-	// liucb_btn_touzhu.setImageResource(R.drawable.touzhudown);
-	// showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-	// Thread t = new Thread(new Runnable() {
-	// int iZhuShu = getZhuShu();
-	// String[] strCode = null;
-	// int iBeiShu = mSeekBarBeishu.getProgress();
-	// String zhuma = getZhuMa();
-	//
-	// @Override
-	// public void run() {
-	// strCode = payNew(zhuma, ""+ iBeiShu,iZhuShu * 2 + "", "1" + "");
-	// liucb_btn_touzhu.setClickable(true);
-	//
-	// Message msg1 = new Message();
-	// msg1.what = 18;
-	// handler.sendMessage(msg1);
-	//
-	// if (strCode[0].equals("0000")&& strCode[1].equals("000000")) {
-	// Message msg = new Message();
-	// msg.what = 14;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("070002")) {
-	// Message msg = new Message();
-	// msg.what = 15;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("0000")&& strCode[1].equals("000001")) {
-	// Message msg = new Message();
-	// msg.what = 12;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("1007")) {
-	// Message msg = new Message();
-	// msg.what = 10;
-	// handler.sendMessage(msg);
-	// } else if (strCode[1].equals("002002")) {
-	// Message msg = new Message();
-	// msg.what = 11;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("040006")|| strCode[0].equals("201015")) {
-	// Message msg = new Message();
-	// msg.what = 9;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("00")&& strCode[1].equals("00")) {
-	// Message msg = new Message();
-	// msg.what = 13;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("040003")) {
-	// Message msg = new Message();
-	// msg.what = 19;
-	// handler.sendMessage(msg);
-	// } else if (strCode[0].equals("00")&& strCode[1].equals("1002")) {
-	// Message msg = new Message();
-	// msg.what = 23;
-	// handler.sendMessage(msg);
-	// } else {
-	// Message msg = new Message();
-	// msg.what = 17;
-	// handler.sendMessage(msg);
-	// }
-	// }
-	// });
-	// t.start();
-	// }
-	// }).setNegativeButton("取消",
-	// new DialogInterface.OnClickListener() {
-	// @Override
-	// public void onClick(DialogInterface dialog,
-	// int which) {
-	// // TODO Auto-generated method stub
-	// }
-	//
-	// });
-	// dialog.show();
-	//
-	// }
-
-	//
-	// 投注新接口 20100711陈晨
-	protected String[] payNew(String betCode, String lotMulti, String amount,
-			String qiShu) {
-		String[] error_code = null;
-		// BettingInterface betting = BettingInterface.getInstance();
-
-		RWSharedPreferences shellRW = new RWSharedPreferences(this, "addInfo");
-		String sessionid = shellRW.getStringValue("sessionid");
-		String phonenum = shellRW.getStringValue("phonenum");
-		// error_code = betting.BettingTC(phonenum, qihaoxinxi[2], betCode,
-		// lotMulti,
-		// amount, "2", qiShu, sessionid, batchCode);
-
-		return error_code;
 	}
 
 	@Override
@@ -1124,17 +975,14 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		default:
 			break;
 		}
-
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-
 	}
 
 	/** 获取分析的数据 */
@@ -1150,7 +998,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 					obj = new JSONObject(re);
 					error_code = obj.getString("error_code");
 				} catch (Exception e) {
-
+					e.printStackTrace();
 				}
 				if (error_code.equals("00")) {
 					Message msg = new Message();
@@ -1197,9 +1045,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 					msg.what = 21;
 					handler.sendMessage(msg);
 				}
-
 			}
-
 		}).start();
 	}
 
@@ -1248,28 +1094,28 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	/**
 	 * 投注联网
 	 */
-	public void touZhuNet() {
-		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					touzhuhandler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
-	}
+//	public void touZhuNet() {
+//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					touzhuhandler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
+//	}
 
 	private void showBatchcodesDialog(/*String[] batchCodes*/) {
 		AlertDialog batchCodedialog = new AlertDialog.Builder(
@@ -1279,7 +1125,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						/* User clicked so do some stuff */
 						getTeamInfo(which);
 					}
-
 				}).create();
 		batchCodedialog.show();
 	}
@@ -1335,7 +1180,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						for (int i = 0; i < batchCodeArray.length(); i++) {
 							JSONObject item = batchCodeArray.getJSONObject(i);
 							AdvanceBatchCode aa = new AdvanceBatchCode();
-							// batchCode = item.getString("batchCode");
 							aa.setBatchCode(formatBatchCode(item
 									.getString("batchCode")));
 							aa.setEndTime(formatEndtime(item
@@ -1382,8 +1226,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						msg.what = 24;
 						msg.obj = message;
 						handler.sendMessage(msg);
-						// Toast.makeText(FootballChooseNineLottery.this,
-						// message, Toast.LENGTH_SHORT).show();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -1402,9 +1244,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				getZCAdvanceBatchCodeData(Constants.LOTNO_LCB);
 			}
 		});
-		// layout_football_issue.setTextColor(0xffcc0000);
-		// layout_football_issue.setText(formatBatchCode(qihaoxinxi[0]));
-		// layout_football_time.setText(formatEndtime(qihaoxinxi[1]));
 	}
 
 }

@@ -54,6 +54,7 @@ import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -826,28 +827,29 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		progressdialog = UserCenterDialog.onCreateDialog(this);
-		progressdialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(this).doBettingAction(handler, betAndGift);
+//		progressdialog = UserCenterDialog.onCreateDialog(this);
+//		progressdialog.show();
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					handler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//
+//		});
+//		t.start();
 	}
 
 	/**

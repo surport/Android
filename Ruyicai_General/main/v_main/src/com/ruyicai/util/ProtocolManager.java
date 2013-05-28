@@ -231,6 +231,8 @@ public class ProtocolManager {
 	 * 登陆的时候，设置的别名
 	 */
 	public static String ALIAS = "alias";
+	
+	public static String BANKID = "bankId"; //add by yejc 20130527
 
 	/**
 	 * new instance type

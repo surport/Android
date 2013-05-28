@@ -108,6 +108,11 @@ public class RechargeInterface {
 					chargePojo.getBankaddress());
 			jsonProtocol
 					.put(ProtocolManager.BANKNAME, chargePojo.getBankName());
+			/**add by yejc 20130527 start*/
+//			if (Constants.UMPAY_BANKID.equals(chargePojo.getBankId())) {
+			jsonProtocol.put(ProtocolManager.BANKID, chargePojo.getBankId());
+//			}
+			/**add by yejc 20130527 end*/
 			jsonProtocol.put(ProtocolManager.BANKACCOUNT,
 					chargePojo.getBankAccount());
 			re = InternetUtils.GetMethodOpenHttpConnectSecurity(

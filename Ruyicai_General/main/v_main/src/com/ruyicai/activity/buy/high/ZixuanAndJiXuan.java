@@ -53,12 +53,10 @@ import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
-import com.lthj.unipay.plugin.c;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.dlc.Dlc;
-import com.ruyicai.activity.buy.jc.touzhu.TouzhuDialog;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
@@ -71,6 +69,7 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.code.ssc.OneStarCode;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -78,7 +77,6 @@ import com.ruyicai.jixuan.Balls;
 import com.ruyicai.jixuan.SscBalls;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.MissJson;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.MissInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.pojo.AreaNum;
@@ -161,7 +159,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public boolean isshouyi = false;
 	public int hightballs;
 	private CheckBox shouyi;
-	private final int UP = 30;
 	/** 是否滑动页面显示遗漏值 */
 	protected boolean isMove = false;
 	public Map<Integer, HighItemView> missView = new HashMap<Integer, HighItemView>();
@@ -285,7 +282,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	}
 
 	private TextView mTextSumMoney;
-	private ImageButton zixuanTouzhu;
 	protected TextView textTitle;
 	protected TextView textPrize;
 	public SeekBar mSeekBarBeishu, mSeekBarQishu;
@@ -517,7 +513,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				for (int i = 0; i < areaNums.length; i++) {
 					areaNums[i].table.clearAllHighlights();
 				}
@@ -632,15 +627,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 * 初始化滑动
 	 */
 	public void initGallery() {
-
-	}
-
-	private List<String> test() {
-		List<String> missList = new ArrayList<String>();
-		for (int i = 0; i < 10; i++) {
-			missList.add("" + i * 20);
-		}
-		return missList;
 	}
 
 	/**
@@ -819,8 +805,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		int zhuShu = getZhuShu();
 		CodeInfo codeInfo = addView.initCodeInfo(getAmt(zhuShu), zhuShu);
 		setLotoNoAndType(codeInfo);
-		String lotNo = codeInfo.getLotoNo();
-		String touzhuType = codeInfo.getTouZhuType();
 		codeInfo.setTouZhuCode(getZhuma());
 		for (AreaNum areaNum : areaNums) {
 			String[] codes = areaNum.table.getHighlightStr();
@@ -1271,7 +1255,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 */
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -1520,12 +1503,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 * @param v
 	 */
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		int iBallId = v.getId();
 		isBallTable(iBallId);
 		showEditText();
 		changeTextSumMoney();
-
 	}
 
 	/**
@@ -1724,9 +1705,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		shouyi = (CheckBox) v.findViewById(R.id.checkboxzhuihao);
 		shouyi.setChecked(false);
 		if (addView.getSize() <= 1) {
-			shouyi.setVisibility(view.VISIBLE);
+			shouyi.setVisibility(View.VISIBLE);
 		} else {
-			shouyi.setVisibility(view.GONE);
+			shouyi.setVisibility(View.GONE);
 		}
 		alertText = (TextView) v
 				.findViewById(R.id.alert_dialog_touzhu_text_one);
@@ -1745,7 +1726,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		codeInfo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				addView.createCodeInfoDialog();
 				addView.showDialog();
 			}
@@ -1763,7 +1743,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				.setOnCheckedChangeListener(new android.widget.CompoundButton.OnCheckedChangeListener() {
 					public void onCheckedChanged(CompoundButton buttonView,
 							boolean isChecked) {
-						// TODO Auto-generated method stub
 						if (isChecked) {
 							betAndGift.setPrizeend("1");
 						} else {
@@ -1775,7 +1754,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		shouyi.setOnCheckedChangeListener(new android.widget.CompoundButton.OnCheckedChangeListener() {
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				isshouyi = isChecked;
 			}
 		});
@@ -1785,7 +1763,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				touZhuDialog.cancel();
 				clearProgress();
 			}
@@ -1862,9 +1839,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		isCodeText(codeInfo);
 		shouyi.setChecked(false);
 		if (addView.getSize() <= 1) {
-			shouyi.setVisibility(view.VISIBLE);
+			shouyi.setVisibility(View.VISIBLE);
 		} else {
-			shouyi.setVisibility(view.GONE);
+			shouyi.setVisibility(View.GONE);
 		}
 		touZhuDialog.show();
 	}
@@ -2040,12 +2017,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	}
 
 	public void onStopTrackingTouch(SeekBar seekBar) {
-
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
 	}
 
 	@Override
@@ -2167,27 +2138,26 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public void touZhuNet() {
 		lotno = PublicMethod.toLotno(betAndGift.getLotno());
 		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
-		showDialog(0); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(ZixuanAndJiXuan.this).doBettingAction(handler, betAndGift);
+//		showDialog(0); // 显示网络提示框 2010/7/4
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					handler.handleMsg(error, msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				progressdialog.dismiss();
+//			}
+//		});
+//		t.start();
 	}
 
 	public void isMissNet(MissJson missJson, String sellWay, boolean isZHMiss) {
@@ -2244,7 +2214,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			handler.post(new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					if (isZHMiss) {
 						missView.get(id).setZHMissList(missJson.zMissList);
 						updateMissView(missJson);
@@ -2365,7 +2334,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (addView.getSize() != 0) {
