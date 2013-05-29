@@ -927,67 +927,68 @@ public class BuyActivity extends Activity implements OnClickListener {
 						index).get("imageRes")));
 				String lotno = newList.get(index).get("lotno");
 				boolean isStop = true;// true代表正在销售
-				if (!lotno.equals("hmdt") && !lotno.equals("zjjh")) {
-					if (lotno.equals(Constants.LOTNO_SSQ) || lotno.equals(Constants.LOTNO_QLC)
-							|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
-							|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)) {
-						try {
-							//String josn = Constants.todayjosn.getString(lotno);
-							//JSONObject jsonobj = new JSONObject(josn);
-							JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
-							if (jsonobj == null) {
-								imgView.setVisibility(ImageView.GONE);
-								continue;
+				if (Constants.todayjosn != null) {
+					if (!lotno.equals("hmdt") && !lotno.equals("zjjh")) {
+						if (lotno.equals(Constants.LOTNO_SSQ) || lotno.equals(Constants.LOTNO_QLC)
+								|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
+								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)) {
+							try {
+								//String josn = Constants.todayjosn.getString(lotno);
+								//JSONObject jsonobj = new JSONObject(josn);
+								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+								if (jsonobj == null) {
+									imgView.setVisibility(ImageView.GONE);
+									continue;
+								}
+								String isTodayOpenPrize = jsonobj
+										.getString("isTodayOpenPrize");
+								String isaddString = jsonobj
+										.getString("addAwardState");
+								String isSale = jsonobj.getString("saleState");
+								if (isSale.equals(Constants.SALE_STOPED)) {
+									imgView.setImageResource(R.drawable.tingshou);
+									isStop = false;
+								} else if (isTodayOpenPrize.equals("true")
+										&& isaddString.equals(Constants.ADD_AWARD_OK)) {
+									imgView.setImageResource(R.drawable.kaijiang);
+								} else if (isTodayOpenPrize.equals("true")
+										&& isaddString.equals(Constants.ADD_AWARD_NO)) {
+									imgView.setImageResource(R.drawable.kaijiang);
+								} else if (isTodayOpenPrize.equals("false")
+										&& isaddString.equals(Constants.ADD_AWARD_OK)) {
+									imgView.setImageResource(R.drawable.jiajiang);
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-							String isTodayOpenPrize = jsonobj
-									.getString("isTodayOpenPrize");
-							String isaddString = jsonobj
-									.getString("addAwardState");
-							String isSale = jsonobj.getString("saleState");
-							if (isSale.equals(Constants.SALE_STOPED)) {
-								imgView.setImageResource(R.drawable.tingshou);
-								isStop = false;
-							} else if (isTodayOpenPrize.equals("true")
-									&& isaddString.equals(Constants.ADD_AWARD_OK)) {
-								imgView.setImageResource(R.drawable.kaijiang);
-							} else if (isTodayOpenPrize.equals("true")
-									&& isaddString.equals(Constants.ADD_AWARD_NO)) {
-								imgView.setImageResource(R.drawable.kaijiang);
-							} else if (isTodayOpenPrize.equals("false")
-									&& isaddString.equals(Constants.ADD_AWARD_OK)) {
-								imgView.setImageResource(R.drawable.jiajiang);
+	
+						} else {
+							try {
+								//String josn = Constants.todayjosn
+								//		.getString(lotno);
+								//JSONObject jsonobj = new JSONObject(josn);
+								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+								if (jsonobj == null) {
+									imgView.setVisibility(ImageView.GONE);
+									continue;
+								}
+								String isaddString = jsonobj
+										.getString("addAwardState");
+								String isSale = jsonobj.getString("saleState");
+								if (isSale.equals(Constants.SALE_STOPED)) {
+									imgView.setImageResource(R.drawable.tingshou);
+									isStop = false;
+								} else if (isaddString.equals(Constants.ADD_AWARD_OK)) {
+									imgView.setImageResource(R.drawable.jiajiang);
+								}
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
 							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					} else {
-						try {
-							//String josn = Constants.todayjosn
-							//		.getString(lotno);
-							//JSONObject jsonobj = new JSONObject(josn);
-							JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
-							if (jsonobj == null) {
-								imgView.setVisibility(ImageView.GONE);
-								continue;
-							}
-							String isaddString = jsonobj
-									.getString("addAwardState");
-							String isSale = jsonobj.getString("saleState");
-							if (isSale.equals(Constants.SALE_STOPED)) {
-								imgView.setImageResource(R.drawable.tingshou);
-								isStop = false;
-							} else if (isaddString.equals(Constants.ADD_AWARD_OK)) {
-								imgView.setImageResource(R.drawable.jiajiang);
-							}
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
 						}
 					}
 				}
-				
 				final boolean isSale = isStop;
 				imgView.setOnClickListener(new View.OnClickListener() {
 					@Override
