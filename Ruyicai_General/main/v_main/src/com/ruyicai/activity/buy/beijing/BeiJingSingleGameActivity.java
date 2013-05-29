@@ -187,19 +187,19 @@ public class BeiJingSingleGameActivity extends Activity {
 	 *            是否清除原有数据
 	 */
 	public void refreshAgainstInformationShow(boolean isReset, boolean isCleared) {
-		againstLinearLayout.removeAllViews();
+//		againstLinearLayout.removeAllViews();
 
 		switch (playMethodType) {
 		case WINTIELOSS:
 			getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
+			
+			if (winTieLossAdapter == null) {
+				winTieLossAdapter = new WinTieLossAdapter(
+						BeiJingSingleGameActivity.this,
+						nowWinTieLossAgainstInformationList);
+			}
 
 			if (isReset) {
-				if (winTieLossAdapter == null) {
-					winTieLossAdapter = new WinTieLossAdapter(
-							BeiJingSingleGameActivity.this,
-							nowWinTieLossAgainstInformationList);
-				}
-
 				againstListView.setAdapter(winTieLossAdapter);
 			} else {
 				winTieLossAdapter.notifyDataSetChanged();
@@ -266,7 +266,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 			break;
 		}
-		againstLinearLayout.addView(againstView);
+//		againstLinearLayout.addView(againstView);
 
 		selectNumTextView.setText("已经选择了" + selectedGameNum + "场比赛");
 
