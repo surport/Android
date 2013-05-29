@@ -63,16 +63,19 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 		setContentView(R.layout.notice_prizes_single_specific_main);
 		context = this;
 		initView();
-		if (Constants.noticeJcz.equals("")) {
-			initViewState = FIRST_JC_NOTICE;
-			notiecJcNet("");
-		} else {
-			try {
-				showJcListView(new JSONObject(Constants.noticeJcz));
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
+		
+		initViewState = FIRST_JC_NOTICE;
+		notiecJcNet("");
+//		if (Constants.noticeJcz.equals("")) {
+//			initViewState = FIRST_JC_NOTICE;
+//			notiecJcNet("");
+//		} else {
+//			try {
+//				showJcListView(new JSONObject(Constants.noticeJcz));
+//			} catch (JSONException e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 	}
 

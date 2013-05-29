@@ -83,16 +83,18 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		playTypeText[3] = getString(R.string.beijingsinglegame_textview_halftheaudience);
 		playTypeText[4] = getString(R.string.beijingsinglegame_textview_updownsigledouble);
 		
-		if (Constants.noticeJcz.equals("")) {
-			initViewState = FIRST_JC_NOTICE;
-			noticeBeijingSingleNet("");
-		} else {
-			try {
-				showJcListView(new JSONObject(Constants.noticeJcz));
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
+		initViewState = FIRST_JC_NOTICE;
+		noticeBeijingSingleNet("");
+//		if (Constants.noticeJcz.equals("")) {
+//			initViewState = FIRST_JC_NOTICE;
+//			noticeBeijingSingleNet("");
+//		} else {
+//			try {
+//				showJcListView(new JSONObject(Constants.noticeJcz));
+//			} catch (JSONException e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 	}
 
