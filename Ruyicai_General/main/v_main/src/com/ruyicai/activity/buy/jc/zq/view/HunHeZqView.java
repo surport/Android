@@ -17,20 +17,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.jc.JcMainView;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
-import com.ruyicai.activity.buy.jc.zq.view.BFView.JcInfoAdapter;
-import com.ruyicai.activity.buy.jc.zq.view.BFView.JcInfoAdapter.ViewHolder;
-import com.ruyicai.code.jc.zq.FootBF;
-import com.ruyicai.code.jc.zq.FootBQC;
 import com.ruyicai.code.jc.zq.FootHun;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.PublicMethod;
 
 /**
  * 混合投注
@@ -48,7 +42,6 @@ public class HunHeZqView extends JcMainView {
 			Handler handler, LinearLayout layout, String type,
 			boolean isDanguan, List<String> checkTeam) {
 		super(context, betAndGift, handler, layout, type, isDanguan, checkTeam);
-		// TODO Auto-generated constructor stub
 		footHunCode = new FootHun(context);
 	}
 
@@ -58,7 +51,6 @@ public class HunHeZqView extends JcMainView {
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		return context.getString(R.string.jczq_hunhe_guoguan_title).toString();
 	}
 
@@ -108,31 +100,26 @@ public class HunHeZqView extends JcMainView {
 
 	@Override
 	public int getTeamNum() {
-		// TODO Auto-generated method stub
 		return CHECK_TEAM;
 	}
 
 	@Override
 	public void setTeamNum(int checkTeam) {
-		// TODO Auto-generated method stub
 		CHECK_TEAM = checkTeam;
 	}
 
 	@Override
 	public BaseAdapter getAdapter() {
-		// TODO Auto-generated method stub
 		return adapter;
 	}
 
 	@Override
 	public String getLotno() {
-		// TODO Auto-generated method stub
 		return Constants.LOTNO_JCZQ_HUN;
 	}
 
 	@Override
 	public String getTypeTitle() {
-		// TODO Auto-generated method stub
 		return context.getString(R.string.jczq_dialog_sfc_guoguan_title)
 				.toString();
 	}
@@ -177,7 +164,6 @@ public class HunHeZqView extends JcMainView {
 	 */
 	public void initListView(ListView listview, Context context,
 			List<List> listInfo) {
-		// TODO Auto-generated method stub
 		adapter = new JcInfoAdapter(context, listInfo);
 		listview.setAdapter(adapter);
 	}
@@ -198,19 +184,16 @@ public class HunHeZqView extends JcMainView {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -219,7 +202,6 @@ public class HunHeZqView extends JcMainView {
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			final ArrayList<Info> list = (ArrayList<Info>) mList.get(position);
 			convertView = mInflater.inflate(
@@ -239,7 +221,6 @@ public class HunHeZqView extends JcMainView {
 				holder.btn.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						list.get(0).isOpen = !list.get(0).isOpen;
 						isOpen(list, holder);
 					}
@@ -293,7 +274,7 @@ public class HunHeZqView extends JcMainView {
 
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId() + "\n"
-					+ getEndTime(info.getTimeEnd()) + " " + "(截)";
+					+ PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
 
@@ -317,7 +298,6 @@ public class HunHeZqView extends JcMainView {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.createDialog(FootHun.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
@@ -332,7 +312,6 @@ public class HunHeZqView extends JcMainView {
 				btnDan.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						if (info.isDan()) {
 							info.setDan(false);
 							btnDan.setBackgroundResource(R.drawable.jc_btn);
@@ -347,7 +326,6 @@ public class HunHeZqView extends JcMainView {
 			analysis.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCFOOT, info),
 							info.getHome(), info.getAway());
 				}
@@ -400,7 +378,6 @@ public class HunHeZqView extends JcMainView {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.createDialog(FootHun.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
@@ -413,7 +390,6 @@ public class HunHeZqView extends JcMainView {
 			btnXi.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCFOOT, info),
 							info.getHome(), info.getAway());
 				}
@@ -430,7 +406,6 @@ public class HunHeZqView extends JcMainView {
 
 	@Override
 	public String getPlayType() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return "J00002_0";
 		} else {
@@ -440,12 +415,10 @@ public class HunHeZqView extends JcMainView {
 
 	@Override
 	public List<double[]> getOdds(List<Info> listInfo) {
-		// TODO Auto-generated method stub
 		return footHunCode.getOddsList(listInfo);
 	}
 
 	public List<double[]> getMinOdds(List<Info> listInfo) {
-		// TODO Auto-generated method stub
 		return footHunCode.getMinOddsList(listInfo);
 	}
 

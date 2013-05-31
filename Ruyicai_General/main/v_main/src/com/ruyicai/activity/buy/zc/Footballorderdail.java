@@ -19,7 +19,6 @@ public class Footballorderdail extends BuyActivityGroup {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		Constants.type = "zc";
 		isIssue(false);

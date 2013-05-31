@@ -76,12 +76,13 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
         /*获取Bundle中的数据,获得玩法类型*/
         playMethodType =  bundle.getString(Constants.PLAY_METHOD_TYPE);
 
-		initView();
-		playTypeText[0] = getString(R.string.beijingsinglegame_textview_wintieloss);
+        playTypeText[0] = getString(R.string.beijingsinglegame_textview_wintieloss);
 		playTypeText[1] = getString(R.string.beijingsinglegame_textview_totalgoals);
 		playTypeText[2] = getString(R.string.beijingsinglegame_textview_over);
 		playTypeText[3] = getString(R.string.beijingsinglegame_textview_halftheaudience);
 		playTypeText[4] = getString(R.string.beijingsinglegame_textview_updownsigledouble);
+		
+		initView();
 		
 		initViewState = FIRST_JC_NOTICE;
 		noticeBeijingSingleNet("");
@@ -128,6 +129,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		playLinear.setVisibility(View.VISIBLE);
 		reBtn = (Button) findViewById(R.id.notice_beijing_single_main_batch_code);
 		playBtn = (Button) findViewById(R.id.buy_lq_main_btn_type);
+		playBtn.setText(playTypeText[0]);
 		playBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override

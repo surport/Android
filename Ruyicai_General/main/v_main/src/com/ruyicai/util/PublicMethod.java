@@ -2926,4 +2926,10 @@ public class PublicMethod {
 		return progressDialog;
 	}
 	
+	public static String getEndTime(String date) {
+		int index = date.indexOf(":");
+		date = date.substring(index - 2, index + 3);
+		return date;
+	}
+	
 }

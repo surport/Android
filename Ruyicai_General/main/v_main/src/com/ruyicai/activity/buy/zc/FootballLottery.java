@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TabHost;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
@@ -14,7 +15,7 @@ public class FootballLottery extends BuyActivityGroup {
 
 	RelativeLayout fatherIssueLinear;
 	RelativeLayout relativeLayout1;
-	String lotno = Constants.LOTNO_SFC;
+	String lotno = Constants.LOTNO_ZC;
 	private String[] titles = { "胜负彩", "任选九", "进球彩", "六场半" };
 	private String[] topTitles = { "足彩-胜负彩", "足彩-任选九", "足彩-进球彩", "足彩-六场半" };
 	private Class[] allId = { FootballSFLottery.class,

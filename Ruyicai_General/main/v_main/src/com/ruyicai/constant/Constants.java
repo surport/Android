@@ -218,6 +218,7 @@ public class Constants {
 	
 	public static final String BEIJINGSINGLE = "beiDan";
 	public static final String PLAY_METHOD_TYPE = "playMethodType";
+	public static final String NEW_JINGCAI = "jingCai";
     /**add by fansm 20130515 start*/
 	public static String[] lotnoNameList = {"hmdt",LOTNO_SSQ,LOTNO_DLT,LOTNO_FC3D,LOTNO_11_5,LOTNO_SSC,LOTNO_JCZ
         ,LOTNO_NMK3,LOTNO_eleven,"zjjh",LOTNO_GD_11_5,LOTNO_PL3,LOTNO_QLC,LOTNO_22_5

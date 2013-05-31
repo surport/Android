@@ -7,7 +7,7 @@ public class JsonBeanInfo {
 	String home = "";
 	String away = "";
 	String homeScore = "";
-	String guestScroe = "";
+	String guestScore = "";
 	String peiLv = "";
 	String timeEnd = "";
 	String week = "";
@@ -16,7 +16,33 @@ public class JsonBeanInfo {
 	String result = "";
 	String weekId = "";
 	String score = "";
+	
+	String homeHalfScore = "";
+	String guestHalfScore = "";
 
+	public String getGuestScore() {
+		return guestScore;
+	}
+
+	public void setGuestScore(String guestScore) {
+		this.guestScore = guestScore;
+	}
+
+	public String getHomeHalfScore() {
+		return homeHalfScore;
+	}
+
+	public void setHomeHalfScore(String homeHalfScore) {
+		this.homeHalfScore = homeHalfScore;
+	}
+
+	public String getGuestHalfScore() {
+		return guestHalfScore;
+	}
+
+	public void setGuestHalfScore(String guestHalfScore) {
+		this.guestHalfScore = guestHalfScore;
+	}
 
 	public String getWeekId() {
 		return weekId;
@@ -111,14 +137,6 @@ public class JsonBeanInfo {
 
 	public void setHomeScore(String score) {
 		this.homeScore = score;
-	}
-
-	public String getGuestScore() {
-		return guestScroe;
-	}
-
-	public void setGuestScore(String score) {
-		this.guestScroe = score;
 	}
 	
 	public String getScore() {
