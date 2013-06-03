@@ -30,6 +30,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -99,7 +101,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.alert_dialog_jc_touzhu);
+		setContentView(R.layout.alert_dialog_beijing_touzhu);
 
 		reduceMutipleButton = (ImageButton) findViewById(R.id.buy_zixuan_img_subtract_beishu);
 		reduceMutipleButton
@@ -116,6 +118,34 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 		mutipleEditText = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mutipleEditText.setText(String.valueOf(mutipleSeekBar.getProgress()));
+		mutipleEditText.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				String mutipleString = mutipleEditText.getText().toString();
+
+				if (!mutipleString.equals("")) {
+					mutipleSeekBar.setProgress(Integer.valueOf(mutipleString));
+				}
+
+				if (mutipleString.length() > 5) {
+					mutipleEditText.setText("10000");
+					((EditText) mutipleEditText).setSelection(5);
+				}
+
+				setBettingInformationShow();
+			}
+		});
 
 		bettingDetailButton = (Button) findViewById(R.id.alert_dialog_jc_touzhu_btn_info);
 		bettingDetailButton
@@ -543,7 +573,14 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
-			mutipleEditText.setText(String.valueOf(progress));
+			if (progress < 1) {
+				seekBar.setProgress(1);
+			}
+
+			if (progress >= 1 && progress <= 10000) {
+				mutipleEditText.setText(String.valueOf(progress));
+				mutipleEditText.setSelection(String.valueOf(progress).length());
+			}
 			setBettingInformationShow();
 		}
 
