@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.code.ten.TenCode;
 import com.ruyicai.code.ten.TenDanCode;
 import com.ruyicai.constant.Constants;
@@ -40,6 +42,11 @@ public class TenActivity extends Dlc {
 		initSpinner();
 		initGroup();
 		setTitleOne(getString(R.string.tenTitle));
+		imgRetrun.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				createDialog(NoticeActivityGroup.ID_SUB_GD10_LISTVIEW);
+			}
+		});
 		MobclickAgent.onEvent(this, "guangdongkuaileshifen"); // BY贺思明
 																// 点击首页的“广东快乐十分”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面

@@ -3,12 +3,14 @@ package com.ruyicai.activity.buy.eleven;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.HighFrequencyNoticeHistroyActivity;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.code.eleven.ElevenCode;
 import com.ruyicai.code.eleven.ElevenDanTuoCode;
 import com.ruyicai.constant.Constants;
@@ -34,6 +36,11 @@ public class Eleven extends Dlc {
 		setLotno();
 		initSpinner();
 		initGroup();
+		imgRetrun.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				createDialog(NoticeActivityGroup.ID_SUB_YDJ_LISTVIEW);
+			}
+		});
 		setTitleOne(getString(R.string.eleven));
 		MobclickAgent.onEvent(this, "11yunduojin"); // BY贺思明 点击首页的“11运夺金”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
