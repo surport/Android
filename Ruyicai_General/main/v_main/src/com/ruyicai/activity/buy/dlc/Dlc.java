@@ -44,6 +44,7 @@ import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.more.LuckChoose2;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.code.dlc.DlcCode;
 import com.ruyicai.code.dlc.DlcDanTuoCode;
@@ -229,7 +230,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		// ImageView的返回事件
 		imgRetrun.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				createDialog();
+				createDialog(NoticeActivityGroup.ID_SUB_DLC_LISTVIEW);
 			}
 		});
 	}
@@ -244,7 +245,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	/**
 	 * 创建下拉列表
 	 */
-	private void createDialog() {
+	public void createDialog(final int Lotno) {
 		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View popupView = (LinearLayout) inflate.inflate(
 				R.layout.buy_group_window, null);
@@ -274,6 +275,11 @@ public class Dlc extends ZixuanAndJiXuan {
 				.findViewById(R.id.buy_group_layout4);
 		final LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
+		final LinearLayout layoutPicture = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout6);
+		final LinearLayout layoutParentPicture = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_one_layout6);
+		
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -315,6 +321,19 @@ public class Dlc extends ZixuanAndJiXuan {
 				popupwindow.dismiss();
 			}
 
+		});
+		
+		layoutParentPicture.setVisibility(View.VISIBLE);
+		layoutPicture.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				setNoticeLotno(Lotno);
+				layoutPicture.setBackgroundResource(R.drawable.buy_group_layout_b);
+				Intent intent = new Intent(Dlc.this, NoticeActivityGroup.class);
+				intent.putExtra("position", 0);
+				startActivity(intent);
+				popupwindow.dismiss();
+			}
 		});
 
 		// 显示幸运选号菜单
@@ -1308,6 +1327,10 @@ public class Dlc extends ZixuanAndJiXuan {
 		} else {
 			codeInfo.setTouZhuType("zhixuan");
 		}
+	}
+	
+	public void setNoticeLotno(int Lotno) {
+		NoticeActivityGroup.LOTNO = Lotno;
 	}
 
 }

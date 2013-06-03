@@ -66,6 +66,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	private AddView addview;
 	private Context context;
 	private final int HIGHT_MAX = 2000;
+	private final int ZC_MAX = 10000;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -105,7 +106,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		if (Constants.type.equals("zc")) {
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
-			beishulayLayout.setVisibility(View.GONE);
+			initImageView();
+//			beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -313,6 +315,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		mTextBeishu.setText("" + iProgressBeishu);
 		if (Constants.type.equals("hight")) {
 			mSeekBarBeishu.setMax(HIGHT_MAX);
+		} else if (Constants.type.equals("zc")) {
+			mSeekBarBeishu.setMax(ZC_MAX);
 		}
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());

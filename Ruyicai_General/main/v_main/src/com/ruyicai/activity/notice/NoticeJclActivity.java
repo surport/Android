@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,7 +31,6 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity;
-import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
@@ -45,9 +45,19 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	MyHandler handler = new MyHandler(this);// 自定义handler
 
 	private String dateStr;// 联网返回的日期串
-	private String[] dateShow = {}, dateNet = {};// dateShow为显示用的日期数组
+	private String[] /*dateShow = {}, */dateNet = {};// dateShow为显示用的日期数组
 													// ，dateNet为联网上传用的日期格式数组
 	private Button reBtn;
+	private LinearLayout playLinear;
+	private Button playBtn;
+	private String playMethodType  = Constants.LOTNO_JCLQ;
+	private int bachCodeIndex = 0;
+	private String[] playType = {Constants.LOTNO_JCLQ, 
+    		Constants.LOTNO_JCLQ_RF, 
+    		Constants.LOTNO_JCLQ_SFC, 
+    		Constants.LOTNO_JCLQ_DXF, 
+    		Constants.LOTNO_JCLQ_HUN};
+    private String[] playTypeText = {"胜负","让分胜负","胜分差","大小分","混合投注"};
 
 	private int initViewState = 1;// 设置初始化竞彩查询date的状态，当initViewState =
 									// OTHER_JC_NOTICE时，不再初始化日期数组
@@ -101,11 +111,24 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		TextView noticePrizesTitle = (TextView) findViewById(R.id.notice_prizes_single_specific_title_id);
 		noticePrizesTitle.setText(R.string.jingcailan_kaijianggonggao);
 		noticePrizesTitle.setTextSize(20);
-		// 返回主列表
 
+		/**add by yejc 20130529 start*/
+		((Button)findViewById(R.id.notice_prizes_single_specific_main_returnID)).setVisibility(View.GONE);
+		playLinear = (LinearLayout)findViewById(R.id.notice_beijing_single_item_play);
+		playLinear.setVisibility(View.VISIBLE);
+		playBtn = (Button) findViewById(R.id.buy_lq_main_btn_type);
+		playBtn.setText(playTypeText[0]);
+		playBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				showPlayDialog();
+			}
+		});
+		/**add by yejc 20130529 end*/
 		// 返回主列表
-		reBtn = (Button) findViewById(R.id.notice_prizes_single_specific_main_returnID);
-		if (dateShow.length == 0) {
+		reBtn = (Button) findViewById(R.id.notice_beijing_single_main_batch_code);
+		if (dateNet.length == 0) {
 			reBtn.setClickable(false);
 		} else {
 			reBtn.setClickable(true);
@@ -113,7 +136,6 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		reBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				showBatchcodesDialog();
 			}
 		});
@@ -130,7 +152,8 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void run() {
-				str = NoticeJcInfo.getInstance().getLotteryAllNotice("0", date);
+//				str = NoticeJcInfo.getInstance().getLotteryAllNotice("0", date);
+				str = NoticeJcInfo.getInstance().getLotteryNoticeByLotNo(Constants.NEW_JINGCAI, playMethodType, date);
 				try {
 					jsonObj = new JSONObject(str);
 					msg = jsonObj.getString("message");
@@ -192,19 +215,16 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -212,14 +232,14 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
-			convertView = mInflater.inflate(R.layout.notice_jc_listview_item,
+			convertView = mInflater.inflate(R.layout.notice_beijing_single_listview_item,
 					null);
 			final ViewHolder holder = new ViewHolder();
-			holder.time = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time);
+			
+			holder.teamId = (TextView) convertView
+					.findViewById(R.id.jc_main_list_item_text_team_id);
 			holder.team = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_team);
 			holder.home = (TextView) convertView
@@ -228,41 +248,31 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 					.findViewById(R.id.jc_main_list_item_text_team_name2);
 			holder.letPoint = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_vs);
-			holder.timeEnd = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time_end);
-			holder.teamId = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_id);
 			holder.result = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_jieguo);
 			holder.score = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_score);
-			holder.homeText = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_home);
-			holder.guestText = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_guest);
+			holder.sp = (TextView) convertView
+					.findViewById(R.id.notice_beijing_single_item_odds);
 			convertView.setTag(holder);
-			holder.time.append(info.getTime());
+			holder.sp.setVisibility(View.GONE);
 			holder.team.append(info.getTeam());
-			holder.home.append(info.getAway());
-			holder.away.append(info.getHome());
-			holder.letPoint.setText(info.getLetPoint());
-			holder.letPoint.setTextColor(Color.BLUE);
-			holder.timeEnd.append(info.getTimeEnd());
-			holder.teamId.append(info.getWeek() + info.getTeamId());
-			holder.result.append("主" + info.getResult());
-			holder.homeText.setText("(客)");
-			holder.guestText.setText("(主)");
-			try {
-				String scores[] = info.getScore().split("\\:");
-				holder.score.append(scores[1] + ":" + scores[0]);
-			} catch (Exception e) {
-				// TODO: handle exception
+			holder.teamId.append(info.getTeamId());
+			holder.result.append(info.getResult());
+			String score = info.getGuestScore()+":"+info.getHomeScore();
+			holder.score.append(score);
+			
+			holder.home.append(info.getHome()+"(主)");
+			holder.away.append(info.getAway()+"(客)");
+			if (!"".equals(info.getLetPoint())) {
+				holder.letPoint.setText(info.getLetPoint());
+				holder.letPoint.setTextColor(Color.BLUE);
 			}
+			
 			convertView.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCBASKET, info));
 				}
 			});
@@ -270,17 +280,14 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		}
 
 		class ViewHolder {
-			TextView homeText;
-			TextView guestText;
-			TextView time;
 			TextView team;
 			TextView home;
 			TextView away;
 			TextView letPoint;
-			TextView timeEnd;
 			TextView teamId;
 			TextView result;
 			TextView score;
+			TextView sp;
 		}
 	}
 
@@ -301,17 +308,14 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 				itemInfo.setDay(jsonItem.getString("day"));
 				itemInfo.setWeekId(jsonItem.getString("weekId"));
 				itemInfo.setTeamId(jsonItem.getString("teamId"));
-				itemInfo.setTime(jsonItem.getString("dayForamt"));
-				itemInfo.setWeek(jsonItem.getString("week"));
-				itemInfo.setTeamId(jsonItem.getString("teamId"));
 				itemInfo.setTeam(jsonItem.getString("league"));
-				itemInfo.setResult(jsonItem.getString("result"));
-				itemInfo.setScore(jsonItem.getString("score"));
-				itemInfo.setTimeEnd(jsonItem.getString("time"));
+				itemInfo.setResult(jsonItem.getString("matchResult"));
 				itemInfo.setLetPoint(jsonItem.getString("letPoint"));
-				String teams[] = jsonItem.getString("team").split(":");
-				itemInfo.setHome(teams[0]);
-				itemInfo.setAway(teams[1]);
+				itemInfo.setHome(jsonItem.getString("homeTeam"));
+				itemInfo.setAway(jsonItem.getString("guestTeam"));
+				itemInfo.setHomeScore(jsonItem.getString("homeScore"));
+				itemInfo.setGuestScore(jsonItem.getString("guestScore"));
+				
 				list.add(itemInfo);
 			}
 		} catch (JSONException e) {
@@ -325,20 +329,35 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	 * 将日期串转化为日期数组
 	 */
 	private void formatDate(String dateStr) {
-		dateShow = dateStr.split(";");
-		reBtn.setText(dateShow[0]);
 		dateNet = (dateStr.replaceAll("-", "")).split(";");
+		reBtn.setText(dateNet[0]);
 	}
 
 	private void showBatchcodesDialog() {
 		AlertDialog batchCodedialog = new AlertDialog.Builder(
-				NoticeJclActivity.this).setItems(dateShow,
+				NoticeJclActivity.this).setItems(dateNet,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
-						reBtn.setText(dateShow[which]);
+						reBtn.setText(dateNet[which]);
+						bachCodeIndex = which;
 						initViewState = OTHER_JC_NOTICE;
 						notiecJcNet(dateNet[which]);
+					}
+				}).create();
+		batchCodedialog.show();
+	}
+	
+	private void showPlayDialog() {
+		AlertDialog batchCodedialog = new AlertDialog.Builder(
+				NoticeJclActivity.this).setItems(playTypeText,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+						playBtn.setText(playTypeText[which]);
+						playMethodType = playType[which];
+						if (dateNet.length > bachCodeIndex) {
+							notiecJcNet(dateNet[bachCodeIndex]);
+						}
 					}
 				}).create();
 		batchCodedialog.show();
@@ -346,7 +365,6 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 		Constants.noticeJcl = jsonObj.toString();
 		showJcListView(jsonObj);
@@ -354,26 +372,21 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
