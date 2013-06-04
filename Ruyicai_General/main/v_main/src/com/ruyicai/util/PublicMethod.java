@@ -2909,4 +2909,10 @@ public class PublicMethod {
 		Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 	}
 	
+	public static String getEndTime(String date) {
+		int index = date.indexOf(":");
+		date = date.substring(index - 2, index + 3);
+		return date;
+	}
+	
 }

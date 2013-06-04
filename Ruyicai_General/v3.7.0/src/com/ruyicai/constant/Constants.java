@@ -19,12 +19,12 @@ public class Constants {
 	public static final String APPNAME = "RUYICAI";	
 	public static  int MEMUTYPE= 0;
 	
-	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";//jrtLot正式线
-//    public static final String SERVER_URL = "http://202.43.152.170:8080/jrtLot/";//测试 线
+//	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";//jrtLot正式线
+    public static final String SERVER_URL = "http://192.168.0.42:80/jrtLot/";//测试 线
 
     
-	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";//正式线
-//	public static String LOT_SERVER = "http://202.43.152.170:8080/lotserver/RuyicaiServlet";//测试线
+//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";//正式线
+	public static String LOT_SERVER = "http://192.168.0.42:80/lotserver/RuyicaiServlet";//测试线
    
     /**
      * 彩种设置

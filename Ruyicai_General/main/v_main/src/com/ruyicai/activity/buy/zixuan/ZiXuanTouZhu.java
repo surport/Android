@@ -521,4 +521,3 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		}
 	}
 }
-

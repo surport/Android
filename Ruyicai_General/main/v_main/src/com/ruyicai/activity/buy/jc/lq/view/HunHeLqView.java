@@ -40,6 +40,7 @@ import com.ruyicai.code.jc.zq.FootHun;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.PublicMethod;
 
 /**
  * 混合投注
@@ -294,7 +295,7 @@ public class HunHeLqView extends JcMainView {
 
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
-					+ "\n" + getEndTime(info.getTimeEnd()) + " " + "(截)";
+					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getAway() + "(客)");
 			guestTeam.setText(info.getHome() + "(主)");

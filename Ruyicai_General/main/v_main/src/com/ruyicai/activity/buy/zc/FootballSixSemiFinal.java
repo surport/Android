@@ -65,7 +65,7 @@ import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 public class FootballSixSemiFinal extends FootBallLotteryFather implements
-		OnClickListener, OnSeekBarChangeListener, HandlerMsg {
+		OnClickListener, /*OnSeekBarChangeListener, */HandlerMsg {
 	String lotno = Constants.LOTNO_LCB;
 	private String codeStr;
 	MyHandler touzhuhandler = new MyHandler(this);
@@ -92,7 +92,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	TextView mTextSumMoney;
 	List<Map<String, Object>> list;
 	SeekBar mSeekBarBeishu;
-	TextView mTextBeishu;
+//	TextView mTextBeishu;
 	int iProgressBeishu;
 	Vector<BallTable> ballTables = new Vector<BallTable>();
 	ImageButton liucb_btn_touzhu;
@@ -113,7 +113,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.buy_footballlottery_layout);
+//		setContentView(R.layout.buy_footballlottery_layout);
 		initBatchCode(Constants.LOTNO_LCB);
 		iScreenWidth = PublicMethod.getDisplayWidth(this);
 		JSONObject rx9LotnoInfo = PublicMethod
@@ -267,6 +267,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						public void onClick(View v) {
 							ball.changeBallColor();
 							changeTextSumMoney(getZhuShu());
+							
+							setTeamNum(getTeamNum(ballTables, true));
 						}
 					});
 				}
@@ -282,6 +284,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 						public void onClick(View v) {
 							ball2.changeBallColor();
 							changeTextSumMoney(getZhuShu());
+							
+							setTeamNum(getTeamNum(ballTables, true));
 						}
 					});
 				}
@@ -657,16 +661,16 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	}
 
 	public void createView() {
-		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
-		mSeekBarBeishu.setOnSeekBarChangeListener(this);
-		iProgressBeishu = 1;
-		mSeekBarBeishu.setProgress(iProgressBeishu);
-		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
-		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, null,
-				-1, mSeekBarBeishu, true);
-		mTextBeishu.setText("" + iProgressBeishu);
-		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, null, 1,
-				mSeekBarBeishu, true);
+//		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
+//		mSeekBarBeishu.setOnSeekBarChangeListener(this);
+//		iProgressBeishu = 1;
+//		mSeekBarBeishu.setProgress(iProgressBeishu);
+//		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
+//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, null,
+//				-1, mSeekBarBeishu, true);
+//		mTextBeishu.setText("" + iProgressBeishu);
+//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, null, 1,
+//				mSeekBarBeishu, true);
 
 		liucb_btn_touzhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		liucb_btn_touzhu.setOnClickListener(new OnClickListener() {
@@ -697,12 +701,12 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	/**
 	 * 投注提示框中的信息
 	 */
-	private String getTouzhuAlert() {
-		int iZhuShu = getZhuShu();
-		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
-				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
-				+ (iZhuShu * 2) + "元";
-	}
+//	private String getTouzhuAlert() {
+//		int iZhuShu = getZhuShu();
+//		return "注数：" + iZhuShu / mSeekBarBeishu.getProgress() + "注    " + "倍数："
+//				+ mSeekBarBeishu.getProgress() + "倍    " + "金额："
+//				+ (iZhuShu * 2) + "元";
+//	}
 
 	@Override
 	public void onClick(View v) {
@@ -713,7 +717,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	 */
 	private int getZhuShu() {
 		int iReturnValue = 0;
-		int beishu = mSeekBarBeishu.getProgress();
+//		int beishu = mSeekBarBeishu.getProgress();
 		for (int i = 0; i < ballTables.size(); i++) {
 			if (i != 0) {
 				iReturnValue *= ballTables.get(i).getHighlightBallNums();
@@ -721,7 +725,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				iReturnValue = ballTables.get(i).getHighlightBallNums();
 			}
 		}
-		return iReturnValue * beishu;
+		return iReturnValue/* * beishu*/;
 	}
 
 	/**
@@ -776,10 +780,10 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		}
 	}
 
-	private String getFormatZhuma() {
-		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
-				+ "选号结果：\n" + getZhuMa();
-	}
+//	private String getFormatZhuma() {
+//		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
+//				+ "选号结果：\n" + getZhuMa();
+//	}
 
 	//
 	public boolean isTouZhu() {
@@ -922,28 +926,28 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	/**
 	 * 加减按钮事件监听方法
 	 */
-	private void setSeekWhenAddOrSub(int idFind, View iV, final int isAdd,
-			final SeekBar mSeekBar, final boolean isBeiShu) {
-		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
-		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (isBeiShu) {
-					if (isAdd == 1) {
-						iProgressBeishu++;
-						if (iProgressBeishu > 200)
-							iProgressBeishu = 200;
-						mSeekBar.setProgress(iProgressBeishu);
-					} else {
-						iProgressBeishu--;
-						if (iProgressBeishu < 1)
-							iProgressBeishu = 1;
-						mSeekBar.setProgress(iProgressBeishu);
-					}
-				}
-			}
-		});
-	}
+//	private void setSeekWhenAddOrSub(int idFind, View iV, final int isAdd,
+//			final SeekBar mSeekBar, final boolean isBeiShu) {
+//		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
+//		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (isBeiShu) {
+//					if (isAdd == 1) {
+//						iProgressBeishu++;
+//						if (iProgressBeishu > 200)
+//							iProgressBeishu = 200;
+//						mSeekBar.setProgress(iProgressBeishu);
+//					} else {
+//						iProgressBeishu--;
+//						if (iProgressBeishu < 1)
+//							iProgressBeishu = 1;
+//						mSeekBar.setProgress(iProgressBeishu);
+//					}
+//				}
+//			}
+//		});
+//	}
 
 	// 提示框1 用来提醒选球规则
 	// // fqc delete 删除取消按钮 7/14/2010
@@ -959,31 +963,31 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 		dialog.show();
 	}
 
-	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
-		if (progress < 1)
-			seekBar.setProgress(1);
-		int iProgress = seekBar.getProgress();
-
-		switch (seekBar.getId()) {
-		case R.id.buy_footballlottery_seekbar_muti:
-			iProgressBeishu = iProgress;
-			mTextBeishu.setText("" + iProgressBeishu);
-			changeTextSumMoney(getZhuShu());
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-	}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
-	}
+//	@Override
+//	public void onProgressChanged(SeekBar seekBar, int progress,
+//			boolean fromUser) {
+//		if (progress < 1)
+//			seekBar.setProgress(1);
+//		int iProgress = seekBar.getProgress();
+//
+//		switch (seekBar.getId()) {
+//		case R.id.buy_footballlottery_seekbar_muti:
+//			iProgressBeishu = iProgress;
+//			mTextBeishu.setText("" + iProgressBeishu);
+//			changeTextSumMoney(getZhuShu());
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//
+//	@Override
+//	public void onStartTrackingTouch(SeekBar seekBar) {
+//	}
+//
+//	@Override
+//	public void onStopTrackingTouch(SeekBar seekBar) {
+//	}
 
 	/** 获取分析的数据 */
 	public void getInfo(final int index) {
@@ -1244,6 +1248,10 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				getZCAdvanceBatchCodeData(Constants.LOTNO_LCB);
 			}
 		});
+	}
+	
+	public Vector<BallTable> getBallTableVector() {
+		return ballTables;
 	}
 
 }

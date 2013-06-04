@@ -30,6 +30,7 @@ import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.code.jc.zq.FootBQC;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.PublicMethod;
 
 /**
  * 半全场
@@ -60,25 +61,21 @@ public class BQCView extends JcMainView {
 
 	@Override
 	public int getTeamNum() {
-		// TODO Auto-generated method stub
 		return MAX_TEAM;
 	}
 
 	@Override
 	public String getLotno() {
-		// TODO Auto-generated method stub
 		return Constants.LOTNO_JCZQ_BQC;
 	}
 
 	@Override
 	public BaseAdapter getAdapter() {
-		// TODO Auto-generated method stub
 		return adapter;
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return context.getString(R.string.jczq_dxf_danguan_title)
 					.toString();
@@ -90,7 +87,6 @@ public class BQCView extends JcMainView {
 
 	@Override
 	public String getTypeTitle() {
-		// TODO Auto-generated method stub
 		return context.getString(R.string.jczq_dialog_dxf_guoguan_title)
 				.toString();
 	}
@@ -135,7 +131,6 @@ public class BQCView extends JcMainView {
 	 */
 	public void initListView(ListView listview, Context context,
 			List<List> listInfo) {
-		// TODO Auto-generated method stub
 		adapter = new JcInfoAdapter(context, listInfo);
 		adapter.notifyDataSetChanged();
 		listview.setAdapter(adapter);
@@ -157,26 +152,22 @@ public class BQCView extends JcMainView {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			// TODO Auto-generated method stub
 			final ArrayList<Info> list = (ArrayList<Info>) mList.get(position);
 			convertView = mInflater.inflate(
 					R.layout.buy_jc_main_view_list_item, null);
@@ -195,7 +186,6 @@ public class BQCView extends JcMainView {
 				holder.btn.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						list.get(0).isOpen = !list.get(0).isOpen;
 						isOpen(list, holder);
 					}
@@ -249,7 +239,7 @@ public class BQCView extends JcMainView {
 
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId() + "\n"
-					+ getEndTime(info.getTimeEnd())+" " + "(截)";
+					+ PublicMethod.getEndTime(info.getTimeEnd())+" " + "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
 
@@ -273,7 +263,6 @@ public class BQCView extends JcMainView {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.createDialog(FootBQC.titleStrs, false,
 								info.getHome() + " VS " + info.getAway());
@@ -288,7 +277,6 @@ public class BQCView extends JcMainView {
 				btnDan.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						if (info.isDan()) {
 							info.setDan(false);
 							btnDan.setBackgroundResource(R.drawable.jc_btn);
@@ -303,7 +291,6 @@ public class BQCView extends JcMainView {
 			analysis.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCFOOT, info),
 							info.getHome(), info.getAway());
 				}
@@ -356,7 +343,6 @@ public class BQCView extends JcMainView {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.createDialog(FootBQC.titleStrs, false,
 								info.getHome() + " VS " + info.getAway());
@@ -371,7 +357,6 @@ public class BQCView extends JcMainView {
 				btnDan.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						if (info.isDan()) {
 							info.setDan(false);
 							btnDan.setBackgroundResource(R.drawable.jc_btn);
@@ -387,7 +372,6 @@ public class BQCView extends JcMainView {
 			btnXi.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					trunExplain(getEvent(Constants.JCFOOT, info),
 							info.getHome(), info.getAway());
 				}
@@ -404,7 +388,6 @@ public class BQCView extends JcMainView {
 
 	@Override
 	public String getPlayType() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return "J00004_0";
 		} else {
@@ -414,7 +397,6 @@ public class BQCView extends JcMainView {
 
 	@Override
 	public List<double[]> getOdds(List<Info> listInfo) {
-		// TODO Auto-generated method stub
 		return footbqcCode.getOddsList(listInfo);
 	}
 

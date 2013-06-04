@@ -23,6 +23,7 @@ import com.ruyicai.activity.buy.jc.JcMainView;
 import com.ruyicai.code.jc.zq.FootSpf;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.PublicMethod;
 
 /**
  * 胜负类
@@ -243,7 +244,7 @@ public class SPfView extends JcMainView {
 			
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) +" "+info.getTeamId()+"\n"
-					+ getEndTime(info.getTimeEnd()) + " "+"(截)";
+					+ PublicMethod.getEndTime(info.getTimeEnd()) + " "+"(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
 			homeOdds.setText(info.getWin());

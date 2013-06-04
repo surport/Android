@@ -44,20 +44,22 @@ import android.widget.Toast;
  */
 public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 	public ProgressDialog progressdialog;
-	private final String YINTYPE = "0900";
+//	private final String YINTYPE = "0900";
 	Button secureOk, secureCancel;
 	EditText accountnum;
 	private TextView alipay_content = null;
-	private String sessionId = "";
-	private String userno = "";
-	private String message = "";
+//	private String sessionId = "";
+//	private String userno = "";
+//	private String message = "";
 	private MyHandler handler = new MyHandler(this);
 	private TextView accountTitleTextView = null;
 	private final int REQUESTCODE = 1;
 	private final int CREDIT_CARD_RECHARGE = 1; //信用卡充值
 	private final int DEBIT_CARD_RECHARGE = 8; //借记卡充值
 	private String orderId = "";
-	private int money = 3;
+	private String money = "";
+	public static final String UMPAY_RECHARGE_AMOUNT = "UMPAY_RECHARGE_AMOUNT";
+	RadioGroup radioGroup;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 		title.setText(R.string.umpay_phone_text_moneny);
 		LinearLayout layout = (LinearLayout)findViewById(R.id.umpay_phone_linear);
 		layout.setVisibility(View.VISIBLE);
+		radioGroup = (RadioGroup)findViewById(R.id.umpay_recharge_radiogroup);
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
@@ -78,32 +81,12 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 		accountnum.setVisibility(View.GONE);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				beginUmpayRecharge(v);
+				beginUmpayRecharge();
 			}
 		});
 		secureCancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				UmPayPhoneActivity.this.finish();
-			}
-		});
-		RadioGroup radioGroup = (RadioGroup)findViewById(R.id.umpay_recharge_radiogroup);
-//		radioGroup.getCheckedRadioButtonId();
-		radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				switch (checkedId) {
-				case R.id.umpay_phone_three:
-					money = 3;
-					break;
-					
-				case R.id.umpay_phone_thirty:
-					money = 30;
-					break;
-
-				default:
-					break;
-				}
 			}
 		});
 	}
@@ -131,13 +114,11 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 	}
 
 	// 联动优势充值
-	private void beginUmpayRecharge(View Vi) {
-		RWSharedPreferences pre = new RWSharedPreferences(UmPayPhoneActivity.this,
-				"addInfo");
+	private void beginUmpayRecharge() {
+		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
 		String sessionIdStr = pre.getStringValue("sessionid");
 		if (sessionIdStr.equals("")) {
-			Intent intentSession = new Intent(UmPayPhoneActivity.this,
-					UserLogin.class);
+			Intent intentSession = new Intent(this, UserLogin.class);
 			startActivity(intentSession);
 		} else {
 			// 检测安全支付服务是否被安装，
@@ -145,52 +126,74 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 			boolean isInstall = mspHelper.detectMobile_sp(Constants.PAY_PLUGIN_NAME, Constants.UMPAY_PHONE_PACK_NAME);
 			
 			if (isInstall) {
-				Intent intent = new Intent(UmPayPhoneActivity.this, UmPayPhonePopActivity.class);
+				Log.i("yejc", "==========radioGroup.getCheckedRadioButtonId()="+radioGroup.getCheckedRadioButtonId()
+						+" ================R.id.umpay_phone_three="+R.id.umpay_phone_three
+						+" ================R.id.umpay_phone_thirty="+R.id.umpay_phone_thirty);
+//				switch (radioGroup.getCheckedRadioButtonId()) {
+//				case R.id.umpay_phone_three:
+//					money = "3";
+//					break;
+//				case R.id.umpay_phone_thirty:
+//					money = "30";
+//					break;
+//
+//				default:
+//					break;
+//				}
+				int id = radioGroup.getCheckedRadioButtonId();
+				if (id == R.id.umpay_phone_thirty) {
+					money = "30";
+				} else {
+					money = "3";
+				}
+				
+				Intent intent = new Intent(this, UmPayPhonePopActivity.class);
+				intent.putExtra(UMPAY_RECHARGE_AMOUNT, money);
 				startActivity(intent);
 			}
 		}
 	}
 
 	// 充值
-	private void recharge(final RechargePojo rechargepojo) {
-		RWSharedPreferences pre = new RWSharedPreferences(UmPayPhoneActivity.this,
-				"addInfo");
-		sessionId = pre.getStringValue(ShellRWConstants.SESSIONID);
-		userno = pre.getStringValue(ShellRWConstants.USERNO);
-		ConnectivityManager ConnMgr = (ConnectivityManager) this
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo info = ConnMgr.getActiveNetworkInfo();
-		if (info.getExtraInfo() != null
-				&& info.getExtraInfo().equalsIgnoreCase("3gwap")) {
-			Toast.makeText(this, "提醒：检测到您的接入点为3gwap，可能无法正确充值,请切换到3gnet！",
-					Toast.LENGTH_LONG).show();
-		}
-		progressdialog = UserCenterDialog.onCreateDialog(UmPayPhoneActivity.this);
-		progressdialog.show();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				String error_code = "00";
-				message = "";
-				try {
-					rechargepojo.setSessionid(sessionId);
-					rechargepojo.setUserno(userno);
-					String re = RechargeInterface.getInstance().recharge(
-							rechargepojo);
-					JSONObject obj = new JSONObject(re);
-					error_code = obj.getString("error_code");
-					message = obj.getString("message");
-					if (error_code.equals("0000")) {
-						orderId = obj.getString("orderId");
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				handler.handleMsg(error_code, message);
-				progressdialog.dismiss();
-			}
-		}).start();
-	}
+//	private void recharge(final RechargePojo rechargepojo) {
+//		RWSharedPreferences pre = new RWSharedPreferences(UmPayPhoneActivity.this,
+//				"addInfo");
+//		sessionId = pre.getStringValue(ShellRWConstants.SESSIONID);
+//		userno = pre.getStringValue(ShellRWConstants.USERNO);
+//		ConnectivityManager ConnMgr = (ConnectivityManager) this
+//				.getSystemService(Context.CONNECTIVITY_SERVICE);
+//		NetworkInfo info = ConnMgr.getActiveNetworkInfo();
+//		if (info.getExtraInfo() != null
+//				&& info.getExtraInfo().equalsIgnoreCase("3gwap")) {
+//			Toast.makeText(this, "提醒：检测到您的接入点为3gwap，可能无法正确充值,请切换到3gnet！",
+//					Toast.LENGTH_LONG).show();
+//		}
+//		progressdialog = UserCenterDialog.onCreateDialog(UmPayPhoneActivity.this);
+//		progressdialog.show();
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				String error_code = "00";
+//				message = "";
+//				try {
+//					rechargepojo.setSessionid(sessionId);
+//					rechargepojo.setUserno(userno);
+//					String re = RechargeInterface.getInstance().recharge(
+//							rechargepojo);
+//					JSONObject obj = new JSONObject(re);
+//					error_code = obj.getString("error_code");
+//					message = obj.getString("message");
+//					if (error_code.equals("0000")) {
+//						orderId = obj.getString("orderId");
+//					}
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//				handler.handleMsg(error_code, message);
+//				progressdialog.dismiss();
+//			}
+//		}).start();
+//	}
 
 	@Override
 	public void errorCode_0000() {
@@ -222,4 +225,5 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg {
 		String message = data.getStringExtra("resultMessage");//支付结果描述
 		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
+	
 }

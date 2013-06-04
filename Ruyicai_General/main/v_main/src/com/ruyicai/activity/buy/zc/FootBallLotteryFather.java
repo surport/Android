@@ -11,9 +11,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -42,12 +44,12 @@ import com.umeng.analytics.MobclickAgent;
  * @author miao
  */
 public abstract class FootBallLotteryFather extends Activity implements
-		OnClickListener, SeekBar.OnSeekBarChangeListener {
+		OnClickListener/*, SeekBar.OnSeekBarChangeListener */{
 	String batchCode;
 	public int iScreenWidth;
-	public SeekBar mSeekBarBeishu;
+//	public SeekBar mSeekBarBeishu;
 	public int iProgressBeishu = 1;
-	protected TextView mTextBeishu;
+//	protected TextView mTextBeishu;
 	String sessionid, phonenum, userno;
 	private BuyImplement buyImplement;// 投注要实现的方法
 	BetAndGiftPojo betPojo = new BetAndGiftPojo();
@@ -70,6 +72,8 @@ public abstract class FootBallLotteryFather extends Activity implements
 	int[] aResIdForWait = { R.drawable.jc_zjq_btn_40_gray, R.drawable.jc_zjq_btn_b_40 };
 	int[] aResId = { R.drawable.jc_zjq_btn_40, R.drawable.jc_zjq_btn_b_40 };
 	public static final String LOTNO_ZC = "LOTNO_ZC";
+	public TextView textTeamNum;
+	public ImageButton againButton;
 	/**add by yejc 20130425 end*/
 	
 	/**
@@ -87,6 +91,17 @@ public abstract class FootBallLotteryFather extends Activity implements
 		layout_football_issue = (Button) findViewById(R.id.layout_football_issue);
 		layout_football_time = (TextView) findViewById(R.id.layout_football_time);
 		footBallList = (ListView) findViewById(R.id.buy_footballlottery_list);
+		textTeamNum = (TextView)findViewById(R.id.buy_jc_main_text_team_num);
+		againButton = (ImageButton)findViewById(R.id.buy_zixuan_img_again);
+		againButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				resetBall();
+				setTeamNum(0);
+			}
+		});
+		setTeamNum(0);
 		createVeiw();
 	}
 
@@ -135,16 +150,16 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 * 创建购彩页面
 	 */
 	public void createVeiw() {
-		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
-		mSeekBarBeishu.setOnSeekBarChangeListener(this);
-		iProgressBeishu = 1;
-		mSeekBarBeishu.setProgress(iProgressBeishu);
-		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
-		mTextBeishu.setText("" + iProgressBeishu);
-		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, -1,
-				mSeekBarBeishu, true);
-		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, 1,
-				mSeekBarBeishu, true);
+//		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
+//		mSeekBarBeishu.setOnSeekBarChangeListener(this);
+//		iProgressBeishu = 1;
+//		mSeekBarBeishu.setProgress(iProgressBeishu);
+//		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
+//		mTextBeishu.setText("" + iProgressBeishu);
+//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, -1,
+//				mSeekBarBeishu, true);
+//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, 1,
+//				mSeekBarBeishu, true);
 
 		sfc_btn_touzhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		sfc_btn_touzhu.setOnClickListener(new OnClickListener() {
@@ -163,23 +178,23 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 * @param mSeekBar
 	 * @param isBeiShu
 	 */
-	protected void setSeekWhenAddOrSub(int idFind, final int isAdd,
-			final SeekBar mSeekBar, final boolean isBeiShu) {
-		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
-		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (isBeiShu) {
-					if (isAdd == 1) {
-						mSeekBar.setProgress(++iProgressBeishu);
-					} else {
-						mSeekBar.setProgress(--iProgressBeishu);
-					}
-					iProgressBeishu = mSeekBar.getProgress();
-				}
-			}
-		});
-	}
+//	protected void setSeekWhenAddOrSub(int idFind, final int isAdd,
+//			final SeekBar mSeekBar, final boolean isBeiShu) {
+//		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
+//		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if (isBeiShu) {
+//					if (isAdd == 1) {
+//						mSeekBar.setProgress(++iProgressBeishu);
+//					} else {
+//						mSeekBar.setProgress(--iProgressBeishu);
+//					}
+//					iProgressBeishu = mSeekBar.getProgress();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * <b>设置足彩界面队列列表子选项背景的方法</b>
@@ -383,15 +398,15 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 */
 	public void onClick(View v) {}
 
-	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {}
-
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {}
+//	@Override
+//	public void onProgressChanged(SeekBar seekBar, int progress,
+//			boolean fromUser) {}
+//
+//	@Override
+//	public void onStartTrackingTouch(SeekBar seekBar) {}
+//
+//	@Override
+//	public void onStopTrackingTouch(SeekBar seekBar) {}
 
 	String formatBatchCode(String batchCode) {
 		return "第" + batchCode + "期";
@@ -441,6 +456,44 @@ public abstract class FootBallLotteryFather extends Activity implements
 
 		public void setEndTime(String endTime) {
 			EndTime = endTime;
+		}
+	}
+	
+	public void setTeamNum(int num) {
+		textTeamNum.setText("已选择了" + num + "场比赛");
+	}
+	
+	public int getTeamNum(Vector<BallTable> ballTables, boolean flag) {
+		int teamNum = 0;
+		for (int i = 0; i < ballTables.size(); i++) {
+			BallTable ballTable = ballTables.get(i);
+			if (flag) {
+				if (i%2 == 0) {
+					if (ballTable.getHighlightBallNums() > 0) {
+						teamNum++;
+						i++;
+					}
+				} else {
+					if (ballTable.getHighlightBallNums() > 0) {
+						teamNum++;
+					}
+				}
+			} else {
+				if (ballTable.getHighlightBallNums() > 0) {
+					teamNum++;
+				}
+			}
+		}
+		return teamNum;
+	}
+	
+	public abstract Vector<BallTable> getBallTableVector();
+//	public abstract BaseAdapter getAdapter();
+	
+	private void resetBall() {
+		Vector<BallTable> vBallTable = getBallTableVector();
+		for (int i = 0; i < vBallTable.size(); i++) {
+			vBallTable.get(i).clearAllHighlights();
 		}
 	}
 	/**add by yejc 20130425 end*/

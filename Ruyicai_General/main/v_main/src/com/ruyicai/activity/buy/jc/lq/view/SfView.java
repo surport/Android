@@ -258,7 +258,7 @@ public class SfView extends JcMainView {
 
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
-					+ "\n" + getEndTime(info.getTimeEnd()) + " " + "(截)";
+					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getAway() + "(客)");
 

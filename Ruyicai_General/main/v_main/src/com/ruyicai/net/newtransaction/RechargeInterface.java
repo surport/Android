@@ -112,6 +112,7 @@ public class RechargeInterface {
 //			if (Constants.UMPAY_BANKID.equals(chargePojo.getBankId())) {
 			jsonProtocol.put(ProtocolManager.BANKID, chargePojo.getBankId());
 //			}
+			jsonProtocol.put(ProtocolManager.MOBILEID, chargePojo.getMobileId());
 			/**add by yejc 20130527 end*/
 			jsonProtocol.put(ProtocolManager.BANKACCOUNT,
 					chargePojo.getBankAccount());

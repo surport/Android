@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -15,6 +16,7 @@ import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.eleven.Eleven;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.code.Gdeleven.GdelevenCode;
 import com.ruyicai.code.Gdeleven.GdelevenDanTuoCode;
 import com.ruyicai.constant.Constants;
@@ -37,6 +39,11 @@ public class GdEleven extends Dlc {
 		setLotno();
 		initSpinner();
 		initGroup();
+		imgRetrun.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				createDialog(NoticeActivityGroup.ID_SUB_GD115_LISTVIEW);
+			}
+		});
 		MobclickAgent.onEvent(this, "guangdong11xuan5"); // BY贺思明
 															// 点击首页的“广东11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面

@@ -66,14 +66,24 @@
                         android:layout_width="120dip"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:max="10000"
+                        android:max="100000"
                         android:maxHeight="6dip"
                         android:minHeight="6dip"
                         android:paddingLeft="15dip"
                         android:paddingRight="15dip"
                         android:progress="1"
                         android:progressDrawable="@drawable/seekbar_style"
-                        android:thumb="@drawable/thumb" />
+                        android:thumb="@drawable/thumb"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/buy_zixuan_text_beishu"
+                        android:layout_width="75dip"
+                        android:layout_height="40dip"
+                        android:layout_marginTop="2dip"
+                        android:numeric="integer"
+                        android:singleLine="true" >
+                    </EditText>
 
                     <ImageButton
                         android:id="@+id/buy_zixuan_img_add_beishu"
@@ -83,15 +93,11 @@
                         android:background="#00000000"
                         android:src="@drawable/addselecter" />
 
-                    <EditText
-                        android:id="@+id/buy_zixuan_text_beishu"
-                        android:layout_width="70dip"
-                        android:layout_height="40dip"
-                        android:layout_marginTop="2dip"
-                        android:numeric="integer"
-                        android:focusable="false"
-                        android:singleLine="true" >
-                    </EditText>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bettingDetails_maxMutiple_ten"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
