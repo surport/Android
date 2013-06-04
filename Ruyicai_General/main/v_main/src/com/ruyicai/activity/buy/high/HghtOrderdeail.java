@@ -10,8 +10,6 @@ import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu;
 import com.ruyicai.activity.buy.zixuan.ZixuanZhuihao;
-import com.ruyicai.activity.gift.GiftActivity;
-import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
 
 public class HghtOrderdeail extends BuyActivityGroup {

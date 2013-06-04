@@ -2079,22 +2079,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	}
 
 	/**
-	 * 网络连接提示框
-	 */
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case 0: {
-			progressdialog = new ProgressDialog(this);
-			progressdialog.setMessage("网络连接中...");
-			progressdialog.setIndeterminate(true);
-			progressdialog.setCancelable(true);
-			return progressdialog;
-		}
-		}
-		return null;
-	}
-
-	/**
 	 * 初始化投注信息
 	 */
 	public void initBet() {
@@ -2138,26 +2122,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public void touZhuNet() {
 		lotno = PublicMethod.toLotno(betAndGift.getLotno());
 		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
-		Controller.getInstance(ZixuanAndJiXuan.this).doBettingAction(handler, betAndGift);
-//		showDialog(0); // 显示网络提示框 2010/7/4
-//		// 加入是否改变切入点判断 陈晨 8.11
-//		Thread t = new Thread(new Runnable() {
-//			String str = "00";
-//			@Override
-//			public void run() {
-//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-//				try {
-//					JSONObject obj = new JSONObject(str);
-//					String msg = obj.getString("message");
-//					String error = obj.getString("error_code");
-//					handler.handleMsg(error, msg);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				progressdialog.dismiss();
-//			}
-//		});
-//		t.start();
+		Controller.getInstance(context).doBettingAction(handler, betAndGift);
 	}
 
 	public void isMissNet(MissJson missJson, String sellWay, boolean isZHMiss) {

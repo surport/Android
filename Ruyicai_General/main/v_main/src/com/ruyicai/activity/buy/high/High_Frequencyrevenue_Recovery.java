@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -14,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -36,11 +37,11 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
-import com.ruyicai.activity.buy.jc.JcMainActivity;
-import com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
+import com.ruyicai.handler.HandlerMsg;
+import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.ShouyiDataInterface;
 import com.ruyicai.net.newtransaction.getRecoveryBatchCode;
@@ -52,7 +53,8 @@ import com.umeng.analytics.MobclickAgent;
 
 /* 高频彩收益追号
  * **/
-public class High_Frequencyrevenue_Recovery extends Activity {
+
+public class High_Frequencyrevenue_Recovery extends Activity implements HandlerMsg  {
 	String phonenum, sessionId, userno;
 	TextView title;
 	BetAndGiftPojo betAndGift;
@@ -77,6 +79,8 @@ public class High_Frequencyrevenue_Recovery extends Activity {
 	ArrayList<String> batchcodes = new ArrayList<String>();
 	ArrayList<RecoveryInfo> shouyidata = new ArrayList<RecoveryInfo>();
 	private Context context;
+	HighFrequencyHandler handler = new HighFrequencyHandler(this);
+	private Controller controller;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -533,65 +537,69 @@ public class High_Frequencyrevenue_Recovery extends Activity {
 		betAndGift.setBatchnum(qishu.getText().toString());
 		betAndGift.setLotmulti(beishu.getText().toString());
 		betAndGift.setAmount(getAmoot());
-		final Handler hand = new Handler();
-		final ProgressDialog dialog = onCreateDialog();
-		dialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					final String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					if (error.equals("0000")) {
-						hand.post(new Runnable() {
-
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								dialog.dismiss();
-								// PublicMethod.showDialog(High_Frequencyrevenue_Recovery.this,msg);
-								PublicMethod
-										.showDialog(High_Frequencyrevenue_Recovery.this);
-								information.dismiss();
-							}
-						});
-					} else {
-						hand.post(new Runnable() {
-
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								dialog.dismiss();
-								Toast.makeText(
-										High_Frequencyrevenue_Recovery.this,
-										msg, Toast.LENGTH_SHORT).show();
-
-							}
-						});
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-					hand.post(new Runnable() {
-
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							dialog.dismiss();
-							Toast.makeText(High_Frequencyrevenue_Recovery.this,
-									"获取失败", Toast.LENGTH_SHORT).show();
-
-						}
-					});
-				}
-			}
-
-		});
-		t.start();
+		controller = Controller.getInstance(High_Frequencyrevenue_Recovery.this);
+		if (controller != null) {
+			controller.doBettingAction(handler, betAndGift);
+		}
+//		final Handler hand = new Handler();
+//		final ProgressDialog dialog = onCreateDialog();
+//		dialog.show();
+//		// 加入是否改变切入点判断 陈晨 8.11
+//		Thread t = new Thread(new Runnable() {
+//			String str = "00";
+//
+//			@Override
+//			public void run() {
+//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
+//				try {
+//					JSONObject obj = new JSONObject(str);
+//					final String msg = obj.getString("message");
+//					String error = obj.getString("error_code");
+//					if (error.equals("0000")) {
+//						hand.post(new Runnable() {
+//
+//							@Override
+//							public void run() {
+//								// TODO Auto-generated method stub
+//								dialog.dismiss();
+//								// PublicMethod.showDialog(High_Frequencyrevenue_Recovery.this,msg);
+//								PublicMethod
+//										.showDialog(High_Frequencyrevenue_Recovery.this);
+//								information.dismiss();
+//							}
+//						});
+//					} else {
+//						hand.post(new Runnable() {
+//
+//							@Override
+//							public void run() {
+//								// TODO Auto-generated method stub
+//								dialog.dismiss();
+//								Toast.makeText(
+//										High_Frequencyrevenue_Recovery.this,
+//										msg, Toast.LENGTH_SHORT).show();
+//
+//							}
+//						});
+//					}
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//					hand.post(new Runnable() {
+//
+//						@Override
+//						public void run() {
+//							// TODO Auto-generated method stub
+//							dialog.dismiss();
+//							Toast.makeText(High_Frequencyrevenue_Recovery.this,
+//									"获取失败", Toast.LENGTH_SHORT).show();
+//
+//						}
+//					});
+//				}
+//			}
+//
+//		});
+//		t.start();
 	}
 
 	public void encodejson(String json) {
@@ -784,5 +792,71 @@ public class High_Frequencyrevenue_Recovery extends Activity {
 		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
+	}
+	
+	class HighFrequencyHandler extends MyHandler {
+
+		public HighFrequencyHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			//super.handleMessage(msg);
+			if (controller != null) {
+				JSONObject obj = controller.getRtnJSONObject();
+				String error;
+				try {
+					error = obj.getString("error_code");
+				    final String returnMessage = obj.getString("message");
+					if (error.equals("0000")) {
+						handler.post(new Runnable() {
+	
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								// PublicMethod.showDialog(High_Frequencyrevenue_Recovery.this,msg);
+								PublicMethod
+										.showDialog(High_Frequencyrevenue_Recovery.this);
+								information.dismiss();
+							}
+						});
+					} else {
+						handler.post(new Runnable() {
+	
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								Toast.makeText(
+										High_Frequencyrevenue_Recovery.this,
+										returnMessage, Toast.LENGTH_SHORT).show();
+							}
+						});
+					}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Toast.makeText(High_Frequencyrevenue_Recovery.this,
+					"获取失败", Toast.LENGTH_SHORT).show();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void errorCode_0000() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void errorCode_000000() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+		return this;
 	}
 }
