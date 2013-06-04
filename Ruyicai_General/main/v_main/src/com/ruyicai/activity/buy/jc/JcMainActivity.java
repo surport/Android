@@ -653,30 +653,6 @@ public class JcMainActivity extends Activity implements
 	 */
 	public void touZhuNet() {
 		Controller.getInstance(JcMainActivity.this).doBettingAction(handler, betAndGift);
-		
-//		final ProgressDialog progressDialog = UserCenterDialog
-//				.onCreateDialog(this);// 显示网络提示框 2010/7/4
-//		progressDialog.show();
-//		// 加入是否改变切入点判断 陈晨 8.11
-//		Thread t = new Thread(new Runnable() {
-//			String str = "00";
-//			@Override
-//			public void run() {
-//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-//				progressDialog.cancel();
-//				try {
-//					JSONObject obj = new JSONObject(str);
-//					msg = obj.getString("message");
-//					String error = obj.getString("error_code");
-//					handler.handleMsg(error, msg);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				progressDialog.dismiss();
-//			}
-//
-//		});
-//		t.start();
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

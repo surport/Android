@@ -50,7 +50,6 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
-import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
@@ -848,7 +847,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		Controller.getInstance(this).doBettingAction(handler, betAndGift);
+		Controller.getInstance(this.getContext()).doBettingAction(handler, betAndGift);
 //		if (progressdialog != null && progressdialog.isShowing()) {
 //			return;
 //		}

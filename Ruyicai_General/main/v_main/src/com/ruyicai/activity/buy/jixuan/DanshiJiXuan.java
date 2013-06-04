@@ -55,6 +55,7 @@ import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -824,29 +825,7 @@ public class DanshiJiXuan extends Activity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		Controller.getInstance(DanshiJiXuan.this).doBettingAction(handler, betAndGift);
-//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-//		// 加入是否改变切入点判断 陈晨 8.11
-//		Thread t = new Thread(new Runnable() {
-//			String str = "00";
-//
-//			@Override
-//			public void run() {
-//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-//				try {
-//					JSONObject obj = new JSONObject(str);
-//					String msg = obj.getString("message");
-//					String error = obj.getString("error_code");
-//					handler.handleMsg(error, msg);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//
-//				}
-//				progressdialog.dismiss();
-//			}
-//
-//		});
-//		t.start();
+		Controller.getInstance(this.getContext()).doBettingAction(handler, betAndGift);
 	}
 
 	/**
@@ -869,23 +848,6 @@ public class DanshiJiXuan extends Activity implements
 		lotno = PublicMethod.toLotno(betAndGift.getLotno());
 		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
 
-	}
-
-	/**
-	 * 网络连接提示框
-	 */
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case DIALOG1_KEY: {
-			progressdialog = new ProgressDialog(this);
-			// progressdialog.setTitle("Indeterminate");
-			progressdialog.setMessage("网络连接中...");
-			progressdialog.setIndeterminate(true);
-			progressdialog.setCancelable(true);
-			return progressdialog;
-		}
-		}
-		return null;
 	}
 
 	/**

@@ -111,9 +111,7 @@ public class PublicMethod {
 	private static String METHODNAME = "methodName";
 
 	/* Add by fansm 20130412 end */
-	/* Add by fansm 20130520 start */
-	private static ProgressDialog progressDialog = null;
-	/* Add by fansm 20130520 end */
+
 	/**
 	 * 求组合
 	 * 
@@ -2907,23 +2905,8 @@ public class PublicMethod {
 	 * @param mContext
 	 * @param message
 	 */
-	public static void showMessage(Context mContext, String message) {
+	public static void showMessage(final Context mContext, String message) {
 		Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
-	}
-   /**
-    * 网络连接对话框
-    * @param mContext
-    * @param msg
-    * @return
-    */
-	public static ProgressDialog onCreateDialog(final Context mContext,String msg) {
-		if (progressDialog == null) {
-			progressDialog = new ProgressDialog(
-					mContext);
-			progressDialog.setMessage(msg);
-			progressDialog.setIndeterminate(true);
-		}
-		return progressDialog;
 	}
 	
 }

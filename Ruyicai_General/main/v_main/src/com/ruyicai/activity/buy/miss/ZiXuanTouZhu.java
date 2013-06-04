@@ -28,7 +28,6 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
-import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -248,7 +247,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		Controller.getInstance(this).doBettingAction(handler, betAndGift);
+		Controller.getInstance(ZiXuanTouZhu.this).doBettingAction(handler, betAndGift);
 //		if (progressdialog != null && progressdialog.isShowing()) {
 //			return;
 //		}

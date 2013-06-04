@@ -3,6 +3,8 @@ package com.ruyicai.activity.buy.zixuan;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
@@ -11,6 +13,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -50,7 +55,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	TextView alertText;
 	TextView issueText;
 	Button codeInfo;
-	MyHandler handler = new MyHandler(this);// 自定义handler
+	ZiXunTouZhuHandler handler = new ZiXunTouZhuHandler(this);// 自定义handler
 	TextView textAlert;
 	TextView textZhuma;
 	TextView textTitle;
@@ -66,6 +71,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	private AddView addview;
 	private Context context;
 	private final int HIGHT_MAX = 2000;
+	private Controller controller = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -252,7 +258,10 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		Controller.getInstance(this).doBettingAction(handler, betAndGift);
+		controller = Controller.getInstance(ZiXuanTouZhu.this);
+		if (controller != null) {
+			controller.doBettingAction(handler, betAndGift);
+		}
 //		progressdialog = UserCenterDialog.onCreateDialog(this);
 //		progressdialog.show();
 //		// 加入是否改变切入点判断 陈晨 8.11
@@ -405,6 +414,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+        Log.d("RUYICAI","onDestroy");
 		if (isclearaddview) {
 			if (addview != null) {
 				addview.clearInfo();
@@ -496,5 +506,19 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		}
 		return false;
 	}
+    
+	class ZiXunTouZhuHandler extends MyHandler {
 
+		public ZiXunTouZhuHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if (controller != null) {
+				isNoIssue(handler, controller.getRtnJSONObject());
+			}
+		}
+	}
 }
+
