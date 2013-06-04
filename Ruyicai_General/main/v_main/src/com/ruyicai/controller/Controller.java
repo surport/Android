@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
@@ -16,9 +17,11 @@ import android.widget.Toast;
 public class Controller {
     private static final String TAG = "Controller";
     private static Controller sInstance;
-    private final Context mContext;
+    private Context mContext;
     private Context mProviderContext;
-
+    private JSONObject jsonObj;
+    protected ProgressDialog dialog;
+    
     protected Controller(Context _context) {
         mContext = _context;
 //        mProviderContext = _context;
@@ -27,9 +30,11 @@ public class Controller {
     /**
      * Gets or creates the singleton instance of Controller.
      */
-    public synchronized static Controller getInstance(Context _context) {
+    public static Controller getInstance(Context _context) {
         if (sInstance == null) {
             sInstance = new Controller(_context);
+        } else {
+        	sInstance.mContext = _context;
         }
         return sInstance;
     }
@@ -47,9 +52,10 @@ public class Controller {
 	 * 投注action
 	 */
    public void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
-		final ProgressDialog dialog = PublicMethod.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
-		if (dialog != null && dialog.isShowing()) return;
-		dialog.show();
+	   if (dialog != null && dialog.isShowing()) return;
+	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
+	   dialog.show();
+	   
 		// 加入是否改变切入点判断 陈晨 8.11
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
@@ -61,45 +67,31 @@ public class Controller {
 					JSONObject obj = new JSONObject(str);
 					final String msg = obj.getString("message");
 					final String error = obj.getString("error_code");
-					if (error.equals("0000")) {
-						handler.post(new Runnable() {
-
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								dialog.dismiss();
-								//PublicMethod
-								//		.showDialog(mContext);
-								//information.dismiss();
-								handler.handleMsg(error, msg);
-							}
-						});
-					} else {
-						handler.post(new Runnable() {
-
-							@Override
-							public void run() {
-								// TODO Auto-generated method stub
-								dialog.dismiss();
-								PublicMethod.showMessage(mContext, msg);
-							}
-						});
-					}
+					setRtnJSONObject(obj);
+					handler.handleMsg(error, msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
-					handler.post(new Runnable() {
-
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							dialog.dismiss();
-							PublicMethod.showMessage(mContext,mContext.getResources().getString(R.string.gaopincai_prize_title_fail));
-						}
-					});
+					// TODO Auto-generated method stub			
 				}
+				dialog.dismiss();
+				//dialog = null;
 			}
-
 		});
 		t.start();
+   }
+   /**
+    * set return obj
+    * @param obj
+    */
+   public void setRtnJSONObject(JSONObject obj) {
+	   this.jsonObj = obj;
+   }
+   
+   /**
+    * get return obj
+    * @param obj
+    */
+   public JSONObject getRtnJSONObject() {
+	   return this.jsonObj;
    }
 }
