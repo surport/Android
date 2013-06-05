@@ -867,8 +867,10 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		}
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
-		if (detatil.getBatchCode().equals("null")
-				|| detatil.getBatchCode().equals("")) {
+//		if (detatil.getBatchCode().equals("null")
+//				|| detatil.getBatchCode().equals("")) {
+		if (detatil.getBatchCode() == null
+				|| "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
 		} else {
 			batchcodetext.append("第" + detatil.getBatchCode() + "期");

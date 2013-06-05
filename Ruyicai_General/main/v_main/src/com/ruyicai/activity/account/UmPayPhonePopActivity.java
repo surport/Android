@@ -16,11 +16,14 @@ import com.umpay.huafubao.Huafubao;
 import com.umpay.huafubao.HuafubaoListener;
 import com.umpay.huafubao.PayType;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -144,13 +147,14 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 		huafubao = new Huafubao(this, this);
 		Map<String, String> map = new HashMap<String, String>();
 		try {
-			map.put(Huafubao.MERID_STRING, obj.getString("merId"));
-			map.put(Huafubao.GOODSID_STRING, obj.getString("goodsId")); // 计费点代码
-			map.put(Huafubao.ORDERID_STRING, obj.getString("orderId"));
-			map.put(Huafubao.MERDATE_STRING, obj.getString("merDate"));  // 当天日期
-			map.put(Huafubao.AMOUNT_STRING, obj.getString("amount"));   
+			map.put(Huafubao.MERID_STRING, obj.getString("merId"));		//商户号
+			map.put(Huafubao.GOODSID_STRING, obj.getString("goodsId")); //商品号
+			map.put(Huafubao.ORDERID_STRING, obj.getString("orderId")); //订单号
+			map.put(Huafubao.MERDATE_STRING, obj.getString("merDate")); //订单日期
+			map.put(Huafubao.AMOUNT_STRING, obj.getString("amount"));   //商品金额
 			map.put(Huafubao.MERPRIV_STRING, obj.getString("merPriv")); //商户私有信息 商户自由定义的数据，支付平台会回传给商户的系统（详见接口5.1）
-			map.put(Huafubao.EXPAND_STRING, obj.getString("expand"));  //扩展字段
+			map.put(Huafubao.EXPAND_STRING, obj.getString("expand"));   //扩展字段
+			map.put(Huafubao.GOODSINF_STRING, obj.getString("goodsInf"));   //扩展字段
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -160,7 +164,7 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 	@Override
 	public void errorCode_0000() {
 		huafubaoRecharge(obj);
-		setupView();
+//		setupView();
 	}
 
 	@Override
@@ -169,12 +173,62 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 
 	@Override
 	public Context getContext() {
-		return null;
+		return this;
 	}
 	
 
 	@Override
-	public boolean onError(int arg0, String arg1) {
-		return false;
+	public boolean onError(int code, String msg) {
+		boolean flag = false;
+		switch (code) {
+		case Huafubao.ERROR_NO_INSTALL: // 没有安装话付宝支付服务
+			flag = true;
+			break;
+		case Huafubao.ERROR_NO_MERID: // 商户号为空
+			flag = false;
+			break;
+		case Huafubao.ERROR_NO_GOODSID: // 商品号(计费点)为空
+			flag = false;
+			break;
+		case Huafubao.ERROR_NO_MERDATE: // 日期为空
+			flag = false;
+			break;
+		case Huafubao.ERROR_NO_AMOUNT: // 商品金额为空
+			flag = true; // 返回值为false表示此错误由话付宝处理，为true表示由商户自己写代码处理。
+			break;
+		case Huafubao.ERROR_NO_NETWORK: // 手机没有联网
+			flag = true;
+			break;
+		default:
+			break;
+		}
+		if (!flag) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("商户提示").setMessage(msg)
+					.setPositiveButton("确定", null);
+			builder.create().show();
+		}
+		Log.i("yejc", "==========flag="+flag);
+		return flag;
 	}
+
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == Huafubao.HUAFUBAOREQCODE) {
+			if (data == null) {
+				Toast.makeText(this, "支付失败", Toast.LENGTH_LONG).show();
+			} else {
+				boolean succ = data.getExtras().getBoolean(Huafubao.SUCC);
+				if (succ) {
+					Toast.makeText(this, "支付成功", Toast.LENGTH_LONG).show();
+					setupView();
+				} else {
+					Toast.makeText(this, "支付失败", Toast.LENGTH_LONG).show();
+				}	
+			}	
+		}
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 }

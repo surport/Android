@@ -35,6 +35,7 @@ public class SPfView extends JcMainView {
 	private final int MAX_TEAM = 8;
 	JcInfoAdapter adapter;
 	FootSpf footSpfCode;
+	public static boolean isRQSPF = false;
 
 	public SPfView(Context context, BetAndGiftPojo betAndGift, Handler handler,
 			LinearLayout layout, String type, boolean isdanguan,
@@ -251,8 +252,15 @@ public class SPfView extends JcMainView {
 			
 			textOdds.setText(info.getLevel());
 			guestOdds.setText(info.getFail());
-			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
-				textVS.setText(info.getLetPoint());
+			
+			if (isRQSPF) {
+				if (!"".equals(info.getLetPoint())) {
+					textVS.setText(info.getLetPoint());
+				} else {
+					textVS.setText("0");
+				}
+			} else {
+				textVS.setText("0");
 			}
 			guestTeam.setText(info.getAway());
 			
