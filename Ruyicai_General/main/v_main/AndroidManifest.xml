@@ -757,7 +757,35 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
         
-        <!-- menu -->
+        <!-- 免费获取礼金 -->
+        <activity
+            android:name="com.ruyicai.activity.account.GetFreeGoldActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name="com.ruyicai.activity.account.AdWallActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        
+        
+        <activity android:name="cn.immob.sdk.util.LMActionHandler" >
+        </activity>
+        <activity android:name="cn.immob.sdk.BrowserActivity" >
+        </activity>
+		<!-- 这个后台服务必须要填写，否则无法正常请求广告 -->
+        <service android:name="cn.immob.sdk.net.DownloadService" >
+        </service>
+		<!-- 这个是选填的，如果广告类型为积分墙的话，不填写这个广播则无法正常返还积分 -->
+        <receiver android:name="cn.immob.sdk.brocastreceiver.AppChangeBrocastreceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        
+<!-- menu -->
         <activity
             android:name="com.ruyicai.activity.more.FeedBack"
             android:screenOrientation="portrait"
@@ -1085,5 +1113,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_GSERVICES" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
 </manifest>
