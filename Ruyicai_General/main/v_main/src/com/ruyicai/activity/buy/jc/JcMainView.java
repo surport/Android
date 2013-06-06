@@ -295,7 +295,7 @@ public abstract class JcMainView {
 		String[] unsupportStr = jsonItem.getString("unsupport").split(",");
 		itemInfo.setHome(teams[0]);
 		itemInfo.setAway(teams[1]);
-		itemInfo.setLetPoint(jsonItem.getString("letPoint"));
+		itemInfo.setLetPoint(jsonItem.getString("letVs_letPoint"));
 		setDifferValue(jsonItem, itemInfo);
 		for (String str : unsupportStr) {
 			if (getPlayType().equals(str)) {

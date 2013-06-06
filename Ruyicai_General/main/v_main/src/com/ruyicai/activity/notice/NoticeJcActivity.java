@@ -54,9 +54,9 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			Constants.LOTNO_JCZQ_RQSPF,
     		Constants.LOTNO_JCZQ_ZQJ, 
     		Constants.LOTNO_JCZQ_BF, 
-    		Constants.LOTNO_JCZQ_BQC, 
-    		Constants.LOTNO_JCZQ_HUN};
-    private String[] playTypeText = {"胜平负","让球胜平负","总进球数","比分","半全场","混合投注"};
+    		Constants.LOTNO_JCZQ_BQC/*, 
+    		Constants.LOTNO_JCZQ_HUN*/};
+    private String[] playTypeText = {"胜平负","让球胜平负","总进球数","比分","半全场"/*,"混合投注"*/};
 
 	private int initViewState = 1;// 设置初始化竞彩查询date的状态，当initViewState =
 									// OTHER_JC_NOTICE时，不再初始化日期数组

@@ -191,7 +191,7 @@ public class BQCView extends JcMainView {
 					}
 				});
 				for (Info info : list) {
-					holder.layout.addView(addView(info)/*addLayout(info)*/);
+					holder.layout.addView(addView(info));
 				}
 			}
 
@@ -220,14 +220,13 @@ public class BQCView extends JcMainView {
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 //			homeTeam.getPaint().setFakeBoldText(true);
-			final TextView textVS = (TextView) convertView
-					.findViewById(R.id.game_vs);
-			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
-				textVS.setText(info.getLetPoint());
-			}
+//			final TextView textVS = (TextView) convertView
+//					.findViewById(R.id.game_vs);
+//			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
+//				textVS.setText(info.getLetPoint());
+//			}
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
-//			guestTeam.getPaint().setFakeBoldText(true);
 
 			TextView btn = (Button) convertView
 					.findViewById(R.id.jc_main_list_item_button);
@@ -298,86 +297,6 @@ public class BQCView extends JcMainView {
 			return convertView;
 		}
 		// end
-
-		private View addLayout(final Info info) {
-			View convertView;
-			convertView = mInflater.inflate(R.layout.buy_jc_main_listview_item,
-					null);
-			LinearLayout layout1 = (LinearLayout) convertView
-					.findViewById(R.id.lq_sf_layout_bottom1);
-			LinearLayout layout2 = (LinearLayout) convertView
-					.findViewById(R.id.lq_sf_layout_bottom2);
-			layout1.setVisibility(LinearLayout.GONE);
-			layout2.setVisibility(LinearLayout.VISIBLE);
-			TextView time = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time);
-			TextView team = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team);
-			TextView home = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_name1);
-			TextView away = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_name2);
-			TextView timeEnd = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time_end);
-			TextView score = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_score);
-			TextView btn = (Button) convertView
-					.findViewById(R.id.jc_main_list_item_button);
-			final Button btnDan = (Button) convertView
-					.findViewById(R.id.jc_main_list_item_btn_dan);
-			final Button btnXi = (Button) convertView
-					.findViewById(R.id.buy_jc_main_list_item_btn_xi);
-
-			score.setVisibility(TextView.GONE);
-			time.setText(info.getTime() + "  "
-					+ context.getString(R.string.jc_main_team_id_title)
-					+ info.getTeamId());
-			team.setText(info.getTeam());
-			home.setText(info.getHome() + "(主)");
-			away.setText(info.getAway() + "(客)");
-			timeEnd.setText(info.getTimeEnd());
-
-			if (!info.getBtnStr().equals("")) {
-				btn.setText(info.getBtnStr());
-			}
-			btn.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (info.onclikNum > 0 || isCheckTeam()) {
-						info.createDialog(FootBQC.titleStrs, false,
-								info.getHome() + " VS " + info.getAway());
-					}
-					isNoDan(info, btnDan);
-				}
-			});
-			if (isDanguan) {
-				btnDan.setVisibility(Button.GONE);
-			} else {
-				btnDan.setVisibility(Button.VISIBLE);
-				btnDan.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						if (info.isDan()) {
-							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
-						} else if (info.onclikNum > 0 && isDanCheckTeam()
-								&& isDanCheck()) {
-							info.setDan(true);
-							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
-						}
-					}
-				});
-			}
-			btnXi.setVisibility(Button.VISIBLE);
-			btnXi.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					trunExplain(getEvent(Constants.JCFOOT, info),
-							info.getHome(), info.getAway());
-				}
-			});
-			return convertView;
-		}
 
 		class ViewHolder {
 			Button btn;

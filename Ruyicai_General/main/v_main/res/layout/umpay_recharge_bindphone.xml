@@ -31,8 +31,7 @@
         android:paddingBottom="10dip"
         android:paddingTop="10dip" >
         
-        <RadioButton
-            android:id="@+id/umpay_phone_thirty"
+        <CheckBox android:id="@+id/umpay_phone_thirty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

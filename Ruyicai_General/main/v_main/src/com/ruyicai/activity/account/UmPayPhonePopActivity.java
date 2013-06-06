@@ -27,8 +27,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +50,10 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 	private EditText numberEdit;
 	Huafubao huafubao = null;
 	JSONObject obj = null;
+	private CheckBox checkBox = null;
+	RWSharedPreferences shellRW = null;
+	private String checked = "checked";
+	private String phoneNumber = "phoneNumber";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,7 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.umpay_recharge_bindphone);
 		money = getIntent().getStringExtra(UmPayPhoneActivity.UMPAY_RECHARGE_AMOUNT);
+		shellRW = new RWSharedPreferences(this, "umpay_recharge");
 		ViewClickListener clickListener = new ViewClickListener();
 		Button cancel = (Button) findViewById(R.id.usercenter_bindphone_back);
 		cancel.setOnClickListener(clickListener);
@@ -61,6 +70,11 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 		Button ok = (Button) findViewById(R.id.usercenter_bindphone_complete);
 		ok.setOnClickListener(clickListener);
 		numberEdit = (EditText) findViewById(R.id.input_phone_number);
+		checkBox = (CheckBox)findViewById(R.id.umpay_phone_thirty);
+		if (shellRW.getBooleanValue(checked)) {
+			numberEdit.setText(shellRW.getStringValue(phoneNumber));
+			checkBox.setChecked(true);
+		}
 	}
 
 	private class ViewClickListener implements View.OnClickListener {
@@ -91,6 +105,12 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 					Toast.LENGTH_SHORT).show();
 		} else {
 			recharge(number);
+			if (checkBox.isChecked()) {
+				shellRW.putBooleanValue(checked, true);
+				shellRW.putStringValue(phoneNumber, number);
+			} else {
+				shellRW.putBooleanValue(checked, false);
+			}
 		}
 	}
 

@@ -334,11 +334,11 @@ public class AccountListActivity extends Activity {
 		list.add(map);
 		
 		// 联动优势话费充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.umpay_phone_recharge));
-		map.put(PICTURE, R.drawable.recharge_phone_umpay);
-		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
-		list.add(map);
+//		map = new HashMap<String, Object>();
+//		map.put(TITLE, getString(R.string.umpay_phone_recharge));
+//		map.put(PICTURE, R.drawable.recharge_phone_umpay);
+//		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
+//		list.add(map);
 
 		return list;
 	}

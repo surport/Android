@@ -327,9 +327,7 @@ public class ContentListView {
 					try {
 						Integer guestInt = Integer.parseInt(guestScore);
 						Integer hometInt = Integer.parseInt(homeScore);
-						if (lotno.equals(Constants.LOTNO_JCZQ_ZQJ)) { // add by
-																		// yejc
-																		// 20130401
+						if (lotno.equals(Constants.LOTNO_JCZQ_ZQJ)) { // add by yejc 20130401
 							String total = String.valueOf(guestInt + hometInt);
 							textover.setText(total);
 						} else {

@@ -198,7 +198,7 @@ public class BFView extends JcMainView {
 					}
 				});
 				for (Info info : list) {
-					holder.layout.addView(addView(info)/*addLayout(info)*/);
+					holder.layout.addView(addView(info));
 				}
 			}
 
@@ -227,11 +227,11 @@ public class BFView extends JcMainView {
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 //			homeTeam.getPaint().setFakeBoldText(true);
-			final TextView textVS = (TextView) convertView
-					.findViewById(R.id.game_vs);
-			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
-				textVS.setText(info.getLetPoint());
-			}
+//			final TextView textVS = (TextView) convertView
+//					.findViewById(R.id.game_vs);
+//			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
+//				textVS.setText(info.getLetPoint());
+//			}
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
 			TextView btn = (Button) convertView
