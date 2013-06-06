@@ -44,6 +44,13 @@
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="25dip"
                     android:text="@string/jclq_dialog_sf_guoguan_title" />
+                
+                 <TextView
+                    android:id="@+id/buy_lq_main_dialog_new_type1"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="25dip"
+                    android:text="@string/jczq_dialog_rqspf_guoguan_title" 
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/buy_lq_main_dialog_type2"
@@ -79,6 +86,14 @@
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select"
                     android:checked="true" />
+                
+                 <RadioButton
+                    android:id="@+id/radio_new0"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select" 
+                    android:visibility="gone"/>
 
                 <RadioButton
                     android:id="@+id/radio1"
@@ -116,6 +131,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select_dan" />
+                
+                <RadioButton
+                    android:id="@+id/radio_new4"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select_dan" 
+                    android:visibility="gone"/>
 
                 <RadioButton
                     android:id="@+id/radio5"

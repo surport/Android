@@ -842,7 +842,8 @@
     <string name="jczq_hunhe_guoguan_title">竞彩足球混合</string>
     <string name="jclq_hunhe_guoguan_title">竞彩篮球混合</string>
     <string name="jczq_dxf_guoguan_title">竞彩足球半全场（过关）</string>
-    <string name="jczq_dialog_sf_guoguan_title">让球胜平负:</string>
+    <string name="jczq_dialog_sf_guoguan_title">胜平负:</string>
+    <string name="jczq_dialog_rqspf_guoguan_title">让球胜平负:</string>
     <string name="jczq_sf_danguan_title">竞彩足球让球胜平负（单关）</string>
     <string name="jczq_rf_danguan_title">竞彩足球总进球数（单关）</string>
     <string name="jczq_sfc_danguan_title">竞彩足球比分（单关）</string>
@@ -1177,4 +1178,26 @@
     <string name="umpay_phone_text_moneny_three_description">"(如意彩3元充值，得2元)"</string>
     <string name="umpay_phone_text_moneny_thirty_description">"(如意彩30元充值，得20元)"</string>
     <string name="umpay_phone_text_moneny">请选择充值金额：</string>
+    
+    <string name="umpay_phone_content">1、该充值方式只支持移动手机用户。"\n"
+		2、该充值方式只支持3元或30元两种充值金额。"\n"
+		3、话费充值金额每天最高50元，每月最高100元。"\n"
+		4、使用话费充值，中间差额由运营商或充值服务商收取，如意彩不收取任何费用。"\n"
+		5、使用话费充值，充值金额只能用于在本站购买彩票，不能提现，中奖奖金可提现。"\n"
+		6、联动优势客服热线：400-612-5880。"\n"
+		7、充值中如有其他问题，可拨打如意彩客服热线400-665-1000进行咨询。"\n"
+	</string>
+	
+    
+    <string name="get_free_gold_content">1、在广告墙上完成提示操作后，免费获得的彩金会自动加入到您的如意彩账户中，您可到用户中心处进行查询。"\n"
+		2、获赠的彩金一般会在完成广告墙提示操作后1到5分钟到账；个别软件特殊，可能需要一两天才能到账，请耐心等待。"\n"
+		4、获赠的彩金只能购彩，不能提现。"\n"
+		3、需安装本机未安装过的软件才可获取彩金。"\n"
+	</string>
+    <string name="gold_transform_score">(1彩金=100分)</string>
+    <string name="current_gold">当前彩金:</string>
+    <string name="get_free_gold_title">免费获取礼金</string>
+    <string name="get_free_gold_summary">完成推荐应用的任务，免费获得彩金</string>
+    <string name="start_get_free_gold_title">立即获取礼金</string>
+    <string name="get_free_gold_network_error">"网络异常请稍后重试"</string>
 </resources>

@@ -193,6 +193,7 @@ public class Constants {
 	public static final String LOTNO_22_5 = "T01013"; // 体彩22选5
 	public static final String LOTNO_JCZQ_HUN = "J00011"; // 竞彩足球混合
 	public static final String LOTNO_JCZQ = "J00001"; // 竞彩足球胜负
+	public static final String LOTNO_JCZQ_RQSPF = "J00013";
 	public static final String LOTNO_JCZQ_ZQJ = "J00003"; // 竞彩足球总进球
 	public static final String LOTNO_JCZQ_BF = "J00002"; // 竞彩足球比分
 	public static final String LOTNO_JCZQ_BQC = "J00004"; // 竞彩足球半全场

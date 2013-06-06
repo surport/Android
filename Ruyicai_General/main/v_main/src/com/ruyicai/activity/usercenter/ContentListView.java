@@ -40,6 +40,7 @@ public class ContentListView {
 				|| lotno.equals(Constants.LOTNO_JCLQ_RF)
 				|| lotno.equals(Constants.LOTNO_JCLQ_SFC)
 				|| lotno.equals(Constants.LOTNO_JCZQ)
+				|| lotno.equals(Constants.LOTNO_JCZQ_RQSPF)
 				|| lotno.equals(Constants.LOTNO_JCZQ_BF)
 				|| lotno.equals(Constants.LOTNO_JCZQ_BQC)
 				|| lotno.equals(Constants.LOTNO_JCZQ_ZQJ)

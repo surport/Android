@@ -240,6 +240,13 @@ public class AccountListActivity extends Activity {
 						UmPayPhoneActivity.class);
 				startActivity(alipay_secure);
 			}
+		} else if (getString(R.string.get_free_gold_title)
+				.equals(textString)) { 
+			if (isLogin()) {
+				Intent alipay_secure = new Intent(context,
+						GetFreeGoldActivity.class);
+				startActivity(alipay_secure);
+			}
 		}
 		/**add by yejc 20130505 end*/
 	}
@@ -253,6 +260,14 @@ public class AccountListActivity extends Activity {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 
 		Map<String, Object> map;
+		
+		// 免费获取礼金
+		map = new HashMap<String, Object>();
+		map.put(TITLE, getString(R.string.get_free_gold_title));
+		map.put(PICTURE, R.drawable.limei_free_gold_android);
+		map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
+		list.add(map);
+				
 		// 银联支付
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
@@ -379,10 +394,10 @@ public class AccountListActivity extends Activity {
 			builder1.append(str1);
 			
 			String alertStr1 = "";
-			if(position == 0) {
+			if(position == 1) {
 				alertStr1 = getString(R.string.recommend_the_use_of);
-			}else if (position == 1 || position == 2
-					|| position == 3 || position == 4) {
+			}else if (position == 2 || position == 3
+					|| position == 4 || position == 5) {
 				alertStr1 = getString(R.string.freeHanding);
 			} else if (position == 6) {
 				alertStr1 = getString(R.string.account_chongzhi_good);

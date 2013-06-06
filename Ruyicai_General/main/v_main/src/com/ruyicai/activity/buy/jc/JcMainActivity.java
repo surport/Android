@@ -40,6 +40,7 @@ import com.ruyicai.activity.buy.jc.touzhu.TouzhuDialog;
 import com.ruyicai.activity.buy.jc.zq.view.BFView;
 import com.ruyicai.activity.buy.jc.zq.view.BQCView;
 import com.ruyicai.activity.buy.jc.zq.view.HunHeZqView;
+import com.ruyicai.activity.buy.jc.zq.view.RQSPFView;
 import com.ruyicai.activity.buy.jc.zq.view.SPfView;
 import com.ruyicai.activity.buy.jc.zq.view.ZJQView;
 import com.ruyicai.activity.common.UserLogin;
@@ -59,6 +60,7 @@ public class JcMainActivity extends Activity implements
 		SeekBar.OnSeekBarChangeListener, HandlerMsg {
 	protected static int TYPE = 0;
 	protected final static int SF = 1;// 胜负
+	protected final static int RQSPF = 6;// 让求胜平负
 	protected final static int RF_SF = 2;// 让分胜负
 	protected final static int SFC = 3;// 胜分差
 	protected final static int DXF = 4;// 大小分
@@ -461,6 +463,10 @@ public class JcMainActivity extends Activity implements
 						.toString());
 				text4.setText(getString(R.string.jczq_dialog_dxf_guoguan_title)
 						.toString());
+				
+				TextView text5 = (TextView) viewType
+						.findViewById(R.id.buy_lq_main_dialog_new_type1);
+				text5.setVisibility(View.VISIBLE);
 			}
 			initRadioGroup(viewType);
 			dialogType = new AlertDialog.Builder(this).create();
@@ -488,6 +494,15 @@ public class JcMainActivity extends Activity implements
 		radioBtns.add(radio6);
 		radioBtns.add(radio7);
 		radioBtns.add(radio8);
+		
+		if (type.equals(Constants.JCFOOT)) {
+			RadioButton radio9 = (RadioButton) view.findViewById(R.id.radio_new0);
+			RadioButton radio10 = (RadioButton) view.findViewById(R.id.radio_new4);
+			radio9.setVisibility(View.VISIBLE);
+			radio10.setVisibility(View.VISIBLE);
+			radioBtns.add(radio9);
+			radioBtns.add(radio10);
+		}
 		for (RadioButton radio : radioBtns) {
 			radio.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -532,6 +547,16 @@ public class JcMainActivity extends Activity implements
 							isDanguan = false;
 							createView(HUN_HE, isDanguan);
 							break;
+							
+						case R.id.radio_new0:
+							isDanguan = false;
+							createView(RQSPF, isDanguan);
+							break;
+							
+						case R.id.radio_new4:
+							isDanguan = true;
+							createView(RQSPF, isDanguan);
+							break;
 						}
 						clearRadio(buttonView);
 						dialogType.cancel();
@@ -555,9 +580,16 @@ public class JcMainActivity extends Activity implements
 	protected void createView(int type, boolean isdanguan) {
 		switch (type) {
 		case SF:
+			SPfView.isRQSPF = false;
 			lqMainView = new SPfView(this, betAndGift, new Handler(),
 					layoutView, this.type, isdanguan, checkTeam);
-			TYPE = SF;
+			TYPE = type;
+			break;
+		case RQSPF:
+			SPfView.isRQSPF = true;
+			lqMainView = new RQSPFView(this, betAndGift, new Handler(),
+					layoutView, this.type, isdanguan, checkTeam);
+			TYPE = type;
 			break;
 		case RF_SF:
 			lqMainView = new ZJQView(this, betAndGift, new Handler(),
