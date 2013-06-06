@@ -26,14 +26,13 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 	public boolean isjixuan = false;
 	public static final int SSC_TYPE = 3;
 	public static SscThreeStar self;
-	public static int THREE_START_TYPE = 0; 
+	public int THREE_START_TYPE = 0; 
 	private String showMessage = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lotnoStr = Constants.LOTNO_SSC;
-		THREE_START_TYPE = Constants.SSC_THREE;
 		childtype = new String[] { "直选" ,"组三","组六"};
 		setContentView(R.layout.sscbuyview);
 		sscCode = new ThreeStarCode();
