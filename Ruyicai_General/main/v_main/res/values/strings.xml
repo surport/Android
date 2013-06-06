@@ -1006,6 +1006,9 @@
     <string name="ssc_prize_two_zu">选择2个或多个号码投注，命中开奖号码的个、十位号码即中奖！（开出对子号不逄中奖）\n奖金：50元</string>
     <string name="ssc_prize_two_hz">至少选择一个号码投注，命中开奖号码后面两位的数字相加之和即中奖！\n奖金：100/50元</string>
     <string name="ssc_prize_third">个、十、百位各选1个或多个号码投注，按位置分别命中开奖号码的个、十、百位即中奖！\n奖金：1000元</string>
+    <string name="ssc_prize_third_three">至少选择2个号码投注，开奖号码后3位中有任意两位数字相同，且投注号码与开奖号码的数字相同， 顺序不限，即中奖！\n奖金：320元</string>
+    <string name="ssc_prize_third_six">至少选择3个号码投注，开奖号码后3位与投注号码的数字相同， 顺序不限，即中奖！\n奖金：160元</string>
+    
     <string name="ssc_prize_five_zx">每位各选1个或多个号码投注，按位置全部命中即中奖！\n奖金：100000元</string>
     <string name="ssc_prize_five_tx">每位选1个或多个号码，按顺序全部猜中，猜中前三或后三、前二或后二都可中奖！\n奖金：20000/200/20元</string>
     <string name="ssc_prize__dx">每位各选1个号码投注，所选号码与开奖的个位十位号码性质按位置相符即中奖！\n奖金：4元</string>

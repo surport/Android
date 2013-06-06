@@ -14,6 +14,7 @@ import com.ruyicai.pojo.AreaNum;
 public abstract class CodeInterface {
 	private static boolean isZHmiss = false;
 	private static String isZHcode;
+	public int ssc_type = -1;
 
 	public abstract String zhuma(AreaNum areaNums[], int beishu, int type);
 

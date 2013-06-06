@@ -215,6 +215,9 @@ public class Constants {
 	public static final int SSC_TWOSTAR_HEZHI = 3;
 	public static final int SSC_FIVESTAR_ZHIXUAN = 4;
 	public static final int SSC_FIVESTAR_TONGXUAN = 5;
+	public static final int SSC_THREE = 30;
+	public static final int SSC_THREE_GROUP_THREE = 31;
+	public static final int SSC_THREE_GROUP_SIX = 32;
 	
 	public static final String BEIJINGSINGLE = "beiDan";
 	public static final String PLAY_METHOD_TYPE = "playMethodType";

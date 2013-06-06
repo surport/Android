@@ -315,6 +315,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		setNewPosition(0);
 		this.code = code;
 		buyview.removeAllViews();
+		
 		if (missView.get(id) == null) {
 			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View zhixuanview = inflater.inflate(R.layout.ssczhixuan_new, null);
@@ -847,6 +848,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		case THREE:
 			textPrize.setText(getString(R.string.ssc_prize_third));
 			break;
+		case Constants.SSC_THREE_GROUP_THREE:
+			textPrize.setText(getString(R.string.ssc_prize_third_three));
+			break;	
+		case Constants.SSC_THREE_GROUP_SIX:
+			textPrize.setText(getString(R.string.ssc_prize_third_six));
+			break;	
 		case FIVE:
 			textPrize.setText(getString(R.string.ssc_prize_five_zx));
 			break;

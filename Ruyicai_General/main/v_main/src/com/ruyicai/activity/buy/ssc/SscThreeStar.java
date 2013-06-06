@@ -26,11 +26,14 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 	public boolean isjixuan = false;
 	public static final int SSC_TYPE = 3;
 	public static SscThreeStar self;
+	public static int THREE_START_TYPE = 0; 
+	private String showMessage = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lotnoStr = Constants.LOTNO_SSC;
+		THREE_START_TYPE = Constants.SSC_THREE;
 		childtype = new String[] { "直选" ,"组三","组六"};
 		setContentView(R.layout.sscbuyview);
 		sscCode = new ThreeStarCode();
@@ -70,6 +73,7 @@ public class SscThreeStar extends ZixuanAndJiXuan {
     private void setDirectSelect(int checkedId) {
 		radioId = 0;
 		isjixuan = false;
+		THREE_START_TYPE = Constants.SSC_THREE;
 		BallTable shitable;
 		BallTable getable;
 		iProgressBeishu = 1;
@@ -97,17 +101,36 @@ public class SscThreeStar extends ZixuanAndJiXuan {
      * @param checkedId
      */
     private void setGroupThree(int checkedId) {
-    	
+		isjixuan = false;
+		THREE_START_TYPE = Constants.SSC_THREE_GROUP_THREE;
+		iProgressBeishu = 1;
+		iProgressQishu = 1;
+		areaNums = new AreaNum[1];
+		String titlezu = PublicMethod.getResourcesMes(SscThreeStar.this, R.string.please_choose_number);
+		areaNums[0] = new AreaNum(10, 10,2, 11, BallResId, 0, 0, Color.RED,
+				titlezu, false, false);
+		createView(areaNums, sscCode,THREE_START_TYPE, true, checkedId,false);
+		BallTable = areaNums[0].table;
     }
     /**
      * group six
      * @param checkedId
      */
     private void setGroupSix(int checkedId) {
-    	
+		isjixuan = false;
+		THREE_START_TYPE = Constants.SSC_THREE_GROUP_SIX;
+		iProgressBeishu = 1;
+		iProgressQishu = 1;
+		areaNums = new AreaNum[1];
+		String titlezu = PublicMethod.getResourcesMes(SscThreeStar.this, R.string.please_choose_number);
+		areaNums[0] = new AreaNum(10, 10, 3, 11, BallResId, 0, 0, Color.RED,
+				titlezu, false, false);
+		createView(areaNums, sscCode,THREE_START_TYPE, true, checkedId,false);
+		BallTable = areaNums[0].table;
     }
 	public String getZhuma() {
 		String zhuma = "";
+		sscCode.ssc_type = THREE_START_TYPE;
 		zhuma = sscCode.zhuma(areaNums, iProgressBeishu, 0);
 		return zhuma;
 	}
@@ -125,15 +148,41 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 			int beishu = iProgressBeishu;
 			iReturnValue = balls.size() * beishu;
 		} else {
-			int bai = areaNums[0].table.getHighlightBallNums();
-			int shi = areaNums[1].table.getHighlightBallNums();
-			int ge = areaNums[2].table.getHighlightBallNums();
 			int beishu = iProgressBeishu;
-			iReturnValue = bai * shi * ge * beishu;
+			switch (THREE_START_TYPE) {
+				case Constants.SSC_THREE:
+					int bai = areaNums[0].table.getHighlightBallNums();
+					int shi = areaNums[1].table.getHighlightBallNums();
+					int ge = areaNums[2].table.getHighlightBallNums();
+					//int beishu = iProgressBeishu;
+					iReturnValue = bai * shi * ge * beishu;
+					break;
+				case Constants.SSC_THREE_GROUP_THREE:
+					iReturnValue = callGroupThreeZhuShuMethod(getHighlightBallNums()) * beishu ;
+					break;
+				case Constants.SSC_THREE_GROUP_SIX:
+					iReturnValue = callGroupSixZhuShuMethod(getHighlightBallNums()) * beishu ;
+	                break;
+			}
 		}
 		return iReturnValue;
 	}
-
+	/**
+	 * 组三的注数
+	 * @param one
+	 * @return
+	 */
+    private int callGroupThreeZhuShuMethod(int one) {
+    	return (2 * (int)PublicMethod.zuhe(2, one));
+    }
+    /**
+     * 组六的注数
+     * @param one
+     * @return
+     */
+    private int callGroupSixZhuShuMethod(int one) {
+    	return  (int)PublicMethod.zuhe(3, one); 	
+    }
 	protected void onResume() {
 		super.onResume();
 		lotnoStr = Constants.LOTNO_SSC;
@@ -150,19 +199,11 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 				isTouzhu = "true";
 			}
 		} else {
-			int bai = areaNums[0].table.getHighlightBallNums();
-			int shi = areaNums[1].table.getHighlightBallNums();
-			int ge = areaNums[2].table.getHighlightBallNums();
-			int iZhuShu = getZhuShu();
-			if (bai == 0 | shi == 0 | ge == 0) {
-				isTouzhu = "请至少选择一注！";
-			} else if (iZhuShu > MAX_ZHU) {
-				isTouzhu = "false";
-			}
-		
-			else {
-				isTouzhu = "true";
-			}
+            if (!this.checkBallNum()) {
+            	isTouzhu = this.showMessage;
+            } else {
+            	isTouzhu = "true";
+            }
 		}
 		return isTouzhu;
 	}
@@ -189,7 +230,11 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 				iTempString = "共" + onClickNum + "注，共" + (onClickNum * 2) + "元";
 			}
 		} else {
+            if (!checkBallNum()) { 
+            	return iTempString = this.showMessage;
+            }
 			int iZhuShu = getZhuShu();
+
 			if (iZhuShu != 0) {
 				iTempString = "共" + iZhuShu + "注，共" + (iZhuShu * 2) + "元";
 			} else {
@@ -199,7 +244,46 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 		}
 		return iTempString;
 	}
-
+	/**
+	 * 选择球数量
+	 * @return
+	 */
+	private boolean checkBallNum() {
+		showMessage = "";
+		switch (THREE_START_TYPE) {
+			case Constants.SSC_THREE:
+				int bai = areaNums[0].table.getHighlightBallNums();
+				int shi = areaNums[1].table.getHighlightBallNums();
+				int ge = areaNums[2].table.getHighlightBallNums();
+				int iZhuShu = getZhuShu();
+				if (bai == 0 | shi == 0 | ge == 0) {
+					showMessage = "请至少选择一注！";
+					return false;
+				} else if (iZhuShu > MAX_ZHU) {
+					showMessage = "false";
+					return false;
+				} else {
+					showMessage = "true";
+				}
+				break;
+			case Constants.SSC_THREE_GROUP_THREE:
+				if (getHighlightBallNums() < 2) {
+					this.showMessage = "至少还需要" + (2-getHighlightBallNums())+"个球";
+					return false;
+				}
+				break;
+			case Constants.SSC_THREE_GROUP_SIX:
+				if (getHighlightBallNums() < 3) {
+					this.showMessage = "至少还需要" + (3-getHighlightBallNums())+"个球";
+					return false;
+				}
+	            break;
+		}
+		return true;
+	}
+    private int getHighlightBallNums() {
+    	return areaNums[0].table.getHighlightBallNums();
+    }
 	/**
 	 * 显示在输入框的注码
 	 * 

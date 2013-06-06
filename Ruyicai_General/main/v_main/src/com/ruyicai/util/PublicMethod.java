@@ -2898,7 +2898,15 @@ public class PublicMethod {
 		}
 		return message;
 	}
-
+	/**
+	 * 获得资源文件
+	 * @param mContext
+	 * @param id
+	 * @return
+	 */
+    public static String getResourcesMes(Context mContext,int id) {
+    	return mContext.getResources().getString(id);
+    }
 	/**
 	 * 显示消息
 	 * 
