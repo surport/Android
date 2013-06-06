@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="vs"
-                    android:textColor="@color/red"
+                    android:textColor="@color/blue"
                     android:textSize="14sp" >
                 </TextView>
 
