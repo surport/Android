@@ -269,13 +269,13 @@ public class BuyActivity extends Activity implements OnClickListener {
 				ShellRWConstants.CAIZHONGSETTING);
 
 		caizhongSettingList = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < Constants.lotnoNameList.length; i++) {
+ /*       for (int i = 0; i < Constants.lotnoNameList.length; i++) {
     		Map<String, String> map1 = new HashMap<String, String>();
     		map1.put("lotno", Constants.lotnoNameList[i]);
     		map1.put("caizhongSetting", shellRW.getStringValue(Constants.lotnoNameList[i]).toString());
     		caizhongSettingList.add(map1);
-        }
-/*		Map<String, String> map1 = new HashMap<String, String>();
+        }*/
+		Map<String, String> map1 = new HashMap<String, String>();
 		map1.put("lotno", "hmdt");
 		map1.put("caizhongSetting", shellRW.getStringValue("hmdt").toString());
 		caizhongSettingList.add(map1);
@@ -377,7 +377,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 		map20.put("caizhongSetting", shellRW
 				.getStringValue("beijingsinglegame").toString());
 		caizhongSettingList.add(map20);
-*/		
+		
 	}
 
 	/**
