@@ -19,6 +19,15 @@ public class JsonBeanInfo {
 	
 	String homeHalfScore = "";
 	String guestHalfScore = "";
+	String basePoint = "";
+
+	public String getBasePoint() {
+		return basePoint;
+	}
+
+	public void setBasePoint(String basePoint) {
+		this.basePoint = basePoint;
+	}
 
 	public String getGuestScore() {
 		return guestScore;

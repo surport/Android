@@ -264,9 +264,16 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 			
 			holder.home.append(info.getHome()+"(主)");
 			holder.away.append(info.getAway()+"(客)");
-			if (!"".equals(info.getLetPoint())) {
-				holder.letPoint.setText(info.getLetPoint());
-				holder.letPoint.setTextColor(Color.BLUE);
+			if (Constants.LOTNO_JCLQ_RF.equals(playMethodType)) {
+				if (!"".equals(info.getLetPoint())) {
+					holder.letPoint.setText(info.getLetPoint());
+					holder.letPoint.setTextColor(Color.BLUE);
+				}
+			} else if(Constants.LOTNO_JCLQ_DXF.equals(playMethodType)) {
+				if (!"".equals(info.getBasePoint())) {
+					holder.letPoint.setText(info.getBasePoint());
+					holder.letPoint.setTextColor(Color.BLUE);
+				}
 			}
 			
 			convertView.setOnClickListener(new OnClickListener() {
@@ -311,6 +318,9 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 				itemInfo.setTeam(jsonItem.getString("league"));
 				itemInfo.setResult(jsonItem.getString("matchResult"));
 				itemInfo.setLetPoint(jsonItem.getString("letPoint"));
+				if (jsonItem.has("basePoint")) {
+					itemInfo.setBasePoint(jsonItem.getString("basePoint"));
+				}
 				itemInfo.setHome(jsonItem.getString("homeTeam"));
 				itemInfo.setAway(jsonItem.getString("guestTeam"));
 				itemInfo.setHomeScore(jsonItem.getString("homeScore"));

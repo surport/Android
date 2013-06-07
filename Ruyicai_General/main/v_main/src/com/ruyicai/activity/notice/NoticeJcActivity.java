@@ -261,10 +261,15 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			holder.result.append(info.getResult());
 			holder.home.append(info.getHome()+"(主)");
 			holder.away.append(info.getAway()+"(客)");
-			if (!"".equals(info.getLetPoint())) {
-				holder.letPoint.setText(info.getLetPoint());
-				holder.letPoint.setTextColor(Color.BLUE);
+			if (Constants.LOTNO_JCZQ_RQSPF.equals(playMethodType)) {
+				if (!"".equals(info.getLetPoint())) {
+					holder.letPoint.setText(info.getLetPoint());
+					holder.letPoint.setTextColor(Color.BLUE);
+				}
+			} else if (Constants.LOTNO_JCZQ.equals(playMethodType)) {
+				holder.letPoint.setText("0");
 			}
+			
 			String score = "("+info.getHomeHalfScore()+":"+info.getGuestHalfScore()+")"+info.getHomeScore()+":"+info.getGuestScore();
 			holder.score.append(score);
 			
