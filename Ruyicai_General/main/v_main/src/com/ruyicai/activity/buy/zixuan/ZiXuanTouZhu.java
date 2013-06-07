@@ -33,6 +33,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -70,9 +71,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean isTouzhu = false;// 是否投注
 	private AddView addview;
 	private Context context;
-	private final int HIGHT_MAX = 2000;
-	private Controller controller = null;
+	private final int HIGHT_MAX = 10000;
 	private final int ZC_MAX = 10000;
+	private Controller controller;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,8 +113,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		if (Constants.type.equals("zc")) {
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
-			initImageView();
-//			beishulayLayout.setVisibility(View.GONE);
+			beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -144,7 +144,17 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				/** modify by pengcx start 20130531 */
+				String lotno = betAndGift.getLotno();
+				if (lotno.equals(Constants.LOTNO_JQC)
+						|| lotno.equals(Constants.LOTNO_LCB)
+						|| lotno.equals(Constants.LOTNO_SFC)
+						|| lotno.equals(Constants.LOTNO_RX9)) {
+					finish();
+				} else {
+					alertExit(getString(R.string.buy_alert_exit_detail));
+				}
+				/** modify by pengcx end 20130531 */
 			}
 		});
 		ok.setOnClickListener(new OnClickListener() {
@@ -382,7 +392,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void errorCode_0000() {
-		PublicMethod.showDialog(this);
+		/**modify pengcx 20130604 start*/
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.BETTING);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
+		/**modify pengcx 20130604 end*/
 	}
 
 	@Override

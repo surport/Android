@@ -251,6 +251,9 @@ public class ProtocolManager {
 	public static String USERNO = "userno";
 	public static String SESSIONID = "sessionid";
 	public static String PHONE_NUM = "phonenum";
+	/**add by pengcx 20130604 start*/
+	public static String EMAIL = "email";
+	/**add by pengcx 20130604 end*/
 	public static String COMMAND = "command";
 	public static String IS_EMULATOR = "isemulator";
 	public static String IMEI = "imei";

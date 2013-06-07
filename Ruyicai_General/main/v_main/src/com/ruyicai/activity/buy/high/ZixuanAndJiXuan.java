@@ -62,6 +62,7 @@ import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZHmissViewItem;
 import com.ruyicai.activity.buy.ssc.Ssc;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -2255,7 +2256,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			areaNums[i].table.clearAllHighlights();
 		}
 		editZhuma.setText("");
-		PublicMethod.showDialog(ZixuanAndJiXuan.this, lotno + code);
+		
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.BETTING);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
 	}
 
 	public void clearArea() {

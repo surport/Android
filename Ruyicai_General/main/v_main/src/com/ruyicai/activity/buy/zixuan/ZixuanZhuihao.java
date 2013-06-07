@@ -37,6 +37,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -644,8 +645,15 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
-		PublicMethod.showDialog(this);
+		/** modify pengcx 20130604 start */
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.ADDTO);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		int totalAmount = Integer.valueOf(betAndGift.getAmount())
+				* Integer.valueOf(betAndGift.getBatchnum());
+		intent.putExtra("amount", String.valueOf(totalAmount));
+		startActivity(intent);
+		/** modify pengcx 20130604 end */
 	}
 
 	private boolean isclearaddview = true;

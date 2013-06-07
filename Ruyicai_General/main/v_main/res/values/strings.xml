@@ -363,6 +363,7 @@
     <string name="joinchekinfoquery">合买查询</string>
     <string name="usercenter_bindphonenum">手机号绑定</string>
     <string name="usercenter_bindID">身份证绑定</string>
+    <string name="usercenter_bindemail">邮箱绑定</string>
     <string name="usercenter_buyAgain">再买一次</string>
     <string name="usercenter_changePWD">密码修改</string>
     <string name="scroechange">注:1000积分可兑换1元购彩金(请输入1000的倍数),存入您的如意彩账户</string>
@@ -391,6 +392,8 @@
     <string name="usercenter_yourname">您的姓名:</string>
     <string name="usercenter_cerdidnum">身份证号:</string>
     <string name="usercenter_youridnum">证件号码:</string>
+    <string name="usercenter_whetherunbind">是否解除绑定?</string>
+    <string name="usercenter_youremail">您绑定的邮箱地址为:</string>
     <string name="usercenter_notnull">别输空啊，这很重要的哦</string>
     <string name="usercenter_bindphonedialogtitle">手机号绑定提示</string>
     <string name="usercenter_bindIDdialogtitle">身份证绑定提示</string>
@@ -535,6 +538,17 @@
     <string name="ruyichuanqing_add_phone">请输入电话号码</string>
     <string name="ruyichuanqing_del_phone_title">删除</string>
     <string name="ruyichuanqing_del_phone">您确认要删除电话号码</string>
+
+    <!-- 双色球投注成功 -->
+    <string name="ssq_bettingsuccess">投注成功</string>
+    <string name="ssq_bettingsuccess_bindemail">绑定邮箱</string>
+    <string name="ssq_bettingsuccess_receiveandbind">接受并绑定</string>
+    <string name="ssq_bettingsuccess_emailaddress">邮箱地址：</string>
+    <string name="ssq_bettingsuccess_emailprompt">请输入您要接收并绑定的邮箱地址(可在用户中心解绑)：</string>
+    <string name="ssq_bettingsuccess_returnbet">返回投注</string>
+    <string name="ssq_bettingsuccess_money">金额:</string>
+    <string name="ssq_bettingsuccess_lotnotype">彩种:</string>
+    <string name="ssq_bettingsuccess_sentschemetoemail">将此方案发送到邮箱</string>
 
     <!-- 周黎鸣  幸运选号 -->
     <string name="shengri">生日</string>

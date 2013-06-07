@@ -75,7 +75,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 //	private List<Map<String, Object>> list;/* 列表适配器的数据源 */
 	private static final String IICON = "IICON";
 	private final static String TITLE = "TITLE"; /* 标题 */
-	protected String phonenum, sessionid, userno, certid, mobileid, name;
+	protected String phonenum, sessionid, userno, certid, mobileid, name,email;
 	protected LinearLayout usecenerLinear;
 //	private final int DIALOG_BINDED = 1, DIALOG_BINDPHONE = 2;
 	protected Button returnButton;
@@ -539,6 +539,9 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		sessionid = shellRW.getStringValue("sessionid");
 		certid = shellRW.getStringValue("certid");
 		name = shellRW.getStringValue("name");
+		/**add by pengcx 20130604 start*/
+		email = shellRW.getStringValue("email");
+		/**add by pengcx 20130604 end*/
 		mobileid = shellRW.getStringValue("mobileid");
 		if (sessionid == null || sessionid.equals("")) {
 			Intent intentSession = new Intent(this, UserLogin.class);
@@ -880,8 +883,22 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 				intentbalance.putExtra("name", name);
 				startActivity(intentbalance);
 			}
-
 		}
+		/**add by pengcx 20130604 start*/
+		// 绑定邮箱
+		if (this.getString(R.string.usercenter_bindemail).equals(str)) {
+			if (email == null || email.equals("") || email.equals("null")) {
+				Intent intent = new Intent(NewUserCenter.this,
+						BindEmailActivity.class);
+				startActivity(intent);
+			} else {
+				Intent intent = new Intent(NewUserCenter.this,UnBindEmailActivity.class);
+				intent.putExtra("email", email);
+				intent.putExtra("name", name);
+				startActivity(intent);
+			}
+		}
+		/**add by pengcx 20130604 end*/
 		// 积分明细
 		if (str.equals("我的积分")) {
 			showDialog(0);
@@ -1076,11 +1093,12 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	 * @return
 	 */
 	protected List<Map<String, Object>> getListForusersetAdapter() {
-		String[] titles = { "密码修改", "身份证绑定", "手机号绑定" };
-		String[] titles1 = { "身份证绑定", "手机号绑定" };
+		String[] titles = { "密码修改", "身份证绑定", "手机号绑定", "邮箱绑定" };
+		String[] titles1 = { "身份证绑定", "手机号绑定", "邮箱绑定" };
 
 		int[] accountDetailInfoIcons = { R.drawable.mimaxiugai,
-				R.drawable.sfzbd, R.drawable.mobilebindlable, };
+				R.drawable.sfzbd, R.drawable.mobilebindlable,
+				R.drawable.mobilebindlable };
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 		if (PublicConst.isthirdlogin) {
 			for (int i = 0; i < titles1.length; i++) {

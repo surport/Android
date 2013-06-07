@@ -1840,6 +1840,14 @@ public class PublicMethod {
 				title = "竞彩篮球";
 			} else if (type.equals(Constants.LOTNO_JCZ)) {
 				title = "竞彩足球";
+			} else if (type.equals(Constants.LOTNO_JCZQ)) {
+				title = "竞彩足球胜负";
+			} else if (type.equals(Constants.LOTNO_JCZQ_ZQJ)) {
+				title = "竞彩足球总进球";
+			} else if (type.equals(Constants.LOTNO_JCZQ_BQC)) {
+				title = "竞彩足球半全场";
+			} else if (type.equals(Constants.LOTNO_JCZQ_BF)) {
+				title = "竞彩足球比分";
 			} else if (type.equals(Constants.LOTNO_GD_11_5)) {
 				title = "广东11选5";
 			} else if (type.equals(Constants.LOTNO_ten)) {
@@ -1850,15 +1858,19 @@ public class PublicMethod {
 				title = "竞彩足球混合";
 			} else if (type.equals(Constants.LOTNO_NMK3)) {
 				title = "快三";
-			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
 				title = "北京单场胜平负";
-			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)) {
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)) {
 				title = "北京单场总进球";
 			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)) {
 				title = "北京单场全场总比分";
-			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)) {
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)) {
 				title = "北京单场半全场";
-			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
 				title = "北京单场上下单双";
 			} else {
 				title = "所有彩种";
@@ -2922,5 +2934,19 @@ public class PublicMethod {
 		date = date.substring(index - 2, index + 3);
 		return date;
 	}
-	
+
+	/** add by pengcx 20130604 start */
+	/**
+	 * 判断邮箱的正确性
+	 * 
+	 * @return 返回是否正确标识
+	 */
+	public static boolean isRightEmail(String email) {
+		Pattern pattern = Pattern
+				.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
+		Matcher matcher = pattern.matcher(email);
+
+		return matcher.matches();
+	}
+	/** add by pengcx 20130604 end */
 }

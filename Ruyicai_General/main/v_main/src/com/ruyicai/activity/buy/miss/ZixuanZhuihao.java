@@ -38,9 +38,11 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.TrackQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -638,7 +640,25 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void errorCode_0000() {
-		PublicMethod.showDialog(this);
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		if(isSsq())
+		{
+			intent.putExtra("isssq", true);
+		}
+		intent.putExtra("page", BettingSuccessActivity.ADDTO);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		int totalAmount = Integer.valueOf(betAndGift.getAmount())
+				* Integer.valueOf(betAndGift.getBatchnum());
+		intent.putExtra("amount", String.valueOf(totalAmount));
+		startActivity(intent);
+	}
+
+	private boolean isSsq() {
+		if (betAndGift.getLotno().equals(Constants.LOTNO_SSQ)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private boolean isclearaddview = true;

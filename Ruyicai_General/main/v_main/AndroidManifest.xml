@@ -292,6 +292,16 @@
 
         <!-- ssc -->
         <activity
+            android:name="com.ruyicai.activity.buy.ssq.BettingSuccessActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.ssq.ReceiveAndBindEmailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+
+        <!-- ssc -->
+        <activity
             android:name="com.ruyicai.activity.buy.ssc.Ssc"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
@@ -686,6 +696,16 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name="com.ruyicai.activity.usercenter.HadBindedID"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.BindEmailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.ruyicai.activity.usercenter.UnBindEmailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />

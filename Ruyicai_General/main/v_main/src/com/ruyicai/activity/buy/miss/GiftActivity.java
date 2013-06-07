@@ -64,6 +64,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.dialog.BaseDialog;
@@ -1165,9 +1166,25 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			Constants.avdiceStr = jsonToStr(obj);
 			adviceDialog();
 		} else {
-			resultDialog("赠送结果", resultAlertStr());
+			Intent intent = new Intent(this, BettingSuccessActivity.class);
+			if(isSsq())
+			{
+				intent.putExtra("isssq", true);
+			}
+			intent.putExtra("page", BettingSuccessActivity.PRESENT);
+			intent.putExtra("lotno", betAndGift.getLotno());
+			intent.putExtra("amount", betAndGift.getAmount());
+			startActivity(intent);
 		}
 
+	}
+
+	private boolean isSsq() {
+		if (betAndGift.getLotno().equals(Constants.LOTNO_SSQ)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private boolean isclearaddview = true;

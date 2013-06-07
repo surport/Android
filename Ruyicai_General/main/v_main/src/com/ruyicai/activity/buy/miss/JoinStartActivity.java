@@ -47,6 +47,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
@@ -724,8 +725,23 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public void errorCode_0000() {
-		// Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-		showfenxdialog(message);
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		if(isSsq())
+		{
+			intent.putExtra("isssq", true);
+		}
+		intent.putExtra("page", BettingSuccessActivity.COOPERATION);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
+	}
+
+	private boolean isSsq() {
+		if (betAndGift.getLotno().equals(Constants.LOTNO_SSQ)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	private boolean isclearaddview = true;

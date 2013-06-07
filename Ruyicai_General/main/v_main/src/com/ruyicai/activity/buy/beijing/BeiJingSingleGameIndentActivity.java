@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JoinStartActivityjc;
 import com.ruyicai.activity.buy.jc.touzhu.RadioGroupView;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.dialog.MessageDialog;
@@ -635,7 +636,14 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		/**Add by pengcx 20130516 start*/
 		BeiJingSingleGameActivity.isBettingReturn = true;
 		/**Add by pengcx 20130516 end*/
-		PublicMethod.showDialog(BeiJingSingleGameIndentActivity.this);
+		
+		/**Add by pengcx 20130605 start*/
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.BETTING);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
+		/**Add by pengcx 20130605 end*/
 	}
 
 	@Override

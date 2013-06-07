@@ -640,7 +640,12 @@ public class UserLogin extends Activity implements TextWatcher {
 						String userno = json.getString("userno");
 						String cerdid = json.getString("certid");
 						String username = json.getString("userName");
-
+						
+						/**add by pengcx 20130604 start*/
+						String email = json.getString("email");
+						shellRW.putStringValue("email", email);
+						/**add by pengcx 20130604 end*/
+						
 						shellRW.putStringValue("sessionid", sessionid);
 						shellRW.putStringValue("name", name);
 						shellRW.putStringValue("userno", userno);

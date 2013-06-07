@@ -48,6 +48,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu;
@@ -715,9 +716,12 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
-		// Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-		showfenxdialog(message);
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.COOPERATION);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
+		// showfenxdialog(message);
 	}
 
 	private boolean isclearaddview = true;

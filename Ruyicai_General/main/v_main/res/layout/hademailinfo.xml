@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 显示邮箱信息页面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <!-- 标题 -->
+
+    <TextView
+        android:id="@+id/usercenter_bindemailinfo_title"
+        style="@style/UserTitleText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:gravity="center"
+        android:text="邮箱绑定信息" />
+
+    <!-- 邮箱信息显示 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/usercenter_youremail"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/usercenter_bindedemail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="18sp" >
+        </TextView>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/usercenter_whetherunbind"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/buy_bot_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <!-- 提交按钮 -->
+
+        <Button
+            android:id="@+id/usercenter_bindedemail_back"
+            style="@style/UserBottomButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/str_return" />
+        <!-- 返回按钮 -->
+
+        <Button
+            android:id="@+id/usercenter_bindedemail_unbind"
+            style="@style/UserBottomButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/usercenter_unbind" />
+    </LinearLayout>
+
+</LinearLayout>

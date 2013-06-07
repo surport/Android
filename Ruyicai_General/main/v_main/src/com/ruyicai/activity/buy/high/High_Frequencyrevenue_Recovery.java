@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
@@ -815,9 +816,12 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
-								// PublicMethod.showDialog(High_Frequencyrevenue_Recovery.this,msg);
-								PublicMethod
-										.showDialog(High_Frequencyrevenue_Recovery.this);
+								/**modify by pengcx 20130605 start*/
+								Intent intent = new Intent(High_Frequencyrevenue_Recovery.this, BettingSuccessActivity.class);
+								intent.putExtra("page", BettingSuccessActivity.HIGHTADDTO);
+								intent.putExtra("lotno", betAndGift.getLotno());
+								intent.putExtra("amount", betAndGift.getAmount());
+								startActivity(intent);
 								information.dismiss();
 							}
 						});

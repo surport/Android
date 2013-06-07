@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
@@ -507,7 +508,13 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	public void errorCode_0000() {
 		// TODO Auto-generated method stub
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-		showfenxdialog();
+		/**modify by pengcx 20130605 start*/
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.COOPERATION);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
+		/**modify by pengcx 20130605 end*/
 	}
 
 	public void showfenxdialog() {
