@@ -34,6 +34,17 @@ public class BetQueryInfo implements Serializable {
 	private String oneAmount = "";
 	private String betCodeHtml = "";
 	private String json = "";
+	/**add by pengcx 20130609 start*/
+	private String expectPrizeAmt="";
+	
+	public String getExpectPrizeAmt() {
+		return expectPrizeAmt;
+	}
+	
+	public void setExpectPrizeAmt(String expectPrizeAmt) {
+		this.expectPrizeAmt = expectPrizeAmt;
+	}
+	/**add by pengcx 20130609 end*/
 
 	public String getJson() {
 		return json;

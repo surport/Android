@@ -174,6 +174,7 @@ public class BettingSuccessActivity extends Activity {
 				intent = new Intent(BettingSuccessActivity.this, Ssc.class);
 			} else if (lotnoString.equals(Constants.LOTNO_JCZQ_HUN)
 					|| lotnoString.equals(Constants.LOTNO_JCZQ)
+					|| lotnoString.equals(Constants.LOTNO_JCZQ_RQSPF)
 					|| lotnoString.equals(Constants.LOTNO_JCZQ_ZQJ)
 					|| lotnoString.equals(Constants.LOTNO_JCZQ_BF)
 					|| lotnoString.equals(Constants.LOTNO_JCZQ_BQC)) {

@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="top"
                         android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -82,6 +82,17 @@
                         android:gravity="top"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
+
+                    <!-- 预计奖金 -->
+
+                    <TextView
+                        android:id="@+id/usercenter_winprize_predictmoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:textColor="@color/black"
+                        android:textSize="13dp"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
 

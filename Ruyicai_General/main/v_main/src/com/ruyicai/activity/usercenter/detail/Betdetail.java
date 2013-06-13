@@ -95,6 +95,9 @@ public class Betdetail extends Activity {
 		final String orderId = (String) info.getOrderId();
 		final String stateMo = (String) info.getStateMemo();
 		final String betcodehtml = (String) info.getBetCodeHtml();
+		/**add by pengcx 20130609 start*/
+		final String expectprize = (String)info.getExpectPrizeAmt();
+		/**add by pengcx 20130609 end*/
 		TextView lotkind = (TextView) findViewById(R.id.bet_detail_text_lotno);
 		TextView batchcode = (TextView) findViewById(R.id.bet_detail_text_batchcode);
 		TextView dingdanno = (TextView) findViewById(R.id.bet_detail_text_dingdan);
@@ -106,6 +109,10 @@ public class Betdetail extends Activity {
 		TextView content = (TextView) findViewById(R.id.bet_detail_text_content);
 		TextView kaijianghao = (TextView) findViewById(R.id.bet_detail_text_kaijianghao);
 		LinearLayout layoutMain = (LinearLayout) findViewById(R.id.bet_detail_layout_content);
+		/**add by pengcx 20130609 start*/
+		TextView expertTextView = (TextView) findViewById(R.id.bet_detail_text_expert);
+		LinearLayout layoutExpert = (LinearLayout) findViewById(R.id.bet_detail_linearlayout_expert);
+		/**add by pengcx 20130609 end*/
 		lotkind.append(lotName);
 		dingdanno.append(orderId);
 		beishu.append(lotMulti);
@@ -175,7 +182,26 @@ public class Betdetail extends Activity {
 			}
 			batchcode.append(prizeqihao);
 		}
-
+		
+		/*add by pengcx 20130609 start*/
+		if (Constants.LOTNO_JCZQ.equals(lotno)
+				|| Constants.LOTNO_JCZQ_RQSPF.equals(lotno)
+				|| Constants.LOTNO_JCZQ_ZQJ.equals(lotno)
+				|| Constants.LOTNO_JCZQ_BF.equals(lotno)
+				|| Constants.LOTNO_JCZQ_BF.equals(lotno)
+				|| Constants.LOTNO_JCZQ_BQC.equals(lotno)
+				|| Constants.LOTNO_JCZQ_HUN.equals(lotno)
+				|| Constants.LOTNO_JCLQ.equals(lotno)
+				|| Constants.LOTNO_JCLQ_RF.equals(lotno)
+				|| Constants.LOTNO_JCLQ_SFC.equals(lotno)
+				|| Constants.LOTNO_JCLQ_DXF.equals(lotno)
+				|| Constants.LOTNO_JCLQ_HUN.equals(lotno)) {
+			expertTextView.setText(expectprize);
+			layoutExpert.setVisibility(View.VISIBLE);
+		}else{
+			layoutExpert.setVisibility(View.GONE);
+		}
+		/*add by pengcx 20130609 end*/
 	}
 
 	/**

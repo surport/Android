@@ -1822,8 +1822,6 @@ public class PublicMethod {
 				title = "七星彩";
 			} else if (type.equals(Constants.LOTNO_PL5)) {
 				title = "排列五";
-			} else if (type.equals(Constants.LOTNO_JC)) {
-				title = "竞彩足球";
 			} else if (type.equals(Constants.LOTNO_JCLQ)) {
 				title = "竞彩篮球胜负";
 			} else if (type.equals(Constants.LOTNO_JCLQ_RF)) {
@@ -1842,6 +1840,8 @@ public class PublicMethod {
 				title = "竞彩足球";
 			} else if (type.equals(Constants.LOTNO_JCZQ)) {
 				title = "竞彩足球胜负";
+			} else if (type.equals(Constants.LOTNO_JCZQ_RQSPF)) {
+				title = "竞彩足球让球胜平负";
 			} else if (type.equals(Constants.LOTNO_JCZQ_ZQJ)) {
 				title = "竞彩足球总进球";
 			} else if (type.equals(Constants.LOTNO_JCZQ_BQC)) {

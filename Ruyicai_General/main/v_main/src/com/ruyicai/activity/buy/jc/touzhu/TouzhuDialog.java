@@ -45,6 +45,7 @@ public class TouzhuDialog {
 	public int zhuShu = 0;
 	public boolean isRadio = false;// false是自由过关,true是多串过关
 	private final int MAXAMT = 20000;// 最大投注金额
+	String returnStr = "";
 
 	public TouzhuDialog(JcMainActivity context, JcMainView jcMainView) {
 		this.context = context;
@@ -247,6 +248,10 @@ public class TouzhuDialog {
 		context.initBet();
 		context.getBetAndGiftPojo().setAmount("" + getAllAmt() * 100);
 		context.getBetAndGiftPojo().setLotmulti("" + getBeishu());
+		/** add by pengcx 20130609 start */
+		context.getBetAndGiftPojo().setPredictMoney(
+				returnStr.substring("预计中奖金额：".length()));
+		/** add by pengcx 20130609 end */
 		if (jcMainView.isDanguan) {
 			context.getBetAndGiftPojo().setBet_code(
 					getBetCode(context.getString(R.string.jc_touzhu_DAN)) + "_"
@@ -283,7 +288,6 @@ public class TouzhuDialog {
 	 * 中奖范围
 	 */
 	public void setPrizeText() {
-		String returnStr = "";
 		if (jcMainView.isDanguan) {
 			returnStr = jcMainView.getDanPrizeString(getBeishu());
 		} else {

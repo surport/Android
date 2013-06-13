@@ -41,7 +41,16 @@ public class BetAndGiftPojo implements Serializable {
 	private String isBetAfterIssue = "";
 	private String zhushu;
 	private String blessing;
+	/**add by pengcx 20130609 start*/
+	private String predictMoney="0";//预计奖金
+	public String getPredictMoney() {
+		return predictMoney;
+	}
 
+	public void setPredictMoney(String predictMoney) {
+		this.predictMoney = predictMoney;
+	}
+	/**add by pengcx 20130609 end*/
 	public String getBlessing() {
 		return blessing;
 	}

@@ -43,6 +43,7 @@ import com.ruyicai.activity.buy.jc.zq.view.HunHeZqView;
 import com.ruyicai.activity.buy.jc.zq.view.RQSPFView;
 import com.ruyicai.activity.buy.jc.zq.view.SPfView;
 import com.ruyicai.activity.buy.jc.zq.view.ZJQView;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.constant.Constants;
@@ -719,7 +720,13 @@ public class JcMainActivity extends Activity implements
 
 	public void errorCode_0000() {
 		createView(TYPE, isDanguan);
-		PublicMethod.showDialog(context);
+		/**modify by pengcx 20130605 start*/
+		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		intent.putExtra("page", BettingSuccessActivity.BETTING);
+		intent.putExtra("lotno", betAndGift.getLotno());
+		intent.putExtra("amount", betAndGift.getAmount());
+		startActivity(intent);
+		/**modify by pengcx 20130605 end*/
 	}
 
 	public void errorCode_000000() {
