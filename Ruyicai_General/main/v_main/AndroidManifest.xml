@@ -1004,7 +1004,6 @@
                 <action android:name="com.android.alarmdemo.rebootreciver" />
             </intent-filter>
         </receiver>
-
         <!-- 发送购彩提醒服务 -->
         <service
             android:name="com.ruyicai.activity.more.lotnoalarm.LotnoAlarmService"
@@ -1089,7 +1088,6 @@
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
             </intent-filter>
         </service>
-
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true" >
@@ -1104,6 +1102,7 @@
         </receiver>
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
 
+		
         <meta-data
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />

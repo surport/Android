@@ -24,14 +24,12 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -48,7 +46,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.lthj.unipay.plugin.el;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.dlc.Dlc;
@@ -69,7 +66,6 @@ import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootballLottery;
-import com.ruyicai.activity.common.UserLogin.AuthReceiver;
 import com.ruyicai.activity.expert.ExpertActivity;
 import com.ruyicai.activity.info.LotInfoActivity;
 import com.ruyicai.activity.join.JoinInfoActivity;
@@ -103,7 +99,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	String userno, phonenum, sessionid;
 	private String messageidflag = null;
 	private JSONObject obj;
-	private int SCREENMAX = 9;// 屏幕最大图标数
+	private int SCREENTICKETMAX = 9;// 屏幕最大图标数
 	private int SCREENUM = 4;// 屏幕最大数
 	private int SCREEALL = 0;// 屏幕总图标数
 	private int PRIZERANKSCREEN = 1;// 新加中獎排行
@@ -113,7 +109,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	String newscontent = "";
 	private int top = 20;
 	private List<String> mLabelArray = new ArrayList<String>();
-	private NewsUpdateReceiver newsUpdateReceiver = null;
+	private MessageUpdateReceiver newsUpdateReceiver = null;
 	
 	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
@@ -192,49 +188,51 @@ public class BuyActivity extends Activity implements OnClickListener {
 		progressdialog = UserCenterDialog.onCreateDialog(this);
 		HEIGHT = getWindowManager().getDefaultDisplay().getHeight();// 屏幕的高度
 		viewPagerContainer = (ViewPager) findViewById(R.id.viewpager);
+		registerIntentReceivers();
 		ZixuanAndJiXuan.clearBatchCode();
 		initRollingText();
-		initNumber();
+		initScreenConfiger();
 		initLights();
 		// initGallery();
 		initImgView();
-		isShortcut();
+		isShortcut();	
 		MobclickAgent.onEvent(this, "goucaidating"); // BY贺思明 点击主导航上的“购彩大厅”。
 	}
-
 	/**
-	 * 根据不同手机分辨率，初始化屏幕图标数据
+	 * 设置计算屏幕上放置彩种个数
 	 */
-	public void initNumber() {
-		SCREEALL = imageViews.length;
+    private void setLotteryTicketNum() {
 		switch (HEIGHT) {
-		case 320:
-			SCREENMAX = 6;
-			top = 10;
-			break;
-		case 480:
-			SCREENMAX = 9;
-			top = 5;
-			break;
-		case 854:
-			SCREENMAX = 9;
-			top = 30;
-			break;
-		case 800:
-			SCREENMAX = 9;
-			top = 25;
-			break;
-		case 960:
-			SCREENMAX = 9;
-			top = 10;
-			break;
-		default:
-			SCREENMAX = 9;
-			top = 50;
+			case 320:
+				SCREENTICKETMAX = 6;
+				top = 10;
+				break;
+			case 480:
+				SCREENTICKETMAX = 9;
+				top = 5;
+				break;
+			case 854:
+				SCREENTICKETMAX = 9;
+				top = 30;
+				break;
+			case 800:
+				SCREENTICKETMAX = 9;
+				top = 25;
+				break;
+			case 960:
+				SCREENTICKETMAX = 9;
+				top = 10;
+				break;
+			default:
+				SCREENTICKETMAX = 9;
+				top = 50;
 			break;
 		}
-		// 获取彩种显示
-		getCaizhongSharePreferences();
+    }
+    /**
+     * 计算屏幕的数量
+     */
+    private void getPhoneScreenNum() {
 		int sum = 0;
 		for (int i = 0; i < caizhongSettingList.size(); i++) {
 			String caizhongSetting = (String) caizhongSettingList.get(i).get(
@@ -243,141 +241,45 @@ public class BuyActivity extends Activity implements OnClickListener {
 				sum++;
 			}
 		}
-		// if(SCREEALL%SCREENMAX==0){
-		// SCREENUM = SCREEALL/SCREENMAX;
-		// }else{
-		// SCREENUM = SCREEALL/SCREENMAX+1;
-		// }
-		if (sum % SCREENMAX == 0) {
-			SCREENUM = sum / SCREENMAX;
+
+		if (sum % SCREENTICKETMAX == 0) {
+			SCREENUM = sum / SCREENTICKETMAX;
 		} else {
-			SCREENUM = sum / SCREENMAX + 1;
+			SCREENUM = sum / SCREENTICKETMAX + 1;
 		}
 
 		SCREENUM += PRIZERANKSCREEN;// 彩种屏幕数加上新加的非购彩页面的数量
-		if (!mLabelArray.isEmpty()) {
-			mLabelArray.clear();
-		}
-		for (int i = 0; i < SCREENUM; i++) {
-			mLabelArray.add("" + i);
-		}
+    }
+	/**
+	 * 根据不同手机分辨率，初始化屏幕图标数据
+	 */
+	public void initScreenConfiger() {
+		//SCREEALL = imageViews.length;
+		setLotteryTicketNum();
+		// 获取彩种显示
+		getCaizhongSharePreferences();
+        //获得屏幕数
+		getPhoneScreenNum();
+//		if (!mLabelArray.isEmpty()) {
+//			mLabelArray.clear();
+//		}
+//		for (int i = 0; i < SCREENUM; i++) {
+//			mLabelArray.add("" + i);
+//		}
 	}
 
 	private void getCaizhongSharePreferences() {
 		// 这里判断彩种设置
 		RWSharedPreferences shellRW = new RWSharedPreferences(BuyActivity.this,
 				ShellRWConstants.CAIZHONGSETTING);
-
+        //以后增加彩种，请直接修改常量文件
 		caizhongSettingList = new ArrayList<Map<String, String>>();
- /*       for (int i = 0; i < Constants.lotnoNameList.length; i++) {
-    		Map<String, String> map1 = new HashMap<String, String>();
-    		map1.put("lotno", Constants.lotnoNameList[i]);
-    		map1.put("caizhongSetting", shellRW.getStringValue(Constants.lotnoNameList[i]).toString());
-    		caizhongSettingList.add(map1);
-        }*/
-		Map<String, String> map1 = new HashMap<String, String>();
-		map1.put("lotno", "hmdt");
-		map1.put("caizhongSetting", shellRW.getStringValue("hmdt").toString());
-		caizhongSettingList.add(map1);
-
-		Map<String, String> map2 = new HashMap<String, String>();
-		map2.put("lotno", "F47104");
-		map2.put("caizhongSetting", shellRW.getStringValue("ssq").toString());
-		caizhongSettingList.add(map2);
-
-		Map<String, String> map3 = new HashMap<String, String>();
-		map3.put("lotno", "T01001");
-		map3.put("caizhongSetting", shellRW.getStringValue("cjdlt").toString());
-		caizhongSettingList.add(map3);
-
-		Map<String, String> map4 = new HashMap<String, String>();
-		map4.put("lotno", "F47103");
-		map4.put("caizhongSetting", shellRW.getStringValue("fc3d").toString());
-		caizhongSettingList.add(map4);
-
-		Map<String, String> map5 = new HashMap<String, String>();
-		map5.put("lotno", "T01010");
-		map5.put("caizhongSetting", shellRW.getStringValue("11-5").toString());
-		caizhongSettingList.add(map5);
-
-		Map<String, String> map6 = new HashMap<String, String>();
-		map6.put("lotno", "T01007");
-		map6.put("caizhongSetting", shellRW.getStringValue("ssc").toString());
-		caizhongSettingList.add(map6);
-
-		Map<String, String> map7 = new HashMap<String, String>();
-		map7.put("lotno", "JC_Z");
-		map7.put("caizhongSetting", shellRW.getStringValue("jcz").toString());
-		caizhongSettingList.add(map7);
-
-		//CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_NMK3,this);
-		Map<String, String> map8 = new HashMap<String, String>();
-		map8.put("lotno", "F47107");
-		map8.put("caizhongSetting", shellRW.getStringValue("nmk3").toString());
-		caizhongSettingList.add(map8);
-
-		Map<String, String> map9 = new HashMap<String, String>();
-		map9.put("lotno", "T01012");
-		map9.put("caizhongSetting", shellRW.getStringValue("11-ydj").toString());
-		caizhongSettingList.add(map9);
-
-		Map<String, String> map10 = new HashMap<String, String>();
-		map10.put("lotno", "zjjh");
-		map10.put("caizhongSetting", shellRW.getStringValue("zjjh").toString());
-		caizhongSettingList.add(map10);
-
-		Map<String, String> map11 = new HashMap<String, String>();
-		map11.put("lotno", "T01014");
-		map11.put("caizhongSetting", shellRW.getStringValue("gd-11-5")
-				.toString());
-		caizhongSettingList.add(map11);
-
-		Map<String, String> map12 = new HashMap<String, String>();
-		map12.put("lotno", "T01002");
-		map12.put("caizhongSetting", shellRW.getStringValue("pl3").toString());
-		caizhongSettingList.add(map12);
-
-		Map<String, String> map13 = new HashMap<String, String>();
-		map13.put("lotno", "F47102");
-		map13.put("caizhongSetting", shellRW.getStringValue("qlc").toString());
-		caizhongSettingList.add(map13);
-		
-		Map<String, String> map14 = new HashMap<String, String>();
-		map14.put("lotno", "T01013");
-		map14.put("caizhongSetting", shellRW.getStringValue("22-5").toString());
-		caizhongSettingList.add(map14);
-
-		Map<String, String> map15 = new HashMap<String, String>();
-		map15.put("lotno", "T01011");
-		map15.put("caizhongSetting", shellRW.getStringValue("pl5").toString());
-		caizhongSettingList.add(map15);
-
-		Map<String, String> map16 = new HashMap<String, String>();
-		map16.put("lotno", "T01009");
-		map16.put("caizhongSetting", shellRW.getStringValue("qxc").toString());
-		caizhongSettingList.add(map16);
-
-		Map<String, String> map17 = new HashMap<String, String>();
-		map17.put("lotno", "ZC");
-		map17.put("caizhongSetting", shellRW.getStringValue("zc").toString());
-		caizhongSettingList.add(map17);
-
-		Map<String, String> map18 = new HashMap<String, String>();
-		map18.put("lotno", "JC_L");
-		map18.put("caizhongSetting", shellRW.getStringValue("jcl").toString());
-		caizhongSettingList.add(map18);
-
-		Map<String, String> map19 = new HashMap<String, String>();
-		map19.put("lotno", "T01015");
-		map19.put("caizhongSetting", shellRW.getStringValue("gd-10").toString());
-		caizhongSettingList.add(map19);
-            
-		Map<String, String> map20 = new HashMap<String, String>();
-		map20.put("lotno", "BD");
-		map20.put("caizhongSetting", shellRW
-				.getStringValue("beijingsinglegame").toString());
-		caizhongSettingList.add(map20);
-		
+        for (int i = 0; i < Constants.lotnoNameList.length; i++) {
+    		Map<String, String> map = new HashMap<String, String>();
+    		map.put("lotno", Constants.lotnoNameList[i][0]);
+    		map.put("caizhongSetting", shellRW.getStringValue(Constants.lotnoNameList[i][1]).toString());
+    		caizhongSettingList.add(map);
+        }
 	}
 
 	/**
@@ -424,22 +326,28 @@ public class BuyActivity extends Activity implements OnClickListener {
 			button.setBackgroundResource(R.drawable.join_info_btn_selecter);
 			button.setOnClickListener(this);
 		}
-		TextView war = (TextView) findViewById(R.id.tv_warming);
+		
 		if (Constants.todayjosn != null) {
-			try {
-				String warning = Constants.todayjosn
-						.getString("inProgressActivityCount");
-				if (!warning.equals("0")) {
-					war.setText(warning);
-					war.setVisibility(View.VISIBLE);
-				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			setInProgressActivityCount();
 		}
 	}
-
+    /**
+     * 设置活动中心新闻数
+     */
+	private void setInProgressActivityCount() {
+		TextView war = (TextView) findViewById(R.id.tv_warming);
+		try {
+			String warning = Constants.todayjosn
+					.getString("inProgressActivityCount");
+			if (!warning.equals("0")) {
+				war.setText(warning);
+				war.setVisibility(View.VISIBLE);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 联网方法
 	 */
@@ -505,9 +413,10 @@ public class BuyActivity extends Activity implements OnClickListener {
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		Constants.MEMUTYPE = 0;
-		initNumber();
-		initLights();
-		initGallery();
+		//initScreenConfiger();
+		//initLights();
+		
+		//initGallery();
 	}
 
 	protected void onPause() {
@@ -879,21 +788,13 @@ public class BuyActivity extends Activity implements OnClickListener {
 				}
 			}
 		}
-
-		public void initBtn(View view, int position) {
-			int length = SCREENMAX;
-			int imgpostion = position - 1;// 设定初始化img数
-			RelativeLayout top1 = (RelativeLayout) view
-					.findViewById(R.id.layout1_top);
-			RelativeLayout top2 = (RelativeLayout) view
-					.findViewById(R.id.layout2_top);
-			RelativeLayout top3 = (RelativeLayout) view
-					.findViewById(R.id.layout3_top);
-			top1.setPadding(0, top, 0, 0);
-			top2.setPadding(0, top, 0, 0);
-			top3.setPadding(0, top, 0, 0);
+		/**
+		 * 获得所有彩种
+		 * @return
+		 */
+        private List<Map<String, String>> getAllBtnList() {
 			final List<Map<String, String>> newList = new ArrayList<Map<String, String>>();
-			Map<String, String> newMap;
+			Map<String, String> newMap = null;
 			for (int i = 0; i < caizhongSettingList.size(); i++) {
 				String caizhongSetting = (String) caizhongSettingList.get(i)
 						.get("caizhongSetting");
@@ -910,21 +811,49 @@ public class BuyActivity extends Activity implements OnClickListener {
 					newList.add(newMap);
 				}
 			}
-
+        	return newList;
+        }
+        /**
+         * 初始化彩种页面
+         * @param view
+         * @param currentScreentPosition
+         */
+		public void initBtn(View view, int currentScreentPosition) {
+			RelativeLayout top1 = (RelativeLayout) view
+					.findViewById(R.id.layout1_top);
+			RelativeLayout top2 = (RelativeLayout) view
+					.findViewById(R.id.layout2_top);
+			RelativeLayout top3 = (RelativeLayout) view
+					.findViewById(R.id.layout3_top);
+			top1.setPadding(0, top, 0, 0);
+			top2.setPadding(0, top, 0, 0);
+			top3.setPadding(0, top, 0, 0);
+			//设置可现实的彩种,还有附属一些信息
+			setTicketShow(currentScreentPosition);
+	    }
+		/**
+		 * 设置彩种显示
+		 * @param position
+		 */
+	    private void setTicketShow(int position) {
+	        // 获得打开彩种个数
+			int length = SCREENTICKETMAX;
+			int imgpostion = position - 1;// 设定初始化img数
+			final List<Map<String, String>> newList = getAllBtnList(); 
 			if (position < SCREENUM) {
 				if (SCREENUM > position + 1) {
-					length = SCREENMAX;
-
+					length = SCREENTICKETMAX;
+	
 				} else {
-					if (newList.size() > SCREENMAX) {
-						length = newList.size() - SCREENMAX * (imgpostion);
+					if (newList.size() > SCREENTICKETMAX) {
+						length = newList.size() - SCREENTICKETMAX * (imgpostion);
 					} else {
 						length = newList.size();
 					}
 				}
 			}
 			for (int i = 0; i < length; i++) {
-				final int index = i + SCREENMAX * (imgpostion);
+				final int index = i + SCREENTICKETMAX * (imgpostion);
 				ImageView imgView = (ImageView) view
 						.findViewById(imgViewsId[i]);
 				imgView.setVisibility(ImageView.VISIBLE);
@@ -1009,7 +938,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 						}
 					}
 				});
-
+	
 				TextView textTitle = (TextView) view
 						.findViewById(textViewId[i]);
 				textTitle.setVisibility(TextView.VISIBLE);
@@ -1022,7 +951,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
-
 	/**
 	 * 首次启动软件是否创建快捷方式
 	 * 
@@ -1188,25 +1116,28 @@ public class BuyActivity extends Activity implements OnClickListener {
 		ViewFlipper mFlipper = ((ViewFlipper) this
 				.findViewById(R.id.notice_other_flipper));
 		mFlipper.setOnClickListener(filterclick);
-		if ("".equals(Constants.NEWS) || "".equals(Constants.todayjosn)) {
-			registerIntentReceivers();
-		} else {
-			//TextView text = (TextView) findViewById(R.id.notice_other_title);
-			//text.setText(Constants.NEWS);
+		if (!"".equals(Constants.NEWS)) {
 			newsUpdateHandler();
 		}
-
 	}
-	
+    /**
+     * 注册开机取得信息接受器
+     */
+    private void registerIntentReceivers() {
+        newsUpdateReceiver = new MessageUpdateReceiver();
+        registerReceiver(newsUpdateReceiver, new IntentFilter(
+                        "com.ruyicai.activity.home.HomeActivity.UpdateNews"));
+    }
+    
+    /**
+     * 设置首页新闻
+     */
     private void newsUpdateHandler() {
 		TextView text = (TextView) findViewById(R.id.notice_other_title);
 		text.setText(Constants.NEWS);
-		CheckUtil.checkLotteryTicketSale(isFirstLaunch,Constants.LOTNO_22_5,this);
-		if (newsUpdateReceiver != null) {
-			unregisterIntentReceivers();
-		}
     }
-    
+
+
 	OnClickListener filterclick = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -1214,23 +1145,20 @@ public class BuyActivity extends Activity implements OnClickListener {
 			informationNet();
 		}
 	};
-	
-	private void registerIntentReceivers() {
-		newsUpdateReceiver = new NewsUpdateReceiver();
-		registerReceiver(newsUpdateReceiver, new IntentFilter(
-				"com.ruyicai.activity.home.HomeActivity.UpdateNews"));
-	}
-	
-	private void unregisterIntentReceivers() {
-		unregisterReceiver(newsUpdateReceiver);
-	}
-	
-	public class NewsUpdateReceiver extends BroadcastReceiver {
+	/**
+	 * 接受开机后取得的信息	
+	 * @author ss
+	 *
+	 */
+	public class MessageUpdateReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			newsUpdateHandler();
+			if (Constants.todayjosn == null) {
+				newsUpdateHandler();
+				setInProgressActivityCount();
+			}
+			//setTicketStatus();
 		}
-
 	}
 }
