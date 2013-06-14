@@ -223,11 +223,6 @@ public class Constants {
 	public static final String BEIJINGSINGLE = "beiDan";
 	public static final String PLAY_METHOD_TYPE = "playMethodType";
 	public static final String NEW_JINGCAI = "jingCai";
-    /**add by fansm 20130515 start*/
-	public static String[] lotnoNameList = {"hmdt",LOTNO_SSQ,LOTNO_DLT,LOTNO_FC3D,LOTNO_11_5,LOTNO_SSC,LOTNO_JCZ
-        ,LOTNO_NMK3,LOTNO_eleven,"zjjh",LOTNO_GD_11_5,LOTNO_PL3,LOTNO_QLC,LOTNO_22_5
-        ,LOTNO_PL5,LOTNO_QXC,LOTNO_ZC,LOTNO_JCL,LOTNO_ten,LOTNO_BJ_SINGLE};    
-	/**add by fansm 20130515 end */
 
 	/**
 	 * 彩种代码
@@ -253,6 +248,19 @@ public class Constants {
 	public static final String GD115 = "gd115";
 	public static final String NMK3LABEL = "nmk3";
 	public static final String BDLABEL = "beijingsinglegame";
+	public static final String JCZLABEL = "jcz";
+	public static final String GDLABEL = "gd-11-5";
+	public static final String ZCLABEL = "zc";
+	
+	
+    /**add by fansm 20130515 start*/
+	public static String[][] lotnoNameList = {{"hmdt","hmdt"},{LOTNO_SSQ,SSQLABEL},{LOTNO_DLT,DLTLABEL}
+	    ,{LOTNO_FC3D,FC3DLABEL},{LOTNO_11_5,DLCLABEL},{LOTNO_SSC,SSCLABEL},{LOTNO_JCZ,JCZLABEL}
+        ,{LOTNO_NMK3,NMK3LABEL},{LOTNO_eleven,YDJLABEL},{"zjjh","zjjh"},{LOTNO_GD_11_5,GDLABEL}
+        ,{LOTNO_PL3,PL3LABEL},{LOTNO_QLC,QLCLABEL},{LOTNO_22_5,TWENTYBEL},{LOTNO_PL5,PL5LABEL}
+        ,{LOTNO_QXC,QXCLABEL},{LOTNO_ZC,ZCLABEL},{LOTNO_JCL,"jcl"},{LOTNO_ten,"gd-10"},{LOTNO_BJ_SINGLE,BDLABEL}};    
+	/**add by fansm 20130515 end */
+
 	/**
 	 * 彩票状态
 	 */
