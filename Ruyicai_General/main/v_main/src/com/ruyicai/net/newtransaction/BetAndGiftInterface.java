@@ -98,6 +98,24 @@ public class BetAndGiftInterface {
 						betPojo.getOneAmount());
 
 			}
+
+			/**add by pengcx 20130609 start*/
+			if (Constants.LOTNO_JCZQ.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCZQ_RQSPF.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCZQ_ZQJ.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCZQ_BF.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCZQ_BF.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCZQ_BQC.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCZQ_HUN.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCLQ.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCLQ_RF.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCLQ_SFC.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCLQ_DXF.equals(betPojo.getLotno())
+					|| Constants.LOTNO_JCLQ_HUN.equals(betPojo.getLotno())) {
+				jsonProtocol.put("expectPrizeAmt", betPojo.getPredictMoney());
+			}
+			/**add by pengcx 20130609 end*/
+
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 
@@ -107,5 +125,4 @@ public class BetAndGiftInterface {
 
 		return "";
 	}
-
 }

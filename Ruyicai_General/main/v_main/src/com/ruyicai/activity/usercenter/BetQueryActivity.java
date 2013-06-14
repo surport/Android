@@ -987,6 +987,10 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 							.getString("betNum"));
 					betQueryinfo.setOneAmount(winprizejson.getJSONObject(i)
 							.getString("oneAmount"));
+					/**add by pengcx 20130609 start*/
+					betQueryinfo.setExpectPrizeAmt(winprizejson.getJSONObject(i)
+							.getString("expectPrizeAmt"));
+					/**add by pengcx 20130609 end*/
 					if (typekind == 0) {
 						betdatalist.add(betQueryinfo);
 					} else if (typekind == 1) {
@@ -1120,6 +1124,8 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.usercenter_winprize_buyagain);
 				holder.lookdetail = (Button) convertView
 						.findViewById(R.id.usercenter_winprize_querydetail);
+				holder.predictmoney = (TextView) convertView
+						.findViewById(R.id.usercenter_winprize_predictmoney);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -1134,7 +1140,28 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			holder.paymoney.setText(payString + fPayMoney);
 			if (prize_State.equals("0")) {
 				holder.prizemoney.setTextColor(Color.GRAY);
-				holder.prizemoney.setText("未开奖");
+				/*add by pengcx 20130609 start*/
+				if (Constants.LOTNO_JCZQ.equals(lotno)
+						|| Constants.LOTNO_JCZQ_RQSPF.equals(lotno)
+						|| Constants.LOTNO_JCZQ_ZQJ.equals(lotno)
+						|| Constants.LOTNO_JCZQ_BF.equals(lotno)
+						|| Constants.LOTNO_JCZQ_BF.equals(lotno)
+						|| Constants.LOTNO_JCZQ_BQC.equals(lotno)
+						|| Constants.LOTNO_JCZQ_HUN.equals(lotno)
+						|| Constants.LOTNO_JCLQ.equals(lotno)
+						|| Constants.LOTNO_JCLQ_RF.equals(lotno)
+						|| Constants.LOTNO_JCLQ_SFC.equals(lotno)
+						|| Constants.LOTNO_JCLQ_DXF.equals(lotno)
+						|| Constants.LOTNO_JCLQ_HUN.equals(lotno)) {
+					holder.predictmoney.setVisibility(View.VISIBLE);
+					holder.prizemoney.setVisibility(View.GONE);
+					holder.predictmoney.setText("预计奖金：" + info.getExpectPrizeAmt());
+				}else{
+					holder.predictmoney.setVisibility(View.GONE);
+					holder.prizemoney.setVisibility(View.VISIBLE);
+					holder.prizemoney.setText("未开奖");
+				}
+				/*add by pengcx 20130609 end*/
 			} else if (prize_State.equals("3")) {
 				/**modify by yejc 20130418 start*/
 //				holder.prizemoney.setTextColor(Color.GRAY);
@@ -1164,6 +1191,8 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			TextView prizemoney;
 			Button lookdetail;
 			Button buyagain;
+			
+			TextView predictmoney;
 		}
 	}
 

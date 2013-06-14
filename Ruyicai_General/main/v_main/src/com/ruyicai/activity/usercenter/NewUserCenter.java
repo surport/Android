@@ -72,12 +72,13 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	LogOutDialog logOutDialog;// 注销框
 	ProgressDialog dialog, progressDialog;
 	private Dialog nicknameDialog;
-//	private List<Map<String, Object>> list;/* 列表适配器的数据源 */
+	// private List<Map<String, Object>> list;/* 列表适配器的数据源 */
 	private static final String IICON = "IICON";
 	private final static String TITLE = "TITLE"; /* 标题 */
-	protected String phonenum, sessionid, userno, certid, mobileid, name,email;
+	protected String phonenum, sessionid, userno, certid, mobileid, name,
+			email;
 	protected LinearLayout usecenerLinear;
-//	private final int DIALOG_BINDED = 1, DIALOG_BINDPHONE = 2;
+	// private final int DIALOG_BINDED = 1, DIALOG_BINDPHONE = 2;
 	protected Button returnButton;
 	protected TextView titleTextView;
 	private boolean isgetscroe = true;// 是否获取积分
@@ -101,11 +102,11 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.usercenter_mainlayout);
-		/**add by yejc 20130424 start*/
-		if(Constants.isDebug) {
+		/** add by yejc 20130424 start */
+		if (Constants.isDebug) {
 			PublicMethod.outLog(getClass().getSimpleName(), "onCreate");
 		}
-		/**add by yejc 20130424 end*/
+		/** add by yejc 20130424 end */
 		context = this;
 		usercentertop = (LinearLayout) findViewById(R.id.usercentertable);
 		usercenterrigist_no = (LinearLayout) findViewById(R.id.regist_no);
@@ -217,20 +218,22 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 	}
 
-	/**move to PublicMethod by yejc 20130520 start*/
+	/** move to PublicMethod by yejc 20130520 start */
 	// 设置listview 高度
-//	public void setListViewHeightBasedOnChildren(ListView listView, int dip) {
-//		ListAdapter listAdapter; // 取得listview绑定的适配器
-//		if (listView.getAdapter() == null) {
-//			return;
-//		}
-//		listAdapter = listView.getAdapter();
-//		ViewGroup.LayoutParams params = listView.getLayoutParams(); // 取得listview所在布局的参数
-//		params.height = PublicMethod.getPxInt(dip, this)
-//				* (listAdapter.getCount());
-//		listView.setLayoutParams(params); // 改变listview所在布局的参数
-//	}
-	/**move to PublicMethod by yejc 20130520 end*/
+	// public void setListViewHeightBasedOnChildren(ListView listView, int dip)
+	// {
+	// ListAdapter listAdapter; // 取得listview绑定的适配器
+	// if (listView.getAdapter() == null) {
+	// return;
+	// }
+	// listAdapter = listView.getAdapter();
+	// ViewGroup.LayoutParams params = listView.getLayoutParams(); //
+	// 取得listview所在布局的参数
+	// params.height = PublicMethod.getPxInt(dip, this)
+	// * (listAdapter.getCount());
+	// listView.setLayoutParams(params); // 改变listview所在布局的参数
+	// }
+	/** move to PublicMethod by yejc 20130520 end */
 
 	private void getFeedbackListNet() {
 		dialog.show();
@@ -243,14 +246,14 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 					Message msg = new Message();
 					JSONObject feedjson = new JSONObject(Constants.feedBackData);
 					String errorCode = feedjson.getString("error_code");
-					//add by yejc 20130411
+					// add by yejc 20130411
 					if (feedjson.has("result")) {
 						Constants.feedBackJSONArray = feedjson
 								.getJSONArray("result");
 					}
 					msg.what = 11;
 					msg.obj = Constants.feedBackJSONArray;
-					//end
+					// end
 					handler.sendMessage(msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -321,7 +324,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 				startActivity(intentaccount);
 				break;
 			case 7:
-				//跳转追号查询界面，并传递相关Json对象
+				// 跳转追号查询界面，并传递相关Json对象
 				dialog.dismiss();
 				Intent intentTrack = new Intent(NewUserCenter.this,
 						TrackQueryActivity.class);
@@ -506,7 +509,8 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			Toast.makeText(this, "昵称应该为4-16个字符", Toast.LENGTH_LONG).show();
 		} else if (nickname.indexOf(" ") > -1 || nickname.indexOf("　") > -1) {
 			isRight = false;
-			Toast.makeText(this, "您输入的昵称含有非法字符，请重新输入。", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "您输入的昵称含有非法字符，请重新输入。", Toast.LENGTH_LONG)
+					.show();
 		}
 		return isRight;
 	}
@@ -539,9 +543,9 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		sessionid = shellRW.getStringValue("sessionid");
 		certid = shellRW.getStringValue("certid");
 		name = shellRW.getStringValue("name");
-		/**add by pengcx 20130604 start*/
+		/** add by pengcx 20130604 start */
 		email = shellRW.getStringValue("email");
-		/**add by pengcx 20130604 end*/
+		/** add by pengcx 20130604 end */
 		mobileid = shellRW.getStringValue("mobileid");
 		if (sessionid == null || sessionid.equals("")) {
 			Intent intentSession = new Intent(this, UserLogin.class);
@@ -884,7 +888,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 				startActivity(intentbalance);
 			}
 		}
-		/**add by pengcx 20130604 start*/
+		/** add by pengcx 20130604 start */
 		// 绑定邮箱
 		if (this.getString(R.string.usercenter_bindemail).equals(str)) {
 			if (email == null || email.equals("") || email.equals("null")) {
@@ -892,13 +896,14 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 						BindEmailActivity.class);
 				startActivity(intent);
 			} else {
-				Intent intent = new Intent(NewUserCenter.this,UnBindEmailActivity.class);
+				Intent intent = new Intent(NewUserCenter.this,
+						UnBindEmailActivity.class);
 				intent.putExtra("email", email);
 				intent.putExtra("name", name);
 				startActivity(intent);
 			}
 		}
-		/**add by pengcx 20130604 end*/
+		/** add by pengcx 20130604 end */
 		// 积分明细
 		if (str.equals("我的积分")) {
 			showDialog(0);
@@ -1098,7 +1103,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 		int[] accountDetailInfoIcons = { R.drawable.mimaxiugai,
 				R.drawable.sfzbd, R.drawable.mobilebindlable,
-				R.drawable.mobilebindlable };
+				R.drawable.emailbind };
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 		if (PublicConst.isthirdlogin) {
 			for (int i = 0; i < titles1.length; i++) {
@@ -1140,7 +1145,8 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			List<Map<String, Object>> list2 = getListForusersetAdapter();
 			UerCenterAdapter adapter2 = new UerCenterAdapter(this, list2);
 			usersetlist.setAdapter(adapter2);
-			PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
+			PublicMethod
+					.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 		} else {
 			List<Map<String, Object>> list2 = getListForAccountAdapter();
 			UerCenterAdapter adapter2 = new UerCenterAdapter(this, list2);
@@ -1198,5 +1204,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	}
 
 	@Override
-	public void onCancelClick() {}
+	public void onCancelClick() {
+	}
 }
