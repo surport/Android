@@ -110,6 +110,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	private int top = 20;
 	private List<String> mLabelArray = new ArrayList<String>();
 	private MessageUpdateReceiver newsUpdateReceiver = null;
+	private boolean isReSetNews = true;
 	
 	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
@@ -328,6 +329,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 		}
 		
 		if (Constants.todayjosn != null) {
+			isReSetNews = false;
 			setInProgressActivityCount();
 		}
 	}
@@ -1117,6 +1119,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 				.findViewById(R.id.notice_other_flipper));
 		mFlipper.setOnClickListener(filterclick);
 		if (!"".equals(Constants.NEWS)) {
+			isReSetNews = false;
 			newsUpdateHandler();
 		}
 	}
@@ -1128,7 +1131,13 @@ public class BuyActivity extends Activity implements OnClickListener {
         registerReceiver(newsUpdateReceiver, new IntentFilter(
                         "com.ruyicai.activity.home.HomeActivity.UpdateNews"));
     }
-    
+    /**
+     * 注销接受器
+     */
+    private void unregisterIntentReceivers() {  
+    	unregisterReceiver(newsUpdateReceiver);  
+    }  
+
     /**
      * 设置首页新闻
      */
@@ -1154,11 +1163,11 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			if (Constants.todayjosn == null) {
+			if (isReSetNews) {
 				newsUpdateHandler();
 				setInProgressActivityCount();
 			}
-			//setTicketStatus();
+			unregisterIntentReceivers();
 		}
 	}
 }
