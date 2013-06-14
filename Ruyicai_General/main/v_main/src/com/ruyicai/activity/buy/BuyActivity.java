@@ -416,7 +416,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 		//initScreenConfiger();
 		//initLights();
 		
-		//initGallery();
+		initGallery();
 	}
 
 	protected void onPause() {
