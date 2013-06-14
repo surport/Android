@@ -134,6 +134,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	private int restrictMax = 8;
 	private int endMax = 8;
 	private AddView addview;
+	private final int ZC_MAX = 10000;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -202,7 +203,8 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		if (Constants.type.equals("zc")) {
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
-			beishulayLayout.setVisibility(View.GONE);
+			initImageView();
+//			beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -320,6 +322,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
+		if (Constants.type.equals("zc")) {
+			mSeekBarBeishu.setMax(ZC_MAX);
+		}
 
 		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mTextBeishu.setText("" + iProgressBeishu);
@@ -678,7 +683,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			zhushu.setText(betAndGift.getZhushu() + "注     ");
+			zhushu.setText(Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu + "注     ");
 			jine.setText("金额：" + iProgressQishu
 					* (Integer.valueOf(betAndGift.getAmount()) / 100)
 					* iProgressBeishu + "元");
@@ -1077,6 +1082,11 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			lotno = PublicMethod.toLotno(betAndGift.getLotno());
 		} else {
 			betAndGift.setIsSellWays("");
+			
+			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
+			betAndGift.setZhushu(String.valueOf(zhuShu));
+//			betAndGift.setAmount(String.valueOf(amount));
 		}
 		showDialog(0); // 显示网络提示框 2010/7/4
 		// 加入是否改变切入点判断 陈晨 8.11
@@ -1296,8 +1306,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			allAtm = addview.getAllAmt() * iProgressBeishu;
-			;
+			
+			if (Constants.type.equals("zc")) {
+				int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+				allAtm = amount / 100;
+//				allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
+			} else {
+				allAtm = addview.getAllAmt() * iProgressBeishu;
+			}
+			
 			// changeTextSumMoney();
 			break;
 		default:

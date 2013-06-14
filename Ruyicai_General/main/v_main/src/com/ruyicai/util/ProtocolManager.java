@@ -233,7 +233,8 @@ public class ProtocolManager {
 	public static String ALIAS = "alias";
 	
 	public static String BANKID = "bankId"; //add by yejc 20130527
-	public static String MOBILEID = "mobileid";
+	public static String MOBILEID = "mobileid"; 
+	public static String CASHDETAILID = "cashdetailid";
 
 	/**
 	 * new instance type

@@ -188,7 +188,8 @@ public class WinTieLossAdapter extends BaseAdapter {
 				.findViewById(R.id.game_vs);
 		
 		/** modify by pengcx 20130514 start */
-		if (!winTieLossAgainstInformation.getLetPoint().equals("0")) {
+		if (!"".equals(winTieLossAgainstInformation.getLetPoint()) 
+			&& !"0".equals(winTieLossAgainstInformation.getLetPoint())) {
 			vsTextView.setText(winTieLossAgainstInformation.getLetPoint());
 		}
 		/** modify by pengcx 20130514 end */

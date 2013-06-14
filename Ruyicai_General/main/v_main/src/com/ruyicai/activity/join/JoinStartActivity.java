@@ -114,6 +114,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	LinearLayout beishulayLayout;
 	private AddView addview;
 	private Context context;
+	private int mAmount = 0;
+	private int mZhushu = 1;
+	private final int ZC_MAX = 10000;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,8 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		addview = app.getAddview();
 		if (Constants.type.equals("zc")) {
 			allAtm = Integer.valueOf(betAndGift.getAmount()) / 100;
+//			mAmount = Integer.valueOf(betAndGift.getAmount());
+			mZhushu = Integer.valueOf(betAndGift.getZhushu());
 		} else {
 			allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
 
@@ -156,7 +161,8 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		if (Constants.type.equals("zc")) {
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
-			beishulayLayout.setVisibility(View.GONE);
+			initImageView();
+//			beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -274,10 +280,10 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			zhushu.setText(betAndGift.getZhushu() + "注     ");
-			jine.setText(+iProgressQishu
-					* (Integer.valueOf(betAndGift.getAmount()) / 100)
-					* iProgressBeishu + "元");
+//			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
+			zhushu.setText(mZhushu *iProgressBeishu + "注     ");
+			jine.setText(+iProgressQishu * mZhushu *
+					2 * iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addview.getAllZhu() + "注     ");
 			jine.setText(iProgressQishu * addview.getAllAmt() * iProgressBeishu
@@ -504,6 +510,13 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 					betAndGift.getAmt() * 100));
 		} else {
 			betAndGift.setIsSellWays("");
+			
+			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
+//			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+			String zhuShu = String.valueOf(mZhushu* iProgressBeishu);
+			String amount = String.valueOf(mZhushu *iProgressBeishu*200);
+			betAndGift.setAmount(amount);
+			betAndGift.setZhushu(zhuShu);
 		}
 	}
 
@@ -609,6 +622,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
+		if (Constants.type.equals("zc")) {
+			mSeekBarBeishu.setMax(ZC_MAX);
+		}
 
 		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mTextBeishu.setText("" + iProgressBeishu);
@@ -822,7 +838,13 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
+			if (Constants.type.equals("zc")) {
+				mAmount = /*Integer.valueOf(betAndGift.getZhushu()) * */mZhushu*200 * iProgressBeishu;
+				allAtm = mAmount / 100;
+//				allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
+			} else {
+			   allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
+			}
 			renText.setText("占总额"
 					+ progress(isNull(buyEdit.getText().toString()), ""
 							+ allAtm) + "%");// 总金额

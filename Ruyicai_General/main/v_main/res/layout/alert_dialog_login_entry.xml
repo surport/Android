@@ -308,8 +308,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
-            android:background="@drawable/usercenterbottom" >
-
+            android:background="@drawable/usercentermiddle" >
+<!-- usercentermiddle -->
             <ImageView
                 android:id="@+id/img_sina"
                 android:layout_width="wrap_content"
@@ -336,6 +336,41 @@
                 android:layout_marginRight="10dp"
                                 android:layout_centerVertical="true"
                 
+                android:src="@drawable/xiangyou" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/loginto_zhifubao"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/usercenterbottom" >
+            <ImageView
+                android:id="@+id/img_zhifubao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:src="@drawable/zhifubao_icon" />
+
+            <TextView
+                android:layout_width="220dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/img_zhifubao"
+                android:layout_centerVertical="true"
+                android:text="@string/loginwithzhifubao"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
                 android:src="@drawable/xiangyou" />
         </RelativeLayout>
     </LinearLayout>

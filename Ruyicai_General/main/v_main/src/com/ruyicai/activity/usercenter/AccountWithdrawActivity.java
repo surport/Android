@@ -41,6 +41,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.usercenter.detail.WithdrawDetailActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -130,10 +132,13 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	
 	// add by yejc 20130322
 	private String accountBalance = "您的账户可提现余额为：";
+	public final static String CASHID = "cashid";
+	public final static String CASH_STATE = "cashstate";
+	public final static String CASH_STATE_TEXT = "cashstatetext";
+	public final static String CASH_MONEY = "cash_money";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -262,12 +267,8 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
-				// TODO Auto-generated method stub
 				addmore();
-
 			}
 		});
 	}
@@ -1415,6 +1416,9 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.shibaitext);
 				holder.layout = (LinearLayout) convertView
 						.findViewById(R.id.shibailayout);
+				holder.relatieLayout= (RelativeLayout) convertView
+						.findViewById(R.id.get_moeny_amt_relatie);
+				
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -1424,12 +1428,19 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 			holder.cashtime.setText(cashtime);
 			holder.cashamt.setText(PublicMethod.toYuan(cashamt));
 			holder.reason.setText(cashreason);
-			holder.cashstate.setText(cashstate);
+			if ("1".equals(state) || "103".equals(state) || "105".equals(state)) {
+				holder.cashstate.setText(R.string.account_withdraw_detail_content);
+				holder.cashstate.setTextColor(getResources()
+						.getColor(R.color.red));
+			} else {
+				holder.cashstate.setText(cashstate);
+				holder.cashstate.setTextColor(getResources()
+						.getColor(R.color.gree_black));
+			}
 			initCashstateAndCheckBtn(holder, visible);
 			holder.check.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					TianxianOrRecord = 2;
 					if (state.equals("104")) {
 						if (zhankai) {
@@ -1450,6 +1461,20 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 
 				}
 			});
+			holder.relatieLayout.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if ("1".equals(state) || "103".equals(state) || "105".equals(state)) {
+						Intent intent = new Intent(AccountWithdrawActivity.this, WithdrawDetailActivity.class);
+						intent.putExtra(CASHID, cashid);
+						intent.putExtra(CASH_STATE, state);
+						intent.putExtra(CASH_MONEY, PublicMethod.toYuan(cashamt));
+						intent.putExtra(CASH_STATE_TEXT, cashstate);
+						startActivity(intent);
+					}
+				}
+			});
 			return convertView;
 		}
 
@@ -1462,6 +1487,7 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 		TextView reason;
 		Button check;
 		LinearLayout layout;
+		RelativeLayout relatieLayout;
 	}
 
 	private void initCashstateAndCheckBtn(ViewHolder holder, final int mask) {
@@ -1502,7 +1528,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 						drawBStr = "联网获取失败";
 					}
 				} catch (JSONException e) {
-					// TODO: handle exception
 					drawBStr = "联网获取失败";
 				}
 //				drawbalanceText.setText("您的账户可提现余额为：" + drawBStr); //close by yejc 20130322
@@ -1514,14 +1539,12 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}

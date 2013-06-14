@@ -38,6 +38,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -334,11 +335,11 @@ public class AccountListActivity extends Activity {
 		list.add(map);
 		
 		// 联动优势话费充值
-//		map = new HashMap<String, Object>();
-//		map.put(TITLE, getString(R.string.umpay_phone_recharge));
-//		map.put(PICTURE, R.drawable.recharge_phone_umpay);
-//		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
-//		list.add(map);
+		map = new HashMap<String, Object>();
+		map.put(TITLE, getString(R.string.umpay_phone_recharge));
+		map.put(PICTURE, R.drawable.recharge_phone_umpay);
+		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
+		list.add(map);
 
 		return list;
 	}
@@ -385,6 +386,8 @@ public class AccountListActivity extends Activity {
 						.findViewById(R.id.ishandingfree);
 				holder.lefticon = (ImageView) convertView
 						.findViewById(R.id.account_recharge_type);
+				holder.layout = (LinearLayout) convertView
+						.findViewById(R.id.account_recharge_listview_linerlayout);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -399,8 +402,14 @@ public class AccountListActivity extends Activity {
 			}else if (position == 2 || position == 3
 					|| position == 4 || position == 5) {
 				alertStr1 = getString(R.string.freeHanding);
-			} else if (position == 6) {
+			} else if (position == 7) {
 				alertStr1 = getString(R.string.account_chongzhi_good);
+			} 
+			
+			if (position == 0) {
+				holder.layout.setBackgroundResource(R.drawable.get_free_gold_background);
+			} else {
+				holder.layout.setBackgroundColor(getResources().getColor(R.color.white));
 			}
 			if (!alertStr1.equals("")) {
 				builder1.append(alertStr1);
@@ -421,6 +430,7 @@ public class AccountListActivity extends Activity {
 			TextView title;
 			ImageView lefticon;
 			TextView isfreeHanding;
+			LinearLayout layout;
 		}
 	}
 

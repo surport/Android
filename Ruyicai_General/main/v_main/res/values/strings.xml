@@ -293,6 +293,7 @@
     <string name="sinaweiboaccout">新浪微博账号设置</string>
     <string name="loginwithsina">用新浪微博账号登录</string>
     <string name="loginwithqq">用QQ账号登录</string>
+    <string name="loginwithzhifubao">用支付宝账号登录</string>
 
     <!--
 		<string
@@ -850,7 +851,8 @@
     <string name="jclq_sfc_dialog_title15">主负21-25分</string>
     <string name="jclq_sfc_dialog_title16">主负26分以上</string>
     <!-- 竞彩足球 -->
-    <string name="jczq_sf_guoguan_title">竞彩足球让球胜平负（过关）</string>
+    <string name="jczq_sf_guoguan_title">竞彩足球胜平负（过关）</string>
+    <string name="jczq_rqspf_guoguan_title">竞彩足球让球胜平负（过关）</string>
     <string name="jczq_rf_guoguan_title">竞彩足球总进球数（过关）</string>
     <string name="jczq_sfc_guoguan_title">竞彩足球比分（过关）</string>
     <string name="jczq_hunhe_guoguan_title">竞彩足球混合</string>
@@ -858,7 +860,8 @@
     <string name="jczq_dxf_guoguan_title">竞彩足球半全场（过关）</string>
     <string name="jczq_dialog_sf_guoguan_title">胜平负:</string>
     <string name="jczq_dialog_rqspf_guoguan_title">让球胜平负:</string>
-    <string name="jczq_sf_danguan_title">竞彩足球让球胜平负（单关）</string>
+    <string name="jczq_sf_danguan_title">竞彩足球胜平负（单关）</string>
+    <string name="jczq_rqspf_danguan_title">竞彩足球让球胜平负（单关）</string>
     <string name="jczq_rf_danguan_title">竞彩足球总进球数（单关）</string>
     <string name="jczq_sfc_danguan_title">竞彩足球比分（单关）</string>
     <string name="jczq_dxf_danguan_title">竞彩足球半全场（单关）</string>
@@ -931,6 +934,8 @@
     <string name="jc_main_team_check">赛事选择</string>
     <string name="jc_main_score">即时比分</string>
     <string name="jc_main_touzhu_alert_text_content">单笔投注金额不能大于2万</string>
+    <string name="jc_main_touzhu_alert_text_content_new">单笔投注金额不能大于20万</string>
+    <string name="jc_main_touzhu_alert_text_content_zhushu">单笔投注不能大于1万注</string>
     <string name="jc_main_touzhu_alert_text_title">温馨提示</string>
     <string name="jc_main_touzhu_alert_btn_ziyou">自由过关</string>
     <string name="jc_main_touzhu_alert_btn_duochuan">多串过关</string>
@@ -1140,7 +1145,7 @@
     <string name="nmk3_twosame_fu">投注说明：2元购买1个二同号(11*,22*,33*,44*,55*,66*)投注，选号与开奖号码一致即中奖15元。</string>
     <string name="nmk3_twosame_dan">投注说明：选择1个相同号码和1个不同号码投注，选号与开奖号码一致即中奖80元。</string>
     <string name="nmk3_diff_three">投注说明：至少选择3个号码投注，选号与开奖号码一致即中奖40元。</string>
-    <string name="nmk3_diff_two">投注说明：至少选择3个号码投注，选号与开奖号码一致即中奖8元。</string>
+    <string name="nmk3_diff_two">投注说明：至少选择2个号码投注，选号与开奖号码一致即中奖8元。</string>
     <string name="nmk3_three_link">投注说明：2元购买4个三连号(123,234,345,456)投注，选号与开奖号码一致即中奖10元。</string>
     
     <string name="join_share_weibo" >"#如意彩# 我在@如意彩 发现了“%1$s”发起的%2$s合买，花钱不多，中奖几率更大，快来跟单吧！详情："</string>
@@ -1214,4 +1219,22 @@
     <string name="get_free_gold_summary">完成推荐应用的任务，免费获得彩金</string>
     <string name="start_get_free_gold_title">立即获取礼金</string>
     <string name="get_free_gold_network_error">"网络异常请稍后重试"</string>
+    <string name="account_withdraw_detail_title">提现详情</string>
+    <string name="account_withdraw_number">提款订单号:</string>
+    <string name="account_withdraw_detail_create_time">"提交 (提交时间: %1$s)"</string>
+    <string name="account_withdraw_detail_check_time">"审核 (%1$s审核时间: %2$s)"</string>
+    <string name="account_withdraw_detail_remit_time">"汇款 (%1$s汇款时间: %2$s)"</string>
+    <string name="account_withdraw_detail_finish_time">"到账 (%1$s到账时间: %2$s)"</string>
+    
+    <string name="account_withdraw_detail_order_type">订单类型</string>
+    <string name="account_withdraw_detail_order_type_value">提款</string>
+    <string name="account_withdraw_detail_amount">金额</string>
+    <string name="account_withdraw_detail_withdraw_mode">提款方式</string>
+    <string name="account_withdraw_detail_order_state">订单状态</string>
+    <string name="account_withdraw_detail_remark">备注</string>
+    <string name="account_withdraw_detail_query_content">查询中...</string>
+    <string name="account_withdraw_detail_content">详情 ></string>
+    <string name="account_withdraw_detail_remark_content">订单%1$s,预计%2$s%3$s</string>
+   
+    
 </resources>

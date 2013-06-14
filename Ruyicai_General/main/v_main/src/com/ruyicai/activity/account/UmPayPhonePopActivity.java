@@ -178,7 +178,7 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		huafubao.setRequest(map, true, PayType.HFB);
+		huafubao.setRequest(map, false, PayType.HFB);
 	}
 
 	@Override

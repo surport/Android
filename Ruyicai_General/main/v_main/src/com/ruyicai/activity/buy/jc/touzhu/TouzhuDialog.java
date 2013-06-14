@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,7 +45,7 @@ public class TouzhuDialog {
 	public double freedomMixprize = 0;
 	public int zhuShu = 0;
 	public boolean isRadio = false;// false是自由过关,true是多串过关
-	private final int MAXAMT = 20000;// 最大投注金额
+	private final int MAXAMT = 200000;// 最大投注金额
 	String returnStr = "";
 
 	public TouzhuDialog(JcMainActivity context, JcMainView jcMainView) {
@@ -170,9 +171,15 @@ public class TouzhuDialog {
 				Toast.makeText(context, "请选择过关方式", Toast.LENGTH_SHORT).show();
 			} else {
 				if (isAmtDialog()) {
-					alertInfo(
-							context.getString(R.string.jc_main_touzhu_alert_text_content),
-							context.getString(R.string.jc_main_touzhu_alert_text_title));
+					if (getAllAmt() > MAXAMT) {
+						alertInfo(
+								context.getString(R.string.jc_main_touzhu_alert_text_content_new),
+								context.getString(R.string.jc_main_touzhu_alert_text_title));
+					} else if (zhuShu > 10000) {
+						alertInfo(
+								context.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
+								context.getString(R.string.jc_main_touzhu_alert_text_title));
+					}
 				} else {
 					switch (v.getId()) {
 					case R.id.alert_dialog_touzhu_button_cancel:
@@ -198,6 +205,8 @@ public class TouzhuDialog {
 	public boolean isAmtDialog() {
 		int allAmt = getAllAmt();
 		if (allAmt > MAXAMT || allAmt < 0) {
+			return true;
+		} else if (zhuShu > 10000){
 			return true;
 		} else {
 			return false;

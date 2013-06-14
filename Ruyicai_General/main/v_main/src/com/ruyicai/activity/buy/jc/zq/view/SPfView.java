@@ -248,10 +248,7 @@ public class SPfView extends JcMainView {
 					+ PublicMethod.getEndTime(info.getTimeEnd()) + " "+"(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
-			homeOdds.setText(info.getWin());
 			
-			textOdds.setText(info.getLevel());
-			guestOdds.setText(info.getFail());
 			
 			if (isRQSPF) {
 				if (!"".equals(info.getLetPoint())) {
@@ -259,8 +256,14 @@ public class SPfView extends JcMainView {
 				} else {
 					textVS.setText("0");
 				}
+				homeOdds.setText(info.getLetV3Win());
+				textOdds.setText(info.getLetV1Level());
+				guestOdds.setText(info.getLetV0Fail());
 			} else {
 				textVS.setText("0");
+				homeOdds.setText(info.getWin());
+				textOdds.setText(info.getLevel());
+				guestOdds.setText(info.getFail());
 			}
 			guestTeam.setText(info.getAway());
 			

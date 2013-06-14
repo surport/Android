@@ -19,16 +19,20 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.os.RemoteException;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -51,10 +55,16 @@ import android.widget.Toast;
 
 import cn.jpush.android.api.JPushInterface;
 
+import com.alipay.android.app.IAliPay;
+import com.alipay.android.app.IAlixPay;
+import com.alipay.android.app.IRemoteServiceCallback;
+import com.alipay.android.secure.BaseHelper;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ChannelConstants;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.net.newtransaction.LoginAcrossWeibo;
 import com.ruyicai.net.newtransaction.LoginInterface;
 import com.ruyicai.net.newtransaction.RegisterInterface;
@@ -113,6 +123,7 @@ public class UserLogin extends Activity implements TextWatcher {
 	boolean ischeckId = false;
 	boolean ischeckReferrer = false;
 	int i = 0;
+//	ProgressDialog pDialog = null;
 
 	/***
 	 * 第三方登陆
@@ -498,6 +509,17 @@ public class UserLogin extends Activity implements TextWatcher {
 				// TODO Auto-generated method stub
 				auth(mAppid, "_self");
 				registerIntentReceivers();
+			}
+		});
+		
+		//支付宝登录
+		RelativeLayout zhifubaologin = (RelativeLayout) findViewById(R.id.loginto_zhifubao);
+		zhifubaologin.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+//				String alipaySign = Controller.getInstance(context).getAlipaySign();
+				pay(/*alipaySign*/);
 			}
 		});
 		// 点击注册按钮时，跳转到注册页面
@@ -1144,6 +1166,9 @@ public class UserLogin extends Activity implements TextWatcher {
 				}
 			}
 		}
+		
+		bindService(new Intent(IAlixPay.class.getName()), mAlixPayConnection,
+				Context.BIND_AUTO_CREATE);
 	}
 
 	// sina 微博
@@ -1414,4 +1439,63 @@ public class UserLogin extends Activity implements TextWatcher {
 			unregisterIntentReceivers();
 		}
 	}
+	
+	IAlixPay mAlixPay = null;
+	private ServiceConnection mAlixPayConnection = new ServiceConnection() {
+		public void onServiceConnected(ComponentName className, IBinder service) {
+			mAlixPay = IAlixPay.Stub.asInterface(service);
+		}
+
+		public void onServiceDisconnected(ComponentName className) {
+			mAlixPay = null;
+		}
+	};
+	
+	private void pay(/*final String alipaySign*/) {
+		final ProgressDialog pDialog = UserCenterDialog.onCreateDialog(context);
+		pDialog.show();
+		new Thread(new Runnable() {
+			public void run() {
+				String alipaySign = Controller.getInstance(context).getAlipaySign();
+				Log.i("yejc", "==========mAlixPay="+mAlixPay
+						+"==========alipaySign="+alipaySign);
+				try {
+					mAlixPay.Pay(alipaySign);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				pDialog.dismiss();
+			}
+		}).start();
+		
+
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		unbindService(mAlixPayConnection);
+	}
+	
+//	private boolean pay(final String alipaySign) {
+//
+//		if (mAlixPay == null) {
+//			bindService(new Intent(IAlixPay.class.getName()),
+//					mAlixPayConnection, Context.BIND_AUTO_CREATE);
+//		}
+//
+//		new Thread(new Runnable() {
+//			public void run() {
+//				try {
+//					mAlixPay.Pay(alipaySign);
+//					unbindService(mAlixPayConnection);
+//					pDialog.dismiss();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
+//
+//		return true;
+//	}
 }

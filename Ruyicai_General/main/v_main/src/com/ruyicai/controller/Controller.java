@@ -5,13 +5,17 @@ import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.MyHandler;
+import com.ruyicai.net.InternetUtils;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.ProtocolManager;
 import com.ruyicai.util.PublicMethod;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 public class Controller {
@@ -94,4 +98,66 @@ public class Controller {
    public JSONObject getRtnJSONObject() {
 	   return this.jsonObj;
    }
+   
+   
+   /**
+	 * 查询提现记录详情
+	 * 
+	 */
+	public void queryCashDetail(final MyHandler handler, final String cashdetailId) {
+		if (dialog != null && dialog.isShowing()) return;
+		dialog = UserCenterDialog.onCreateDialog(mContext, mContext .getResources()
+				.getString(R.string.recommend_network_connection));
+		dialog.show();
+		Thread t = new Thread(new Runnable() {
+			String str = "00";
+			@Override
+			public void run() {
+				str = queryCashNet(cashdetailId);
+				try {
+					JSONObject obj = new JSONObject(str);
+					final String msg = obj.getString("message");
+					final String error = obj.getString("error_code");
+					setRtnJSONObject(obj);
+					handler.handleMsg(error, msg);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				dialog.dismiss();
+			}
+		});
+		t.start();
+	}
+
+	public String queryCashNet(String cashdetailId) {
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, "getCash");
+			jsonProtocol.put(ProtocolManager.CASHTYPE, "cashDetail");
+			jsonProtocol.put(ProtocolManager.CASHDETAILID, cashdetailId);
+			return InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	public String getAlipaySign() {
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, "login");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "alipaySign");
+			
+			String result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+			JSONObject obj = new JSONObject(result);
+			return obj.getString("value");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 }
