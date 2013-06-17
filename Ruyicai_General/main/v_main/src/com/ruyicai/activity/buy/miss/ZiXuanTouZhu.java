@@ -74,6 +74,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift = app.getPojo();
 		addviewmiss = app.getAddviewmiss();
 		init();
+		
+		handler.setBetAndGift(betAndGift);
 	}
 
 	private void init() {

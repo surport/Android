@@ -522,13 +522,12 @@
             android:name="com.ruyicai.activity.buy.jc.explain.zq.AsiaActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        
+
         <!-- 竞彩推荐 -->
         <activity
             android:name="com.ruyicai.activity.buy.jc.explain.zq.RecommendActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        
         <activity
             android:name="com.ruyicai.activity.buy.jc.JoinStartActivityjc"
             android:configChanges="keyboardHidden|orientation"
@@ -764,48 +763,45 @@
             android:name="com.umpay.creditcard.android.UmpayActivity"
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-        
+
         <!-- 联动优势话费充值 -->
         <activity
             android:name="com.ruyicai.activity.account.UmPayPhoneActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        
         <activity
             android:name="com.ruyicai.activity.account.UmPayPhonePopActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
-        
+
         <!-- 免费获取礼金 -->
         <activity
             android:name="com.ruyicai.activity.account.GetFreeGoldActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        
         <activity
             android:name="com.ruyicai.activity.account.AdWallActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        
-        
         <activity android:name="cn.immob.sdk.util.LMActionHandler" >
         </activity>
         <activity android:name="cn.immob.sdk.BrowserActivity" >
         </activity>
-		<!-- 这个后台服务必须要填写，否则无法正常请求广告 -->
+        <!-- 这个后台服务必须要填写，否则无法正常请求广告 -->
         <service android:name="cn.immob.sdk.net.DownloadService" >
         </service>
-		<!-- 这个是选填的，如果广告类型为积分墙的话，不填写这个广播则无法正常返还积分 -->
+        <!-- 这个是选填的，如果广告类型为积分墙的话，不填写这个广播则无法正常返还积分 -->
         <receiver android:name="cn.immob.sdk.brocastreceiver.AppChangeBrocastreceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
+
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        
-<!-- menu -->
+
+        <!-- menu -->
         <activity
             android:name="com.ruyicai.activity.more.FeedBack"
             android:screenOrientation="portrait"
@@ -865,7 +861,7 @@
             android:name="com.ruyicai.activity.notice.NoticeJclActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-       <activity
+        <activity
             android:name="com.ruyicai.activity.notice.NoticeBeijingSingleActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
@@ -1061,6 +1057,12 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 余额不足页面 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.InsufficientBalanceActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -1094,7 +1096,8 @@
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true" >
             <intent-filter android:priority="1000" >
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" /> <!-- Required  显示通知栏 -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required  显示通知栏 -->
                 <category android:name="com.palmdream.RuyicaiAndroid" />
             </intent-filter>
             <intent-filter>
@@ -1133,10 +1136,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
 </manifest>

@@ -3,7 +3,6 @@
  */
 package com.ruyicai.handler;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +12,12 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.Accoutdialog;
+import com.ruyicai.activity.buy.InsufficientBalanceActivity;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.miss.ZiXuanTouZhu;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.dialog.DirectPayDialog;
+import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 
 /**
  * 自定义handler
@@ -28,10 +29,15 @@ public class MyHandler extends Handler {
 	public static final int RUYICAIHANDLER = 1;
 	HandlerMsg msg;
 	Context context;
+	private BetAndGiftPojo betAndGift;
 
 	public MyHandler(HandlerMsg msg) {
 		this.msg = msg;
 		context = this.msg.getContext();
+	}
+
+	public void setBetAndGift(BetAndGiftPojo betAndGift) {
+		this.betAndGift = betAndGift;
 	}
 
 	public void handleMessage(Message msg) {
@@ -76,15 +82,13 @@ public class MyHandler extends Handler {
 			} else if (error_code.equals("0406")) {
 				if (context instanceof ZiXuanTouZhu
 						|| context instanceof com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu
-						|| context instanceof JcMainActivity) {
-					DirectPayDialog directPayDialog = new DirectPayDialog(
-							(Activity) context,
-							context.getResources().getString(
-									R.string.directpay_dialog_title), context
-									.getResources().getString(
-											R.string.directpay_dialog_content));
-					directPayDialog.showDialog();
-					directPayDialog.createDirectPayDialog();
+						|| context instanceof JcMainActivity
+						|| context instanceof BeiJingSingleGameIndentActivity) {
+					Intent intent = new Intent(context,
+							InsufficientBalanceActivity.class);
+					intent.putExtra("lotno", betAndGift.getLotno());
+					intent.putExtra("amount", betAndGift.getAmount());
+					context.startActivity(intent);
 				} else {
 					Accoutdialog.getInstance().createAccoutdialog(
 							context,

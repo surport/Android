@@ -99,6 +99,7 @@ public class JcMainActivity extends Activity implements
 		setContentView(R.layout.buy_jc_main_new);
 		context = this;
 		initView();
+		handler.setBetAndGift(betAndGift);
 	}
 
 	public void setLotNo(String lotno) {

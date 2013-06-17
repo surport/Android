@@ -27,22 +27,22 @@ import android.widget.Toast;
 
 /**
  * 显示全场总比分对阵信息适配器
- * 
+ *
  * @author Administrator
- * 
+ *
  */
 public class OverAllAdapter extends BaseAdapter {
 	private static final String TAG = "OverAllAdapter";
 	private static final int SELECT_BUTTON_NUM = 25;
 	/** 上下文对象 */
 	private Context context;
-	/*Modify by pengcx 20130515 start*/
+	/*Modify by pengcx 20130617 start*/
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "2:1",
 			"3:0", "3:1", "3:2", "4:0", "4:1", "4:2", "平其他", "0:0", "1:1",
 			"2:2", "3:3", "负其他", "0:1", "0:2", "1:2", "0:3", "1:3", "2:3",
-			"0:4", "1:3", "2:4" };
-	/*Modify by pengcx 20130515 end*/
+			"0:4", "1:4", "2:4" };
+	/*Modify by pengcx 20130617 end*/
 	/** 显示全场总比分对阵信息集合 */
 	private List<List<OverAllAgainstInformation>> overAllAgainstInformationList;
 
@@ -85,7 +85,7 @@ public class OverAllAdapter extends BaseAdapter {
 
 	/**
 	 * 初始化全场总比分对阵列表的显示
-	 * 
+	 *
 	 * @param button
 	 *            下拉按钮
 	 * @param linearLayout
@@ -130,7 +130,7 @@ public class OverAllAdapter extends BaseAdapter {
 
 	/**
 	 * 显示全场总比分对阵列表
-	 * 
+	 *
 	 * @param button
 	 *            下拉按钮
 	 * @param linearLayout
@@ -162,7 +162,7 @@ public class OverAllAdapter extends BaseAdapter {
 
 	/**
 	 * 获取全场总比分对阵列表单元视图
-	 * 
+	 *
 	 * @param overAllAgainstInformation
 	 *            显示全场总比分对阵信息对象
 	 * @return
@@ -244,7 +244,7 @@ public class OverAllAdapter extends BaseAdapter {
 //		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 //		danTextButton.setVisibility(View.GONE);
 		/**close by yejc 20130514 end*/
-		
+
 		/**add by yejc 20130514 start*/
 		LinearLayout analysisAndDanLayout = (LinearLayout)itemView
 				.findViewById(R.id.linearLayout3);
@@ -256,7 +256,7 @@ public class OverAllAdapter extends BaseAdapter {
 
 	/**
 	 * 创建半全场选择对话框
-	 * 
+	 *
 	 * @param v
 	 */
 	public void createOverAllSelectDialog(View v) {

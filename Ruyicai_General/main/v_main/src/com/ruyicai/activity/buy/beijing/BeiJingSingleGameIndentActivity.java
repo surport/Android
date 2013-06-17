@@ -188,6 +188,8 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		addSelectDuoButtons();
 
 		setBettingInformationShow();
+		
+		handler.setBetAndGift(betAndGift);
 	}
 
 	private void addSelectDuoButtons() {
