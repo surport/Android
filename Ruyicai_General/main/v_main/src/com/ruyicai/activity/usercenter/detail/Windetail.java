@@ -79,7 +79,8 @@ public class Windetail extends Activity {
 				|| lotno.equals(Constants.LOTNO_JCLQ_RF)
 				|| lotno.equals(Constants.LOTNO_JCLQ_SFC)
 				|| lotno.equals(Constants.LOTNO_JCZQ_HUN)
-				|| lotno.equals(Constants.LOTNO_JCLQ_HUN)) {
+				|| lotno.equals(Constants.LOTNO_JCLQ_HUN)
+				|| lotno.equals(Constants.LOTNO_JCZQ_RQSPF)) {
 			batchcode.setVisibility(View.GONE);
 			kaijianghao.setVisibility(View.GONE);
 		} else {

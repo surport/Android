@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.LinearLayout;
 
+import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 
@@ -20,5 +22,21 @@ public class RQSPFView extends SPfView {
 	@Override
 	public String getLotno() {
 		return Constants.LOTNO_JCZQ_RQSPF;
+	}
+	@Override
+	public String getTitle() {
+		if (isDanguan) {
+			return context.getString(R.string.jczq_rqspf_danguan_title).toString();
+		} else {
+			return context.getString(R.string.jczq_rqspf_guoguan_title).toString();
+		}
+	}
+	
+	/**
+	 * »ñÈ¡±¶ÂÊ
+	 */
+	@Override
+	public List<double[]> getOdds(List<Info> listInfo) {
+		return footSpfCode.getOddsList(listInfo, isRQSPF);
 	}
 }

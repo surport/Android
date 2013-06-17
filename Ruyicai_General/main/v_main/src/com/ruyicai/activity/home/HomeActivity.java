@@ -57,6 +57,7 @@ import com.ruyicai.dialog.UpdateDialog;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.WinAndPulsaward;
 import com.ruyicai.service.DownLoadImg;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -419,7 +420,7 @@ public class HomeActivity extends Activity {
 			//Constants.currentLotnoInfo = obj.getJSONObject("currentBatchCode");// 获取网络的期号信息
 			/**Delete by fansm 20130514 end */
 			Constants.todayjosn = new JSONObject(todaykaijianginfo);// 彩种信息。
-
+			setTicketStatus();
 			imageJson(obj.getJSONObject("image"));// 是否下载开奖图片
 			Intent intent = new Intent("com.ruyicai.activity.home.HomeActivity.UpdateNews");
 			sendBroadcast(intent);
@@ -430,7 +431,12 @@ public class HomeActivity extends Activity {
 			// clock.startThread();
 		}
 	}
-
+    /**
+     * 检查彩票状态
+     */
+    private void setTicketStatus() {
+    	CheckUtil.checkLotteryTicketSale(Constants.LOTNO_22_5,this);
+    }
 	private void setJpushAlias(String userno) {
 		LinkedHashSet<String> tags = new LinkedHashSet<String>();
 		tags.add(ChannelConstants.COOP_ID);

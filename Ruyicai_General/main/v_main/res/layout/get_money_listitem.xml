@@ -44,7 +44,7 @@
             />
     </RelativeLayout>
 
-    <RelativeLayout
+    <RelativeLayout android:id="@+id/get_moeny_amt_relatie"
         android:layout_width="fill_parent"
         android:layout_height="40dip" >
 
@@ -76,8 +76,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:paddingRight="10dip"
-            android:text="提现失败 "
-            android:textColor="#000000" />
+            android:text="@string/account_withdraw_detail_content"
+            android:textColor="@color/red" />
     </RelativeLayout>
 
     <LinearLayout

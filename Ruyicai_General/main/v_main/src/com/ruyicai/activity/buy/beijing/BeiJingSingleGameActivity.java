@@ -209,12 +209,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		case TOTALGOALS:
 			getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
 
+			if (totalGoalsAdapter == null) {
+				totalGoalsAdapter = new TotalGoalsAdapter(
+						BeiJingSingleGameActivity.this,
+						nowTotalGoalsAgainstInformationList);
+			}
+			
 			if (isReset) {
-				if (totalGoalsAdapter == null) {
-					totalGoalsAdapter = new TotalGoalsAdapter(
-							BeiJingSingleGameActivity.this,
-							nowTotalGoalsAgainstInformationList);
-				}
 				againstListView.setAdapter(totalGoalsAdapter);
 			} else {
 				totalGoalsAdapter.notifyDataSetChanged();
@@ -223,12 +224,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		case OVERALL:
 			getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
 
+			if (overAllAdapter == null) {
+				overAllAdapter = new OverAllAdapter(
+						BeiJingSingleGameActivity.this,
+						nowOverAllagainstInformationList);
+			}
+			
 			if (isReset) {
-				if (overAllAdapter == null) {
-					overAllAdapter = new OverAllAdapter(
-							BeiJingSingleGameActivity.this,
-							nowOverAllagainstInformationList);
-				}
 				againstListView.setAdapter(overAllAdapter);
 			} else {
 				overAllAdapter.notifyDataSetChanged();
@@ -238,12 +240,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		case HALFTHEAUDIENCE:
 			getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
 
+			if (halfTheAudienceAdapter == null) {
+				halfTheAudienceAdapter = new HalfTheAudienceAdapter(
+						BeiJingSingleGameActivity.this,
+						nowHalfTheAudienceagainstInformationList);
+			}
+			
 			if (isReset) {
-				if (halfTheAudienceAdapter == null) {
-					halfTheAudienceAdapter = new HalfTheAudienceAdapter(
-							BeiJingSingleGameActivity.this,
-							nowHalfTheAudienceagainstInformationList);
-				}
 				againstListView.setAdapter(halfTheAudienceAdapter);
 			} else {
 				halfTheAudienceAdapter.notifyDataSetChanged();
@@ -253,12 +256,13 @@ public class BeiJingSingleGameActivity extends Activity {
 		case UPDOWNSINGLEDOUBLE:
 			getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
 
+			if (upDownSingleDoubleAdapter == null) {
+				upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
+						BeiJingSingleGameActivity.this,
+						nowUpDownSigleDoubleagainstInformationList);
+			}
+			
 			if (isReset) {
-				if (upDownSingleDoubleAdapter == null) {
-					upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
-							BeiJingSingleGameActivity.this,
-							nowUpDownSigleDoubleagainstInformationList);
-				}
 				againstListView.setAdapter(upDownSingleDoubleAdapter);
 			} else {
 				upDownSingleDoubleAdapter.notifyDataSetChanged();
@@ -285,7 +289,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			nowUpDownSigleDoubleagainstInformationList = new ArrayList<List<UpDownSingleDoubleAgainstInformation>>();
 		}
 
-		if (isCleared) {
+		if (isCleared && upDownSigleDoubleagainstInformationList != null) {
 			// 清空原有的上下单双当前显示信息
 			nowUpDownSigleDoubleagainstInformationList.clear();
 			int listnum = upDownSigleDoubleagainstInformationList.size();
@@ -327,7 +331,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			nowHalfTheAudienceagainstInformationList = new ArrayList<List<HalfTheAudienceAgainstInformation>>();
 		}
 
-		if (isCleared) {
+		if (isCleared && halfTheAudienceagainstInformationList != null) {
 			// 清空原有的半全场当前显示信息
 			nowHalfTheAudienceagainstInformationList.clear();
 			int listnum = halfTheAudienceagainstInformationList.size();
@@ -368,7 +372,7 @@ public class BeiJingSingleGameActivity extends Activity {
 		if (nowOverAllagainstInformationList == null) {
 			nowOverAllagainstInformationList = new ArrayList<List<OverAllAgainstInformation>>();
 		}
-		if (isCleared) {
+		if (isCleared && overAllagainstInformationList != null) {
 			// 清空原有的全场总比分当前显示信息
 			nowOverAllagainstInformationList.clear();
 			int listnum = overAllagainstInformationList.size();
@@ -408,7 +412,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			nowTotalGoalsAgainstInformationList = new ArrayList<List<TotalGoalsAgainstInformation>>();
 		}
 
-		if (isCleared) {
+		if (isCleared && totalGoalsAgainstInformationList != null) {
 			// 清空原有的总进球数当前显示信息
 			nowTotalGoalsAgainstInformationList.clear();
 
@@ -451,7 +455,7 @@ public class BeiJingSingleGameActivity extends Activity {
 		}
 
 		// 如果清空，则从完整的数据中再次获取胜平负信息
-		if (isCleared) {
+		if (isCleared && winTieLossAgainstInformationList != null) {
 			// 清空原有的胜平负当前显示信息
 			nowWinTieLossAgainstInformationList.clear();
 
@@ -677,7 +681,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 					analysisReturnJsonString(returnString);
 				} else {
-					messageString = nowIssueString;
+					messageString = "获取期号失败";
 					Message message = new Message();
 					message.what = FAILD;
 					handler.sendMessage(message);

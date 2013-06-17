@@ -295,7 +295,19 @@ public abstract class JcMainView {
 		String[] unsupportStr = jsonItem.getString("unsupport").split(",");
 		itemInfo.setHome(teams[0]);
 		itemInfo.setAway(teams[1]);
-		itemInfo.setLetPoint(jsonItem.getString("letVs_letPoint"));
+		if (jsonItem.has("letVs_letPoint")) {
+			itemInfo.setLetPoint(jsonItem.getString("letVs_letPoint"));
+		}
+		if (jsonItem.has("letVs_v0")) {
+			itemInfo.setLetV0Fail(jsonItem.getString("letVs_v0"));
+		}
+		if (jsonItem.has("letVs_v1")) {
+			itemInfo.setLetV1Level(jsonItem.getString("letVs_v1"));
+		}
+		if (jsonItem.has("letVs_v3")) {
+			itemInfo.setLetV3Win(jsonItem.getString("letVs_v3"));
+		}
+//		itemInfo.setLevel(isLevel)
 		setDifferValue(jsonItem, itemInfo);
 		for (String str : unsupportStr) {
 			if (getPlayType().equals(str)) {
@@ -725,6 +737,9 @@ public abstract class JcMainView {
 		String teamId = "";
 
 		String weeks = ""; // add by yejc 20130402
+		String letV3Win = "";
+		String letV1Level = "";
+		String letV0Fail = "";
 
 		public int onclikNum = 0;
 		boolean isWin = false;
@@ -779,6 +794,31 @@ public abstract class JcMainView {
 		public String titles[];
 		private boolean isDan = false;
 		private boolean isLq = false;
+
+
+		public String getLetV3Win() {
+			return letV3Win;
+		}
+
+		public void setLetV3Win(String letV3Win) {
+			this.letV3Win = letV3Win;
+		}
+
+		public String getLetV1Level() {
+			return letV1Level;
+		}
+
+		public void setLetV1Level(String letV1Level) {
+			this.letV1Level = letV1Level;
+		}
+
+		public String getLetV0Fail() {
+			return letV0Fail;
+		}
+
+		public void setLetV0Fail(String letV0Fail) {
+			this.letV0Fail = letV0Fail;
+		}
 
 		public boolean isDan() {
 			return isDan;

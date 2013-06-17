@@ -114,7 +114,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		if (Constants.type.equals("zc")) {
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
-			beishulayLayout.setVisibility(View.GONE);
+			initImageView();
+//			beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -236,7 +237,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			zhushu.setText(betAndGift.getZhushu() + "注     ");
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
+			zhushu.setText(zhuShu + "注     ");
 			jine.setText(iProgressQishu
 					* (Integer.valueOf(betAndGift.getAmount()) / 100)
 					* iProgressBeishu + "元");
@@ -254,6 +256,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		toLogin = false;
 		if (!Constants.type.equals("zc")) {
 			initBet();
+		} else {
+			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
+			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
+			betAndGift.setAmount(String.valueOf(amount));
+			betAndGift.setZhushu(String.valueOf(zhuShu));
 		}
 		touZhuNet();
 	}

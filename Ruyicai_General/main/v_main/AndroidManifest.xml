@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.palmdream.RuyicaiAndroid"
     android:installLocation="auto"
-    android:versionCode="31"
-    android:versionName="3.7.3" >
+    android:versionCode="32"
+    android:versionName="3.8.2" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -764,6 +764,11 @@
             android:configChanges="orientation|keyboard|keyboardHidden"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
 
+        <activity
+            android:name="com.ruyicai.activity.usercenter.detail.WithdrawDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+
         <!-- 联动优势话费充值 -->
         <activity
             android:name="com.ruyicai.activity.account.UmPayPhoneActivity"
@@ -1091,7 +1096,6 @@
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
             </intent-filter>
         </service>
-
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true" >
@@ -1106,6 +1110,7 @@
             </intent-filter>
         </receiver>
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+
 
         <meta-data
             android:name="JPUSH_CHANNEL"

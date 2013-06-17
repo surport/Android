@@ -90,7 +90,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	List<Map<String, Object>> list;
 //	SeekBar mSeekBarBeishu;
 //	TextView mTextBeishu;
-	int iProgressBeishu;
+	int iProgressBeishu  = 1;
 	Vector<BallTable> ballTables = new Vector<BallTable>();
 	ImageButton jinqc_btn_touzhu;
 	private JSONObject obj;
@@ -746,8 +746,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 				} else if (isJoin) {
 					toJoinActivity();
 				} else if (isTouzhu) {
-//					touZhuNet();
-					Controller.getInstance(FootballGoalsLottery.this).doBettingAction(touzhuhandler, betPojo);
+					touZhuNet();
 				}
 			}
 		});
@@ -841,6 +840,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
+		setTeamNum(0);
 	}
 
 	public boolean isTouZhu() {
@@ -897,29 +897,9 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	/**
 	 * 投注联网
 	 */
-//	public void touZhuNet() {
-//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-//		// 加入是否改变切入点判断 陈晨 8.11
-//		Thread t = new Thread(new Runnable() {
-//			String str = "00";
-//
-//			@Override
-//			public void run() {
-//				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
-//				try {
-//					JSONObject obj = new JSONObject(str);
-//					String msg = obj.getString("message");
-//					String error = obj.getString("error_code");
-//					touzhuhandler.handleMsg(error, msg);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				progressdialog.dismiss();
-//			}
-//
-//		});
-//		t.start();
-//	}
+	public void touZhuNet() {
+		Controller.getInstance(FootballGoalsLottery.this).doBettingAction(touzhuhandler, betPojo);
+	}
 
 //	@Override
 //	public void onProgressChanged(SeekBar seekBar, int progress,

@@ -321,11 +321,13 @@ public class ContentListView {
 					} else if (lotno.equals(Constants.LOTNO_JCZQ_RQSPF)) {
 						if (letScore!= null && !"".equals(letScore)) {
 							teamVs = letScore;
-						} else {
+						} /*else {
 							teamVs = "0";
+						}*/
+					} else if(lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)){
+						if (letScore != null && !"".equals(letScore) && !"0".equals(letScore)) {
+							teamVs = letScore;
 						}
-					} else if(lotno.equals(Constants.LOTNO_JCZQ)){
-						teamVs = "0";
 					}
 					String guestScore = obj.getString("guestScore");
 					String homeScore = obj.getString("homeScore");

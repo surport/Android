@@ -8,7 +8,6 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
-import com.ruyicai.activity.buy.BuyActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 
@@ -104,41 +103,38 @@ public class CheckUtil {
 	/**
 	 * 检查彩种的发售情况
 	 */
-	public static void checkLotteryTicketSale(boolean isFirstLaunch, String lotno, Context context) {
-		if (isFirstLaunch) {
-			// 这里判断彩种设置
-			RWSharedPreferences shellRW = new RWSharedPreferences(
-					context, ShellRWConstants.CAIZHONGSETTING);
+	public static void checkLotteryTicketSale(String lotno, Context context) {
+		// 这里判断彩种设置
+		RWSharedPreferences shellRW = new RWSharedPreferences(
+				context, ShellRWConstants.CAIZHONGSETTING);
 
-			try {
-				//String josn = Constants.todayjosn.getString(lotno);
-				//JSONObject jsonobj = new JSONObject(josn);
-				JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
-                if (jsonobj != null) {
-					String isSale = jsonobj.getString("saleState");
-					if (isSale.equals(Constants.SALE_WILLING)) {
-						shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno), Constants.CAIZHONG_CLOSE);
-						shellRW.putStringValue(PublicMethod.getWillsaleName(lotno), "true");
-					} else if (isSale.equals(Constants.SALEINGL)) {
-						if (shellRW.getStringValue(PublicMethod.getWillsaleName(lotno)).equals(
-								"true")) {
-							shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno),
-									Constants.CAIZHONG_OPEN);
-							shellRW.putStringValue(PublicMethod.getWillsaleName(lotno), "false");
-						} else {
-							shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno),
-									Constants.CAIZHONG_OPEN);
-						}
-					}
-				} else {
+		try {
+			//String josn = Constants.todayjosn.getString(lotno);
+			//JSONObject jsonobj = new JSONObject(josn);
+			JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+            if (jsonobj != null) {
+				String isSale = jsonobj.getString("saleState");
+				if (isSale.equals(Constants.SALE_WILLING)) {
 					shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno), Constants.CAIZHONG_CLOSE);
-					shellRW.putStringValue(PublicMethod.getCloseTicketFLG(lotno),"true");
+					shellRW.putStringValue(PublicMethod.getWillsaleName(lotno), "true");
+				} else if (isSale.equals(Constants.SALEINGL)) {
+					if (shellRW.getStringValue(PublicMethod.getWillsaleName(lotno)).equals(
+							"true")) {
+						shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno),
+								Constants.CAIZHONG_OPEN);
+						shellRW.putStringValue(PublicMethod.getWillsaleName(lotno), "false");
+					} else {
+						shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno),
+								Constants.CAIZHONG_OPEN);
+					}
 				}
-				
-			} catch (JSONException e) {
-				e.printStackTrace();
+			} else {
+				shellRW.putStringValue(PublicMethod.getCloseKeyName(lotno), Constants.CAIZHONG_CLOSE);
+				shellRW.putStringValue(PublicMethod.getCloseTicketFLG(lotno),"true");
 			}
-			isFirstLaunch = false;
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 	}
 	/**

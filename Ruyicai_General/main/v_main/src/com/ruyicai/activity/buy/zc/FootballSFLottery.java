@@ -558,6 +558,7 @@ public class FootballSFLottery extends FootballFourteen implements
 		for (int i = 0; i < ballTables.size(); i++) {
 			ballTables.get(i).clearAllHighlights();
 		}
+		setTeamNum(0);
 	}
 
 	public boolean isTouZhu() {
@@ -904,8 +905,7 @@ public class FootballSFLottery extends FootballFourteen implements
 				} else if (isJoin) {
 					toJoinActivity();
 				} else if (isTouzhu) {
-//					touZhuNet();
-					Controller.getInstance(FootballSFLottery.this).doBettingAction(touzhuhandler, betPojo);
+					touZhuNet();
 				}
 			}
 		});
@@ -953,29 +953,9 @@ public class FootballSFLottery extends FootballFourteen implements
 	/**
 	 * 投注联网
 	 */
-//	public void touZhuNet() {
-//		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
-//		// 加入是否改变切入点判断 陈晨 8.11
-//		Thread t = new Thread(new Runnable() {
-//			String str = "00";
-//
-//			@Override
-//			public void run() {
-//				str = BetAndGiftInterface.getInstance().betOrGift(betPojo);
-//				try {
-//					JSONObject obj = new JSONObject(str);
-//					String message = obj.getString("message");
-//					String error = obj.getString("error_code");
-//					touzhuhandler.handleMsg(error, message);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				progressdialog.dismiss();
-//			}
-//
-//		});
-//		t.start();
-//	}
+	public void touZhuNet() {
+		Controller.getInstance(FootballSFLottery.this).doBettingAction(touzhuhandler, betPojo);
+	}
 
 	public void toJoinActivity() {
 		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();

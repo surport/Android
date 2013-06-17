@@ -8,9 +8,12 @@ import cn.immob.sdk.listener.AdUtilityListener;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.util.RWSharedPreferences;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -26,11 +29,13 @@ public class AdWallActivity extends Activity implements AdUtilityListener{
 	private LinearLayout layout = null;
 	private ImmobView lmView = null;
 	private ProgressDialog progressdialog;
+	RWSharedPreferences shellRW = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adwall_layout);
+		shellRW = new RWSharedPreferences(this, "addInfo");
 		layout = (LinearLayout)findViewById(R.id.layout);
 		lmView =new ImmobView(this, adUnitID);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -43,7 +48,7 @@ public class AdWallActivity extends Activity implements AdUtilityListener{
 		progressdialog.show();
 		
 		Hashtable<String, String> userProperties = new Hashtable<String, String>(); 
-		userProperties.put("accountname", getIntent().getStringExtra(ShellRWConstants.USERNAME)); 
+		userProperties.put("accountname", shellRW.getStringValue(ShellRWConstants.USERNO)); 
 		lmView.setUserInfo(userProperties); 
 	}
 	
