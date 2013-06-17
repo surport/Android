@@ -208,27 +208,11 @@ public class WinTieLossAdapter extends BaseAdapter {
 		v3textTextView.setText(winTieLossAgainstInformation.getV0());
 		/** modify by pengcx 20130514 end */
 
-		/** close by yejc 20130514 start */
-		// // 析
-		// TextView analysisTextView = (TextView) itemView
-		// .findViewById(R.id.game_analysis);
-		// analysisTextView.setVisibility(View.GONE);
-		// // 胆
-		// Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		// danTextButton.setVisibility(View.GONE);
-		/** close by yejc 20130514 end */
-
-		/** add by yejc 20130514 start */
-		LinearLayout analysisAndDanLayout = (LinearLayout) itemView
-				.findViewById(R.id.linearLayout3);
-		analysisAndDanLayout.setVisibility(View.GONE);
-		View view1 = (View)itemView.findViewById(R.id.divider_01);
-		View view2 = (View)itemView.findViewById(R.id.divider_02);
-		LayoutParams lp = view1.getLayoutParams();
-		lp.width = 15;
-		view1.setLayoutParams(lp);
-		view2.setLayoutParams(lp);
-		/**add by yejc 20130514 end*/
+		 // 析
+		 TextView analysisTextView = (TextView) itemView
+		 .findViewById(R.id.game_analysis);
+		 // 胆
+		 Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
