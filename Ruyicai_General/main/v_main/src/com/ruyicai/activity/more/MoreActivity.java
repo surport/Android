@@ -98,7 +98,7 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	OrderPrizeDiaog orderPrizeDialog;// 开奖订阅公共类
 
 	RelativeLayout kaijiangdingyue, personidset, weibobangding,
-			caizhongSetting, goucaitixingSetting;// 设置界面 开奖订阅和个人帐号设置//彩种设置
+			caizhongSetting, goucaitixingSetting, programmeSettings;// 设置界面 开奖订阅和个人帐号设置//彩种设置
 	Button auto_login_set;// 自动登录设置
 	Button auto_jixuan_set;// 机选设置
 	Button is_sharetorenren, is_sharetosinaweibo;// 微博账号设置
@@ -261,6 +261,11 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 						CaizhongSettingActivity.class);
 				startActivity(intent);
 				break;
+				
+			case R.id.programme_settings:
+				startActivity(new Intent(MoreActivity.this,
+						ProgrammeArchiveSettingsActivity.class));
+				break;
 			}
 		}
 	};
@@ -408,6 +413,8 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		caizhongSetting.setOnClickListener(moreActivityListener);
 		goucaitixingSetting = (RelativeLayout) findViewById(R.id.tableRow_goucaitixing);
 		goucaitixingSetting.setOnClickListener(moreActivityListener);
+		programmeSettings = (RelativeLayout) findViewById(R.id.programme_settings);
+		programmeSettings.setOnClickListener(moreActivityListener);
 		initAutoLoginSet();
 		initAutoJixuanSet();
 

@@ -1210,8 +1210,8 @@
     
     <string name="get_free_gold_content">1、在广告墙上完成提示操作后，免费获得的彩金会自动加入到您的如意彩账户中，您可到用户中心处进行查询。"\n"
 		2、获赠的彩金一般会在完成广告墙提示操作后1到5分钟到账；个别软件特殊，可能需要一两天才能到账，请耐心等待。"\n"
-		4、获赠的彩金只能购彩，不能提现。"\n"
 		3、需安装本机未安装过的软件才可获取彩金。"\n"
+		4、获赠的彩金只能购彩，不能提现。"\n"
 	</string>
     <string name="gold_transform_score">(1彩金=100分)</string>
     <string name="current_gold">当前彩金:</string>
@@ -1235,6 +1235,8 @@
     <string name="account_withdraw_detail_query_content">查询中...</string>
     <string name="account_withdraw_detail_content">详情 ></string>
     <string name="account_withdraw_detail_remark_content">订单%1$s,预计%2$s%3$s</string>
-   
+    <string name="more_settings_programme">方案存档功能设置</string>
+    <string name="more_settings_programme_title">方案存档设置</string>
+    <string name="more_settings_programme_content">开通方案存档功能后，系统将自动给您的邮箱发送一份投注方案详情，以供备份查看。</string>
     
 </resources>

@@ -39,4 +39,13 @@ public class RQSPFView extends SPfView {
 	public List<double[]> getOdds(List<Info> listInfo) {
 		return footSpfCode.getOddsList(listInfo, isRQSPF);
 	}
+	
+	@Override
+	public String getPlayType() {
+		if (isDanguan) {
+			return "J00013_0";
+		} else {
+			return "J00013_1";
+		}
+	}
 }

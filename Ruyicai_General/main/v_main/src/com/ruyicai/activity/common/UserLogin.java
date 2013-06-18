@@ -518,8 +518,7 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-//				String alipaySign = Controller.getInstance(context).getAlipaySign();
-				pay(/*alipaySign*/);
+				pay();
 			}
 		});
 		// 点击注册按钮时，跳转到注册页面
@@ -1433,7 +1432,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		if (receiver != null) {
 			unregisterIntentReceivers();
@@ -1451,14 +1449,12 @@ public class UserLogin extends Activity implements TextWatcher {
 		}
 	};
 	
-	private void pay(/*final String alipaySign*/) {
+	private void pay() {
 		final ProgressDialog pDialog = UserCenterDialog.onCreateDialog(context);
 		pDialog.show();
 		new Thread(new Runnable() {
 			public void run() {
 				String alipaySign = Controller.getInstance(context).getAlipaySign();
-				Log.i("yejc", "==========mAlixPay="+mAlixPay
-						+"==========alipaySign="+alipaySign);
 				try {
 					mAlixPay.Pay(alipaySign);
 				} catch (Exception e) {
@@ -1467,8 +1463,6 @@ public class UserLogin extends Activity implements TextWatcher {
 				pDialog.dismiss();
 			}
 		}).start();
-		
-
 	}
 
 	@Override

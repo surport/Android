@@ -144,6 +144,10 @@ public class Controller {
 		return "";
 	}
 	
+	/**
+	 * 获取支付宝签名
+	 * @return
+	 */
 	public String getAlipaySign() {
 		JSONObject jsonProtocol = ProtocolManager.getInstance()
 				.getDefaultJsonProtocol();
@@ -155,6 +159,49 @@ public class Controller {
 					Constants.LOT_SERVER, jsonProtocol.toString());
 			JSONObject obj = new JSONObject(result);
 			return obj.getString("value");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	/**
+	 * 查询email的绑定状态
+	 * @param lotno
+	 * @return
+	 */
+	public String queryOrderEmail(String lotno, String userno) {
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, "message");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "selectOrderEmail");
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put(ProtocolManager.USERNO, userno);
+			return InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	/**
+	 * 订单邮件开发设置
+	 * @param lotno
+	 * @return
+	 */
+	public String setOrderEmail(String lotno, String state, String userNo) {
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, "message");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "orderEmail");
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put(ProtocolManager.STATE, state);
+			jsonProtocol.put(ProtocolManager.USERNO, userNo);
+			return InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
