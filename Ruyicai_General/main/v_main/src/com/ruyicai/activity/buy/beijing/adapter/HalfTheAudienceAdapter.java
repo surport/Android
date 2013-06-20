@@ -5,22 +5,16 @@ import java.util.List;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.HalfTheAudienceAgainstInformation;
-import com.ruyicai.activity.buy.beijing.bean.OverAllAgainstInformation;
-import com.ruyicai.activity.buy.jc.JcMainActivity;
-import com.ruyicai.code.jc.zq.FootBQC;
-import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -33,11 +27,10 @@ import android.widget.Toast;
  * @author Administrator
  * 
  */
-public class HalfTheAudienceAdapter extends BaseAdapter {
+public class HalfTheAudienceAdapter extends ParentAdapter {
 	private static final String TAG = "HalfTheAudienceAdapter";
 	private static final int SELECT_BUTTON_NUM = 9;
-	/** 上下文对象 */
-	private Context context;
+
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜胜", "胜平", "胜负", "平胜", "平平",
 			"平负", "负胜", "负平", "负负" };
@@ -206,6 +199,12 @@ public class HalfTheAudienceAdapter extends BaseAdapter {
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				trunExplain(getEvent(halfTheAudienceAgainstInformation));
+			}
+		});
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 		

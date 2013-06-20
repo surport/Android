@@ -674,6 +674,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				// 如果获取期号成功，则继续获取对阵信息
 				if (nowIssueString != null && !nowIssueString.equals("网络异常")) {
 					// 获取当前玩法的当前期对阵数据
+					Constants.currentLoto = nowIssueString;
 					String returnString = BeiJingSingleGameInterface
 							.getInstance().getAgainstInformations(
 									playMethodType.getLotnoString(),

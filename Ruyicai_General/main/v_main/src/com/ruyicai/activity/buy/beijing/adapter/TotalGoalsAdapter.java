@@ -28,10 +28,8 @@ import android.widget.Toast;
  * @author Administrator
  * 
  */
-public class TotalGoalsAdapter extends BaseAdapter {
+public class TotalGoalsAdapter extends ParentAdapter {
 	private static final String TAG = "TotalGoalsAdapter";
-	/** 上下文对象 */
-	private Context context;
 
 	/** 显示总进球数对阵信息集合 */
 	private List<List<TotalGoalsAgainstInformation>> totalGoalsAgainstInformationList;
@@ -231,6 +229,12 @@ public class TotalGoalsAdapter extends BaseAdapter {
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				trunExplain(getEvent(totalGoalsAgainstInformation));
+			}
+		});
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 

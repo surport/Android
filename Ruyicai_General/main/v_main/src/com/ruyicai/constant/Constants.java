@@ -223,6 +223,9 @@ public class Constants {
 	public static final String BEIJINGSINGLE = "beiDan";
 	public static final String PLAY_METHOD_TYPE = "playMethodType";
 	public static final String NEW_JINGCAI = "jingCai";
+	
+	public static String currentTickType = "";
+	public static String currentLoto = "";
 
 	/**
 	 * 彩种代码

@@ -23,10 +23,9 @@ import android.widget.Toast;
  * @author Administrator
  * 
  */
-public class UpDownSingleDoubleAdapter extends BaseAdapter {
+public class UpDownSingleDoubleAdapter extends ParentAdapter {
 	private static final String TAG = "UpDownSingleDoubleAdapter";
-	/** 上下文对象 */
-	private Context context;
+
 	/** 显示上下的那双对阵信息集合 */
 	private List<List<UpDownSingleDoubleAgainstInformation>> upDownSingleDoubleAgainstInformationList;
 
@@ -330,6 +329,12 @@ public class UpDownSingleDoubleAdapter extends BaseAdapter {
 		 // 析
 		 TextView analysisTextView = (TextView) itemView
 		 .findViewById(R.id.game_analysis);
+		 analysisTextView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				trunExplain(getEvent(upDownSingleDoubleAgainstInformation));
+			}
+		 });
 		 // 胆
 		 Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 

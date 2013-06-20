@@ -24,10 +24,9 @@ import android.widget.Toast;
  * @author Administrator
  * 
  */
-public class WinTieLossAdapter extends BaseAdapter {
+public class WinTieLossAdapter extends ParentAdapter {
 	private static final String TAG = "WinTieLossAdapter";
-	/** 上下文对象 */
-	private Context context;
+
 	/** 显示的让球胜平负对阵信息集合 */
 	private List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList;
 
@@ -211,6 +210,12 @@ public class WinTieLossAdapter extends BaseAdapter {
 		 // 析
 		 TextView analysisTextView = (TextView) itemView
 		 .findViewById(R.id.game_analysis);
+		analysisTextView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				trunExplain(getEvent(winTieLossAgainstInformation));
+			}
+		});
 		 // 胆
 		 Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 

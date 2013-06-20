@@ -6,6 +6,9 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.OverAllAgainstInformation;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
+import com.ruyicai.activity.buy.jc.JcMainView.Info;
+import com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity;
+import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.code.jc.zq.FootBF;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
@@ -13,6 +16,7 @@ import com.ruyicai.custom.checkbox.MyCheckBox;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +35,9 @@ import android.widget.Toast;
  * @author Administrator
  *
  */
-public class OverAllAdapter extends BaseAdapter {
+public class OverAllAdapter extends ParentAdapter {
 	private static final String TAG = "OverAllAdapter";
 	private static final int SELECT_BUTTON_NUM = 25;
-	/** 上下文对象 */
-	private Context context;
 	/*Modify by pengcx 20130617 start*/
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "2:1",
@@ -237,6 +239,12 @@ public class OverAllAdapter extends BaseAdapter {
 		// 析
 		TextView analysisTextView = (TextView) itemView
 				.findViewById(R.id.game_analysis);
+		analysisTextView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				trunExplain(getEvent(overAllAgainstInformation));
+			}
+		});
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
 
