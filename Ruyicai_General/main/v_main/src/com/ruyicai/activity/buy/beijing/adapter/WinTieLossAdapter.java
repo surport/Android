@@ -218,6 +218,7 @@ public class WinTieLossAdapter extends ParentAdapter {
 		});
 		 // 胆
 		 Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		 danTextButton.setVisibility(View.INVISIBLE);
 
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView

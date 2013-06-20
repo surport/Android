@@ -247,6 +247,7 @@ public class OverAllAdapter extends ParentAdapter {
 		});
 		// 胆
 		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
+		danTextButton.setVisibility(View.INVISIBLE);
 
 		return itemView;
 	}
