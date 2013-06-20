@@ -72,9 +72,9 @@ public class FeedbackListActivity extends Activity {
 	final String CREATETIME = "createTime";
 	final String REPLY = "reply";
 	final String CONTENT = "content";
-	private int[] linearId = { R.id.latter, R.id.message };
-	private String[] titles = { "站内信", "我的留言" };
-	private LinearLayout message, latter;
+	private int[] linearId = {R.id.system_info, R.id.latter, R.id.message };
+	private String[] titles = {"系统信息", "站内信", "我的留言" };
+	private LinearLayout message, latter, systemInfo;
 	TabHost mTabHost;
 	private LayoutInflater mInflater = null;
 	View tabSpecLinearView;// 子列表的ListView
@@ -171,10 +171,13 @@ public class FeedbackListActivity extends Activity {
 	TabHost.OnTabChangeListener scroeTabChangedListener = new TabHost.OnTabChangeListener() {
 		public void onTabChanged(String tabId) {
 			if (tabId.equals(titles[0])) {
-				// initLinear(scroedetail, linearId[0], view);
 				type = 0;
+				initLinear(systemInfo, linearId[0], initmessage());
+			} else if (tabId.equals(titles[1])) {
+				// initLinear(scroedetail, linearId[0], view);
+				type = 1;
 				if (latterlist.size() > 0) {
-					initLinear(latter, linearId[0], initlatterview(true));
+					initLinear(latter, linearId[1], initlatterview(true));
 				} else {
 					getInfoNet(userno, latterIndex, false);
 					if (isLatterSelectAll) {
@@ -194,9 +197,9 @@ public class FeedbackListActivity extends Activity {
 				messageEditLayout.setVisibility(View.GONE);
 				adapter.notifyDataSetChanged();
 				/**add by yejc 20130422 end*/
-			} else if (tabId.equals(titles[1])) {
-				type = 1;
-				initLinear(message, linearId[1], initmessage());
+			} else if (tabId.equals(titles[2])) {
+				type = 2;
+				initLinear(message, linearId[2], initmessage());
 				feedbackcount.setVisibility(View.GONE);
 				if (!msgReadStateId.equals("")) {
 					msgUpdateReadState(msgReadStateId);// 更新已读状态
@@ -264,7 +267,7 @@ public class FeedbackListActivity extends Activity {
 		img.setBackgroundResource(R.drawable.tab_buy_selector);
 		title.setText(titles[index]);
 
-		if (index == 0) {
+		if (index == 1) {
 			lettercount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
 			if (notReadLetterCount > 0) {
 				lettercount.setVisibility(View.VISIBLE);
@@ -274,7 +277,7 @@ public class FeedbackListActivity extends Activity {
 			}
 		}
 
-		if (index == 1) {
+		if (index == 2) {
 			feedbackcount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
 			feedbackcount.setVisibility(View.INVISIBLE);
 
@@ -333,7 +336,6 @@ public class FeedbackListActivity extends Activity {
 	}
 
 	private void initBtn() {
-
 		feedback = (Button) findViewById(R.id.usercenter_feedback_submitbtn);
 		feedback.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -927,49 +929,6 @@ public class FeedbackListActivity extends Activity {
 				});
 			}
 			/**add by yejc 20130419 end*/
-//			if (mList.get(position).getReadState().equals("0")) {
-//				holder.icon.setVisibility(View.VISIBLE);
-//				holder.icon.setImageResource(R.drawable.notread);
-//			} else {
-//				holder.icon.setVisibility(View.GONE);
-//			}
-//			holder.content.setText(Html.fromHtml((String) mList.get(position)
-//					.getTitle()));
-//			holder.content.setTextColor(mList.get(position).getTextcolor());
-//			final ImageView iconread = holder.icon;
-//			holder.content.setOnClickListener(new OnClickListener() {
-//				@Override
-//				public void onClick(final View v) {
-//					TextView textview = (TextView) v;
-//					mList.get(index).setTextcolor(Color.RED);
-//					textview.setTextColor(mList.get(index).getTextcolor());
-//					contentjson = mList.get(index).getContent();
-//					title = mList.get(index).getTitle();
-//					if (mList.get(index).getReadState().equals("0")) {
-//						iconread.setVisibility(View.GONE);
-//						if (mTabHost.getCurrentTab() == 0) {
-//							if (notReadLetterCount > 0) {
-//								notReadLetterCount--;
-//								shellRW.putStringValue("notReadLetterCount",
-//										String.valueOf(notReadLetterCount));
-//
-//							} else {
-//								lettercount.setVisibility(View.GONE);
-//							}
-//						}
-//
-//						mTabHost.invalidate();
-//						Intent intent = new Intent("noreadupdate");
-//						sendBroadcast(intent);
-//
-//						//改变已经阅读信息的状态
-//						mList.get(index).setReadState("1");
-//						
-//						updateReadState(mList.get(index).getNewsId());
-//					}
-//					turnContentActivity();
-//				}
-//			});
 			return convertView;
 		}
 
@@ -1155,7 +1114,6 @@ public class FeedbackListActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		/**add by yejc 20130419 start*/
 		unregisterReceiver(selectTextBroadCast);
@@ -1165,7 +1123,6 @@ public class FeedbackListActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		
 		/**add by yejc 20130419 start*/

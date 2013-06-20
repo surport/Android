@@ -60,6 +60,11 @@
                 android:layout_below="@android:id/tabs"
                 android:background="@drawable/bg"
                 android:paddingBottom="50dp" >
+                
+                <LinearLayout
+                    android:id="@+id/system_info"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
 
                 <LinearLayout
                     android:id="@+id/message"

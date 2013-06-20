@@ -789,6 +789,13 @@
             android:name="com.ruyicai.activity.account.AdWallActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
+        
+        <activity
+            android:name="com.ruyicai.activity.more.ProgrammeArchiveSettingsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        
+        
         <activity android:name="cn.immob.sdk.util.LMActionHandler" >
         </activity>
         <activity android:name="cn.immob.sdk.BrowserActivity" >

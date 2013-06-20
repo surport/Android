@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.BindEmailInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -58,6 +59,11 @@ public class UnBindEmailActivity extends Activity {
 			case UNBIND_SUCCESS:
 				// 解绑邮箱成功
 				shellRW.putStringValue("email", "");
+				
+				/**add by yejc 20130617 start*/
+				shellRW.putBooleanValue(Constants.isSSQON, false);
+				shellRW.putBooleanValue(Constants.isDLTON, false);
+				/**add by yejc 20130617 end*/
 				break;
 			}
 

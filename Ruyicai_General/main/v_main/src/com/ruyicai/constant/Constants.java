@@ -326,6 +326,8 @@ public class Constants {
 	public static final String ALIPAY_PACK_NAME = "com.alipay.android.app";
 	public static final String UMPAY_PHONE_PACK_NAME = "com.umpay.huafubao";
 	public static final String UMPAY_BANKID = "ump003";
+	public static final String isSSQON = "isSSQON";
+	public static final String isDLTON = "isDLTON";
 	/**add by yejc 20130527 start*/
 	
 }
