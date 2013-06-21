@@ -5,17 +5,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.alipay.android.secure.AlipaySecurePayDialog;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.CheckWireless;
 import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
+import com.ruyicai.net.newtransaction.RechargeInterface;
+import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,6 +66,8 @@ public class AccountListActivity extends Activity {
 	private String ISHANDINGFREE = "isHandingFree";
 	private String PICTURE = "";
 	private Context context;
+	private RWSharedPreferences shellRW = null;
+	private boolean isAdWallDisplay = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,6 +75,8 @@ public class AccountListActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.account_list_main);
 		context = this;
+		shellRW = new RWSharedPreferences(
+				context, ShellRWConstants.ACCOUNT_DISPAY_STATE);
 		setTopText();
 		setTopState();
 		initListView();
@@ -263,11 +275,15 @@ public class AccountListActivity extends Activity {
 		Map<String, Object> map;
 		
 		// 免费获取礼金
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.get_free_gold_title));
-		map.put(PICTURE, R.drawable.limei_free_gold_android);
-		map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
-		list.add(map);
+		
+		isAdWallDisplay = shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+		if (isAdWallDisplay) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.get_free_gold_title));
+			map.put(PICTURE, R.drawable.limei_free_gold_android);
+			map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
+			list.add(map);
+		}
 				
 		// 银联支付
 		map = new HashMap<String, Object>();
@@ -335,11 +351,14 @@ public class AccountListActivity extends Activity {
 		list.add(map);
 		
 		// 联动优势话费充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.umpay_phone_recharge));
-		map.put(PICTURE, R.drawable.recharge_phone_umpay);
-		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
-		list.add(map);
+		boolean isUmpayPhoneDisplay = shellRW.getBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, false);
+		if (isUmpayPhoneDisplay) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.umpay_phone_recharge));
+			map.put(PICTURE, R.drawable.recharge_phone_umpay);
+			map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
+			list.add(map);
+		}
 
 		return list;
 	}
@@ -397,19 +416,30 @@ public class AccountListActivity extends Activity {
 			builder1.append(str1);
 			
 			String alertStr1 = "";
-			if(position == 1) {
-				alertStr1 = getString(R.string.recommend_the_use_of);
-			}else if (position == 2 || position == 3
-					|| position == 4 || position == 5) {
-				alertStr1 = getString(R.string.freeHanding);
-			} else if (position == 7) {
-				alertStr1 = getString(R.string.account_chongzhi_good);
-			} 
 			
-			if (position == 0) {
-				holder.layout.setBackgroundResource(R.drawable.get_free_gold_background);
+			if (isAdWallDisplay) {
+				if(position == 1) {
+					alertStr1 = getString(R.string.recommend_the_use_of);
+				}else if (position == 2 || position == 3
+						|| position == 4 || position == 5) {
+					alertStr1 = getString(R.string.freeHanding);
+				} else if (position == 7) {
+					alertStr1 = getString(R.string.account_chongzhi_good);
+				} 
+				if (position == 0) {
+					holder.layout.setBackgroundResource(R.drawable.get_free_gold_background);
+				} else {
+					holder.layout.setBackgroundColor(getResources().getColor(R.color.white));
+				}
 			} else {
-				holder.layout.setBackgroundColor(getResources().getColor(R.color.white));
+				if(position == 0) {
+					alertStr1 = getString(R.string.recommend_the_use_of);
+				}else if (position == 1 || position == 2
+						|| position == 3 || position == 4) {
+					alertStr1 = getString(R.string.freeHanding);
+				} else if (position == 6) {
+					alertStr1 = getString(R.string.account_chongzhi_good);
+				} 
 			}
 			if (!alertStr1.equals("")) {
 				builder1.append(alertStr1);
@@ -463,4 +493,5 @@ public class AccountListActivity extends Activity {
 		}
 		return false;
 	}
+	
 }

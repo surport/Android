@@ -28,7 +28,8 @@
             android:background="@drawable/returnselecter"
             android:text="@string/my_message_edit_text"
             android:textColor="@color/white"
-            android:textSize="15dip" />
+            android:textSize="15dip" 
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <ImageView
@@ -185,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/join_info_btn_selecter"
                     android:padding="5dp"
-                    android:text="@string/usercenter_submitfeedback"
+                    android:text="@string/usercenter_feedback_bet"
                     android:textSize="18sp" />
             </LinearLayout>
         </RelativeLayout>

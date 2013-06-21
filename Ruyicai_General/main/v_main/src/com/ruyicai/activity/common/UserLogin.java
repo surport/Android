@@ -59,6 +59,7 @@ import com.alipay.android.app.IAliPay;
 import com.alipay.android.app.IAlixPay;
 import com.alipay.android.app.IRemoteServiceCallback;
 import com.alipay.android.secure.BaseHelper;
+import com.alipay.android.secure.MobileSecurePayHelper;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ChannelConstants;
@@ -518,7 +519,12 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-				pay();
+				MobileSecurePayHelper mspHelper = new MobileSecurePayHelper(context);
+				boolean isMobile_spExist = mspHelper.detectMobile_sp(Constants.ALIPAY_PLUGIN_NAME,
+						Constants.ALIPAY_PACK_NAME);
+				if (isMobile_spExist) {
+					pay();
+				}
 			}
 		});
 		// 点击注册按钮时，跳转到注册页面

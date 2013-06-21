@@ -33,7 +33,7 @@ public class RQSPFView extends SPfView {
 	}
 	
 	/**
-	 * »ñÈ¡±¶ÂÊ
+	 * è·å–å€ç‡
 	 */
 	@Override
 	public List<double[]> getOdds(List<Info> listInfo) {

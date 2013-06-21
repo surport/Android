@@ -228,7 +228,6 @@ public class UmPayPhonePopActivity extends Activity implements HandlerMsg, Huafu
 					.setPositiveButton("确定", null);
 			builder.create().show();
 		}
-		Log.i("yejc", "==========flag="+flag);
 		return flag;
 	}
 

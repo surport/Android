@@ -1,9 +1,13 @@
 package com.ruyicai.activity.account;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.alipay.android.secure.MobileSecurePayHelper;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
@@ -40,7 +44,6 @@ public class UmPayPhoneActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_alipay_secure_recharge_dialog);
-//		initTextViewContent();
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
 		accountTitleTextView.setText("话费充值");
 		TextView title = (TextView)findViewById(R.id.recharge_title);
@@ -48,8 +51,8 @@ public class UmPayPhoneActivity extends Activity {
 		LinearLayout layout = (LinearLayout)findViewById(R.id.umpay_phone_linear);
 		layout.setVisibility(View.VISIBLE);
 		alipayContent = (TextView) findViewById(R.id.alipay_content);
-		alipayContent.setText(R.string.umpay_phone_content);
-		alipayContent.setTextColor(getResources().getColor(R.color.red));
+		initTextViewContent();
+//		alipayContent.setText(R.string.umpay_phone_content);
 		radioGroup = (RadioGroup)findViewById(R.id.umpay_recharge_radiogroup);
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
@@ -87,11 +90,27 @@ public class UmPayPhoneActivity extends Activity {
 				} else {
 					money = "3";
 				}
-				
 				Intent intent = new Intent(this, UmPayPhonePopActivity.class);
 				intent.putExtra(UMPAY_RECHARGE_AMOUNT, money);
 				startActivity(intent);
 			}
 		}
+	}
+	
+	private void initTextViewContent() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+						.rechargeDescribe("umpayHfChargeDescription ");
+				try {
+					String conten = jsonObject.get("content").toString();
+					alipayContent.setText(conten);
+					alipayContent.setTextColor(getResources().getColor(R.color.red));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 }

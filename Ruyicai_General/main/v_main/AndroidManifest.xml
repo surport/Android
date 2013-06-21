@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.palmdream.RuyicaiAndroid"
     android:installLocation="auto"
-    android:versionCode="32"
-    android:versionName="3.8.2" >
+    android:versionCode="33"
+    android:versionName="3.8.3" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -1117,6 +1117,19 @@
             </intent-filter>
         </receiver>
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+        
+        <receiver
+            android:name="com.ruyicai.receiver.SystemPushInfoReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />  
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <category android:name="com.example.jpushdemo.app" />
+            </intent-filter>
+        </receiver>
 
 
         <meta-data
