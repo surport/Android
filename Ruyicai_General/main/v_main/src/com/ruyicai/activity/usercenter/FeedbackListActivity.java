@@ -40,6 +40,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.account.AlipaySecureActivity;
+import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.home.MainGroup;
 import com.ruyicai.activity.home.MainGroup.NoReadUpdateReceiver;
 import com.ruyicai.activity.info.LotInfoActivity;
 import com.ruyicai.activity.info.LotInfoConcreteActivity;
@@ -47,6 +50,8 @@ import com.ruyicai.activity.info.LotInfoDomain;
 import com.ruyicai.activity.more.FeedBack;
 import com.ruyicai.activity.usercenter.UserScoreActivity.ScroeQueryAdapter;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.databases.OperatingDataBases;
 import com.ruyicai.net.newtransaction.DeleteMessage;
 import com.ruyicai.net.newtransaction.LetterQueryInterface;
 import com.ruyicai.net.newtransaction.MsgUpdateReadState;
@@ -149,8 +154,8 @@ public class FeedbackListActivity extends Activity {
 		}
 		mTabHost.setOnTabChangedListener(scroeTabChangedListener);
 		userno = shellRW.getStringValue("userno");
-		getInfoNet(userno, latterIndex, false);
-		// initLinear(message,linearId[0],initmessage())
+//		getInfoNet(userno, latterIndex, false);
+		initLinear(systemInfo, linearId[0], initSystemInfo());
 	}
 
 	protected void onRestart() {
@@ -170,53 +175,72 @@ public class FeedbackListActivity extends Activity {
 	 */
 	TabHost.OnTabChangeListener scroeTabChangedListener = new TabHost.OnTabChangeListener() {
 		public void onTabChanged(String tabId) {
-			if (tabId.equals(titles[0])) {
-				type = 0;
-				initLinear(systemInfo, linearId[0], initmessage());
-			} else if (tabId.equals(titles[1])) {
-				// initLinear(scroedetail, linearId[0], view);
-				type = 1;
-				if (latterlist.size() > 0) {
-					initLinear(latter, linearId[1], initlatterview(true));
-				} else {
-					getInfoNet(userno, latterIndex, false);
-					if (isLatterSelectAll) {
-						isLatterSelectAll = false;
-						latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
+			RWSharedPreferences pre = new RWSharedPreferences(
+					FeedbackListActivity.this, "addInfo");
+			String sessionIdStr = pre.getStringValue(ShellRWConstants.SESSIONID);
+			if (sessionIdStr.equals("") || sessionIdStr == null) {
+				Intent intentSession = new Intent(FeedbackListActivity.this,
+						UserLogin.class);
+				startActivity(intentSession);
+			} else {
+				if (tabId.equals(titles[0])) {
+					type = 0;
+					feedback.setText(R.string.usercenter_feedback_bet);
+					initLinear(systemInfo, linearId[0], initSystemInfo());
+					latterEditLayout.setVisibility(View.GONE);
+					messageEditLayout.setVisibility(View.GONE);
+					editBut.setVisibility(View.GONE);
+					submitLayout.setVisibility(View.VISIBLE);
+				} else if (tabId.equals(titles[1])) {
+					// initLinear(scroedetail, linearId[0], view);
+					editBut.setVisibility(View.VISIBLE);
+					type = 1;
+					feedback.setText(R.string.usercenter_submitfeedback);
+					if (latterlist.size() > 0) {
+						initLinear(latter, linearId[1], initlatterview(true));
+						adapter.notifyDataSetChanged();
+					} else {
+						getInfoNet(userno, latterIndex, false);
+						if (isLatterSelectAll) {
+							isLatterSelectAll = false;
+							latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
+						}
 					}
+					/**add by yejc 20130422 start*/
+					if (isLatterEdit) {
+						editBut.setText(R.string.my_message_edit_cancel);
+						latterEditLayout.setVisibility(View.VISIBLE);
+						submitLayout.setVisibility(View.GONE);
+					} else {
+						editBut.setText(R.string.my_message_edit_text);
+						submitLayout.setVisibility(View.VISIBLE);
+					}
+					messageEditLayout.setVisibility(View.GONE);
+					/**add by yejc 20130422 end*/
+				} else if (tabId.equals(titles[2])) {
+					editBut.setVisibility(View.VISIBLE);
+					type = 2;
+					feedback.setText(R.string.usercenter_submitfeedback);
+					initLinear(message, linearId[2], initmessage());
+					feedbackcount.setVisibility(View.GONE);
+					if (!msgReadStateId.equals("")) {
+						msgUpdateReadState(msgReadStateId);// 更新已读状态
+					}
+					
+					/**add by yejc 20130422 start*/
+					if (isMessageEdit) {
+						editBut.setText(R.string.my_message_edit_cancel);
+						messageEditLayout.setVisibility(View.VISIBLE);
+						submitLayout.setVisibility(View.GONE);
+					} else {
+						editBut.setText(R.string.my_message_edit_text);
+						submitLayout.setVisibility(View.VISIBLE);
+					}
+					latterEditLayout.setVisibility(View.GONE);
+					/**add by yejc 20130422 end*/
 				}
-				/**add by yejc 20130422 start*/
-				if (isLatterEdit) {
-					editBut.setText(R.string.my_message_edit_cancel);
-					latterEditLayout.setVisibility(View.VISIBLE);
-					submitLayout.setVisibility(View.GONE);
-				} else {
-					editBut.setText(R.string.my_message_edit_text);
-					submitLayout.setVisibility(View.VISIBLE);
-				}
-				messageEditLayout.setVisibility(View.GONE);
-				adapter.notifyDataSetChanged();
-				/**add by yejc 20130422 end*/
-			} else if (tabId.equals(titles[2])) {
-				type = 2;
-				initLinear(message, linearId[2], initmessage());
-				feedbackcount.setVisibility(View.GONE);
-				if (!msgReadStateId.equals("")) {
-					msgUpdateReadState(msgReadStateId);// 更新已读状态
-				}
-				
-				/**add by yejc 20130422 start*/
-				if (isMessageEdit) {
-					editBut.setText(R.string.my_message_edit_cancel);
-					messageEditLayout.setVisibility(View.VISIBLE);
-					submitLayout.setVisibility(View.GONE);
-				} else {
-					editBut.setText(R.string.my_message_edit_text);
-					submitLayout.setVisibility(View.VISIBLE);
-				}
-				latterEditLayout.setVisibility(View.GONE);
-				/**add by yejc 20130422 end*/
 			}
+			
 
 		}
 	};
@@ -339,9 +363,19 @@ public class FeedbackListActivity extends Activity {
 		feedback = (Button) findViewById(R.id.usercenter_feedback_submitbtn);
 		feedback.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent intent1 = new Intent(FeedbackListActivity.this,
-						FeedBack.class);
-				startActivity(intent1);
+				if(mTabHost.getCurrentTab() == 0) {
+					Intent intent = new Intent(FeedbackListActivity.this,
+							MainGroup.class);
+					intent.putExtra(Constants.START_MAINGROUP_FROM_FEEDBACKLIST_KEY, 
+							Constants.START_MAINGROUP_FROM_FEEDBACKLIST_VALUE);
+					startActivity(intent);
+					finish();
+				} else {
+					Intent intent1 = new Intent(FeedbackListActivity.this,
+							FeedBack.class);
+					startActivity(intent1);
+				}
+				
 			}
 		});
 		
@@ -374,7 +408,7 @@ public class FeedbackListActivity extends Activity {
 			Button button = (Button) v;
 			switch (v.getId()) {
 			case R.id.my_message_edit_button:  //编辑按钮
-				if (type == 0) {
+				if (type == 1) {
 					if (getResources().getString(R.string.my_message_edit_text)
 							.equals(button.getText().toString())) {
 						isLatterEdit = true;
@@ -391,7 +425,7 @@ public class FeedbackListActivity extends Activity {
 					initLatterMapStatus(false);
 					messageEditLayout.setVisibility(View.GONE);
 					adapter.notifyDataSetChanged();
-				} else {
+				} else if(type == 2){
 					if (getResources().getString(R.string.my_message_edit_text)
 							.equals(button.getText().toString())) {
 						isMessageEdit = true;
@@ -747,7 +781,7 @@ public class FeedbackListActivity extends Activity {
 								view.setEnabled(true);
 							}
 							if (latterIndex == 0) {
-								initLinear(latter, linearId[0],
+								initLinear(latter, linearId[1],
 										initlatterview(false));
 							} else {
 								/**add by yejc 20130422 start*/
@@ -1145,5 +1179,72 @@ public class FeedbackListActivity extends Activity {
 		}
 		}
 		return null;
+	}
+	
+	private View initSystemInfo() {
+		tabSpecLinearView = (LinearLayout) mInflater.inflate(
+				R.layout.usercenter_listview_layout, null);
+		tabSpecListView = (ListView) tabSpecLinearView
+				.findViewById(R.id.usercenter_listview_queryinfo);
+		OperatingDataBases operatingDb = new OperatingDataBases(this);
+		List<String> infoList = operatingDb.getInfoList();
+		if (infoList != null) {
+			SystemInfoAdapter adapter = new SystemInfoAdapter(infoList);
+			tabSpecListView.setAdapter(adapter);
+		}
+		return tabSpecLinearView;
+	}
+	
+	private class SystemInfoAdapter extends BaseAdapter {
+
+		List<String> mInfoList;
+		
+		public SystemInfoAdapter(List<String> infoList) {
+			this.mInfoList = infoList;
+		}
+
+		@Override
+		public int getCount() {
+			return mInfoList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder holder = null;
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.informationitem, null);
+				holder = new ViewHolder();
+				holder.content = (TextView) convertView
+						.findViewById(R.id.informationcontent);
+				holder.layout = (RelativeLayout) convertView
+						.findViewById(R.id.informationitemlayout);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			holder.content.setText(mInfoList.get(position));
+			if (position % 2 == 0) {
+				holder.layout.setBackgroundResource(R.drawable.zx_list_bg_white);
+			} else {
+				holder.layout.setBackgroundResource(R.drawable.zx_list_bg_gray);
+			}
+			return convertView;
+		}
+		
+		private class ViewHolder {
+			RelativeLayout layout;
+			TextView content;
+		}
+		
 	}
 }
