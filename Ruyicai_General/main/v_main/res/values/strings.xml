@@ -1215,9 +1215,10 @@
 	</string>
     <string name="gold_transform_score">(1彩金=100分)</string>
     <string name="current_gold">当前彩金:</string>
-    <string name="get_free_gold_title">免费获取礼金</string>
+    <string name="get_free_gold_title">免费获取彩金</string>
     <string name="get_free_gold_summary">完成推荐应用的任务，免费获得彩金</string>
-    <string name="start_get_free_gold_title">立即获取礼金</string>
+    <string name="start_get_free_gold_title">立即获取彩金</string>
+    <string name="task_get_free_gold_title">做任务，免费获取彩金</string>
     <string name="get_free_gold_network_error">"网络异常请稍后重试"</string>
     <string name="account_withdraw_detail_title">提现详情</string>
     <string name="account_withdraw_number">提款订单号:</string>
@@ -1238,5 +1239,6 @@
     <string name="more_settings_programme">方案存档功能设置</string>
     <string name="more_settings_programme_title">方案存档设置</string>
     <string name="more_settings_programme_content">开通方案存档功能后，系统将自动给您的邮箱发送一份投注方案详情，以供备份查看。</string>
+    <string name="usercenter_feedback_bet">去投注</string>
     
 </resources>

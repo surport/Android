@@ -47,6 +47,7 @@ import com.ruyicai.activity.usercenter.detail.Trackdetail;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo2;
 import com.ruyicai.code.ssq.SsqZiZhiXuanCode;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -685,16 +686,11 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 					ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 					String amount = Integer.parseInt(info.getOneAmount()) / 100
 							* Integer.parseInt(info.getBetNum()) + "00";
+					
 					initBetPojo("1", "1", amount, info);
 					app.setPojo(betPojo);
 					AddViewMiss addViewMiss = new AddViewMiss(TrackQueryActivity.this);
 					CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
-//					codeInfo.setTouZhuCode(SsqZiZhiXuanCode.simulateZhuma(
-//							selectedRedBallList, selectedBlueBallList));
-//					codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
-//					codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
-//					codeInfo = setCodeInfoColor(codeInfo, selectedRedBallList,
-//							selectedBlueBallList);
 					addViewMiss.addCodeInfo(codeInfo);
 					app.setAddviewmiss(addViewMiss);
 					Intent intent = new Intent(TrackQueryActivity.this, OrderDetails.class);
@@ -896,6 +892,12 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		betPojo.setAmt(0);
 		betPojo.setIsSellWays("1");
 		betPojo.setOneAmount(info.getOneAmount());
+		betPojo.setZhushu(info.getBetNum());
+		if (Constants.LOTNO_DLT.equals(info.getLotno())) {
+			betPojo.setZhui(true);
+		} else {
+			betPojo.setZhui(false);
+		}
 	}
 
 	/**

@@ -52,6 +52,7 @@ import com.ruyicai.constant.AgentNumConstants;
 import com.ruyicai.constant.ChannelConstants;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.dialog.ShowNoConnectionDialog;
 import com.ruyicai.dialog.UpdateDialog;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
@@ -104,6 +105,11 @@ public class HomeActivity extends Activity {
 			case 2: {
 				mStartTask = new StartTask();
 				mStartTask.execute();
+				
+				/**add by yejc 20130620 end*/
+				Controller.getInstance(HomeActivity.this).readAdWallStateNet();
+				Controller.getInstance(HomeActivity.this).readUmpayStateNet();
+				/**add by yejc 20130620 end*/
 				break;
 			}
 			case 3: {

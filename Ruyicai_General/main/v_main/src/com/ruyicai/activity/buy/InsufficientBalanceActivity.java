@@ -3,7 +3,11 @@ package com.ruyicai.activity.buy;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.AccountListActivity;
 import com.ruyicai.activity.account.DirectPayActivity;
+import com.ruyicai.activity.account.GetFreeGoldActivity;
+import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -31,6 +35,9 @@ public class InsufficientBalanceActivity extends Activity {
 	private Button directlyPayButton;
 	/** 去充值按钮 */
 	private Button toRechargeButton;
+	
+	/** 获取彩金按钮 */
+	private Button toGetGoldButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +69,9 @@ public class InsufficientBalanceActivity extends Activity {
 		// 初始化去充值按钮
 		toRechargeButton = (Button) findViewById(R.id.insufficient_balance_button_recharge);
 		toRechargeButton.setOnClickListener(new ButtonOnClickLisntener());
+		
+		// 初始化去获取彩金按钮
+		initAdWallDispayState();
 	}
 
 	class ButtonOnClickLisntener implements OnClickListener {
@@ -79,10 +89,30 @@ public class InsufficientBalanceActivity extends Activity {
 						AccountListActivity.class);
 				intent.putExtra("isonKey", "fasle");
 				break;
+				
+			case R.id.free_get_gold_button:
+				intent = new Intent(InsufficientBalanceActivity.this,
+						GetFreeGoldActivity.class);
+				break;	
 			}
 
 			startActivity(intent);
 		}
 
+	}
+	
+	/**
+	 * 初始化广告积分墙的显示状态
+	 */
+	private void initAdWallDispayState() {
+		toGetGoldButton = (Button) findViewById(R.id.free_get_gold_button);
+		RWSharedPreferences shellRW = new RWSharedPreferences(
+				this, ShellRWConstants.ACCOUNT_DISPAY_STATE);
+		boolean isAdWallDisplay = shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+		if (isAdWallDisplay) {
+			toGetGoldButton.setOnClickListener(new ButtonOnClickLisntener());
+		} else {
+			toGetGoldButton.setVisibility(View.GONE);
+		}
 	}
 }

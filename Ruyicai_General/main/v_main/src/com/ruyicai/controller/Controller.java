@@ -6,12 +6,15 @@ import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.InternetUtils;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -206,5 +209,56 @@ public class Controller {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	
+	/**
+	 * 读取广告墙的显示状态
+	 */
+	public void readAdWallStateNet() {
+		final RWSharedPreferences shellRW = new RWSharedPreferences(
+				mContext, ShellRWConstants.ACCOUNT_DISPAY_STATE);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+						.rechargeDescribe("scoreWallDisplay");
+				try {
+					String content = jsonObject.get("content").toString();
+					if ("true".equals(content)) {
+						shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, true);
+					} else {
+						shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	
+	/**
+	 * 读取联动优势话费充值的显示状态
+	 */
+	public void readUmpayStateNet() {
+		final RWSharedPreferences shellRW = new RWSharedPreferences(
+				mContext, ShellRWConstants.ACCOUNT_DISPAY_STATE);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+						.rechargeDescribe("umpayHfChargeDisplay");
+				try {
+					String content = jsonObject.get("content").toString();
+					if ("true".equals(content)) {
+						shellRW.putBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, true);
+					} else {
+						shellRW.putBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, false);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 }

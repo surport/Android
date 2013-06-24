@@ -48,7 +48,7 @@ public class Constants {
 	/**
 	 * 打新包需要修改
 	 */
-	public static String SOFTWARE_VERSION = "3.8.2";
+	public static String SOFTWARE_VERSION = "3.8.3";
 	public static String MERCHANT_PACKAGE = "com.palmdream.RuyicaiAndroid";// 商户包名
 	/**
 	 * 新浪分享修改
@@ -328,6 +328,8 @@ public class Constants {
 	public static final String UMPAY_BANKID = "ump003";
 	public static final String isSSQON = "isSSQON";
 	public static final String isDLTON = "isDLTON";
+	public static final String ADWALL_DISPLAY_STATE = "adWallDisplayState";
+	public static final String UMPAY_PHONE_DISPLAY_STATE = "umpayPhoneDisplayState";
 	/**add by yejc 20130527 start*/
 	
 }

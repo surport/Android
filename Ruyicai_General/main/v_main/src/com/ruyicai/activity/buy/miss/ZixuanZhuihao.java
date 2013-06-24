@@ -197,9 +197,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	}
 
 	private void getNetIssue() {
-
 		new Thread(new Runnable() {
-
 			@Override
 			public void run() {
 				final String issue = PublicMethod.toNetIssue(betAndGift
@@ -318,6 +316,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		/**add by pengcx 20130517 start*/
 		zhuiqishezhi.removeAllViews();
 		/**add by pengcx 20130517 end*/
+		subscribeInfocheck.clear(); //add by yejc 20130621
 		for (int i = 0; i < iProgressQishu; i++) {
 			checkinfo[i] = new Checktouinfo();
 			final int index = i;
@@ -473,12 +472,20 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	 * 投注提示框中的信息
 	 */
 	public void getTouzhuAlert() {
-		zhushu.setText(addviewmiss.getAllZhu() + "注     ");
-		if (state == 0 || state == 1) {
-			jine.setText("金额：" + iProgressQishu * addviewmiss.getAllAmt()
-					* iProgressBeishu + "元");
-		} else if (state == 2) {
-			jine.setText("金额：" + getSubstringforamt() + "元");
+		if (isFromTrackQuery) {
+			/**add by yejc 20130621 start*/
+			zhushu.setText(betAndGift.getZhushu() + "注     ");
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+			jine.setText("金额：" + betAndGift.getAmt()*zhuShu*iProgressQishu * iProgressBeishu+ "元");
+			/**add by yejc 20130621 end*/
+		} else {
+			zhushu.setText(addviewmiss.getAllZhu() + "注     ");
+			if (state == 0 || state == 1) {
+				jine.setText("金额：" + iProgressQishu * addviewmiss.getAllAmt()
+						* iProgressBeishu + "元");
+			} else if (state == 2) {
+				jine.setText("金额：" + getSubstringforamt() + "元");
+			}
 		}
 	}
 
@@ -546,16 +553,22 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setBatchnum("" + iProgressQishu);// batchnum 追号期数 默认为1（不追号）
 		/** add by yejc 20130510 start */
 		if (isFromTrackQuery) {
-			betAndGift.setBet_code(betAndGift.getBet_code());
+			/**add by yejc 20130621 start*/
+			String betCode = betAndGift.getBet_code();
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+			int amt = betAndGift.getAmt() * 100;
+			String zhuMa = PublicMethod.isTen(iProgressBeishu) + "_" + amt
+			+ "_" + zhuShu * amt;
+			betAndGift.setAmount(""+zhuShu * amt * iProgressBeishu);
+			
+			String subString = betCode.substring(0, betCode.indexOf("_")+1);
+			betAndGift.setBet_code(subString+zhuMa);
+			/**add by yejc 20130621 end*/
 		} else {
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		}
 		/** add by yejc 20130510 end */
-		/** close by yejc 20130510 start */
-		// betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-		// betAndGift.getAmt() * 100));
-		/** close by yejc 20130510 end */
 
 		if (state == 2) {
 			betAndGift.setSubscribeInfo(getSubstringforset());
