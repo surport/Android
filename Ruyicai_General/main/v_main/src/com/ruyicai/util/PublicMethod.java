@@ -2700,15 +2700,7 @@ public class PublicMethod {
 					int count) {
 			}
 		});
-		// mTextBeishu.setOnFocusChangeListener(new OnFocusChangeListener(){
-		// public void onFocusChange(View v, boolean hasFocus) {
-		// if(!hasFocus){
-		// if(mTextBeishu.getText().toString().equals("")){
-		// mTextBeishu.setText("1");
-		// }
-		// }
-		// }
-		// });
+
 	}
 
 	public static void setEditOnclick(final EditText mTextBeishu,

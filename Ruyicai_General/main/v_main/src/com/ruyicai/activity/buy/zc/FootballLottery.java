@@ -2,6 +2,7 @@ package com.ruyicai.activity.buy.zc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
@@ -9,6 +10,7 @@ import android.widget.TabHost;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
+import com.tencent.weibo.api.TAPI;
 import com.umeng.analytics.MobclickAgent;
 
 public class FootballLottery extends BuyActivityGroup {
@@ -21,6 +23,7 @@ public class FootballLottery extends BuyActivityGroup {
 	private Class[] allId = { FootballSFLottery.class,
 			FootballChooseNineLottery.class, FootballGoalsLottery.class,
 			FootballSixSemiFinal.class };
+	public static int tabPosition;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,6 +35,14 @@ public class FootballLottery extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		getInfo();
 		MobclickAgent.onEvent(this, "zucai"); // BY贺思明 点击首页的“足彩”图标
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		Log.i("aaa", tabPosition + "rr");
+		setTab(tabPosition);
 	}
 
 	public void getInfo() {

@@ -299,6 +299,14 @@ public class BFView extends JcMainView {
 							info.getHome(), info.getAway());
 				}
 			});
+			
+			/** add by pnegcx 20130624 start */
+			if (info.isDan()) {
+				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+			} else {
+				btnDan.setBackgroundResource(R.drawable.jc_btn);
+			}
+			/** add by pnegcx 20130624 end */
 			return convertView;
 		}
 

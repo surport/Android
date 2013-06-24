@@ -208,16 +208,16 @@ public class SPfView extends JcMainView {
 				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
 			}
 		}
-		
-		//add by yejc 20130402
+
+		// add by yejc 20130402
 		private View addLayout(final Info info, String str) {
-			View convertView= mInflater.inflate(R.layout.buy_jc_main_listview_item_other,
-					null);
+			View convertView = mInflater.inflate(
+					R.layout.buy_jc_main_listview_item_other, null);
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
-			
+
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 			final TextView homeOdds = (TextView) convertView
@@ -230,26 +230,26 @@ public class SPfView extends JcMainView {
 					.findViewById(R.id.guest_team_name);
 			final TextView guestOdds = (TextView) convertView
 					.findViewById(R.id.guest_team_odds);
-			
+
 			TextView analysis = (TextView) convertView
 					.findViewById(R.id.game_analysis);
 			final Button btnDan = (Button) convertView
 					.findViewById(R.id.game_dan);
-			
+
 			final LinearLayout homeLayout = (LinearLayout) convertView
 					.findViewById(R.id.home_layout);
 			final LinearLayout vsLayout = (LinearLayout) convertView
 					.findViewById(R.id.vs_layout);
 			final LinearLayout guestLayout = (LinearLayout) convertView
 					.findViewById(R.id.guest_layout);
-			
+
 			gameName.setText(info.getTeam());
-			String date = getWeek(info.getWeeks()) +" "+info.getTeamId()+"\n"
-					+ PublicMethod.getEndTime(info.getTimeEnd()) + " "+"(截)";
+			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
+					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+					+ "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
-			
-			
+
 			if (isRQSPF) {
 				if (!"".equals(info.getLetPoint())) {
 					textVS.setText(info.getLetPoint());
@@ -266,27 +266,30 @@ public class SPfView extends JcMainView {
 				guestOdds.setText(info.getFail());
 			}
 			guestTeam.setText(info.getAway());
-			
+
 			gameName.setOnClickListener(new View.OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					if (context instanceof JcMainActivity) {
-						JcMainActivity activity = (JcMainActivity)context;
+						JcMainActivity activity = (JcMainActivity) context;
 						activity.createTeamDialog();
 					}
 				}
 			});
-			
+
 			if (info.isFail()) {
-				guestLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-				guestTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+				guestLayout
+						.setBackgroundResource(R.drawable.team_name_bj_yellow);
+				guestTeam
+						.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 			} else {
 				guestLayout.setBackgroundResource(R.drawable.team_name_bj);
 				guestTeam.setBackgroundResource(R.drawable.team_name_bj_top);
 			}
 			if (info.isWin()) {
-				homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+				homeLayout
+						.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 			} else {
 				homeLayout.setBackgroundResource(R.drawable.team_name_bj);
@@ -299,7 +302,15 @@ public class SPfView extends JcMainView {
 				vsLayout.setBackgroundResource(R.drawable.team_name_bj);
 				textVS.setBackgroundResource(R.drawable.team_name_bj_top);
 			}
-			
+
+			/** add by pnegcx 20130624 start */
+			if (info.isDan()) {
+				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+			} else {
+				btnDan.setBackgroundResource(R.drawable.jc_btn);
+			}
+			/** add by pnegcx 20130624 end */
+
 			homeLayout.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -307,11 +318,13 @@ public class SPfView extends JcMainView {
 						info.setWin(!info.isWin());
 						if (info.isWin()) {
 							info.onclikNum++;
-							homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+							homeLayout
+									.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						} else {
 							info.onclikNum--;
-							homeLayout.setBackgroundResource(R.drawable.team_name_bj);
+							homeLayout
+									.setBackgroundResource(R.drawable.team_name_bj);
 							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top);
 						}
 						isNoDan(info, btnDan);
@@ -345,12 +358,16 @@ public class SPfView extends JcMainView {
 						info.setFail(!info.isFail());
 						if (info.isFail()) {
 							info.onclikNum++;
-							guestLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-							guestTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+							guestLayout
+									.setBackgroundResource(R.drawable.team_name_bj_yellow);
+							guestTeam
+									.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						} else {
 							info.onclikNum--;
-							guestLayout.setBackgroundResource(R.drawable.team_name_bj);
-							guestTeam.setBackgroundResource(R.drawable.team_name_bj_top);
+							guestLayout
+									.setBackgroundResource(R.drawable.team_name_bj);
+							guestTeam
+									.setBackgroundResource(R.drawable.team_name_bj_top);
 						}
 						isNoDan(info, btnDan);
 						setTeamNum();
@@ -383,10 +400,11 @@ public class SPfView extends JcMainView {
 							info.getHome(), info.getAway());
 				}
 			});
-			
+
 			return convertView;
 		}
-		//end
+
+		// end
 
 		class ViewHolder {
 			TextView time;

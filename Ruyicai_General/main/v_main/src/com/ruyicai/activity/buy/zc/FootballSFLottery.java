@@ -27,6 +27,7 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -529,6 +530,8 @@ public class FootballSFLottery extends FootballFourteen implements
 		RWSharedPreferences pre = new RWSharedPreferences(
 				FootballSFLottery.this, "addInfo");
 		sessionid = pre.getStringValue("sessionid");
+		FootballLottery.tabPosition = 0;
+		Log.i("aaa", FootballLottery.tabPosition + "ss");
 		if (sessionid == null || sessionid.equals("")) {
 			Intent intentSession = new Intent(FootballSFLottery.this,
 					UserLogin.class);
@@ -555,10 +558,10 @@ public class FootballSFLottery extends FootballFourteen implements
 		intent.putExtra("tpye", "zc");
 		intent.putExtra("zhuma", getZhuma());
 		startActivity(intent);
-		for (int i = 0; i < ballTables.size(); i++) {
-			ballTables.get(i).clearAllHighlights();
-		}
-		setTeamNum(0);
+//		for (int i = 0; i < ballTables.size(); i++) {
+//			ballTables.get(i).clearAllHighlights();
+//		}
+//		setTeamNum(0);
 	}
 
 	public boolean isTouZhu() {

@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.more.LuckChoose2;
 import com.ruyicai.activity.notice.NoticeActivityGroup;
@@ -78,29 +79,31 @@ public class BuyActivityGroup extends ActivityGroup {
 	protected boolean isRun = true;// 线程是否运行变量
 	private long lesstime = 0;
 	private String batchCode = "";
-	/*Add by fansm 20130417 start*/
-    protected TextView lastCodeTxt;
+	/* Add by fansm 20130417 start */
+	protected TextView lastCodeTxt;
 	protected Button refreshBtn;
-	/*Add by fansm 20130417 end*/
-	
-	/**add by yejc 20130422 start*/
+	/* Add by fansm 20130417 end */
+
+	/** add by yejc 20130422 start */
 	protected String event;
 	public static final String REQUEST_EVENT = "event";
 	public boolean isFromTrackQuery = false;
-	/**add by yejc 20130422 start*/
+
+	/** add by yejc 20130422 start */
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		/*Add by fansm 20130418 start*/
-		if (Constants.isDebug) PublicMethod.outLog("BuyActivityGroup", 
-				"onCreate()");
-		/*Add by fansm 20130418 end*/
+		/* Add by fansm 20130418 start */
+		if (Constants.isDebug)
+			PublicMethod.outLog("BuyActivityGroup", "onCreate()");
+		/* Add by fansm 20130418 end */
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.buy_main_group);
 		relativeLayout1 = (RelativeLayout) findViewById(R.id.last_batchcode);
 		context = this;
-		isFromTrackQuery = getIntent().getBooleanExtra(TrackQueryActivity.FLAG_FROM_TRACK_QUERY, false);
+		isFromTrackQuery = getIntent().getBooleanExtra(
+				TrackQueryActivity.FLAG_FROM_TRACK_QUERY, false);
 		mTabHost = (TabHost) findViewById(R.id.tab_host);
 		tabWidget = mTabHost.getTabWidget();
 		mTabHost.setup(getLocalActivityManager());
@@ -113,6 +116,10 @@ public class BuyActivityGroup extends ActivityGroup {
 				for (int i = 0; i < titles.length; i++) {
 					if (tabId.equals(titles[i])) {
 						title.setText(topTitles[i]);
+//						if (Constants.LOTNO_ZC.equals(lotNo)) {
+//							FootballLottery.tabPosition = i;
+//							Log.i("aaa", FootballLottery.tabPosition + "ss");
+//						}
 						return;
 					}
 				}
@@ -155,7 +162,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		// 标题按钮
 		imgIcon = (Button) findViewById(R.id.layout_main_img_return);
 		imgIcon.setVisibility(View.VISIBLE);
-		/*Add by fansm 20130417 start*/
+		/* Add by fansm 20130417 start */
 		refreshBtn = (Button) findViewById(R.id.refresh_code);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
 		refreshBtn.setOnClickListener(new OnClickListener() {
@@ -163,7 +170,7 @@ public class BuyActivityGroup extends ActivityGroup {
 				setlastbatchcode(lotNo);
 			}
 		});
-		/*Add by fansm 20130417 end*/
+		/* Add by fansm 20130417 end */
 		// 上期开奖号码
 		lastcode = (TextView) findViewById(R.id.last_batchcode_textlable_red);
 		// ImageView的返回事件
@@ -197,7 +204,7 @@ public class BuyActivityGroup extends ActivityGroup {
 			}
 		});
 		popupwindow.showAsDropDown(imgIcon);
-		//玩法介绍
+		// 玩法介绍
 		final LinearLayout layoutGame = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout1);
 		layoutGame.setOnClickListener(new OnClickListener() {
@@ -211,8 +218,8 @@ public class BuyActivityGroup extends ActivityGroup {
 				popupwindow.dismiss();
 			}
 		});
-		
-		//历史开奖
+
+		// 历史开奖
 		final LinearLayout layoutHosity = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout2);
 		layoutHosity.setOnClickListener(new OnClickListener() {
@@ -225,8 +232,8 @@ public class BuyActivityGroup extends ActivityGroup {
 			}
 
 		});
-		
-		//投注查询
+
+		// 投注查询
 		final LinearLayout layoutQuery = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_layout4);
 		layoutQuery.setOnClickListener(new OnClickListener() {
@@ -257,9 +264,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		final LinearLayout layoutParentPicture = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout6);
 		addSimulateSelectNumber(popupView);
-		
-		
-	
+
 		if (isPicture()) {
 			layoutParentPicture.setVisibility(View.VISIBLE);
 			layoutPicture.setOnClickListener(new OnClickListener() {
@@ -324,6 +329,7 @@ public class BuyActivityGroup extends ActivityGroup {
 
 	/**
 	 * 跳转历史开奖页面
+	 * 
 	 * @param isHosity
 	 */
 	public void pictureOnclik(boolean isHosity) {
@@ -492,7 +498,7 @@ public class BuyActivityGroup extends ActivityGroup {
 			}
 			startActivity(intent);
 		}
-		//内蒙快三
+		// 内蒙快三
 		if (lotNo == Constants.LOTNO_NMK3) {
 			NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_NMK3_LISTVIEW;
 			Intent intent = new Intent(this, NoticeActivityGroup.class);
@@ -637,12 +643,13 @@ public class BuyActivityGroup extends ActivityGroup {
 	 */
 
 	public void setlastbatchcode(final String type) {
-        /**add by fansm 20130417 start*/
-		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), 
-				"setlastbatchcode("+type+")");
+		/** add by fansm 20130417 start */
+		if (Constants.isDebug)
+			PublicMethod.outLog(this.getClass().getSimpleName(),
+					"setlastbatchcode(" + type + ")");
 		lastCodeTxt.setText(getString(R.string.refresh_lastCode_msg));
 		lastcode.setText("");
-		/**add by fansm 20130417 end*/
+		/** add by fansm 20130417 end */
 		final Handler tHandler = new Handler();
 
 		Thread thread = new Thread(new Runnable() {
@@ -663,9 +670,9 @@ public class BuyActivityGroup extends ActivityGroup {
 							@Override
 							public void run() {
 								lastcode.setText(parseStrforcode(type, wincode));
-								/*Add by fansm 20130417 start*/
+								/* Add by fansm 20130417 start */
 								lastCodeTxt.setText("第" + batchCode + "期开奖：");
-								/*Add by fansm 20130417 end*/
+								/* Add by fansm 20130417 end */
 							}
 						});
 
@@ -702,10 +709,11 @@ public class BuyActivityGroup extends ActivityGroup {
 		topTitle.setText(titles[index]);
 		Intent intent = new Intent(BuyActivityGroup.this, allId[index]);
 		intent.putExtra("index", index);
-		/**add by yejc 20130422 start*/
+		/** add by yejc 20130422 start */
 		intent.putExtra(REQUEST_EVENT, event);
-		intent.putExtra(TrackQueryActivity.FLAG_FROM_TRACK_QUERY, isFromTrackQuery);
-		/**add by yejc 20130422 end*/
+		intent.putExtra(TrackQueryActivity.FLAG_FROM_TRACK_QUERY,
+				isFromTrackQuery);
+		/** add by yejc 20130422 end */
 		firstSpec = mTabHost.newTabSpec(titles[index])
 				.setIndicator(indicatorTab).setContent(intent);
 		mTabHost.addTab(firstSpec);

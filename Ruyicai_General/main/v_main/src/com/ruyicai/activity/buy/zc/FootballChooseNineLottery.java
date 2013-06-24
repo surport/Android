@@ -27,6 +27,7 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -861,6 +862,8 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		RWSharedPreferences pre = new RWSharedPreferences(
 				FootballChooseNineLottery.this, "addInfo");
 		String sessionIdStr = pre.getStringValue("sessionid");
+		FootballLottery.tabPosition = 1;
+		Log.i("aaa", FootballLottery.tabPosition + "ss");
 		if (sessionIdStr == null || sessionIdStr.equals("")) {
 			Intent intentSession = new Intent(FootballChooseNineLottery.this,
 					UserLogin.class);
@@ -886,10 +889,10 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 		intent.putExtra("tpye", "zc");
 		intent.putExtra("zhuma", getZhuMa());
 		startActivity(intent);
-		for (int i = 0; i < ballTables.size(); i++) {
-			ballTables.get(i).clearAllHighlights();
-		}
-		setTeamNum(0);
+//		for (int i = 0; i < ballTables.size(); i++) {
+//			ballTables.get(i).clearAllHighlights();
+//		}
+//		setTeamNum(0);
 	}
 
 	/**
