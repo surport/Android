@@ -2039,9 +2039,9 @@ public class PublicMethod {
 			if (error_code.equals("0000")) {
 				// 成功获取到了期号信息
 				issueStr = allIssue.getString("batchcode");
-			}else if(error_code.equals("0")){
+			}/*else if(error_code.equals("0")){
 				issueStr = allIssue.getString("message");
-			}else{
+			}*/else{
 				issueStr = "";
 			}
 			/*Modify by pengcx 20130515 end*/

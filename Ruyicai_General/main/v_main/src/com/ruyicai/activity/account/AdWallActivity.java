@@ -74,6 +74,7 @@ public class AdWallActivity extends Activity implements AdUtilityListener{
 
 		@Override
 		public void onDismissScreen(ImmobView arg0) {
+			finish();
 		}
 
 		@Override

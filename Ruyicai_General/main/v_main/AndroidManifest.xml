@@ -77,7 +77,8 @@
         <activity
             android:name="com.ruyicai.activity.home.MainGroup"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance">
         </activity>
         <!-- more -->
         <activity
@@ -1127,7 +1128,7 @@
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
-                <category android:name="com.example.jpushdemo.app" />
+                <category android:name="com.palmdream.RuyicaiAndroid" />
             </intent-filter>
         </receiver>
 

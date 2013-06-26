@@ -658,4 +658,15 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		}
 
 	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		String value = intent.getStringExtra(Constants.START_MAINGROUP_FROM_FEEDBACKLIST_KEY);
+		if (Constants.START_MAINGROUP_FROM_FEEDBACKLIST_VALUE.equals(value)) {
+			mTabHost.setCurrentTab(0);
+		}
+	}
+	
+	
 }

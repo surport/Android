@@ -330,6 +330,8 @@ public class Constants {
 	public static final String isDLTON = "isDLTON";
 	public static final String ADWALL_DISPLAY_STATE = "adWallDisplayState";
 	public static final String UMPAY_PHONE_DISPLAY_STATE = "umpayPhoneDisplayState";
+	public static final String START_MAINGROUP_FROM_FEEDBACKLIST_KEY = "start_maingroup_for_feedbacklistactivity_key";
+	public static final String START_MAINGROUP_FROM_FEEDBACKLIST_VALUE = "start_maingroup_for_feedbacklistactivity_value";
 	/**add by yejc 20130527 start*/
 	
 }

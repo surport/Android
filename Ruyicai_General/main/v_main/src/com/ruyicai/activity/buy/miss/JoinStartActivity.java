@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -271,61 +272,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	}
 
 	public void onEditTextClik() {
-		buyEdit.addTextChangedListener(new TextWatcher() {
-
-			public void afterTextChanged(Editable s) {
-				String amount = buyEdit.getText().toString();
-				renText.setText("占总额" + progress(isNull(amount), "" + allAtm)
-						+ "%");// 总金额
-				setEditText();
-			}
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-
-			}
-
-		});
-		minEdit.addTextChangedListener(new TextWatcher() {
-
-			public void afterTextChanged(Editable s) {
-				setEditText();
-			}
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-			}
-
-		});
-		safeEdit.addTextChangedListener(new TextWatcher() {
-
-			public void afterTextChanged(Editable s) {
-				String amount = safeEdit.getText().toString();
-				baoText.setText("占总额" + progress(isNull(amount), "" + allAtm)
-						+ "%");// 总金额
-				setEditText();
-			}
-
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-			}
-
-		});
+		buyEdit.addTextChangedListener(new EditTextWatcher(buyEdit));
+		minEdit.addTextChangedListener(new EditTextWatcher(minEdit));
+		safeEdit.addTextChangedListener(new EditTextWatcher(safeEdit));
 	}
 
 	public void setEditText() {
@@ -494,10 +443,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 					betAndGift.getAmt() * 100));
 		}
 		/**add by yejc 20130510 start*/
-		/**close by yejc 20130510 start*/
-//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-//				betAndGift.getAmt() * 100));
-		/**close by yejc 20130510 end*/
 	}
 
 	/**
@@ -947,5 +892,40 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 						+ allAtm) + "%");// 总金额
 	}
 	/**add by yejc 20130520 end*/
+	
+	/**add by yejc 20130624 start*/
+	private class EditTextWatcher implements TextWatcher {
+		public EditText mEdit = null;
+		public EditTextWatcher(EditText et) {
+			mEdit = et;
+		}
+
+		public void afterTextChanged(Editable s) {
+			String amount = mEdit.getText().toString();
+			if (R.id.layout_join_edit_rengou == mEdit.getId()) {
+				renText.setText("占总额" + progress(isNull(amount), "" + allAtm)
+						+ "%");// 总金额
+			} else if (R.id.layout_join_edit_baodi == mEdit.getId()) {
+				baoText.setText("占总额" + progress(isNull(amount), "" + allAtm)
+						+ "%");// 总金额
+			}
+			setEditText();
+			String str = s.toString();
+			if (str.length() == 1 && str.startsWith("0")) {
+				mEdit.setText("");
+			} else if (str.length() > 1 && str.startsWith("0")) {
+				mEdit.setText(str.subSequence(1, str.length()));
+			}
+		}
+
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+		}
+
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+		}
+	}
+	/**add by yejc 20130624 end*/
 	
 }
