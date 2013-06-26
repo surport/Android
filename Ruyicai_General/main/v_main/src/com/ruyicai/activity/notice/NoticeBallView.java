@@ -81,6 +81,7 @@ public class NoticeBallView extends View {
 	float startY;
 	Toast toast;
 	TextView textCode;
+	private boolean isFirstDraw = true;
 
 	public boolean onTouchEvent(MotionEvent ev) {
 		final int action = ev.getAction();
@@ -899,10 +900,14 @@ public class NoticeBallView extends View {
 							canvas.drawBitmap(bitBlueBall, FIRST_WITH + j
 									* WITH, WITH + i * WITH, null);
 						}
-						BallPosition ball = new BallPosition(FIRST_WITH + j
-								* WITH, WITH + i * WITH, WITH,
-								PublicMethod.isTen(balls[n]));
-						ballsList.add(ball);
+						
+						if(isFirstDraw){
+							BallPosition ball = new BallPosition(FIRST_WITH + j
+									* WITH, WITH + i * WITH, WITH,
+									PublicMethod.isTen(balls[n]));
+							ballsList.add(ball);
+						}
+						
 						p.setColor(Color.WHITE);
 						canvas.drawText("" + PublicMethod.isTen(balls[n]),
 								FIRST_WITH + j * WITH + with, WITH + i * WITH
@@ -926,7 +931,8 @@ public class NoticeBallView extends View {
 				}
 			}
 		}
-
+		
+		isFirstDraw = false;
 	}
 
 	public void onDrawBallOnclik(Canvas canvas, float f, float g, String num) {
