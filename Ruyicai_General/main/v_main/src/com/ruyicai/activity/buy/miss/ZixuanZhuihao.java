@@ -1,11 +1,9 @@
 package com.ruyicai.activity.buy.miss;
 
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
@@ -16,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,14 +30,12 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.usercenter.TrackQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
@@ -557,16 +552,39 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			String betCode = betAndGift.getBet_code();
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
 			int amt = betAndGift.getAmt() * 100;
-			String zhuMa = PublicMethod.isTen(iProgressBeishu) + "_" + amt
-			+ "_" + zhuShu * amt;
-			betAndGift.setAmount(""+zhuShu * amt * iProgressBeishu);
 			
-			String subString = betCode.substring(0, betCode.indexOf("_")+1);
-			betAndGift.setBet_code(subString+zhuMa);
+			if (betCode.contains("!")) {
+				String betCodesArray[] = betCode.split("!");
+				String betCodes = "";
+				int allAmount = 0;
+				for (int i = 0; i < betCodesArray.length; i++) {
+					String code = betCodesArray[i];
+					String betCodeStr = code.substring(0, code.indexOf("_")+1);
+					String amount = code.substring(code.lastIndexOf("_")+1, code.length());
+					int zhushu_i = Integer.valueOf(amount)/200;
+					
+					String zhuMa_i = PublicMethod.isTen(iProgressBeishu) + "_" + amt
+					+ "_" + zhushu_i * amt;
+					betCodes = betCodes + betCodeStr + zhuMa_i + "!";
+					allAmount = allAmount + (zhushu_i * amt * iProgressBeishu);
+				}
+				if (betCodes.endsWith("!")) {
+					betCodes = betCodes.substring(0, betCodes.length()-1);
+				}
+				betAndGift.setAmount(String.valueOf(allAmount));
+				betAndGift.setBet_code(betCodes);
+			} else {
+				String subString = betCode.substring(0, betCode.indexOf("_")+1);
+				String zhuMa = PublicMethod.isTen(iProgressBeishu) + "_" + amt
+						+ "_" + zhuShu * amt;
+				betAndGift.setAmount(""+zhuShu * amt * iProgressBeishu);
+				betAndGift.setBet_code(subString+zhuMa);
+			}
+			
 			/**add by yejc 20130621 end*/
 		} else {
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-					betAndGift.getAmt() * 100));
+			betAndGift.getAmt() * 100));
 		}
 		/** add by yejc 20130510 end */
 

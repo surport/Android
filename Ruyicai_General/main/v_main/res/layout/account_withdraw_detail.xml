@@ -164,13 +164,11 @@
                     <View
                         android:layout_width="1dip"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:background="@color/black" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="1dip"
                         android:layout_weight="2"
                         android:orientation="vertical" >
 
@@ -307,7 +305,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="35dip"
-                            android:orientation="horizontal" >
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="match_parent"
