@@ -518,7 +518,7 @@ public class UserLogin extends Activity implements TextWatcher {
 				boolean isMobile_spExist = mspHelper.detectMobile_sp(Constants.ALIPAY_PLUGIN_NAME,
 						Constants.ALIPAY_PACK_NAME);
 				if (isMobile_spExist) {
-					pay();
+					alixPayLogin();
 				}
 			}
 		});
@@ -1159,8 +1159,6 @@ public class UserLogin extends Activity implements TextWatcher {
 			}
 		}
 		
-		bindService(new Intent(IAlixPay.class.getName()), mAlixPayConnection,
-				Context.BIND_AUTO_CREATE);
 	}
 
 	// sina 微博
@@ -1439,10 +1437,12 @@ public class UserLogin extends Activity implements TextWatcher {
 		}
 	};
 	
-	private void pay() {
+	private void alixPayLogin() {
 		mAlixPayDialog.show();
 		new Thread(new Runnable() {
 			public void run() {
+				bindService(new Intent(IAlixPay.class.getName()), mAlixPayConnection,
+						Context.BIND_AUTO_CREATE);
 				String alipaySign = Controller.getInstance(context).getAlipaySign();
 				try {
 					String info = mAlixPay.Pay(alipaySign);
@@ -1459,6 +1459,7 @@ public class UserLogin extends Activity implements TextWatcher {
 						mAlixPayDialog.dismiss();
 					}
 				}
+				unbindService(mAlixPayConnection);
 			}
 		}).start();
 	}
@@ -1466,6 +1467,6 @@ public class UserLogin extends Activity implements TextWatcher {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		unbindService(mAlixPayConnection);
+//		unbindService(mAlixPayConnection);
 	}
 }

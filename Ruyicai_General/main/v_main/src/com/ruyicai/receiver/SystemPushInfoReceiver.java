@@ -41,7 +41,6 @@ public class SystemPushInfoReceiver extends BroadcastReceiver {
 //            int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
 //            Log.d(TAG, "接收到推送下来的通知的ID: " + notifactionId);
             String pushInfo = bundle.getString(JPushInterface.EXTRA_ALERT);
-            Log.i("yejc", "===========pushInfo===="+pushInfo);
             OperatingDataBases operatingDB = new OperatingDataBases(context);
         	operatingDB.insert(pushInfo);
         	
