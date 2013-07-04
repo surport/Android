@@ -28,9 +28,10 @@ public class HghtOrderdeail extends BuyActivityGroup {
 		super.onCreate(savedInstanceState);
 		ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 		addview = app.getAddview();
-		lotnoString	= app.getPojo().getLotno();
+		lotnoString = app.getPojo().getLotno();
 		isIssue(false);
-		if (addview.getSize() <= 1 && !lotnoString.equals(Constants.LOTNO_NMK3)) {
+
+		if (addview.getSize() <= 1) {
 			init(titles, topTitles, allId);
 		} else {
 			init(titles2, topTitles2, allId2);

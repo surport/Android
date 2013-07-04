@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.jc.JcMainView;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.dialog.MessageDialog;
+import com.ruyicai.net.newtransaction.MsgUpdateReadState;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -39,7 +41,6 @@ public class TouzhuDialog {
 	String alertMsg;
 	int teamNum = 0;
 	int oneAmt = 2;
-	private TextView alertText, prizeText;
 	private JcMainView jcMainView;
 	public double freedomMaxprize = 0;
 	public double freedomMixprize = 0;
@@ -47,6 +48,18 @@ public class TouzhuDialog {
 	public boolean isRadio = false;// false是自由过关,true是多串过关
 	private final int MAXAMT = 200000;// 最大投注金额
 	String returnStr = "";
+
+	/** add by pengcx 20130703 start */
+	private TextView lotoTypeTextView;
+	private TextView gameNumTextView;
+	private TextView betNumTextView;
+	private TextView moneyTextView;
+	private TextView predictMoneyTextView;
+	private TextView schemeTextView;
+	private TextView schemeDetailTextView;
+	private LinearLayout schemeLinearLayout;
+	private LinearLayout schemeDetailLinearLayout;
+	/** add by pengcx 20130703 end */
 
 	public TouzhuDialog(JcMainActivity context, JcMainView jcMainView) {
 		this.context = context;
@@ -80,10 +93,44 @@ public class TouzhuDialog {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.alert_dialog_jc_touzhu, null);
 		dialog = new Dialog(context, R.style.MyDialog);
-		alertText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_one);
-		prizeText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_prizescope);// 竞彩中奖金额范围
+		/** add by pengcx 20130703 start */
+		lotoTypeTextView = (TextView) v
+				.findViewById(R.id.alert_dialog_jc_lotnotype);
+		gameNumTextView = (TextView) v
+				.findViewById(R.id.alert_dialog_jc_gamenum);
+		betNumTextView = (TextView) v.findViewById(R.id.alert_dialog_jc_betnum);
+		moneyTextView = (TextView) v.findViewById(R.id.alert_dialog_jc_money);
+		predictMoneyTextView = (TextView) v
+				.findViewById(R.id.alert_dialog_jc_predictmoney);
+		schemeTextView = (TextView) v
+				.findViewById(R.id.alert_dialog_touzhu_alert_scheme);
+		schemeTextView.setText(alertMsg);
+		schemeDetailTextView = (TextView) v
+				.findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
+		schemeLinearLayout = (LinearLayout) v
+				.findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
+		schemeDetailLinearLayout = (LinearLayout) v
+				.findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
+		schemeDetailTextView.setText(alertMsg);
+		schemeLinearLayout.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (teamNum > 1) {
+					int visibility = schemeDetailLinearLayout.getVisibility();
+					if (visibility == View.VISIBLE) {
+						schemeDetailLinearLayout.setVisibility(View.GONE);
+						schemeTextView.setText(alertMsg);
+					} else {
+						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
+						schemeTextView.setText("");
+					}
+				}
+			}
+		});
+		lotoTypeTextView.setText(PublicMethod.toLotno(jcMainView.getLotno()));
+		/** add by pengcx 20130703 end */
+
 		context.initImageView(v);
 		setAlertText();
 		setPrizeText();
@@ -109,8 +156,6 @@ public class TouzhuDialog {
 		Button cancel = (Button) v
 				.findViewById(R.id.alert_dialog_touzhu_button_cancel);
 		Button ok = (Button) v.findViewById(R.id.alert_dialog_touzhu_button_ok);
-		Button infoBtn = (Button) v
-				.findViewById(R.id.alert_dialog_jc_touzhu_btn_info);
 		final Button zyBtn = (Button) v.findViewById(R.id.jc_alert_btn_ziyou);
 		final Button dcBtn = (Button) v
 				.findViewById(R.id.jc_alert_btn_duochuan);
@@ -146,11 +191,6 @@ public class TouzhuDialog {
 			});
 		}
 		final String title = "投注详情";
-		infoBtn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				showInfoDialog(title, alertMsg);
-			}
-		});
 		cancel.setOnClickListener(touzhuOrhemaiListener);
 		ok.setOnClickListener(touzhuOrhemaiListener);
 	}
@@ -206,7 +246,7 @@ public class TouzhuDialog {
 		int allAmt = getAllAmt();
 		if (allAmt > MAXAMT || allAmt < 0) {
 			return true;
-		} else if (zhuShu > 10000){
+		} else if (zhuShu > 10000) {
 			return true;
 		} else {
 			return false;
@@ -287,11 +327,11 @@ public class TouzhuDialog {
 	 * @param title
 	 * @param msg
 	 */
-	public void showInfoDialog(String title, String msg) {
-		MessageDialog msgDialog = new MessageDialog(context, title, msg);
-		msgDialog.showDialog();
-		msgDialog.createFillDialog();
-	}
+	// public void showInfoDialog(String title, String msg) {
+	// MessageDialog msgDialog = new MessageDialog(context, title, msg);
+	// msgDialog.showDialog();
+	// msgDialog.createFillDialog();
+	// }
 
 	/**
 	 * 中奖范围
@@ -306,17 +346,19 @@ public class TouzhuDialog {
 				returnStr = getFreedomGuoGuanPrize(context.getIprogressBeiShu());
 			}
 		}
-
-		prizeText.setText(returnStr);
+		/** add by pengcx 20130703 start */
+		predictMoneyTextView.setText(returnStr);
+		/** add by pengcx 20130703 end */
 	}
 
 	public String getFreedomGuoGuanPrize(int muti) {
 		double max = freedomMaxprize * muti;
 		double mix = freedomMixprize * muti;
 		StringBuffer result = new StringBuffer();
-		result.append("预计中奖金额：")
-				.append(PublicMethod.formatStringToTwoPoint(mix)).append("元~")
+		/** mofidy by pengcx 20130703 start */
+		result.append(PublicMethod.formatStringToTwoPoint(mix)).append("元~")
 				.append(PublicMethod.formatStringToTwoPoint(max)).append("元 ");
+		/** mofidy by pengcx 20130703 end */
 		return result + "";
 	}
 
@@ -345,10 +387,11 @@ public class TouzhuDialog {
 	 * 提示信息
 	 */
 	public void setAlertText() {
-		String returnStr = "注数：" + zhuShu + "注   " + "倍数："
-				+ context.getIprogressBeiShu() + "倍   " + "金额：" + getAllAmt()
-				+ "元";
-		alertText.setText(returnStr);
+		/** add by pengcx 20130703 start */
+		betNumTextView.setText("共" + zhuShu + "注");
+		moneyTextView.setText("共" + getAllAmt() + "元");
+		gameNumTextView.setText("共" + teamNum + "场");
+		/** add by pengcx 20130703 end */
 	}
 
 	/**

@@ -110,7 +110,8 @@ public class BQCView extends JcMainView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += info.getHome() + " vs " + info.getAway() + "：";
+				codeStr += info.getWeeks() + "  " + info.getTeamId() + "  ";
+				codeStr += info.getHome() + " vs " + info.getAway() + "\n半全场:";
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
 						codeStr += info.check[j].getChcekTitle() + " ";
@@ -119,7 +120,8 @@ public class BQCView extends JcMainView {
 				if (info.isDan()) {
 					codeStr += "(胆)";
 				}
-				codeStr += "\n\n";
+
+				codeStr += "\n";
 			}
 
 		}
@@ -207,7 +209,7 @@ public class BQCView extends JcMainView {
 				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
 			}
 		}
-		
+
 		// add by yejc 20130402
 		private View addView(final Info info) {
 			View convertView = mInflater.inflate(
@@ -219,12 +221,13 @@ public class BQCView extends JcMainView {
 
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-//			homeTeam.getPaint().setFakeBoldText(true);
-//			final TextView textVS = (TextView) convertView
-//					.findViewById(R.id.game_vs);
-//			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
-//				textVS.setText(info.getLetPoint());
-//			}
+			// homeTeam.getPaint().setFakeBoldText(true);
+			// final TextView textVS = (TextView) convertView
+			// .findViewById(R.id.game_vs);
+			// if (!"".equals(info.getLetPoint()) &&
+			// !"0".equals(info.getLetPoint())) {
+			// textVS.setText(info.getLetPoint());
+			// }
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
 
@@ -237,8 +240,9 @@ public class BQCView extends JcMainView {
 					.findViewById(R.id.game_dan);
 
 			gameName.setText(info.getTeam());
-			String date = getWeek(info.getWeeks()) + " " + info.getTeamId() + "\n"
-					+ PublicMethod.getEndTime(info.getTimeEnd())+" " + "(截)";
+			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
+					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+					+ "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
 
@@ -294,7 +298,7 @@ public class BQCView extends JcMainView {
 							info.getHome(), info.getAway());
 				}
 			});
-			
+
 			/** add by pnegcx 20130624 start */
 			if (info.isDan()) {
 				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
@@ -302,9 +306,10 @@ public class BQCView extends JcMainView {
 				btnDan.setBackgroundResource(R.drawable.jc_btn);
 			}
 			/** add by pnegcx 20130624 end */
-			
+
 			return convertView;
 		}
+
 		// end
 
 		class ViewHolder {

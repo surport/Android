@@ -15,7 +15,6 @@ import com.ruyicai.activity.buy.jc.touzhu.RadioGroupView;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -58,20 +57,28 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	private ImageButton addMutipleButton;
 	/** 倍数输入框 */
 	private EditText mutipleEditText;
-	/** 投注详情按钮 */
-	private Button bettingDetailButton;
 	/** 自由过关按钮 */
 	private Button freedomButton;
 	/** 多串过关按钮 */
 	private Button bunchButton;
 	/** 过关方式选择容器布局 */
 	private LinearLayout bunchStyleLinearLayout;
-	/** 投注信息文本框 */
-	private TextView bettingInformationTextView;
 	/** 发起合买按钮 */
 	private Button cooperationBuyButton;
 	/** 确定购买按钮 */
 	private Button confirmBuyButton;
+
+	/** add by pengcx 20130703 start */
+	private TextView lotoTypeTextView;
+	private TextView gameNumTextView;
+	private TextView betNumTextView;
+	private TextView moneyTextView;
+	private TextView predictMoneyTextView;
+	private TextView schemeTextView;
+	private TextView schemeDetailTextView;
+	private LinearLayout schemeLinearLayout;
+	private LinearLayout schemeDetailLinearLayout;
+	/** add by pengcx 20130703 end */
 
 	/** 过关选择单选按钮组 */
 	private RadioGroupView radioGroupView;
@@ -88,6 +95,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	private final int MAXAMT = 20000;
 	/** 投注信息类 */
 	public BetAndGiftPojo betAndGift = new BetAndGiftPojo();
+
 	private String sessionId;
 	private String phonenum;
 	private String userno;
@@ -107,27 +115,26 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		reduceMutipleButton = (ImageButton) findViewById(R.id.buy_zixuan_img_subtract_beishu);
 		reduceMutipleButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
-
 		addMutipleButton = (ImageButton) findViewById(R.id.buy_zixuan_img_add_beishu);
 		addMutipleButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
-
 		mutipleSeekBar = (SeekBar) findViewById(R.id.buy_jc_zixuan_seek_beishu);
 		mutipleSeekBar
 				.setOnSeekBarChangeListener(new BeiJingSingleGameIndentOnSeekBarChangeListener());
 		mutipleSeekBar.setProgress(1);
-
 		mutipleEditText = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mutipleEditText.setText(String.valueOf(mutipleSeekBar.getProgress()));
 		mutipleEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
 
 			}
 
@@ -148,28 +155,19 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 			}
 		});
 
-		bettingDetailButton = (Button) findViewById(R.id.alert_dialog_jc_touzhu_btn_info);
-		bettingDetailButton
-				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
-
 		freedomButton = (Button) findViewById(R.id.jc_alert_btn_ziyou);
 		freedomButton.setBackgroundResource(R.drawable.jc_alert_right_radio_b);
 		freedomButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
-
 		bunchButton = (Button) findViewById(R.id.jc_alert_btn_duochuan);
 		bunchButton.setBackgroundResource(R.drawable.jc_alert_left_radio);
 		bunchButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
-
 		bunchStyleLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_jc_layout_group);
-
-		bettingInformationTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_text_one);
 
 		cooperationBuyButton = (Button) findViewById(R.id.alert_dialog_touzhu_button_cancel);
 		cooperationBuyButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
-
 		confirmBuyButton = (Button) findViewById(R.id.alert_dialog_touzhu_button_ok);
 		confirmBuyButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
@@ -178,7 +176,8 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		againstedString = getIntent().getStringExtra("selectedagainst");
 		bettingInfoList = getIntent().getStringArrayListExtra(
 				"selectedeventclicknum");
-		laterpartbettingcode = getIntent().getStringExtra("laterpartbettingcode");
+		laterpartbettingcode = getIntent().getStringExtra(
+				"laterpartbettingcode");
 		nowIssueString = getIntent().getStringExtra("nowIssueString");
 		lotnoString = getIntent().getStringExtra("lotno");
 		getIntent().getClass();
@@ -187,8 +186,39 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		bunchStyleLinearLayout.removeAllViews();
 		addSelectDuoButtons();
 
+		/** add by pengcx 20130703 start */
+		lotoTypeTextView = (TextView) findViewById(R.id.alert_dialog_jc_lotnotype);
+		gameNumTextView = (TextView) findViewById(R.id.alert_dialog_jc_gamenum);
+		betNumTextView = (TextView) findViewById(R.id.alert_dialog_jc_betnum);
+		moneyTextView = (TextView) findViewById(R.id.alert_dialog_jc_money);
+		predictMoneyTextView = (TextView) findViewById(R.id.alert_dialog_jc_predictmoney);
+		schemeTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_alert_scheme);
+		schemeTextView.setText(againstedString);
+		schemeDetailTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
+		schemeLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
+		schemeDetailLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
+		schemeDetailTextView.setText(againstedString);
+		schemeLinearLayout.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (bettingInfoList.size() > 1) {
+					int visibility = schemeDetailLinearLayout.getVisibility();
+					if (visibility == View.VISIBLE) {
+						schemeDetailLinearLayout.setVisibility(View.GONE);
+						schemeTextView.setText(againstedString);
+					} else {
+						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
+						schemeTextView.setText("");
+					}
+				}
+			}
+		});
+		lotoTypeTextView.setText(PublicMethod.toLotno(lotnoString));
+		/** add by pengcx 20130703 end */
+
 		setBettingInformationShow();
-		
+
 		handler.setBetAndGift(betAndGift);
 	}
 
@@ -230,24 +260,17 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 			switch (v.getId()) {
 			case R.id.buy_zixuan_img_subtract_beishu:
 				int progress = mutipleSeekBar.getProgress();
-				/*Add by pengcx 20130515 start*/
-				if(progress > 1){
+				/* Add by pengcx 20130515 start */
+				if (progress > 1) {
 					progress--;
 				}
-				/*Add by pengcx 20130515 end*/
+				/* Add by pengcx 20130515 end */
 				mutipleSeekBar.setProgress(progress);
 				break;
 			case R.id.buy_zixuan_img_add_beishu:
 				int progress2 = mutipleSeekBar.getProgress();
 				progress2++;
 				mutipleSeekBar.setProgress(progress2);
-				break;
-			case R.id.alert_dialog_jc_touzhu_btn_info:
-				MessageDialog msgDialog = new MessageDialog(
-						BeiJingSingleGameIndentActivity.this, "投注详情",
-						againstedString);
-				msgDialog.showDialog();
-				msgDialog.createFillDialog();
 				break;
 			case R.id.jc_alert_btn_ziyou:
 				freedomButton
@@ -623,10 +646,11 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	}
 
 	public void setBettingInformationShow() {
-		String bettingInfoString = "注数：" + bettingNum + "注   " + "倍数："
-				+ getBettingMutile() + "倍   " + "金额：" + getBettingAccount()
-				+ "元";
-		bettingInformationTextView.setText(bettingInfoString);
+		/** add by pengcx 20130703 start */
+		betNumTextView.setText("共" + bettingNum + "注");
+		moneyTextView.setText("共" + getBettingAccount() + "元");
+		gameNumTextView.setText("共" + bettingInfoList.size() + "场");
+		/** add by pengcx 20130703 end */
 	}
 
 	public long getBettingAccount() {
@@ -635,17 +659,17 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 	@Override
 	public void errorCode_0000() {
-		/**Add by pengcx 20130516 start*/
+		/** Add by pengcx 20130516 start */
 		BeiJingSingleGameActivity.isBettingReturn = true;
-		/**Add by pengcx 20130516 end*/
-		
-		/**Add by pengcx 20130605 start*/
+		/** Add by pengcx 20130516 end */
+
+		/** Add by pengcx 20130605 start */
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
 		startActivity(intent);
-		/**Add by pengcx 20130605 end*/
+		/** Add by pengcx 20130605 end */
 	}
 
 	@Override

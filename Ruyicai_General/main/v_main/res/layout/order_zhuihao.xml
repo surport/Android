@@ -121,15 +121,8 @@
                             android:paddingRight="15dip"
                             android:progress="1"
                             android:progressDrawable="@drawable/seekbar_style"
-                            android:thumb="@drawable/thumb" />
-
-                        <ImageButton
-                            android:id="@+id/buy_zixuan_img_add_beishu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
-                            android:background="#00000000"
-                            android:src="@drawable/addselecter" />
+                            android:thumb="@drawable/thumb"
+                            android:visibility="gone" />
 
                         <EditText
                             android:id="@+id/buy_zixuan_text_beishu"
@@ -139,6 +132,14 @@
                             android:numeric="integer"
                             android:singleLine="true" >
                         </EditText>
+
+                        <ImageButton
+                            android:id="@+id/buy_zixuan_img_add_beishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
+                            android:background="#00000000"
+                            android:src="@drawable/addselecter" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -172,15 +173,8 @@
                             android:paddingRight="15dip"
                             android:progress="1"
                             android:progressDrawable="@drawable/seekbar_style"
-                            android:thumb="@drawable/thumb" />
-
-                        <ImageButton
-                            android:id="@+id/buy_zixuan_img_add_qishu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
-                            android:background="#00000000"
-                            android:src="@drawable/addselecter" />
+                            android:thumb="@drawable/thumb"
+                            android:visibility="gone" />
 
                         <EditText
                             android:id="@+id/buy_zixuan_text_qishu"
@@ -190,20 +184,30 @@
                             android:numeric="integer"
                             android:singleLine="true" >
                         </EditText>
+
+                        <ImageButton
+                            android:id="@+id/buy_zixuan_img_add_qishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
+                            android:background="#00000000"
+                            android:src="@drawable/addselecter" />
                     </LinearLayout>
+
                     <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" >
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
 
-                    <TextView
-                        style="@style/touzhuTextstyle"
-                        android:text="注数：" />
+                        <TextView
+                            style="@style/touzhuTextstyle"
+                            android:text="注数：" />
 
-                    <TextView
-                        android:id="@+id/alert_dialog_touzhu_textview_zhushu"
-                        style="@style/touzhuTextstyle" >
-                    </TextView>
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/alert_dialog_touzhu_textview_zhushu"
+                            style="@style/touzhuTextstyle" >
+                        </TextView>
+                    </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/buy_zixuan_linear_toggle"
                         android:layout_width="fill_parent"
@@ -252,10 +256,10 @@
                         android:id="@+id/zhuiqi"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="期号调整"
+                        android:background="@drawable/buy_jc_btn_close"
                         android:gravity="left"
                         android:padding="10dip"
-                        android:background="@drawable/buy_jc_btn_close" />
+                        android:text="期号调整" />
 
                     <LinearLayout
                         android:id="@+id/zhuiqishezhi"

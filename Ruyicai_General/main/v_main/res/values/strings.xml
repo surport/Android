@@ -939,7 +939,7 @@
     <string name="jc_main_touzhu_alert_text_title">温馨提示</string>
     <string name="jc_main_touzhu_alert_btn_ziyou">自由过关</string>
     <string name="jc_main_touzhu_alert_btn_duochuan">多串过关</string>
-    <string name="jc_main_touzhu_alert_text">投注详情:</string>
+    <string name="jc_main_touzhu_alert_text">方案:</string>
     <string name="jc_main_touzhu_alert_btn_text">查看投注详情</string>
     <string name="jc_main_touzhu_alert_text_guo">过关方式：</string>
     <string name="jc_main_btn_text">场比赛</string>
