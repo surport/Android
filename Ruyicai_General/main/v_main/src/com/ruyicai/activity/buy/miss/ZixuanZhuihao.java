@@ -350,9 +350,14 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 								Toast.LENGTH_SHORT).show();
 						edit.setText("1");
 					} else {
-						text3.setText(addviewmiss.getAllAmt()
-								* Integer.valueOf(edit.getText().toString())
-								+ "元");
+						if (isFromTrackQuery) {
+							int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+							text3.setText(betAndGift.getAmt()*zhuShu*Integer.valueOf(edit.getText().toString())+ "元");
+						} else {
+							text3.setText(addviewmiss.getAllAmt()
+									* Integer.valueOf(edit.getText().toString())
+									+ "元");
+						}
 						checkinfo[index].setBeishu(edit.getText().toString());
 						checkinfo[index].setAmt(Integer.valueOf(text3.getText()
 								.toString().replace("元", ""))
@@ -361,8 +366,15 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 					}
 				}
 			});
-			text3.setText(addviewmiss.getAllAmt()
-					* Integer.valueOf(edit.getText().toString()) + "元");
+			
+			if (isFromTrackQuery) {
+				int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+				text3.setText(betAndGift.getAmt()*zhuShu*iProgressBeishu+ "元");
+			} else {
+				text3.setText(addviewmiss.getAllAmt()
+						* Integer.valueOf(edit.getText().toString()) + "元");
+			}
+			
 			checkinfo[i].setAmt(Integer.valueOf(text3.getText().toString()
 					.replace("元", ""))
 					* 100 + "");
@@ -469,9 +481,13 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	public void getTouzhuAlert() {
 		if (isFromTrackQuery) {
 			/**add by yejc 20130621 start*/
-			zhushu.setText(betAndGift.getZhushu() + "注     ");
-			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
-			jine.setText("金额：" + betAndGift.getAmt()*zhuShu*iProgressQishu * iProgressBeishu+ "元");
+			if (state == 2) {
+				jine.setText("金额：" + getSubstringforamt() + "元");
+			} else {
+				zhushu.setText(betAndGift.getZhushu() + "注     ");
+				int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+				jine.setText("金额：" + betAndGift.getAmt()*zhuShu*iProgressQishu * iProgressBeishu+ "元");
+			}
 			/**add by yejc 20130621 end*/
 		} else {
 			zhushu.setText(addviewmiss.getAllZhu() + "注     ");

@@ -789,6 +789,34 @@ public abstract class JcMainView {
 				R.id.lq_sfc_dialog_check046, R.id.lq_sfc_dialog_check047,
 				R.id.lq_sfc_dialog_check048, R.id.lq_sfc_dialog_check049,
 				R.id.lq_sfc_dialog_check050, R.id.lq_sfc_dialog_check051 };
+		
+		private int[] checkIdForZC = { R.id.lq_sfc_dialog_rangqiu1, R.id.lq_sfc_dialog_rangqiu2, 
+				R.id.lq_sfc_dialog_rangqiu3, R.id.lq_sfc_dialog_check01,
+				R.id.lq_sfc_dialog_check02, R.id.lq_sfc_dialog_check03,
+				R.id.lq_sfc_dialog_check04, R.id.lq_sfc_dialog_check05,
+				R.id.lq_sfc_dialog_check06, R.id.lq_sfc_dialog_check07,
+				R.id.lq_sfc_dialog_check08, R.id.lq_sfc_dialog_check09,
+				R.id.lq_sfc_dialog_check010, R.id.lq_sfc_dialog_check011,
+				R.id.lq_sfc_dialog_check012, R.id.lq_sfc_dialog_check013,
+				R.id.lq_sfc_dialog_check014, R.id.lq_sfc_dialog_check015,
+				R.id.lq_sfc_dialog_check016, R.id.lq_sfc_dialog_check017,
+				R.id.lq_sfc_dialog_check018, R.id.lq_sfc_dialog_check019,
+				R.id.lq_sfc_dialog_check020, R.id.lq_sfc_dialog_check021,
+				R.id.lq_sfc_dialog_check022, R.id.lq_sfc_dialog_check023,
+				R.id.lq_sfc_dialog_check024, R.id.lq_sfc_dialog_check025,
+				R.id.lq_sfc_dialog_check026, R.id.lq_sfc_dialog_check027,
+				R.id.lq_sfc_dialog_check028, R.id.lq_sfc_dialog_check029,
+				R.id.lq_sfc_dialog_check030, R.id.lq_sfc_dialog_check031,
+				R.id.lq_sfc_dialog_check032, R.id.lq_sfc_dialog_check033,
+				R.id.lq_sfc_dialog_check034, R.id.lq_sfc_dialog_check035,
+				R.id.lq_sfc_dialog_check036, R.id.lq_sfc_dialog_check037,
+				R.id.lq_sfc_dialog_check038, R.id.lq_sfc_dialog_check039,
+				R.id.lq_sfc_dialog_check040, R.id.lq_sfc_dialog_check041,
+				R.id.lq_sfc_dialog_check042, R.id.lq_sfc_dialog_check043,
+				R.id.lq_sfc_dialog_check044, R.id.lq_sfc_dialog_check045,
+				R.id.lq_sfc_dialog_check046, R.id.lq_sfc_dialog_check047,
+				R.id.lq_sfc_dialog_check048, R.id.lq_sfc_dialog_check049,
+				R.id.lq_sfc_dialog_check050, R.id.lq_sfc_dialog_check051 };
 		public MyCheckBox[] check;
 		public boolean isOpen = false;
 		public String titles[];
@@ -901,15 +929,32 @@ public abstract class JcMainView {
 			dialog.show();
 			dialog.getWindow().setContentView(viewType);
 		}
+		
+		/**add by yejc 20130704 start*/
+		public View getViewType() {
+			return viewType;
+		}
+		/**add by yejc 20130704 end*/
 
 		private void initDialogView() {
-			for (int i = 0; i < MAX; i++) {
-				check[i] = (MyCheckBox) viewType.findViewById(checkId[i]);
-				check[i].setVisibility(CheckBox.VISIBLE);
-				check[i].setCheckText("" + vStrs[i]);
-				check[i].setPosition(i);
-				check[i].setCheckTitle(titles[i]);
+			if (isLq) {
+				for (int i = 0; i < MAX; i++) {
+					check[i] = (MyCheckBox) viewType.findViewById(checkId[i]);
+					check[i].setVisibility(CheckBox.VISIBLE);
+					check[i].setCheckText("" + vStrs[i]);
+					check[i].setPosition(i);
+					check[i].setCheckTitle(titles[i]);
+				}
+			} else {
+				for (int i = 0; i < MAX; i++) {
+					check[i] = (MyCheckBox) viewType.findViewById(checkIdForZC[i]);
+					check[i].setVisibility(CheckBox.VISIBLE);
+					check[i].setCheckText("" + vStrs[i]);
+					check[i].setPosition(i);
+					check[i].setCheckTitle(titles[i]);
+				}
 			}
+			
 		}
 
 		private void setChechState() {
@@ -921,7 +966,7 @@ public abstract class JcMainView {
 						check[i].setHorizontal(true);
 					}
 				} else {
-					for (int i = 0; i < 3; i++) {
+					for (int i = 0; i < 6; i++) {
 						check[i].setHorizontal(true);
 					}
 				}
@@ -980,11 +1025,11 @@ public abstract class JcMainView {
 						checkNum = 8;
 					}
 				} else {
-					if (isCheckIndex(3, 11)) {// 半全场
+					if (isCheckIndex(6, 14)) {// 半全场
 						checkNum = 4;
-					} else if (isCheckIndex(20, 50)) {// 比分
+					} else if (isCheckIndex(23, 53)) {// 比分
 						checkNum = 4;
-					} else if (isCheckIndex(12, 19)) {// 总进球
+					} else if (isCheckIndex(15, 22)) {// 总进球
 						checkNum = 6;
 					} else {// 胜平负
 						checkNum = 8;
@@ -1253,7 +1298,7 @@ public abstract class JcMainView {
 		}
 		return week;
 	}
-
+	
 	// end
 
 }

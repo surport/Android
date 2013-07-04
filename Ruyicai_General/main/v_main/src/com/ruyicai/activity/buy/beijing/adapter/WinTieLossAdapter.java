@@ -5,6 +5,7 @@ import java.util.List;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
+import com.ruyicai.util.PublicMethod;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -166,8 +167,8 @@ public class WinTieLossAdapter extends ParentAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号：").append(winTieLossAgainstInformation.getTeamId())
-				.append("\n").append(winTieLossAgainstInformation.getEndTime())
+		gameDate.append("编号:").append(winTieLossAgainstInformation.getTeamId())
+				.append("\n").append(PublicMethod.getEndTime(winTieLossAgainstInformation.getEndTime()))
 				.append("(截)");
 		gameDateTextView.setText(gameDate);
 

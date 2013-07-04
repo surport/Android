@@ -44,12 +44,53 @@
                 android:layout_height="wrap_content"
                 android:background="@color/jc_dialog_bg1"
                 android:orientation="vertical" >
+                
+                <!-- add by yejc 20130702 start -->
+                <LinearLayout
+                    android:id="@+id/linearLayout_rangqiu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dip"
+                    android:gravity="center_horizontal" >
+                     
+                    <TextView android:id="@+id/lq_rqspf_dialog_textview"
+                        android:layout_width="55dip"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@drawable/hun_btn_left"/>
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@+id/lq_sfc_dialog_rangqiu1"
+                        android:layout_width="75dip"
+                        android:layout_height="40dip"
+                        android:background="@drawable/hun_btn_center_left"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@+id/lq_sfc_dialog_rangqiu2"
+                        android:layout_width="75dip"
+                        android:layout_height="40dip"
+                        android:background="@drawable/hun_btn_center_left"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@+id/lq_sfc_dialog_rangqiu3"
+                        android:layout_width="75dip"
+                        android:layout_height="40dip"
+                        android:background="@drawable/hun_btn_right"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title03" />
+                </LinearLayout>
+                <!-- add by yejc 20130702 end -->
 
                 <LinearLayout
                     android:id="@+id/linearLayout1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal" >
+                    android:gravity="center_horizontal" 
+                    android:paddingTop="5dip">
 
                     <com.ruyicai.custom.checkbox.MyCheckBox
                         android:id="@+id/lq_sfc_dialog_check01"
@@ -82,7 +123,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    android:paddingTop="5dip" >
+                    android:layout_marginTop="5dip" >
 
                     <LinearLayout
                         android:id="@+id/linearLayout1"

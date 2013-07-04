@@ -67,6 +67,10 @@ public class AddView {
 	public AddView(LuckChoose2 luckChoose2) {
 		this.context = luckChoose2.getContext();
 	}
+	
+	public AddView(Context context) {
+		this.context = context;
+	}
 
 	public AddView(TextView textNum, ZixuanActivity zixuan) {
 		this.context = zixuan.getContext();

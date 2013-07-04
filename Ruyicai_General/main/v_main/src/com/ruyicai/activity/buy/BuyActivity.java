@@ -415,8 +415,8 @@ public class BuyActivity extends Activity implements OnClickListener {
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		Constants.MEMUTYPE = 0;
-		//initScreenConfiger();
-		//initLights();
+		initScreenConfiger();
+		initLights();
 		
 		initGallery();
 	}

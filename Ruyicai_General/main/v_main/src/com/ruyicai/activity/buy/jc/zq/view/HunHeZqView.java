@@ -57,33 +57,37 @@ public class HunHeZqView extends JcMainView {
 	public void setDifferValue(JSONObject jsonItem, Info itemInfo)
 			throws JSONException {
 		itemInfo.setLevel(jsonItem.getString("v1"));
-		itemInfo.vStrs = new String[51];
+		itemInfo.vStrs = new String[54];
+		int rqspf_lenght = 3;
 		int spf_lenght = 3;
 		int bqc_lenght = 9;
 		int zjq_lenght = 8;
 		int bf_lenght = 31;
 		for (int j = 0; j < bqc_lenght; j++) {
-			itemInfo.getVStrs()[j + spf_lenght] = jsonItem.getString("half_v"
-					+ FootHun.bqcType[j + spf_lenght]);
+			itemInfo.getVStrs()[j + rqspf_lenght+spf_lenght] = jsonItem.getString("half_v"
+					+ FootHun.bqcType[j + rqspf_lenght+spf_lenght]);
 		}
 		for (int j = 0; j < zjq_lenght; j++) {
-			itemInfo.getVStrs()[j + spf_lenght + bqc_lenght] = jsonItem
+			itemInfo.getVStrs()[j + rqspf_lenght + spf_lenght + bqc_lenght] = jsonItem
 					.getString("goal_v" + j);
 		}
 		for (int j = 0; j < bf_lenght; j++) {
-			itemInfo.getVStrs()[j + spf_lenght + bqc_lenght + zjq_lenght] = jsonItem
+			itemInfo.getVStrs()[j + rqspf_lenght + spf_lenght + bqc_lenght + zjq_lenght] = jsonItem
 					.getString("score_v"
-							+ FootHun.bqcType[j + spf_lenght + bqc_lenght
+							+ FootHun.bqcType[j + rqspf_lenght + spf_lenght + bqc_lenght
 									+ zjq_lenght]);
 		}
 		initTitles(itemInfo);
 	}
 
 	private void initTitles(final Info info) {
+		info.vStrs[0] = info.getLetV3Win();
+		info.vStrs[1] = info.getLetV1Level();
+		info.vStrs[2] = info.getLetV0Fail();
 
-		info.vStrs[0] = info.getWin();
-		info.vStrs[1] = info.getLevel();
-		info.vStrs[2] = info.getFail();
+		info.vStrs[3] = info.getWin();
+		info.vStrs[4] = info.getLevel();
+		info.vStrs[5] = info.getFail();
 
 	}
 
@@ -251,26 +255,16 @@ public class HunHeZqView extends JcMainView {
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
-
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-//			homeTeam.getPaint().setFakeBoldText(true);
-//			final TextView textVS = (TextView) convertView
-//					.findViewById(R.id.game_vs);
-//			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
-//				textVS.setText(info.getLetPoint());
-//			}
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
-
 			TextView btn = (Button) convertView
 					.findViewById(R.id.jc_main_list_item_button);
-
 			TextView analysis = (TextView) convertView
 					.findViewById(R.id.game_analysis);
 			final Button btnDan = (Button) convertView
 					.findViewById(R.id.game_dan);
-
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId() + "\n"
 					+ PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
@@ -288,7 +282,6 @@ public class HunHeZqView extends JcMainView {
 				}
 			});
 
-			// textVS.setText(info.getWin());
 			guestTeam.setText(info.getAway());
 
 			if (!info.getBtnStr().equals("")) {
@@ -300,6 +293,11 @@ public class HunHeZqView extends JcMainView {
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.createDialog(FootHun.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
+						/**add by yejc 20130704 start*/
+						View view = info.getViewType();
+						TextView tv = (TextView)view.findViewById(R.id.lq_rqspf_dialog_textview);
+						tv.setText("让球主"+info.getLetPoint());
+						/**add by yejc 20130704 end*/
 					}
 					isNoDan(info, btnDan);
 				}

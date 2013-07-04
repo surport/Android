@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -264,6 +265,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 					.findViewById(R.id.jc_main_list_item_text_score);
 			holder.odds = (TextView) convertView
 					.findViewById(R.id.notice_beijing_single_item_odds);
+			holder.imageView = (ImageView) convertView.findViewById(R.id.notice_prizes_single_specific_img);
+			holder.imageView.setVisibility(View.GONE);
 			convertView.setTag(holder);
 			holder.team.append(info.getTeam());
 			holder.home.append(info.getHome()+"(主)");
@@ -302,6 +305,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			TextView result;
 			TextView score;
 			TextView odds;
+			ImageView imageView;
 		}
 	}
 
