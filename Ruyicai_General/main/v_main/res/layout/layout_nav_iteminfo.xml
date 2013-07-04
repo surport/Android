@@ -6,12 +6,12 @@
 		android:gravity="center" android:layout_gravity="center"
 		>
 		
-		<ImageView android:id="@+id/layout_nav_item"
+		<ImageView android:id="@id/layout_nav_item"
 			android:layout_width="fill_parent" android:layout_height="wrap_content"/>
-		<ImageView android:id="@+id/buttontype"
+		<ImageView android:id="@id/buttontype"
 		 android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerVertical="true"  />
 		
-		<TextView android:id="@+id/layout_nav_icon_title" 
+		<TextView android:id="@id/layout_nav_icon_title" 
 		    android:layout_centerVertical="true" 
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_centerHorizontal="true" android:textSize="16dip"

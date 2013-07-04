@@ -5,13 +5,13 @@
     android:background="@color/white" >
 
     <ScrollView
-        android:id="@+id/scrollView1"
+        android:id="@id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingBottom="35dip" >
 
         <LinearLayout
-            android:id="@+id/buy_zh_view_layout"
+            android:id="@id/buy_zh_view_layout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical" >
@@ -19,7 +19,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/buy_zixuan_new_btn_main"
+        android:id="@id/buy_zixuan_new_btn_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -28,7 +28,7 @@
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/buy_zixuan_new_btn_miss"
+        android:id="@id/buy_zixuan_new_btn_miss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

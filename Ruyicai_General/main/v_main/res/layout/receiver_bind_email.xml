@@ -53,7 +53,7 @@
             android:textColor="@color/black"/>
 
         <EditText
-            android:id="@+id/receiverandsend_email_edittext"
+            android:id="@id/receiverandsend_email_edittext"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -62,7 +62,7 @@
     <!-- 接受并绑定按钮 -->
 
     <Button
-         android:id="@+id/receiverandsend_email_button"
+         android:id="@id/receiverandsend_email_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

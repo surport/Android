@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/sscchildtype"
+        android:id="@id/sscchildtype"
         android:layout_width="fill_parent"
         android:layout_height="45dip"
         android:layout_marginTop="10dip"
@@ -16,7 +16,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/buyview"
+        android:id="@id/buyview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
     </LinearLayout>

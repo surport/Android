@@ -21,7 +21,7 @@
 
         <EditText
             android:layout_width="100dip"
-            android:id="@+id/scroechange"
+            android:id="@id/scroechange"
             android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/sroremoney"
+            android:id="@id/sroremoney"
             android:layout_width="wrap_content"
             android:layout_marginLeft="10dip"
             android:text="0"
@@ -66,7 +66,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/change"
+        android:id="@id/change"
         android:layout_marginTop="20dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         android:textSize="16sp"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
-        android:id="@+id/scoredicribtion"
+        android:id="@id/scoredicribtion"
         android:visibility="invisible"
         android:layout_width="fill_parent" android:text="@string/scroechange"
         android:layout_height="wrap_content" />

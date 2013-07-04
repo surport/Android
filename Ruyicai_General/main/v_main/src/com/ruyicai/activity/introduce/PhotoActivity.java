@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.home.MainGroup;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
@@ -43,6 +44,12 @@ public class PhotoActivity extends Activity {
 	// hesiming 20120709 end
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/*Add by fansm 20130416 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/*Add by fansm 20130416 end*/
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -227,6 +234,12 @@ public class PhotoActivity extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		/*Add by fansm 20130702 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/*Add by fansm 20130702 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-23
 	}
 

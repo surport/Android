@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 追号查询页面列表子布局 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/usercenter_trackquery_item"
+    android:id="@id/usercenter_trackquery_item"
     android:layout_width="fill_parent"
     android:layout_height="100dp"
     android:background="#FFFFFF"
@@ -26,7 +26,7 @@
             <!-- 彩种名称 -->
 
             <TextView
-                android:id="@+id/usercenter_trackquery_lotteryname"
+                android:id="@id/usercenter_trackquery_lotteryname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -37,7 +37,7 @@
             <!-- 追号状态 -->
 
             <TextView
-                android:id="@+id/usercenter_trackquery_trackstate"
+                android:id="@id/usercenter_trackquery_trackstate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -71,7 +71,7 @@
                 <!-- 追号期数和已追期数内容 -->
 
                 <TextView
-                    android:id="@+id/usercenter_trackquery_tracknum"
+                    android:id="@id/usercenter_trackquery_tracknum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -87,7 +87,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/teamrank"
+                    android:id="@id/teamrank"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
@@ -97,7 +97,7 @@
                 <!-- 追号金额 -->
 
                 <TextView
-                    android:id="@+id/usercenter_trackquery_money"
+                    android:id="@id/usercenter_trackquery_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -118,7 +118,7 @@
         <!-- 取消追号按钮 -->
 
         <Button
-            android:id="@+id/usercenter_trackquery_cancle"
+            android:id="@id/usercenter_trackquery_cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -126,7 +126,7 @@
         <!-- 查看详情按钮 -->
 
         <Button
-            android:id="@+id/usercenter_trackquery_lookdetail"
+            android:id="@id/usercenter_trackquery_lookdetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"

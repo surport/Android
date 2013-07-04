@@ -9,14 +9,14 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="14"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/game_name"
+            android:id="@id/game_name"
             android:layout_width="match_parent"
             android:layout_height="33dip"
             android:background="@drawable/game_name_bj"
@@ -24,7 +24,7 @@
             android:textColor="@android:color/black" />
 
         <TextView
-            android:id="@+id/game_date"
+            android:id="@id/game_date"
             android:layout_width="match_parent"
             android:layout_height="42dip"
             android:background="@color/jczq_listview_item_bg"
@@ -39,7 +39,7 @@
         android:background="@color/zc_sfc_divider" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"
@@ -47,7 +47,7 @@
         android:orientation="horizontal"
         android:padding="5dip" >
 
-        <LinearLayout android:id="@+id/home_layout"
+        <LinearLayout android:id="@id/home_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
@@ -55,7 +55,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/home_team_name"
+                android:id="@id/home_team_name"
                 android:layout_width="match_parent"
                 android:layout_height="38dip"
                 android:background="@drawable/team_name_bj_top"
@@ -66,7 +66,7 @@
                 android:textColor="@android:color/black" />
 
             <TextView
-                android:id="@+id/home_team_odds"
+                android:id="@id/home_team_odds"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -74,11 +74,11 @@
                 android:textColor="@color/jc_odds_text_color"/>
         </LinearLayout>
         
-        <View android:id="@+id/divider_01"
+        <View android:id="@id/divider_01"
             android:layout_width="5dip"
             android:layout_height="5dip"/>
 
-        <LinearLayout android:id="@+id/vs_layout"
+        <LinearLayout android:id="@id/vs_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -86,7 +86,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/game_vs"
+                android:id="@id/game_vs"
                 android:layout_width="match_parent"
                 android:layout_height="38dip"
                 android:background="@drawable/team_name_bj_top"
@@ -98,7 +98,7 @@
                 android:textColor="@android:color/black" />
 
             <TextView
-                android:id="@+id/game_vs_odds"
+                android:id="@id/game_vs_odds"
                 android:layout_width="match_parent"
                 android:layout_height="24dip"
                 android:gravity="center"
@@ -106,11 +106,11 @@
                 android:textColor="@color/jc_odds_text_color"/>
         </LinearLayout>
         
-        <View android:id="@+id/divider_02"
+        <View android:id="@id/divider_02"
             android:layout_width="5dip"
             android:layout_height="5dip"/>
 
-        <LinearLayout android:id="@+id/guest_layout"
+        <LinearLayout android:id="@id/guest_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
@@ -118,7 +118,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/guest_team_name"
+                android:id="@id/guest_team_name"
                 android:layout_width="match_parent"
                 android:layout_height="38dip"
                 android:background="@drawable/team_name_bj_top"
@@ -129,7 +129,7 @@
                 android:textColor="@android:color/black" />
 
             <TextView
-                android:id="@+id/guest_team_odds"
+                android:id="@id/guest_team_odds"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -144,7 +144,7 @@
         android:background="@color/zc_sfc_divider" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="right"
@@ -153,7 +153,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/game_analysis"
+            android:id="@id/game_analysis"
             android:layout_width="match_parent"
             android:layout_height="35dip"
             android:background="@drawable/team_name_bj"
@@ -169,7 +169,7 @@
             android:paddingRight="5dip"
             android:paddingTop="8dip" >
             
-            <Button android:id="@+id/game_dan"
+            <Button android:id="@id/game_dan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/jc_btn"

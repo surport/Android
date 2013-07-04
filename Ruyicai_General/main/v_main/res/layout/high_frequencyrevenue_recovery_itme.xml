@@ -6,7 +6,7 @@
 
     <TextView
         android:paddingLeft="10dip"
-        android:id="@+id/shouyiitem"
+        android:id="@id/shouyiitem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:lineSpacingMultiplier="1.2"

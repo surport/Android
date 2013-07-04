@@ -3,17 +3,17 @@
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content" android:background="#ffffff" >
 	<LinearLayout android:orientation="horizontal"
-		android:gravity="center" android:id="@+id/titletext_football"
+		android:gravity="center" android:id="@id/titletext_football"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:background="@drawable/shouye_top">
-		<TextView android:id="@+id/usercenter_balancequery_title"
+		<TextView android:id="@id/usercenter_balancequery_title"
 			android:text="账户余额" style="@style/UserTitleText" />
 	</LinearLayout>
       <ListView
                 android:fadingEdge="none"
-                android:layout_below="@+id/titletext_football"
+                android:layout_below="@id/titletext_football"
                 android:background="@color/white"
-                android:id="@+id/shouyizhuihaolist"
+                android:id="@id/shouyizhuihaolist"
                 android:layout_width="fill_parent"
                 android:paddingBottom="80dip"
                 android:divider="#999999"
@@ -28,14 +28,14 @@
 		android:paddingTop="5dip" >
 		<RelativeLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:gravity="center_horizontal">
-			<Button android:id="@+id/usercenter_balancequery_ok" android:textColor="@color/black"
+			<Button android:id="@id/usercenter_balancequery_ok" android:textColor="@color/black"
 				android:layout_marginLeft="10dp" android:visibility="gone"
-				android:text="@string/login_dialog_ok" android:layout_toLeftOf="@+id/usercenter_balancequery_back"
+				android:text="@string/login_dialog_ok" android:layout_toLeftOf="@id/usercenter_balancequery_back"
 				android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"
 				android:textSize="18dip" android:layout_width="wrap_content"
 				android:layout_height="wrap_content" />
-			<Button android:id="@+id/usercenter_balancequery_back" android:textColor="@color/black"
-				android:layout_toRightOf="@+id/usercenter_balancequery_back"
+			<Button android:id="@id/usercenter_balancequery_back" android:textColor="@color/black"
+				android:layout_toRightOf="@id/usercenter_balancequery_back"
 				android:text="关闭" android:gravity="center"
 				android:layout_marginRight="10dp"
 				android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"

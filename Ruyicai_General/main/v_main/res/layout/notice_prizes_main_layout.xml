@@ -10,7 +10,7 @@
     android:paddingTop="10dip" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout01"
+        android:id="@id/LinearLayout01"
         android:layout_width="70sp"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -18,7 +18,7 @@
         <!-- 彩种图标 -->
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -28,10 +28,10 @@
         <!-- 彩种名称 -->
 
         <TextView
-            android:id="@+id/notice_prizes_main_title"
+            android:id="@id/notice_prizes_main_title"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/notice_prizes"
+            android:layout_above="@id/notice_prizes"
             android:text=""
             android:textColor="#333333"
             android:textSize="14sp" >
@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/notice_prizes_main_btn_score"
+        android:id="@id/notice_prizes_main_btn_score"
         style="@style/YonghuFankuiBtn"
         android:layout_width="90sp"
         android:layout_height="45sp"
@@ -49,7 +49,7 @@
     </Button>
 
     <Button
-        android:id="@+id/notice_prizes_main_btn_jc"
+        android:id="@id/notice_prizes_main_btn_jc"
         style="@style/YonghuFankuiBtn"
         android:layout_width="135sp"
         android:layout_height="45sp"
@@ -60,21 +60,21 @@
     </Button>
 
     <RelativeLayout
-        android:id="@+id/notice_prizes_relative"
+        android:id="@id/notice_prizes_relative"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_toRightOf="@id/icon"
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/RelativeLayout02"
+            android:id="@id/RelativeLayout02"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:paddingTop="8dip" >
 
             <TextView
-                android:id="@+id/notice_prizes"
+                android:id="@id/notice_prizes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -88,11 +88,11 @@
             <!-- 开奖日期 -->
 
             <TextView
-                android:id="@+id/notice_prizes_dateAndTimeId"
+                android:id="@id/notice_prizes_dateAndTimeId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dip"
-                android:layout_toRightOf="@+id/notice_prizes"
+                android:layout_toRightOf="@id/notice_prizes"
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black"
@@ -102,7 +102,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/notice_prezes_lotteryNameId"
+                android:id="@id/notice_prezes_lotteryNameId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dip"
@@ -118,7 +118,7 @@
             <!-- 期号 -->
 
             <TextView
-                android:id="@+id/notice_prizes_issueId"
+                android:id="@id/notice_prizes_issueId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -136,7 +136,7 @@
         <!-- 号码球布局 -->
 
         <LinearLayout
-            android:id="@+id/ball_linearlayout"
+            android:id="@id/ball_linearlayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

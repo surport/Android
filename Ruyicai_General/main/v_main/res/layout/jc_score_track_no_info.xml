@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/jc_score_text_no_info"
+        android:id="@id/jc_score_text_no_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

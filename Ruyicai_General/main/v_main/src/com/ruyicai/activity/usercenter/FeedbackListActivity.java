@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -366,8 +367,9 @@ public class FeedbackListActivity extends Activity {
 				if(mTabHost.getCurrentTab() == 0) {
 					Intent intent = new Intent(FeedbackListActivity.this,
 							MainGroup.class);
-					intent.putExtra(Constants.START_MAINGROUP_FROM_FEEDBACKLIST_KEY, 
-							Constants.START_MAINGROUP_FROM_FEEDBACKLIST_VALUE);
+					Constants.currentTab = "0";
+					//intent.putExtra(Constants.START_MAINGROUP_FROM_FEEDBACKLIST_KEY, 
+					//		Constants.START_MAINGROUP_FROM_FEEDBACKLIST_VALUE);
 					startActivity(intent);
 					finish();
 				} else {

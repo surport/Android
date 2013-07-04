@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="300dip"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@+id/layout_main_text_title"
+            android:id="@id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -40,39 +40,39 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/buy_lq_main_dialog_type1"
+                    android:id="@id/buy_lq_main_dialog_type1"
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="25dip"
                     android:text="@string/jclq_dialog_sf_guoguan_title" />
                 
                  <TextView
-                    android:id="@+id/buy_lq_main_dialog_new_type1"
+                    android:id="@id/buy_lq_main_dialog_new_type1"
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="25dip"
                     android:text="@string/jczq_dialog_rqspf_guoguan_title" 
                     android:visibility="gone"/>
 
                 <TextView
-                    android:id="@+id/buy_lq_main_dialog_type2"
+                    android:id="@id/buy_lq_main_dialog_type2"
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="25dip"
                     android:text="@string/jclq_dialog_rf_guoguan_title" />
 
                 <TextView
-                    android:id="@+id/buy_lq_main_dialog_type3"
+                    android:id="@id/buy_lq_main_dialog_type3"
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="24dip"
                     android:text="@string/jclq_dialog_sfc_guoguan_title" />
 
                 <TextView
-                    android:id="@+id/buy_lq_main_dialog_type4"
+                    android:id="@id/buy_lq_main_dialog_type4"
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="24dip"
                     android:text="@string/jclq_dialog_dxf_guoguan_title" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/radioGroup"
+                android:id="@id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -80,7 +80,7 @@
                 android:paddingTop="10dip" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@id/radio0"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
@@ -88,7 +88,7 @@
                     android:checked="true" />
                 
                  <RadioButton
-                    android:id="@+id/radio_new0"
+                    android:id="@id/radio_new0"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
@@ -96,21 +96,21 @@
                     android:visibility="gone"/>
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@id/radio1"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select" />
 
                 <RadioButton
-                    android:id="@+id/radio2"
+                    android:id="@id/radio2"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select" />
 
                 <RadioButton
-                    android:id="@+id/radio3"
+                    android:id="@id/radio3"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
@@ -118,7 +118,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/radioGroup"
+                android:id="@id/radioGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -126,14 +126,14 @@
                 android:paddingTop="10dip" >
 
                 <RadioButton
-                    android:id="@+id/radio4"
+                    android:id="@id/radio4"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select_dan" />
                 
                 <RadioButton
-                    android:id="@+id/radio_new4"
+                    android:id="@id/radio_new4"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
@@ -141,21 +141,21 @@
                     android:visibility="gone"/>
 
                 <RadioButton
-                    android:id="@+id/radio5"
+                    android:id="@id/radio5"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select_dan" />
 
                 <RadioButton
-                    android:id="@+id/radio6"
+                    android:id="@id/radio6"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:button="@drawable/jc_radio_select_dan" />
 
                 <RadioButton
-                    android:id="@+id/radio7"
+                    android:id="@id/radio7"
                     android:layout_width="90dip"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
@@ -173,14 +173,14 @@
                 android:gravity="right" >
 
                 <TextView
-                    android:id="@+id/buy_lq_main_dialog_type1"
+                    android:id="@id/buy_lq_main_dialog_type1"
                     style="@style/style_jc_dialog_text"
                     android:paddingTop="15dip"
                     android:text="@string/jclq_dialog_hunhe_title" />
             </LinearLayout>
 
             <RadioButton
-                android:id="@+id/radio8"
+                android:id="@id/radio8"
                 android:layout_width="190dip"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"

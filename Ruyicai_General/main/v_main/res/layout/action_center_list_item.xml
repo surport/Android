@@ -12,36 +12,36 @@
         android:padding="10dip" >
 
         <RelativeLayout
-            android:id="@+id/relativeLayout1"
+            android:id="@id/relativeLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
 
             <LinearLayout
-                android:id="@+id/linearLayout1"
+                android:id="@id/linearLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/action_center_list_item_text_title1"
+                    android:id="@id/action_center_list_item_text_title1"
                     style="@style/styleActionTitle1"
                     android:text="标题1" />
 
                 <TextView
-                    android:id="@+id/action_center_list_item_text_title2"
+                    android:id="@id/action_center_list_item_text_title2"
                     style="@style/styleActionTitle2"
                     android:paddingTop="10dip"
                     android:text="活动时间：" />
 
                 <TextView
-                    android:id="@+id/action_center_list_item_text_title3"
+                    android:id="@id/action_center_list_item_text_title3"
                     style="@style/styleActionTitle3"
                     android:paddingTop="10dip"
                     android:text="活动介绍：" />
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/action_center_list_item_img"
+                android:id="@id/action_center_list_item_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/alert_litte"
