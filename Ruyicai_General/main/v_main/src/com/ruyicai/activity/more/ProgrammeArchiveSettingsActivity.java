@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -74,7 +73,6 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 						Controller.getInstance(context).setOrderEmail(Constants.LOTNO_SSQ, "1", userNo);
 					}
 				}
-//				Log.i("yejc", "=======LOTNO_SSQLOTNO_SSQ=====");
 //				Controller.getInstance(context).queryOrderEmail(Constants.LOTNO_SSQ, userNo);
 				
 				break;

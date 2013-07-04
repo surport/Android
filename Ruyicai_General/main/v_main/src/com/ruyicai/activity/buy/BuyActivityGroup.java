@@ -433,26 +433,27 @@ public class BuyActivityGroup extends ActivityGroup {
 			}
 			startActivity(intent);
 		}
-		// 点击时时彩跳转到胜负彩子列表中
-		if (lotNo == Constants.LOTNO_SFC) {
-			Intent intent = new Intent(this, NoticeZCActivity.class);
-			intent.putExtra("position", 0);
-			startActivity(intent);
-		}
-		if (lotNo == Constants.LOTNO_RX9) {
-			Intent intent = new Intent(this, NoticeZCActivity.class);
-			intent.putExtra("position", 1);
-			startActivity(intent);
-		}
-		if (lotNo == Constants.LOTNO_JQC) {
-			Intent intent = new Intent(this, NoticeZCActivity.class);
-			intent.putExtra("position", 2);
-			startActivity(intent);
-		}
-		if (lotNo == Constants.LOTNO_LCB) {
-			Intent intent = new Intent(this, NoticeZCActivity.class);
-			intent.putExtra("position", 3);
-			startActivity(intent);
+		if (lotNo == Constants.LOTNO_ZC) {
+			if (mTabHost.getCurrentTab() == 0) {
+				Intent intent = new Intent(this, NoticeZCActivity.class);
+				intent.putExtra("position", 0);
+				startActivity(intent);
+			}
+			if (mTabHost.getCurrentTab() == 1) {
+				Intent intent = new Intent(this, NoticeZCActivity.class);
+				intent.putExtra("position", 1);
+				startActivity(intent);
+			}
+			if (mTabHost.getCurrentTab() == 2) {
+				Intent intent = new Intent(this, NoticeZCActivity.class);
+				intent.putExtra("position", 2);
+				startActivity(intent);
+			}
+			if (mTabHost.getCurrentTab() == 3) {
+				Intent intent = new Intent(this, NoticeZCActivity.class);
+				intent.putExtra("position", 3);
+				startActivity(intent);
+			}
 		}
 
 		// 点击时时彩跳转到进球彩子列表中

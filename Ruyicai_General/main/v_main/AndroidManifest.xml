@@ -775,11 +775,6 @@
             android:name="com.ruyicai.activity.account.UmPayPhoneActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.account.UmPayPhonePopActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog" />
 
         <!-- 免费获取礼金 -->
         <activity

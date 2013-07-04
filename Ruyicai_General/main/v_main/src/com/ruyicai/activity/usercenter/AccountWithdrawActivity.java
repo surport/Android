@@ -1399,7 +1399,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 					.getCashstate();
 			final String state = (String) mList.get(position).getState();
 			final String cashid = (String) mList.get(position).getCashid();
-			;
 			if (convertView == null) {
 				convertView = mInflater.inflate(R.layout.get_money_listitem,
 						null);
@@ -1430,12 +1429,12 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 			holder.reason.setText(cashreason);
 			if ("1".equals(state) || "103".equals(state) || "105".equals(state)) {
 				holder.cashstate.setText(R.string.account_withdraw_detail_content);
-				holder.cashstate.setTextColor(getResources()
-						.getColor(R.color.red));
+//				holder.cashstate.setTextColor(getResources()
+//						.getColor(R.color.red));
 			} else {
 				holder.cashstate.setText(cashstate);
-				holder.cashstate.setTextColor(getResources()
-						.getColor(R.color.gree_black));
+//				holder.cashstate.setTextColor(getResources()
+//						.getColor(R.color.gree_black));
 			}
 			initCashstateAndCheckBtn(holder, visible);
 			holder.check.setOnClickListener(new OnClickListener() {
@@ -1493,17 +1492,17 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	private void initCashstateAndCheckBtn(ViewHolder holder, final int mask) {
 		if (mask == 104) {
 			holder.check.setMaxHeight(20);
-			holder.cashstate.setTextColor(Color.rgb(163, 163, 163));
+//			holder.cashstate.setTextColor(Color.rgb(163, 163, 163));
 			holder.check.setBackgroundResource(R.drawable.shouqi);
 			holder.check.setText("");
 			holder.check.setVisibility(View.VISIBLE);
 		} else if (mask == 1) {
-			holder.cashstate.setTextColor(Color.rgb(190, 108, 22));
+//			holder.cashstate.setTextColor(Color.rgb(190, 108, 22));
 			holder.check.setText("取消");
 			holder.check.setBackgroundResource(R.drawable.quxiao_normal);
 			holder.check.setVisibility(View.VISIBLE);
 		} else {
-			holder.cashstate.setTextColor(Color.rgb(21, 83, 26));
+//			holder.cashstate.setTextColor(Color.rgb(21, 83, 26));
 			holder.check.setVisibility(View.GONE);
 		}
 	}

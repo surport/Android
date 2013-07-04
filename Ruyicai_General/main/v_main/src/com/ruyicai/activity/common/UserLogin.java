@@ -13,7 +13,6 @@ import java.util.LinkedHashSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -32,7 +31,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.RemoteException;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -52,12 +50,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import cn.jpush.android.api.JPushInterface;
-
-import com.alipay.android.app.IAliPay;
 import com.alipay.android.app.IAlixPay;
-import com.alipay.android.app.IRemoteServiceCallback;
 import com.alipay.android.secure.BaseHelper;
 import com.alipay.android.secure.MobileSecurePayHelper;
 import com.palmdream.RuyicaiAndroid.R;
@@ -153,6 +147,7 @@ public class UserLogin extends Activity implements TextWatcher {
 	private AuthReceiver receiver;
 	public String mAccessToken, mOpenId;
 	public static final int PROGRESS = 100000;
+	ProgressDialog mAlixPayDialog = null;
 
 	/**
 	 * 处理登录的消息及注册的消息
@@ -224,6 +219,12 @@ public class UserLogin extends Activity implements TextWatcher {
 				progressDialog.dismiss();
 				sinaweibologin();
 				break;
+			case 21:
+				weiboToLogin("alipay", (String)msg.obj, "", getPackageName());
+				if (mAlixPayDialog != null && mAlixPayDialog.isShowing()) {
+					mAlixPayDialog.dismiss();
+				}
+				break;	
 			}
 		}
 	};
@@ -327,6 +328,7 @@ public class UserLogin extends Activity implements TextWatcher {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		Bundle bundle = getIntent().getExtras();
 		context = this;
+		mAlixPayDialog = UserCenterDialog.onCreateDialog(context);
 		if (bundle != null) {
 			on = bundle.getBoolean("switch");// 读出数据
 		}
@@ -371,7 +373,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					dialog.dismiss();
 					startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
 				}
@@ -466,15 +467,11 @@ public class UserLogin extends Activity implements TextWatcher {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
-
 			}
 
 		});
@@ -497,7 +494,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				oauth();
 			}
 		});
@@ -507,7 +503,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				auth(mAppid, "_self");
 				registerIntentReceivers();
 			}
@@ -523,7 +518,7 @@ public class UserLogin extends Activity implements TextWatcher {
 				boolean isMobile_spExist = mspHelper.detectMobile_sp(Constants.ALIPAY_PLUGIN_NAME,
 						Constants.ALIPAY_PACK_NAME);
 				if (isMobile_spExist) {
-					pay();
+					alixPayLogin();
 				}
 			}
 		});
@@ -552,14 +547,12 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				CallServicePhoneConfirm.phoneKefu(UserLogin.this);
 			}
 		});
 		RelativeLayout forget_password = (RelativeLayout) findViewById(R.id.findoutpassword);
 		forget_password.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(UserLogin.this,
 						ForgetPasswordActivity.class);
 				startActivity(intent);
@@ -707,7 +700,6 @@ public class UserLogin extends Activity implements TextWatcher {
 						handler.sendMessage(msg);
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					progressDialog.dismiss();
 				}
@@ -798,7 +790,6 @@ public class UserLogin extends Activity implements TextWatcher {
 						handler.sendMessage(msg);
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					progressDialog.dismiss();
 				}
@@ -906,7 +897,6 @@ public class UserLogin extends Activity implements TextWatcher {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				ischeckReferrer = isChecked;
 				if (ischeckReferrer) {
 					layoutReferrer.setVisibility(LinearLayout.VISIBLE);
@@ -920,7 +910,6 @@ public class UserLogin extends Activity implements TextWatcher {
 		TextView textProtocol = (TextView) findViewById(R.id.user_register_text_protocol);
 		textProtocol.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				showDialog(DIALOG_PROTOCOL);
 			}
 		});
@@ -1087,7 +1076,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 	// 点击注册，完成注册
 	// 以下是注册时调用的代码
-	// TODO Auto-generated method stub
 	/**
 	 * 注册联网操作
 	 */
@@ -1099,7 +1087,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				// try{
 
 				String re = RegisterInterface.getInstance().userregister(
@@ -1172,8 +1159,6 @@ public class UserLogin extends Activity implements TextWatcher {
 			}
 		}
 		
-		bindService(new Intent(IAlixPay.class.getName()), mAlixPayConnection,
-				Context.BIND_AUTO_CREATE);
 	}
 
 	// sina 微博
@@ -1220,7 +1205,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				// try{
 
 				String re = Utility.openUrl(context, Constants.sinaweibo,
@@ -1277,8 +1261,6 @@ public class UserLogin extends Activity implements TextWatcher {
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
-		// TODO Auto-generated method stub
-
 	}
 
 	// 记住手机号
@@ -1455,47 +1437,36 @@ public class UserLogin extends Activity implements TextWatcher {
 		}
 	};
 	
-	private void pay() {
-		final ProgressDialog pDialog = UserCenterDialog.onCreateDialog(context);
-		pDialog.show();
+	private void alixPayLogin() {
+		mAlixPayDialog.show();
 		new Thread(new Runnable() {
 			public void run() {
+				bindService(new Intent(IAlixPay.class.getName()), mAlixPayConnection,
+						Context.BIND_AUTO_CREATE);
 				String alipaySign = Controller.getInstance(context).getAlipaySign();
 				try {
-					mAlixPay.Pay(alipaySign);
+					String info = mAlixPay.Pay(alipaySign);
+					BaseHelper bh = new BaseHelper();
+					JSONObject obj = bh.string2JSON(info, ";");
+					JSONObject objs = bh.string2JSON(obj.getString("result"), "&");
+					Message msg = new Message();
+					msg.obj = objs.getString("userid");
+					msg.what = 21;
+					handler.sendMessage(msg);
 				} catch (Exception e) {
 					e.printStackTrace();
+					if (mAlixPayDialog != null && mAlixPayDialog.isShowing()) {
+						mAlixPayDialog.dismiss();
+					}
 				}
-				pDialog.dismiss();
+				unbindService(mAlixPayConnection);
 			}
 		}).start();
 	}
-
+	
 	@Override
 	protected void onStop() {
 		super.onStop();
-		unbindService(mAlixPayConnection);
+//		unbindService(mAlixPayConnection);
 	}
-	
-//	private boolean pay(final String alipaySign) {
-//
-//		if (mAlixPay == null) {
-//			bindService(new Intent(IAlixPay.class.getName()),
-//					mAlixPayConnection, Context.BIND_AUTO_CREATE);
-//		}
-//
-//		new Thread(new Runnable() {
-//			public void run() {
-//				try {
-//					mAlixPay.Pay(alipaySign);
-//					unbindService(mAlixPayConnection);
-//					pDialog.dismiss();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
-//
-//		return true;
-//	}
 }

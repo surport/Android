@@ -604,7 +604,7 @@ public class FeedbackListActivity extends Activity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			int type = intent.getIntExtra(infoType, -1);
-			if (type == 0) {
+			if (type == 1) {
 				if (intent.getBooleanExtra(selectAllKey, false)) {
 					latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
 					isLatterSelectAll = false;
@@ -614,7 +614,7 @@ public class FeedbackListActivity extends Activity {
 						latterSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
 					}
 				}
-			} else {
+			} else if (type == 2){
 				if (intent.getBooleanExtra(selectAllKey, false)) {
 					messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
 					isMessageSelectAll = false;

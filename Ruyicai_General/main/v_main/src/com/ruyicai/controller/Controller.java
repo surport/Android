@@ -224,11 +224,13 @@ public class Controller {
 				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
 						.rechargeDescribe("scoreWallDisplay");
 				try {
-					String content = jsonObject.get("content").toString();
-					if ("true".equals(content)) {
-						shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, true);
-					} else {
-						shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+					if (jsonObject != null) {
+						String content = jsonObject.getString("content").toString();
+						if ("true".equals(content)) {
+							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, true);
+						} else {
+							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+						}
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -241,19 +243,23 @@ public class Controller {
 	 * 读取联动优势话费充值的显示状态
 	 */
 	public void readUmpayStateNet() {
-		final RWSharedPreferences shellRW = new RWSharedPreferences(
-				mContext, ShellRWConstants.ACCOUNT_DISPAY_STATE);
+		final RWSharedPreferences shellRW = new RWSharedPreferences(mContext,
+				ShellRWConstants.ACCOUNT_DISPAY_STATE);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
 						.rechargeDescribe("umpayHfChargeDisplay");
 				try {
-					String content = jsonObject.get("content").toString();
-					if ("true".equals(content)) {
-						shellRW.putBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, true);
-					} else {
-						shellRW.putBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, false);
+					if (jsonObject != null) {
+						String content = jsonObject.get("content").toString();
+						if ("true".equals(content)) {
+							shellRW.putBooleanValue(
+									Constants.UMPAY_PHONE_DISPLAY_STATE, true);
+						} else {
+							shellRW.putBooleanValue(
+									Constants.UMPAY_PHONE_DISPLAY_STATE, false);
+						}
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

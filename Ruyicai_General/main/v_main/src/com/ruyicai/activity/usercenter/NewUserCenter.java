@@ -218,23 +218,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 	}
 
-	/** move to PublicMethod by yejc 20130520 start */
-	// 设置listview 高度
-	// public void setListViewHeightBasedOnChildren(ListView listView, int dip)
-	// {
-	// ListAdapter listAdapter; // 取得listview绑定的适配器
-	// if (listView.getAdapter() == null) {
-	// return;
-	// }
-	// listAdapter = listView.getAdapter();
-	// ViewGroup.LayoutParams params = listView.getLayoutParams(); //
-	// 取得listview所在布局的参数
-	// params.height = PublicMethod.getPxInt(dip, this)
-	// * (listAdapter.getCount());
-	// listView.setLayoutParams(params); // 改变listview所在布局的参数
-	// }
-	/** move to PublicMethod by yejc 20130520 end */
-
 	private void getFeedbackListNet() {
 		dialog.show();
 		new Thread(new Runnable() {

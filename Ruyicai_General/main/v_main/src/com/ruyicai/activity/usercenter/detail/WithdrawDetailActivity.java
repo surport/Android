@@ -148,7 +148,7 @@ public class WithdrawDetailActivity extends Activity implements HandlerMsg {
 		} else if ("105".equals(cashState)) {
 			checkTimeTextView.setText(formatString(R.string.account_withdraw_detail_check_time,"",checkTiem));
 			remitTimeTextView.setText(formatString(R.string.account_withdraw_detail_remit_time,"",remitTiem));
-			finishTimeTextView.setText(formatString(R.string.account_withdraw_detail_finish_time,forecastShow,finishTiem));
+			finishTimeTextView.setText(formatString(R.string.account_withdraw_detail_finish_time,"",finishTiem));
 			remarkTextView.setText("已到账"/*formatString(R.string.account_withdraw_detail_remark_content,"已汇款",finishTiem, "到账")*/);
 		} else if ("103".equals(cashState)) {
 			checkTimeTextView.setText(formatString(R.string.account_withdraw_detail_check_time,"",checkTiem));
