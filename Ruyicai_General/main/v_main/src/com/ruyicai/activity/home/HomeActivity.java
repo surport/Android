@@ -133,8 +133,15 @@ public class HomeActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/* Add by fansm 20130416 start */
-		if (Constants.isDebug)
+		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/** add by liandongyoushi start */
+		Intent intent = getIntent();
+		Constants.UMPAY_CHANNEL_ID = intent.getStringExtra("channelId");
+		/** add by liandongyoushi end */
+
 		/* Add by fansm 20130416 end */
 		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -586,6 +593,12 @@ public class HomeActivity extends Activity {
 
 	protected void onResume() {
 		super.onResume();
+		/*Add by fansm 20130702 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/*Add by fansm 20130702 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-6-28
 	}
 

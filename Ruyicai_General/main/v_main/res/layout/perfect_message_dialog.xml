@@ -20,7 +20,7 @@
 		        android:textAppearance="?android:attr/textAppearanceMedium" />
 	            
 		    <EditText
-		    	android:id="@+id/et_perfect_message_name"
+		    	android:id="@id/et_perfect_message_name"
 		        android:layout_height="wrap_content"
 		        android:layout_width="fill_parent"
 		        android:layout_marginLeft="20dip"

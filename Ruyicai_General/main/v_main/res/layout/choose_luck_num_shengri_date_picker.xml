@@ -5,7 +5,7 @@
   android:layout_height="wrap_content">
 
 	<DatePicker 
-		android:id="@+id/choose_luck_num_date_picker_id" 
+		android:id="@id/choose_luck_num_date_picker_id" 
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content">
 	</DatePicker>

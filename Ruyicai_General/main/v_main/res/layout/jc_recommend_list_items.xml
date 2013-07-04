@@ -7,7 +7,7 @@
 
 
         <Button
-            android:id="@+id/jc_recommend_list_item_btn"
+            android:id="@id/jc_recommend_list_item_btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dip"
@@ -16,7 +16,7 @@
             android:paddingLeft="10dip"
             android:textSize="16dip" />
         
-        <TextView android:id="@+id/jc_recommend_list_item_text"
+        <TextView android:id="@id/jc_recommend_list_item_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dip"

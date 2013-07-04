@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/jc_score_top_layout"
+        android:id="@id/jc_score_top_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/jc_explain_list_bg"
@@ -14,7 +14,7 @@
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_company"
+            android:id="@id/jc_europe_list_item_text_company"
             android:layout_width="80dip"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
@@ -28,7 +28,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/jc_europe_list_item_text_center_win"
+                android:id="@id/jc_europe_list_item_text_center_win"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -43,7 +43,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/jc_europe_list_item_text_right_win"
+                android:id="@id/jc_europe_list_item_text_right_win"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -54,14 +54,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/jc_asia_top_layout"
+        android:id="@id/jc_asia_top_layout"
         android:layout_width="fill_parent"
         android:layout_height="35dip"
         android:background="@color/jc_explain_list_bg"
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_company"
+            android:id="@id/jc_europe_list_item_text_company"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
@@ -114,14 +114,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/jc_europe_top_layout"
+        android:id="@id/jc_europe_top_layout"
         android:layout_width="match_parent"
         android:layout_height="35dip"
         android:background="@color/jc_explain_list_bg"
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_company"
+            android:id="@id/jc_europe_list_item_text_company"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.1"
@@ -136,7 +136,7 @@
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_left_win"
+            android:id="@id/jc_europe_list_item_text_left_win"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -151,7 +151,7 @@
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_left_leve"
+            android:id="@id/jc_europe_list_item_text_left_leve"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -160,13 +160,13 @@
             android:textColor="@color/black"
             android:textSize="15dip" />
 
-        <View android:id="@+id/jc_europe_list_item_text_left_leve_divider"
+        <View android:id="@id/jc_europe_list_item_text_left_leve_divider"
             android:layout_width="2dip"
             android:layout_height="match_parent"
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_left_fail"
+            android:id="@id/jc_europe_list_item_text_left_fail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -181,7 +181,7 @@
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_europe_list_item_text_give"
+            android:id="@id/jc_europe_list_item_text_give"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -193,7 +193,7 @@
     
         <!-- 让分 -->
     <LinearLayout
-        android:id="@+id/jc_data_analysis_score_top_layout"
+        android:id="@id/jc_data_analysis_score_top_layout"
         android:layout_width="fill_parent"
         android:layout_height="35dip"
         android:background="@color/jc_explain_list_bg"
@@ -214,7 +214,7 @@
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_data_analysis_score_guest"
+            android:id="@id/jc_data_analysis_score_guest"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -229,7 +229,7 @@
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_data_analysis_score_let"
+            android:id="@id/jc_data_analysis_score_let"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -244,7 +244,7 @@
             android:background="@color/zc_sfc_divider" />
 
         <TextView
-            android:id="@+id/jc_data_analysis_score_home"
+            android:id="@id/jc_data_analysis_score_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
@@ -261,7 +261,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/jc_score_layout"
+        android:id="@id/jc_score_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/jc_score_list_bg"
@@ -277,7 +277,7 @@
             android:textSize="18dip" />
 
         <Spinner
-            android:id="@+id/jc_score_list_spinner"
+            android:id="@id/jc_score_list_spinner"
             android:layout_width="170dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical" >
@@ -285,7 +285,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/jc_score_text_no_info"
+        android:id="@id/jc_score_text_no_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -297,14 +297,14 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:id="@+id/fenxi_listview_header"
+        android:id="@id/fenxi_listview_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/fenxi_listview_header_hometeam"
+            android:id="@id/fenxi_listview_header_hometeam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -312,7 +312,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/fenxi_listview_header_guestteam"
+            android:id="@id/fenxi_listview_header_guestteam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -321,7 +321,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/buy_jc_main_listview"
+        android:id="@id/buy_jc_main_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/list_bg_white"

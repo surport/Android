@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
 public class Ssq extends BuyActivityGroup {
@@ -24,6 +25,12 @@ public class Ssq extends BuyActivityGroup {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/*Add by fansm 20130416 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/*Add by fansm 20130416 end*/
 		setLotno(Constants.LOTNO_SSQ);
 
 		init(titles, topTitles, allId);

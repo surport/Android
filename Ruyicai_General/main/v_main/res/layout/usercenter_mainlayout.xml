@@ -7,19 +7,19 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/usercenter_mainlayou_text_title"
+            android:id="@id/usercenter_mainlayou_text_title"
             style="@style/UserTitleTextLeft"
             android:text="@string/yonghuzhongxin" />
 
         <Button
-            android:id="@+id/layout_usercenter_img_return"
+            android:id="@id/layout_usercenter_img_return"
             android:layout_width="100dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -38,13 +38,13 @@
         android:layout_height="fill_parent" >
 
         <RelativeLayout
-            android:id="@+id/usercenterContent"
+            android:id="@id/usercenterContent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:padding="5dp" >
 
             <LinearLayout
-                android:id="@+id/usercentertable"
+                android:id="@id/usercentertable"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -64,7 +64,7 @@
                         android:orientation="horizontal" >
 
                         <TextView
-                            android:id="@+id/usermobile"
+                            android:id="@id/usermobile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dip"
@@ -74,7 +74,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@+id/mobilecontent"
+                            android:id="@id/mobilecontent"
                             android:layout_width="100dip"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -93,7 +93,7 @@
                         android:paddingLeft="5dip" >
 
                         <TextView
-                            android:id="@+id/nickname"
+                            android:id="@id/nickname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -104,7 +104,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@+id/nickcontent"
+                            android:id="@id/nickcontent"
                             android:layout_width="100dip"
                             android:layout_height="wrap_content"
                             android:layout_gravity="clip_vertical"
@@ -130,7 +130,7 @@
                         android:orientation="horizontal" >
 
                         <TextView
-                            android:id="@+id/userless"
+                            android:id="@id/userless"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dip"
@@ -140,7 +140,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@+id/lesscontent"
+                            android:id="@id/lesscontent"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="clip_vertical"
@@ -159,7 +159,7 @@
                         android:paddingLeft="5dip" >
 
                         <TextView
-                            android:id="@+id/uesrpoints"
+                            android:id="@id/uesrpoints"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dip"
@@ -169,7 +169,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@+id/pointscontent"
+                            android:id="@id/pointscontent"
                             android:layout_width="70dip"
                             android:layout_height="wrap_content"
                             android:layout_gravity="clip_vertical"
@@ -180,7 +180,7 @@
                         </TextView>
 
                         <ImageView
-                            android:id="@+id/userillustrations"
+                            android:id="@id/userillustrations"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
@@ -190,7 +190,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/userlayout01"
+                    android:id="@id/userlayout01"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/usercenterbottom"
@@ -199,7 +199,7 @@
                     android:paddingLeft="5dip" >
 
                     <TextView
-                        android:id="@+id/useryue"
+                        android:id="@id/useryue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="账户安全:"
@@ -207,19 +207,19 @@
                         android:textSize="15sp" />
 
                     <LinearLayout
-                        android:id="@+id/layout01"
+                        android:id="@id/layout01"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" >
 
                         <ImageView
-                            android:id="@+id/critidbindimmmmm"
+                            android:id="@id/critidbindimmmmm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/crididbind" />
 
                         <TextView
-                            android:id="@+id/critidbindtx"
+                            android:id="@id/critidbindtx"
                             style="@style/UsercenterTextmain"
                             android:text="已绑定身份证" />
                     </LinearLayout>
@@ -230,13 +230,13 @@
                         android:layout_weight="1" >
 
                         <ImageView
-                            android:id="@+id/phonebindim"
+                            android:id="@id/phonebindim"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/phonebindno" />
 
                         <TextView
-                            android:id="@+id/phonebindtx"
+                            android:id="@id/phonebindtx"
                             style="@style/UsercenterTextmain"
                             android:text="未绑定手机" />
                     </LinearLayout>
@@ -244,7 +244,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/regist_no"
+                android:id="@id/regist_no"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/usercenterback"
@@ -265,7 +265,7 @@
                         android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/usercenterlogin"
+                        android:id="@id/usercenterlogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -297,7 +297,7 @@
                         android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/usercenterregister"
+                        android:id="@id/usercenterregister"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -313,7 +313,7 @@
                     android:layout_marginTop="15dip" >
 
                     <Button
-                        android:id="@+id/usercenter_login"
+                        android:id="@id/usercenter_login"
                         android:layout_width="80dip"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -326,7 +326,7 @@
                     </Button>
 
                     <Button
-                        android:id="@+id/usercenter_regiset"
+                        android:id="@id/usercenter_regiset"
                         android:layout_width="80dip"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -357,7 +357,7 @@
                     android:textSize="20sp" />
 
                 <ListView
-                    android:id="@+id/usercaipiaolist"
+                    android:id="@id/usercaipiaolist"
                     android:layout_width="fill_parent"
                     android:layout_height="245dip"
                     android:background="@drawable/usercenterback"
@@ -376,7 +376,7 @@
                     android:textSize="20sp" />
 
                 <ListView
-                    android:id="@+id/usermoneylist"
+                    android:id="@id/usermoneylist"
                     android:layout_width="fill_parent"
                     android:layout_height="245dip"
                     android:background="@drawable/usercenterback"
@@ -397,7 +397,7 @@
                     android:textSize="20sp" />
 
                 <ListView
-                    android:id="@+id/usersetlist"
+                    android:id="@id/usersetlist"
                     android:layout_width="fill_parent"
                     android:layout_height="160dip"
                     android:background="@drawable/usercenterback"

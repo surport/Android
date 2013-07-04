@@ -206,6 +206,9 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		Intent intent = new Intent(this, UmpayActivity.class);
 		intent.putExtra("tradNo", orderId);
         intent.putExtra("payType", CREDIT_CARD_RECHARGE + DEBIT_CARD_RECHARGE);
+        /**add by umpay start*/
+        intent.putExtra("channelId", Constants.UMPAY_CHANNEL_ID);
+        /**add by umpay end*/
         startActivityForResult(intent, REQUESTCODE);
 	}
 

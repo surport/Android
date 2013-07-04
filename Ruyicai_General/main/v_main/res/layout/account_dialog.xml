@@ -10,7 +10,7 @@
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/account_phone_title"
+            android:id="@id/account_phone_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shouye_top" android:paddingLeft="10dip">
@@ -28,7 +28,7 @@
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/account_phone_title"
+            android:layout_below="@id/account_phone_title"
             android:background="#FFFFFF"
             android:paddingBottom="50dip" >
 
@@ -55,7 +55,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/zfb_recharge_value"
+                        android:id="@id/zfb_recharge_value"
                         android:layout_width="80dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -93,7 +93,7 @@
                         android:textColor="@color/black" />
 
                     <Spinner
-                        android:id="@+id/account_spinner_bank"
+                        android:id="@id/account_spinner_bank"
                         android:layout_width="170dip"
                         android:layout_height="wrap_content" >
                     </Spinner>
@@ -115,14 +115,14 @@
                         android:textColor="@color/black" />
 
                     <Spinner
-                        android:id="@+id/account_spinner_bank_stye"
+                        android:id="@id/account_spinner_bank_stye"
                         android:layout_width="170dip"
                         android:layout_height="wrap_content" >
                     </Spinner>
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/yinhangPay_text"
+                    android:id="@id/yinhangPay_text"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
             </LinearLayout>
@@ -136,7 +136,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/ok"
+                android:id="@id/ok"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dip"
@@ -149,7 +149,7 @@
             </Button>
 
             <Button
-                android:id="@+id/canel"
+                android:id="@id/canel"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"

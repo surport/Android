@@ -10,7 +10,7 @@
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/account_phone_title"
+            android:id="@id/account_phone_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shouye_top"
@@ -29,7 +29,7 @@
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/account_phone_title"
+            android:layout_below="@id/account_phone_title"
             android:background="#FFFFFF"
             android:paddingBottom="50dip" >
 
@@ -54,7 +54,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_recharge_value"
+                        android:id="@id/bank_card_phone_recharge_value"
                         android:layout_width="80dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -90,7 +90,7 @@
                         android:textColor="@color/black" />
 
                     <Spinner
-                        android:id="@+id/Spinner01"
+                        android:id="@id/Spinner01"
                         android:layout_width="170dip"
                         android:layout_height="wrap_content"
                         android:entries="@array/brank_card_phone_type" >
@@ -123,7 +123,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_bankid"
+                        android:id="@id/bank_card_phone_bankid"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:autoText="false"
@@ -148,7 +148,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_phone_name"
+                        android:id="@id/bank_card_phone_phone_name"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:autoText="false"
@@ -172,7 +172,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_phone_idcard"
+                        android:id="@id/bank_card_phone_phone_idcard"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:autoText="false"
@@ -196,7 +196,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_phone_home"
+                        android:id="@id/bank_card_phone_phone_home"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:autoText="false"
@@ -232,7 +232,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_phone_province"
+                        android:id="@id/bank_card_phone_phone_province"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:autoText="false"
@@ -268,7 +268,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/bank_card_phone_phone_num"
+                        android:id="@id/bank_card_phone_phone_num"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:autoText="false"
@@ -280,7 +280,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/YinDNAtext_content"
+                    android:id="@id/YinDNAtext_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -298,7 +298,7 @@
             android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/ok"
+                android:id="@id/ok"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dip"
@@ -311,7 +311,7 @@
             </Button>
 
             <Button
-                android:id="@+id/canel"
+                android:id="@id/canel"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"

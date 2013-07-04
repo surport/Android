@@ -8,26 +8,26 @@
     android:paddingTop="2dp" >
 
     <RelativeLayout
-        android:id="@+id/join_Check_top"
+        android:id="@id/join_Check_top"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingRight="20dp" >
         <TextView
-            android:id="@+id/join_check_item_text_icon"
+            android:id="@id/join_check_item_text_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/join_check_item_text_result"
+            android:id="@id/join_check_item_text_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/join_check_item_text_icon"
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/join_check_item_text_id"
+            android:id="@id/join_check_item_text_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/join_check_item_text_icon"
@@ -37,7 +37,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/join_check_middle"
+        android:id="@id/join_check_middle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/join_Check_top"
@@ -45,7 +45,7 @@
         android:paddingTop="6dip" >
 
         <TextView
-            android:id="@+id/join_check_item_text_time"
+            android:id="@id/join_check_item_text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -56,14 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:id="@+id/rengoutype"
+            android:id="@id/rengoutype"
             android:layout_toRightOf="@id/join_check_item_text_time"
             android:text="认购金额："
             android:textColor="@color/black" >
         </TextView>
 
         <TextView
-            android:id="@+id/join_check_item_text_amt"
+            android:id="@id/join_check_item_text_amt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -78,12 +78,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/join_check_middle"
         android:paddingRight="20dp"
-        android:id="@+id/join_follow"
+        android:id="@id/join_follow"
         android:visibility="gone"
          >
 
         <Button
-            android:id="@+id/usercenter_buyagain"
+            android:id="@id/usercenter_buyagain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -91,7 +91,7 @@
             android:background="@drawable/follow_channle" />
 
         <Button
-            android:id="@+id/usercenter_querydetail"
+            android:id="@id/usercenter_querydetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -99,7 +99,7 @@
             android:background="@drawable/usercenter_selector_lookdetails" />
     </RelativeLayout>
 
-    <ImageView android:id="@+id/join_check_listView_item_jump"
+    <ImageView android:id="@id/join_check_listView_item_jump"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

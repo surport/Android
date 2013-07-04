@@ -3,15 +3,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="wrap_content"
 	android:layout_height="wrap_content" android:background="@color/white">
-	<RelativeLayout android:id="@+id/main_buy_title"
+	<RelativeLayout android:id="@id/main_buy_title"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:background="@drawable/shouye_top">
-		<TextView android:text="" android:id="@+id/join_text_title"
+		<TextView android:text="" android:id="@id/join_text_title"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textColor="@color/white" android:paddingLeft="10dip"
 			android:textSize="20dip" android:layout_alignParentLeft="true"
 			android:layout_centerVertical="true"></TextView>
-		<Button android:id="@+id/join_img_return"
+		<Button android:id="@id/join_img_return"
 			android:layout_width="100dip" android:layout_height="30dip"
 			android:layout_alignParentRight="true" android:layout_marginRight="10dip"
 			android:layout_centerVertical="true" android:text="返回"
@@ -19,36 +19,36 @@
 			android:textColor="@color/white" android:textSize="15dip">
 		</Button>
 	</RelativeLayout>
-	<LinearLayout android:layout_width="fill_parent" android:id="@+id/join_info_check_linear_top"
+	<LinearLayout android:layout_width="fill_parent" android:id="@id/join_info_check_linear_top"
 		android:layout_height="wrap_content" android:background="@drawable/join_info_top"
 		android:gravity="center_vertical" android:visibility="gone">
-		<Button android:id="@+id/join_info_btn_progress"
+		<Button android:id="@id/join_info_btn_progress"
 			android:layout_width="90dip" android:layout_height="30dip"
 			android:layout_marginRight="7dip" android:text="按进度排序"
 			android:textColor="@color/black" android:textSize="13dip" />
-		<Button android:id="@+id/join_info_btn_all_atm"
+		<Button android:id="@id/join_info_btn_all_atm"
 			android:layout_width="90dip" android:layout_height="30dip"
 			android:layout_marginRight="7dip" android:text="按总额排序"
 			android:textColor="@color/black" android:textSize="13dip" />
-		<Button android:id="@+id/join_info_btn_atm"
+		<Button android:id="@id/join_info_btn_atm"
 			android:layout_width="90dip" android:layout_height="30dip"
 			android:layout_marginRight="7dip" android:text="按人气排序"
 			android:textColor="@color/black" android:textSize="13dip" />
-		<CheckBox android:text="" android:id="@+id/jion_info_check"
+		<CheckBox android:text="" android:id="@id/jion_info_check"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
 	</LinearLayout>
-	<RelativeLayout android:id="@+id/RelativeLayout01"
+	<RelativeLayout android:id="@id/RelativeLayout01"
 		android:layout_width="fill_parent" android:layout_height="fill_parent">
 		<ListView android:fadingEdge="none" android:scrollingCache="false"
-			android:padding="5dip" android:id="@+id/join_listview"
+			android:padding="5dip" android:id="@id/join_listview"
 			android:layout_width="fill_parent" android:layout_height="fill_parent"
 			android:background="@drawable/list_bg_white" android:dividerHeight="0dip"
 			android:divider="#d2d2d2" >
 		</ListView>
-		<RelativeLayout android:id="@+id/LinearLayout01"
+		<RelativeLayout android:id="@id/LinearLayout01"
 			android:layout_width="fill_parent" android:layout_height="wrap_content" android:visibility="gone"
 			android:layout_alignParentBottom="true">
-			<Button android:id="@+id/join_img_down"
+			<Button android:id="@id/join_img_down"
 				android:layout_width="fill_parent" android:layout_height="fill_parent"
 				android:text="获取更多"
 				android:layout_centerVertical="true"

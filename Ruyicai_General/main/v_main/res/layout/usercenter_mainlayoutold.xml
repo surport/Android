@@ -7,18 +7,18 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@+id/usercenter_mainlayou_text_title"
+            android:id="@id/usercenter_mainlayou_text_title"
             style="@style/UserTitleTextLeft"
             android:text="@string/yonghuzhongxin" />
 
         <Button
-            android:id="@+id/layout_usercenter_img_return"
+            android:id="@id/layout_usercenter_img_return"
             android:layout_width="100dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -33,7 +33,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/betkind"
+        android:id="@id/betkind"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -50,17 +50,17 @@
         </TextView>
 
         <Spinner
-            android:id="@+id/bet_kind_spinner"
+            android:id="@id/bet_kind_spinner"
             android:layout_width="160sp"
             android:layout_height="50sp"
-            android:layout_below="@+id/buy_jc_main_listview"
+            android:layout_below="@id/buy_jc_main_listview"
             android:prompt="@string/betkind" >
         </Spinner>
     </LinearLayout>
 
     <!-- 填充内容视图 -->
     <LinearLayout
-        android:id="@+id/usercenterContent"
+        android:id="@id/usercenterContent"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
     </LinearLayout>

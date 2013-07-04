@@ -21,7 +21,7 @@
             android:textSize="19sp" />
 
         <Button
-            android:id="@+id/simulate_button_touzhu"
+            android:id="@id/simulate_button_touzhu"
             android:layout_width="70dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -48,7 +48,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/simulate_textview_selectednumbers"
+            android:id="@id/simulate_textview_selectednumbers"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:background="@color/white"
@@ -71,7 +71,7 @@
 
             <com.ruyicai.activity.buy.ssq.SimulateSelectNumberView
                 xmlns:app="http://schemas.android.com/apk/res/com.ruyicai.activity.buy.ssq"
-                android:id="@+id/simulate_selectnumber_view"
+                android:id="@id/simulate_selectnumber_view"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent" />
         </ScrollView>

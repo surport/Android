@@ -5,17 +5,17 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@+id/layout_main_text_title"
+            android:id="@id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/layout_main_text_title_one"
+            android:layout_toRightOf="@id/layout_main_text_title_one"
             android:paddingLeft="10dip"
             android:textColor="@color/white"
             android:textSize="20dip" >
@@ -30,7 +30,7 @@
         android:paddingTop="5sp" >
 
         <Button
-            android:id="@+id/buy_lq_main_btn_type"
+            android:id="@id/buy_lq_main_btn_type"
             android:layout_width="120dip"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
@@ -41,7 +41,7 @@
         </Button>
 
         <TextView
-            android:id="@+id/buy_jc_main_text_title"
+            android:id="@id/buy_jc_main_text_title"
             style="@style/textSize16"
             android:paddingLeft="50sp"
             android:text="@string/jclq_title" >
@@ -49,19 +49,19 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+        android:id="@id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" android:background="@color/white">
 
         <LinearLayout
-            android:id="@+id/buy_lq_mian_layout"
+            android:id="@id/buy_lq_mian_layout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical" >
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/buy_zixuan_relativelayout"
+            android:id="@id/buy_zixuan_relativelayout"
             android:layout_width="fill_parent"
             android:layout_height="60sp"
             android:layout_alignParentBottom="true"
@@ -74,7 +74,7 @@
                 android:orientation="horizontal" >
 
                 <LinearLayout
-                    android:id="@+id/buy_zixuan_linear_progress_all"
+                    android:id="@id/buy_zixuan_linear_progress_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content" >
 
                         <ImageButton
-                            android:id="@+id/buy_zixuan_img_subtract_beishu"
+                            android:id="@id/buy_zixuan_img_subtract_beishu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"
@@ -93,11 +93,11 @@
                             android:src="@drawable/subtractselecter" />
 
                         <LinearLayout
-                            android:id="@+id/buy_zixuan_linear_progress"
+                            android:id="@id/buy_zixuan_linear_progress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            layout_toRightOf="@+id/buy_zixuan_img_subtract_beishu"
+                            layout_toRightOf="@id/buy_zixuan_img_subtract_beishu"
                             android:orientation="vertical"
                             android:paddingLeft="15dip"
                             android:paddingRight="15dip" >
@@ -109,13 +109,13 @@
                                 android:orientation="horizontal" >
 
                                 <TextView
-                                    android:id="@+id/buy_zixuan_text_beishu"
+                                    android:id="@id/buy_zixuan_text_beishu"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textColor="@color/black" />
 
                                 <TextView
-                                    android:id="@+id/buy_zixuan_text_beishu_title"
+                                    android:id="@id/buy_zixuan_text_beishu_title"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/mbeishu"
@@ -123,7 +123,7 @@
                             </LinearLayout>
 
                             <SeekBar
-                                android:id="@+id/buy_zixuan_seek_beishu"
+                                android:id="@id/buy_zixuan_seek_beishu"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="130dip"
                                 android:layout_height="wrap_content"
@@ -139,10 +139,10 @@
                         </LinearLayout>
 
                         <ImageButton
-                            android:id="@+id/buy_zixuan_img_add_beishu"
+                            android:id="@id/buy_zixuan_img_add_beishu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
+                            android:layout_toRightOf="@id/buy_zixuan_linear_progress"
                             android:background="#00000000"
                             android:paddingTop="20dip"
                             android:src="@drawable/addselecter" />
@@ -153,12 +153,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/buy_zixuan_linear_progress_all"
+                    android:layout_toRightOf="@id/buy_zixuan_linear_progress_all"
                     android:orientation="vertical"
                     android:paddingTop="20dip" >
 
                     <ImageButton
-                        android:id="@+id/buy_zixuan_img_touzhu"
+                        android:id="@id/buy_zixuan_img_touzhu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#00000000"

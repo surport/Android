@@ -2,53 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="horizontal" android:layout_width="fill_parent"
 	android:layout_height="80dp" android:gravity="center_vertical"
-	android:weightSum="5" android:id="@+id/sixhalforgoalsitem">
+	android:weightSum="5" android:id="@id/sixhalforgoalsitem">
 
-	<TextView android:id="@+id/liuchangban_lienum"
+	<TextView android:id="@id/liuchangban_lienum"
 		android:textColor="@color/black" 
 		android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	<LinearLayout android:layout_width="wrap_content" android:gravity="center_horizontal"
 		android:layout_weight="1" android:layout_height="wrap_content"
-		android:orientation="vertical" android:id="@+id/liuchangban_layout_team">
-		<TextView android:id="@+id/liuchangban_teamrank1"
+		android:orientation="vertical" android:id="@id/liuchangban_layout_team">
+		<TextView android:id="@id/liuchangban_teamrank1"
 			android:layout_marginTop="5dp" android:layout_width="wrap_content"
 			android:textSize="12dp" android:textColor="@color/black"
 			android:layout_height="wrap_content" android:gravity="top" />
 		<TextView android:text="　VS" android:layout_width="wrap_content"
 			android:textColor="@color/black" android:textSize="10dp"
 			android:layout_height="wrap_content" />
-		<TextView android:id="@+id/liuchangban_teamrank2"
+		<TextView android:id="@id/liuchangban_teamrank2"
 			android:textColor="@color/black" android:layout_width="wrap_content"
 			android:textSize="12dp" android:layout_height="wrap_content"
 			android:gravity="bottom" />
 	</LinearLayout>
 	<RelativeLayout android:layout_weight="1"  android:gravity="center_horizontal"
-		android:layout_width="wrap_content" android:id="@+id/football_sixandhalf_text"
+		android:layout_width="wrap_content" android:id="@id/football_sixandhalf_text"
 		android:layout_height="wrap_content" android:orientation="vertical">
-		<TextView android:id="@+id/liuchangban_banchang"
+		<TextView android:id="@id/liuchangban_banchang"
 			android:paddingTop="5dp" android:text="@string/banchang"
 			android:layout_alignParentTop="true" android:layout_width="wrap_content"
 			android:textSize="12dp" android:layout_height="wrap_content"
 			android:textColor="@color/blue" />
 
-		<TextView android:id="@+id/liuchangban_quanchang"
-			android:layout_below="@+id/liuchangban_banchang" android:text="@string/quanchang"
+		<TextView android:id="@id/liuchangban_quanchang"
+			android:layout_below="@id/liuchangban_banchang" android:text="@string/quanchang"
 			android:layout_alignParentBottom="true" android:paddingTop="20dip"
 			android:layout_width="wrap_content" android:textSize="12dp"
 			android:layout_height="wrap_content" android:textColor="@color/blue" />
 
 	</RelativeLayout>
-	<LinearLayout android:id="@+id/liuchangban_ball_layout" android:gravity="center_horizontal"
+	<LinearLayout android:id="@id/liuchangban_ball_layout" android:gravity="center_horizontal"
 		android:layout_weight="2" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:orientation="vertical">
 		<TableLayout android:orientation="horizontal"
 			android:paddingTop="5dp" android:layout_height="wrap_content"
-			android:layout_width="wrap_content" android:id="@+id/liuchangban_ball_1">
+			android:layout_width="wrap_content" android:id="@id/liuchangban_ball_1">
 		</TableLayout>
 
 		<TableLayout android:orientation="horizontal"
 			android:layout_height="wrap_content" android:layout_width="wrap_content"
-			android:id="@+id/liuchangban_ball_2">
+			android:id="@id/liuchangban_ball_2">
 		</TableLayout>
 
 	</LinearLayout>
@@ -58,6 +58,6 @@
 		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:src="@drawable/fenxi"
-			android:id="@+id/liuchangban_fenxi" />
+			android:id="@id/liuchangban_fenxi" />
 	</LinearLayout>
 </LinearLayout>

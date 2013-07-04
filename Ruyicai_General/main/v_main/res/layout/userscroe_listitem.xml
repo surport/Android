@@ -8,16 +8,16 @@
 		<TextView android:textColor="#171717" android:layout_weight="2" 
 			android:layout_height="wrap_content" android:textSize="16sp" android:layout_gravity="center_vertical"
 			android:layout_width="wrap_content" android:gravity="center"
-			android:id="@+id/user_center_account_detail_trading_mode_id"></TextView>
+			android:id="@id/user_center_account_detail_trading_mode_id"></TextView>
 		<TextView android:textColor="#724341" android:gravity="center" 
 			android:textSize="14sp" android:layout_height="wrap_content"  android:layout_gravity="center_vertical"
 			android:layout_width="wrap_content" android:layout_weight="1"
-			android:id="@+id/user_center_account_detail_trading_date_id"></TextView>
+			android:id="@id/user_center_account_detail_trading_date_id"></TextView>
 		
 	</LinearLayout>
 	<TextView android:textColor="@color/black"
 		android:layout_height="wrap_content" android:layout_marginTop="5dip"
 		android:paddingRight="20dp"  android:layout_width="wrap_content"
-		android:id="@+id/user_center_account_detail_yu_e_id" android:textSize="14sp"
+		android:id="@id/user_center_account_detail_yu_e_id" android:textSize="14sp"
 		android:layout_centerVertical="true" android:layout_alignParentRight="true"></TextView>
 </RelativeLayout>
