@@ -144,10 +144,9 @@ public class NoticeActivityGroup extends ActivityGroup {
 			NoticeMainActivity.BALL_WIDTH = 46;
 			NoticeMainActivity.SCALE = 1;
 		} else if (screenWith > 480) {
-			NoticeMainActivity.BALL_WIDTH = screenWith / 480
-					* NoticeMainActivity.BALL_WIDTH;
+			NoticeMainActivity.BALL_WIDTH = screenWith / 480 * 46;
 			NoticeMainActivity.SCALE = (float) 1.5;
-		}
+		} 
 	}
 
 	/**

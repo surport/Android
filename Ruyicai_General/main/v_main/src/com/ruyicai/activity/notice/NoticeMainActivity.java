@@ -143,7 +143,7 @@ public class NoticeMainActivity extends Activity {
 			BALL_WIDTH = 46;
 			SCALE = 1;
 		} else if (screenWith > 480) {
-			BALL_WIDTH = screenWith / 480 * BALL_WIDTH;
+			BALL_WIDTH = screenWith / 480 * 46;
 			SCALE = (float) 1.5;
 		}
 	}
