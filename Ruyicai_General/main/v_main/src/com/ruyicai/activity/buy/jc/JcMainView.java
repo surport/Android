@@ -52,7 +52,7 @@ public abstract class JcMainView {
 	private final static String ERROR_WIN = "0000";
 	private LinearLayout layoutView;
 	private BaseAdapter adapter;
-	private String jcType;
+	public String jcType;
 	private String jcvaluetype;
 	private List<List> listWeeks = new ArrayList<List>();// 按星期划分数据
 	private final int MAX_TEAM = 10;// 最多可选10场比赛

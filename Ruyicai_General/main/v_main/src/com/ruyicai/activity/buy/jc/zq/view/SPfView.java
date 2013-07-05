@@ -106,7 +106,8 @@ public class SPfView extends JcMainView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += info.getHome() + " vs " + info.getAway() + "：";
+				codeStr += (info.getWeeks() + "  " + info.getTeamId()) + "  ";
+				codeStr += (info.getHome() + " vs " + info.getAway() + "\n胜平负:");
 				if (info.isWin()) {
 					codeStr += "胜";
 				}
@@ -119,7 +120,8 @@ public class SPfView extends JcMainView {
 				if (info.isDan()) {
 					codeStr += "(胆)";
 				}
-				codeStr += "\n\n";
+
+				codeStr += "\n";
 			}
 
 		}

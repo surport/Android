@@ -90,10 +90,10 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@id/beishulayout"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
-                        android:id="@id/beishulayout"
                         android:paddingRight="2dp"
                         android:paddingTop="10dip" >
 
@@ -122,15 +122,8 @@
                             android:paddingRight="15dip"
                             android:progress="1"
                             android:progressDrawable="@drawable/seekbar_style"
-                            android:thumb="@drawable/thumb" />
-
-                        <ImageButton
-                            android:id="@id/buy_zixuan_img_add_beishu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/buy_zixuan_linear_progress"
-                            android:background="#00000000"
-                            android:src="@drawable/addselecter" />
+                            android:thumb="@drawable/thumb"
+                            android:visibility="gone" />
 
                         <EditText
                             android:id="@id/buy_zixuan_text_beishu"
@@ -140,6 +133,14 @@
                             android:numeric="integer"
                             android:singleLine="true" >
                         </EditText>
+
+                        <ImageButton
+                            android:id="@id/buy_zixuan_img_add_beishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/buy_zixuan_linear_progress"
+                            android:background="#00000000"
+                            android:src="@drawable/addselecter" />
                     </LinearLayout>
 
                     <LinearLayout

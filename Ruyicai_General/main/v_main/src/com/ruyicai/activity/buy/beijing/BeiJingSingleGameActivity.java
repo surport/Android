@@ -1525,14 +1525,15 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
-					/* Modify by pengcx 20130515 start */
+					againstStringBufffer.append(upDownSingleDoubleAgainstInformation.getTeamId() + "  ");
+					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(upDownSingleDoubleAgainstInformation
 									.getHomeTeam())
 							.append(" vs ")
 							.append(upDownSingleDoubleAgainstInformation
-									.getGuestTeam()).append(":");
-					/* Modify by pengcx 20130515 end */
+									.getGuestTeam()).append("\n上下单双：");
+					/* Modify by pengcx 20130703 end */
 
 					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
 						againstStringBufffer.append("上单");
@@ -1546,7 +1547,7 @@ public class BeiJingSingleGameActivity extends Activity {
 					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
 						againstStringBufffer.append("下双");
 					}
-					againstStringBufffer.append("\n\n");
+					againstStringBufffer.append("\n");
 				}
 			}
 		}
@@ -1563,14 +1564,15 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
-					/* Modify by pengcx 20130515 start */
+					againstStringBufffer.append(halfTheAudienceAgainstInformation.getTeamId() + "  ");
+					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(halfTheAudienceAgainstInformation
 									.getHomeTeam())
 							.append(" vs ")
 							.append(halfTheAudienceAgainstInformation
-									.getGuestTeam()).append(":");
-					/* Modify by pengcx 20130515 end */
+									.getGuestTeam()).append("\n半全场：");
+					/* Modify by pengcx 20130703 end */
 					boolean[] IsClicks = halfTheAudienceAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1580,7 +1582,7 @@ public class BeiJingSingleGameActivity extends Activity {
 									.append(" ");
 						}
 					}
-					againstStringBufffer.append("\n\n");
+					againstStringBufffer.append("\n");
 				}
 			}
 		}
@@ -1597,13 +1599,14 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
-					/* Modify by pengcx 20130515 start */
+					againstStringBufffer.append(overAllAgainstInformation.getTeamId() + "  ");
+					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(overAllAgainstInformation.getHomeTeam())
 							.append(" vs ")
 							.append(overAllAgainstInformation.getGuestTeam())
-							.append(":");
-					/* Modify by pengcx 20130515 end */
+							.append("\n全场总比分：");
+					/* Modify by pengcx 20130703 end */
 					boolean[] IsClicks = overAllAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1613,7 +1616,7 @@ public class BeiJingSingleGameActivity extends Activity {
 									.append(" ");
 						}
 					}
-					againstStringBufffer.append("\n\n");
+					againstStringBufffer.append("\n");
 
 				}
 
@@ -1632,13 +1635,14 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
-					/* Modify by pengcx 20130515 start */
+					againstStringBufffer.append(totalGoalsAgainstInformation.getTeamId() + "  ");
+					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(totalGoalsAgainstInformation.getHomeTeam())
 							.append(" vs ")
 							.append(totalGoalsAgainstInformation.getGuestTeam())
-							.append(":");
-					/* Modify by pengcx 20130515 end */
+							.append("\n总进球数：");
+					/* Modify by pengcx 20130703 end */
 					boolean[] IsClicks = totalGoalsAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1648,7 +1652,7 @@ public class BeiJingSingleGameActivity extends Activity {
 									.append(" ");
 						}
 					}
-					againstStringBufffer.append("\n\n");
+					againstStringBufffer.append("\n");
 				}
 			}
 		}
@@ -1665,13 +1669,15 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
-					/* Modify by pengcx 20130515 start */
+					againstStringBufffer.append(winTieLossAgainstInformation.getTeamId() + "  ");
+					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(winTieLossAgainstInformation.getHomeTeam())
 							.append(" vs ")
 							.append(winTieLossAgainstInformation.getGuestTeam())
-							.append(":");
-					/* Modify by pengcx 20130515 end */
+							.append("\n让球胜平负：");
+					/* Modify by pengcx 20130703 end */
+					
 					if (winTieLossAgainstInformation.isV0IsClick()) {
 						againstStringBufffer.append("胜");
 					}
@@ -1682,7 +1688,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						againstStringBufffer.append("负");
 					}
 
-					againstStringBufffer.append("\n\n");
+					againstStringBufffer.append("\n");
 				}
 			}
 		}

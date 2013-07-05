@@ -28,20 +28,20 @@ public class HghtOrderdeail extends BuyActivityGroup {
 		super.onCreate(savedInstanceState);
 		ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 		addview = app.getAddview();
-		lotnoString	= app.getPojo().getLotno();
+		lotnoString = app.getPojo().getLotno();
 		isIssue(false);
+		
 		if (isFromTrackQuery) {
 			if (Constants.LOTNO_SSC.equals(lotnoString)
 					|| Constants.LOTNO_11_5.equals(lotnoString)
 					|| Constants.LOTNO_eleven.equals(lotnoString)
 					|| Constants.LOTNO_GD_11_5.equals(lotnoString)
-					|| Constants.LOTNO_ten.equals(lotnoString)) {
+					|| Constants.LOTNO_ten.equals(lotnoString)
+					|| lotnoString.equals(Constants.LOTNO_NMK3)) {
 				init(titles, topTitles, allId);
-			} else if (lotnoString.equals(Constants.LOTNO_NMK3)){
-				init(titles2, topTitles2, allId2);
 			}
 		} else {
-			if (addview.getSize() <= 1 && !lotnoString.equals(Constants.LOTNO_NMK3)) {
+			if (addview.getSize() <= 1) {
 				init(titles, topTitles, allId);
 			} else {
 				init(titles2, topTitles2, allId2);

@@ -23,15 +23,46 @@ public class RQSPFView extends SPfView {
 	public String getLotno() {
 		return Constants.LOTNO_JCZQ_RQSPF;
 	}
+
 	@Override
 	public String getTitle() {
 		if (isDanguan) {
-			return context.getString(R.string.jczq_rqspf_danguan_title).toString();
+			return context.getString(R.string.jczq_rqspf_danguan_title)
+					.toString();
 		} else {
-			return context.getString(R.string.jczq_rqspf_guoguan_title).toString();
+			return context.getString(R.string.jczq_rqspf_guoguan_title)
+					.toString();
 		}
 	}
-	
+
+	public String getAlertCode(List<Info> listInfo) {
+		String codeStr = "";
+		for (int i = 0; i < listInfo.size(); i++) {
+			Info info = (Info) listInfo.get(i);
+
+			if (info.onclikNum > 0) {
+				codeStr += info.getWeeks() + "  " + info.getTeamId() + "  ";
+				codeStr += info.getHome() + " vs " + info.getAway()
+						+ "\n让球胜平负:";
+				if (info.isWin()) {
+					codeStr += "胜";
+				}
+				if (info.isLevel()) {
+					codeStr += "平";
+				}
+				if (info.isFail()) {
+					codeStr += "负";
+				}
+				if (info.isDan()) {
+					codeStr += "(胆)";
+				}
+				codeStr += "\n";
+			}
+
+		}
+		return codeStr;
+	}
+
 	/**
 	 * 获取倍率
 	 */
