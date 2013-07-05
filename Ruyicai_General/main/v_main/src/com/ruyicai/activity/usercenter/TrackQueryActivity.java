@@ -40,9 +40,11 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.miss.OrderDetails;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.usercenter.detail.Trackdetail;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo2;
@@ -689,11 +691,25 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 					
 					initBetPojo("1", "1", amount, info);
 					app.setPojo(betPojo);
-					AddViewMiss addViewMiss = new AddViewMiss(TrackQueryActivity.this);
-					CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
-					addViewMiss.addCodeInfo(codeInfo);
-					app.setAddviewmiss(addViewMiss);
-					Intent intent = new Intent(TrackQueryActivity.this, OrderDetails.class);
+					Intent intent = null;
+					if (Constants.LOTNO_SSC.equals(betPojo.getLotno())
+							|| Constants.LOTNO_11_5.equals(betPojo.getLotno())
+							|| Constants.LOTNO_eleven.equals(betPojo.getLotno())
+							|| Constants.LOTNO_GD_11_5.equals(betPojo.getLotno())
+							|| Constants.LOTNO_ten.equals(betPojo.getLotno())
+							||Constants.LOTNO_NMK3.equals(betPojo.getLotno())) {
+						AddView addView = new AddView(TrackQueryActivity.this);
+						addView.addCodeInfo(addView.initCodeInfo(2, 1));
+						app.setAddview(addView);
+						intent = new Intent(TrackQueryActivity.this, HghtOrderdeail.class);
+					} else {
+						AddViewMiss addViewMiss = new AddViewMiss(TrackQueryActivity.this);
+						CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+						addViewMiss.addCodeInfo(codeInfo);
+						app.setAddviewmiss(addViewMiss);
+						intent = new Intent(TrackQueryActivity.this, OrderDetails.class);
+					}
+					
 					intent.putExtra("position", 1);
 					intent.putExtra(FLAG_FROM_TRACK_QUERY, true);
 					startActivity(intent);

@@ -6,7 +6,7 @@
      android:background="@color/white">
 
     <LinearLayout
-        android:id="@+id/alipay_secure_title"
+        android:id="@id/alipay_secure_title"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/accountTitle_text"
+            android:id="@id/accountTitle_text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="20sp"
             android:textColor="@color/white" android:text=""
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView android:id="@+id/recharge_title"
+            <TextView android:id="@id/recharge_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -46,7 +46,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/alipay_secure_recharge_value"
+                android:id="@id/alipay_secure_recharge_value"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="fill_horizontal"
@@ -55,20 +55,20 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" android:maxLength="5"/>
 
             <LinearLayout
-                android:id="@+id/umpay_phone_linear"
+                android:id="@id/umpay_phone_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="10dip"
                 android:visibility="gone" >
 
-                <RadioGroup android:id="@+id/umpay_recharge_radiogroup"
+                <RadioGroup android:id="@id/umpay_recharge_radiogroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
                     <RadioButton
-                        android:id="@+id/umpay_phone_three"
+                        android:id="@id/umpay_phone_three"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -78,7 +78,7 @@
                         android:textColor="@android:color/black" />
 
                     <RadioButton
-                        android:id="@+id/umpay_phone_thirty"
+                        android:id="@id/umpay_phone_thirty"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/red"
                 android:textSize="16sp" 
-                android:id="@+id/alipay_content"/>
+                android:id="@id/alipay_content"/>
 "
         </LinearLayout>
     </ScrollView>
@@ -131,7 +131,7 @@
         android:paddingTop="5dip" >
 
         <Button
-            android:id="@+id/alipay_secure_ok"
+            android:id="@id/alipay_secure_ok"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"
@@ -143,7 +143,7 @@
         </Button>
 
         <Button
-            android:id="@+id/alipay_secure_cancel"
+            android:id="@id/alipay_secure_cancel"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"

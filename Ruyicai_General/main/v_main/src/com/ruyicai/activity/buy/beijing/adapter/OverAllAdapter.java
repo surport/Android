@@ -12,6 +12,7 @@ import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.code.jc.zq.FootBF;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
+import com.ruyicai.util.PublicMethod;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -183,8 +184,8 @@ public class OverAllAdapter extends ParentAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号：").append(overAllAgainstInformation.getTeamId())
-				.append("\n").append(overAllAgainstInformation.getEndTime())
+		gameDate.append("编号:").append(overAllAgainstInformation.getTeamId())
+				.append("\n").append(PublicMethod.getEndTime(overAllAgainstInformation.getEndTime()))
 				.append("(截)");
 		gameDateTextView.setText(gameDate);
 

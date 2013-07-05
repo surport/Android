@@ -7,13 +7,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@+id/join_detail_text_title"
+            android:id="@id/join_detail_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
         </TextView>
 
         <Button
-            android:id="@+id/join_detail_img_return"
+            android:id="@id/join_detail_img_return"
             android:layout_width="100dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -39,7 +39,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+        android:id="@id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -49,23 +49,23 @@
             android:paddingBottom="80dip" >
 
             <LinearLayout
-                android:id="@+id/LinearLayout02"
+                android:id="@id/LinearLayout02"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/LinearLayout01"
+                android:layout_above="@id/LinearLayout01"
                 android:orientation="vertical"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip" >
 
                 <LinearLayout
-                    android:id="@+id/fanganxiangqing"
+                    android:id="@id/fanganxiangqing"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/gift_detail_text_lotno"
+                        android:id="@id/gift_detail_text_lotno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -75,7 +75,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_batchcode"
+                        android:id="@id/gift_detail_text_batchcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -85,7 +85,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_dingdan"
+                        android:id="@id/gift_detail_text_dingdan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -95,7 +95,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_beishu"
+                        android:id="@id/gift_detail_text_beishu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -105,7 +105,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_zhushu"
+                        android:id="@id/gift_detail_text_zhushu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -128,7 +128,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@+id/gift_detail_text_atm"
+                            android:id="@id/gift_detail_text_atm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -152,7 +152,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@+id/gift_detail_text_atmzhong"
+                            android:id="@id/gift_detail_text_atmzhong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -163,7 +163,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_state"
+                        android:id="@id/gift_detail_text_state"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -173,7 +173,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_person"
+                        android:id="@id/gift_detail_text_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -183,7 +183,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_tex_gifttime"
+                        android:id="@id/gift_detail_tex_gifttime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dip"
@@ -194,7 +194,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@+id/gift_detail_tex_time"
+                        android:id="@id/gift_detail_tex_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dip"
@@ -211,7 +211,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_content"
+                        android:id="@id/gift_detail_text_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -221,14 +221,14 @@
                     </TextView>
 
                     <LinearLayout
-                        android:id="@+id/bet_detail_layout_content"
+                        android:id="@id/bet_detail_layout_content"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical" >
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/gift_detail_text_kaijianghao"
+                        android:id="@id/gift_detail_text_kaijianghao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -240,16 +240,16 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@+id/LinearLayout0000"
+            android:id="@id/LinearLayout0000"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/LinearLayout0111"
+            android:layout_above="@id/LinearLayout0111"
             android:paddingBottom="50dip"
             android:paddingLeft="10dip" >
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/LinearLayout0111"
+            android:id="@id/LinearLayout0111"
             android:layout_width="fill_parent"
             android:layout_height="70dip"
             android:layout_alignParentBottom="true"
@@ -257,7 +257,7 @@
             android:gravity="center_horizontal" >
 
             <Button
-                android:id="@+id/gift_detail_img_cannle"
+                android:id="@id/gift_detail_img_cannle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

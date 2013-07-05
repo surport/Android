@@ -5,12 +5,12 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+        android:id="@id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <ListView
-            android:id="@+id/buy_jc_main_listview"
+            android:id="@id/buy_jc_main_listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginBottom="90sp"
@@ -22,7 +22,7 @@
         </ListView>
 
         <LinearLayout
-            android:id="@+id/LinearLayout01"
+            android:id="@id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -31,7 +31,7 @@
             android:gravity="center_vertical" >
 
             <TextView
-                android:id="@+id/buy_zixuan_text_sum_money"
+                android:id="@id/buy_zixuan_text_sum_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -41,7 +41,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/buy_zixuan_text_title_shu"
+                android:id="@id/buy_zixuan_text_title_shu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" | "
@@ -51,13 +51,13 @@
             </TextView>
 
             <Spinner
-                android:id="@+id/buy_jc_main_spinner"
+                android:id="@id/buy_jc_main_spinner"
                 android:layout_width="120sp"
                 android:layout_height="37sp"
                 android:prompt="@string/jc_spinner_title" />
 
             <TextView
-                android:id="@+id/buy_zixuan_text_title"
+                android:id="@id/buy_zixuan_text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="已选:"
@@ -66,7 +66,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/buy_zixuan_edit_zhuma"
+                android:id="@id/buy_zixuan_edit_zhuma"
                 android:layout_width="wrap_content"
                 android:layout_height="27dip"
                 android:background="@null"

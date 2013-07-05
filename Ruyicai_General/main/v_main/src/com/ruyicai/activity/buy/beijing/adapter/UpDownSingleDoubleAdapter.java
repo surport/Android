@@ -5,6 +5,7 @@ import java.util.List;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformation;
+import com.ruyicai.util.PublicMethod;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -143,10 +144,10 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号：")
+		gameDate.append("编号:")
 				.append(upDownSingleDoubleAgainstInformation.getTeamId())
 				.append("\n")
-				.append(upDownSingleDoubleAgainstInformation.getEndTime())
+				.append(PublicMethod.getEndTime(upDownSingleDoubleAgainstInformation.getEndTime()))
 				.append("(截)");
 		gameDateTextView.setText(gameDate);
 		// 主队

@@ -30,13 +30,23 @@ public class HghtOrderdeail extends BuyActivityGroup {
 		addview = app.getAddview();
 		lotnoString = app.getPojo().getLotno();
 		isIssue(false);
-
-		if (addview.getSize() <= 1) {
-			init(titles, topTitles, allId);
+		
+		if (isFromTrackQuery) {
+			if (Constants.LOTNO_SSC.equals(lotnoString)
+					|| Constants.LOTNO_11_5.equals(lotnoString)
+					|| Constants.LOTNO_eleven.equals(lotnoString)
+					|| Constants.LOTNO_GD_11_5.equals(lotnoString)
+					|| Constants.LOTNO_ten.equals(lotnoString)
+					|| lotnoString.equals(Constants.LOTNO_NMK3)) {
+				init(titles, topTitles, allId);
+			}
 		} else {
-			init(titles2, topTitles2, allId2);
+			if (addview.getSize() <= 1) {
+				init(titles, topTitles, allId);
+			} else {
+				init(titles2, topTitles2, allId2);
+			}
 		}
-
 	}
 
 	public void initView() {

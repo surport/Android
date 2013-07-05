@@ -4,10 +4,10 @@
 	android:background="@drawable/bg" android:orientation="vertical">
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:orientation="horizontal"
-		android:id="@+id/choose_luck_lottery_num_linear" android:background="@drawable/list_top">
+		android:id="@id/choose_luck_lottery_num_linear" android:background="@drawable/list_top">
 		<!-- 7.3周黎明将TextView换成ImageView -->
 		<ImageView android:src="@drawable/returnselecter"
-			android:id="@+id/tv_choose_luck_lottery_num_return"
+			android:id="@id/tv_choose_luck_lottery_num_return"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:layout_alignParentLeft="true" android:paddingLeft="10dip"
 			android:layout_centerVertical="true">
@@ -15,25 +15,25 @@
 		<TextView android:text="@string/xitongshezhi"
 			android:textSize="20sp" android:textColor="@color/red"
 			android:layout_centerHorizontal="true" android:textAppearance="?android:attr/textAppearanceMedium"
-			android:typeface="serif" android:id="@+id/choose_luck_lottery_num_title_id"
+			android:typeface="serif" android:id="@id/choose_luck_lottery_num_title_id"
 			android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true">
 		</TextView>
 	</RelativeLayout>
-	<ScrollView android:id="@+id/ScrollView01"
+	<ScrollView android:id="@id/ScrollView01"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:orientation="vertical">
 			<RelativeLayout android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:background="@drawable/list_luck_bg">
 				<TextView android:text="@string/xitongshezhi_title"
-					android:id="@+id/xitongshezhi_check_text_title"
+					android:id="@id/xitongshezhi_check_text_title"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/black" android:textSize="18dip"
 					android:layout_alignParentLeft="true" android:paddingLeft="20dip"
 					android:layout_centerVertical="true"></TextView>
 				<CheckBox android:text="@string/xitongshezhi_check_on"
-					android:layout_toRightOf="@+id/xitongshezhi_check_text_title"
-					android:id="@+id/xitongshezhi_check_zhengdong"
+					android:layout_toRightOf="@id/xitongshezhi_check_text_title"
+					android:id="@id/xitongshezhi_check_zhengdong"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:layout_centerVertical="true" android:textColor="@color/black"></CheckBox>
 			</RelativeLayout>

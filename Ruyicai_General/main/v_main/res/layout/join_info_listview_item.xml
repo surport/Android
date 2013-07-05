@@ -11,7 +11,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/join_info_item_text_name"
+            android:id="@id/join_info_item_text_name"
             android:layout_width="80dip"
             android:layout_height="28dip"
             android:gravity="center"
@@ -22,7 +22,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/join_info_item_text_faqiren"
+            android:id="@id/join_info_item_text_faqiren"
             android:layout_width="130dip"
             android:layout_height="28dip"
             android:gravity="center_vertical"
@@ -32,13 +32,13 @@
             android:textColor="@color/black" />
 
         <LinearLayout
-            android:id="@+id/LinearLayout02"
+            android:id="@id/LinearLayout02"
             android:layout_width="70dip"
             android:layout_height="28dip"
             android:paddingTop="5dip" >
 
             <LinearLayout
-                android:id="@+id/join_info_item_linear_star"
+                android:id="@id/join_info_item_linear_star"
                 android:layout_width="70dip"
                 android:layout_height="28dip"
                 android:gravity="center_vertical" >
@@ -46,7 +46,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/join_info_item_text_ding"
+            android:id="@id/join_info_item_text_ding"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -62,7 +62,7 @@
         android:paddingTop="14dip" >
 
         <LinearLayout
-            android:id="@+id/join_info_item_layout_left"
+            android:id="@id/join_info_item_layout_left"
             android:layout_width="95dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -78,7 +78,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/join_info_item_text_all_amt"
+                android:id="@id/join_info_item_text_all_amt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -88,7 +88,7 @@
         </LinearLayout>
 
         <LinearLayout
-             android:id="@+id/join_info_item_layout_center"
+             android:id="@id/join_info_item_layout_center"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"
@@ -105,7 +105,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/join_info_item_text_progress"
+                android:id="@id/join_info_item_text_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -115,7 +115,7 @@
         </LinearLayout>
 
         <LinearLayout
-             android:id="@+id/join_info_item_layout_right"
+             android:id="@id/join_info_item_layout_right"
             android:layout_width="100dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dip"

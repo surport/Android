@@ -182,6 +182,12 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/*Add by fansm 20130416 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/*Add by fansm 20130416 end*/
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.buy_activity);
@@ -413,10 +419,16 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 	protected void onResume() {
 		super.onResume();
+		/*Add by fansm 20130702 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		/*Add by fansm 20130702 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		Constants.MEMUTYPE = 0;
-		//initScreenConfiger();
-		//initLights();
+		initScreenConfiger();
+		initLights();
 		
 		initGallery();
 	}

@@ -64,14 +64,14 @@ public class FootHun {
 	private static final String BF_05 = "05";
 	private static final String BF_15 = "15";
 	private static final String BF_25 = "25";
-	public static String bqcType[] = { "3", "1", "0", BQC_33, BQC_31, BQC_30,
+	public static String bqcType[] = {"3", "1", "0", "3", "1", "0", BQC_33, BQC_31, BQC_30,
 			BQC_13, BQC_11, BQC_10, BQC_03, BQC_01, BQC_00, ZJQ_00, ZJQ_01,
 			ZJQ_02, ZJQ_03, ZJQ_04, ZJQ_05, ZJQ_06, ZJQ_07, BF_10, BF_20,
 			BF_21, BF_30, BF_31, BF_32, BF_40, BF_41, BF_42, BF_50, BF_51,
 			BF_52, BF_90, BF_00, BF_11, BF_22, BF_33, BF_99, BF_01, BF_02,
 			BF_12, BF_03, BF_13, BF_23, BF_04, BF_14, BF_24, BF_05, BF_15,
 			BF_25, BF_09 };
-	public static String titleStrs[] = { "胜", "平", "负", "胜胜", "胜平", "胜负", "平胜",
+	public static String titleStrs[] = {"胜", "平", "负", "胜", "平", "负", "胜胜", "胜平", "胜负", "平胜",
 			"平平", "平负", "负胜", "负平", "负负", "0", "1", "2", "3", "4", "5", "6",
 			"7+", "1:0", "2:0", "2:1", "3:0", "3:1", "3:2", "4:0", "4:1",
 			"4:2", "5:0", "5:1", "5:2", "胜其它", "0:0", "1:1", "2:2", "3:3",
@@ -96,10 +96,11 @@ public class FootHun {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				code += getPlayCode(info, Constants.LOTNO_JCZQ, 0, 2);// 胜平负
-				code += getPlayCode(info, Constants.LOTNO_JCZQ_BQC, 3, 11);// 半全场
-				code += getPlayCode(info, Constants.LOTNO_JCZQ_ZQJ, 12, 19);// 总进球
-				code += getPlayCode(info, Constants.LOTNO_JCZQ_BF, 20, 50);// 比分
+				code += getPlayCode(info, Constants.LOTNO_JCZQ_RQSPF, 0, 2);// 胜平负
+				code += getPlayCode(info, Constants.LOTNO_JCZQ, 3, 5);// 胜平负
+				code += getPlayCode(info, Constants.LOTNO_JCZQ_BQC, 6, 14);// 半全场
+				code += getPlayCode(info, Constants.LOTNO_JCZQ_ZQJ, 15, 22);// 总进球
+				code += getPlayCode(info, Constants.LOTNO_JCZQ_BF, 23, 53);// 比分
 
 			}
 
@@ -165,7 +166,7 @@ public class FootHun {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
 				try {
-					double[] aa = new double[4];
+					double[] aa = new double[5];
 					for (int j = 0; j < info.check.length; j++) {
 						if (info.check[j].isChecked()) {
 							getMaxOdd(j,
@@ -186,21 +187,25 @@ public class FootHun {
 	}
 
 	private void getMaxOdd(int index, double odd, double[] odds) {
-		if (3 <= index && index <= 11) {// 半全场
+		if (6 <= index && index <= 14) {// 半全场
 			if (odds[0] < odd) {
 				odds[0] = odd;
 			}
-		} else if (20 <= index && index <= 50) {// 比分
+		} else if (23 <= index && index <= 53) {// 比分
 			if (odds[1] < odd) {
 				odds[1] = odd;
 			}
-		} else if (12 <= index && index <= 19) {// 总进球
+		} else if (15 <= index && index <= 22) {// 总进球
 			if (odds[2] < odd) {
 				odds[2] = odd;
 			}
-		} else if (0 <= index && index <= 2) {// 胜平负
+		} else if (3 <= index && index <= 5) {// 胜平负
 			if (odds[3] < odd) {
 				odds[3] = odd;
+			}
+		} else if (0 <= index && index <= 2) {// 胜平负
+			if (odds[4] < odd) {
+				odds[4] = odd;
 			}
 		}
 	}

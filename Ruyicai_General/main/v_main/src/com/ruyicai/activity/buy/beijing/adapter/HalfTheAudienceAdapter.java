@@ -6,6 +6,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.HalfTheAudienceAgainstInformation;
 import com.ruyicai.custom.checkbox.MyCheckBox;
+import com.ruyicai.util.PublicMethod;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -145,10 +146,11 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
 		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号：")
+		gameDate.append("编号:")
 				.append(halfTheAudienceAgainstInformation.getTeamId())
 				.append("\n")
-				.append(halfTheAudienceAgainstInformation.getEndTime()).append("(截)");
+				.append(PublicMethod.getEndTime(halfTheAudienceAgainstInformation.getEndTime())).append("(截)");
+		
 		gameDateTextView.setText(gameDate);
 		// 主队
 		TextView homeTeamTextView = (TextView) itemView

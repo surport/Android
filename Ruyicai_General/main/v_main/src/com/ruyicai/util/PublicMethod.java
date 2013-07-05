@@ -21,9 +21,12 @@ import org.json.JSONObject;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -320,6 +323,23 @@ public class PublicMethod {
 		// Log.e(tag, msg);
 		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
 				+ " = " + methodName);
+	}
+	/**
+	 * 获得栈activity
+	 * @param context
+	 */
+	public static void getActivityFromStack(Activity context) {
+
+		ActivityManager manager = (ActivityManager) context
+				.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningTaskInfo> runningTaskInfos = manager.getRunningTasks(100);
+
+		if (runningTaskInfos != null) {
+			for (int i = 0; i < runningTaskInfos.size(); i++) {
+				Log.d(Constants.TAG,
+						(runningTaskInfos.get(i).topActivity).toString() + " TaskId=" + context.getTaskId());
+			}
+		}
 	}
 
 	/**

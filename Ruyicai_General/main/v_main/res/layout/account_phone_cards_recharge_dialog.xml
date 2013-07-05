@@ -6,7 +6,7 @@
      >
 
     <RelativeLayout
-        android:id="@+id/title"
+        android:id="@id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
@@ -24,7 +24,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/content"
+        android:id="@id/content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -48,7 +48,7 @@
             </TextView>
 
             <Spinner
-                android:id="@+id/phone_card_spinner"
+                android:id="@id/phone_card_spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
@@ -72,7 +72,7 @@
             </TextView>
 
             <Spinner
-                android:id="@+id/phone_card_value_spinner"
+                android:id="@id/phone_card_value_spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
@@ -95,7 +95,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/phone_card_rechargecard_info"
+                android:id="@id/phone_card_rechargecard_info"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -120,7 +120,7 @@
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/phone_card_rechargecard_password"
+                android:id="@id/phone_card_rechargecard_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:autoText="false"
@@ -137,7 +137,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/content"
+        android:layout_below="@id/content"
         android:background="#FFFFFF"
         android:paddingBottom="50dip" >
 
@@ -147,7 +147,7 @@
             android:background="@color/white"
             android:orientation="vertical" >
          <TextView
-            android:id="@+id/contentText"
+            android:id="@id/contentText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dip"
@@ -158,7 +158,7 @@
         </LinearLayout>
     </ScrollView>
     <LinearLayout
-        android:id="@+id/bottom"
+        android:id="@id/bottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -167,7 +167,7 @@
         android:paddingTop="5dip" >
 
         <Button
-            android:id="@+id/ok"
+            android:id="@id/ok"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"
@@ -179,7 +179,7 @@
         </Button>
 
         <Button
-            android:id="@+id/canel"
+            android:id="@id/canel"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"

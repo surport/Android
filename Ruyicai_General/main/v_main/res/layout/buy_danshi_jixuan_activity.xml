@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout01"
+        android:id="@id/LinearLayout01"
         android:layout_width="fill_parent"
         android:layout_height="50dip"
         android:layout_marginLeft="10dip"
@@ -17,13 +17,13 @@
         android:paddingLeft="10dip" >
 
         <LinearLayout
-            android:id="@+id/buy_zixuan_linear_top_one"
+            android:id="@id/buy_zixuan_linear_top_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone" >
 
             <RadioGroup
-                android:id="@+id/buy_zixuan_radiogroup_top"
+                android:id="@id/buy_zixuan_radiogroup_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -31,13 +31,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/buy_zixuan_linear_top_two"
+            android:id="@id/buy_zixuan_linear_top_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dip" >
 
             <TextView
-                android:id="@+id/TextView01"
+                android:id="@id/TextView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -47,7 +47,7 @@
             </TextView>
 
             <Spinner
-                android:id="@+id/buy_danshi_jixuan_spinner"
+                android:id="@id/buy_danshi_jixuan_spinner"
                 android:layout_width="70dip"
                 android:layout_height="40dip"
                 android:layout_gravity="center_vertical"
@@ -58,12 +58,12 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+        android:id="@id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <ScrollView
-            android:id="@+id/ScrollView01"
+            android:id="@id/ScrollView01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="70dip" >
@@ -77,7 +77,7 @@
                 android:paddingTop="10dip" >
 
                 <LinearLayout
-                    android:id="@+id/buy_danshi_jixuan_linear_zhuma"
+                    android:id="@id/buy_danshi_jixuan_linear_zhuma"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -85,7 +85,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/buy_zixuan_linear_toggle"
+                    android:id="@id/buy_zixuan_linear_toggle"
                     android:layout_width="fill_parent"
                     android:layout_height="60sp"
                     android:gravity="right"
@@ -93,7 +93,7 @@
                     android:visibility="gone" >
 
                     <ToggleButton
-                        android:id="@+id/dlt_zhuijia"
+                        android:id="@id/dlt_zhuijia"
                         android:layout_width="20sp"
                         android:layout_height="20sp"
                         android:background="@drawable/dlt_zhuijia_toggle_button"
@@ -114,7 +114,7 @@
         </ScrollView>
 
         <RelativeLayout
-            android:id="@+id/buy_zixuan_relativelayout"
+            android:id="@id/buy_zixuan_relativelayout"
             android:layout_width="fill_parent"
             android:layout_height="50dip"
             android:layout_alignParentBottom="true"
@@ -122,7 +122,7 @@
             android:padding="10dip" >
 
             <ImageButton
-                android:id="@+id/buy_danshi_jixuan_img_again"
+                android:id="@id/buy_danshi_jixuan_img_again"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -131,7 +131,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/buy_danshi_jixuan_img_touzhu"
+                android:id="@id/buy_danshi_jixuan_img_touzhu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

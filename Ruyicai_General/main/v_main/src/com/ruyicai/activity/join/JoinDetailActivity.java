@@ -25,6 +25,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -334,6 +335,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 						+ "%");// 总金额
 				leavTextView(amountText, true);
 				leavTextView(safeText, false);
+				/**add by yejc 20130704 start*/
+				String str = s.toString();
+				if (str.length() == 1 && str.startsWith("0")) {
+					amountEdit.setText("");
+				} else if (str.length() > 1 && str.startsWith("0")) {
+					amountEdit.setText(str.subSequence(1, str.length()));
+				}
+				/**add by yejc 20130704 end*/
 
 			}
 
@@ -363,6 +372,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				if (Integer.parseInt(baoAmt) > 0) {
 					leavTextView(safeText, false);
 				}
+				/**add by yejc 20130704 start*/
+				String str = s.toString();
+				if (str.length() > 1 && str.startsWith("0")) {
+					safeAmtEdit.setText(str.subSequence(1, str.length()));
+				}
+				/**add by yejc 20130704 end*/
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,

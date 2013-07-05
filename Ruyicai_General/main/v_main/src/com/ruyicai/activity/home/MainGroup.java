@@ -54,6 +54,7 @@ import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.usercenter.NotReadCountInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+import com.ruyicai.util.RuyicaiActivityManager;
 import com.umeng.analytics.MobclickAgent;
 
 public class MainGroup extends ActivityGroup implements MyDialogListener {
@@ -109,7 +110,11 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/*Add by fansm 20130416 start*/
-		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		RuyicaiActivityManager.getInstance().addActivity(this);
 		/*Add by fansm 20130416 end*/
 		initNum();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -585,6 +590,13 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 
 	protected void onResume() {
 		super.onResume();
+		/*Add by fansm 20130416 start*/
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		    PublicMethod.getActivityFromStack(this);
+		}
+		
+		/*Add by fansm 20130416 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		initTop();
 	}
@@ -662,9 +674,9 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
-		String value = intent.getStringExtra(Constants.START_MAINGROUP_FROM_FEEDBACKLIST_KEY);
-		if (Constants.START_MAINGROUP_FROM_FEEDBACKLIST_VALUE.equals(value)) {
+		if ("0".equals(Constants.currentTab)) {
 			mTabHost.setCurrentTab(0);
+			Constants.currentTab = "";
 		}
 	}
 	

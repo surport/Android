@@ -8,7 +8,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/titletext_umpay_recharge_info"
+        android:id="@id/titletext_umpay_recharge_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
@@ -17,21 +17,21 @@
         android:paddingTop="5dip" >
 
         <TextView
-            android:id="@+id/umpay_recharge_info"
+            android:id="@id/umpay_recharge_info"
             style="@style/UserTitleText"
             android:text="@string/usercenter_bindphonenum" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/usercenter_changepwd_content"
+        android:id="@id/usercenter_changepwd_content"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titletext_umpay_recharge_info"
+        android:layout_below="@id/titletext_umpay_recharge_info"
         android:orientation="vertical"
         android:paddingBottom="10dip"
         android:paddingTop="10dip" >
         
-        <CheckBox android:id="@+id/umpay_phone_thirty"
+        <CheckBox android:id="@id/umpay_phone_thirty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -52,7 +52,7 @@
                 android:text="@string/input_phone_number" />
 
             <EditText
-                android:id="@+id/input_phone_number"
+                android:id="@id/input_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dip" 
@@ -69,21 +69,21 @@
 
     </LinearLayout>
     
-    <TextView android:id="@+id/umpay_recharge_complete_content"
+    <TextView android:id="@id/umpay_recharge_complete_content"
         android:layout_width="match_parent"
             android:layout_height="100dip"
             android:padding="15dip"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textColor="@color/red"
-            android:layout_below="@+id/titletext_umpay_recharge_info"
+            android:layout_below="@id/titletext_umpay_recharge_info"
             android:text="@string/umpay_recharge_complete_content"
             android:visibility="gone"/>
 
-    <LinearLayout android:id="@+id/umpay_recharge_summit"
+    <LinearLayout android:id="@id/umpay_recharge_summit"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/usercenter_changepwd_content"
+        android:layout_below="@id/usercenter_changepwd_content"
         android:background="@drawable/buy_bot_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -96,7 +96,7 @@
             android:gravity="center" >
 
             <Button
-                android:id="@+id/usercenter_bindphone_ok"
+                android:id="@id/usercenter_bindphone_ok"
                 style="@style/UserBottomButton" 
                 android:text="@string/umpay_recharge_bingphone_submit"/>
         </LinearLayout>
@@ -108,17 +108,17 @@
             android:gravity="center" >
 
             <Button
-                android:id="@+id/usercenter_bindphone_back"
+                android:id="@id/usercenter_bindphone_back"
                 style="@style/UserBottomButton"
                 android:text="@string/return_button" />
         </LinearLayout>
     </LinearLayout>
     
     
-    <LinearLayout android:id="@+id/umpay_recharge_complete"
+    <LinearLayout android:id="@id/umpay_recharge_complete"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/umpay_recharge_complete_content"
+        android:layout_below="@id/umpay_recharge_complete_content"
         android:background="@drawable/buy_bot_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -132,7 +132,7 @@
             android:gravity="center" >
 
             <Button
-                android:id="@+id/usercenter_bindphone_complete"
+                android:id="@id/usercenter_bindphone_complete"
                 style="@style/UserBottomButton"
                 android:text="@string/return_button" />
         </LinearLayout>

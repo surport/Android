@@ -25,12 +25,12 @@
 	android:background="#00ffffff">
 	
 	<RelativeLayout
-		android:id="@+id/rlTitle"
+		android:id="@id/rlTitle"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:background="@drawable/bg_title">
 		<Button
-			android:id="@+id/btnClose"
+			android:id="@id/btnClose"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/close"
@@ -52,7 +52,7 @@
 			android:textStyle="bold"/>
 				
 		<Button
-			android:id="@+id/btnSend"
+			android:id="@id/btnSend"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/send"
@@ -73,7 +73,7 @@
 		
 
 		<LinearLayout
-			android:id="@+id/llImage"
+			android:id="@id/llImage"
 			android:layout_alignParentBottom="true"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
@@ -81,12 +81,12 @@
 			android:orientation="vertical">	
 			
 			<RelativeLayout
-				android:id="@+id/rlTotal"
+				android:id="@id/rlTotal"
 				android:layout_width="fill_parent"
 				android:layout_height="50dp">
 				
 				<LinearLayout
-					android:id="@+id/ll_text_limit_unit"
+					android:id="@id/ll_text_limit_unit"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_centerVertical="true"
@@ -98,7 +98,7 @@
 					android:layout_alignParentBottom="false">
 					
 					<TextView
-						android:id="@+id/tv_text_limit"
+						android:id="@id/tv_text_limit"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="140"
@@ -126,7 +126,7 @@
 			android:orientation="vertical">
 			<EditText
 				android:singleLine="false"
-			    android:id="@+id/etEdit"
+			    android:id="@id/etEdit"
 			    android:layout_width="fill_parent"
 			    android:layout_height="fill_parent"
 			    android:background="@null"

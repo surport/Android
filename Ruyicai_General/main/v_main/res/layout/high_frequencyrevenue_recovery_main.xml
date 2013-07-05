@@ -12,7 +12,7 @@
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/account_phone_title"
+            android:layout_below="@id/account_phone_title"
             android:background="@color/white" >
 
             <LinearLayout
@@ -32,7 +32,7 @@
                         android:text="彩种:" />
 
                         <TextView
-                        android:id="@+id/alert_dialog_touzhu_textview_caizhong"
+                        android:id="@id/alert_dialog_touzhu_textview_caizhong"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -48,7 +48,7 @@
                     android:padding="3dip" >
 
                     <TextView
-                        android:id="@+id/shouyizhihao"
+                        android:id="@id/shouyizhihao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="注码:"
@@ -56,7 +56,7 @@
                         android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/shouyizhihaozhuma"
+                        android:id="@id/shouyizhihaozhuma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="个位 4"
@@ -71,7 +71,7 @@
                     android:padding="3dip" >
 
                     <TextView
-                        android:id="@+id/shouyiqihaotext"
+                        android:id="@id/shouyiqihaotext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="开始期号："
@@ -79,7 +79,7 @@
                         android:textSize="15sp" />
 
                     <Spinner
-                        android:id="@+id/shouyiqihao"
+                        android:id="@id/shouyiqihao"
                         android:layout_width="wrap_content"
                         android:layout_height="50dip" />
                 </LinearLayout>
@@ -91,7 +91,7 @@
                     android:padding="3dip" >
 
                     <TextView
-                        android:id="@+id/shouyiqishutext"
+                        android:id="@id/shouyiqishutext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="投入期数："
@@ -99,7 +99,7 @@
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/shouyiqishuEditext"
+                        android:id="@id/shouyiqishuEditext"
                         android:layout_width="60dip"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -122,7 +122,7 @@
                     android:padding="3dip" >
 
                     <TextView
-                        android:id="@+id/shouyibeishutext"
+                        android:id="@id/shouyibeishutext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="起始倍数："
@@ -130,7 +130,7 @@
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/shouyibeishuEditext"
+                        android:id="@id/shouyibeishuEditext"
                         android:layout_width="60dip"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -153,7 +153,7 @@
                     android:padding="3dip" >
 
                     <RadioButton
-                        android:id="@+id/shouyiquancheng"
+                        android:id="@id/shouyiquancheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@drawable/radio_select"
@@ -163,7 +163,7 @@
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/shouyiquanchengEditext"
+                        android:id="@id/shouyiquanchengEditext"
                         android:layout_width="60dip"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -186,7 +186,7 @@
                     android:padding="3dip" >
 
                     <RadioButton
-                        android:id="@+id/shouyizhihou"
+                        android:id="@id/shouyizhihou"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@drawable/radio_select"
@@ -196,7 +196,7 @@
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/shouyiqianEditext"
+                        android:id="@id/shouyiqianEditext"
                         android:layout_width="60dip"
                         android:layout_height="wrap_content"
                         android:enabled="false"
@@ -213,7 +213,7 @@
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/shouyizhihouEditext"
+                        android:id="@id/shouyizhihouEditext"
                         android:layout_width="60dip"
                         android:layout_height="wrap_content"
                         android:enabled="false"
@@ -245,7 +245,7 @@
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/shouyizhihouEditext1"
+                        android:id="@id/shouyizhihouEditext1"
                         android:layout_width="60dip"
                         android:layout_height="wrap_content"
                         android:enabled="false"
@@ -264,7 +264,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/jisuan"
+                    android:id="@id/jisuan"
                     android:layout_width="100dip"
                     android:layout_height="40sp"
                     android:layout_marginLeft="30dip"

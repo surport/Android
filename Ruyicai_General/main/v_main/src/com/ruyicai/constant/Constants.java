@@ -88,6 +88,7 @@ public class Constants {
 	public static String LOGIN_USER_BALANCE = "";
 
 	public static String type = "";
+	public static String UMPAY_CHANNEL_ID = "";
 
 	// 开奖信息list
 	public static List<JSONObject> ssqNoticeList = new ArrayList<JSONObject>();
@@ -226,6 +227,7 @@ public class Constants {
 	
 	public static String currentTickType = "";
 	public static String currentLoto = "";
+	public static String currentTab = "";
 
 	/**
 	 * 彩种代码
@@ -330,8 +332,6 @@ public class Constants {
 	public static final String isDLTON = "isDLTON";
 	public static final String ADWALL_DISPLAY_STATE = "adWallDisplayState";
 	public static final String UMPAY_PHONE_DISPLAY_STATE = "umpayPhoneDisplayState";
-	public static final String START_MAINGROUP_FROM_FEEDBACKLIST_KEY = "start_maingroup_for_feedbacklistactivity_key";
-	public static final String START_MAINGROUP_FROM_FEEDBACKLIST_VALUE = "start_maingroup_for_feedbacklistactivity_value";
 	/**add by yejc 20130527 start*/
 	
 }
