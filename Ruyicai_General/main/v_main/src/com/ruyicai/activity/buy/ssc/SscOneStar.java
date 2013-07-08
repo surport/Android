@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView.BufferType;
@@ -14,9 +13,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.jixuan.Balls;
-import com.ruyicai.jixuan.SscBalls;
 import com.ruyicai.json.miss.SscMissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
@@ -31,6 +28,9 @@ public class SscOneStar extends ZixuanAndJiXuan {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		}
 		lotnoStr = Constants.LOTNO_SSC;
 		childtype = new String[] { "直选" };
 		setContentView(R.layout.sscbuyview);
@@ -49,6 +49,9 @@ public class SscOneStar extends ZixuanAndJiXuan {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onDestroy()");
+		}
 	}
 
 	// 单选框切换直选，机选

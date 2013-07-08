@@ -40,6 +40,7 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), 
 				"onCreate()");
 		/*Add by fansm 20130418 end*/
+		batchCode = "";
 		setLotno(Constants.LOTNO_SSC);
 		setlastbatchcode(Constants.LOTNO_SSC);
 		time = (TextView) findViewById(R.id.layout_main_text_timessc);
@@ -207,8 +208,10 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onDestroy()");
+		}
 		isRun = false;
-		batchCode = "";
 	}
 
 }
