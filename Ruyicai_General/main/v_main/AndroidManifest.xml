@@ -16,7 +16,6 @@
     <application
         android:name="com.ruyicai.activity.buy.ApplicationAddview"
         android:icon="@drawable/icon"
-        android:theme="@android:style/Theme.Translucent" 
         android:label="@string/app_name" >
 
         <!-- 添加友盟渠道号 -->
