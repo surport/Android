@@ -3948,4 +3948,11 @@
 	<public type="style" name="style_jc_text_title" id="0x7f09003d" />
 	<public type="style" name="textSize16" id="0x7f090033" />
 	<public type="style" name="touzhuTextstyle" id="0x7f090032" />
+	
+	<public type="id" name="linearLayout_rangqiu" id="0x7f07062a" />
+	<public type="id" name="lq_rqspf_dialog_textview" id="0x7f07062b" />
+	<public type="id" name="lq_sfc_dialog_rangqiu1" id="0x7f07062c" />
+	<public type="id" name="lq_sfc_dialog_rangqiu2" id="0x7f07062d" />
+	<public type="id" name="lq_sfc_dialog_rangqiu3" id="0x7f07062e" />
+	<public type="id" name="bet_detail_text_play" id="0x7f07062f" />
 </resources>

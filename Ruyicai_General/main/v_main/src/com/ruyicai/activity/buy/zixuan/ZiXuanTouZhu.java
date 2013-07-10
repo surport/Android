@@ -257,6 +257,10 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		if (!Constants.type.equals("zc")) {
 			initBet();
 		} else {
+			betAndGift.setSessionid(sessionId);
+			betAndGift.setPhonenum(phonenum);
+			betAndGift.setUserno(userno);
+			betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;

@@ -130,7 +130,18 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		code.setTextCodeColor(textZhuma, code.getLotoNo(), code.getTouZhuType());
 		getNetIssue();
 
-		textTitle.setText("注码：" + "共有" + addviewmiss.getSize() + "笔投注");
+		/**add by yejc 20130705 start*/
+		if (isFromTrackQuery) {
+			String betCode = betAndGift.getBet_code();
+			if (betCode != null && betCode.contains("!")) {
+				textTitle.setText("注码：" + "共有" + betCode.split("!").length + "笔投注");
+			} else {
+				textTitle.setText("注码：" + "共有" + 1 + "笔投注");
+			}
+			/**add by yejc 20130705 end*/
+		} else {
+			textTitle.setText("注码：" + "共有" + addviewmiss.getSize() + "笔投注");
+		}
 		getTouzhuAlert();
 		Button cancel = (Button) findViewById(R.id.alert_dialog_touzhu_button_cancel);
 		Button ok = (Button) findViewById(R.id.alert_dialog_touzhu_button_ok);
@@ -345,10 +356,11 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 						Toast.makeText(ZixuanZhuihao.this, "请输入数字",
 								Toast.LENGTH_SHORT).show();
 						edit.setText("1");
-					} else if (Integer.valueOf(edit.getText().toString()) > 9999) {
-						Toast.makeText(ZixuanZhuihao.this, "超过倍数上限9999",
-								Toast.LENGTH_SHORT).show();
-						edit.setText("1");
+					} else if (Integer.valueOf(edit.getText().toString()) > 10000) {
+//						Toast.makeText(ZixuanZhuihao.this, "超过倍数上限9999",
+//								Toast.LENGTH_SHORT).show();
+						edit.setText("10000");
+						edit.setSelection(edit.length());
 					} else {
 						if (isFromTrackQuery) {
 							int zhuShu = Integer.valueOf(betAndGift.getZhushu());
@@ -363,6 +375,12 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 								.toString().replace("元", ""))
 								* 100 + "");
 						getTouzhuAlert();
+					}
+					String str = s.toString();
+					if (str.length() == 1 && str.startsWith("0")) {
+						edit.setText("");
+					} else if (str.length() > 1 && str.startsWith("0")) {
+						edit.setText(str.subSequence(1, str.length()));
 					}
 				}
 			});
@@ -694,9 +712,27 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		}
 		intent.putExtra("page", BettingSuccessActivity.ADDTO);
 		intent.putExtra("lotno", betAndGift.getLotno());
-		int totalAmount = Integer.valueOf(betAndGift.getAmount())
-				* Integer.valueOf(betAndGift.getBatchnum());
-		intent.putExtra("amount", String.valueOf(totalAmount));
+//		int totalAmount = Integer.valueOf(betAndGift.getAmount())
+//				* Integer.valueOf(betAndGift.getBatchnum());
+		/**add by yejc 20130708 start*/
+		if (isFromTrackQuery) {
+			if (state == 2) {
+				intent.putExtra("amount", String.valueOf(getSubstringforamt()*100));
+			} else {
+				int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+				int amount = betAndGift.getAmt()*zhuShu*iProgressQishu * iProgressBeishu*100;
+				intent.putExtra("amount", String.valueOf(amount));
+			}
+		} else {
+			if (state == 0 || state == 1) {
+				int totalAmount = Integer.valueOf(betAndGift.getAmount())
+						* Integer.valueOf(betAndGift.getBatchnum());
+				intent.putExtra("amount", String.valueOf(totalAmount));
+			} else if (state == 2) {
+				intent.putExtra("amount", String.valueOf(getSubstringforamt()*100));
+			}
+		}
+		/**add by yejc 20130708 end*/
 		startActivity(intent);
 	}
 

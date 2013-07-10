@@ -113,6 +113,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		/*Add by fansm 20130416 start*/
 		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
 		/*Add by fansm 20130416 end*/
+		batchCode = ""; //add by yejc 20130708
 		context = this;
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutMain = inflater.inflate(R.layout.buy_dlc_main, null);
@@ -1317,7 +1318,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		isRun = false;
-		batchCode = "";
+//		batchCode = ""; //move to onCreate by yejc 20130708
 	}
 
 	void setLotoNoAndType(CodeInfo codeInfo) {

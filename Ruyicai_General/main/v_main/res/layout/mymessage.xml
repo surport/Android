@@ -28,8 +28,7 @@
             android:background="@drawable/returnselecter"
             android:text="@string/my_message_edit_text"
             android:textColor="@color/white"
-            android:textSize="15dip" 
-            android:visibility="gone"/>
+            android:textSize="15dip"/>
     </RelativeLayout>
 
     <ImageView
