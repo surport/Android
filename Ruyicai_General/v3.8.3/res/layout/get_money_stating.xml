@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:background="@color/white" android:orientation="vertical">
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@drawable/shouye_top"
+		android:gravity="center_horizontal|clip_vertical">
+		<TextView android:text="账户提现" android:id="@+id/alert_dialog_touzhu_text_title"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:textSize="20dip"
+			android:paddingTop="7dip">
+		</TextView>
+	</LinearLayout>
+	<RelativeLayout android:id="@+id/RelativeLayout01"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<ScrollView android:id="@+id/ScrollView01"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:layout_marginBottom="60dip">
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:orientation="vertical"
+				android:padding="10sp">
+				<TextView android:text="持卡人名：" android:id="@+id/get_money_name"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/black" android:textSize="16dip"
+					android:paddingTop="7dip">
+				</TextView>
+				<TextView android:text="开卡银行：" android:id="@+id/get_money_bank"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/black" android:textSize="16dip"
+					android:paddingTop="7dip">
+				</TextView>
+				<TextView android:text="开卡地址：" android:id="@+id/get_money_bank_address"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/black" android:textSize="16dip"
+					android:paddingTop="7dip">
+				</TextView>
+				<TextView android:text="银行卡号：" android:id="@+id/get_money_bank_num"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textColor="@color/black" android:textSize="16dip"
+					android:paddingTop="7dip">
+				</TextView>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content">
+					<TextView android:text="提现金额：" android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:textColor="@color/black"
+						android:textSize="16dip" android:paddingTop="7dip">
+					</TextView>
+					<TextView android:text="" android:id="@+id/get_money_money"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:textColor="@color/red" android:textSize="20dip"
+						android:paddingTop="7dip">
+					</TextView>
+				</LinearLayout>
+				<LinearLayout android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:gravity="center_horizontal"
+					android:paddingTop="10sp">
+					<Button android:id="@+id/get_money_img_submit" android:textColor="@color/black"
+						android:layout_width="100sp" android:layout_height="40sp"
+						android:layout_gravity="center_vertical" android:text="重新填写"></Button>
+					<Button android:id="@+id/get_money_img_cancel"  android:textColor="@color/black"
+						android:layout_width="100sp" android:layout_height="40sp"
+						android:layout_marginLeft="20sp"  android:text="撤销提现"></Button>
+				</LinearLayout>
+				<TextView android:id="@+id/get_money_stating_remind"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textSize="16dip" android:textColor="@color/black"></TextView>
+			</LinearLayout>
+		</ScrollView>
+		<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:layout_height="60dip"
+			android:background="@drawable/buy_bot_bg" android:gravity="center_horizontal"
+			android:layout_alignParentBottom="true">
+			<Button android:id="@+id/get_money_img_exit" android:textColor="@color/black"
+				android:layout_width="100sp" android:layout_height="40sp" android:text="关闭"
+				android:layout_gravity="center_vertical"></Button>
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>

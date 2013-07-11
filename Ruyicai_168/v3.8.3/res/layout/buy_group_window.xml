@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 下拉列表布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="vertical"
+    android:paddingRight="7dip" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="42dip"
+        android:background="@drawable/buy_group_top_dw1"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/buy_group_layout1"
+            android:layout_width="140dip"
+            android:layout_height="30dip"
+            android:layout_marginTop="5dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/buy_group_icon_game" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="@string/buy_group_window_game"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/beijing_single_mani_history"
+        android:layout_width="wrap_content"
+        android:layout_height="38dip"
+        android:background="@drawable/buy_group_top_dw2"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/buy_group_layout2"
+            android:layout_width="140dip"
+            android:layout_height="30dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/buy_group_icon_history" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="@string/buy_group_window_hosity"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buy_group_one_layout6"
+        android:layout_width="wrap_content"
+        android:layout_height="38dip"
+        android:background="@drawable/buy_group_top_dw2"
+        android:gravity="center_vertical|center_horizontal"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/buy_group_layout6"
+            android:layout_width="140dip"
+            android:layout_height="30dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/buy_group_icon_picture" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="@string/buy_group_window_picture"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buy_group_one_layout4"
+        android:layout_width="wrap_content"
+        android:layout_height="38dip"
+        android:background="@drawable/buy_group_top_dw2"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/buy_group_layout4"
+            android:layout_width="140dip"
+            android:layout_height="30dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/buy_group_icon_query" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="@string/buy_group_window_query"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buy_group_one_layout3"
+        android:layout_width="wrap_content"
+        android:layout_height="38dip"
+        android:background="@drawable/buy_group_top_dw2"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/buy_group_layout3"
+            android:layout_width="140dip"
+            android:layout_height="30dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/buy_group_icon_luck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="@string/buy_group_window_luck"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- 双色球添加模拟选号选项 -->
+
+    <LinearLayout
+        android:id="@+id/buy_group_one_layout5"
+        android:layout_width="wrap_content"
+        android:layout_height="38dip"
+        android:background="@drawable/buy_group_top_dw2"
+        android:gravity="center_vertical|center_horizontal"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/buy_group_layout5"
+            android:layout_width="140dip"
+            android:layout_height="30dip"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip" >
+
+            <Button
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/buy_group_icon_simulate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dip"
+                android:text="@string/buy_group_window_simulate"
+                android:textColor="@color/white"
+                android:textSize="17dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

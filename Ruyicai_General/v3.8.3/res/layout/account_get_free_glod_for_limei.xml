@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+     android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/alipay_secure_title"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shouye_top"
+        android:gravity="center" android:paddingLeft="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/accountTitle_text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="20sp"
+            android:textColor="@color/white" 
+            android:text="@string/get_free_gold_title"
+            android:gravity="center">
+        </TextView>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/alipay_secure_title"
+        android:orientation="vertical"
+        android:layout_marginBottom="60dip">
+        
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:background="@drawable/tab_buy_bg">
+            
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+            <TextView android:id="@+id/current_gold_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/current_gold"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dip"
+                android:textSize="16sp"/>
+            
+            <TextView android:id="@+id/current_gold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dip"
+                android:textSize="16sp"/>
+            
+            
+            </LinearLayout>
+            
+            <TextView 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="@string/gold_transform_score"
+                android:textColor="@color/black"
+                android:gravity="center_vertical|right"
+                android:layout_marginRight="10dip"/>
+        </LinearLayout>
+        
+        <TextView android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/get_free_gold_content"
+            android:padding="10dip"
+            android:textColor="@color/red"/>
+        
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/alert_bottom_bg"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/alipay_secure_ok"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50dip"
+            android:layout_marginRight="50dip"
+            android:layout_height="40dip"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/start_get_free_gold_title"
+            android:textSize="18sp" 
+            android:textColor="@color/white" >
+        </Button>
+
+    </LinearLayout>
+
+</RelativeLayout>

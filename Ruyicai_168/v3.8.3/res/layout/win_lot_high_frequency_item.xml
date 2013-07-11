@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="5dp" >
+
+    <RelativeLayout
+        android:id="@+id/notice_pirzes_single_specific_noticedateandissue_linearlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" >
+
+        <TextView
+            android:id="@+id/notice_prizes_single_specific_noticedDate_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dip"
+            android:textColor="@color/black"
+            android:textSize="14sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/notice_prizes_single_specific_issue_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dip"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" >
+        </TextView>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/notice_prizes_single_specific_img"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/usercenter_ico_triangle" 
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/litt" >
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="yellow">#77ffff00</color>
+    <color name="red">#FF0000</color>
+    <color name="black_red">#9933</color>
+    <color name="pink">#FF2EFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="blue_red">#0000FF</color>
+    <color name="darkgreen">#008800</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="grey">#F3F3F3</color>
+    <color name="touming">#00000000</color>
+    <color name="list_color">#ffffff</color>
+    <color name="aciton_title_color">#734444</color>
+    <color name="aciton_list_color">#F3F3F3</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_num_gray">#333</color>
+    <color name="red_touzhu">#a60000</color>
+    <!-- 竞彩足球多选框背景颜色 -->
+    <color name="jc_dialog_bg1">#f8f8f8</color>
+    <color name="jc_dialog_bg2">#f7f8ec</color>
+    <color name="jc_dialog_bg3">#eef6f9</color>
+    <color name="gree_black">#269433</color>
+    <color name="grey_more">#b0b0b0</color>
+    <color name="grey_little">#f5f5f5</color>
+    <color name="jc_explain_list_bg">#fcf7f1</color>
+    <color name="home_alert_color">#c00100</color>
+    <color name="jc_lq_score_bg_color">#f6e678</color>
+    <color name="jc_lq_score_litte_color">#cfb300</color>
+    <color name="jc_lq_score_text_color">#666666</color>
+    <color name="bet_query_jc_title_bg">#f8f8f6</color>
+    <color name="bet_query_jc_little_bg">#dddddd</color>
+    <color name="jc_join_dan">#cc9933</color>
+    
+    <!-- add by yejc 20130326 -->
+    <color name="zc_sfc_divider">#D0D0D0</color>
+    <color name="zc_sfc_number_background">#A1A1A1</color>
+    <color name="zc_sfc_listview_item_bg">#F6F6F6</color>
+    <color name="jczq_listview_item_bg">#EEEEEE</color>
+    <color name="jc_odds_text_color">#737373</color>
+    <color name="jc_odds_bj_color">#FFCC35</color>
+    <color name="bet_query_noaward_text_color">#cc9900</color>
+    <color name="account_withdraw_text_color">#33CC33</color>
+    <!-- add end -->
+    
+</resources>

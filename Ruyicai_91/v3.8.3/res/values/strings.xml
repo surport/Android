@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 首页标题 -->
+    <string name="goucaidating">购彩大厅</string>
+    <string name="kaijiangxinxi">开奖公告</string>
+    <string name="zhanghuchongzhi1">账户充值</string>
+    <string name="caipiaozixun">彩票资讯</string>
+    <string name="more">更多</string>
+    <!-- 购彩大厅下方的3个功能按钮 -->
+    <string name="lottery_info">彩票资讯</string>
+    <string name="action_center">活动中心</string>
+    <string name="luckey_choose">幸运选号</string>
+
+    <!-- 公共字符串：彩票相关 -->
+    <string name="app_name">91如意彩票</string>
+    <string name="shuangseqiu">双色球</string>
+    <string name="fucai3d">福彩3D</string>
+    <string name="qilecai">七乐彩</string>
+    <string name="daletou">超级大乐透</string>
+    <string name="pailie3">排列三</string>
+
+    <!-- 系统菜单 -->
+    <string name="menu_checkupdate">检测更新</string>
+    <string name="menu_introduce">新手指南</string>
+    <string name="menu_userexit">注销登陆</string>
+    <string name="menu_orderprize">开奖订阅</string>
+    <string name="menu_feedback">我要反馈</string>
+    <string name="menu_help">帮助中心</string>
+    <string name="menu_about">关于我们</string>
+    <string name="more_updateuser">切换用户</string>
+
+    <!-- 公共字符串：控件相关 -->
+    <string name="backtohomepage">返回</string>
+    <string name="returnlastpage">返回</string>
+    <string name="dingyue">订阅</string>
+    <string name="quit">退出</string>
+    <string name="quit_message">您确定要离开91如意彩</string>
+    <string name="login_register">登录/注册</string>
+    <string name="logout">注销</string>
+    <string name="welcome">欢迎使用</string>
+    <string name="login">登" "录</string>
+    <string name="switchtxt">切" "换</string>
+    <string name="cancel">取" "消</string>
+    <string name="enter">进" "入</string>
+    <string name="str_return">返回</string>
+    <string name="kaijianggonggao">开奖</string>
+    <string name="goucaitouzhu">购彩</string>
+    <string name="zhanghuchongzhi">充值</string>
+    <string name="zhuanjiafenxi">专家荐号</string>
+    <string name="ruyizhushou">如意助手</string>
+    <string name="bangzhuzhongxin">帮助中心</string>
+    <string name="xitongshezhi">系统设置</string>
+    <string name="ruyitaocan">如意套餐</string>
+    <string name="xingyunxuanhao">幸运选号</string>
+    <string name="ruyichuangqing">如意传情</string>
+    <string name="yonghuzhongxin">用户中心</string>
+    <string name="tesetouzhu">特色投注</string>
+    <string name="chaxunxinxi">查询信息</string>
+    <string name="zhanghuguanli">账户管理</string>
+    <string name="gongsijianjie">公司简介</string>
+    <string name="yonghufankui">用户反馈</string>
+    <string name="gengduo">更多</string>
+    <string name="danshi">单式</string>
+    <string name="fushi">复式</string>
+    <string name="dantuo">胆拖</string>
+    <string name="twoin12">12选2</string>
+    <string name="jixuan">机选</string>
+    <string name="touzhu">投注</string>
+    <!-- 福彩3D -->
+    <string name="zhixuan">直选</string>
+    <string name="zuxuan3">组3</string>
+    <string name="zuxuan6">组6</string>
+    <string name="hezhi">和值</string>
+    <string name="zu6">单/复式</string>
+    <string name="danma">胆码(1~2)</string>
+    <string name="tuoma">拖码(1~9)</string>
+    <string name="baiwei">百位</string>
+    <string name="shiwei">十位</string>
+    <string name="gewei">个位</string>
+    <string name="hezhi_zhixuan">和值-直选</string>
+    <string name="hezhi_zu3">和值-组3</string>
+    <string name="hezhi_zu6">和值-组6</string>
+    <string name="choose_zhixuan_title">请选择小球个数</string>
+    <string name="zhixuan_danshi_dialog_tips">当前玩法为直选单式</string>
+    <string name="zhixuan_fushi_dialog_tips">当前玩法为直选复式</string>
+    <string name="zu3_fushi_dialog_tips">当前玩法为组3复式</string>
+    <string name="zu6_danshi_dialog_tips">当前玩法为组6单式</string>
+    <string name="zu6_fushi_dialog_tips">当前玩法为组6复式</string>
+    <!-- 彩民英雄榜 -->
+    <string name="caiminyingxiongbang">中奖排行榜</string>
+    <string name="week">周</string>
+    <string name="total">总</string>
+    <!-- wangyl 8.12 新增彩种 -->
+    <string name="zhixuanhezhi_dialog_tips">当前玩法为和值直选</string>
+    <string name="zu3hezhi_dialog_tips">当前玩法为和值组3</string>
+    <string name="zu6hezhi_dialog_tips">当前玩法为和值组6</string>
+    <string name="dantuo_danma_dialog_tips">请选择1~2位胆码</string>
+    <string name="dantuo_tuoma_dialog_tips">请选择1~9位拖码</string>
+    <string name="dantuo_dialog_tips">胆码和拖码的小球不少于3个</string>
+    <string name="please_choose_number">请选择投注号码</string>
+    <string name="please_choose_red_number">请选择红球号码</string>
+    <string name="please_choose_blue_number">请选择蓝球号码</string>
+    <string name="red_ball_field">红球区</string>
+    <string name="blue_ball_field">蓝球区</string>
+    <string name="red_ball_danma">红球胆码区(请选择1-5个号码)</string>
+    <string name="red_ball_tuoma">红色拖码区(请选择2-20个号码)</string>
+    <string name="table_ball_danma">胆码区(请选择1-6个号码)</string>
+    <string name="table_ball_tuoma">拖码区</string>
+    <!-- 大乐透   miaoqiang改版 -->
+    <string name="dlt_zhuijia_text">追加投注</string>
+    <string name="front_field">前区：</string>
+    <string name="rear_field">后区：</string>
+    <string name="dlt_zhixuan_front_edit_text">点击选取前区小球</string>
+    <string name="dlt_zhixuan_rear_edit_text">点击选取后区小球</string>
+    <string name="front_ball_danma">前区胆码：</string>
+    <string name="front_ball_tuoma">前区拖码：</string>
+    <string name="rear_ball_danma">后区胆码：</string>
+    <string name="rear_ball_tuoma">后区拖码：</string>
+    <string name="please_choose_red_number_dlt">请选择前区号码</string>
+    <string name="please_choose_blue_number_dlt">请选择后区号码</string>
+    <string name="zi_xuanzedezhuma">注码：</string>
+    <string name="dlt_zhixuan">大乐透直选</string>
+    <string name="dlt_zhixuan_jixuan">大乐透直选机选</string>
+    <string name="dlt_dantuo">大乐透胆拖</string>
+    <string name="dlt_dantuo_jixuan">大乐透胆托机选</string>
+    <string name="dlt_12xuan2">大乐透12选2</string>
+    <string name="dlt_12xuan2_jixuan">大乐透12选2机选</string>
+    <string name="dlt_jixuanzhushu">注数：</string>
+    <string name="dlt12xuan2jixuanzhushu">12选2机选注数</string>
+    <string name="plesechosejixuanzhushu">请选择机选注数</string>
+    <string name="dltzhixuanjixuanzhushu">大乐透直选机选注数</string>
+    <string name="dlt_dantuo_tishi">已处于胆托投注页面</string>
+    <string name="dltdayu10w">彩票基本投注的最大投注金额不超过20000元，基本投注加追加投注的最大投注金额不超过30000元。</string>
+    <string name="sscmax10w">单笔投注不能大于100000元</string>
+    <string name="dlt_toast_front_danma_title">选号重复，前区拖码被覆盖！</string>
+    <string name="dlt_toast_front_tuoma_title">选号重复，前区胆码被覆盖！</string>
+    <string name="dlt_toast_rear_danma_title">选号重复，后区胆码被覆盖！</string>
+    <string name="dlt_toast_rear_tuoma_title">选号重复，后区拖码被覆盖！</string>
+    <string name="blue_ball_dantuo">蓝球区(1-16个)</string>
+    <string name="toggle_on">" "机选</string>
+    <string name="toggle_off">" "自选</string>
+    <string name="choose_number_dialog_title_fushi">请选择复式小球个数</string>
+    <string name="choose_number_dialog_tip1">当前小球数为单式玩法</string>
+    <string name="choose_number_dialog_tip2">当前玩法为红复式</string>
+    <string name="choose_number_dialog_tip3">当前玩法为蓝复式</string>
+    <string name="choose_number_dialog_tip4">当前玩法为全复式</string>
+    <string name="choose_number_dialog_title_dantuo">请选择胆拖小球个数</string>
+    <string name="choose_number_dialog_tip5">请选择胆码、拖码</string>
+    <string name="choose_number_dialog_tip6">请选择蓝球</string>
+    <string name="choose_number_dialog_tip7">当前玩法为单式</string>
+    <string name="choose_number_dialog_tip8">当前玩法为复式</string>
+    <string name="choose_number_dialog_tip9">请选择前区胆码、拖码和后区胆码、拖码</string>
+    <string name="choose_number_dialog_tip10">请选择前区胆码、拖码</string>
+    <string name="choose_number_dialog_tip11">请选择后区胆码、拖码</string>
+    <string name="choose_number_dialog_tip2_dlt">当前玩法为前区复式</string>
+    <string name="choose_number_dialog_tip3_dlt">当前玩法为后区复式</string>
+    <string name="choose_number_dialog_tip4_dlt">当前玩法为全复式</string>
+    <string name="zhuijia_touzhu">" "追加投注</string>
+    <string name="mbeishu">倍</string>
+    <string name="meiqibeishu">倍数：</string>
+    <string name="zhuihaoqishu">期数：</string>
+    <string name="zuida200bei">（最大200倍）</string>
+    <string name="zuiduo200qi">（最多200期）</string>
+    <string name="zuida50bei">（最大50倍）</string>
+    <string name="zuida99bei">（最大99倍）</string>
+    <string name="zuiduo99qi">（最多99期）</string>
+    <string name="please_input_red_ball_num">请选择红球个数：</string>
+    <string name="please_input_blue_ball_num">请选择蓝球个数：</string>
+
+    <!-- 冯琴冲 ：UI 2登录 -->
+    <string name="user_login">用户登录</string>
+    <string name="login_find_password"><u>找回登录密码</u></string>
+    <string name="forget_password_btn">立即找回</string>
+    <string name="forget_password_text_hint">您要找回密码的用户名</string>
+    <string name="login_phoneNumber">用户名:</string>
+    <string name="login_password">密"   "码:</string>
+    <string name="loginTitle">请登录</string>
+    <string name="login_dialog_ok">确定</string>
+    <string name="login_dialog_cancel">取消</string>
+    <string name="remember_phoneNum">记住手机号</string>
+    <string name="remember_password">记住密码</string>
+    <string name="auto_login">自动登录</string>
+    <string name="regNewUser">注" "册</string>
+    <string name="please_enter_phone_number">请输入您的手机号</string>
+    <string name="please_enter_phone_name">用户名/手机号/邮箱</string>
+    <string name="please_enter_phone_password">6-16个字母，数字组成</string>
+    <string name="please_enter_phone_password_two">重新输入密码</string>
+    <string name="please_enter_name">请输入您的真实姓名</string>
+    <string name="please_enter_id">请输入您的身份证号码</string>
+    <string name="please_enter_referrer">请输入您的推荐人</string>
+    <string name="please_enter_card_num">请输入如意卡号</string>
+    <string name="please_enter_card_password">请输入卡密码</string>
+    <string name="please_remember_pwd">请输入密码</string>
+    <string name="reg_new_user">注" "册</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="register">注" "册</string>
+    <string name="register_login_phoneNumber">用"  "户"  "名:</string>
+    <string name="findpass_phoneNumber">手机号:</string>
+    <string name="register_login_password">密"       "码:</string>
+    <string name="register_login_name">真实姓名:</string>
+    <string name="register_confirm_password">确认密码:</string>
+    <string name="register_id_num">身份证号码:</string>
+    <string name="register_referrer">推荐人:</string>
+    <string name="register_id_card">91如意彩票卡:</string>
+    <string name="register_id_card_password">卡密码:</string>
+    <string name="register_refer_info_1">91如意彩服务协议请参阅</string>
+    <string name="register_refer_info_2">http://www.ruyicai.com/ruyicai/web/help/xieyi.jsp    </string>
+    <string name="giveCall">立即拨打</string>
+    <string name="return_button">返回</string>
+    <string name="register_free_info">手机号码、真实姓名和身份证号码是彩票兑奖的重要依据，为保障您的合法权益，建议您注册时绑定身份证信息！    </string>
+    <string name="forget_password_hint">如果您尚未绑定手机号或用户名忘记了,请点击拨打91如意彩客服电话400-665-1000,让客服人员协助您找回密码。    </string>
+    <string name="no_connection">连接失败！</string>
+    <string name="no_connection_title">连接失败</string>
+    <string name="settings">设置</string>
+    <string name="connect_hint">允许应用程序连接网络</string>
+    <!-- 周黎鸣 7,7 代码修改：改变连接网络提示内容 -->
+    <string name="tishi">提示</string>
+    <!-- 周黎鸣 7,7 代码修改：增加标题名 -->
+    <string name="go_on">继续</string>
+    <string name="no_hint">不再提示</string>
+    <string name="back_to_login">返回</string>
+    <string name="register_return">返回</string>
+    <!-- 冯琴冲 ：UI 8 账户充值 -->
+    <string name="directly_payment">直接支付</string>
+    <string name="phone_cards_recharge">手机充值卡充值</string>
+    <string name="atm_recharge">银行转账</string>
+    <string name="account_chongzhi">银行充值</string>
+    <string name="umpay_recharge">联动优势充值</string>
+    <string name="umpay_phone_recharge">"话费充值"</string>
+    <string name="account_chongzhi_good">"(推荐)"</string>
+    <string name="freeHanding">"(免手续费)"</string>
+    <string name="yin_bank_cards_recharge">银联卡充值</string>
+    <string name="recommend_the_use_of">"(推荐使用)"</string>
+    <string name="phone_bank_cards_recharge">手机银行充值</string>
+    <string name="zhfb_cards_recharge">支付宝充值</string>
+    <string name="zhfb_cards_secure_recharge">支付宝安全支付</string>
+    <string name="bank_cards_recharge">银联语音支付</string>
+    <string name="la_ka_la_recharge">拉卡拉支付</string>
+    <string name="toast_install_lakala">请安装拉卡拉</string>
+    <string name="transactionOK">交易成功</string>
+    <string name="transactionErr">交易失败</string>
+    <string name="isInstall">是否安装手机拉卡拉客户端？</string>
+    <string name="confim">确定</string>
+    <string name="chargecancel">取消</string>
+    <string name="game_cards_recharge">游戏点卡充值</string>
+    <string name="other_recharge">其它充值</string>
+    <string name="computer_rechargeinfo1">登录”91如意彩“(</string>
+    <string name="computer_rechargeinfo2">)用网银网上充值免手续费,支持更多银行。</string>
+    <string name="computer_address">91.ruyicai.com/</string>
+    <string name="phone_card_please_entrCardInfo">请输入充值卡信息：</string>
+    <string name="phone_card_enter_CInfo">充值卡序列号：</string>
+    <string name="phone_card_CPassword">充值卡密码：</string>
+    <string name="phone_card_CValue">请输入充值卡面值：</string>
+    <string name="phone_card_select_recharge_card_type">选择一个充值卡类型</string>
+    <string name="phone_card_select_recharge_card_value">选择一个充值卡面值</string>
+    <string name="phone_bank_select_bank">请选择银行：</string>
+    <string name="phone_bank_select_dialog_bank">选择银行：</string>
+    <string name="phone_bank_select_stye_dialog_bank">卡类型：</string>
+    <string name="bank_account_recharge">银行充值</string>
+    <string name="phone_bank_enter_value">请输入充值金额（整数）：</string>
+    <string name="phone_bank_hint">提示:以上银行充值前需开通网银业务。</string>
+    <string name="phone_banke_select_bank_type">选择一种银行卡类型</string>
+    <string name="ZFB_please_enter_value">请输入您的充值金额(整数):</string>
+    <string name="ZFB_relate_phoneNum">支付宝账号(手机或邮箱): </string>
+    <string name="ZFB_hint"> " "提示:"\n" 1.支付前,请您确认您已是支付宝会员,如您还没有支付宝账户,请登录
+		www.alipay.com支付宝网站注册"\n"
+		2.手机支付宝将通过WAP方式从您的支付宝账户扣款完成支付"\n"
+		3.手机支付宝支付金额每日最高500元"\n"
+		4.支付宝客服热线：0571-88156688</string>
+    <string name="alipay_secure_remind">.首次使用前，需根据提示下载安装“支付宝安全支付服务”插件。"\n"2.支付前，请确认您已是支付宝会员，如您还没有支付宝账户，请登录www.alipay.com支付宝网站注册。"\n"3.手机支付宝支付金额每日最高500元。"\n"4.支付宝客服热线：0571-88156688</string>
+    <string name="bank_card_phone_enter_rechargeInfo">请输入充值信息：</string>
+    <string name="bank_card_phone_recharge_value">充值金额(20元以上整数金额 )：</string>
+    <string name="bank_card_phone_yuan">(最低20元)</string>
+    <string name="bank_card_phone_recharge_cardNum">充值卡号</string>
+    <string name="bank_card_phone_phoneNum">手机号码：</string>
+    <string name="bank_card_phone_text_moneny">充值金额：</string>
+    <string name="chargehintmoney">100</string>
+
+    <!-- moreActivity中的字符串 -->
+
+    <string name="auto_login_set">自动登录设置</string>
+    <string name="auto_login_set_jixuan">摇一摇机选功能</string>
+    <string name="lotteryprizemsgoder">开奖信息订阅</string>
+    <string name="weibo_bind">微博账户绑定</string>
+    <string name="caizhong_setting">彩种设置</string>
+    <string name="share">分享</string>
+    <string name="sharetotencentweibo">分享到腾讯微博</string>
+    <string name="sharetosinaweibo">分享到新浪微博</string>
+    <string name="sharetorenren">分享到腾讯微博</string>
+    <string name="sharetosms">短信分享</string>
+    <string name="renrenaccout">腾讯微博账号设置</string>
+    <string name="sinaweiboaccout">新浪微博账号设置</string>
+    <string name="loginwithsina">用新浪微博账号登录</string>
+    <string name="loginwithqq">用QQ账号登录</string>
+    <string name="loginwithzhifubao">用支付宝账号登录</string>
+
+    <!--
+		<string
+		name="bank_card_phone_no_rechargeInfo">尊敬的客户，由于银联卡与个人信息的关联性较强，必须完善个人资料才能进行充值。
+		</string> 陈晨 ：UI 8 账户充值
+    -->
+    <string name="bank_card_phone_user_name">请输入真实姓名:</string>
+    <string name="bank_card_phone_user_idnum">请输入身份证号:</string>
+    <string name="bank_card_phone_open_bank">请输入开户银行所在地:</string>
+    <string name="bank_card_phone_open_bankuser_address">请输入开户人证件所在地:</string>
+    <string name="bank_card_phone_bankid">银行卡号：</string>
+    <string name="bank_card_phone_name">开卡人名：</string>
+    <string name="bank_card_phone_idcard">身份证号：</string>
+    <string name="bank_card_phone_home">户籍地址：</string>
+    <string name="bank_card_phone_province">卡开户地：</string>
+    <string name="bank_card_phone_city">开户城市：</string>
+    <string name="bank_card_phone_num">手机号码：</string>
+    <string name="dnabankaddress">(如湖北武汉)</string>
+    <string name="bank_card_phone_alert1">浙江山东天津农行暂停充值,仅支持以上银行的借记卡）</string>
+    <string name="bank_card_phone_alert2">(山东省青岛市XX街XX路XX号)</string>
+    <string name="game_card_type">点卡类型：</string>
+    <string name="game_card_number">充值卡号：</string>
+    <string name="game_card_password">充值密码：</string>
+    <string name="game_card_recharge_value">充值金额：</string>
+    <string name="game_card_total_value">面值总额：</string>
+    <string name="game_card_yuan">元</string>
+    <string name="game_card_hint">提示:骏网一卡通手续费18%,征途游戏卡和盛大游戏卡手续费20%</string>
+    <string name="game_card_select_type">选择一种点卡类型</string>
+    <string name="other_recharge_select">请选择：</string>
+    <string name="other_recharge_ComNetWork_recharge">电脑网上充值 </string>
+    <string name="other_recharge_phoneWAP_network">手机WAP网站</string>
+    <string name="other_recharge_RYC_card">91如意彩充值卡充值</string>
+    <string name="other_recharge_hint"> 提示： 91如意彩充值卡充值便捷，无手续费。</string>
+    <string name="computer_net_recharge_hint">用电脑登录www.ruyicai.com，凭注册用户名和密码登录后充值，充值成功后请返回手机投注区重新登录后购买彩票！谢谢！</string>
+    <string name="computer_net_recharge">电脑网上充值</string>
+    <string name="bank_card_phone_no_rechargeInfo">尊敬的客户，由于银联卡与个人信息的关联性较强，必须完善个人资料才能进行充值。"\n"首次使用该支付方式后，系统将默认绑定该银行卡作为您再次电话支付和申请提现的唯一专用卡，信用卡不能用于提现！ </string>
+    <string name="phone_WAP_recharge_hint">用手机登录wap.ruyici.com，凭注册用户名和密码登陆后充值，充值成功后请返回手机投注区重新登陆后购买彩票！谢谢！</string>
+    <string name="phone_WAP_recharge">手机话费充值卡</string>
+    <!-- 如意助手 -->
+    <string name="ruyihelper_gameIntroduction">玩法介绍</string>
+    <string name="ruyihelper_operationAssistant">操作助手</string>
+    <string name="ruyihelper_frequentQuestion">常见问题</string>
+    <string name="ruyihelper_goucailiucheng">购彩流程</string>
+    <string name="ruyihelper_zhongjiang">如何领奖</string>
+    <string name="ruyihelper_feilushuoming">费率说明</string>
+    <string name="ruyihelper_mimazhaohui">密码找回</string>
+    <string name="ruyihelper_kefudianhua">客服电话</string>
+    <string name="ruyihelper_authorizing">关于授权</string>
+    <string name="ruyihelper_about">关于软件</string>
+    <string name="ruyihelper_serviceWebsite">服务网址:www.ruyicai.com</string>
+    <string name="ruyihelper_customerServicePhone">客服电话:400-665-1000</string>
+
+    <!-- 如意助手-操作助手 -->
+    <string name="ruyihelper_userRegister">用户注册</string>
+    <string name="ruyihelper_userLogin">用户登录</string>
+    <string name="ruyihelper_userBetting">用户投注</string>
+    <string name="ruyihelper_presentLottery">赠送彩票</string>
+    <string name="ruyihelper_accountWithdraw">账户提现</string>
+    <string name="ruyihelper_balanceInquiry">资金详情</string>
+
+    <!-- 用户中心 -->
+    <string name="usercenter_winningCheck">中奖查询</string>
+    <string name="usercenter_bettingDetails">投注查询</string>
+    <string name="usercenter_accountDetails">账户明细</string>
+    <string name="usercenter_passwordChange">密码修改</string>
+    <string name="usercenter_trackNumberInquiry">追号查询</string>
+    <string name="usercenter_giftCheck">赠送查询</string>
+    <string name="joinchekinfoquery">合买查询</string>
+    <string name="usercenter_bindphonenum">手机号绑定</string>
+    <string name="usercenter_bindID">身份证绑定</string>
+    <string name="usercenter_buyAgain">再买一次</string>
+    <string name="usercenter_changePWD">密码修改</string>
+    <string name="scroechange">注:1000积分可兑换1元购彩金(请输入1000的倍数),存入您的91如意彩账户</string>
+    <string name="str_getmore">获取更多</string>
+    <string name="usercenter_mymessage">在线留言</string>
+    <string name="usercenter_submitfeedback">提交反馈</string>
+    <string name="str_service_reply">客服回复:</string>
+    <!-- 投注查询 -->
+    <string name="nobuyagain">本投注不能再买一次</string>
+    <!-- 用户中心-余额查询 -->
+    <string name="unit">元</string>
+    <string name="total_balance">总余额： </string>
+    <string name="freeze_amout">冻结金额： </string>
+    <string name="usercenter_currentBalance">可投注金额：</string>
+    <string name="usercenter_withdrawBalance">可提现余额：</string>
+    <string name="usercenter_textDisplay">文字显示：</string>
+    <string name="usercenter_remind">提醒：手机话费充值、游戏点卡充值不可提现，其它方式都可以提现。</string>
+    <string name="usercenter_detailsTitle">订单详情</string>
+    <!-- 用户中心-绑定手机号 -->
+    <string name="usercenter_phonenum">手机号:</string>
+    <string name="usercenter_unbind">解除绑定</string>
+    <string name="usercenter_securitycode">验证码:</string>
+    <string name="usercenter_yanzheng">验证</string>
+    <!-- 用户中心-绑定身份证 -->
+    <string name="usercenter_realname">真实姓名:</string>
+    <string name="usercenter_yourname">您的姓名:</string>
+    <string name="usercenter_cerdidnum">身份证号:</string>
+    <string name="usercenter_youridnum">证件号码:</string>
+    <string name="usercenter_notnull">别输空啊，这很重要的哦</string>
+    <string name="usercenter_bindphonedialogtitle">手机号绑定提示</string>
+    <string name="usercenter_bindIDdialogtitle">身份证绑定提示</string>
+    <string name="usercenter_hadbindedremind">您的账号已经绑定，如有疑问请联系客服咨询。<br />
+    </string>
+    <string name="usercenter_bindedIDnum">您绑定的身份证号码为：</string>
+    <!-- 用户中心-投注明细 -->
+    <string name="usercenter_bettingDetails_type">种类：</string>
+    <string name="usercenter_bettingDetails_type1">投注方式：</string>
+    <string name="usercenter_bettingDetails_issue">期号：</string>
+    <string name="usercenter_bettingDetails_pay">支付：</string>
+    <string name="usercenter_bettingDetails_noteNumber">注数：</string>
+    <string name="usercenter_lotMulti">倍数：</string>
+    <string name="usercenter_bettingDetails_bettingTime">投注时间：</string>
+    <string name="usercenter_bettingDetails_cash_date_time">截止时间：</string>
+    <string name="usercenter_bettingDetails_amt">投注金额：</string>
+    <string name="usercenter_bettingDetails_drawDate">开奖日期：</string>
+    <string name="usercenter_bettingDetails_bet">投注方式：</string>
+    <string name="usercenter_bettingDetails_prizeMoney">中奖金额：</string>
+    <string name="bettingDetails_maxMutiple_one">(最高10000倍)</string>
+    <string name="bettingDetails_maxMutiple_ten">(最高100000倍)</string>
+    <string name="usercenter_upPage">上一页</string>
+    <string name="usercenter_downPage">下一页</string>
+
+    <!-- 用户中心-密码修改 -->
+    <string name="usercenter_originalPassword">原始密码：</string>
+    <string name="usercenter_newPassword">新 密 码：</string>
+    <string name="usercenter_confirmNewPassword">确认密码：</string>
+    <string name="usercenter_successPassword">密码修改成功！</string>
+    <string name="usercenter_submit">提 交</string>
+    <string name="usercenter_changPSWRemind">长度应为6~16位！</string>
+    <string name="usercenter_changPSWRemind2">密码输入不一致！</string>
+    <!-- 用户中心-中奖查询 -->
+    <string name="usercenter_max_amount">您的付款金额超过最大限制,请重新输入!</string>
+    <string name="usercenter_winningCheck_lotteryCategory">彩票种类：</string>
+    <string name="usercenter_playStyle">玩 法：</string>
+    <string name="usercenter_lotteryIssue">彩票期号：</string>
+    <string name="usercenter_winningCheck_awardLevel">奖项等级：</string>
+    <string name="usercenter_bettingTime">投注时间：</string>
+    <string name="usercenter_endTime">兑奖时间：</string>
+    <string name="usercenter_winningCheck_abandonWinningTime">弃奖时间：</string>
+    <string name="usercenter_winningCheck_lotteryMultiple">彩票倍数：</string>
+    <string name="usercenter_prizeMoney">中奖金额：</string>
+    <string name="usercenter_wincode">开奖号码：</string>
+    <string name="usercenter_winprize_payMoney">付款金额：</string>
+    <string name="usercenter_winprize_qihao">(期号:</string>
+    <!-- 用户中心-赠彩 -->
+    <string name="usercenter_theLotteryOfGift">赠彩的彩票</string>
+    <string name="usercenter_theLotteryOfGifted">收到的彩票</string>
+    <string name="usercenter_giftTime">赠彩时间：</string>
+    <string name="usercenter_giftPoneNum">赠送人：</string>
+    <string name="usercenter_giftedPoneNum">受赠人：</string>
+    <string name="usercenter_giftAmount">赠彩金额：</string>
+    <!-- 用户中心-账户明细 -->
+    <string name="usercenter_accountDetails_all">全部</string>
+    <string name="usercenter_accountDetails_recharge">充值</string>
+    <string name="usercenter_accountDetails_pay">支付</string>
+    <string name="usercenter_accountDetails_awardSchool">奖派</string>
+    <string name="usercenter_accountDetails_withdraw">提现</string>
+    <string name="user_login_password">91如意彩登录密码</string>
+    <!-- 用户中心 -->
+    <string name="nickname">昵称:</string>
+    <string name="mobile">用户名:</string>
+    <string name="less">余"　"额:</string>
+    <string name="points">积分:</string>
+    <string name="usercenter_lotteryAmount">彩票金额：</string>
+    <string name="time">时间：</string>
+    <string name="betSuccess">投注成功</string>
+    <string name="cancle">取消</string>
+    <string name="ok">确" "定</string>
+    <string name="whatisyourselect">您选择的是</string>
+    <string name="usercenter_hasgonefirst">已至首页</string>
+    <string name="usercenter_hasgonelast">已至最后一页</string>
+    <string name="usercenter_gong">共</string>
+    <string name="usercenter_di">第</string>
+    <string name="usercenter_page">页</string>
+    <string name="usercenter_netDialogTitle">联网提示</string>
+    <string name="usercenter_netDialogRemind">网络连接中......</string>
+    <!-- 用户中心    追号查询 -->
+    <string name="usercenter_str_running">（进行中）</string>
+    <string name="usercenter_str_hasCancled">（已取消）</string>
+    <string name="usercenter_str_hasClosed">（已追完）</string>
+    <string name="usercenter_str_runningNoParentheses">进行中</string>
+    <string name="usercenter_str_hasCancledNoParentheses">已取消</string>
+    <string name="usercenter_str_hasClosedNoParentheses">已追完</string>
+    <string name="usercenter_cancleTrackRemind">您确定要取消追号吗？</string>
+    <string name="usercenter_canclefollowRemind">您确定要取消定制吗？</string>
+    <string name="usercenter_lotterytypename">彩票种类：</string>
+    <string name="usercenter_betcode">注码：</string>
+    <string name="usercenter_betnum">注数：</string>
+    <string name="usercenter_trackbatchnums">追号期数：</string>
+    <string name="usercenter_trackedbatchnums">已追期数：</string>
+    <string name="usercenter_alltrackmoney">追号总额：</string>
+    <string name="usercenter_startbatchnums">起始追期：</string>
+    <string name="usercenter_trackstate">当前状态:</string>
+    <string name="usercenter_lottery_time">投注时间：</string>
+    <string name="cancel_add_num">取消追号</string>
+    <string name="cancel_follow">取消定制</string>
+    <string name="usercenter_trackquery_bettime">投注时间：</string>
+    <string name="usercenter_trackquery_betmuti">投注倍数：</string>
+    <string name="usercenter_trackquery_nowstate">当前状态：</string>
+
+    <!-- 用户中心-账户提现 -->
+    <string name="usercenter_withdrawAnew">重新提现</string>
+    <string name="usercenter_accountWithdraw_text">请您登陆91如意彩网站"\n" http://www.ruyicai.com
+		"\n"用户中心进行账户提现，谢谢！</string>
+
+    <!-- 如意套餐 -->
+    <string name="ruyipackage_subscribe">订购</string>
+    <string name="ruyipackage_edit">修改</string>
+    <string name="ruyipackage_unsubscribe">退订</string>
+    <string name="ruyipackage_unsubscirbe_sure">您确认退订：</string>
+    <string name="ruyipackage_subscirbe_sure">您确认订购：</string>
+    <string name="ruyipackage_edit_sure">您确认将套餐修改为：</string>
+    <string name="ruyipackage_two">2元</string>
+    <string name="ruyipackage_four">4元</string>
+    <string name="ruyipackage_six">6元</string>
+    <string name="ruyipackage_eight">8元</string>
+    <string name="ruyipackage_ten">10元</string>
+
+    <!-- 如意传情 -->
+    <string name="ruyichuanqing_choose_present_mode">请选择赠送方式：</string>
+    <string name="ruyichuanqing_choose_present_zhushu">请选择赠送注数：</string>
+    <string name="ruyichuanqing_tips">温馨提示：如意传情是通过以赠送彩票的方式为您的家人及朋友传达情意的一种表现方式。</string>
+    <string name="ruyichuanqing_atleastone">请至少选择一位好友进行赠送！</string>
+    <string name="ruyichuanqing_success_message">请输入祝福留言（限20字）：</string>
+    <string name="ruyichuanqing_success_phonenumber">接收手机号码：</string>
+    <string name="ruyichuanqing_phonetext">电话薄</string>
+    <string name="ruyichuanqing_normalgreetwords">常用问候语</string>
+    <string name="ruyichuanqing_thecontactsisnull">通讯录为空,请手动填写联系人！</string>
+    <string name="ruyichuanqing_fc3d_zixuan_title">如意传情>福彩3D自选</string>
+    <string name="ruyichuanqing_ssq_zixuan_title">如意传情>双色球自选</string>
+    <string name="ruyichuanqing_qlc_zixuan_title">如意传情>七乐彩自选</string>
+    <!-- wangyl 8.25 新增大乐透和排列三 -->
+    <string name="ruyichuanqing_dlt_zixuan_title">如意传情>大乐透自选</string>
+    <string name="ruyichuanqing_pl3_zixuan_title">如意传情>排列三自选</string>
+    <string name="ruyichuanqing_dlt_zixuan_qianqu">前区</string>
+    <string name="ruyichuanqing_dlt_zixuan_houqu">后区</string>
+    <string name="dlt">大乐透</string>
+    <string name="ruyichuanqing_newselect">重新选号</string>
+    <string name="ruyichuanqing_newselect_jixuan">重新机选</string>
+    <string name="ruyichuanqing_add_phone">请输入电话号码</string>
+    <string name="ruyichuanqing_del_phone_title">删除</string>
+    <string name="ruyichuanqing_del_phone">您确认要删除电话号码</string>
+
+    <!-- 双色球投注成功 -->
+    <string name="ssq_bettingsuccess">投注成功</string>
+    <string name="ssq_bettingsuccess_bindemail">绑定邮箱</string>
+    <string name="ssq_bettingsuccess_receiveandbind">接受并绑定</string>
+    <string name="ssq_bettingsuccess_emailaddress">邮箱地址：</string>
+    <string name="ssq_bettingsuccess_emailprompt">请输入您要接收并绑定的邮箱地址(可在用户中心解绑)：</string>
+    <string name="ssq_bettingsuccess_returnbet">返回投注</string>
+    <string name="ssq_bettingsuccess_money">金额:</string>
+    <string name="ssq_bettingsuccess_lotnotype">彩种:</string>
+    <string name="ssq_bettingsuccess_sentschemetoemail">将此方案发送到邮箱</string>
+
+    <!-- 周黎鸣  幸运选号 -->
+    <string name="shengri">生日</string>
+    <string name="xingming">姓名</string>
+    <string name="shengxiao">生肖</string>
+    <string name="xingzuo">星座</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="qingshuruxingming">请输入姓名：</string>
+    <string name="qingshurushengri">请输入生日：</string>
+    <!-- 幸运选号 -->
+    <string name="zuiduo5zhu">(最多5注)</string>
+    <string name="dangqianzhushu">当前注数</string>
+    <string name="zhifu">支付</string>
+    <string name="haveatry">我想试试</string>
+    <string name="zhuma">注码：</string>
+    <!-- zlm 7.9 添加代码 -->
+    <string name="xyxh_shuangseqiu">幸运选号 > 双色球</string>
+    <string name="xyxh_fucai3d">幸运选号 > 福彩3D</string>
+    <string name="xyxh_qilecai">幸运选号 > 七乐彩</string>
+    <string name="xyxh_pailiesan">幸运选号 > 排列三</string>
+    <string name="xyxh_chaojidaletou">幸运选号 > 超级大乐透</string>
+    <!-- 苗强  开奖详情 -->
+    <string name="prizedetail_prizename">奖项</string>
+    <string name="prizedetail_prizenum">中奖注数(注)</string>
+    <string name="prizedetail_eachprizeamt">单注奖金(元)</string>
+    <string name="prizedetail_opentime">开奖时间：</string>
+    <string name="prizedetail_thebatchcodeamt">本期销量：</string>
+    <string name="prizedetail_theprizepoolamt">奖池滚存：</string>
+    <string name="prizedetail_zu3">组三</string>
+    <string name="prizedetail_zu6">组六</string>
+    <string name="prizedetail_fristprize">一等奖</string>
+    <string name="prizedetail_zhuijia">追加</string>
+    <string name="prizedetail_12xuan2">12选2</string>
+    <string name="prizedetail_secondprize">二等奖</string>
+    <string name="prizedetail_thirdprize">三等奖</string>
+    <string name="prizedetail_fourthprize">四等奖</string>
+    <string name="prizedetail_fifthprize">五等奖</string>
+    <string name="prizedetail_sixthprize">六等奖</string>
+    <string name="prizedetail_seventhprize">七等奖</string>
+    <string name="prizedetail_eighthprize">八等奖</string>
+    <!-- 周黎鸣：UI 3    开奖公告 -->
+    <string name="jingcai_kaijianggonggao">竞彩足球开奖公告</string>
+    <string name="jingcailan_kaijianggonggao">竞彩篮球开奖公告</string>
+    <string name="shuangseqiu_kaijianggonggao">双色球开奖公告</string>
+    <string name="fucai3d_kaijianggonggao">福彩3D开奖公告</string>
+    <string name="qilecai_kaijianggonggao">七乐彩开奖公告</string>
+    <string name="fucai3d_attention">提示：福彩3D开奖时间：每日仅供参考，以福彩公告为准</string>
+    <string name="shuangseqiu_attention">提示：双色球开奖时间：每周二、四、日仅供参考，以福彩公告为准</string>
+    <string name="qilecai_attention">提示：七乐彩开奖时间：每周一、三、五仅供参考，以福彩公告为准</string>
+    <string name="chaojidaletou_attention">提示：超级大乐透开奖时间：每周一、三、六开奖 ，仅供参考，以体彩官方公布为准</string>
+    <string name="pailiesan_attention">提示：排列三开奖时间：每日开奖，仅供参考，以体彩官方公布为准</string>
+    <string name="shishicai_attention">：时时彩开奖时间：每日开奖时间：10：00至22：00,10分钟一期;22：00至次日01:55,每5分钟一期,每天开奖120次，仅供参考，以体彩官方公布为准</string>
+    <string name="footballLottery_attention">提示：双色球开奖时间：每周二、四、日仅供参考，以福彩公告为准</string>
+    <string name="fanhui">返回</string>
+    <string name="caipiaotouzhu">彩票投注</string>
+    <string name="ruyichuanqing_shuangseqiu">如意传情(双色球)</string>
+    <string name="ruyichuanqing">如意传情</string>
+    <string name="pailiesan">排列三</string>
+    <string name="chaojidaletou">超级大乐透</string>
+    <string name="shishicai">时时彩</string>
+    <string name="pailiesan_kaijianggonggao">排列三开奖公告</string>
+    <string name="pl5_kaijianggonggao">排列五开奖公告</string>
+    <string name="qxc_kaijianggonggao">七星彩开奖公告</string>
+    <string name="chaojidaletou_kaijianggonggao">超级大乐透开奖公告</string>
+    <string name="shishicai_kaijianggonggao">时时彩开奖公告</string>
+    <string name="dlc_kaijianggonggao">11选5开奖公告</string>
+    <string name="ydj_kaijianggonggao">11运夺金开奖公告</string>
+    <!-- 专家分析 -->
+    <string name="shuangseqiufenxi">双色球分析</string>
+    <string name="fucaifenxi">福彩3D分析</string>
+    <string name="qilecaifenxi">七乐彩分析</string>
+    <string name="expertanalyze_ssq">双色球专家分析</string>
+    <string name="expertanalyze_fc3d">福彩3D专家分析</string>
+    <string name="expertanalyze_qlc">七乐彩专家分析</string>
+    <string name="pailiesanfenxi">排列三分析</string>
+    <string name="chaojidaletoufenxi">超级大乐透分析</string>
+    <string name="shishicaifenxi">时时彩分析</string>
+    <string name="shengfucaifenxi">胜负彩分析</string>
+    <string name="renxuanjiufenxi">任选九分析</string>
+    <string name="jinqiucaifenxi">进球彩分析</string>
+    <string name="liuchangbanfenxi">六场半分析</string>
+
+    <!-- menu -->
+
+    <string name="confirm">确定</string>
+    <string name="reselect_num">重新选号 </string>
+    <string name="buyFive"> 买满五注</string>
+    <string name="game_introduction">玩法介绍 </string>
+    <!-- 完善信息对话框 -->
+    <string name="perfect_message_name">身份证 </string>
+    <string name="perfect_message_title">完善信息 </string>
+    <string name="et_perfect_message_name">请输入身份证 </string>
+    <string name="perfect_message_point">：身份证是您的唯一标识，请填写真实有效的身份证号，以便您中奖后能够进行领奖提现。谢谢！</string>
+
+    <!-- 修改信息对话框 -->
+    <string name="change_message_title">修改信息 </string>
+    <!-- 用户提现 -->
+    <string name="get_money_title">账户提现</string>
+    <string name="get_money_name">持卡人名:</string>
+    <string name="get_money_bank">开卡银行:</string>
+    <string name="get_money_bank_start">开卡地址:</string>
+    <string name="get_money_bank_num">银行卡号:</string>
+    <string name="get_money_money">提现金额:</string>
+    <string name="get_money_submit">提交</string>
+    <string name="get_money_back">返回</string>
+    <!-- 待审核 -->
+    <string name="wait_text">：用户提现信息已受理，您当前的提现状态是"等待处理"，您可以修改信息或是取消提现操作。</string>
+    <!-- 审核中 -->
+    <string name="waiting_text">提示：您提现申请正在审核中。</string>
+    <!-- 驳回 -->
+    <string name="fail_text">提示：您的提现申请信息输入有误或已经取消提现，请重新提交提现信息。</string>
+    <!-- 已审核 -->
+    <string name="success_text">您的提现申请已通过审核，请注意查收，如果您想继续进行账户提现请点击再次提现按钮。</string>
+    <string name="get_money_bank_type">请选择银行</string>
+    <string name="jc_spinner_title">自由过关</string>
+    <string name="betkind">选择彩种</string>
+    <!-- 版本更新 -->
+    <string name="notice_other_join_title">热门合买:</string>
+    <string name="notice_other_join_title_two">搜索:</string>
+    <string name="notice_other_join_title_two1">即将满员</string>
+    <string name="notice_other_join_title_two2">人气排行</string>
+    <string name="notice_other_join_title_two3">方案金额</string>
+    <string name="notice_other_join_title_two4">更多>></string>
+    <string name="join_hall_spinner_type">请选择排列类别</string>
+    <string name="join_hall_check_dialog_title">请选择彩种</string>
+    <string name="zu_xuan">组选</string>
+    <string name="beishu">倍数</string>
+    <string name="zhushu">注数</string>
+    <string name="openprizelasttime">剩余时间：</string>
+    <!-- 时时彩 -->
+    <string name="ssc_type">时时彩种类</string>
+    <string name="ssc_yixing">一星</string>
+    <string name="ssc_erxing">二星</string>
+    <string name="ssc_sanxing">三星</string>
+    <string name="ssc_fivexing">五星</string>
+    <string name="ssc_zhixuan">直选选号</string>
+    <string name="ssc_daxiao">大小单双</string>
+    <string name="ssc_wuxing">五星通选</string>
+    <string name="ssc_title">时时彩</string>
+    <string name="ssc_table_wan">万位：</string>
+    <string name="ssc_table_qian">千位：</string>
+    <string name="ssc_table_bai">百位：</string>
+    <string name="ssc_table_shi">十位：</string>
+    <string name="ssc_table_ge">个位：</string>
+    <string name="ssc_erxingzuxuanlable">组选注码：</string>
+    <string name="ssc_five_five_dialog_title">请选择五星个数</string>
+    <string name="ssc_five_dan_dialog_title2">当前小球数为单式</string>
+    <string name="ssc_five_three_dialog_title">请选择三星个数</string>
+    <string name="ssc_five_fushi_dialog_title2">当前小球数为复式</string>
+    <string name="ssc_five_two_dialog_title">请选择二星个数</string>
+    <string name="ssc_five_one_dialog_title">请选择一星个数</string>
+    <string name="ssc_title_alert">每位至少选择一个数</string>
+    <string name="ssc_two_star_zu_xuan">二组</string>
+    <string name="ssc_two_star_dialog_zu_xuan">请选择二星组选个数</string>
+    <string name="ssc_two_star_dialog_fen_wei">请选择二星分位个数</string>
+    <string name="ssc_two_star_dialog_bao_dian">请选择二星包点个数</string>
+    <string name="ssc_two_star_dialog_he_zhi">请选择二星和值个数</string>
+    <string name="sscwanweitext">" "点击选择万位</string>
+    <string name="sscqianweitext">" "点击选择千位</string>
+    <string name="sscbaiweitext">" "点击选择百位</string>
+    <string name="sscshiweitext">" "点击选择十位</string>
+    <string name="sscgeweitext">" "点击选择个位</string>
+
+    <!-- 七星彩 -->
+    <string name="qxc_first">第一位</string>
+    <string name="qxc_second">第二位</string>
+    <string name="qxc_third">第三位</string>
+    <string name="qxc_fourth">第四位</string>
+    <string name="qxc_fifth">第五位</string>
+    <string name="qxc_sixth">第六位</string>
+    <string name="qxc_seventh">第七位</string>
+    <string name="jine">金额</string>
+    <string name="fenxi">分析</string>
+    <string name="duizhen">对阵</string>
+    <string name="ssc_text_daxiao_alert">投注于当期开奖号码的十、个位性质按位相符！奖金4元！</string>
+    <string name="qiudui">球队</string>
+    <string name="xuanhaoqu">选号区：</string>
+    <string name="shengfucai">胜负彩</string>
+    <string name="renxuanjiu">任选九</string>
+    <string name="jinqiucai">进球彩</string>
+    <string name="liuchangban">六场半全场 </string>
+    <string name="banquanchang">半全场 </string>
+    <string name="quanchang">全场 </string>
+    <string name="banchang">半场 </string>
+    <string name="shengfucai_kaijiang">胜负彩开奖公告</string>
+    <string name="renxuanjiu_kaijiang">任选九开奖公告</string>
+    <string name="jinqiucai_kaijiang">进球彩开奖公告</string>
+    <string name="liuchangban_kaijiang">六场半全场开奖公告 </string>
+    <!-- 付磊 双色球 -->
+    <string name="ssq_zhixuan_edit_Prompt_red">" "点击选择红球，可选6-20个 </string>
+    <string name="ssq_zhixuan_edit_Prompt_blue">" "点击选择蓝球，可选1-16个 </string>
+    <string name="ssq_zhixuan_text_red_title">红球区：</string>
+    <string name="ssq_zhixuan_text_blue_title">蓝球区：</string>
+    <string name="ssq_dantuo_edit_Prompt_red_danma">" "点击选择红球胆码，可选1-5个 </string>
+    <string name="ssq_dantuo_edit_Prompt_red_tuoma">" "点击选择红球拖码，可选2-20个 </string>
+    <string name="ssq_dantuo_edit_Prompt_blue">" "点击选择蓝球，可选1-16个 </string>
+    <string name="ssq_dantuo_text_red_danma_title">胆码区：</string>
+    <string name="ssq_dantuo_text_red_tuoma_title">拖码区：</string>
+    <string name="ssq_dantuo_text_blue_title">蓝球区：</string>
+    <string name="zhixuan_jixuan_title">注数:</string>
+    <!-- 付磊 福彩3d -->
+    <string name="fc3d_text_bai_title">百位区：</string>
+    <string name="fc3d_text_shi_title">十位区：</string>
+    <string name="fc3d_text_ge_title">个位区：</string>
+    <string name="fc3d_text_hezhi_title">注码：</string>
+    <string name="fc3d_text_zu3_may2">出现两次的号码：</string>
+    <string name="fc3d_text_zu3_may1">出现一次的号码：</string>
+    <string name="fc3d_edit_Prompt_bai">" "点击选择百位，限选1个 </string>
+    <string name="fc3d_edit_Prompt_shi">" "点击选择十位，限选1个 </string>
+    <string name="fc3d_edit_Prompt_ge">" "点击选择个位，限选1个 </string>
+    <string name="fc3d_zhixuan_edit_Prompt_bai">" "点击选择百位，限选1-10个 </string>
+    <string name="fc3d_zhixuan_edit_Prompt_shi">" "点击选择十位，限选1-10个 </string>
+    <string name="fc3d_zhixuan_edit_Prompt_ge">" "点击选择个位，限选1-10个 </string>
+    <!-- 付磊 七乐彩 -->
+    <string name="qlc_zhixuan_text_zhixuan_title">请选择投注号码：</string>
+    <string name="qlc_dantuo_text_danma_title">胆码区：</string>
+    <string name="qlc_dantuo_text_tuoma_title">拖码区：</string>
+    <string name="qlc_dantuo_edit_Prompt_danma">" "点击选择胆码，可选1-6个 </string>
+    <string name="qlc_dantuo_edit_Prompt_tuoma">" "点击选择拖码，可选2-20个 </string>
+    <!-- 总提示 -->
+    <string name="touzhushibai">投注失败</string>
+    <string name="zhixuan_jixuan_toast">至少选择一注！</string>
+    <string name="feedbacksuccess">您的意见已收到</string>
+    <string name="feedbackfield">网络连接错误</string>
+    <string name="feedbacknull">信息不能为空</string>
+    <string name="feedbackless">回复类容不能少于5个字</string>
+    <string name="feedbacconnection">请输入您的手机号</string>
+    <!-- 系统设置 -->
+    <string name="xitongshezhi_title">机选震感反馈:</string>
+    <string name="xitongshezhi_check_on">开启</string>
+    <string name="xitongshezhi_check_off">关闭</string>
+    <!-- 充值提醒 -->
+    <string name="goucai_Account_dialog_msg">尊敬的用户您的账户余额不能支付本次购买，请充值</string>
+    <string name="confirm_install_hint">"安装提示"</string>
+    <string name="confirm_install">"为保证您的交易安全，需要您安装支付宝安全支付服务，才能进行付款。\n\n点击确定，立即安装。"</string>
+    <string name="Ensure">"确定"</string>
+    <string name="Cancel">"取消"</string>
+    <!-- 用户反馈提示 -->
+    <string name="yonghufankui_edit_hint_msg">亲爱的彩友们，请写下您对我们客户端产品的宝贵意见，您的意见是我们改进产品和不断进步的动力</string>
+    <!-- Toast提示 -->
+    <string name="ssq_toast_danma_title">选号重复，拖码被覆盖！</string>
+    <string name="ssq_toast_tuoma_title">选号重复，胆码被覆盖！</string>
+    <string name="pl3_toast_bai_title">选号重复，个位被覆盖！</string>
+    <string name="pl3_toast_ge_title">选号重复，百位、十位被覆盖！</string>
+    <string name="toast_touzhu_title">温馨提示</string>
+    <string name="alert_dialog_touzhu_text_alert">您已选择追期，无法应用赠彩、合买功能</string>
+    <!-- 增彩 -->
+    <string name="gift_to_language">您的赠言:</string>
+    <string name="gift_to_phone">朋友联系方式:</string>
+    <string name="gift_to_phone_hint">填写电话号码，多个联系人之间用逗号分隔</string>
+    <string name="gift_to_language_hint">请输入赠彩留言"\n"</string>
+
+    <!-- service -->
+    <!-- <string name="alarm_service_started">彩票开奖了，查看开奖信息吧！</string> -->
+    <string name="alarm_service_label">91如意彩提醒您:</string>
+    <!-- 用户注册协议 -->
+    <string name="login_string_protocol">91如意彩用户服务协议</string>
+    <string name="login_string_protocol_context"></string>
+    <!-- 彩种名称 -->
+    <string name="dlc">江西11选5</string>
+    <string name="eleven">11运夺金</string>
+    <string name="tenTitle">广东快乐十分</string>
+    <string name="gdeleven">广东11选5</string>
+    <!-- 提示框字段 -->
+    <string name="alert_dialog_touzhu_prize_title">中奖停止追号：</string>
+    <!-- 开奖号码 -->
+    <string name="gaopincai_prize_title">最新开奖</string>
+    <string name="gaopincai_prize_title_net">获取最新开奖号码....</string>
+    <string name="gaopincai_prize_title_fail">获取失败</string>
+    <!-- 竞彩篮球 -->
+    <string name="jclq_title">客队在前</string>
+    <string name="jclq_type_title">玩法切换</string>
+    <string name="jclq_list_item_btn_title">请选择投注选项</string>
+    <string name="jclq_sf_guoguan_title">竞彩篮球胜负（过关）</string>
+    <string name="jclq_rf_guoguan_title">竞彩篮球让分胜负（过关）</string>
+    <string name="jclq_sfc_guoguan_title">竞彩篮球胜分差（过关）</string>
+    <string name="jclq_dxf_guoguan_title">竞彩篮球大小分（过关）</string>
+    <string name="jclq_sf_danguan_title">竞彩篮球胜负（单关）</string>
+    <string name="jclq_rf_danguan_title">竞彩篮球让分胜负（单关）</string>
+    <string name="jclq_sfc_danguan_title">竞彩篮球胜分差（单关）</string>
+    <string name="jclq_dxf_danguan_title">竞彩篮球大小分（单关）</string>
+    <string name="jclq_dialog_sf_guoguan_title">胜负:</string>
+    <string name="jclq_dialog_rf_guoguan_title">让分胜负:</string>
+    <string name="jclq_dialog_sfc_guoguan_title">胜分差:</string>
+    <string name="jclq_dialog_dxf_guoguan_title">大小分:</string>
+    <string name="jclq_dialog_hunhe_title">混合投注:</string>
+    <string name="jclq_sfc_dialog_title01">主胜1-5分</string>
+    <string name="jclq_sfc_dialog_title02">主胜6-10分</string>
+    <string name="jclq_sfc_dialog_title03">主胜11-15分</string>
+    <string name="jclq_sfc_dialog_title04">主胜16-20分</string>
+    <string name="jclq_sfc_dialog_title05">主胜21-25分</string>
+    <string name="jclq_sfc_dialog_title06">主胜26分以上</string>
+    <string name="jclq_sfc_dialog_title11">主负1-5分</string>
+    <string name="jclq_sfc_dialog_title12">主负6-10分</string>
+    <string name="jclq_sfc_dialog_title13">主负11-15分</string>
+    <string name="jclq_sfc_dialog_title14">主负16-20分</string>
+    <string name="jclq_sfc_dialog_title15">主负21-25分</string>
+    <string name="jclq_sfc_dialog_title16">主负26分以上</string>
+    <!-- 竞彩足球 -->
+    <string name="jczq_sf_guoguan_title">竞彩足球胜平负（过关）</string>
+    <string name="jczq_rqspf_guoguan_title">竞彩足球让球胜平负（过关）</string>
+    <string name="jczq_rf_guoguan_title">竞彩足球总进球数（过关）</string>
+    <string name="jczq_sfc_guoguan_title">竞彩足球比分（过关）</string>
+    <string name="jczq_hunhe_guoguan_title">竞彩足球混合</string>
+    <string name="jclq_hunhe_guoguan_title">竞彩篮球混合</string>
+    <string name="jczq_dxf_guoguan_title">竞彩足球半全场（过关）</string>
+    <string name="jczq_dialog_sf_guoguan_title">胜平负:</string>
+    <string name="jczq_dialog_rqspf_guoguan_title">让球胜平负:</string>
+    <string name="jczq_sf_danguan_title">竞彩足球胜平负（单关）</string>
+    <string name="jczq_rqspf_danguan_title">竞彩足球让球胜平负（单关）</string>
+    <string name="jczq_rf_danguan_title">竞彩足球总进球数（单关）</string>
+    <string name="jczq_sfc_danguan_title">竞彩足球比分（单关）</string>
+    <string name="jczq_dxf_danguan_title">竞彩足球半全场（单关）</string>
+    <string name="jczq_dialog_rf_guoguan_title">总进球数:</string>
+    <string name="jczq_dialog_sfc_guoguan_title">比分:</string>
+    <string name="jczq_dialog_dxf_guoguan_title">半全场:</string>
+    <!-- 竞彩投注 -->
+    <string name="jc_sendhemai">发起合买</string>
+    <string name="jc_makesurebuy">确定购买</string>
+    <!-- 创建快捷方式 -->
+    <string name="shortcut_dialog_title">创建快捷方式</string>
+    <string name="shortcut_dialog_message">创建快捷方式到桌面</string>
+    <!-- 活动中心 -->
+    <string name="action_title">活动中心</string>
+    <string name="action_info">活动详情</string>
+    <string name="action_time">活动时间：</string>
+    <string name="action_content">活动内容：</string>
+    <!-- 退出框 -->
+    <string name="quit_title">确定要离开？</string>
+    <string name="quit_content">您确定要离开91如意彩客户端？</string>
+    <!-- 注销框 -->
+    <string name="log_out_title">注销登录</string>
+    <string name="log_out_content">您确定要注销当前用户吗？</string>
+    <string name="log_out_toast_msg">当前用户已注销！</string>
+    <string name="log_out_toast_no_login">您还没有登录，请先登录！</string>
+    <!-- 账户充值 -->
+    <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
+    <string name="account_umplay_alert">"支持大多数信用卡和借记卡，无限额。"</string>
+    <string name="account_umplay_phone_alert">"支持移动手机话费充值。"</string>
+    <string name="account_phone_alert">支持移动、联通、电信话费充值卡。</string>
+    <string name="account_zfb_alert">支持借记卡和信用卡充值，免开通网银。</string>
+    <string name="account_zfb_secure">安全便捷，免输入密码，支持银行卡充值。</string>
+    <string name="account_card_alert">使用银联DNA手机支付，支持各大银行。</string>
+    <string name="la_ka_la_alert">支持所有银联卡，免开通网银，无限额。</string>
+    <string name="account_zhuanzhang_alert">通过银行柜台、ATM或者网上银行转账。</string>
+    <string name="account_chongzhi_alert">根据您的银行卡选择适合的充值方式</string>
+    <string name="chargetransactionOK">交易成功</string>
+    <string name="chargetransactionErr">交易失败</string>
+    <!-- 领取彩票 -->
+    <string name="gift_dialog_title">领取彩票</string>
+    <!-- 专家荐号 -->
+    <string name="expert_top_title">专家荐号</string>
+    <string name="expert_one_title">开奖短信</string>
+    <string name="expert_two_title">双色球</string>
+    <string name="expert_third_title">福彩3D</string>
+    <string name="expert_four_title">排列三</string>
+    <!-- 分享 -->
+    <string name="sharemessage">分享</string>
+    <string name="attention">注意</string>
+    <string name="delete_all">是否要删除这条微博？</string>
+    <string name="ok_share">是</string>
+    <string name="cancel_share">否</string>
+    <string name="send">分享</string>
+    <string name="close">关闭</string>
+    <string name="share_dialog_title">新浪微博</string>
+    <string name="please_login">请登录！</string>
+    <string name="send_sucess">分享成功！</string>
+    <string name="send_failed">分享失败！</string>
+    <!-- 号码篮 -->
+    <string name="buy_add_dialog_title">已选号码</string>
+    <string name="buy_add_dialog_alert">请至少选择一笔投注</string>
+    <string name="buy_add_dialog_touzhu">立即投注</string>
+    <string name="buy_add_dialog_xuanhao">继续选号</string>
+    <string name="buy_add_dialog_toast_msg">请至少选择一注号码再进行投注！</string>
+    <string name="buy_add_view_zhu_alert">最多添加99注到号码篮里！</string>
+    <!-- 支付宝充值 -->
+    <string name="zfb_dialog_title">支付宝充值</string>
+    <!-- 竞彩足球 -->
+    <string name="jc_main_team_id_title">编号:</string>
+    <string name="jc_main_team_check">赛事选择</string>
+    <string name="jc_main_score">即时比分</string>
+    <string name="jc_main_touzhu_alert_text_content">单笔投注金额不能大于2万</string>
+    <string name="jc_main_touzhu_alert_text_content_new">单笔投注金额不能大于20万</string>
+    <string name="jc_main_touzhu_alert_text_content_zhushu">单笔投注不能大于1万注</string>
+    <string name="jc_main_touzhu_alert_text_title">温馨提示</string>
+    <string name="jc_main_touzhu_alert_btn_ziyou">自由过关</string>
+    <string name="jc_main_touzhu_alert_btn_duochuan">多串过关</string>
+    <string name="jc_main_touzhu_alert_text">投注详情:</string>
+    <string name="jc_main_touzhu_alert_btn_text">查看投注详情</string>
+    <string name="jc_main_touzhu_alert_text_guo">过关方式：</string>
+    <string name="jc_main_btn_text">场比赛</string>
+    <string name="jc_touzhu_DAN">单关</string>
+    <string name="jc_touzhu_check1">2串1</string>
+    <string name="jc_touzhu_check2">3串1</string>
+    <string name="jc_touzhu_check3">4串1</string>
+    <string name="jc_touzhu_check4">5串1</string>
+    <string name="jc_touzhu_check5">6串1</string>
+    <string name="jc_touzhu_check6">7串1</string>
+    <string name="jc_touzhu_check7">8串1</string>
+    <string name="jc_touzhu_check8">9串1</string>
+    <string name="jc_touzhu_check9">10串1</string>
+    <string name="jc_touzhu_check10">11串1</string>
+    <string name="jc_touzhu_check11">12串1</string>
+    <string name="jc_touzhu_check12">13串1</string>
+    <string name="jc_touzhu_check13">14串1</string>
+    <string name="jc_touzhu_check14">15串1</string>
+    <string name="jc_touzhu_radio2_3">2串3</string>
+    <string name="jc_touzhu_radio3_3">3串3</string>
+    <string name="jc_touzhu_radio3_4">3串4</string>
+    <string name="jc_touzhu_radio3_7">3串7</string>
+    <string name="jc_touzhu_radio4_4">4串4</string>
+    <string name="jc_touzhu_radio4_5">4串5</string>
+    <string name="jc_touzhu_radio4_6">4串6</string>
+    <string name="jc_touzhu_radio4_11">4串11</string>
+    <string name="jc_touzhu_radio4_15">4串15</string>
+    <string name="jc_touzhu_radio5_5">5串5</string>
+    <string name="jc_touzhu_radio5_6">5串6</string>
+    <string name="jc_touzhu_radio5_10">5串10</string>
+    <string name="jc_touzhu_radio5_16">5串16</string>
+    <string name="jc_touzhu_radio5_20">5串20</string>
+    <string name="jc_touzhu_radio5_26">5串26</string>
+    <string name="jc_touzhu_radio5_31">5串31</string>
+    <string name="jc_touzhu_radio6_6">6串6</string>
+    <string name="jc_touzhu_radio6_7">6串7</string>
+    <string name="jc_touzhu_radio6_15">6串15</string>
+    <string name="jc_touzhu_radio6_20">6串20</string>
+    <string name="jc_touzhu_radio6_22">6串22</string>
+    <string name="jc_touzhu_radio6_35">6串35</string>
+    <string name="jc_touzhu_radio6_42">6串42</string>
+    <string name="jc_touzhu_radio6_50">6串50</string>
+    <string name="jc_touzhu_radio6_57">6串57</string>
+    <string name="jc_touzhu_radio6_63">6串63</string>
+    <string name="jc_touzhu_radio7_7">7串7</string>
+    <string name="jc_touzhu_radio7_8">7串8</string>
+    <string name="jc_touzhu_radio7_21">7串21</string>
+    <string name="jc_touzhu_radio7_35">7串35</string>
+    <string name="jc_touzhu_radio7_120">7串120</string>
+    <string name="jc_touzhu_radio8_8">8串8</string>
+    <string name="jc_touzhu_radio8_9">8串9</string>
+    <string name="jc_touzhu_radio8_28">8串28</string>
+    <string name="jc_touzhu_radio8_56">8串56</string>
+    <string name="jc_touzhu_radio8_70">8串70</string>
+    <string name="jc_touzhu_radio8_247">8串247</string>
+    <!-- 彩种退出提示 -->
+    <string name="buy_alert_exit">退出该页面会清空购彩篮里的数据，是否退出？</string>
+    <string name="buy_alert_exit_detail">退出该页面会清空购彩篮里的数据，是否将已选的号码保存在号码篮内？</string>
+
+    <!-- 客服电话 -->
+    <string name="phone_kefu">400-665-1000</string>
+    <string name="phone_kefu_title">客服热线</string>
+    <string name="phone_kefu_content">(24小时热线)</string>
+    <!-- 支付宝安全支付 -->
+    <string name="checkingalipayversioning">正在检测安全支付服务版本</string>
+    <string name="alipaypaying">正在支付</string>
+    <string name="remote_call_failed">服务器网络异常，请联系客服</string>
+    <string name="check_sign_failed">订单信息发生改变，请联系客服</string>
+    <!-- 继续追号 -->
+    <string name="continue_title">"继续追号"</string>
+    <string name="continue_content_title">"追号期数:"</string>
+    <string name="continue_start_issue">"起始期数："</string>
+    <string name="continue_amt">"付款金额："</string>
+    <!-- 下拉框 -->
+    <string name="buy_group_window_game">玩法介绍</string>
+    <string name="buy_group_window_hosity">历史开奖</string>
+    <string name="buy_group_window_picture">开奖走势</string>
+    <string name="buy_group_window_query">投注查询</string>
+    <string name="buy_group_window_luck">幸运选号</string>
+    <string name="buy_group_window_simulate">模拟选号</string>
+    <!-- ssc -->
+    <string name="ssc_prize_one">至少选择1个号码投注，命中开奖号码的个位即中奖！\n奖金：10元</string>
+    <string name="ssc_prize_two_zx">个、十位各选1个号码投注，按位置分别命中开奖号码的个、十位即中奖！\n奖金：100元</string>
+    <string name="ssc_prize_two_zu">选择2个或多个号码投注，命中开奖号码的个、十位号码即中奖！（开出对子号不逄中奖）\n奖金：50元</string>
+    <string name="ssc_prize_two_hz">至少选择一个号码投注，命中开奖号码后面两位的数字相加之和即中奖！\n奖金：100/50元</string>
+    <string name="ssc_prize_third">个、十、百位各选1个或多个号码投注，按位置分别命中开奖号码的个、十、百位即中奖！\n奖金：1000元</string>
+    <string name="ssc_prize_third_three">至少选择2个号码投注，开奖号码后3位中有任意两位数字相同，且投注号码与开奖号码的数字相同， 顺序不限，即中奖！\n奖金：320元</string>
+    <string name="ssc_prize_third_six">至少选择3个号码投注，开奖号码后3位与投注号码的数字相同， 顺序不限，即中奖！\n奖金：160元</string>
+    
+    <string name="ssc_prize_five_zx">每位各选1个或多个号码投注，按位置全部命中即中奖！\n奖金：100000元</string>
+    <string name="ssc_prize_five_tx">每位选1个或多个号码，按顺序全部猜中，猜中前三或后三、前二或后二都可中奖！\n奖金：20000/200/20元</string>
+    <string name="ssc_prize__dx">每位各选1个号码投注，所选号码与开奖的个位十位号码性质按位置相符即中奖！\n奖金：4元</string>
+    <!-- 11-5 -->
+    <string name="h_11_5_prize_rx_2">至少选择2个号码投注，命中任意2 位即中奖！ \n奖金：6元</string>
+    <string name="h_11_5_prize_rx_3">至少选择3个号码投注，命中任意3位即中奖！\n奖金：19元</string>
+    <string name="h_11_5_prize_rx_4">至少选择4个号码投注，命中任意4 位即中奖！ \n奖金：78元</string>
+    <string name="h_11_5_prize_rx_5">至少选择5个号码投注，全部命中即中奖！\n奖金：540元</string>
+    <string name="h_11_5_prize_rx_6">至少选择6个号码投注，选号中任意5位与开奖号码一致即中奖！ \n奖金：90元</string>
+    <string name="h_11_5_prize_rx_7">至少选择7个号码投注，选号中任意5位与开奖号码一致即中奖！\n奖金：26元</string>
+    <string name="h_11_5_prize_rx_8">至少选择8个号码投注，选号中任意5位与开奖号码一致即中奖！ \n奖金：9元</string>
+    <string name="h_11_5_prize_xq_1">至少选择1个号码投注，命中开奖在号码第1位即中奖！\n奖金：13元</string>
+    <string name="h_11_5_prize_xq_2">每位各选1 个或多个号码投注，按位置全部命中即中奖！\n奖金：130元</string>
+    <string name="h_11_5_prize_xq_3">每位各选1 个或多个号码投注，按位置全部命中即中奖！\n奖金：1170元</string>
+    <string name="h_11_5_prize_zx_2">至少选择2个号码投注，投注号码与开奖号码前两位一致，位置不限即中奖！ \n奖金：63元</string>
+    <string name="h_11_5_prize_zx_3">至少选择3个号码投注，投注号码与开奖号码前三位一致，位置不限即中奖！ \n奖金：195元</string>
+    <string name="h_11_5_prize_dan_zx_3">胆码可选1-2个，拖码至少选择2个，胆码加拖码≥4个，投注号码与开奖号码前三位一致，位置不限即中奖！\n奖金：195元</string>
+    <string name="h_11_5_prize_dan_zx_2">至少选择1个胆码和2个拖码投注，胆码加拖码≥3个，投注号码与开奖号码前两位一致，位置不限即中奖！\n奖金：65元</string>
+    <string name="h_11_5_prize_dan_rx_2">至少选择1个胆码和2个拖码投注，胆码加拖码≥3个，投注号码与开奖号码前两位一致，位置不限即中奖！\n奖金：6元</string>
+    <string name="h_11_5_prize_dan_rx_3">胆码可选1-2个，拖码至少选择2个，胆码加拖码≥4个，命中开奖号码的任意3位即中奖！\n奖金：19元</string>
+    <string name="h_11_5_prize_dan_rx_4">胆码可选1-3个，拖码至少选择2个，胆码加拖码≥5个，命中开奖号码的任意5位即中奖！\n奖金：78元</string>
+    <string name="h_11_5_prize_dan_rx_5">胆码可选1-4个，拖码至少选择2个，胆码加拖码≥6个，全部命中开奖号码即中奖！\n奖金：540元</string>
+    <string name="h_11_5_prize_dan_rx_6">胆码可选1-5个，拖码至少选择2个，胆码加拖码≥7个，选号中任意5位与开奖号码一致即中奖！\n奖金：90元</string>
+    <string name="h_11_5_prize_dan_rx_7">胆码可选1-6个，拖码至少选择2个，胆码加拖码≥8个，选号中任意5位与开奖号码一致即中奖！\n奖金：26元</string>
+    <string name="h_11_5_prize_dan_rx_8">胆码可选1-7个，拖码至少选择2个，胆码加拖码≥9个，选号中任意5位与开奖号码一致即中奖！\n奖金：9元</string>
+    <!-- 快乐十分 -->
+    <string name="ten_prize_rx_2">至少选择2个号码投注，命中开奖号码的任意两位即中奖！\n奖金：8元</string>
+    <string name="ten_prize_rx_3">至少选择3个号码投注，命中开奖号码的任意三位即中奖！\n奖金：24元</string>
+    <string name="ten_prize_rx_4">至少选择4个号码投注，命中开奖号码的任意四位即中奖！\n奖金：80元</string>
+    <string name="ten_prize_rx_5">至少选择5个号码投注，命中开奖号码的任意五位即中奖！\n奖金：320元</string>
+    <string name="ten_prize_rx_s_1">至少选择1个号码投注，命中开奖在号码第1位即中奖！\n奖金：25元</string>
+    <string name="ten_prize_rx_h_1">19，20为红号，从这两个号码任选一个投注，开奖号码第一位是红号即中奖！\n奖金：5元</string>
+    <string name="ten_prize_xq_2">每位各选1个或多个号码投注，命中开奖号码的连续两位数字、顺序相同即中奖！\n奖金：62元</string>
+    <string name="ten_prize_xq_3">每位各选1个或多个号码投注，命中开奖号码的前三位数字、顺序相同即中奖！\n奖金：8000元</string>
+    <string name="ten_prize_zx_2">每位各选1个或多个号码投注，命中开奖号码的连续两位数字（顺序不限）即中奖！\n奖金：31元</string>
+    <string name="ten_prize_zx_3">每位各选1个或多个号码投注，命中开奖号码的前三位数字（顺序不限）即中奖！\n奖金：1300元</string>
+    <string name="ten_prize_dan_rx_2">至少选择1个胆码和2个拖码投注，胆码加拖码≥3个，命中开奖号码的任意两位即中奖！\n奖金：8元</string>
+    <string name="ten_prize_dan_rx_3">胆码可选1-2个，拖码至少选择2个，胆码加拖码≥4个，命中开奖号码的任意三位即中奖！\n奖金：24元</string>
+    <string name="ten_prize_dan_rx_4">胆码可选1-3个，拖码至少选择2个，胆码加拖码≥5个，命中开奖号码的任意四位即中奖！\n奖金：80元</string>
+    <string name="ten_prize_dan_rx_5">胆码可选1-4个，拖码至少选择2个，胆码加拖码≥6个，命中开奖号码的任意五位即中奖！\n奖金：320元</string>
+    <!-- 代理充值 -->
+    <string name="user_agency">代理充值</string>
+    <string name="user_agency_text_name">转账用户：</string>
+    <string name="user_agency_text_moneny">转账金额：</string>
+    <string name="user_agency_text_password">登录密码：</string>
+    <string name="user_agency_edit_password">91如意彩登录密码</string>
+    <string name="user_agency_edit_name">请输入对方用户名</string>
+    <!-- 账户明细 -->
+    <string name="account_details_name_chongzhi">充值总金额：</string>
+    <string name="account_details_name_touzhu">投注总金额：</string>
+    <string name="account_details_name_zhongjiang">中奖总金额：</string>
+    <string name="account_details_name_tixian">提现总金额：</string>
+    <!-- 直接支付 -->
+    <string name="directpay_dialog_title">@string/toast_touzhu_title</string>
+    <string name="directpay_dialog_torecharge">去充值</string>
+    <string name="directpay_dialog_todirectpay">@string/directly_payment</string>
+    <string name="directpay_dialog_content">尊敬的用户,您的账户余额不足以支付本次购买,请选择去充值或直接支付.</string>
+    <string name="directpay_title_text">选择支付方式</string>
+    <!-- 该期已经过期提示框 -->
+    <string name="dialog_issue_text_ok">继续投注</string>
+    <string name="dialog_issue_text_cancel">返回选号</string>
+    <string name="dialog_issue_text_content">尊敬的用户，当前投注已转入下一期</string>
+    <!-- 定制跟单 -->
+    <string name="ding_title">定制跟单设置</string>
+    <string name="ding_modify_title">修改定制</string>
+    <string name="ding_btn_lotno_title">跟单彩种设置</string>
+    <string name="ding_btn_amt_title">跟单金额设置</string>
+    <string name="ding_btn_start_title">立即定制</string>
+    <string name="ding_text_prize_title">累计中奖金额：</string>
+    <string name="ding_text_person_title">定制人数：</string>
+    <string name="ding_text_time_title">定制时间：</string>
+    <string name="ding_text_state_title">状态：</string>
+    <string name="ding_text_num_title">定制次数：</string>
+    <string name="ding_text_lotno_title">彩种：</string>
+    <string name="ding_amt_radio1_title">按金额定制跟单</string>
+    <string name="ding_amt_radio2_title">按百分比定制跟单</string>
+    <string name="ding_amt_text1_title">每次认购金额：</string>
+    <string name="ding_amt_text2_title">定制跟单次数：</string>
+    <string name="ding_amt_text3_title">至少认购1元</string>
+    <string name="ding_amt_text4_title">最多99次</string>
+    <string name="ding_amt_text5_title">需要冻结金额</string>
+    <string name="ding_radio2_text1_title">至少认购1%</string>
+    <string name="ding_radio2_text2_title">无金额上限</string>
+    <string name="ding_radio2_text3_title">超过金额上限</string>
+    <string name="ding_radio2_text4_title">认购金额上限：</string>
+    <string name="ding_radio2_text5_title">至少认购10元</string>
+    <string name="ding_group1_check_text">强制参与(选择了该项，如果设置的跟单金额大于可以跟单的金额，也会参与该合买)</string>
+    <!-- 购彩提醒 -->
+    <string name="lotnoalarm_textview_fixtime">购彩定时提醒</string>
+    <string name="lotnoalarm_textview_settime">设置提醒的时间</string>
+    <string name="lotnoalarm_textview_openvoice">开启声音提醒</string>
+    <string name="lotnoalarm_textview_lotnoset">彩种设置</string>
+    <string name="qixingcai">七星彩</string>
+    <string name="pl5">排列五</string>
+    <string name="fc3d">福彩3D</string>
+    <string name="twentyfive">22选5</string>
+    <string name="ssq_prompt">每周二、四、日提醒</string>
+    <string name="dlt_prompt">每周一、三、六提醒</string>
+    <string name="fc3d_prompt">每天提醒</string>
+    <string name="qlc_prompt">每周一、三、五提醒</string>
+    <string name="qxc_prompt">每周二、五、日提醒</string>
+    <string name="pl3_prompt">每天提醒</string>
+    <string name="pl5_prompt">每天提醒</string>
+    <string name="twentyfive_prompt">每天提醒</string>
+
+    <!-- 模拟选号 -->
+    <string name="simulate_selectnumber_text">@string/buy_group_window_simulate</string>
+    <string name="simulate_selectnumber_button">@string/touzhu</string>
+    
+    <!-- 内蒙快三 -->
+    <string name="nmk3_hezhi">投注说明：至少选择1个和值投注，选号与开奖的三个号码相加的数值一致即中奖。</string>
+    <string name="nmk3_threesame_tong">投注说明：2元购买6个三同号(111,222,333,444,555,666)投注，选号与开奖号码一致即中奖40元。</string>
+    <string name="nmk3_threesame_dan">投注说明：至少选择1个三同号投注，选号与开奖号码一致即中奖240元。</string>
+    <string name="nmk3_twosame_fu">投注说明：2元购买1个二同号(11*,22*,33*,44*,55*,66*)投注，选号与开奖号码一致即中奖15元。</string>
+    <string name="nmk3_twosame_dan">投注说明：选择1个相同号码和1个不同号码投注，选号与开奖号码一致即中奖80元。</string>
+    <string name="nmk3_diff_three">投注说明：至少选择3个号码投注，选号与开奖号码一致即中奖40元。</string>
+    <string name="nmk3_diff_two">投注说明：至少选择2个号码投注，选号与开奖号码一致即中奖8元。</string>
+    <string name="nmk3_three_link">投注说明：2元购买4个三连号(123,234,345,456)投注，选号与开奖号码一致即中奖10元。</string>
+    
+    <string name="join_share_weibo" >"#91如意彩# 我在@91如意彩 发现了“%1$s”发起的%2$s合买，花钱不多，中奖几率更大，快来跟单吧！详情："</string>
+    <string name="refresh_lastCode_msg" >最新期号开奖结果获取中....</string>
+    
+    <!-- 北京单场 -->
+    <string name="beijingsinglegame_textview_wintieloss">让球胜平负</string>
+    <string name="beijingsinglegame_textview_totalgoals">总进球数</string>
+    <string name="beijingsinglegame_textview_overall">全场总比分</string>
+    <string name="beijingsinglegame_textview_halftheaudience">@string/banquanchang</string>
+    <string name="beijingsinglegame_textview_updownsigledouble">上下单双</string>
+    <string name="beijingsinglegame_textview_over">比分</string>
+    
+    <string name="my_message_edit_text" >"编辑"</string>
+    <string name="my_message_edit_cancel" >"取消"</string>
+    <string name="my_message_edit_select_all" >"全选"</string>
+    <string name="my_message_edit_cancel_select_all" >"取消全选"</string>
+    <string name="my_message_edit_mark_read_msg" >"标记为已读"</string>
+    <string name="my_message_edit_delete" >"删除"</string>
+    <string name="recommend_network_connection">"网络连接中..."</string>
+    <string name="feedback_network_connection_error">"网络异常请稍后重试"</string>
+    <string name="input_card_id_error">"您输入的身份证号格式有误，请重新输入"</string>
+    <string name="input_name_error">"您输入的姓名格式有误，请重新输入"</string>
+    <string name="user_center_track_number">"追号号码:"</string>
+    <string name="football_wait_issue">"(待售)"</string>
+    <string name="notice_beijing_single_item_odds">"SP:"</string>
+    <string name="notice_beijing_single_item_team_id">"场次: "</string>
+    <string name="notice_beijing_single_item_play">"玩法: "</string>
+    <string name="beijing_single_kaijianggonggao">"北京单场开奖公告"</string>
+    <string name="beijing_single_upsingle">上单</string>
+    <string name="beijing_single_updouble">上双</string>
+    <string name="beijing_single_downsingle">下单</string>
+    <string name="beijing_single_downdouble">下双</string>
+    <string name="beijing_single_vs">VS</string>
+    <string name="beijing_single_dan">胆</string>
+    <string name="beijing_single_xi">析</string>
+    
+    <string name="nmk3willSaleMessage">"快三即将发售，敬请期待"</string>  
+    <string name="bdwillSaleMessage">"北京单场即将发售，敬请期待"</string>  
+    <string name="twentyClosedMessage">"22选5已经关闭"</string>  
+    <string name="umpay_recharge_bingphone_submit">提交</string>
+    <string name="umpay_recharge_info">"充值提示信息"</string>
+    <string name="use_bindphone_number">"使用已绑定的手机号"</string>
+    <string name="input_phone_number">"请输入手机号:"</string>
+    <string name="umpay_recharge_description">"1.输入手机号 > 2.接受随机码 > 3.回复随机码"</string>
+    <string name="umpay_recharge_complete_content">"充值随机码已发送至手机，请按手机提示完成下一步"</string>
+    <string name="umpay_phone_text_moneny_three">3元</string>
+    <string name="umpay_phone_text_moneny_thirty">30元</string>
+    <string name="umpay_phone_text_moneny_three_description">"(91如意彩3元充值，得2元)"</string>
+    <string name="umpay_phone_text_moneny_thirty_description">"(91如意彩30元充值，得20元)"</string>
+    <string name="umpay_phone_text_moneny">请选择充值金额：</string>
+    
+    <string name="umpay_phone_content">1、该充值方式只支持移动手机用户。"\n"
+		2、该充值方式只支持3元或30元两种充值金额。"\n"
+		3、话费充值金额每天最高50元，每月最高100元。"\n"
+		4、使用话费充值，中间差额由运营商或充值服务商收取，91如意彩不收取任何费用。"\n"
+		5、使用话费充值，充值金额只能用于在本站购买彩票，不能提现，中奖奖金可提现。"\n"
+		6、联动优势客服热线：400-612-5880。"\n"
+		7、充值中如有其他问题，可拨打91如意彩客服热线400-665-1000进行咨询。"\n"
+	</string>
+	
+    
+    <string name="get_free_gold_content">1、在广告墙上完成提示操作后，免费获得的彩金会自动加入到您的91如意彩账户中，您可到用户中心处进行查询。"\n"
+		2、获赠的彩金一般会在完成广告墙提示操作后1到5分钟到账；个别软件特殊，可能需要一两天才能到账，请耐心等待。"\n"
+		3、需安装本机未安装过的软件才可获取彩金。"\n"
+		4、获赠的彩金只能购彩，不能提现。"\n"
+	</string>
+    <string name="gold_transform_score">(1彩金=100分)</string>
+    <string name="current_gold">当前彩金:</string>
+    <string name="get_free_gold_title">免费获取彩金</string>
+    <string name="get_free_gold_summary">完成推荐应用的任务，免费获得彩金</string>
+    <string name="start_get_free_gold_title">立即获取彩金</string>
+    <string name="task_get_free_gold_title">做任务，免费获取彩金</string>
+    <string name="get_free_gold_network_error">"网络异常请稍后重试"</string>
+    <string name="account_withdraw_detail_title">提现详情</string>
+    <string name="account_withdraw_number">提款订单号:</string>
+    <string name="account_withdraw_detail_create_time">"提交 (提交时间: %1$s)"</string>
+    <string name="account_withdraw_detail_check_time">"审核 (%1$s审核时间: %2$s)"</string>
+    <string name="account_withdraw_detail_remit_time">"汇款 (%1$s汇款时间: %2$s)"</string>
+    <string name="account_withdraw_detail_finish_time">"到账 (%1$s到账时间: %2$s)"</string>
+    
+    <string name="account_withdraw_detail_order_type">订单类型</string>
+    <string name="account_withdraw_detail_order_type_value">提款</string>
+    <string name="account_withdraw_detail_amount">金额</string>
+    <string name="account_withdraw_detail_withdraw_mode">提款方式</string>
+    <string name="account_withdraw_detail_order_state">订单状态</string>
+    <string name="account_withdraw_detail_remark">备注</string>
+    <string name="account_withdraw_detail_query_content">查询中...</string>
+    <string name="account_withdraw_detail_content">详情 ></string>
+    <string name="account_withdraw_detail_remark_content">订单%1$s,预计%2$s%3$s</string>
+   
+    
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="@drawable/bg" android:layout_height="fill_parent">
+	<RelativeLayout android:layout_width="fill_parent" android:gravity="center_vertical"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:paddingRight="5dp" android:paddingLeft="5dp">
+		<Button android:paddingLeft="5dp"
+		    android:layout_centerVertical="true"
+		    android:id="@+id/layout_football_issue"
+		    android:layout_width="120dp"
+		    android:background="@drawable/football_advancebatchcode"
+		    android:paddingRight="25dp"
+		    android:layout_height="34dp"
+		    android:layout_alignParentLeft="true"
+		    android:textColor="@color/black"
+		    android:textSize="14dip" />
+
+		<TextView  android:id="@+id/layout_football_time"
+			android:layout_width="wrap_content" android:layout_height="40dp" android:gravity="center"
+			android:textColor="@color/black" android:textSize="14dip"  android:layout_alignParentRight="true"
+			></TextView>
+	</RelativeLayout>
+	
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<ScrollView android:id="@+id/ScrollView01"
+			android:paddingBottom="60dp" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<LinearLayout android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:orientation="vertical"
+			    android:layout_marginLeft="2dip"
+			    android:layout_marginRight="2dip">
+				<ListView android:layout_width="fill_parent"
+					android:layout_height="1530dip"
+					android:id="@+id/buy_footballlottery_list"
+					android:divider="@color/zc_sfc_listview_item_bg" android:background="@color/list_color"
+					android:dividerHeight="5dp">
+				</ListView>
+			</LinearLayout>
+		</ScrollView>
+		
+		<RelativeLayout
+            android:id="@+id/buy_zixuan_relativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buy_bottom_bg"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip" >
+
+            <ImageButton
+                android:id="@+id/buy_zixuan_img_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:src="@drawable/selecet_chongxuan" >
+            </ImageButton>
+	    
+	    <TextView
+                android:id="@+id/buy_jc_main_text_team_num"
+                style="@style/textSize16"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="90dip"
+                android:text="" />
+
+            <ImageButton
+                android:id="@+id/buy_footballlottery_img_touzhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#00000000"
+                android:src="@drawable/jc_touzhu_select" />
+        </RelativeLayout>
+	</RelativeLayout>
+</LinearLayout>

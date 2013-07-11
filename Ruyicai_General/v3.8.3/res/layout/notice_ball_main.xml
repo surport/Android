@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 开奖走势页面布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- 开奖走势页面滑动布局 -->
+
+    <HorizontalScrollView
+        android:id="@+id/HorizontalScrollView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="35dip" >
+
+        <ScrollView
+            android:id="@+id/ScrollView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/notice_ball_main_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </ScrollView>
+    </HorizontalScrollView>
+
+    <!-- 选号栏 -->
+
+    <RelativeLayout
+        android:id="@+id/notice_ball_relative_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="35dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/notice_ball_text_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="已选："
+            android:textColor="@color/black"
+            android:textSize="13dip" />
+
+        <!-- 选号红球 -->
+
+        <TextView
+            android:id="@+id/notice_ball_red_text_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/notice_ball_text_code"
+            android:textColor="@color/red"
+            android:textSize="12dip" />
+
+        <!-- 选号蓝球 -->
+
+        <TextView
+            android:id="@+id/notice_ball_blue_text_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/notice_ball_red_text_code"
+            android:textColor="@color/blue"
+            android:textSize="12dip" />
+
+        <!-- 选号投注按钮 -->
+
+        <Button
+            android:id="@+id/notice_ball_btn_touzhu"
+            android:layout_width="60dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/returnselecter"
+            android:gravity="center"
+            android:tag="5"
+            android:text="@string/simulate_selectnumber_button"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
