@@ -108,7 +108,7 @@ public class HomeActivity extends Activity {
 				
 				/**add by yejc 20130620 end*/
 				Controller.getInstance(HomeActivity.this).readAdWallStateNet();
-				Controller.getInstance(HomeActivity.this).readUmpayStateNet();
+//				Controller.getInstance(HomeActivity.this).readUmpayStateNet();
 				/**add by yejc 20130620 end*/
 				break;
 			}
