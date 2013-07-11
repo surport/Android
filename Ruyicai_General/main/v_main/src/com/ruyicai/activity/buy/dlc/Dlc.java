@@ -105,6 +105,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	/*Add by fansm 20130417 start*/
 	private TextView lastCodeTxt;
 	private Button refreshBtn;
+	private String showMessage = "";
 	/*Add by fansm 20130417 end*/
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -1077,6 +1078,9 @@ public class Dlc extends ZixuanAndJiXuan {
 			} else {
 				int ballNums = areaNums[0].table.getHighlightBallNums();
 				int oneNum = num - ballNums;
+				if (!checkBallNum(ballNums,num)) {
+					return isTouzhu = this.showMessage;
+				}
 				if (oneNum > 0) {
 					isTouzhu = "请再选择" + oneNum + "球，再进行投注！";
 				} else if (iZhuShu > MAX_ZHU) {
@@ -1098,7 +1102,21 @@ public class Dlc extends ZixuanAndJiXuan {
 		}
 		return isTouzhu;
 	}
-
+	/**
+	 * 判断球数
+	 * @param ballNums
+	 * @param num
+	 * @return
+	 */
+	private boolean checkBallNum(int ballNums,int num) {
+		if ("R8".equals(state) && Constants.LOTNO_GD_11_5.equals(lotno)) {
+			if (ballNums > num) {
+				showMessage = "请选择少于等于"+num+"个球，再进行投注！";
+				return false;	
+			}
+		}
+		return true;
+	}
 	/**
 	 * 投注注码
 	 * 
