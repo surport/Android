@@ -1578,4 +1578,11 @@
     <item name="zhudui_jinshi_sheng" type="id"/>
     <item name="zhuiqi" type="id"/>
     <item name="zhuiqishezhi" type="id"/>
+    <item name="linearLayout_rangqiu" type="id"/>
+    <item name="lq_rqspf_dialog_textview" type="id"/>
+    <item name="lq_sfc_dialog_rangqiu1" type="id"/>
+    <item name="lq_sfc_dialog_rangqiu2" type="id"/>
+    <item name="lq_sfc_dialog_rangqiu3" type="id"/>
+    <item name="bet_detail_text_play" type="id"/>
+    
 </resources>

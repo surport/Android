@@ -41,6 +41,7 @@ import com.ruyicai.activity.join.JoinCheckActivity;
 import com.ruyicai.activity.more.FeedBack;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.dialog.LogOutDialog;
 import com.ruyicai.dialog.MessageDialog;
@@ -218,32 +219,32 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 	}
 
-	private void getFeedbackListNet() {
-		dialog.show();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				Constants.feedBackData = FeedBackListInterface.getInstance()
-						.getFeedbackList("0", "10", userno);
-				try {
-					Message msg = new Message();
-					JSONObject feedjson = new JSONObject(Constants.feedBackData);
-					String errorCode = feedjson.getString("error_code");
-					// add by yejc 20130411
-					if (feedjson.has("result")) {
-						Constants.feedBackJSONArray = feedjson
-								.getJSONArray("result");
-					}
-					msg.what = 11;
-					msg.obj = Constants.feedBackJSONArray;
-					// end
-					handler.sendMessage(msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
+//	private void getFeedbackListNet() {
+//		dialog.show();
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				Constants.feedBackData = FeedBackListInterface.getInstance()
+//						.getFeedbackList("0", "10", userno);
+//				try {
+//					Message msg = new Message();
+//					JSONObject feedjson = new JSONObject(Constants.feedBackData);
+//					String errorCode = feedjson.getString("error_code");
+//					// add by yejc 20130411
+//					if (feedjson.has("result")) {
+//						Constants.feedBackJSONArray = feedjson
+//								.getJSONArray("result");
+//					}
+//					msg.what = 11;
+//					msg.obj = Constants.feedBackJSONArray;
+//					// end
+//					handler.sendMessage(msg);
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
+//	}
 
 	// 用户积分显示控件
 	protected void inituserpoint() {
@@ -365,6 +366,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 				dialog.dismiss();
 				Intent feedListIntent = new Intent(NewUserCenter.this,
 						FeedbackListActivity.class);
+				feedListIntent.putExtra("isFromUserCenter", true); //add by yejc 20130708
 				feedListIntent.putExtra("feedBackArray", "" + msg.obj);
 				startActivity(feedListIntent);
 				break;
@@ -604,7 +606,8 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		}
 		// 留言
 		if (str.equals("我的消息")) {
-			getFeedbackListNet();
+//			getFeedbackListNet();
+			Controller.getInstance(NewUserCenter.this).getFeedbackListNet(handler, userno);
 		}
 		// 余额查询
 		if (this.getString(R.string.ruyihelper_balanceInquiry).equals(str)) {

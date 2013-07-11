@@ -62,6 +62,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
                     android:orientation="vertical" >
+                    
+                    <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dip"
+                        android:text="方案详情"
+                        android:gravity="left|center_vertical"
+                        android:background="@drawable/buy_jc_btn_close"/>
 
                     <TextView
                         android:id="@id/bet_detail_text_lotno"
@@ -92,23 +99,13 @@
                         android:textColor="@color/black"
                         android:textSize="13dip" >
                     </TextView>
-
+                    
                     <TextView
-                        android:id="@id/join_detail_text_beishu"
+                        android:id="@id/bet_detail_text_play"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
-                        android:text="倍数："
-                        android:textColor="@color/black"
-                        android:textSize="13dip" >
-                    </TextView>
-
-                    <TextView
-                        android:id="@id/bet_detail_text_zhushu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dip"
-                        android:text="注数："
+                        android:text="玩法："
                         android:textColor="@color/black"
                         android:textSize="13dip" >
                     </TextView>
@@ -121,10 +118,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
-                            android:text="金额："
+                            android:text="方案金额："
                             android:textColor="@color/black"
                             android:textSize="13dip" >
                         </TextView>
+                        
+                        <TextView
+                        android:id="@id/join_detail_text_beishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/bet_detail_text_zhushu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text=""
+                        android:layout_marginLeft="10dip"
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
 
                         <TextView
                             android:id="@id/bet_detail_text_atm"
@@ -132,6 +150,7 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
                             android:text=""
+                            android:layout_marginLeft="10dip"
                             android:textColor="@color/red"
                             android:textSize="13dip" >
                         </TextView>
@@ -185,27 +204,36 @@
                         android:textSize="13dip" >
                     </TextView>
 
-                    <LinearLayout
+                  <!--   <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dip"
                         android:background="@drawable/litt" >
-                    </LinearLayout>
+                    </LinearLayout> -->
+                    
+                    
+                    <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:text="方案内容"
+                        android:gravity="left|center_vertical"
+                        android:background="@drawable/buy_jc_btn_close"/>
+                    
 
                     <TextView
                         android:id="@id/bet_detail_text_content"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
-                        android:text="方案内容："
                         android:textColor="@color/black"
-                        android:textSize="13dip" >
+                        android:gravity="left|center_vertical">
                     </TextView>
 
                     <LinearLayout
                         android:id="@id/bet_detail_layout_content"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dip"
                         android:orientation="vertical" >
                     </LinearLayout>
 

@@ -47,12 +47,12 @@
                 
                 <!-- add by yejc 20130702 start -->
                 <LinearLayout
-                    android:id="@+id/linearLayout_rangqiu"
+                    android:id="@id/linearLayout_rangqiu"
                     android:layout_width="fill_parent"
                     android:layout_height="40dip"
                     android:gravity="center_horizontal" >
                      
-                    <TextView android:id="@+id/lq_rqspf_dialog_textview"
+                    <TextView android:id="@id/lq_rqspf_dialog_textview"
                         android:layout_width="55dip"
                         android:layout_height="fill_parent"
                         android:gravity="center"
@@ -60,7 +60,7 @@
                         android:background="@drawable/hun_btn_left"/>
 
                     <com.ruyicai.custom.checkbox.MyCheckBox
-                        android:id="@+id/lq_sfc_dialog_rangqiu1"
+                        android:id="@id/lq_sfc_dialog_rangqiu1"
                         android:layout_width="75dip"
                         android:layout_height="40dip"
                         android:background="@drawable/hun_btn_center_left"
@@ -68,7 +68,7 @@
                         custom:check_title="@string/jclq_sfc_dialog_title01" />
 
                     <com.ruyicai.custom.checkbox.MyCheckBox
-                        android:id="@+id/lq_sfc_dialog_rangqiu2"
+                        android:id="@id/lq_sfc_dialog_rangqiu2"
                         android:layout_width="75dip"
                         android:layout_height="40dip"
                         android:background="@drawable/hun_btn_center_left"
@@ -76,7 +76,7 @@
                         custom:check_title="@string/jclq_sfc_dialog_title02" />
 
                     <com.ruyicai.custom.checkbox.MyCheckBox
-                        android:id="@+id/lq_sfc_dialog_rangqiu3"
+                        android:id="@id/lq_sfc_dialog_rangqiu3"
                         android:layout_width="75dip"
                         android:layout_height="40dip"
                         android:background="@drawable/hun_btn_right"

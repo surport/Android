@@ -55,12 +55,14 @@ public class ContentListView {
 			addContentView(layoutMain, json, lotno);
 		} else if (lotno.equals(Constants.LOTNO_RX9)
 				|| lotno.equals(Constants.LOTNO_SFC)) {
+			content.setVisibility(View.GONE); //add by yejc 20130710
 			addZQContentView(layoutMain, json, lotno);
 		} else if (lotno.equals(Constants.LOTNO_JQC)
 				|| lotno.equals(Constants.LOTNO_LCB)) {
+			content.setVisibility(View.GONE); //add by yejc 20130710
 			addJQCContentView(layoutMain, json, lotno);
-		} else {
-			content.setText(Html.fromHtml("方案内容：<br>" + betcodehtml));
+		} else { 
+			content.setText(Html.fromHtml(/*"方案内容：<br>" + */betcodehtml));
 		}
 	}
 
@@ -108,11 +110,13 @@ public class ContentListView {
 				JSONArray jsonArray = json.getJSONArray("result");
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject obj = jsonArray.getJSONObject(i);
-					TextView text = new TextView(context);
-					text.setTextColor(context.getResources().getColor(
-							R.color.black));
-					text.setText("玩法：" + obj.getString("play"));
-					layoutMain.addView(text);
+					/**close by yejc 20130710 start*/
+//					TextView text = new TextView(context);
+//					text.setTextColor(context.getResources().getColor(
+//							R.color.black));
+//					text.setText("玩法：" + obj.getString("play"));
+//					layoutMain.addView(text);
+					/**close by yejc 20130710 end*/
 					layoutMain.addView(viewTop);
 					JSONArray objArray = obj.getJSONArray("result");
 					for (int j = 0; j < objArray.length(); j++) {
@@ -163,17 +167,16 @@ public class ContentListView {
 					}
 				}
 				layoutMain.addView(viewTop);
-			} else {
+			} /*else { 
 				String visiable = json.getString("visibility");
 				TextView text = new TextView(context);
 				text.setTextColor(context.getResources()
 						.getColor(R.color.black));
 				text.setText(getState(visiable));
 				layoutMain.addView(text);
-			}
+			}*/ //close by yejc 20130710
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -193,11 +196,13 @@ public class ContentListView {
 				JSONArray jsonArray = json.getJSONArray("result");
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject obj = jsonArray.getJSONObject(i);
-					TextView text = new TextView(context);
-					text.setTextColor(context.getResources().getColor(
-							R.color.black));
-					text.setText("玩法：" + obj.getString("play"));
-					layoutMain.addView(text);
+					/**close by yejc 20130710 start*/
+//					TextView text = new TextView(context);
+//					text.setTextColor(context.getResources().getColor(
+//							R.color.black));
+//					text.setText("玩法：" + obj.getString("play"));
+//					layoutMain.addView(text);
+					/**close by yejc 20130710 end*/
 					layoutMain.addView(viewTop);
 					JSONArray objArray = obj.getJSONArray("result");
 					for (int j = 0; j < objArray.length(); j++) {
@@ -240,14 +245,14 @@ public class ContentListView {
 					}
 				}
 				layoutMain.addView(viewTop);
-			} else {
+			} /*else {
 				String visiable = json.getString("visibility");
 				TextView text = new TextView(context);
 				text.setTextColor(context.getResources()
 						.getColor(R.color.black));
 				text.setText(getState(visiable));
 				layoutMain.addView(text);
-			}
+			}*/ //close by yejc 20130710
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -318,7 +323,8 @@ public class ContentListView {
 							}
 							
 						}
-					} else if (lotno.equals(Constants.LOTNO_JCZQ_RQSPF)) {
+					} else if (lotno.equals(Constants.LOTNO_JCZQ_RQSPF)
+							|| lotno.equals(Constants.LOTNO_JCZQ_HUN)) {
 						if (letScore!= null && !"".equals(letScore)) {
 							teamVs = letScore;
 						} /*else {
@@ -418,11 +424,13 @@ public class ContentListView {
 								.getString("betContentHtml")));
 					}
 					if (i == 0) {
-						TextView text = new TextView(context);
-						text.setTextColor(context.getResources().getColor(
-								R.color.black));
-						text.setText("玩法：" + obj.getString("play"));
-						layoutMain.addView(text);
+						/**close by yejc 20130709 start*/
+//						TextView text = new TextView(context);
+//						text.setTextColor(context.getResources().getColor(
+//								R.color.black));
+//						text.setText("玩法：" + obj.getString("play"));
+//						layoutMain.addView(text);
+						/**close by yejc 20130709 end*/
 						layoutMain.addView(viewTop);
 					}
 					layoutMain.addView(viewItem);

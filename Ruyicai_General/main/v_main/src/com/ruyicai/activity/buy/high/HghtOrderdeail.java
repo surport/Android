@@ -11,6 +11,7 @@ import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu;
 import com.ruyicai.activity.buy.zixuan.ZixuanZhuihao;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 
 public class HghtOrderdeail extends BuyActivityGroup {
 	private String[] titles = { "投注", "追号", "收益追号" };
@@ -20,6 +21,12 @@ public class HghtOrderdeail extends BuyActivityGroup {
 	private String[] titles2 = { "投注", "追号" };
 	private String[] topTitles2 = { "投注确认", "追号设置" };
 	private Class[] allId2 = { ZiXuanTouZhu.class, ZixuanZhuihao.class };
+	/**add by yejc 20130705 start*/
+	private String[] titles3 = {"追号"};
+	private String[] topTitles3 = {"追号设置"};
+	private Class[] allId3 = {ZixuanZhuihao.class};
+	/**add by yejc 20130705 start*/
+
 	private AddView addview;
 	private String lotnoString;
 
@@ -30,16 +37,10 @@ public class HghtOrderdeail extends BuyActivityGroup {
 		addview = app.getAddview();
 		lotnoString = app.getPojo().getLotno();
 		isIssue(false);
-		
+		/**add by yejc 20130705 start*/
 		if (isFromTrackQuery) {
-			if (Constants.LOTNO_SSC.equals(lotnoString)
-					|| Constants.LOTNO_11_5.equals(lotnoString)
-					|| Constants.LOTNO_eleven.equals(lotnoString)
-					|| Constants.LOTNO_GD_11_5.equals(lotnoString)
-					|| Constants.LOTNO_ten.equals(lotnoString)
-					|| lotnoString.equals(Constants.LOTNO_NMK3)) {
-				init(titles, topTitles, allId);
-			}
+			init(titles3, topTitles3, allId3);
+			/**add by yejc 20130705 end*/
 		} else {
 			if (addview.getSize() <= 1) {
 				init(titles, topTitles, allId);

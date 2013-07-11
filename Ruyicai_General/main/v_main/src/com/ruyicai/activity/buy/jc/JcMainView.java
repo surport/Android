@@ -293,6 +293,7 @@ public abstract class JcMainView {
 		itemInfo.setFail(jsonItem.getString("v0"));
 		String teams[] = jsonItem.getString("team").split(":");
 		String[] unsupportStr = jsonItem.getString("unsupport").split(",");
+		itemInfo.setUnsupportPlay(unsupportStr); //add by yejc 20130709
 		itemInfo.setHome(teams[0]);
 		itemInfo.setAway(teams[1]);
 		if (jsonItem.has("letVs_letPoint")) {
@@ -790,6 +791,7 @@ public abstract class JcMainView {
 				R.id.lq_sfc_dialog_check048, R.id.lq_sfc_dialog_check049,
 				R.id.lq_sfc_dialog_check050, R.id.lq_sfc_dialog_check051 };
 		
+		/**add by yejc 20130704 start*/
 		private int[] checkIdForZC = { R.id.lq_sfc_dialog_rangqiu1, R.id.lq_sfc_dialog_rangqiu2, 
 				R.id.lq_sfc_dialog_rangqiu3, R.id.lq_sfc_dialog_check01,
 				R.id.lq_sfc_dialog_check02, R.id.lq_sfc_dialog_check03,
@@ -817,6 +819,26 @@ public abstract class JcMainView {
 				R.id.lq_sfc_dialog_check046, R.id.lq_sfc_dialog_check047,
 				R.id.lq_sfc_dialog_check048, R.id.lq_sfc_dialog_check049,
 				R.id.lq_sfc_dialog_check050, R.id.lq_sfc_dialog_check051 };
+		private boolean isHunheZQ = false;
+		private String[] unsupportPlay = null;
+		
+		public boolean isHunheZQ() {
+			return isHunheZQ;
+		}
+
+		public void setHunheZQ(boolean isHunheZQ) {
+			this.isHunheZQ = isHunheZQ;
+		}
+
+		public String[] getUnsupportPlay() {
+			return unsupportPlay;
+		}
+
+		public void setUnsupportPlay(String[] unsupportPlay) {
+			this.unsupportPlay = unsupportPlay;
+		}
+
+		/**add by yejc 20130704 end*/
 		public MyCheckBox[] check;
 		public boolean isOpen = false;
 		public String titles[];
@@ -900,6 +922,7 @@ public abstract class JcMainView {
 					} else {
 						viewType = factory.inflate(R.layout.buy_zq_hun_dialog,
 								null);
+						setShowPlay(viewType); //add by yejc 20130709
 					}
 				} else {
 					viewType = factory
@@ -935,17 +958,27 @@ public abstract class JcMainView {
 			return viewType;
 		}
 		/**add by yejc 20130704 end*/
+		/**add by yejc 20130704 start*/
+		private void setShowPlay(View view) {
+			for (String str : unsupportPlay) {
+				if ("J00001_0".equals(str) || "J00001_1".equals(str)) { //胜平负
+					view.findViewById(R.id.linearLayout1).setVisibility(View.GONE);
+				} else if ("J00002_0".equals(str) || "J00002_1".equals(str)) { // 比分
+					view.findViewById(R.id.linearLayout4).setVisibility(View.GONE);
+				} else if ("J00003_0".equals(str) || "J00003_1".equals(str)) { // 进球数
+					view.findViewById(R.id.linearLayout3).setVisibility(View.GONE);
+				} else if ("J00004_0".equals(str) || "J00004_1".equals(str)) {// 半全场
+					view.findViewById(R.id.linearLayout2).setVisibility(View.GONE);
+				} else if ("J00013_0".equals(str) || "J00013_1".equals(str)) {//让球胜平负
+					view.findViewById(R.id.linearLayout_rangqiu).setVisibility(View.GONE);
+				}
+			}
+		}
+		/**add by yejc 20130709 end*/
 
 		private void initDialogView() {
-			if (isLq) {
-				for (int i = 0; i < MAX; i++) {
-					check[i] = (MyCheckBox) viewType.findViewById(checkId[i]);
-					check[i].setVisibility(CheckBox.VISIBLE);
-					check[i].setCheckText("" + vStrs[i]);
-					check[i].setPosition(i);
-					check[i].setCheckTitle(titles[i]);
-				}
-			} else {
+			/**add by yejc 20130704 start*/
+			if (isHunheZQ) {
 				for (int i = 0; i < MAX; i++) {
 					check[i] = (MyCheckBox) viewType.findViewById(checkIdForZC[i]);
 					check[i].setVisibility(CheckBox.VISIBLE);
@@ -953,8 +986,16 @@ public abstract class JcMainView {
 					check[i].setPosition(i);
 					check[i].setCheckTitle(titles[i]);
 				}
+				/**add by yejc 20130704 end*/
+			} else {
+				for (int i = 0; i < MAX; i++) {
+					check[i] = (MyCheckBox) viewType.findViewById(checkId[i]);
+					check[i].setVisibility(CheckBox.VISIBLE);
+					check[i].setCheckText("" + vStrs[i]);
+					check[i].setPosition(i);
+					check[i].setCheckTitle(titles[i]);
+				}
 			}
-			
 		}
 
 		private void setChechState() {

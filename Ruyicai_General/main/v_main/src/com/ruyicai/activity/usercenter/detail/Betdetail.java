@@ -3,6 +3,7 @@ package com.ruyicai.activity.usercenter.detail;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +16,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -113,10 +116,51 @@ public class Betdetail extends Activity {
 		TextView expertTextView = (TextView) findViewById(R.id.bet_detail_text_expert);
 		LinearLayout layoutExpert = (LinearLayout) findViewById(R.id.bet_detail_linearlayout_expert);
 		/**add by pengcx 20130609 end*/
+		/**add by yejc 20130709 start*/
+		TextView playTextView = (TextView) findViewById(R.id.bet_detail_text_play);
+		if (lotno.equals(Constants.LOTNO_JCLQ)
+				|| lotno.equals(Constants.LOTNO_JCLQ_DXF)
+				|| lotno.equals(Constants.LOTNO_JCLQ_RF)
+				|| lotno.equals(Constants.LOTNO_JCLQ_SFC)
+				|| lotno.equals(Constants.LOTNO_JCZQ)
+				|| lotno.equals(Constants.LOTNO_JCZQ_RQSPF)
+				|| lotno.equals(Constants.LOTNO_JCZQ_BF)
+				|| lotno.equals(Constants.LOTNO_JCZQ_BQC)
+				|| lotno.equals(Constants.LOTNO_JCZQ_ZQJ)
+				|| lotno.equals(Constants.LOTNO_JCZQ_HUN)
+				|| lotno.equals(Constants.LOTNO_JCLQ_HUN)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
+				|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)
+				|| lotno.equals(Constants.LOTNO_RX9)
+				|| lotno.equals(Constants.LOTNO_SFC)
+				|| lotno.equals(Constants.LOTNO_JQC)
+				|| lotno.equals(Constants.LOTNO_LCB)) {
+			try {
+				JSONObject jsonObj = new JSONObject(info.getJson());
+				String disPlay = jsonObj.getString("display");
+				if (disPlay.equals("true")) {
+					JSONArray jsonArray = jsonObj.getJSONArray("result");
+					JSONObject obj = jsonArray.getJSONObject(0);
+//					playTextView.setText(obj.getString("play"));
+					if (obj.has("play")) {
+						playTextView.append(obj.getString("play"));
+					}
+					
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			playTextView.setVisibility(View.GONE);
+		} 
+		/**add by yejc 20130709 end*/
 		lotkind.append(lotName);
 		dingdanno.append(orderId);
-		beishu.append(lotMulti);
-		zhushu.append(betNum);
+		beishu.append(lotMulti+"倍");
+		zhushu.append(betNum+"注");
 		atm.append(fPayMoney);
 		state.append(stateMo);
 		bettime.append(ordertime);
@@ -125,7 +169,6 @@ public class Betdetail extends Activity {
 		try {
 			josn = new JSONObject(info.getJson());
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		contentListView.createListContent(layoutMain, content, info.getLotNo(),
@@ -169,7 +212,11 @@ public class Betdetail extends Activity {
 					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
 					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
 					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
-					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)){
+					|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+					|| lotno.equals(Constants.LOTNO_JQC)
+					|| lotno.equals(Constants.LOTNO_LCB)
+					|| lotno.equals(Constants.LOTNO_SFC)
+					|| lotno.equals(Constants.LOTNO_RX9)){
 				touzhu.setVisibility(View.GONE);
 				kaijianghao.setVisibility(View.GONE);
 			} else {
@@ -224,8 +271,37 @@ public class Betdetail extends Activity {
 		Button cancle = (Button) view
 				.findViewById(R.id.usercenter_bindphone_back);
 		context.setKeyListener(new DigitsKeyListener());
+		/**add by yejc 20130705 start*/
+		context.addTextChangedListener(new TextWatcher() {
+
+			public void afterTextChanged(Editable edit) {
+				String text = edit.toString();
+				int mTextNum = 1;
+				if (text != null && !text.equals("")) {
+					mTextNum = Integer.parseInt(text);
+					if (mTextNum > 10000) {
+						context.setText("" + 10000);
+						context.setSelection(context.length());
+					}
+					if (text.length() == 1 && text.startsWith("0")) {
+						context.setText("");
+					} else if (text.length() > 1 && text.startsWith("0")) {
+						context.setText(text.subSequence(1, text.length()));
+					}
+				}
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+			}
+		});
+		/**add by yejc 20130705 end*/
 		title.setText("再买一次");
-		label.setText("请输入购买倍数");
+		label.setText("请输入购买倍数(最高10000倍)");
 		submit.setText("确定");
 		final String lotno = (String) info.getLotNo();
 		final String prizeqihao = (String) info.getBatchCode();
@@ -248,11 +324,11 @@ public class Betdetail extends Activity {
 				} else if (!PublicMethod.isNumeric(beishu)) {
 					Toast.makeText(Betdetail.this, "请输入数字", Toast.LENGTH_SHORT)
 							.show();
-				} else if (beishu.length() > 5
+				} /*else if (beishu.length() > 5
 						|| Integer.valueOf(beishu) > 2000) {
-					Toast.makeText(Betdetail.this, "不能超过2000倍",
+					Toast.makeText(Betdetail.this, "不能超过10000倍",
 							Toast.LENGTH_SHORT).show();
-				} else {
+				}*/ else {
 					int allAmount = Integer.valueOf(amount)
 							/ Integer.valueOf(lotMulti)
 							* Integer.valueOf(beishu) / 100;

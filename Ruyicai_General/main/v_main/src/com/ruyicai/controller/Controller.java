@@ -10,6 +10,7 @@ import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.InternetUtils;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
+import com.ruyicai.net.newtransaction.FeedBackListInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
@@ -18,6 +19,9 @@ import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -173,20 +177,40 @@ public class Controller {
 	 * @param lotno
 	 * @return
 	 */
-	public String queryOrderEmail(String lotno, String userno) {
-		JSONObject jsonProtocol = ProtocolManager.getInstance()
-				.getDefaultJsonProtocol();
-		try {
-			jsonProtocol.put(ProtocolManager.COMMAND, "message");
-			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "selectOrderEmail");
-			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
-			jsonProtocol.put(ProtocolManager.USERNO, userno);
-			return InternetUtils.GetMethodOpenHttpConnectSecurity(
-					Constants.LOT_SERVER, jsonProtocol.toString());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return "";
+	public void queryOrderEmail(final Handler handler, final String lotno,
+			final String userno) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				JSONObject jsonProtocol = ProtocolManager.getInstance()
+						.getDefaultJsonProtocol();
+				try {
+					jsonProtocol.put(ProtocolManager.COMMAND, "message");
+					jsonProtocol.put(ProtocolManager.REQUESTTYPE,
+							"selectOrderEmail");
+					jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+					jsonProtocol.put(ProtocolManager.USERNO, userno);
+					String returnInfo = InternetUtils
+							.GetMethodOpenHttpConnectSecurity(
+									Constants.LOT_SERVER,
+									jsonProtocol.toString());
+					JSONObject obj = new JSONObject(returnInfo);
+					String error_code = obj.getString("error_code");
+					if (error_code.equals("0000")) {
+						String result = obj.getString("result");
+						Message msg = new Message();
+						msg.what = 1;
+						msg.obj = result;
+						handler.sendMessage(msg);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}).start();
+
 	}
 	
 	/**
@@ -194,21 +218,40 @@ public class Controller {
 	 * @param lotno
 	 * @return
 	 */
-	public String setOrderEmail(String lotno, String state, String userNo) {
-		JSONObject jsonProtocol = ProtocolManager.getInstance()
-				.getDefaultJsonProtocol();
-		try {
-			jsonProtocol.put(ProtocolManager.COMMAND, "message");
-			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "orderEmail");
-			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
-			jsonProtocol.put(ProtocolManager.STATE, state);
-			jsonProtocol.put(ProtocolManager.USERNO, userNo);
-			return InternetUtils.GetMethodOpenHttpConnectSecurity(
-					Constants.LOT_SERVER, jsonProtocol.toString());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return "";
+	public void setOrderEmail(final Handler handler, final String lotno, final String state, final String userNo) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				JSONObject jsonProtocol = ProtocolManager.getInstance()
+						.getDefaultJsonProtocol();
+				try {
+					jsonProtocol.put(ProtocolManager.COMMAND, "message");
+					jsonProtocol.put(ProtocolManager.REQUESTTYPE, "orderEmail");
+					jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+					jsonProtocol.put(ProtocolManager.STATE, state);
+					jsonProtocol.put(ProtocolManager.USERNO, userNo);
+					String result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+							Constants.LOT_SERVER, jsonProtocol.toString());
+					JSONObject obj = new JSONObject(result);
+					String error_code = obj.getString("error_code");
+					Message msg = new Message();
+					if (error_code.equals("0000")) {
+						Bundle data = new Bundle();
+						data.putString("state", state);
+						data.putString("lotno", lotno);
+						msg.what = 2;
+						msg.setData(data);
+					} else {
+						msg.what = 3;
+					}
+					handler.sendMessage(msg);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}).start();
 	}
 	
 	
@@ -242,25 +285,52 @@ public class Controller {
 	/**
 	 * 读取联动优势话费充值的显示状态
 	 */
-	public void readUmpayStateNet() {
-		final RWSharedPreferences shellRW = new RWSharedPreferences(mContext,
-				ShellRWConstants.ACCOUNT_DISPAY_STATE);
+//	public void readUmpayStateNet() {
+//		final RWSharedPreferences shellRW = new RWSharedPreferences(mContext,
+//				ShellRWConstants.ACCOUNT_DISPAY_STATE);
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+//						.rechargeDescribe("umpayHfChargeDisplay");
+//				try {
+//					if (jsonObject != null) {
+//						String content = jsonObject.get("content").toString();
+//						if ("true".equals(content)) {
+//							shellRW.putBooleanValue(
+//									Constants.UMPAY_PHONE_DISPLAY_STATE, true);
+//						} else {
+//							shellRW.putBooleanValue(
+//									Constants.UMPAY_PHONE_DISPLAY_STATE, false);
+//						}
+//					}
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
+//	}
+	
+	
+	public void getFeedbackListNet(final Handler handler, final String userno) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
-						.rechargeDescribe("umpayHfChargeDisplay");
+				Constants.feedBackData = FeedBackListInterface.getInstance()
+						.getFeedbackList("0", "10", userno);
 				try {
-					if (jsonObject != null) {
-						String content = jsonObject.get("content").toString();
-						if ("true".equals(content)) {
-							shellRW.putBooleanValue(
-									Constants.UMPAY_PHONE_DISPLAY_STATE, true);
-						} else {
-							shellRW.putBooleanValue(
-									Constants.UMPAY_PHONE_DISPLAY_STATE, false);
-						}
+					Message msg = new Message();
+					JSONObject feedjson = new JSONObject(Constants.feedBackData);
+					String errorCode = feedjson.getString("error_code");
+					// add by yejc 20130411
+					if (feedjson.has("result")) {
+						Constants.feedBackJSONArray = feedjson
+								.getJSONArray("result");
 					}
+					msg.what = 11;
+					msg.obj = Constants.feedBackJSONArray;
+					// end
+					handler.sendMessage(msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
