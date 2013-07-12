@@ -777,7 +777,7 @@
     <string name="feedbacksuccess">您的意见已收到</string>
     <string name="feedbackfield">网络连接错误</string>
     <string name="feedbacknull">信息不能为空</string>
-    <string name="feedbackless">回复类容不能少于5个字</string>
+    <string name="feedbackless">回复内容不能少于5个字</string>
     <string name="feedbacconnection">请输入您的手机号</string>
     <!-- 系统设置 -->
     <string name="xitongshezhi_title">机选震感反馈:</string>
