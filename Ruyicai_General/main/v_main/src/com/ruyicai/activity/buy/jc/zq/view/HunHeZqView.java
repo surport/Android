@@ -295,6 +295,7 @@ public class HunHeZqView extends JcMainView {
 				@Override
 				public void onClick(View v) {
 					if (info.onclikNum > 0 || isCheckTeam()) {
+						info.setHunheZQ(true); //add by yejc 20130704
 						info.createDialog(FootHun.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
 						/**add by yejc 20130704 start*/
