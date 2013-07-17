@@ -567,14 +567,13 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 * @param view
 	 */
 	public void initImageView() {
+		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		if (Constants.type.equals("zc")) {
 			mSeekBarBeishu.setMax(ZC_MAX);
 		}
-
-		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
