@@ -1112,7 +1112,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	private boolean checkBallNum(int ballNums,int num) {
 		if ("R8".equals(state) && Constants.LOTNO_GD_11_5.equals(lotno)) {
 			if (ballNums > num) {
-				showMessage = "请选择少于等于"+num+"个球，再进行投注！";
+				showMessage = "只能选择"+num+"个球进行投注！";
 				return false;	
 			}
 		}
