@@ -428,10 +428,14 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 	private String getAmoot() {
 		String amt = "";
 		int onceamt = 0;
-		for (int i = 0; i < shouyidata.size(); i++) {
-			onceamt += Integer.valueOf(shouyidata.get(i).getDangqitouru());
+		try {
+			for (int i = 0; i < shouyidata.size(); i++) {
+				onceamt += Double.valueOf(shouyidata.get(i).getDangqitouru());
+			}
+			amt = String.valueOf(onceamt);
+		} catch (Exception ex) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "getAmoot()", ex.getMessage());
 		}
-		amt = String.valueOf(onceamt);
 		return amt;
 	}
 
