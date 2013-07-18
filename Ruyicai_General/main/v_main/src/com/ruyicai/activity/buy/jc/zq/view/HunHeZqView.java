@@ -334,7 +334,6 @@ public class HunHeZqView extends JcMainView {
 			});
 			return convertView;
 		}
-
 		// end
 
 		class ViewHolder {
