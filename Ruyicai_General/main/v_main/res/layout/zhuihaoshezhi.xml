@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@id/edittext1"
-        android:layout_width="70dip"
+        android:layout_width="75dip"
         android:layout_height="40dip"
         android:numeric="integer"
         android:text="1"
