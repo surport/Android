@@ -60,7 +60,7 @@ public class TenActivity extends Dlc {
 		areaNums = new AreaNum[2];
 		areaNums[0] = new AreaNum(20, 10, num - 1, BallResId, 0, 1, Color.RED,
 				"胆码");
-		areaNums[1] = new AreaNum(20, 10, 10, BallResId, 0, 1, Color.RED, "拖码");
+		areaNums[1] = new AreaNum(20, 10, 20, BallResId, 0, 1, Color.RED, "拖码");
 	}
 
 	@Override
