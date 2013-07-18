@@ -1350,7 +1350,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			viewNumPerLine = 1;
 			lineNum = 1;
 			iBallViewWidth = (iFieldWidth - scrollBarWidth) / 3;
-			iBallViewHeight = 35;
+			/**add by pengcx 20130718 start*/
+			int screenHeight = PublicMethod.getDisplayHeight(context);
+			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35);
+			/**add by pengcx 20130718 end*/
 			lastLineViewNum = 0;
 			margin = (iFieldWidth - scrollBarWidth - iBallViewWidth
 					* viewNumPerLine) / 2;
@@ -1362,7 +1365,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
 				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
 				|| type == NMK3_DIFF_TWO) {
-			iBallViewHeight = 35;
+			/**add by pengcx 20130718 start*/
+			int screenHeight = PublicMethod.getDisplayHeight(context);
+			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
+			/**add by pengcx 20130718 end*/
 		}
 
 		for (int row = 0; row < lineNum; row++) {
