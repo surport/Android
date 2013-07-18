@@ -116,7 +116,6 @@ public class AddView {
 	public void createDialog(String titleStr) {
 		LayoutInflater factory = LayoutInflater.from(context);
 		dialog = new AlertDialog.Builder(context).create();
-		dialog.setCancelable(false);
 		view = factory.inflate(R.layout.buy_add_dialog, null);
 
 		// 标题文本框

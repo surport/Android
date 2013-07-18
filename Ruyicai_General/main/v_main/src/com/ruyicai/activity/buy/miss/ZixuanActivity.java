@@ -1251,7 +1251,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
 		switch (keyCode) {
-		case 4:
+		case KeyEvent.KEYCODE_BACK:
 			if (addView.getSize() != 0) {
 				alertExit(getString(R.string.buy_alert_exit));
 			} else {
@@ -1259,6 +1259,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 			}
 			break;
 		}
+		
 		return false;
 	}
 

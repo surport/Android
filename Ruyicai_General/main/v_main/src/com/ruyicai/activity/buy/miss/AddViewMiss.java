@@ -111,7 +111,6 @@ public class AddViewMiss {
 	public void createDialog(String titleStr) {
 		LayoutInflater factory = LayoutInflater.from(context);
 		dialog = new AlertDialog.Builder(context).create();
-		dialog.setCancelable(false);
 		view = factory.inflate(R.layout.buy_add_dialog, null);
 		TextView title = (TextView) view.findViewById(R.id.zfb_text_title);
 		infoText = (TextView) view.findViewById(R.id.buy_add_dialog_text_info);
