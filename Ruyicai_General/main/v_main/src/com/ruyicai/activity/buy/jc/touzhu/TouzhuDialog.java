@@ -305,8 +305,7 @@ public class TouzhuDialog {
 		context.getBetAndGiftPojo().setAmount("" + getAllAmt() * 100);
 		context.getBetAndGiftPojo().setLotmulti("" + getBeishu());
 		/** add by pengcx 20130609 start */
-		context.getBetAndGiftPojo().setPredictMoney(
-				returnStr.substring("预计中奖金额：".length()));
+		context.getBetAndGiftPojo().setPredictMoney(returnStr);
 		/** add by pengcx 20130609 end */
 		if (jcMainView.isDanguan) {
 			context.getBetAndGiftPojo().setBet_code(

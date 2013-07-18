@@ -10,12 +10,12 @@ import android.util.Log;
 
 public class OperatingDataBases {
 //	private Context mContext;
-	private List<SystemInfoBean> infoList;
+//	private List<SystemInfoBean> infoList;
 	private SystemPushInfoDBOpenHelper systemInfoDBOpenHelper;
 	private String dbName = "system_push_info.db";
 	public OperatingDataBases(Context context) {
 //		this.mContext = context;
-		infoList = new ArrayList<SystemInfoBean>();
+		
 		systemInfoDBOpenHelper = new SystemPushInfoDBOpenHelper(context, dbName, null, 1);
 	}
 
@@ -41,9 +41,10 @@ public class OperatingDataBases {
 	}
 
 	public List<SystemInfoBean> getInfoList() {
+		List<SystemInfoBean> infoList = new ArrayList<SystemInfoBean>();
 		SQLiteDatabase db = systemInfoDBOpenHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("select _id, content from system_info", null);
-		if(cursor != null && cursor.moveToFirst()){
+		if(cursor != null){
 			while(cursor.moveToNext()) {
 				SystemInfoBean bean = new SystemInfoBean();
 				String _id = cursor.getString(cursor.getColumnIndex("_id"));

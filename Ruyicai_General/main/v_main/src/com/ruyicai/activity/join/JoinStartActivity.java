@@ -152,6 +152,15 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
 		textZhuma = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma);
 		textTitle = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
+		
+		titleText = (TextView) findViewById(R.id.layout_join_text_title);
+		renText = (TextView) findViewById(R.id.layout_join_text_rengou);
+		baoText = (TextView) findViewById(R.id.layout_join_text_baodi);
+		buyEdit = (EditText) findViewById(R.id.layout_join_edit_rengou);
+		minEdit = (EditText) findViewById(R.id.layout_join_edit_gendan);
+		safeEdit = (EditText) findViewById(R.id.layout_join_edit_baodi);
+		descriptionEdit = (EditText) findViewById(R.id.layout_join_edit_description);
+		
 		if (Constants.type.equals("hight") || Constants.type.equals("zc")) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
@@ -209,13 +218,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 				}
 			}
 		});
-		titleText = (TextView) findViewById(R.id.layout_join_text_title);
-		renText = (TextView) findViewById(R.id.layout_join_text_rengou);
-		baoText = (TextView) findViewById(R.id.layout_join_text_baodi);
-		buyEdit = (EditText) findViewById(R.id.layout_join_edit_rengou);
-		minEdit = (EditText) findViewById(R.id.layout_join_edit_gendan);
-		safeEdit = (EditText) findViewById(R.id.layout_join_edit_baodi);
-		descriptionEdit = (EditText) findViewById(R.id.layout_join_edit_description);
+
 		buyEdit.setText("1");
 		safeEdit.setText("1");
 		minEdit.setText("1");

@@ -243,8 +243,12 @@ public class Betdetail extends Activity {
 				|| Constants.LOTNO_JCLQ_SFC.equals(lotno)
 				|| Constants.LOTNO_JCLQ_DXF.equals(lotno)
 				|| Constants.LOTNO_JCLQ_HUN.equals(lotno)) {
-			expertTextView.setText(expectprize);
-			layoutExpert.setVisibility(View.VISIBLE);
+			if (prize_State.equals("0")) {
+				expertTextView.setText(expectprize);
+				layoutExpert.setVisibility(View.VISIBLE);
+			} else {
+				layoutExpert.setVisibility(View.GONE);
+			}
 		}else{
 			layoutExpert.setVisibility(View.GONE);
 		}
