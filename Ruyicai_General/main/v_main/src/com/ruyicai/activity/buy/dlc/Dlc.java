@@ -1015,6 +1015,35 @@ public class Dlc extends ZixuanAndJiXuan {
 		return textSum;
 
 	};
+	/**
+	 * 获得胆拖投注的投注状态
+	 * @param iZhuShu
+	 * @return
+	 */
+	private String getIsTouzhuStatus(int iZhuShu) {
+		String isTouzhu = "";
+		int tuoNum = 10;
+		if (Constants.LOTNO_ten.equals(lotno)) {
+			tuoNum = 19;
+		}
+		int dan = areaNums[0].table.getHighlightBallNums();
+		int tuo = areaNums[1].table.getHighlightBallNums();
+		if (dan + tuo < num + 1 || dan < 1 || dan > num - 1 || tuo < 2
+				|| tuo > tuoNum) {
+			if (state.equals("R2") || state.equals("Z2")) {
+				isTouzhu = "请选择:\"1个胆码；\n" + " 2~"+tuoNum+"个拖码；\n"
+						+ " 胆码与拖码个数之和不小于" + (num + 1) + "个";
+			} else {
+				isTouzhu = "请选择:\n1~" + (num - 1) + "个胆码；\n"
+						+ " 2~"+tuoNum+"个拖码；\n" + " 胆码与拖码个数之和不小于" + (num + 1) + "个";
+			}
+		} else if (iZhuShu > MAX_ZHU) {
+			isTouzhu = "false";
+		} else {
+			isTouzhu = "true";
+		}	
+		return isTouzhu;
+	}
 
 	/**
 	 * 判断是否满足投注条件
@@ -1023,24 +1052,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		String isTouzhu = "";
 		int iZhuShu = getZhuShu();
 		if (is11_5DanTuo) {
-
-			int dan = areaNums[0].table.getHighlightBallNums();
-			int tuo = areaNums[1].table.getHighlightBallNums();
-			if (dan + tuo < num + 1 || dan < 1 || dan > num - 1 || tuo < 2
-					|| tuo > 10) {
-				if (state.equals("R2") || state.equals("Z2")) {
-					isTouzhu = "请选择:\"1个胆码；\n" + " 2~10个拖码；\n"
-							+ " 胆码与拖码个数之和不小于" + (num + 1) + "个";
-				} else {
-					isTouzhu = "请选择:\n1~" + (num - 1) + "个胆码；\n"
-							+ " 2~10个拖码；\n" + " 胆码与拖码个数之和不小于" + (num + 1) + "个";
-				}
-			} else if (iZhuShu > MAX_ZHU) {
-				isTouzhu = "false";
-			} else {
-				isTouzhu = "true";
-			}
-
+			isTouzhu = getIsTouzhuStatus(iZhuShu);
 		} else if (state.equals("Q2")) {
 
 			if (iZhuShu == 0) {
