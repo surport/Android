@@ -1225,7 +1225,7 @@
     <string name="account_withdraw_detail_create_time">"提交 (提交时间: %1$s)"</string>
     <string name="account_withdraw_detail_check_time">"审核 (%1$s审核时间: %2$s)"</string>
     <string name="account_withdraw_detail_remit_time">"汇款 (%1$s汇款时间: %2$s)"</string>
-    <string name="account_withdraw_detail_finish_time">"到账 (%1$s到账时间: %2$s)"</string>
+    <string name="account_withdraw_detail_finish_time">"到账 (%1$s预计到账时间: %2$s)"</string>
     
     <string name="account_withdraw_detail_order_type">订单类型</string>
     <string name="account_withdraw_detail_order_type_value">提款</string>
