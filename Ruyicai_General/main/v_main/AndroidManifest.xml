@@ -155,16 +155,17 @@
         <activity
             android:name="com.ruyicai.activity.buy.miss.GiftActivity"
             android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.buy.miss.JoinStartActivity"
             android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.buy.miss.OrderDetails"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.ruyicai.activity.buy.zc.Footballorderdail"
             android:configChanges="keyboardHidden|orientation"
@@ -590,7 +591,7 @@
             android:name="com.ruyicai.activity.join.JoinStartActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.ruyicai.activity.join.JoinHallActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -627,7 +628,7 @@
             android:name="com.ruyicai.activity.gift.GiftActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <!-- information -->
         <activity
             android:name="com.ruyicai.activity.info.LotInfoActivity"

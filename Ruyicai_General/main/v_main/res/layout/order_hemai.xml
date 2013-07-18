@@ -77,7 +77,7 @@
                             android:layout_width="230dip" />
 
                         <Button
-                            android:id="@+id/alert_dialog_touzhu_btn_look_code"
+                            android:id="@id/alert_dialog_touzhu_btn_look_code"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"

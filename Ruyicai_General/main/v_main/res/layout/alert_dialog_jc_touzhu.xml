@@ -58,7 +58,7 @@
                         android:text="彩种：" />
 
                     <TextView
-                        android:id="@+id/alert_dialog_jc_lotnotype"
+                        android:id="@id/alert_dialog_jc_lotnotype"
                         style="@style/touzhuTextstyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -73,8 +73,8 @@
                 </LinearLayout>
                 <!-- 方案 -->
 
-                <LinearLayout
-                    android:id="@+id/alert_dialog_touzhu_linear_qihao_beishu"
+                <RelativeLayout
+                    android:id="@id/alert_dialog_touzhu_linear_qihao_beishu"
                     android:layout_width="fill_parent"
                     android:layout_height="55dip"
                     android:gravity="center_vertical|left"
@@ -82,19 +82,28 @@
                     android:paddingLeft="10dip" >
 
                     <TextView
-                        android:id="@+id/alert_dialog_touzhu_text_zhuma"
+                        android:id="@id/alert_dialog_touzhu_text_zhuma"
                         style="@style/touzhuTextstyle"
                         android:text="@string/jc_main_touzhu_alert_text" />
 
                     <TextView
-                        android:id="@+id/alert_dialog_touzhu_alert_scheme"
+                        android:id="@id/alert_dialog_touzhu_alert_scheme"
                         style="@style/touzhuTextstyle"
+                        android:layout_width="230dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/alert_dialog_touzhu_text_zhuma"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@id/alert_dialog_touzhu_updown"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="true" 
-                        android:textSize="15sp" />
-                </LinearLayout>
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/down_icon" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -106,7 +115,7 @@
                 <!-- 开奖详情 -->
 
                 <LinearLayout
-                    android:id="@+id/alert_dialog_touzhu_alert_schemedetail"
+                    android:id="@id/alert_dialog_touzhu_alert_schemedetail"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -114,7 +123,7 @@
                     android:visibility="gone" >
 
                     <TextView
-                        android:id="@+id/alert_dialog_touzhu_alert_textview_schemedetail"
+                        android:id="@id/alert_dialog_touzhu_alert_textview_schemedetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black" />
@@ -143,7 +152,7 @@
                         android:text="场次：" />
 
                     <TextView
-                        android:id="@+id/alert_dialog_jc_gamenum"
+                        android:id="@id/alert_dialog_jc_gamenum"
                         style="@style/touzhuTextstyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -157,7 +166,7 @@
                         android:text="注数：" />
 
                     <TextView
-                        android:id="@+id/alert_dialog_jc_betnum"
+                        android:id="@id/alert_dialog_jc_betnum"
                         style="@style/touzhuTextstyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -255,7 +264,7 @@
                         android:text="金额：" />
 
                     <TextView
-                        android:id="@+id/alert_dialog_jc_money"
+                        android:id="@id/alert_dialog_jc_money"
                         style="@style/touzhuTextstyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -286,7 +295,7 @@
                         android:text="预计奖金：" />
 
                     <TextView
-                        android:id="@+id/alert_dialog_jc_predictmoney"
+                        android:id="@id/alert_dialog_jc_predictmoney"
                         style="@style/touzhuTextstyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

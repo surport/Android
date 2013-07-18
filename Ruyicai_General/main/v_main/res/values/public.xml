@@ -3461,4 +3461,21 @@
 	<public type="id" name="lq_sfc_dialog_rangqiu2" id="0x7f07062d" />
 	<public type="id" name="lq_sfc_dialog_rangqiu3" id="0x7f07062e" />
 	<public type="id" name="bet_detail_text_play" id="0x7f07062f" />
+	
+	
+	<public id="0x7f070630" name="alert_dialog_jc_lotnotype" type="id" />
+    <public id="0x7f070119" name="alert_dialog_touzhu_linear_qihao_beishu" type="id" />
+    <public id="0x7f07011a" name="alert_dialog_touzhu_text_zhuma" type="id" />
+    <public id="0x7f070631" name="alert_dialog_touzhu_alert_scheme" type="id" />
+    <public id="0x7f070632" name="alert_dialog_touzhu_updown" type="id" />
+    <public id="0x7f070633" name="alert_dialog_touzhu_alert_schemedetail" type="id" />
+    <public id="0x7f070634" name="alert_dialog_touzhu_alert_textview_schemedetail" type="id" />
+    <public id="0x7f070635" name="alert_dialog_jc_gamenum" type="id" />
+    <public id="0x7f070636" name="alert_dialog_jc_betnum" type="id" />
+    <public id="0x7f070118" name="buy_zixuan_text_beishu" type="id" />
+    <public id="0x7f070637" name="alert_dialog_jc_money" type="id" />
+    <public id="0x7f070638" name="alert_dialog_jc_predictmoney" type="id" />
+    <public id="0x7f070149" name="alert_dialog_touzhu_btn_look_code" type="id" />
+    <public id="0x7f07053d" name="alert_dialog_touzhu_textview_zhushu" type="id" />
+	
 </resources>

@@ -13,7 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,8 +59,10 @@ public class TouzhuDialog {
 	private TextView predictMoneyTextView;
 	private TextView schemeTextView;
 	private TextView schemeDetailTextView;
-	private LinearLayout schemeLinearLayout;
+	private ImageView upDownImageView;
+	private RelativeLayout schemeRelativeLayout;
 	private LinearLayout schemeDetailLinearLayout;
+
 	/** add by pengcx 20130703 end */
 
 	public TouzhuDialog(JcMainActivity context, JcMainView jcMainView) {
@@ -107,12 +111,13 @@ public class TouzhuDialog {
 		schemeTextView.setText(alertMsg);
 		schemeDetailTextView = (TextView) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
-		schemeLinearLayout = (LinearLayout) v
+		upDownImageView = (ImageView) v.findViewById(R.id.alert_dialog_touzhu_updown);
+		schemeRelativeLayout = (RelativeLayout) v
 				.findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
 		schemeDetailLinearLayout = (LinearLayout) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
 		schemeDetailTextView.setText(alertMsg);
-		schemeLinearLayout.setOnClickListener(new OnClickListener() {
+		schemeRelativeLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -121,8 +126,10 @@ public class TouzhuDialog {
 					if (visibility == View.VISIBLE) {
 						schemeDetailLinearLayout.setVisibility(View.GONE);
 						schemeTextView.setText(alertMsg);
+						upDownImageView.setImageResource(R.drawable.down_icon);
 					} else {
 						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
+						upDownImageView.setImageResource(R.drawable.up_icon);
 						schemeTextView.setText("");
 					}
 				}

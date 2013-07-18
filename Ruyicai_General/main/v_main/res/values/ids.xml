@@ -1407,4 +1407,31 @@
     <item name="lq_sfc_dialog_rangqiu3" type="id"/>
     <item name="bet_detail_text_play" type="id"/>
     
+    
+    <item name="alert_dialog_jc_lotnotype" type="id"/>
+    <item name="alert_dialog_touzhu_linear_qihao_beishu" type="id"/>
+    <item name="alert_dialog_touzhu_text_zhuma" type="id"/>
+    <item name="alert_dialog_touzhu_alert_scheme" type="id"/>
+    <item name="alert_dialog_touzhu_updown" type="id"/>
+    <item name="alert_dialog_touzhu_alert_schemedetail" type="id"/>
+    <item name="alert_dialog_touzhu_alert_textview_schemedetail" type="id"/>
+    <item name="alert_dialog_jc_gamenum" type="id"/>
+    <item name="alert_dialog_jc_betnum" type="id"/>
+    <item name="buy_zixuan_text_beishu" type="id"/>
+    <item name="alert_dialog_jc_money" type="id"/>
+
+    <item name="alert_dialog_jc_predictmoney" type="id"/>
+    <item name="alert_dialog_jc_lotnotype" type="id"/>
+    <item name="alert_dialog_touzhu_linear_qihao_beishu" type="id"/>
+    <item name="alert_dialog_touzhu_text_zhuma" type="id"/>
+    <item name="alert_dialog_touzhu_alert_scheme" type="id"/>
+    <item name="alert_dialog_touzhu_updown" type="id"/>
+    <item name="alert_dialog_touzhu_alert_schemedetail" type="id"/>
+    <item name="alert_dialog_touzhu_alert_textview_schemedetail" type="id"/>
+    <item name="alert_dialog_jc_gamenum" type="id"/>
+    <item name="alert_dialog_jc_betnum" type="id"/>
+    <item name="alert_dialog_jc_money" type="id"/>
+    <item name="alert_dialog_jc_predictmoney" type="id"/>
+    <item name="alert_dialog_touzhu_btn_look_code" type="id"/>
+    <item name="alert_dialog_touzhu_textview_zhushu" type="id"/>
 </resources>

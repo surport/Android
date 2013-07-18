@@ -40,8 +40,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,7 +78,8 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	private TextView predictMoneyTextView;
 	private TextView schemeTextView;
 	private TextView schemeDetailTextView;
-	private LinearLayout schemeLinearLayout;
+	private ImageView upDownImageView;
+	private RelativeLayout schemeRelativeLayout;
 	private LinearLayout schemeDetailLinearLayout;
 	/** add by pengcx 20130703 end */
 
@@ -195,10 +198,11 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		schemeTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_alert_scheme);
 		schemeTextView.setText(againstedString);
 		schemeDetailTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
-		schemeLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
+		upDownImageView = (ImageView) findViewById(R.id.alert_dialog_touzhu_updown);
+		schemeRelativeLayout = (RelativeLayout) findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
 		schemeDetailLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
 		schemeDetailTextView.setText(againstedString);
-		schemeLinearLayout.setOnClickListener(new OnClickListener() {
+		schemeRelativeLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -207,8 +211,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 					if (visibility == View.VISIBLE) {
 						schemeDetailLinearLayout.setVisibility(View.GONE);
 						schemeTextView.setText(againstedString);
+						upDownImageView.setImageResource(R.drawable.down_icon);
 					} else {
 						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
+						upDownImageView.setImageResource(R.drawable.up_icon);
 						schemeTextView.setText("");
 					}
 				}
