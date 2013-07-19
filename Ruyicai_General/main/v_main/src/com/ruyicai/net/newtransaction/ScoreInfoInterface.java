@@ -42,4 +42,22 @@ public class ScoreInfoInterface {
 
 		return re;
 	}
+	
+	public static String getBeiDanScore(String event, String type) {
+		String re = "";
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, ProtocolManager.BEIDAN_COMMAND);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, type);
+			jsonProtocol.put(ProtocolManager.EVENT, event);
+			re = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return re;
+	}
 }

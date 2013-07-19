@@ -2,10 +2,8 @@ package com.ruyicai.activity.account;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.alipay.android.secure.MobileSecurePayHelper;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
@@ -17,18 +15,16 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umpay.huafubao.Huafubao;
 import com.umpay.huafubao.HuafubaoListener;
 import com.umpay.huafubao.PayType;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
@@ -49,7 +45,7 @@ import android.widget.Toast;
  */
 public class UmPayPhoneActivity extends Activity implements HandlerMsg, HuafubaoListener{
 	public ProgressDialog progressdialog;
-	Button secureOk, secureCancel;
+	Button secureOk;
 	EditText accountnum;
 	private TextView alipayContent = null;
 	private TextView accountTitleTextView = null;
@@ -69,8 +65,8 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 		setContentView(R.layout.account_alipay_secure_recharge_dialog);
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
 		accountTitleTextView.setText("话费充值");
-		TextView title = (TextView)findViewById(R.id.recharge_title);
-		title.setText(R.string.umpay_phone_text_moneny);
+//		TextView title = (TextView)findViewById(R.id.recharge_title);
+//		title.setText(R.string.umpay_phone_text_moneny);
 		LinearLayout layout = (LinearLayout)findViewById(R.id.umpay_phone_linear);
 		layout.setVisibility(View.VISIBLE);
 		alipayContent = (TextView) findViewById(R.id.alipay_content);
@@ -78,7 +74,6 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 		radioGroup = (RadioGroup)findViewById(R.id.umpay_recharge_radiogroup);
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
-		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		accountnum.setVisibility(View.GONE);
 		secureOk.setOnClickListener(new OnClickListener() {
@@ -86,11 +81,7 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 				beginUmpayRecharge();
 			}
 		});
-		secureCancel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				UmPayPhoneActivity.this.finish();
-			}
-		});
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void beginUmpayRecharge() {

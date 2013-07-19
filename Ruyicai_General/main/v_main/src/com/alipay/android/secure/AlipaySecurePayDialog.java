@@ -25,6 +25,7 @@ import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.net.newtransaction.recharge.AlipaySecurePayInterface;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 /**
@@ -35,7 +36,7 @@ import com.ruyicai.util.RWSharedPreferences;
  */
 public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	public ProgressDialog progress;
-	Button secureOk, secureCancel;
+	Button secureOk;
 	EditText accountnum;
 	private ProgressDialog mProgress = null;
 	private boolean isOnClick = true;
@@ -44,7 +45,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 
@@ -56,10 +56,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		secureOk.setOnClickListener(this);
-		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
-		secureCancel.setOnClickListener(this);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
-
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void initTextViewContent() {
@@ -77,7 +75,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 						}
 					});
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -92,31 +89,24 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		isOnClick = true;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		isOnClick = true;
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.alipay_secure_ok:
 			if (isOnClick) {
 				isOnClick = false;
 				isInstallSecurePay();
 			}
-			break;
-
-		case R.id.alipay_secure_cancel:
-			AlipaySecurePayDialog.this.finish();
 			break;
 		}
 	}
@@ -135,7 +125,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	}
 
 	private void getOrderInfo() {
-		// TODO Auto-generated method stub
 		(new Handler()).post(new Runnable() {
 
 			@Override
@@ -196,7 +185,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 						AlipaySecurePayDialog.this.finish();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

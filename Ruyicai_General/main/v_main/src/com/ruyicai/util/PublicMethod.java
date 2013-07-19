@@ -84,6 +84,7 @@ import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
@@ -2961,4 +2962,12 @@ public class PublicMethod {
 		return matcher.matches();
 	}
 	/** add by pengcx 20130604 end */
+	
+	/**add by yejc 20130718 start*/
+	public static void setTextViewContent(Activity activity) {
+		TextView textView = (TextView)activity.findViewById(R.id.account_recharge_user_number);
+		String userName = new RWSharedPreferences(activity, "addInfo").getStringValue(ShellRWConstants.USERNAME);
+		textView.setText(userName);
+	}
+	/**add by yejc 20130718 end*/
 }

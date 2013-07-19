@@ -1,167 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:background="@drawable/shouye_top"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:text="@string/bank_account_recharge"
+        android:textColor="@color/white"
+        android:textSize="20dip" />
 
-        <RelativeLayout
-            android:id="@id/account_phone_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shouye_top" android:paddingLeft="10dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/bank_account_recharge"
-                android:textColor="@color/white"
-                android:textSize="20dip" >
-            </TextView>
-        </RelativeLayout>
-
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@id/account_phone_title"
-            android:background="#FFFFFF"
-            android:paddingBottom="50dip" >
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:padding="10dip" >
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingTop="15dip" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/bank_card_phone_text_moneny"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
-
-                    <EditText
-                        android:id="@id/zfb_recharge_value"
-                        android:layout_width="80dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:autoText="false"
-                        android:capitalize="none"
-                        android:gravity="fill_horizontal"
-                        android:numeric="integer"
-                        android:scrollHorizontally="true"
-                        android:text="@string/chargehintmoney"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/bank_card_phone_yuan"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black"
-                        android:textSize="16dip" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingTop="15dip" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/phone_bank_select_dialog_bank"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
-
-                    <Spinner
-                        android:id="@id/account_spinner_bank"
-                        android:layout_width="170dip"
-                        android:layout_height="wrap_content" >
-                    </Spinner>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingTop="15dip" >
-
-                    <TextView
-                        android:layout_width="90dip"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/phone_bank_select_stye_dialog_bank"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black" />
-
-                    <Spinner
-                        android:id="@id/account_spinner_bank_stye"
-                        android:layout_width="170dip"
-                        android:layout_height="wrap_content" >
-                    </Spinner>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@id/yinhangPay_text"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent" />
-            </LinearLayout>
-        </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dip" >
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/alert_bottom_bg"
-            android:orientation="horizontal" >
+            android:background="@color/white"
+            android:orientation="vertical" >
 
-            <Button
-                android:id="@id/ok"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dip"
-                android:layout_weight="1"
-                android:background="@drawable/join_info_btn_selecter"
-                android:gravity="center"
-                android:text="确 定"
-                android:textColor="@color/black"
-                android:textSize="18sp" >
-            </Button>
+            <include layout="@layout/account_common_title_layout" />
 
-            <Button
-                android:id="@id/canel"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dip"
-                android:layout_weight="1"
-                android:background="@drawable/join_info_btn_selecter"
-                android:gravity="center"
-                android:text="取 消"
-                android:textColor="@color/black"
-                android:textSize="18sp" >
-            </Button>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/free_get_glod_bottom" >
+
+                <EditText
+                    android:id="@id/zfb_recharge_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:autoText="false"
+                    android:capitalize="none"
+                    android:gravity="center_vertical"
+                    android:numeric="integer"
+                    android:background="@drawable/account_recharge_input"
+                    android:hint="@string/account_yin_dna_pay_recharge_value_two"
+                    android:scrollHorizontally="true"/>
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginTop="8dip"
+                    android:background="@color/zc_sfc_divider" />
+                
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="5dip">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/phone_bank_select_dialog_bank"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@id/account_spinner_bank"
+                    android:layout_width="170dip"
+                    android:layout_height="wrap_content" >
+                </Spinner>
+            </LinearLayout>
+            
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginTop="8dip"
+                    android:background="@color/zc_sfc_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/phone_bank_select_stye_dialog_bank"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@id/account_spinner_bank_stye"
+                    android:layout_width="170dip"
+                    android:layout_height="wrap_content" >
+                </Spinner>
+            </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/account_common_content_layout" />
         </LinearLayout>
-    </RelativeLayout>
+    </ScrollView>
 
 </LinearLayout>

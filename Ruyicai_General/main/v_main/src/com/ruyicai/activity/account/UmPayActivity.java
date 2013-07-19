@@ -13,6 +13,7 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 import com.umpay.creditcard.android.UmpayActivity;
@@ -41,7 +42,7 @@ import android.widget.Toast;
 public class UmPayActivity extends Activity implements HandlerMsg {
 	public ProgressDialog progressdialog;
 	private final String YINTYPE = "0900";
-	Button secureOk, secureCancel;
+	Button secureOk;
 	EditText accountnum;
 	private TextView alipay_content = null;
 	private String sessionId = "";
@@ -66,7 +67,6 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		accountTitleTextView.setText("联动优势充值");
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
-		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -74,11 +74,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 				beginUmpayRecharge(v);
 			}
 		});
-		secureCancel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				UmPayActivity.this.finish();
-			}
-		});
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void initTextViewContent() {

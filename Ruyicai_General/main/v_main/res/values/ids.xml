@@ -25,10 +25,8 @@
     <item name="TextView03" type="id"/>
     <item name="TextView04" type="id"/>
     <item name="TextView07" type="id"/>
-    <item name="YinDNAtext_content" type="id"/>
     <item name="about" type="id"/>
     <item name="accountTitle_text" type="id"/>
-    <item name="account_bank_layout" type="id"/>
     <item name="account_list_main_text" type="id"/>
     <item name="account_phone_title" type="id"/>
     <item name="account_rechange_listview" type="id"/>
@@ -466,7 +464,6 @@
     <item name="free_get_gold_button" type="id"/>
     <item name="fu_zhishu" type="id"/>
     <item name="game_analysis" type="id"/>
-    <item name="game_card_number" type="id"/>
     <item name="game_card_password" type="id"/>
     <item name="game_card_spinner" type="id"/>
     <item name="game_card_total_value" type="id"/>
@@ -1031,7 +1028,6 @@
     <item name="phone_bank_spinner" type="id"/>
     <item name="phone_card_rechargecard_info" type="id"/>
     <item name="phone_card_rechargecard_password" type="id"/>
-    <item name="phone_card_spinner" type="id"/>
     <item name="phone_card_value_spinner" type="id"/>
     <item name="phonebindim" type="id"/>
     <item name="phonebindtx" type="id"/>
@@ -1406,6 +1402,13 @@
     <item name="lq_sfc_dialog_rangqiu2" type="id"/>
     <item name="lq_sfc_dialog_rangqiu3" type="id"/>
     <item name="bet_detail_text_play" type="id"/>
+    <item name="jc_score_text_home_score" type="id"/>
+    <item name="jc_score_text_guest_score" type="id"/>
+    <item name="jc_score_mark" type="id"/>
+    <item name="account_recharge_user_number" type="id"/>
+    <item name="alipay_secure_ok_alipay_layout" type="id"/>
+    <item name="alipay_secure_ok_alipay" type="id"/>
+    <item name="jc_score_list_text" type="id"/>
     
     
     <item name="alert_dialog_jc_lotnotype" type="id"/>

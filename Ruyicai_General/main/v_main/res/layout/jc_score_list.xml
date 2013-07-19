@@ -267,7 +267,7 @@
         android:background="@drawable/jc_score_list_bg"
         android:visibility="gone" >
 
-        <TextView
+        <TextView android:id="@id/jc_score_list_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"

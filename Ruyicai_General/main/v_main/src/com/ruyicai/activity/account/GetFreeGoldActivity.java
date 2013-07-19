@@ -5,6 +5,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.BalanceQueryInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import android.app.Activity;
 import android.content.Intent;
@@ -34,12 +35,14 @@ public class GetFreeGoldActivity extends Activity {
 		setContentView(R.layout.account_get_free_glod_for_limei);
 		currentGold = (TextView)findViewById(R.id.current_gold);
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
+		secureOk.setText(R.string.start_get_free_gold_title);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				getFreeGold();
 			}
 		});
 		setCurrentGold();
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void getFreeGold() {

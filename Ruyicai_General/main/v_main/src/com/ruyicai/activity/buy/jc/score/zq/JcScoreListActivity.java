@@ -5,24 +5,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.ScoreListInterface;
 import com.ruyicai.util.RWSharedPreferences;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,7 +43,7 @@ public class JcScoreListActivity extends Activity {
 	protected ListView listMain;
 	protected JcInfoAdapter adapter;
 	protected Context context;
-	private String TYPE = "0";
+	protected String TYPE = "0";
 	protected ProgressDialog mProgress = null;
 	protected ArrayAdapter<String> adapterArray;
 	protected Spinner money_brank;
@@ -57,6 +57,11 @@ public class JcScoreListActivity extends Activity {
 	protected boolean isLq = false;
 	protected boolean isTrack = false;
 	LinearLayout layoutSpinner;
+	/**add by yejc 20130712 start*/
+	protected boolean isBeiDan = false;
+	RefreshBroadcastReceiver refreshReceiver = new RefreshBroadcastReceiver();
+	public final static String BROADCAST_ACTION  = "BROADCAST_ACTION";
+	/**add by yejc 20130712 end*/
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +73,12 @@ public class JcScoreListActivity extends Activity {
 		setReguestType();
 		getPreferences();
 		TYPE = getType();
+		/**add by yejc 20130719 start*/
+		if (isBeiDan) {
+			TextView tv = (TextView)findViewById(R.id.jc_score_list_text);
+			tv.setText("选择期号：");
+		}
+		/**add by yejc 20130719 end*/
 	}
 
 	public void setIsLq() {
@@ -160,8 +171,11 @@ public class JcScoreListActivity extends Activity {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
+		/**add by yejc 20130716 start*/
+		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
+        registerReceiver(refreshReceiver, filter);
+        /**add by yejc 20130716 end*/
 		initListInfo();
 	}
 
@@ -186,7 +200,8 @@ public class JcScoreListActivity extends Activity {
 			public void run() {
 				try {
 					String re = ScoreListInterface.getScore(type, date,
-							reguestType);
+								reguestType);
+					
 					mProgress.dismiss();
 					final JSONObject obj = new JSONObject(re);
 					String error_code = obj.getString("error_code");
@@ -222,7 +237,7 @@ public class JcScoreListActivity extends Activity {
 
 	}
 
-	private List<String> setSpinnerDate(String date) {
+	public List<String> setSpinnerDate(String date) {
 		List<String> allcountries = new ArrayList<String>();
 		String[] dates = date.split(";");
 		for (int i = 0; i < dates.length; i++) {
@@ -243,7 +258,11 @@ public class JcScoreListActivity extends Activity {
 				info.setState(json.getString("stateMemo"));
 				info.setTime(json.getString("matchTime"));
 				info.setvTeam(json.getString("guestTeam"));
-				info.setEvent(json.getString("event"));
+				if (isBeiDan) {
+					info.setEvent(json.getString("bdEvent"));
+				} else {
+					info.setEvent(json.getString("event"));
+				}
 				info.setHomeScore(json.getString("homeScore"));
 				info.setGuestScore(json.getString("guestScore"));
 				info.setHomeHalfScore(json.getString("homeHalfScore"));
@@ -374,27 +393,31 @@ public class JcScoreListActivity extends Activity {
 						.findViewById(R.id.jc_score_text_vteam);
 				holder1.startImg = (ImageView) convertView
 						.findViewById(R.id.jc_score_btn_start);
-				holder1.overScore = (TextView) convertView
-						.findViewById(R.id.jc_score_text_over_score);
+//				holder1.overScore = (TextView) convertView
+//						.findViewById(R.id.jc_score_text_over_score);
 				holder1.halfScore = (TextView) convertView
 						.findViewById(R.id.jc_score_text_half_score);
-				holder1.result = (TextView) convertView
-						.findViewById(R.id.jc_score_text_result);
-				holder1.red = (TextView) convertView
-						.findViewById(R.id.jc_score_text_red);
-				holder1.yellow = (TextView) convertView
-						.findViewById(R.id.jc_score_text_yellow);
+//				holder1.result = (TextView) convertView
+//						.findViewById(R.id.jc_score_text_result);
+//				holder1.red = (TextView) convertView
+//						.findViewById(R.id.jc_score_text_red);
+//				holder1.yellow = (TextView) convertView
+//						.findViewById(R.id.jc_score_text_yellow);
 				holder1.layoutLeft = (LinearLayout) convertView
 						.findViewById(R.id.jc_score_list_item_layout_left);
-				holder1.layoutRed = (LinearLayout) convertView
-						.findViewById(R.id.jc_score_layout_red_yellow);
+//				holder1.layoutRed = (LinearLayout) convertView
+//						.findViewById(R.id.jc_score_layout_red_yellow);
+				holder1.homeScore = (TextView) convertView
+						.findViewById(R.id.jc_score_text_home_score);
+				holder1.guestScore = (TextView) convertView
+						.findViewById(R.id.jc_score_text_guest_score);
 				convertView.setTag(holder1);
 			} else {
 				holder1 = (ViewHolder) convertView.getTag();
 			}
 			final ViewHolder holder = holder1;
-			holder.teamName.setTextColor(Color.GRAY);
-			holder.time.setTextColor(Color.GRAY);
+//			holder.teamName.setTextColor(Color.GRAY);
+//			holder.time.setTextColor(Color.GRAY);
 			holder.teamName.setText(info.getTeamName());
 			holder.hTeam.setText(info.gethTeam());
 			holder.state.setText(info.getState());
@@ -412,7 +435,6 @@ public class JcScoreListActivity extends Activity {
 			holder.layoutLeft.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.isStart()) {
 						info.setStart(false);
 						holder.startImg
@@ -436,8 +458,10 @@ public class JcScoreListActivity extends Activity {
 			});
 			if (!info.getHomeScore().equals("")
 					&& !info.getGuestScore().equals("")) {
-				holder.overScore.setText(info.getHomeScore() + ":"
-						+ info.getGuestScore());
+//				holder.overScore.setText(info.getHomeScore() + ":"
+//						+ info.getGuestScore());
+				holder1.homeScore.setText(info.getHomeScore());
+				holder1.guestScore.setText(info.getGuestScore());
 			}
 			if (!isLq) {
 				if (!info.getHomeHalfScore().equals("")
@@ -445,9 +469,9 @@ public class JcScoreListActivity extends Activity {
 					holder.halfScore.setText("(" + info.getHomeHalfScore()
 							+ ":" + info.getGuestHalfScore() + ")");
 				}
-				holder.red.setText(info.getRed());
-				holder.yellow.setText(info.getYellow());
-				holder.layoutRed.setVisibility(View.VISIBLE);
+//				holder.red.setText(info.getRed());
+//				holder.yellow.setText(info.getYellow());
+//				holder.layoutRed.setVisibility(View.VISIBLE);
 			}
 			return convertView;
 		}
@@ -470,14 +494,16 @@ public class JcScoreListActivity extends Activity {
 			TextView vTeam;// 客队
 			TextView time;// 开赛时间
 			TextView state;// 开赛进度
-			TextView overScore;
+//			TextView overScore;
 			TextView halfScore;
-			TextView result;
-			TextView red;
-			TextView yellow;
+//			TextView result;
+//			TextView red;
+//			TextView yellow;
 			ImageView startImg;
 			LinearLayout layoutLeft;
-			LinearLayout layoutRed;
+//			LinearLayout layoutRed;
+			TextView homeScore;
+			TextView guestScore;
 		}
 	}
 
@@ -673,4 +699,21 @@ public class JcScoreListActivity extends Activity {
 			this.state = state;
 		}
 	}
+	
+	/**add by yejc 20130716 start*/
+	private class RefreshBroadcastReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			initListInfo();
+		}
+		
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		unregisterReceiver(refreshReceiver);
+	}
+	/**add by yejc 20130716 end*/
 }

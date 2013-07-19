@@ -1,68 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" 
-     android:background="@color/white">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@id/alipay_secure_title"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
+    <TextView
+        android:id="@id/accountTitle_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
-        android:gravity="center_vertical" android:paddingLeft="10dip">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@id/accountTitle_text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20sp"
-            android:textColor="@color/white" android:text=""
-            >
-        </TextView>
-    </LinearLayout>
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/alipay_secure_title"
-        android:paddingBottom="60dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dip" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView android:id="@id/recharge_title"
+            <include layout="@layout/account_common_title_layout" />
+            
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="@string/ZFB_please_enter_value"
-                android:textSize="18sp"
-                android:textColor="@color/black" />
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/free_get_glod_bottom"
+                android:orientation="vertical" >
 
             <EditText
                 android:id="@id/alipay_secure_recharge_value"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="fill_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:gravity="center_vertical"
+                android:hint="@string/account_yin_dna_pay_recharge_value"
+                android:maxLength="5"
+                android:background="@drawable/account_recharge_input"
                 android:numeric="integer"
-                android:text="@string/chargehintmoney"
-                android:textAppearance="?android:attr/textAppearanceMedium" android:maxLength="5"/>
+                android:layout_margin="8dip"
+                android:textSize="15sp" />
+            
 
             <LinearLayout
                 android:id="@id/umpay_phone_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="10dip"
+                android:padding="5dip"
                 android:visibility="gone" >
 
-                <RadioGroup android:id="@id/umpay_recharge_radiogroup"
+                <RadioGroup
+                    android:id="@id/umpay_recharge_radiogroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
@@ -95,65 +91,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="13sp"
-                        android:textColor="@android:color/black" 
-                        android:text="@string/umpay_phone_text_moneny_three_description" />
+                        android:text="@string/umpay_phone_text_moneny_three_description"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="13sp"
-                        android:textColor="@android:color/black" 
-                        android:text="@string/umpay_phone_text_moneny_thirty_description" />
+                        android:text="@string/umpay_phone_text_moneny_thirty_description"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp" />
                 </LinearLayout>
-            
+                </LinearLayout>
             </LinearLayout>
-            
-            
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                android:textSize="16sp" 
-                android:id="@id/alipay_content"/>
-"
+
+            <include layout="@layout/account_common_content_layout" />
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/alert_bottom_bg"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingTop="5dip" >
-
-        <Button
-            android:id="@id/alipay_secure_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/join_info_btn_selecter"
-            android:gravity="center"
-            android:text="确 定"
-            android:textColor="@color/black"
-            android:textSize="18sp" >
-        </Button>
-
-        <Button
-            android:id="@id/alipay_secure_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/join_info_btn_selecter"
-            android:gravity="center"
-            android:text="取 消"
-            android:textColor="@color/black"
-            android:textSize="18sp" >
-        </Button>
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

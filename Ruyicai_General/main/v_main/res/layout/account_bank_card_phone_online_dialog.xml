@@ -1,191 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#FFFFFF" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@id/account_bank_layout"
-        android:layout_width="fill_parent"
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animationCache="false"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shouye_top"
-            android:orientation="vertical"
-            android:paddingLeft="10dip" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/bank_cards_recharge"
-                android:textColor="@color/white"
-                android:textSize="20dip" >
-            </TextView>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/white"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/black" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/bank_card_phone_text_moneny"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@id/bank_card_phone_recharge_value"
-                    android:layout_width="100dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:autoText="false"
-                    android:capitalize="none"
-                    android:gravity="fill_horizontal"
-                    android:numeric="integer"
-                    android:scrollHorizontally="true"
-                    android:text="@string/chargehintmoney"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/bank_card_phone_yuan"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/bank_card_phone_bankid"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@id/bank_card_phone_bankid"
-                    android:layout_width="180dip"
-                    android:layout_height="wrap_content"
-                    android:autoText="false"
-                    android:capitalize="none"
-                    android:gravity="fill_horizontal"
-                    android:numeric="integer"
-                    android:scrollHorizontally="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="@string/bank_card_phone_phoneNum"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@id/bank_card_phone_phone_num"
-                    android:layout_width="180dip"
-                    android:layout_height="wrap_content"
-                    android:autoText="false"
-                    android:capitalize="none"
-                    android:gravity="fill_horizontal"
-                    android:numeric="integer"
-                    android:scrollHorizontally="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+        android:background="@drawable/shouye_top"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:text="@string/bank_cards_recharge"
+        android:textColor="@color/white"
+        android:textSize="20dip" />
 
     <ScrollView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/account_bank_layout"
-        android:background="#FFFFFF"
-        android:paddingBottom="50dip" >
+        android:padding="10dip" >
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@id/textContent"
-                android:layout_width="wrap_content"
+            <include layout="@layout/account_common_title_layout" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:text=""
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/red"
-                android:textSize="14dip" />
+                android:background="@drawable/free_get_glod_bottom"
+                android:orientation="vertical" 
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip">
+
+                <EditText
+                        android:id="@id/bank_card_phone_recharge_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dip"
+                        android:layout_weight="1"
+                        android:autoText="false"
+                        android:capitalize="none"
+                        android:gravity="center_vertical"
+                        android:numeric="integer"
+                        android:scrollHorizontally="true"
+                        android:background="@null"
+                        android:paddingLeft="5dip"
+                        android:text="@string/chargehintmoney"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/zc_sfc_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="@string/bank_card_phone_bankid"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@id/bank_card_phone_bankid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autoText="false"
+                        android:capitalize="none"
+                        android:gravity="center_vertical"
+                        android:numeric="integer"
+                        android:scrollHorizontally="true"
+                        android:background="@null"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/zc_sfc_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="@string/bank_card_phone_phoneNum"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@id/bank_card_phone_phone_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:autoText="false"
+                        android:capitalize="none"
+                        android:gravity="center_vertical"
+                        android:numeric="integer"
+                        android:scrollHorizontally="true"
+                        android:background="@null"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/account_common_content_layout" />
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/alert_bottom_bg"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@id/ok"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/join_info_btn_selecter"
-            android:gravity="center"
-            android:text="确 定"
-            android:textColor="@color/black"
-            android:textSize="18sp" >
-        </Button>
-
-        <Button
-            android:id="@id/canel"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/join_info_btn_selecter"
-            android:gravity="center"
-            android:text="取 消"
-            android:textColor="@color/black"
-            android:textSize="18sp" >
-        </Button>
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

@@ -20,6 +20,7 @@ import com.ruyicai.activity.buy.beijing.bean.PlayMethodEnum;
 import com.ruyicai.activity.buy.beijing.bean.TotalGoalsAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.UpDownSingleDoubleAgainstInformation;
 import com.ruyicai.activity.buy.beijing.bean.WinTieLossAgainstInformation;
+import com.ruyicai.activity.buy.jc.score.beijing.BeijingScoreActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -636,7 +637,8 @@ public class BeiJingSingleGameActivity extends Activity {
 				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		realtimeScoreButton = (Button) findViewById(R.id.buy_lq_main_btn_score);
-		realtimeScoreButton.setVisibility(View.GONE);
+		realtimeScoreButton.setVisibility(View.VISIBLE);
+		realtimeScoreButton.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		guestTeamForwardTextView = (TextView) findViewById(R.id.buy_jc_main_text_title);
 		guestTeamForwardTextView.setVisibility(View.INVISIBLE);
@@ -882,12 +884,20 @@ public class BeiJingSingleGameActivity extends Activity {
 							(ArrayList<String>) getSelectedEventClickNum());
 					intent.putExtra("laterpartbettingcode",
 							getLaterPartBettingCode());
-					intent.putExtra("nowIssueString", nowIssueString);
+					intent.putExtra("nowIssueString", "");
 					intent.putExtra("lotno", playMethodType.getLotnoString());
 
 					startActivity(intent);
 				}
 
+				break;
+				
+			case R.id.buy_lq_main_btn_score:
+				Intent intent = new Intent(BeiJingSingleGameActivity.this,
+						BeijingScoreActivity.class);
+				intent.putExtra("lotno",playMethodType.getLotnoString());
+//				intent.putExtra("bebatchCode", "");
+				startActivity(intent);
 				break;
 			}
 		}

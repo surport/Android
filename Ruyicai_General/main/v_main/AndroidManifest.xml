@@ -483,6 +483,25 @@
             android:name="com.ruyicai.activity.buy.jc.score.lq.JcLqScoreInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
+        <!-- 北京单场即时比分 start-->
+        <activity
+            android:name="com.ruyicai.activity.buy.jc.score.beijing.BeijingScoreListActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.jc.score.beijing.BeijingScoreActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.jc.score.beijing.TrackBeijingActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.ruyicai.activity.buy.jc.score.beijing.BeijingScoreInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        
+        <!-- 北京单场即时比分 end-->
         <activity
             android:name="com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity"
             android:configChanges="keyboardHidden|orientation"

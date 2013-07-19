@@ -11,6 +11,7 @@ public class ShellRWConstants {
 	public final static String SHAREPREFERENCESNAME = "addInfo";
 	public final static String JCZQ_PREFER = "zqTrack";// 用于存放竞彩关注球队的信息
 	public final static String JCLQ_PREFER = "lqTrack";// 用于存放竞彩关注球队的信息
+	public final static String BEIJING_PREFER = "beijingTrack";// 用于存放北京单场关注球队的信息
 	public final static String SESSIONID = "sessionid";
 	public final static String RANDOMNUMBER = "randomNumber";
 	public final static String AUTO_LOGIN = "auto_login";

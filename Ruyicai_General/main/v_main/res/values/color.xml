@@ -43,6 +43,7 @@
     <color name="jc_odds_bj_color">#FFCC35</color>
     <color name="bet_query_noaward_text_color">#cc9900</color>
     <color name="account_withdraw_text_color">#33CC33</color>
+    <color name="account_warning_text_color">#669900</color>
     <!-- add end -->
     
 </resources>
