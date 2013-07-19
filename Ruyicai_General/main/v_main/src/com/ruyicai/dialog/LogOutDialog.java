@@ -58,8 +58,13 @@ public class LogOutDialog extends BaseDialog {
 					Toast.LENGTH_SHORT).show();
 		} else {
 			shellRW.putStringValue("sessionid", "");
+			/**add by pengcx 20130719 start*/
+			String isRemainPassword = shellRW.getStringValue("remPwd_checkBox");
+			if(!"true".equals(isRemainPassword)){
+				shellRW.putStringValue("password", "");
+			}
+			/**add by pengcx 20130719 end*/
 			shellRW.putStringValue("userno", "");
-			shellRW.putStringValue("password", "");
 			shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, false);
 			shellRW.putStringValue(ShellRWConstants.RANDOMNUMBER, "");
 			MobclickAgent.onEvent(activity, "zhuxiao"); // 在用户中心点击“注销”按钮的:

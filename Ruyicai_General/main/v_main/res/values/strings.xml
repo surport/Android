@@ -885,7 +885,7 @@
     <!-- 注销框 -->
     <string name="log_out_title">注销登录</string>
     <string name="log_out_content">您确定要注销当前用户吗？</string>
-    <string name="log_out_toast_msg">当前用户已注销！</string>
+    <string name="log_out_toast_msg">当前用户已退出！</string>
     <string name="log_out_toast_no_login">您还没有登录，请先登录！</string>
     <!-- 账户充值 -->
     <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
