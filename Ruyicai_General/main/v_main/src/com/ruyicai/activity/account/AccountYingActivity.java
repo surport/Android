@@ -53,7 +53,7 @@ import com.unionpay.upomp.lthj.util.PluginHelper;
  * 
  */
 public class AccountYingActivity extends Activity implements OnClickListener {
-	Button secureOk, secureCancel;
+	Button secureOk;
 	EditText accountnum;
 	public ProgressDialog progressdialog;
 	private TextView textView;
@@ -66,15 +66,15 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_dialog);
-		textView = (TextView) findViewById(R.id.yinhangPay_text);
+		textView = (TextView) findViewById(R.id.alipay_content);
 		textView.setTextColor(Color.RED);
 		initView();
 		getAccountNet();
 		initTextViewContent();
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void initTextViewContent() {
@@ -91,7 +91,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 						}
 					});
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -106,10 +105,8 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 	}
 
 	private void initView() {
-		secureOk = (Button) findViewById(R.id.ok);
+		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		secureOk.setOnClickListener(this);
-		secureCancel = (Button) findViewById(R.id.canel);
-		secureCancel.setOnClickListener(this);
 		accountnum = (EditText) findViewById(R.id.zfb_recharge_value);
 	}
 
@@ -212,24 +209,18 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		isOnClick = true;
 	}
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.ok:
+		case R.id.alipay_secure_ok:
 			if (isOnClick) {
 				isOnClick = false;
 				isTurnView();
 			}
-			break;
-
-		case R.id.canel:
-			finish();
 			break;
 		}
 	}
@@ -249,7 +240,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String re = AccountRechargeInterface.getInstance()
 							.recharge(userno, phonenum, TYPE);
@@ -262,7 +252,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								initNameSpinner(getList(jsonArray));
 							}
 						});
@@ -270,7 +259,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(AccountYingActivity.this,
 										message, Toast.LENGTH_SHORT).show();
 							}
@@ -329,11 +317,9 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 
 	private void getOrderInfo(final String userno, final String phonenum,
 			final String amt) {
-		// TODO Auto-generated method stub
 		(new Handler()).post(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String rechargenum = Integer.parseInt(amt) * 100 + "";
 				String alipaysecure = AlipaySecurePayInterface.getInstance()
 						.alipaySecurePay(rechargenum, userno, phonenum);
@@ -347,9 +333,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 								AccountYingActivity.this);
 
 						if (bRet) {
-							// show the progress bar to indicate that we have
-							// started
-							// paying.
 							closeProgress();
 							mProgress = BaseHelper.showProgress(
 									AccountYingActivity.this, null, "正在支付",
@@ -359,7 +342,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 						AccountYingActivity.this.finish();
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -479,7 +461,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					rechargepojo.setSessionid(sessionId);
 					rechargepojo.setUserno(userno);
@@ -495,7 +476,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								turnYinView(xml);
 							}
 						});
@@ -503,7 +483,6 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(AccountYingActivity.this,
 										message, Toast.LENGTH_SHORT);
 							}

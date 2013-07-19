@@ -32,6 +32,7 @@ import com.palmdream.RuyicaiAndroid.R;
 
 public class MobileSecurePayHelper {
 	static final String TAG = "MobileSecurePayHelper";
+	final int MSG_WHAT = 1001;
 
 	private ProgressDialog mProgress = null;
 	Context mContext = null;
@@ -62,10 +63,13 @@ public class MobileSecurePayHelper {
 					// �?��是否有新的版本�?
 					PackageInfo apkInfo = getApkInfo(mContext, cachePath);
 					String newApkdlUrl = "";
+					Message msg = new Message();
 					if (apkName.equals(Constants.PAY_PLUGIN_NAME)) {
 						newApkdlUrl = checkNewUpdateForHuafubao(apkInfo);
+						msg.what = MSG_WHAT;
 					} else {
 						newApkdlUrl = checkNewUpdate(apkInfo);
+						msg.what = AlixId.RQF_INSTALL_CHECK;
 					}
 
 					//
@@ -74,8 +78,8 @@ public class MobileSecurePayHelper {
 						retrieveApkFromNet(mContext, newApkdlUrl, cachePath);
 
 					// send the result back to caller.
-					Message msg = new Message();
-					msg.what = AlixId.RQF_INSTALL_CHECK;
+//					Message msg = new Message();
+//					msg.what = AlixId.RQF_INSTALL_CHECK;
 					msg.obj = cachePath;
 					mHandler.sendMessage(msg);
 				}
@@ -87,13 +91,14 @@ public class MobileSecurePayHelper {
 	}
 
 	public void showInstallConfirmDialog(final Context context,
-			final String cachePath) {
+			final String cachePath, int resId) {
 		AlertDialog.Builder tDialog = new AlertDialog.Builder(context);
 		tDialog.setIcon(R.drawable.info);
 		tDialog.setTitle(context.getResources().getString(
 				R.string.confirm_install_hint));
-		tDialog.setMessage(context.getResources().getString(
-				R.string.confirm_install));
+//		tDialog.setMessage(context.getResources().getString(
+//				R.string.confirm_install));
+		tDialog.setMessage(resId);
 
 		tDialog.setPositiveButton(R.string.Ensure,
 				new DialogInterface.OnClickListener() {
@@ -327,17 +332,19 @@ public class MobileSecurePayHelper {
 	// the handler use to receive the install check result.
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
+			closeProgress();
+			String cachePath = (String) msg.obj;
 			try {
 				switch (msg.what) {
 				case AlixId.RQF_INSTALL_CHECK: {
-					//
-					closeProgress();
-					String cachePath = (String) msg.obj;
-
-					showInstallConfirmDialog(mContext, cachePath);
+					showInstallConfirmDialog(mContext, cachePath, R.string.confirm_install);
 				}
-					break;
+				break;
+				case MSG_WHAT: {
+					showInstallConfirmDialog(mContext, cachePath, R.string.umpay_huafubao_confirm_install);
 				}
+				break;
+			  }
 
 				super.handleMessage(msg);
 			} catch (Exception e) {

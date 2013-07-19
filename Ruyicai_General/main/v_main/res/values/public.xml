@@ -19,14 +19,12 @@
 	<public type="array" name="brank_card_phone_type" id="0x7f0a0006" />
 	<public type="array" name="brank_type" id="0x7f0a0005" />
 	<public type="array" name="dlc_type" id="0x7f0a000a" />
-	<public type="array" name="game_card_type" id="0x7f0a0004" />
-	<public type="array" name="hemai_list" id="0x7f0a000e" />
+ 	<public type="array" name="hemai_list" id="0x7f0a0004" />
 	<public type="array" name="jc_main_spinner" id="0x7f0a000c" />
 	<public type="array" name="layout_join_start_spinner" id="0x7f0a0008" />
 	<public type="array" name="layout_zhixuan_jixuan_spinner" id="0x7f0a0007" />
-	<public type="array" name="lotttery_list" id="0x7f0a000d" />
+	<public type="array" name="lotttery_list" id="0x7f0a0001" />
 	<public type="array" name="no_hint" id="0x7f0a0000" />
-	<public type="array" name="recharge_card_type" id="0x7f0a0001" />
 	<public type="array" name="recharge_card_value" id="0x7f0a0002" />
 	<public type="array" name="ssc_zhonglei" id="0x7f0a0009" />
 	<public type="array" name="ten_type" id="0x7f0a000b" />
@@ -715,10 +713,8 @@
 	<public type="id" name="TextView03" id="0x7f070350" />
 	<public type="id" name="TextView04" id="0x7f070353" />
 	<public type="id" name="TextView07" id="0x7f07035e" />
-	<public type="id" name="YinDNAtext_content" id="0x7f0700cc" />
 	<public type="id" name="about" id="0x7f070628" />
 	<public type="id" name="accountTitle_text" id="0x7f0700b9" />
-	<public type="id" name="account_bank_layout" id="0x7f0700cd" />
 	<public type="id" name="account_list_main_text" id="0x7f0700e3" />
 	<public type="id" name="account_phone_title" id="0x7f0700c3" />
 	<public type="id" name="account_rechange_listview" id="0x7f0700e4" />
@@ -1156,7 +1152,6 @@
 	<public type="id" name="free_get_gold_button" id="0x7f0703ac" />
 	<public type="id" name="fu_zhishu" id="0x7f07032d" />
 	<public type="id" name="game_analysis" id="0x7f070237" />
-	<public type="id" name="game_card_number" id="0x7f0700db" />
 	<public type="id" name="game_card_password" id="0x7f0700dc" />
 	<public type="id" name="game_card_spinner" id="0x7f0700da" />
 	<public type="id" name="game_card_total_value" id="0x7f0700dd" />
@@ -1721,7 +1716,6 @@
 	<public type="id" name="phone_bank_spinner" id="0x7f0700ec" />
 	<public type="id" name="phone_card_rechargecard_info" id="0x7f0700f2" />
 	<public type="id" name="phone_card_rechargecard_password" id="0x7f0700f3" />
-	<public type="id" name="phone_card_spinner" id="0x7f0700f0" />
 	<public type="id" name="phone_card_value_spinner" id="0x7f0700f1" />
 	<public type="id" name="phonebindim" id="0x7f0705fd" />
 	<public type="id" name="phonebindtx" id="0x7f0705fe" />
@@ -2097,7 +2091,6 @@
 	<public type="layout" name="account_bank_card_phone_register_dialog" id="0x7f030004" />
 	<public type="layout" name="account_dialog" id="0x7f030005" />
 	<public type="layout" name="account_directpay" id="0x7f030006" />
-	<public type="layout" name="account_game_card_dialog" id="0x7f030007" />
 	<public type="layout" name="account_get_free_glod_for_limei" id="0x7f030008" />
 	<public type="layout" name="account_list_main" id="0x7f030009" />
 	<public type="layout" name="account_listviw_item" id="0x7f03000a" />
@@ -2292,7 +2285,6 @@
 	<public type="layout" name="testtabhost" id="0x7f0300c7" />
 	<public type="layout" name="touzhu_succe" id="0x7f0300c8" />
 	<public type="layout" name="track_detail" id="0x7f0300c9" />
-	<public type="layout" name="umpay_recharge_bindphone" id="0x7f0300ca" />
 	<public type="layout" name="unnetdialog" id="0x7f0300cb" />
 	<public type="layout" name="user_agency" id="0x7f0300f5" />
 	<public type="layout" name="user_login_protocol_dialog" id="0x7f0300f6" />
@@ -2387,8 +2379,6 @@
 	<public type="string" name="banchang" id="0x7f080336" />
 	<public type="string" name="bangzhuzhongxin" id="0x7f0800d0" />
 	<public type="string" name="bank_account_recharge" id="0x7f080197" />
-	<public type="string" name="bank_card_phone_alert1" id="0x7f0801c1" />
-	<public type="string" name="bank_card_phone_alert2" id="0x7f0801c2" />
 	<public type="string" name="bank_card_phone_bankid" id="0x7f0801b9" />
 	<public type="string" name="bank_card_phone_city" id="0x7f0801be" />
 	<public type="string" name="bank_card_phone_enter_rechargeInfo" id="0x7f08019f" />
@@ -2403,7 +2393,6 @@
 	<public type="string" name="bank_card_phone_province" id="0x7f0801bd" />
 	<public type="string" name="bank_card_phone_recharge_cardNum" id="0x7f0801a2" />
 	<public type="string" name="bank_card_phone_recharge_value" id="0x7f0801a0" />
-	<public type="string" name="bank_card_phone_text_moneny" id="0x7f0801a4" />
 	<public type="string" name="bank_card_phone_user_idnum" id="0x7f0801b6" />
 	<public type="string" name="bank_card_phone_user_name" id="0x7f0801b5" />
 	<public type="string" name="bank_card_phone_yuan" id="0x7f0801a1" />
@@ -2566,7 +2555,6 @@
 	<public type="string" name="dlt_zhuijia_text" id="0x7f080107" />
 	<public type="string" name="dltdayu10w" id="0x7f08011e" />
 	<public type="string" name="dltzhixuanjixuanzhushu" id="0x7f08011c" />
-	<public type="string" name="dnabankaddress" id="0x7f0801c0" />
 	<public type="string" name="duizhen" id="0x7f08032c" />
 	<public type="string" name="eleven" id="0x7f080375" />
 	<public type="string" name="enter" id="0x7f0800c9" />
@@ -2620,12 +2608,10 @@
 	<public type="string" name="fucaifenxi" id="0x7f0802d3" />
 	<public type="string" name="fushi" id="0x7f0800dd" />
 	<public type="string" name="game_card_hint" id="0x7f0801c9" />
-	<public type="string" name="game_card_number" id="0x7f0801c4" />
 	<public type="string" name="game_card_password" id="0x7f0801c5" />
 	<public type="string" name="game_card_recharge_value" id="0x7f0801c6" />
 	<public type="string" name="game_card_select_type" id="0x7f0801ca" />
 	<public type="string" name="game_card_total_value" id="0x7f0801c7" />
-	<public type="string" name="game_card_type" id="0x7f0801c3" />
 	<public type="string" name="game_card_yuan" id="0x7f0801c8" />
 	<public type="string" name="game_cards_recharge" id="0x7f080189" />
 	<public type="string" name="game_introduction" id="0x7f0802e2" />
@@ -2923,7 +2909,6 @@
 	<public type="string" name="phone_card_CValue" id="0x7f080191" />
 	<public type="string" name="phone_card_enter_CInfo" id="0x7f08018f" />
 	<public type="string" name="phone_card_please_entrCardInfo" id="0x7f08018e" />
-	<public type="string" name="phone_card_select_recharge_card_type" id="0x7f080192" />
 	<public type="string" name="phone_card_select_recharge_card_value" id="0x7f080193" />
 	<public type="string" name="phone_cards_recharge" id="0x7f080175" />
 	<public type="string" name="phone_kefu" id="0x7f08041e" />
@@ -3461,6 +3446,13 @@
 	<public type="id" name="lq_sfc_dialog_rangqiu2" id="0x7f07062d" />
 	<public type="id" name="lq_sfc_dialog_rangqiu3" id="0x7f07062e" />
 	<public type="id" name="bet_detail_text_play" id="0x7f07062f" />
+	<public type="id" name="jc_score_text_home_score" id="0x7f070630" />
+	<public type="id" name="jc_score_text_guest_score" id="0x7f070631" />
+	<public type="id" name="jc_score_mark" id="0x7f0700f0" />
+	<public type="id" name="account_recharge_user_number" id="0x7f0700cd" />
+	<public type="id" name="alipay_secure_ok_alipay_layout" id="0x7f0700cc" />
+	<public type="id" name="alipay_secure_ok_alipay" id="0x7f0700db" />
+	<public type="id" name="jc_score_list_text" id="0x7f070632" />
 	
 	
 	<public id="0x7f070630" name="alert_dialog_jc_lotnotype" type="id" />

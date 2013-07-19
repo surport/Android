@@ -235,6 +235,7 @@ public class ProtocolManager {
 	public static String BANKID = "bankId"; //add by yejc 20130527
 	public static String MOBILEID = "mobileid"; 
 	public static String CASHDETAILID = "cashdetailid";
+	public static String BEIDAN_COMMAND = "beiDan";
 
 	/**
 	 * new instance type

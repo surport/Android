@@ -4,12 +4,6 @@
     <string-array name="no_hint">
         <item>不再提示</item>
     </string-array>
-    <string-array name="recharge_card_type">
-        <item>请选择</item>
-        <item>移动充值卡</item>
-        <item>联通充值卡</item>
-        <item>电信充值卡</item>
-    </string-array>
     <string-array name="recharge_card_value">
         <item>请选择</item>
         <item>10元</item>
@@ -25,11 +19,6 @@
         <item>招商银行</item>
         <item>建设银行</item>
         <item>工商银行</item>
-    </string-array>
-    <string-array name="game_card_type">
-        <item>征途卡</item>
-        <item>盛大卡</item>
-        <item>骏网一卡通</item>
     </string-array>
     <string-array name="brank_type">
         <item>招商银行</item>

@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.jc.score.beijing.BeijingScoreActivity;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreListActivity.JcInfoAdapter;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreListActivity.ScoreInfo;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreListActivity.JcInfoAdapter.ViewHolder;
@@ -53,6 +54,7 @@ import android.widget.Toast;
 public class TrackActivity extends JcScoreListActivity {
 	TextView textInfo;
 	protected List<ScoreInfo> listInfoCopy;
+	public boolean isBeiDanTrack = false; //add by yejc 20130716
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,13 +63,13 @@ public class TrackActivity extends JcScoreListActivity {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 
 	}
 
 	public void initList() {
 		String events = shellRw.getStringValue(allcountries.get(index));
+		
 		String eventStrs[] = events.split(";");
 		listInfoCopy = new ArrayList<JcScoreListActivity.ScoreInfo>();
 		for (int j = 0; j < listInfo.size(); j++) {
@@ -163,10 +165,16 @@ public class TrackActivity extends JcScoreListActivity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
-					String re = ScoreListInterface.getScore(type, date,
-							reguestType);
+					String re = "";
+					if (isBeiDanTrack) { //add by yejc 20130716
+						re = ScoreListInterface.getBeiDanScore(type, reguestType, 
+								BeijingScoreActivity.lotno, allcountries.get(index));
+					} else {
+						re = ScoreListInterface.getScore(type, date,
+								reguestType);
+					}
+					
 					mProgress.dismiss();
 					final JSONObject obj = new JSONObject(re);
 					String error_code = obj.getString("error_code");
@@ -176,7 +184,6 @@ public class TrackActivity extends JcScoreListActivity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								listInfo = getScoreInfo(jsonArray);
 								initList();
 							}
@@ -185,7 +192,6 @@ public class TrackActivity extends JcScoreListActivity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}

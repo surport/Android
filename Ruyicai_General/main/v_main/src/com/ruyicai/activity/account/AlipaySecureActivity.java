@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.LinearGradient;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +63,14 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 		initTextViewContent();
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
 		accountTitleTextView.setText("支付宝充值");
-		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
+		PublicMethod.setTextViewContent(this);
+		/**add by yejc 20130718 start*/
+		Button button = (Button) findViewById(R.id.alipay_secure_ok);
+		button.setVisibility(View.GONE);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.alipay_secure_ok_alipay_layout);
+		layout.setVisibility(View.VISIBLE);
+		/**add by yejc 20130718 end*/
+		secureOk = (Button) findViewById(R.id.alipay_secure_ok_alipay);
 		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		secureOk.setText("wap支付");

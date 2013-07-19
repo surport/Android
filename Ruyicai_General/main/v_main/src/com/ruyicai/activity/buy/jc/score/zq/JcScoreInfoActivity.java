@@ -58,6 +58,8 @@ public class JcScoreInfoActivity extends Activity {
 	private LinearLayout layout;
 	private String type = "immediateScoreDetail";
 	ProgressDialog progressdialog;
+	
+	public boolean isBeiDanInfo = false; //add by yejc 20130716
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -121,7 +123,6 @@ public class JcScoreInfoActivity extends Activity {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
@@ -182,7 +183,6 @@ public class JcScoreInfoActivity extends Activity {
 					textRight.setText(json.getString("playerName"));
 				}
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			layout.addView(viewItem);
@@ -241,7 +241,6 @@ public class JcScoreInfoActivity extends Activity {
 			hBall.setText(json.getString("homeScore"));
 			vBall.setText(json.getString("guestScore"));
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -271,7 +270,11 @@ public class JcScoreInfoActivity extends Activity {
 
 			@Override
 			public void run() {
-				str = ScoreInfoInterface.getScore(event, type);
+				if (isBeiDanInfo) {
+					str = ScoreInfoInterface.getBeiDanScore(event, type);
+				} else {
+					str = ScoreInfoInterface.getScore(event, type);
+				}
 				progressdialog.dismiss();
 				try {
 					final JSONObject obj = new JSONObject(str);
@@ -289,7 +292,6 @@ public class JcScoreInfoActivity extends Activity {
 					} else {
 						handler.post(new Runnable() {
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
 							}

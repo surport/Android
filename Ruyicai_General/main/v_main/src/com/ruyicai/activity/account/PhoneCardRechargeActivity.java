@@ -2,7 +2,6 @@ package com.ruyicai.activity.account;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -15,9 +14,7 @@ import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -48,7 +45,6 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		this.setContentView(R.layout.account_phone_cards_recharge_dialog);
@@ -61,54 +57,21 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 			PublicMethod.outLog(this.getClass().getName(), "onCreate");
 		}
 		/**add by yejc 20130419 end*/
+		
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 
 	}
 
 	String[] values = { "10", "20", "30", "50", "100", "200", "300", "500" };
 	private String phoneCardType = "0206";
 	private String phoneCardValue = "100";
-	private String gameCardType = "0204";
-	// 移动充值卡
-	private final String YIDONG = "0203";
-	// 联通充值卡
-	private final String LIANTONG = "0206";
-	// 电信充值卡
-	private final String DIANXIN = "0221";
 
 	// 电话卡充值弹出框
 	protected void createPhoneRechargeCardDialog() {
 		RECHARGTYPE = "02";
-		TextView contentText = (TextView) findViewById(R.id.contentText);
+		TextView contentText = (TextView) findViewById(R.id.alipay_content);
 		contentText.setTextColor(Color.RED);
 		contentText.setText(initTextViewContent());
-		/**close by yejc 20130419 start*/
-//		final Spinner phone_card_spinner = (Spinner) findViewById(R.id.phone_card_spinner);
-//		phone_card_spinner
-//				.setOnItemSelectedListener(new OnItemSelectedListener() {
-//					@Override
-//					public void onItemSelected(AdapterView<?> arg0, View arg1,
-//							int arg2, long arg3) {
-//
-//						// 点击下拉框。。。
-//						int position = phone_card_spinner
-//								.getSelectedItemPosition();
-//						if (position == 0) {
-//							phoneCardType = null;
-//						} else if (position == 1) {
-//							phoneCardType = YIDONG;
-//						} else if (position == 2) {
-//							phoneCardType = LIANTONG;
-//						} else if (position == 3) {
-//							phoneCardType = DIANXIN;
-//						}
-//					}
-//
-//					@Override
-//					public void onNothingSelected(AdapterView<?> arg0) {
-//						// 没有任何的触发事件时
-//					}
-//				});
-		/**close by yejc 20130419 end*/
 
 		final Spinner phone_card_value_spinner = (Spinner) findViewById(R.id.phone_card_value_spinner);
 		phone_card_value_spinner
@@ -132,11 +95,9 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 						// 没有任何的触发事件时
 					}
 				});
-		final Button ok = (Button) findViewById(R.id.ok);
-		final Button canel = (Button) findViewById(R.id.canel);
+		final Button ok = (Button) findViewById(R.id.alipay_secure_ok);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				RWSharedPreferences pre = new RWSharedPreferences(
 						PhoneCardRechargeActivity.this, "addInfo");
 				String sessionIdStr = pre
@@ -159,18 +120,6 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 
 			}
 		});
-		canel.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				PhoneCardRechargeActivity.this.finish();
-				// RechargeType.dismiss();
-			}
-		});
-		// RechargeType = new Dialog(this,R.style.dialog);
-		// RechargeType.setContentView(phone_card_recharg_view);
-		// return RechargeType;
 	}
 
 	private String initTextViewContent() {
@@ -252,7 +201,6 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 			@Override
 			public void run() {
 				String error_code = "00";
-				// TODO Auto-generated method stub
 				try {
 					rechargepojo.setSessionid(sessionId);
 					rechargepojo.setUserno(userno);
@@ -272,7 +220,6 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		Toast.makeText(PhoneCardRechargeActivity.this, message,
 				Toast.LENGTH_SHORT).show();
 		PhoneCardRechargeActivity.this.finish();
@@ -280,13 +227,10 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 

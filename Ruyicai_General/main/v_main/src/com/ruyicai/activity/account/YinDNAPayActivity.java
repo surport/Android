@@ -12,6 +12,7 @@ import com.ruyicai.net.newtransaction.QueryDNAInterface;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
@@ -67,17 +68,14 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -186,14 +184,12 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);// 手机号
 		bank_card_phone_phone_num.setText(bindPhone);
 		bank_card_phone_bankid.setEnabled(false);
-		TextView textContent = (TextView) findViewById(R.id.textContent);
+		TextView textContent = (TextView) findViewById(R.id.alipay_content);
 		textContent.setTextColor(Color.RED);
 		initTextViewContent(textContent);
-		final Button ok = (Button) findViewById(R.id.ok);
-		final Button canel = (Button) findViewById(R.id.canel);
+		final Button ok = (Button) findViewById(R.id.alipay_secure_ok);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				RWSharedPreferences pre = new RWSharedPreferences(
 						YinDNAPayActivity.this, "addInfo");
 				String sessionIdStr = pre
@@ -206,12 +202,6 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 					// 银行卡语音充值网络连接
 					beiginBankCardPhoneOnline();
 				}
-			}
-		});
-		canel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				YinDNAPayActivity.this.finish();
 			}
 		});
 	}
@@ -297,7 +287,6 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 			public void run() {
 				String error_code = "00";
 				message = "";
-				// TODO Auto-generated method stub
 				try {
 					rechargepojo.setSessionid(sessionId);
 					rechargepojo.setUserno(userno);
@@ -310,7 +299,6 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(YinDNAPayActivity.this, message,
 										Toast.LENGTH_SHORT).show();
 							}
@@ -347,7 +335,6 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 						}
 					});
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -362,8 +349,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		RWSharedPreferences pre = new RWSharedPreferences(
 				YinDNAPayActivity.this, "addInfo");
 		this.setContentView(R.layout.account_bank_card_phone_dialog);
-		// final View bank_card_phone_view =
-		// factory.inflate(R.layout.account_bank_card_phone_dialog, null);
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 		String phonenum = pre.getStringValue(ShellRWConstants.MOBILEID);
 		bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);// 手机号
 		bank_card_phone_name = (EditText) findViewById(R.id.bank_card_phone_phone_name);// 姓名
@@ -373,7 +359,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		EditText bank_card_phone_idcard = (EditText) findViewById(R.id.bank_card_phone_phone_idcard);// 身份证号
 		EditText bank_card_phone_home = (EditText) findViewById(R.id.bank_card_phone_phone_home);// 户籍所在地
 		EditText bank_card_phone_province = (EditText) findViewById(R.id.bank_card_phone_phone_province);// 所在省
-		TextView YinDNAtext_content = (TextView) findViewById(R.id.YinDNAtext_content);
+		TextView YinDNAtext_content = (TextView) findViewById(R.id.alipay_content);
 		YinDNAtext_content.setTextColor(Color.RED);
 		initTextViewContent(YinDNAtext_content);
 		final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
@@ -400,8 +386,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		bank_card_phone_idcard.setText(certid);
 		bank_card_phone_home.setText(certAddress);
 		bank_card_phone_province.setText(bankAddress);
-		final Button ok = (Button) findViewById(R.id.ok);
-		final Button canel = (Button) findViewById(R.id.canel);
+		final Button ok = (Button) findViewById(R.id.alipay_secure_ok);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				RWSharedPreferences pre = new RWSharedPreferences(
@@ -415,11 +400,6 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 				} else {
 					beiginBankCardPhoneNo(bankName);
 				}
-			}
-		});
-		canel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				YinDNAPayActivity.this.finish();
 			}
 		});
 	}

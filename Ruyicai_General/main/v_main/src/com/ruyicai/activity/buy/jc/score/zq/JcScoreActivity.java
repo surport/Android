@@ -10,8 +10,12 @@ import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.util.PublicMethod;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -46,14 +50,17 @@ public class JcScoreActivity extends BuyActivityGroup {
 		relativeLayout = (RelativeLayout) findViewById(R.id.main_buy_relat_issue);
 		title = (TextView) findViewById(R.id.layout_main_text_title);
 		imgIcon = (Button) findViewById(R.id.layout_main_img_return);
-		imgIcon.setBackgroundResource(R.drawable.returnselecter);
-		imgIcon.setText("返回");
-		imgIcon.setWidth(PublicMethod.getPxInt(70, context));
+		imgIcon.setBackgroundResource(R.drawable.refresh_last_code);
+//		imgIcon.setBackgroundResource(R.drawable.returnselecter);
+//		imgIcon.setText("返回");
+//		imgIcon.setWidth(PublicMethod.getPxInt(70, context));
 		imgIcon.setVisibility(View.VISIBLE);
 		// ImageView的返回事件
 		imgIcon.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				finish();
+				Intent intent = new Intent(JcScoreListActivity.BROADCAST_ACTION);
+				sendBroadcast(intent);
+//				finish();
 			}
 		});
 	}

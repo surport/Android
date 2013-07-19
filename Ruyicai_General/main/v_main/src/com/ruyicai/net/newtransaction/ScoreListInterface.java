@@ -43,4 +43,29 @@ public class ScoreListInterface {
 
 		return re;
 	}
+	
+	/**
+	 * 获取北单即时比分
+	 */
+	public static String getBeiDanScore(String type, String reguestType, 
+			String lotno, String batchCode) {
+		String re = "";
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, ProtocolManager.BEIDAN_COMMAND);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, reguestType);
+			jsonProtocol.put(ProtocolManager.TYPE, type);
+//			jsonProtocol.put(ProtocolManager.DATE, date);
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put(ProtocolManager.BATCHCODE, batchCode);
+			re = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return re;
+	}
 }

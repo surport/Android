@@ -10,6 +10,7 @@ import com.ruyicai.dialog.UpdateDialog;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 import android.app.Activity;
@@ -38,7 +39,7 @@ public class LakalaActivity extends Activity {
 	public ProgressDialog progressdialog;
 	private final String YINTYPE = "0910";
 	private final String TYPE = "10";
-	Button secureOk, secureCancel;
+	Button secureOk;
 	EditText accountnum;
 	private ProgressDialog mProgress = null;
 	private boolean isOnClick = true;
@@ -63,7 +64,6 @@ public class LakalaActivity extends Activity {
 		accountTitleTextView.setText(getString(R.string.la_ka_la_recharge));
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
-		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -71,11 +71,7 @@ public class LakalaActivity extends Activity {
 				beginYinpayRecharge(v);
 			}
 		});
-		secureCancel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				LakalaActivity.this.finish();
-			}
-		});
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void initTextViewContent() {
@@ -92,7 +88,6 @@ public class LakalaActivity extends Activity {
 						}
 					});
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -123,42 +118,6 @@ public class LakalaActivity extends Activity {
 			Toast.makeText(this, R.string.transactionErr, Toast.LENGTH_LONG)
 					.show();
 		}
-	}
-
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	@Override
-	protected void onRestart() {
-		// TODO Auto-generated method stub
-		super.onRestart();
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 
 	// 银联充值
@@ -204,7 +163,6 @@ public class LakalaActivity extends Activity {
 			@Override
 			public void run() {
 				String error_code = "00";
-				// TODO Auto-generated method stub
 				try {
 					String re = RechargeInterface.getInstance().recharge(
 							rechargepojo);
@@ -242,7 +200,6 @@ public class LakalaActivity extends Activity {
 			String order = obj.getString("orderId");
 			String amount = obj.getString("amount");
 			String time = obj.getString("chargeTime");
-			// String merPswd = obj.getString("");
 			String macType = obj.getString("macType");
 			String desc = obj.getString("desc");
 			String randnum = obj.getString("randNum");
@@ -253,7 +210,6 @@ public class LakalaActivity extends Activity {
 			turnYinView(ver, merId, minCode, order, amount, time, macType,
 					desc, randnum, productName, randNum, mac, url);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -316,12 +272,10 @@ public class LakalaActivity extends Activity {
 		public HomeUpdate(Activity activity, Handler handler, String url,
 				String message, String title) {
 			super(activity, handler, url, message, title);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public void onCancelButton() {
-			// TODO Auto-generated method stub
 			dialogCancel();
 		}
 

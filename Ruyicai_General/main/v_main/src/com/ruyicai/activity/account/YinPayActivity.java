@@ -12,6 +12,7 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 import com.unionpay.upomp.lthj.util.PluginHelper;
@@ -41,12 +42,9 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 	private String xml = "";
 	public ProgressDialog progressdialog;
 	private final String YINTYPE = "0900";
-	Button secureOk, secureCancel;
+	Button secureOk;
 	EditText accountnum;
-//	private ProgressDialog mProgress = null;
-//	private boolean isOnClick = true;
 	private TextView alipay_content = null;
-//	private boolean isWebView = false;// 浏览器打开支付宝
 	private String sessionId = "";
 	private String phonenum = "";
 	private String userno = "";
@@ -65,7 +63,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 		accountTitleTextView.setText("银联卡充值");
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
-		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -74,11 +71,7 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 				beginYinpayRecharge(v);
 			}
 		});
-		secureCancel.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				YinPayActivity.this.finish();
-			}
-		});
+		PublicMethod.setTextViewContent(this); //add by yejc 20130718
 	}
 
 	private void initTextViewContent() {
