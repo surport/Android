@@ -23,15 +23,15 @@ public class Constants {
 
 	/*Add by fansm 20130412 start*/
 	/*debug mode*/
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
     public static String TAG = "RUYICAI";
     /*Add by fansm 20130412 end*/
 
-//	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
-	public static final String SERVER_URL = "http://192.168.0.42:80/jrtLot/";
+	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
+//	public static final String SERVER_URL = "http://192.168.0.42:80/jrtLot/";
 
-//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-	public static String LOT_SERVER = "http://192.168.0.42:80/lotserver/RuyicaiServlet";//测试线
+	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+//	public static String LOT_SERVER = "http://192.168.0.42:80/lotserver/RuyicaiServlet";//测试线
 
 	/**
 	 * 彩种设置
@@ -323,7 +323,7 @@ public class Constants {
 	 */
 	public final static String UMPAY_SERVER_URL = "http://payment.umpay.com/hfwebbusi/pay/wxVersionUpdate.do";
 	// 话付宝安全支付服务apk的名称，必须与assets目录下的apk名称一致
-	public static final String PAY_PLUGIN_NAME = "huafubaopsV1.1.5_0002.apk";
+	public static final String PAY_PLUGIN_NAME = "huafubaopsV1.2.0_0002.apk";
 	
 	public static final String ALIPAY_PACK_NAME = "com.alipay.android.app";
 	public static final String UMPAY_PHONE_PACK_NAME = "com.umpay.huafubao";
