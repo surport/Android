@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/bet_query_jc_info_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                style="@style/style_jc_layoutt_little"
+                android:layout_width="2dp"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bet_query_text_num"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                style="@style/style_jc_layoutt_little"
+                android:layout_width="2dip"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bet_query_text_team"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                style="@style/style_jc_layoutt_little"
+                android:layout_width="2dip"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="55dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dip"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    android:id="@+id/bet_query_text_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/bet_query_text_over"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/style_jc_layoutt_little"
+                android:layout_width="2dip"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bet_query_text_check"
+                android:layout_width="75dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black"
+                 />
+
+            <LinearLayout
+                style="@style/style_jc_layoutt_little"
+                android:layout_width="2dip"
+                android:layout_height="match_parent"
+                android:gravity="right" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/style_jc_layoutt_little"
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:layout_below="@+id/bet_query_jc_info_layout" >
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

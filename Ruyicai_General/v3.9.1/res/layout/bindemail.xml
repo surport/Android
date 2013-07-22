@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 邮箱绑定页面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <!-- 标题 -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <TextView
+            style="@style/UserTitleText"
+            android:text="@string/usercenter_bindemail" />
+    </LinearLayout>
+
+    <!-- 邮箱输入提示语 -->
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="请输入你要绑定的邮箱地址："
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <!-- 邮箱输入文本框 -->
+
+    <EditText
+        android:id="@+id/usercenter_bindemail_edittext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/buy_bot_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dip" >
+
+        <!-- 提交按钮 -->
+
+        <Button
+            android:id="@+id/usercenter_bindemail_ok"
+            style="@style/UserBottomButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/umpay_recharge_bingphone_submit" />
+        <!-- 返回按钮 -->
+
+        <Button
+            android:id="@+id/usercenter_bindemail_back"
+            style="@style/UserBottomButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/return_button" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 合买大厅 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/join_detail_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:text="赠送方案详情"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+        <Button
+            android:id="@+id/join_detail_img_return"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+            android:visibility="invisible" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingBottom="80dip" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LinearLayout01"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" >                           
+                <LinearLayout
+                    android:id="@+id/fanganxiangqing"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/gift_detail_text_lotno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="彩种："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                     <TextView
+                        android:id="@+id/gift_detail_text_batchcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="期号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                      <TextView
+                        android:id="@+id/gift_detail_text_dingdan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="订单号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/gift_detail_text_beishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="倍数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                   <TextView
+                        android:id="@+id/gift_detail_text_zhushu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="注数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/gift_detail_text_atm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/gift_detail_text_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="出票状态："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                    <TextView
+                        android:id="@+id/gift_detail_text_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="受赠人："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/gift_detail_tex_gifttime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:paddingBottom="10dip"
+                        android:text="购买时间："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                  <LinearLayout     android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:background="@drawable/litt"></LinearLayout>
+                    <TextView
+                        android:id="@+id/gift_detail_text_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案内容："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/gift_detail_text_kaijianghao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="开奖号码："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" />
+
+                             </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout0000"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/LinearLayout0111"
+            android:paddingBottom="50dip"
+            android:paddingLeft="10dip" >
+
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout0111"
+            android:layout_width="fill_parent"
+            android:layout_height="70dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/join_detail_bottom_bg"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/gift_detail_img_cannle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"
+                android:text="返回"
+             >
+            </Button>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

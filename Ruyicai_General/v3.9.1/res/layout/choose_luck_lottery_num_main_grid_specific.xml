@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="50dip"
+  android:layout_height="wrap_content">
+    		   	
+		<!-- 周黎鸣 7.7 代码修改：-->
+	<LinearLayout android:orientation="horizontal"
+                      android:id="@+id/choose_luck_num_gridview_layout_button_group"
+                      android:layout_marginLeft="13dip"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content">
+	</LinearLayout>
+	
+</RelativeLayout>

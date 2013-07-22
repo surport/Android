@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 合买大厅 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@id/join_detail_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:text="合买详情"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+        <Button
+            android:id="@id/join_detail_img_return"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+            android:visibility="invisible" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/grey"
+            android:paddingBottom="80dip" >
+
+            <LinearLayout
+                android:id="@id/LinearLayout02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/LinearLayout01"
+                android:orientation="vertical"
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip" >
+
+                <Button
+                    android:id="@id/faqi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="发起人信息"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@id/faqixinxi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/usercenter_detail_bg"
+                    android:orientation="vertical"
+                    android:padding="5dip" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip" >
+
+                        <TextView
+                            android:id="@id/join_detail_text_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="发起人："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <Button
+                            android:id="@id/join_chedan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dip"
+                            android:background="@drawable/quxiao_normal"
+                            android:text="撤单"
+                            android:textColor="@color/white"
+                            android:textSize="15dip"
+                            android:visibility="gone" >
+                        </Button>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dip"
+                        android:paddingTop="10dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="战绩："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <LinearLayout
+                            android:id="@id/join_detail_linear_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@id/fangan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="方案详情"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@id/fanganxiangqing"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/usercenter_detail_bg"
+                    android:orientation="vertical"
+                    android:padding="5dip" >
+
+                    <TextView
+                        android:id="@id/join_detail_text_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案编号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_lotno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="彩种："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="认购截止时间："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_beishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="倍数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_batchcode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="期号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="方案金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@id/join_detail_text_atm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@id/join_detail_text_zuidirengou"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="最低认购："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_tex_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案进度："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="认购金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@id/join_detail_text_rengou_atm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="保底金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@id/join_detail_text_baodi_atm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@id/join_detail_text_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案状态："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_jinezhong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="中奖金额："
+                        android:textColor="@color/black"
+                        android:textSize="13dip"
+                        android:visibility="gone" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_faqirengou"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="发起人认购："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" />
+
+                    <TextView
+                        android:id="@id/join_detail_text_get"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="发起人提成："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="剩余金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@id/join_detail_text_shengyu_atm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@id/join_detail_text_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="参与人数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@id/join_detail_text_describe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案描述："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                </LinearLayout>
+
+                <Button
+                    android:id="@id/leirong"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="方案内容"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@id/fanganleirong"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/usercenter_detail_bg"
+                    android:orientation="vertical"
+                    android:padding="5dip" >
+
+                    <LinearLayout
+                        android:id="@id/join_detail_layout_context"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@id/join_detail_text_context"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@id/join_detail_text_wincode"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="开奖号码："
+                            android:textColor="@color/black"
+                            android:textSize="13dip"
+                            android:visibility="invisible" >
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@id/rengou"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="认购设置"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@id/rengoushezhi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/usercenter_detail_bg"
+                    android:orientation="vertical"
+                    android:padding="5dip"
+                    android:visibility="gone" >
+
+                    <LinearLayout
+                        android:id="@id/LinearLayout03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@id/LinearLayout03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="我要认购："
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+
+                            <EditText
+                                android:id="@id/join_detail_edit_rengou"
+                                android:layout_width="80sp"
+                                android:layout_height="40sp"
+                                android:numeric="integer"
+                                android:text="1" >
+                            </EditText>
+
+                            <TextView
+                                android:id="@id/TextView01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+
+                            <TextView
+                                android:id="@id/join_detail_text_rengou_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="20dip"
+                                android:text="我要保底："
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@id/LinearLayout03"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal" >
+
+                            <TextView
+                                android:id="@id/join_detail_text_rengou_sheng"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+
+                            <TextView
+                                android:id="@id/join_detail_text_rengou_min"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="10sp"
+                                android:text=""
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@id/LinearLayout03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@id/LinearLayout03"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip" >
+
+                            <TextView
+                                android:id="@id/TextView01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="我要保底："
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+
+                            <EditText
+                                android:id="@id/join_detail_edit_baodi"
+                                android:layout_width="80sp"
+                                android:layout_height="40sp"
+                                android:numeric="integer"
+                                android:text="0" >
+                            </EditText>
+
+                            <TextView
+                                android:id="@id/TextView01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="元"
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+
+                            <TextView
+                                android:id="@id/join_detail_text_baodi_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="20dip"
+                                android:text="我要保底："
+                                android:textColor="@color/black"
+                                android:textSize="13dip" >
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@id/join_detail_text_baodi_sheng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="我要保底："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                </LinearLayout>
+
+                <Button
+                    android:id="@id/canyu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="参与人员"
+                    android:textSize="18sp" />
+
+                <ListView
+                    android:id="@id/canyurenyuan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fadingEdge="none"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:visibility="gone" >
+                </ListView>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="30dip"
+                    android:background="#00000000"
+                    android:paddingTop="10dip"
+                    android:src="@drawable/join_detail_cancel_selector"
+                    android:visibility="gone" >
+                </ImageButton>
+
+                <CheckBox
+                    android:id="@id/jion_info_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dip"
+                    android:text=""
+                    android:visibility="gone" >
+                </CheckBox>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@id/LinearLayout0000"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/LinearLayout0111"
+            android:paddingBottom="50dip"
+            android:paddingLeft="10dip" >
+
+            <LinearLayout
+                android:id="@id/LinearLayout10"
+                android:layout_width="320dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="265dip"
+                android:background="@drawable/fenxiangbg"
+                android:orientation="horizontal"
+                android:visibility="gone" >
+
+                <ImageButton
+                    android:id="@id/join_detail_img_buy2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="60dip"
+                    android:background="#00000000"
+                    android:src="@drawable/renrenfenxiang" >
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@id/join_detail_img_buy3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="#00000000"
+                    android:src="@drawable/xinlangfenxiang" >
+                </ImageButton>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70sp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buy_bot_bg" >
+
+            <Button
+                android:id="@id/button_cancel"
+                android:layout_width="120dip"
+                android:layout_height="40sp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18sp"
+                android:background="@drawable/loginselecter"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="20sp" >
+            </Button>
+
+            <Button
+                android:id="@id/button_ok"
+                android:layout_width="120dip"
+                android:layout_height="40sp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18sp"
+                android:background="@drawable/loginselecter"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                android:textSize="20sp" >
+            </Button>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

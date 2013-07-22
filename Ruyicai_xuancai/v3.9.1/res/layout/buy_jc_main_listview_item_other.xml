@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="75dip"
+    android:orientation="vertical" >
+    
+    <LinearLayout android:layout_width="match_parent"
+    android:layout_height="75dip"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="14"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/game_name"
+            android:layout_width="match_parent"
+            android:layout_height="33dip"
+            android:background="@drawable/game_name_bj"
+            android:gravity="center"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/game_date"
+            android:layout_width="match_parent"
+            android:layout_height="42dip"
+            android:background="@color/jczq_listview_item_bg"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="@color/jc_odds_text_color"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dip"
+        android:layout_height="match_parent"
+        android:background="@color/zc_sfc_divider" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <LinearLayout android:id="@+id/home_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/team_name_bj"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home_team_name"
+                android:layout_width="match_parent"
+                android:layout_height="38dip"
+                android:background="@drawable/team_name_bj_top"
+                android:gravity="center"
+                android:layout_marginLeft="3dip"
+                android:layout_marginTop="3dip"
+                android:layout_marginRight="3dip"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/home_team_odds"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/jc_odds_text_color"/>
+        </LinearLayout>
+        
+        <View android:id="@+id/divider_01"
+            android:layout_width="5dip"
+            android:layout_height="5dip"/>
+
+        <LinearLayout android:id="@+id/vs_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@drawable/team_name_bj"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/game_vs"
+                android:layout_width="match_parent"
+                android:layout_height="38dip"
+                android:background="@drawable/team_name_bj_top"
+                android:gravity="center"
+                android:text="VS"
+                android:layout_marginLeft="3dip"
+                android:layout_marginTop="3dip"
+                android:layout_marginRight="3dip"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/game_vs_odds"
+                android:layout_width="match_parent"
+                android:layout_height="24dip"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/jc_odds_text_color"/>
+        </LinearLayout>
+        
+        <View android:id="@+id/divider_02"
+            android:layout_width="5dip"
+            android:layout_height="5dip"/>
+
+        <LinearLayout android:id="@+id/guest_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/team_name_bj"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/guest_team_name"
+                android:layout_width="match_parent"
+                android:layout_height="38dip"
+                android:background="@drawable/team_name_bj_top"
+                android:gravity="center"
+                android:layout_marginLeft="3dip"
+                android:layout_marginTop="3dip"
+                android:layout_marginRight="3dip"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/guest_team_odds"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/jc_odds_text_color"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dip"
+        android:layout_height="match_parent"
+        android:background="@color/zc_sfc_divider" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_weight="15"
+        android:gravity="right"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/game_analysis"
+            android:layout_width="match_parent"
+            android:layout_height="35dip"
+            android:background="@drawable/team_name_bj"
+            android:gravity="center"
+            android:text="析"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:paddingBottom="8dip"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:paddingTop="8dip" >
+            
+            <Button android:id="@+id/game_dan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/jc_btn"
+                android:gravity="center"
+                android:text="胆"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+    
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/zc_sfc_divider" />
+
+</LinearLayout>
