@@ -35,10 +35,10 @@ public class LuckChoose2View extends SurfaceView implements
 	/**
 	 * 转盘选中项名字
 	 */
-	public String[][] zhuanpanNeirong = { { "金牛", "鼠" }, { "摩羯", "牛" },
+	public String[][] zhuanpanNeirong = { { "金牛", "鼠" }, 
 			{ "双鱼", "虎" }, { "天秤", "兔" }, { "狮子", "龙" }, { "天蝎", "蛇" },
 			{ "处女", "马" }, { "双子", "羊" }, { "射手", "猴" }, { "水瓶", "鸡" },
-			{ "巨蟹", "狗" }, { "白羊", "猪" }, };
+			{ "巨蟹", "狗" },{ "摩羯", "牛" }, { "白羊", "猪" }, };
 
 	/**
 	 * 当前幸运状态
