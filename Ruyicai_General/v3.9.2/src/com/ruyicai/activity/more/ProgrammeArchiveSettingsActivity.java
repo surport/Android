@@ -4,7 +4,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.BindEmailActivity;
+import com.ruyicai.activity.usercenter.FeedbackListActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.controller.Controller;
@@ -39,12 +41,18 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 		context = this;
 		controller = Controller.getInstance(context);
 		shellRW = new RWSharedPreferences(this, "addInfo");
-		userNo = shellRW.getStringValue(ShellRWConstants.USERNO);
-		String Lotno = Constants.LOTNO_SSQ/*+","+Constants.LOTNO_DLT*/;
-		controller.queryOrderEmail(handler, Lotno, userNo);
 		initView();
 	}
 	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		userNo = shellRW.getStringValue(ShellRWConstants.USERNO);
+		if (userNo != null && "!".equals(userNo)) {
+			controller.queryOrderEmail(handler, Constants.LOTNO_SSQ, userNo);
+		}
+	}
+
 	private void initView() {
 		ssqProgrammeSettingsIV = (ImageView)findViewById(R.id.more_settings_progamme_ssq_on_off);
 //		dltProgrammeSettingsIV = (ImageView)findViewById(R.id.more_settings_progamme_dlt_on_off);
@@ -69,16 +77,22 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.more_settings_progamme_ssq_on_off:
-				if (shellRW.getBooleanValue(Constants.isSSQON)) {
-					controller.setOrderEmail(handler, Constants.LOTNO_SSQ, "0", userNo);
+				String sessionIdStr = shellRW.getStringValue(ShellRWConstants.SESSIONID);
+				if (sessionIdStr == null || sessionIdStr.equals("")) {
+					Intent intentSession = new Intent(context, UserLogin.class);
+					startActivity(intentSession);
 				} else {
-					String email = shellRW.getStringValue("email");
-					if (email == null || "".equals(email)) {
-						Intent intent = new Intent(context,
-								BindEmailActivity.class);
-						startActivity(intent);
+					if (shellRW.getBooleanValue(Constants.isSSQON)) {
+						controller.setOrderEmail(handler, Constants.LOTNO_SSQ, "0", userNo);
 					} else {
-						controller.setOrderEmail(handler, Constants.LOTNO_SSQ, "1", userNo);
+						String email = shellRW.getStringValue("email");
+						if (email == null || "".equals(email)) {
+							Intent intent = new Intent(context,
+									BindEmailActivity.class);
+							startActivity(intent);
+						} else {
+							controller.setOrderEmail(handler, Constants.LOTNO_SSQ, "1", userNo);
+						}
 					}
 				}
 				
