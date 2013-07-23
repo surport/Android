@@ -8,11 +8,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -62,7 +65,7 @@ public class TouzhuDialog {
 	private ImageView upDownImageView;
 	private RelativeLayout schemeRelativeLayout;
 	private LinearLayout schemeDetailLinearLayout;
-
+	private EditText mutilEditText; 
 	/** add by pengcx 20130703 end */
 
 	public TouzhuDialog(JcMainActivity context, JcMainView jcMainView) {
@@ -97,6 +100,33 @@ public class TouzhuDialog {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.alert_dialog_jc_touzhu, null);
 		dialog = new Dialog(context, R.style.MyDialog);
+		mutilEditText = (EditText) v.findViewById(R.id.buy_zixuan_text_beishu);
+		/**add by pengcx 20130722 start*/
+		mutilEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s.length() > 1 && s.charAt(0) == '0') {
+					Integer integer = Integer.valueOf(s.toString());
+					mutilEditText.setText(integer.toString());
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		/**add by pengcx 20130722 end*/
 		/** add by pengcx 20130703 start */
 		lotoTypeTextView = (TextView) v
 				.findViewById(R.id.alert_dialog_jc_lotnotype);

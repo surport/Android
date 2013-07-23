@@ -126,6 +126,32 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				.setOnSeekBarChangeListener(new BeiJingSingleGameIndentOnSeekBarChangeListener());
 		mutipleSeekBar.setProgress(1);
 		mutipleEditText = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
+		/**add by pengcx 20130722 start*/
+		mutipleEditText.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s.length() > 1 && s.charAt(0) == '0') {
+					Integer integer = Integer.valueOf(s.toString());
+					mutipleEditText.setText(integer.toString());
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		/**add by pengcx 20130722 end*/
 		mutipleEditText.setText(String.valueOf(mutipleSeekBar.getProgress()));
 		mutipleEditText.addTextChangedListener(new TextWatcher() {
 
