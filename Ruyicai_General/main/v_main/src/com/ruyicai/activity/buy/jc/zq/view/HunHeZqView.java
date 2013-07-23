@@ -153,7 +153,13 @@ public class HunHeZqView extends JcMainView {
 				codeStr += (info.getHome() + " vs " + info.getAway() + "\n混合投注:");
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
-						codeStr += info.check[j].getChcekTitle() + " ";
+						int position = info.check[j].getPosition(); //add by yejc 20130722 start
+						if (position == 0 || position == 1 || position == 2) {
+							codeStr += "让"+info.check[j].getChcekTitle() + " ";
+						} else { //add by yejc 20130722 end
+							codeStr += info.check[j].getChcekTitle() + " ";
+						}
+						
 					}
 				}
 				if (info.isDan()) {

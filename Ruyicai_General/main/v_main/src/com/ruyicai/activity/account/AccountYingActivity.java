@@ -15,11 +15,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,7 +58,8 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 	Button secureOk;
 	EditText accountnum;
 	public ProgressDialog progressdialog;
-	private TextView textView;
+//	private TextView textView;
+	private WebView alipay_content = null;
 	private ProgressDialog mProgress = null;
 	private boolean isOnClick = true;
 	private boolean isAlipay = false;// true跳转到支付宝安全支付
@@ -69,8 +72,7 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_dialog);
-		textView = (TextView) findViewById(R.id.alipay_content);
-		textView.setTextColor(Color.RED);
+		alipay_content = (WebView) findViewById(R.id.alipay_content);
 		initView();
 		getAccountNet();
 		initTextViewContent();
@@ -87,7 +89,8 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-							textView.setText(conten);
+//							textView.setText(Html.fromHtml(conten));
+							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
 						}
 					});
 				} catch (JSONException e) {
@@ -100,7 +103,7 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 
 	private static JSONObject getJSONByLotno() {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("bankChargeDescription");
+				.rechargeDescribe("bankChargeDescriptionHtml");
 		return jsonObjectByLotno;
 	}
 

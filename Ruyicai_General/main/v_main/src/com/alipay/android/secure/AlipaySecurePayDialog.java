@@ -8,11 +8,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,7 +42,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	EditText accountnum;
 	private ProgressDialog mProgress = null;
 	private boolean isOnClick = true;
-	private TextView alipay_content = null;
+//	private TextView alipay_content = null;
+	private WebView alipay_content = null;
 	private TextView accountTitleTextView = null;
 
 	@Override
@@ -61,7 +64,7 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	}
 
 	private void initTextViewContent() {
-		alipay_content = (TextView) findViewById(R.id.alipay_content);
+		alipay_content = (WebView) findViewById(R.id.alipay_content);
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 			@Override
@@ -71,7 +74,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-							alipay_content.setText(conten);
+//							alipay_content.setText(Html.fromHtml(conten));
+							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
 						}
 					});
 				} catch (JSONException e) {
@@ -84,7 +88,7 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 
 	private static JSONObject getJSONByLotno() {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("zfbSecurityChargeDescription");
+				.rechargeDescribe("zfbSecurityChargeDescriptionHtml");
 		return jsonObjectByLotno;
 	}
 

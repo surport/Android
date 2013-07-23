@@ -11,9 +11,11 @@ import android.graphics.LinearGradient;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,7 +46,8 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 	EditText accountnum;
 	private ProgressDialog mProgress = null;
 	private boolean isOnClick = true;
-	private TextView alipay_content = null;
+//	private TextView alipay_content = null;
+	private WebView alipay_content = null;
 	private boolean isWebView = false;// 浏览器打开支付宝
 	private String sessionId = "";
 	private String phonenum = "";
@@ -92,7 +95,7 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 
 	private void initTextViewContent() {
 		progressdialog = UserCenterDialog.onCreateDialog(this);
-		alipay_content = (TextView) findViewById(R.id.alipay_content);
+		alipay_content = (WebView) findViewById(R.id.alipay_content);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -101,11 +104,11 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-							alipay_content.setText(conten);
+//							alipay_content.setText(Html.fromHtml(conten));
+							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
 						}
 					});
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -115,45 +118,10 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 
 	private static JSONObject getJSONByLotno() {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("zfbChargeDescription");
+				.rechargeDescribe("zfbChargeDescriptionHtml");
 		return jsonObjectByLotno;
 	}
 
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-
-	@Override
-	protected void onRestart() {
-		// TODO Auto-generated method stub
-		super.onRestart();
-	}
-
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-	}
-
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
-	@Override
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-	}
 
 	// 支付宝充值
 	private void beginAlipayRecharge(View Vi) {// isWebView = false代表浏览器联网

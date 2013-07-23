@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -43,6 +44,14 @@ public class GetFreeGoldActivity extends Activity {
 		});
 		setCurrentGold();
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
+		WebView alipay_content = (WebView) findViewById(R.id.alipay_content);
+		String date = "<span style=\"color:#ff0000;\">" +
+				"1、免费获得的彩金会自动加入到您的如意彩账户中，可到用户中心进行查询。<br/>\r\n" +
+				"2、获赠的彩金一般会在完成操作后1-5分钟到账，个别特殊软件可能需要一至两天才能到账。<br/>\r\n" +
+				"3、需要安装本机未安装过的软件才可获取彩金。<br/>\r\n" +
+				"4、获赠的彩金只能购彩，不能提现。<br/>\r\n</span>" +
+				"5、如意彩客服热线：400-665-1000。";
+		alipay_content.loadData(date, "text/html; charset=UTF-8", null);
 	}
 
 	private void getFreeGold() {
