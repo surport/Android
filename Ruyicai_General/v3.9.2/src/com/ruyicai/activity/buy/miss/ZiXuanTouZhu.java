@@ -11,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -324,6 +326,32 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
 		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
+		/**add by pengcx 20130722 start*/
+		mTextBeishu.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s.length() > 1 && s.charAt(0) == '0') {
+					Integer integer = Integer.valueOf(s.toString());
+					mTextBeishu.setText(integer.toString());
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		/**add by pengcx 20130722 end*/
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
