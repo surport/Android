@@ -95,7 +95,7 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 			iProgressQishu = 1;
 			areaNums = new AreaNum[1];
 			String titlezu = "请选择投注号码";
-			areaNums[0] = new AreaNum(10, 10, 2, 7, BallResId, 0, 0, Color.RED,
+			areaNums[0] = new AreaNum(10, 10, 2,10, BallResId, 0, 0, Color.RED,
 					titlezu, false, false);
 			createViewNew(areaNums, sscCode, TWO_ZUXUAN, true, checkedId);
 			BallTable = areaNums[0].table;
@@ -110,7 +110,7 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 			iProgressQishu = 1;
 			String titlehe = "请选择投注号码";
 			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(19, 10, 1, 8, BallResId, 0, 0, Color.RED,
+			areaNums[0] = new AreaNum(19, 10, 1, 19, BallResId, 0, 0, Color.RED,
 					titlehe, false, false);
 			createView(areaNums, sscCode, TWO_HEZHI, true, checkedId, true);
 			BallTable = areaNums[0].table;
@@ -212,9 +212,9 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 					isTouzhuStr = "请至少选择一注！";
 				} else if (iZhuShu > MAX_ZHU) {
 					isTouzhuStr = "false";
-				} else if (shi + ge > 12) {
+				}/* else if (shi + ge > 12) {
 					isTouzhuStr = "二组分位，小球的个数最大为12个！";
-				} else {
+				}*/ else {
 					isTouzhuStr = "true";
 				}
 			}
@@ -226,9 +226,9 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 				isTouzhuStr = "请至少选择一注！";
 			} else if (iZhuShu > MAX_ZHU) {
 				isTouzhuStr = "false";
-			} else if (one2 > 8) {
+			}/* else if (one2 > 8) {
 				isTouzhuStr = "二组和值，小球的个数最大为8个！";
-			} else {
+			} */else {
 				isTouzhuStr = "true";
 			}
 			break;
