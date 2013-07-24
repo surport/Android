@@ -135,7 +135,12 @@ public class WithdrawDetailActivity extends Activity implements HandlerMsg {
 			checkTiem = json.getString("checkTime");
 			remitTiem = json.getString("remitTime");
 			finishTiem = json.getString("expectFinishTime");
-			withdrawModeTextView.setText(json.getString("bankName"));
+			String type = json.getString("type");
+			if ("2".equals(type)) {
+				withdrawModeTextView.setText(R.string.account_withdraw_detail_type);
+			} else {
+				withdrawModeTextView.setText(json.getString("bankName"));
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

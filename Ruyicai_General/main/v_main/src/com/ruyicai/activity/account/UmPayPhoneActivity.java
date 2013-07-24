@@ -27,9 +27,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -47,7 +49,8 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 	public ProgressDialog progressdialog;
 	Button secureOk;
 	EditText accountnum;
-	private TextView alipayContent = null;
+//	private TextView alipayContent = null;
+	private WebView alipayContent = null;
 	private TextView accountTitleTextView = null;
 	private String money = "";
 	public static final String UMPAY_RECHARGE_AMOUNT = "UMPAY_RECHARGE_AMOUNT";
@@ -69,7 +72,7 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 //		title.setText(R.string.umpay_phone_text_moneny);
 		LinearLayout layout = (LinearLayout)findViewById(R.id.umpay_phone_linear);
 		layout.setVisibility(View.VISIBLE);
-		alipayContent = (TextView) findViewById(R.id.alipay_content);
+		alipayContent = (WebView) findViewById(R.id.alipay_content);
 		initTextViewContent();
 		radioGroup = (RadioGroup)findViewById(R.id.umpay_recharge_radiogroup);
 
@@ -145,13 +148,13 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 			@Override
 			public void run() {
 				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
-						.rechargeDescribe("umpayHfChargeDescription");
+						.rechargeDescribe("umpayHfChargeDescriptionHtml");
 				try {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-							alipayContent.setText(conten);
-							alipayContent.setTextColor(getResources().getColor(R.color.red));
+//							alipayContent.setText(Html.fromHtml(conten));
+							alipayContent.loadData(conten, "text/html; charset=UTF-8", null);
 						}
 					});
 					

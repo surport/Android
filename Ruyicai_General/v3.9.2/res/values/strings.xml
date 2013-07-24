@@ -1241,5 +1241,5 @@
     <string name="more_settings_programme_content">开通方案存档功能后，系统将自动给您的邮箱发送一份投注方案详情，以供备份查看。</string>
     <string name="usercenter_feedback_bet">去投注</string>
     <string name="umpay_huafubao_confirm_install">"为保证您的交易安全，需要您安装话付宝支付服务，才能进行付款。\n\n点击确定，立即安装。"</string>
-    
+    <string name="account_withdraw_detail_type">提现到支付宝</string>
 </resources>

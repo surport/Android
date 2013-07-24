@@ -198,7 +198,7 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 			int ge = areaNums[4].table.getHighlightBallNums();
 			if (wan == 0 | qian == 0 | bai == 0 | shi == 0 | ge == 0) {
 				isTouzhu = "请至少选择一注！";
-			} else if (iZhuShu * 2 > MAX_ZHU) {
+			} else if (iZhuShu > MAX_ZHU) {
 				isTouzhu = "false";
 			} else {
 				isTouzhu = "true";

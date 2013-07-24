@@ -22,9 +22,11 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,9 +71,10 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 	// 电话卡充值弹出框
 	protected void createPhoneRechargeCardDialog() {
 		RECHARGTYPE = "02";
-		TextView contentText = (TextView) findViewById(R.id.alipay_content);
-		contentText.setTextColor(Color.RED);
-		contentText.setText(initTextViewContent());
+//		TextView contentText = (TextView) findViewById(R.id.alipay_content);
+//		contentText.setText(Html.fromHtml(initTextViewContent()));
+		WebView alipay_content = (WebView) findViewById(R.id.alipay_content);
+		alipay_content.loadData(initTextViewContent(), "text/html; charset=UTF-8", null);
 
 		final Spinner phone_card_value_spinner = (Spinner) findViewById(R.id.phone_card_value_spinner);
 		phone_card_value_spinner
@@ -135,7 +138,7 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 
 	private static JSONObject getJSONByLotno() {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("phoneCardChargeDescription");
+				.rechargeDescribe("phoneCardChargeDescriptionHtml");
 		return jsonObjectByLotno;
 	}
 

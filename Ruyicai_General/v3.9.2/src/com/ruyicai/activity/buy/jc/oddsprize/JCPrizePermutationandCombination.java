@@ -156,7 +156,7 @@ public class JCPrizePermutationandCombination {
 		String mixValue = PublicMethod.formatStringToTwoPoint(mixArrays[0]
 				* muti);
 		String maxValue = PublicMethod.formatStringToTwoPoint(maxPrize * muti);
-		aa.append("预计中奖金额：").append(mixValue).append("元").append("~")
+		aa.append(mixValue).append("元").append("~")
 				.append(maxValue).append("元");
 		return aa + "";
 	}
@@ -183,7 +183,7 @@ public class JCPrizePermutationandCombination {
 				* muti * 2);
 		String maxValue = PublicMethod.formatStringToTwoPoint(maxPrize * muti
 				* 2);
-		aa.append("预计中奖金额：").append(mixValue).append("元").append("~")
+		aa.append(mixValue).append("元").append("~")
 				.append(maxValue).append("元");
 		return aa + "";
 	}

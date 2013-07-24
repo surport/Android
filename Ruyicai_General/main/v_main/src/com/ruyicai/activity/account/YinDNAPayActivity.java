@@ -26,10 +26,12 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -184,8 +186,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);// 手机号
 		bank_card_phone_phone_num.setText(bindPhone);
 		bank_card_phone_bankid.setEnabled(false);
-		TextView textContent = (TextView) findViewById(R.id.alipay_content);
-		textContent.setTextColor(Color.RED);
+		WebView textContent = (WebView) findViewById(R.id.alipay_content);
 		initTextViewContent(textContent);
 		final Button ok = (Button) findViewById(R.id.alipay_secure_ok);
 		ok.setOnClickListener(new OnClickListener() {
@@ -322,7 +323,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		}).start();
 	}
 
-	private void initTextViewContent(final TextView alipay_content) {
+	private void initTextViewContent(final WebView alipay_content) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -331,7 +332,8 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-							alipay_content.setText(conten);
+//							alipay_content.setText(Html.fromHtml(conten));
+							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
 						}
 					});
 				} catch (JSONException e) {
@@ -359,8 +361,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		EditText bank_card_phone_idcard = (EditText) findViewById(R.id.bank_card_phone_phone_idcard);// 身份证号
 		EditText bank_card_phone_home = (EditText) findViewById(R.id.bank_card_phone_phone_home);// 户籍所在地
 		EditText bank_card_phone_province = (EditText) findViewById(R.id.bank_card_phone_phone_province);// 所在省
-		TextView YinDNAtext_content = (TextView) findViewById(R.id.alipay_content);
-		YinDNAtext_content.setTextColor(Color.RED);
+		WebView YinDNAtext_content = (WebView) findViewById(R.id.alipay_content);
 		initTextViewContent(YinDNAtext_content);
 		final Spinner spinner = (Spinner) findViewById(R.id.Spinner01);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -559,7 +560,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 
 	private static JSONObject getJSONByLotno() {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("dnaChargeDescription");
+				.rechargeDescribe("dnaChargeDescriptionHtml");
 		return jsonObjectByLotno;
 	}
 }

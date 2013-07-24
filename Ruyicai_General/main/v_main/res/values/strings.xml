@@ -1241,4 +1241,5 @@
     <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string>
     <string name="account_phone_card_password">"请输入充值卡密码"</string>
     <string name="account_phone_card_number">"请输入充值卡序号"</string>
+    <string name="account_withdraw_detail_type">提现到支付宝</string>
 </resources>

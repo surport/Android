@@ -77,12 +77,16 @@
                 android:textColor="@color/account_warning_text_color" />
         </LinearLayout>
 
-        <TextView
+        <!-- <TextView
             android:id="@id/alipay_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/get_free_gold_content"
-            android:textColor="@color/red" />
+            android:text="@string/get_free_gold_content"/> -->
+            
+            <WebView android:id="@id/alipay_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        
     </LinearLayout>
 
 </LinearLayout>

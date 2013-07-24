@@ -25,9 +25,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,7 +46,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 	private final String YINTYPE = "0900";
 	Button secureOk;
 	EditText accountnum;
-	private TextView alipay_content = null;
+//	private TextView alipay_content = null;
+	private WebView alipay_content = null;
 	private String sessionId = "";
 	private String userno = "";
 	private String message = "";
@@ -78,7 +81,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 	}
 
 	private void initTextViewContent() {
-		alipay_content = (TextView) findViewById(R.id.alipay_content);
+		alipay_content = (WebView) findViewById(R.id.alipay_content);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -87,7 +90,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-							alipay_content.setText(conten);
+//							alipay_content.setText(Html.fromHtml(conten));
+							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
 						}
 					});
 				} catch (JSONException e) {
@@ -100,7 +104,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 
 	private static JSONObject getJSONByLotno() {
 		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("umpayChargeDescription");
+				.rechargeDescribe("umpayChargeDescriptionHtml");
 		return jsonObjectByLotno;
 	}
 

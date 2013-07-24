@@ -7,7 +7,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
@@ -35,6 +40,14 @@ public class Nmk3Activity extends BuyActivityGroup {
 		setIssue();
 		// 获取上期开奖号码
 		setlastbatchcode(Constants.LOTNO_NMK3);
+		/**add by yejc 20130723 start*/
+		refreshBtn.setVisibility(View.VISIBLE);
+		refreshBtn.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				setlastbatchcode(Constants.LOTNO_NMK3);
+			}
+		});
+		/**add by yejc 20130723 end*/
 	}
 
 	/**
