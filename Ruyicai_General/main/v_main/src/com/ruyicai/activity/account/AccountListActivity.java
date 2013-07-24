@@ -57,7 +57,6 @@ public class AccountListActivity extends Activity {
 	private String PICTURE = "";
 	private Context context;
 	private RWSharedPreferences shellRW = null;
-	private boolean isAdWallDisplay = false;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -261,13 +260,10 @@ public class AccountListActivity extends Activity {
 	 */
 	private List<Map<String, Object>> setContentForMainList() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
-
 		Map<String, Object> map;
 		
 		// 免费获取礼金
-		
-		isAdWallDisplay = shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
-		if (isAdWallDisplay) {
+		if (shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false)) {
 			map = new HashMap<String, Object>();
 			map.put(TITLE, getString(R.string.get_free_gold_title));
 			map.put(PICTURE, R.drawable.limei_free_gold_android);
@@ -276,55 +272,69 @@ public class AccountListActivity extends Activity {
 		}
 				
 		// 银联支付
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
-		map.put(PICTURE, R.drawable.recharge_bank);
-		map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.YINLIAN_CARD_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
+			map.put(PICTURE, R.drawable.recharge_bank);
+			map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
+			list.add(map);
+		}
 		
 		// 支付宝安全支付
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.zhfb_cards_secure_recharge));
-		map.put(PICTURE, R.drawable.recharge_alipay_safe);
-		map.put(ISHANDINGFREE, getString(R.string.account_zfb_secure));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.zhfb_cards_secure_recharge));
+			map.put(PICTURE, R.drawable.recharge_alipay_safe);
+			map.put(ISHANDINGFREE, getString(R.string.account_zfb_secure));
+			list.add(map);
+		}
 		
 		// 支付宝充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.zhfb_cards_recharge));
-		map.put(PICTURE, R.drawable.recharge_alipay);
-		map.put(ISHANDINGFREE, getString(R.string.account_zfb_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.zhfb_cards_recharge));
+			map.put(PICTURE, R.drawable.recharge_alipay);
+			map.put(ISHANDINGFREE, getString(R.string.account_zfb_alert));
+			list.add(map);
+		}
 
 		// 银联语音支付
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.bank_cards_recharge));
-		map.put(PICTURE, R.drawable.recharge_phone);
-		map.put(ISHANDINGFREE, getString(R.string.account_card_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.YINLIAN_SOUND_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.bank_cards_recharge));
+			map.put(PICTURE, R.drawable.recharge_phone);
+			map.put(ISHANDINGFREE, getString(R.string.account_card_alert));
+			list.add(map);
+		}
 		
 		/**add by yejc 20130505 start*/
 		//联动优势充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.umpay_recharge));
-		map.put(PICTURE, R.drawable.recharge_umpay);
-		map.put(ISHANDINGFREE, getString(R.string.account_umplay_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.UMPAY_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.umpay_recharge));
+			map.put(PICTURE, R.drawable.recharge_umpay);
+			map.put(ISHANDINGFREE, getString(R.string.account_umplay_alert));
+			list.add(map);
+		}
 		/**add by yejc 20130505 end*/
 		
 		// 拉卡拉充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.la_ka_la_recharge));
-		map.put(PICTURE, R.drawable.lakala_icon);
-		map.put(ISHANDINGFREE, getString(R.string.la_ka_la_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.LAKALA_PAYMENT_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.la_ka_la_recharge));
+			map.put(PICTURE, R.drawable.lakala_icon);
+			map.put(ISHANDINGFREE, getString(R.string.la_ka_la_alert));
+			list.add(map);
+		}
 		
 		// 银行支付
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.account_chongzhi));
-		map.put(PICTURE, R.drawable.account_chongzhi);
-		map.put(ISHANDINGFREE, getString(R.string.account_chongzhi_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.BANK_RECHARGE_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.account_chongzhi));
+			map.put(PICTURE, R.drawable.account_chongzhi);
+			map.put(ISHANDINGFREE, getString(R.string.account_chongzhi_alert));
+			list.add(map);
+		}
 
 		// 银行转账
 		map = new HashMap<String, Object>();
@@ -334,21 +344,23 @@ public class AccountListActivity extends Activity {
 		list.add(map);
 				
 		// 手机充值卡充值
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.phone_cards_recharge));
-		map.put(PICTURE, R.drawable.recharge_phonebank);
-		map.put(ISHANDINGFREE, getString(R.string.account_phone_alert));
-		list.add(map);
+		if (shellRW.getBooleanValue(Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.phone_cards_recharge));
+			map.put(PICTURE, R.drawable.recharge_phonebank);
+			map.put(ISHANDINGFREE, getString(R.string.account_phone_alert));
+			list.add(map);
+		}
 		
 		// 联动优势话费充值
-//		boolean isUmpayPhoneDisplay = shellRW.getBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, false);
-//		if (isUmpayPhoneDisplay) {
-		map = new HashMap<String, Object>();
-		map.put(TITLE, getString(R.string.umpay_phone_recharge));
-		map.put(PICTURE, R.drawable.recharge_phone_umpay);
-		map.put(ISHANDINGFREE, getString(R.string.account_umplay_phone_alert));
-		list.add(map);
-//		}
+		if (shellRW.getBooleanValue(Constants.UMPAY_PHONE_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.umpay_phone_recharge));
+			map.put(PICTURE, R.drawable.recharge_phone_umpay);
+			map.put(ISHANDINGFREE,
+					getString(R.string.account_umplay_phone_alert));
+			list.add(map);
+		}
 
 		return list;
 	}
@@ -404,32 +416,23 @@ public class AccountListActivity extends Activity {
 			SpannableStringBuilder builder1 = new SpannableStringBuilder();
 			String str1 = title;
 			builder1.append(str1);
-			
 			String alertStr1 = "";
 			
-			if (isAdWallDisplay) {
-				if(position == 1) {
-					alertStr1 = getString(R.string.recommend_the_use_of);
-				}else if (position == 2 || position == 3
-						|| position == 4 || position == 5) {
-					alertStr1 = getString(R.string.freeHanding);
-				} else if (position == 7) {
-					alertStr1 = getString(R.string.account_chongzhi_good);
-				} 
-				if (position == 0) {
-					holder.layout.setBackgroundResource(R.drawable.get_free_gold_background);
-				} else {
-					holder.layout.setBackgroundColor(getResources().getColor(R.color.white));
-				}
+			if (str1.equals(getString(R.string.zhfb_cards_recharge)) 
+					|| str1.equals(getString(R.string.zhfb_cards_secure_recharge))
+					|| str1.equals(getString(R.string.bank_cards_recharge))
+					|| str1.equals(getString(R.string.umpay_recharge))) {
+				alertStr1 = getString(R.string.freeHanding);
+			} else if (str1.equals(getString(R.string.yin_bank_cards_recharge))){
+				alertStr1 = getString(R.string.recommend_the_use_of);
+			} else if (str1.equals(getString(R.string.account_chongzhi))) {
+				alertStr1 = getString(R.string.account_chongzhi_good);
+			}
+			
+			if (str1.equals(getString(R.string.get_free_gold_title))) {
+				holder.layout.setBackgroundResource(R.drawable.get_free_gold_background);
 			} else {
-				if(position == 0) {
-					alertStr1 = getString(R.string.recommend_the_use_of);
-				}else if (position == 1 || position == 2
-						|| position == 3 || position == 4) {
-					alertStr1 = getString(R.string.freeHanding);
-				} else if (position == 6) {
-					alertStr1 = getString(R.string.account_chongzhi_good);
-				} 
+				holder.layout.setBackgroundColor(getResources().getColor(R.color.white));
 			}
 			if (!alertStr1.equals("")) {
 				builder1.append(alertStr1);

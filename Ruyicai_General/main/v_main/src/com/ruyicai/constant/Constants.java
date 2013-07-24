@@ -330,8 +330,17 @@ public class Constants {
 	public static final String UMPAY_BANKID = "ump003";
 	public static final String isSSQON = "isSSQON";
 	public static final String isDLTON = "isDLTON";
-	public static final String ADWALL_DISPLAY_STATE = "adWallDisplayState";
-	public static final String UMPAY_PHONE_DISPLAY_STATE = "umpayPhoneDisplayState";
+	public static final String ADWALL_DISPLAY_STATE = "adwall_display_state";
+	public static final String YINLIAN_CARD_DISPLAY_STATE = "yinlian_card_display_state";
+	public static final String YINLIAN_SOUND_DISPLAY_STATE = "yinlian_sound_display_state";
+	public static final String ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE = "zhifubao_secure_payment_display_state";
+	public static final String ZHIFUBAO_RECHARGE_DISPLAY_STATE = "zhifubao_recharge_display_state";
+	public static final String UMPAY_DISPLAY_STATE = "umpay_display_state";
+	public static final String UMPAY_PHONE_DISPLAY_STATE = "umpay_phone_display_state";
+	public static final String LAKALA_PAYMENT_DISPLAY_STATE = "lakala_payment_display_state";
+	public static final String BANK_RECHARGE_DISPLAY_STATE = "bank_recharge_display_state";
+	public static final String BANK_TRANSFER_DISPLAY_STATE = "bank_transfer_display_state";
+	public static final String PHONE_RECHARGE_CARD_DISPLAY_STATE = "phone_recharge_card_display_state";
 	/**add by yejc 20130527 start*/
 	
 }
