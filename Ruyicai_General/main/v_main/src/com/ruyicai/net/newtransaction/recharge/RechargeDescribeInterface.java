@@ -45,4 +45,28 @@ public class RechargeDescribeInterface {
 		}
 		return null;
 	}
+	
+	/**
+	 * 账户充值显示状态
+	 * @param
+	 * @return
+	 */
+	public JSONObject rechargeShowState() {
+		String result = "";
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, "select");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "chargeCenter");
+
+			result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+			return new JSONObject(result);
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

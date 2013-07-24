@@ -1,5 +1,9 @@
 package com.ruyicai.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -255,24 +259,77 @@ public class Controller {
 	}
 	
 	
+//	/**
+//	 * 读取广告墙的显示状态
+//	 */
+//	public void readAdWallStateNet() {
+//		final RWSharedPreferences shellRW = new RWSharedPreferences(
+//				mContext, ShellRWConstants.ACCOUNT_DISPAY_STATE);
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+//						.rechargeDescribe("scoreWallDisplay");
+//				try {
+//					if (jsonObject != null) {
+//						String content = jsonObject.getString("content").toString();
+//						if ("true".equals(content)) {
+//							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, true);
+//						} else {
+//							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+//						}
+//					}
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
+//	}
+	
 	/**
-	 * 读取广告墙的显示状态
+	 * 读取账户充值的显示状态
 	 */
-	public void readAdWallStateNet() {
-		final RWSharedPreferences shellRW = new RWSharedPreferences(
-				mContext, ShellRWConstants.ACCOUNT_DISPAY_STATE);
+	public void readReChargeCenterState() {
+		final RWSharedPreferences shellRW = new RWSharedPreferences(mContext,
+				ShellRWConstants.ACCOUNT_DISPAY_STATE);
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("ch0001", Constants.YINLIAN_SOUND_DISPLAY_STATE);// 银联语音
+//		map.put("ch0002", Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE);//手机充值卡充值
+//		map.put("ch0005", Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE); //支付宝充值
+//		map.put("ch0006", Constants.YINLIAN_CARD_DISPLAY_STATE); //银联充值
+//		map.put("ch0007", Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE);//支付宝安全支付
+//		map.put("ch0008", Constants.BANK_RECHARGE_DISPLAY_STATE);//银行充值
+//		map.put("ch0010", Constants.LAKALA_PAYMENT_DISPLAY_STATE); //拉卡拉充值
+//		map.put("ch0011", Constants.UMPAY_DISPLAY_STATE);  //联动优势
+//		map.put("ch0012", Constants.UMPAY_PHONE_DISPLAY_STATE);  //联动优势话费充值
+		final String rechargeType[] = {"ch0001","ch0002","ch0005","ch0006","ch0007",
+				"ch0008","ch0010","ch0011","ch0012","ch0013"};
+		final String rechargeTitle[] = {Constants.YINLIAN_SOUND_DISPLAY_STATE,Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE,
+				Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE,Constants.YINLIAN_CARD_DISPLAY_STATE,
+				Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE,Constants.BANK_RECHARGE_DISPLAY_STATE,
+				Constants.LAKALA_PAYMENT_DISPLAY_STATE,Constants.UMPAY_DISPLAY_STATE,
+				Constants.UMPAY_PHONE_DISPLAY_STATE,Constants.ADWALL_DISPLAY_STATE};
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
-						.rechargeDescribe("scoreWallDisplay");
+						.rechargeShowState();
 				try {
 					if (jsonObject != null) {
-						String content = jsonObject.getString("content").toString();
-						if ("true".equals(content)) {
-							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, true);
-						} else {
-							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
+						String error_code = jsonObject.getString("error_code");
+						if (error_code.equals("0000")) {
+							JSONArray jsonArray = jsonObject.getJSONArray("result");
+							for (int i = 0; i < rechargeType.length; i++) {
+								outer : for (int j = 0; j<jsonArray.length(); j++) {
+									JSONObject json = jsonArray.getJSONObject(j);
+									if (json.has(rechargeType[i])) {
+										shellRW.putBooleanValue(rechargeTitle[i], true);
+										break outer;
+									} else {
+										shellRW.putBooleanValue(rechargeTitle[i], false);
+									}
+								}
+							}
 						}
 					}
 				} catch (JSONException e) {
@@ -282,34 +339,7 @@ public class Controller {
 		}).start();
 	}
 	
-	/**
-	 * 读取联动优势话费充值的显示状态
-	 */
-//	public void readUmpayStateNet() {
-//		final RWSharedPreferences shellRW = new RWSharedPreferences(mContext,
-//				ShellRWConstants.ACCOUNT_DISPAY_STATE);
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
-//						.rechargeDescribe("umpayHfChargeDisplay");
-//				try {
-//					if (jsonObject != null) {
-//						String content = jsonObject.get("content").toString();
-//						if ("true".equals(content)) {
-//							shellRW.putBooleanValue(
-//									Constants.UMPAY_PHONE_DISPLAY_STATE, true);
-//						} else {
-//							shellRW.putBooleanValue(
-//									Constants.UMPAY_PHONE_DISPLAY_STATE, false);
-//						}
-//					}
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
-//	}
+
 	
 	
 	public void getFeedbackListNet(final Handler handler, final String userno) {

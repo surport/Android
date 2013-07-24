@@ -106,10 +106,9 @@ public class HomeActivity extends Activity {
 				mStartTask = new StartTask();
 				mStartTask.execute();
 				
-				/**add by yejc 20130620 end*/
-				Controller.getInstance(HomeActivity.this).readAdWallStateNet();
-//				Controller.getInstance(HomeActivity.this).readUmpayStateNet();
-				/**add by yejc 20130620 end*/
+				/**add by yejc 20130724 start*/
+				Controller.getInstance(HomeActivity.this).readReChargeCenterState();
+				/**add by yejc 20130724 end*/
 				break;
 			}
 			case 3: {
