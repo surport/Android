@@ -402,4 +402,93 @@ public class OverAllAgainstInformation extends AgainstInformation {
 		}
 		return overAllagainstInformationList;
 	}
+
+	/**
+	 * 获取选中的按钮SP值
+	 * 
+	 * @param click_i
+	 *            选中的按钮索引
+	 * @return SP值
+	 */
+	public Double getSelectedSp(int click_i) {
+		String selectedSP = "";
+		switch (click_i) {
+		case 0:
+			selectedSP = getScore_v90();
+			break;
+		case 1:
+			selectedSP = getScore_v10();
+			break;
+		case 2:
+			selectedSP = getScore_v20();
+			break;
+		case 3:
+			selectedSP = getScore_v21();
+			break;
+		case 4:
+			selectedSP = getScore_v30();
+			break;
+		case 5:
+			selectedSP = getScore_v31();
+			break;
+		case 6:
+			selectedSP = getScore_v32();
+			break;
+		case 7:
+			selectedSP = getScore_v40();
+			break;
+		case 8:
+			selectedSP = getScore_v41();
+			break;
+		case 9:
+			selectedSP = getScore_v42();
+			break;
+		case 10:
+			selectedSP = getScore_v99();
+			break;
+		case 11:
+			selectedSP = getScore_v00();
+			break;
+		case 12:
+			selectedSP = getScore_v11();
+			break;
+		case 13:
+			selectedSP = getScore_v22();
+			break;
+		case 14:
+			selectedSP = getScore_v33();
+			break;
+		case 15:
+			selectedSP = getScore_v09();
+			break;
+		case 16:
+			selectedSP = getScore_v01();
+			break;
+		case 17:
+			selectedSP = getScore_v02();
+			break;
+		case 18:
+			selectedSP = getScore_v12();
+			break;
+		case 19:
+			selectedSP = getScore_v03();
+			break;
+		case 20:
+			selectedSP = getScore_v13();
+			break;
+		case 21:
+			selectedSP = getScore_v23();
+			break;
+		case 22:
+			selectedSP = getScore_v04();
+			break;
+		case 23:
+			selectedSP = getScore_v14();
+			break;
+		case 24:
+			selectedSP = getScore_v24();
+			break;
+		}
+		return Double.valueOf(selectedSP);
+	}
 }

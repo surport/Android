@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JoinStartActivityjc;
+import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
 import com.ruyicai.activity.buy.jc.touzhu.RadioGroupView;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
@@ -107,6 +108,13 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	private String lotnoString;
 	private boolean isFreedom = true;
 
+	/** add by pengcx 20130708 start */
+	/** 最高预计奖金 */
+	public static double freedomMaxprize;
+	public static double freedomMinprize;
+	private StringBuffer predictStringBuffer;
+	/** 最低预计奖金 */
+	/** add by pengcx 20130708 end */
 	private MyHandler handler = new MyHandler(this);
 
 	@Override
@@ -223,6 +231,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		lotoTypeTextView.setText(PublicMethod.toLotno(lotnoString));
 		/** add by pengcx 20130703 end */
 
+		/** add by pengcx 20130709 start */
+		freedomMaxprize = 0;
+		freedomMinprize = 0;
+		/** add by pengcx 20130709 end */
 		setBettingInformationShow();
 
 		handler.setBetAndGift(betAndGift);
@@ -287,6 +299,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				addSelectDuoButtons();
 				isFreedom = true;
 				bettingNum = 0;
+				/**add by pengcx 20130709 start*/
+				freedomMaxprize = 0;
+				freedomMinprize = 0;
+				/**add by pengcx 20130709 end*/
 				setBettingInformationShow();
 				break;
 			case R.id.jc_alert_btn_duochuan:
@@ -298,6 +314,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				addSelectDanButtons();
 				isFreedom = false;
 				bettingNum = 0;
+				/**add by pengcx 20130709 start*/
+				freedomMaxprize = 0;
+				freedomMinprize = 0;
+				/**add by pengcx 20130709 end*/
 				setBettingInformationShow();
 				break;
 			case R.id.alert_dialog_touzhu_button_ok:
@@ -444,6 +464,9 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		betAndGift.setBatchnum("1");
 		betAndGift.setBatchcode(nowIssueString);
 		betAndGift.setLotno(lotnoString);
+		/** add by pengcx 20130709 start */
+		betAndGift.setPredictMoney(predictStringBuffer.toString());
+		/** add by pengcx 20130709 end */
 	}
 
 	private String getBettingCode() {
@@ -581,7 +604,6 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 			}
 		}
 
-		Log.i("111", bettingCodeString.toString());
 		return bettingCodeString.toString();
 	}
 
@@ -656,7 +678,26 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		betNumTextView.setText("共" + bettingNum + "注");
 		moneyTextView.setText("共" + getBettingAccount() + "元");
 		gameNumTextView.setText("共" + bettingInfoList.size() + "场");
+		predictMoneyTextView.setText(getPredictMoneyTextString());
 		/** add by pengcx 20130703 end */
+	}
+
+	/**
+	 * 获取预计奖金字符串
+	 * 
+	 * @return 预计奖金字符串
+	 */
+	public String getPredictMoneyTextString() {
+		double max = freedomMaxprize * getBettingMutile();
+		double min = freedomMinprize * getBettingMutile();
+		
+		predictStringBuffer = new StringBuffer();
+		predictStringBuffer
+				.append(PublicMethod.formatStringToTwoPoint(min))
+				.append("元~")
+				.append(PublicMethod.formatStringToTwoPoint(max))
+				.append("元");
+		return predictStringBuffer.toString();
 	}
 
 	public long getBettingAccount() {
@@ -687,4 +728,75 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	public Context getContext() {
 		return this;
 	}
+
+	/** add by pengcx 20130708 start */
+	/**
+	 * 获取单关投注的最大和最小奖金
+	 * 
+	 * @param muti
+	 * @return
+	 */
+	public double computeDanGuanMaxPrize() {
+		return JCPrizePermutationandCombination.getBeijingDanGuanMaxPrize(
+				BeiJingSingleGameActivity.newSelectedSPList);
+	}
+
+	public double computeDanGuanMinPrize() {
+		return JCPrizePermutationandCombination.getBeijingDanGuanMinPrize(
+		BeiJingSingleGameActivity.newSelectedSPList);
+	}
+	
+	/**
+	 * 计算多场最大预计奖金
+	 * @param select
+	 * @return
+	 */
+	public double computeDuoGuanMaxPrize(int team,int select) {
+		double max = 0;
+		List<Boolean> isDanList = new ArrayList<Boolean>();
+		for (int i = 0; i < bettingInfoList.size(); i++) {
+			isDanList.add(false);
+		}
+		if (isFreedom) {
+			max = JCPrizePermutationandCombination
+					.getBeiJingFreedomGuoGuanMaxPrize(
+							BeiJingSingleGameActivity.newSelectedSPList,
+							select, isDanList, 0);
+		} else {
+			 max =
+			 JCPrizePermutationandCombination.getBeiJingDuoMaxPrize(team,
+			 BeiJingSingleGameActivity.newSelectedSPList, select, isDanList,
+			 0);
+		}
+
+		return max;
+	}
+
+	/**
+	 * 计算多场最小预计奖金
+	 * 
+	 * @param select
+	 * @return
+	 */
+	public double computeDuoGuanMinPrize(int team,int select) {
+		double min = 0;
+		List<Boolean> isDanList = new ArrayList<Boolean>();
+		for (int i = 0; i < bettingInfoList.size(); i++) {
+			isDanList.add(false);
+		}
+
+		if (isFreedom) {
+			min = JCPrizePermutationandCombination
+					.getBeijingFreedomGuoGuanMixPrize(
+							BeiJingSingleGameActivity.newSelectedSPList,
+							select, isDanList, 0);
+		} else {
+			 min =
+			 JCPrizePermutationandCombination.getBeiJingDuoMinPrize(team,BeiJingSingleGameActivity.newSelectedSPList,
+					 select, isDanList, 0);
+		}
+
+		return min;
+	}
+	/** add by pengcx 20130708 end */
 }

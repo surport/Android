@@ -100,6 +100,28 @@ public class JCPrizePermutationandCombination {
 		return mixPrize * 2 * getDouMixNum(teamNum, mixArrays, mixs);// 2为每注两元
 	}
 
+	/** add by pengcx 20130709 start */
+	public static double getBeiJingDuoMinPrize(int teamNum,
+			List<double[]> list, int team, List<Boolean> isDanList, int isDanNum) {
+		return getDuoMixPrize(teamNum, list, team, isDanList, isDanNum) * 0.65;
+	}
+
+	public static double getBeiJingDuoMaxPrize(int teamNum,
+			List<double[]> list, int team, List<Boolean> isDanList, int isDanNum) {
+		return getDuoMaxPrize(teamNum, list, team, isDanList, isDanNum) * 0.65;
+	}
+
+	public static double getBeijingFreedomGuoGuanMixPrize(List<double[]> list,
+			int team, List<Boolean> isDanList, int isDanNum) {
+		return FreedomGuoGuanMixPrize(list, team, isDanList, isDanNum) * 0.65;
+	}
+
+	public static double getBeiJingFreedomGuoGuanMaxPrize(List<double[]> list,
+			int k, List<Boolean> isDanList, int isDanNum) {
+		return getFreedomGuoGuanMaxPrize(list, k, isDanList, isDanNum) * 0.65;
+	}
+	/** add by pengcx 20130709 end */
+
 	/**
 	 * 返回竞彩多串过关最小个数 将几场比赛分成几组 odds所有场次的赔率 mix 最小几场的赔率
 	 */
@@ -160,6 +182,47 @@ public class JCPrizePermutationandCombination {
 				.append(maxValue).append("元");
 		return aa + "";
 	}
+
+	/** add bypengcx 20130709 start */
+	/**
+	 * 获取北京单场单关最大预计奖金
+	 * 
+	 * @param list
+	 * @param muti
+	 * @return
+	 */
+	public static double getBeijingDanGuanMaxPrize(List<double[]> list) {
+		double maxPrize = 0;
+		for (int i = 0; i < list.size(); i++) {
+			double[] sonDouble = list.get(i);
+			Arrays.sort(sonDouble);
+			maxPrize += sonDouble[sonDouble.length - 1];
+		}
+		String maxValue = PublicMethod.formatStringToTwoPoint(maxPrize * 2 * 0.65);
+		return Double.valueOf(maxValue);
+	}
+
+	/**
+	 * 获取北京单场单关最小预计奖学金
+	 * 
+	 * @param list
+	 * @param muti
+	 * @return
+	 */
+	public static double getBeijingDanGuanMinPrize(List<double[]> list) {
+		double[] mixArrays = new double[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			double[] sonDouble = list.get(i);
+			Arrays.sort(sonDouble);
+			mixArrays[i] = sonDouble[0];
+		}
+		Arrays.sort(mixArrays);
+		String mixValue = PublicMethod.formatStringToTwoPoint(mixArrays[0] * 2 * 0.65);
+
+		return Double.valueOf(mixValue);
+	}
+
+	/** add bypengcx 20130709 end */
 
 	/**
 	 * 竞彩单关投注的最大金额 足球比分游戏和篮球胜分差游戏的单关销售由原来的“浮动奖金”升级为“固定奖金”,在原来基础上乘2

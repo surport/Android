@@ -131,6 +131,12 @@ public class BeiJingSingleGameActivity extends Activity {
 	private List<String> eventsList;
 	/** 当前选中的赛事集合 */
 	private List<String> nowSelectedEventsList;
+
+	/** add by pengcx 20130708 start */
+	/** 当前选中赛事的赔率集合 */
+	static List<double[]> newSelectedSPList;
+	/** add by pengcx 20130708 end */
+
 	/** 让球胜平负对阵信息对象集合 */
 	private List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList;
 	/** 当前让球胜平负对阵信息对象集合 */
@@ -181,7 +187,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 刷新对阵列表的显示
-	 *
+	 * 
 	 * @param isReset
 	 *            是否重置适配器
 	 * @param isCleared
@@ -215,7 +221,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						BeiJingSingleGameActivity.this,
 						nowTotalGoalsAgainstInformationList);
 			}
-			
+
 			if (isReset) {
 				againstListView.setAdapter(totalGoalsAdapter);
 			} else {
@@ -230,7 +236,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						BeiJingSingleGameActivity.this,
 						nowOverAllagainstInformationList);
 			}
-			
+
 			if (isReset) {
 				againstListView.setAdapter(overAllAdapter);
 			} else {
@@ -246,7 +252,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						BeiJingSingleGameActivity.this,
 						nowHalfTheAudienceagainstInformationList);
 			}
-			
+
 			if (isReset) {
 				againstListView.setAdapter(halfTheAudienceAdapter);
 			} else {
@@ -262,7 +268,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						BeiJingSingleGameActivity.this,
 						nowUpDownSigleDoubleagainstInformationList);
 			}
-			
+
 			if (isReset) {
 				againstListView.setAdapter(upDownSingleDoubleAdapter);
 			} else {
@@ -279,7 +285,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 更具当前选择的赛事获取当前上下单双显示的对阵信息
-	 *
+	 * 
 	 * @param isCleared
 	 *            是否清除原有的显示信息
 	 */
@@ -321,7 +327,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 根据当前选择的赛事获取当前显示的半全场对阵信息
-	 *
+	 * 
 	 * @param isCleared
 	 *            是否清空原来显示的半全场信息
 	 */
@@ -363,7 +369,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 根据选中的赛事获取当前显示的全场总比分对阵信息
-	 *
+	 * 
 	 * @param isCleared
 	 *            是否清除原有的对阵信息
 	 */
@@ -403,7 +409,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取当前显示的总进球数对阵信息
-	 *
+	 * 
 	 * @param isCleared
 	 *            是否清除原有信息
 	 */
@@ -444,7 +450,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取当前显示的胜平负的对阵信息
-	 *
+	 * 
 	 * @param isCleared
 	 *            是否情况原有数据
 	 */
@@ -697,7 +703,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 解析返回的Json字符串
-	 *
+	 * 
 	 * @param returnString
 	 *            返回的Json字符串
 	 */
@@ -727,7 +733,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 解析成功返回的Json数据
-	 *
+	 * 
 	 * @param returnJsonObject
 	 *            成功返回数据Json对象
 	 */
@@ -746,7 +752,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 解析对阵信息
-	 *
+	 * 
 	 * @param againstJsonArray
 	 *            对阵Json数组
 	 * @throws JSONException
@@ -810,7 +816,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 解析联赛信息
-	 *
+	 * 
 	 * @param returnJsonObject
 	 *            返回Json对象
 	 * @throws JSONException
@@ -833,6 +839,15 @@ public class BeiJingSingleGameActivity extends Activity {
 		} else {
 			nowSelectedEventsList.clear();
 		}
+		
+		/** add by pengcx 20130708 start */
+		// 当前选中的赛事集合
+		if (newSelectedSPList == null) {
+			newSelectedSPList = new ArrayList<double[]>();
+		} else {
+			newSelectedSPList.clear();
+		}
+		/** add by pengcx 20130708 end */
 
 		// 将赛事字符串信息分别存入赛事集合和当前选中赛事集合（默认情况下所有赛事被选中）
 		String[] events = eventStrings.split(";");
@@ -845,9 +860,9 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 北京单场按钮事件监听实现类
-	 *
+	 * 
 	 * @author Administrator
-	 *
+	 * 
 	 */
 	class BeijingSingleGameButtonOnClickListener implements OnClickListener {
 
@@ -874,6 +889,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			// 投注按钮
 			case R.id.buy_zixuan_img_touzhu:
 				if (isLegalSelect()) {
+					
 					Intent intent = new Intent(BeiJingSingleGameActivity.this,
 							BeiJingSingleGameIndentActivity.class);
 
@@ -884,7 +900,7 @@ public class BeiJingSingleGameActivity extends Activity {
 							(ArrayList<String>) getSelectedEventClickNum());
 					intent.putExtra("laterpartbettingcode",
 							getLaterPartBettingCode());
-					intent.putExtra("nowIssueString", "");
+					intent.putExtra("nowIssueString", nowIssueString);
 					intent.putExtra("lotno", playMethodType.getLotnoString());
 
 					startActivity(intent);
@@ -967,7 +983,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 初始化玩法切换对话框的显示
-	 *
+	 * 
 	 * @param dialogView
 	 *            对话框对象
 	 */
@@ -1039,9 +1055,9 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 玩法切换对话框按钮事件监听实现类
-	 *
+	 * 
 	 * @author Administrator
-	 *
+	 * 
 	 */
 	class PlayMethodChangeDialogButtonOnClickListener implements
 			OnClickListener {
@@ -1137,7 +1153,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 向布局中添加赛事选择按钮
-	 *
+	 * 
 	 * @param selectButtonLayout
 	 */
 	private void addEventSelectButtonToLayout(LinearLayout selectButtonLayout) {
@@ -1187,7 +1203,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取后半部分的注码格式字符串,该部分注码标识投注内容，在投注确认页面和代表串关方法的注码等合并为完整的注码
-	 *
+	 * 
 	 * @return 注码格式字符串
 	 */
 	public String getLaterPartBettingCode() {
@@ -1215,7 +1231,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取上下单双后半部分注码字符串
-	 *
+	 * 
 	 * @param batchCodeStringBuffer
 	 *            注码格式StringBuffer对象
 	 */
@@ -1251,7 +1267,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取半全场后半部分注码字符串
-	 *
+	 * 
 	 * @param batchCodeStringBuffer
 	 *            注码格式StringBuffer对象
 	 */
@@ -1308,7 +1324,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取全场总比分后半部分注码字符串
-	 *
+	 * 
 	 * @param batchCodeStringBuffer
 	 *            注码格式StringBuffer对象
 	 */
@@ -1414,7 +1430,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取总进球数后半部分注码字符串
-	 *
+	 * 
 	 * @param batchCodeStringBuffer
 	 *            注码格式StringBuffer对象
 	 */
@@ -1467,7 +1483,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取让球胜平负后半部分注码字符串
-	 *
+	 * 
 	 * @param batchCodeStringBuffer
 	 *            注码格式StringBuffer对象
 	 */
@@ -1498,11 +1514,20 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取当前选择的比赛的字符串，用户投注确认页面的赛事详情的显示
-	 *
+	 * 
 	 * @return 选择比赛字符串
 	 */
 	public String getSelectedAgainstString() {
 		StringBuffer againstStringBufffer = new StringBuffer();
+		
+		/** add by pengcx 20130708 start */
+		// 当前选中的赛事集合
+		if (newSelectedSPList == null) {
+			newSelectedSPList = new ArrayList<double[]>();
+		} else {
+			newSelectedSPList.clear();
+		}
+		/** add by pengcx 20130708 end */
 
 		switch (playMethodType) {
 		case WINTIELOSS:
@@ -1526,7 +1551,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取上下单选择的比赛字符串
-	 *
+	 * 
 	 * @param againstStringBufffer
 	 *            选择比赛字符串
 	 */
@@ -1535,7 +1560,9 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
-					againstStringBufffer.append(upDownSingleDoubleAgainstInformation.getTeamId() + "  ");
+					againstStringBufffer
+							.append(upDownSingleDoubleAgainstInformation
+									.getTeamId() + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(upDownSingleDoubleAgainstInformation
@@ -1545,19 +1572,29 @@ public class BeiJingSingleGameActivity extends Activity {
 									.getGuestTeam()).append("\n上下单双：");
 					/* Modify by pengcx 20130703 end */
 
+					
+					/* Modify by pengcx 20130708 start */
+					List<Double> selectedSP = new ArrayList<Double>();
 					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
 						againstStringBufffer.append("上单");
+						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v1()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
 						againstStringBufffer.append("上双");
+						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v2()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
 						againstStringBufffer.append("下单");
+						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v3()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
 						againstStringBufffer.append("下双");
+						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v4()));
 					}
+					double[] SPs = PublicMethod.ListToArray(selectedSP);
+					newSelectedSPList.add(SPs);
 					againstStringBufffer.append("\n");
+					/* Modify by pengcx 20130708 end */
 				}
 			}
 		}
@@ -1565,7 +1602,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取半全场选择的比赛字符串
-	 *
+	 * 
 	 * @param againstStringBufffer
 	 *            选择比赛字符串
 	 */
@@ -1574,7 +1611,9 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
-					againstStringBufffer.append(halfTheAudienceAgainstInformation.getTeamId() + "  ");
+					againstStringBufffer
+							.append(halfTheAudienceAgainstInformation
+									.getTeamId() + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(halfTheAudienceAgainstInformation
@@ -1583,6 +1622,9 @@ public class BeiJingSingleGameActivity extends Activity {
 							.append(halfTheAudienceAgainstInformation
 									.getGuestTeam()).append("\n半全场：");
 					/* Modify by pengcx 20130703 end */
+					
+					/* Modify by pengcx 20130708 start */
+					List<Double> selectedSP = new ArrayList<Double>();
 					boolean[] IsClicks = halfTheAudienceAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1590,9 +1632,15 @@ public class BeiJingSingleGameActivity extends Activity {
 							againstStringBufffer
 									.append(HalfTheAudienceAdapter.selectButtonTitles[click_i])
 									.append(" ");
+							selectedSP.add(halfTheAudienceAgainstInformation
+									.getSelectedSp(click_i));
 						}
 					}
+					
+					double[] SPs = PublicMethod.ListToArray(selectedSP);
+					newSelectedSPList.add(SPs);
 					againstStringBufffer.append("\n");
+					/* Modify by pengcx 20130708 end */
 				}
 			}
 		}
@@ -1600,7 +1648,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取全场总比分选择的比赛字符串
-	 *
+	 * 
 	 * @param againstStringBufffer
 	 *            选择比赛字符串
 	 */
@@ -1609,7 +1657,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
-					againstStringBufffer.append(overAllAgainstInformation.getTeamId() + "  ");
+					againstStringBufffer.append(overAllAgainstInformation
+							.getTeamId() + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(overAllAgainstInformation.getHomeTeam())
@@ -1617,6 +1666,9 @@ public class BeiJingSingleGameActivity extends Activity {
 							.append(overAllAgainstInformation.getGuestTeam())
 							.append("\n全场总比分：");
 					/* Modify by pengcx 20130703 end */
+					
+					/* Modify by pengcx 20130708 start */
+					List<Double> selectedSP = new ArrayList<Double>();
 					boolean[] IsClicks = overAllAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
@@ -1624,10 +1676,14 @@ public class BeiJingSingleGameActivity extends Activity {
 							againstStringBufffer.append(
 									OverAllAdapter.selectButtonTitles[click_i])
 									.append(" ");
+							selectedSP.add(overAllAgainstInformation
+									.getSelectedSp(click_i));
 						}
 					}
+					double[] SPs = PublicMethod.ListToArray(selectedSP);
+					newSelectedSPList.add(SPs);
 					againstStringBufffer.append("\n");
-
+					/* Modify by pengcx 20130708 end */
 				}
 
 			}
@@ -1636,7 +1692,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取总进球选择的比赛字符串
-	 *
+	 * 
 	 * @param againstStringBufffer
 	 *            选择比赛字符串
 	 */
@@ -1645,7 +1701,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
-					againstStringBufffer.append(totalGoalsAgainstInformation.getTeamId() + "  ");
+					againstStringBufffer.append(totalGoalsAgainstInformation
+							.getTeamId() + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(totalGoalsAgainstInformation.getHomeTeam())
@@ -1655,14 +1712,22 @@ public class BeiJingSingleGameActivity extends Activity {
 					/* Modify by pengcx 20130703 end */
 					boolean[] IsClicks = totalGoalsAgainstInformation
 							.getIsClicks();
+
+					/* Modify by pengcx 20130708 start */
+					List<Double> selectedSP = new ArrayList<Double>();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
 							againstStringBufffer
 									.append(TotalGoalsAdapter.selectButtonTitles[click_i])
 									.append(" ");
+							selectedSP.add(totalGoalsAgainstInformation
+									.getSelectedSp(click_i));
 						}
 					}
+					double[] SPs = PublicMethod.ListToArray(selectedSP);
+					newSelectedSPList.add(SPs);
 					againstStringBufffer.append("\n");
+					/* Modify by pengcx 20130708 end */
 				}
 			}
 		}
@@ -1670,7 +1735,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取胜平负选择的比赛字符串
-	 *
+	 * 
 	 * @param againstStringBufffer
 	 *            选择比赛字符串
 	 */
@@ -1679,7 +1744,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
-					againstStringBufffer.append(winTieLossAgainstInformation.getTeamId() + "  ");
+					againstStringBufffer.append(winTieLossAgainstInformation
+							.getTeamId() + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(winTieLossAgainstInformation.getHomeTeam())
@@ -1687,17 +1753,27 @@ public class BeiJingSingleGameActivity extends Activity {
 							.append(winTieLossAgainstInformation.getGuestTeam())
 							.append("\n让球胜平负：");
 					/* Modify by pengcx 20130703 end */
-					
+
+					/* Modify by pengcx 20130708 start */
+					List<Double> selectedSP = new ArrayList<Double>();
 					if (winTieLossAgainstInformation.isV0IsClick()) {
 						againstStringBufffer.append("胜");
+						selectedSP.add(Double
+								.valueOf(winTieLossAgainstInformation.getV3()));
 					}
 					if (winTieLossAgainstInformation.isV1IsClick()) {
 						againstStringBufffer.append("平");
+						selectedSP.add(Double
+								.valueOf(winTieLossAgainstInformation.getV1()));
 					}
 					if (winTieLossAgainstInformation.isV3IsClick()) {
 						againstStringBufffer.append("负");
+						selectedSP.add(Double
+								.valueOf(winTieLossAgainstInformation.getV0()));
 					}
-
+					double[] SPs = PublicMethod.ListToArray(selectedSP);
+					newSelectedSPList.add(SPs);
+					/* Modify by pengcx 20130708 end */
 					againstStringBufffer.append("\n");
 				}
 			}
@@ -1706,7 +1782,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 是否是合法的选择
-	 *
+	 * 
 	 * @return 是否合法标识
 	 */
 	public boolean isLegalSelect() {
@@ -1721,7 +1797,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 向行里添加选择赛事按钮
-	 *
+	 * 
 	 * @param buttonOfPreLine
 	 *            每行按钮的个数
 	 * @param line_i
@@ -1765,9 +1841,9 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 赛事切换对话框按钮事件监听实现类
-	 *
+	 * 
 	 * @author Administrator
-	 *
+	 * 
 	 */
 	class EventSelectDialogButtonOnClickListener implements OnClickListener {
 
@@ -1816,7 +1892,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 获取选择的比赛的投注次数集合
-	 *
+	 * 
 	 * @return 投注次数集合
 	 */
 	public List<String> getSelectedEventClickNum() {
@@ -1905,7 +1981,7 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/**
 	 * 选择的场次是否合法
-	 *
+	 * 
 	 * @return
 	 */
 	public boolean isSelectedEventNumLegal() {

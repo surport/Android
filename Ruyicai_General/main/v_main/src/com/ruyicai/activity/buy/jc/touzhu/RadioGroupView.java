@@ -6,6 +6,7 @@ import java.util.List;
 import com.lthj.unipay.plugin.ca;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity;
+import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
@@ -21,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 /**
  * 投注选择项组类
@@ -246,8 +248,11 @@ public class RadioGroupView {
 						if (isBeijing) {
 							((BeiJingSingleGameIndentActivity) context).bettingNum = getBeijingRadioZhu(buttonView
 									.getText().toString());
+							setBeiJingRadioPrize(buttonView.getText()
+									.toString());
 							((BeiJingSingleGameIndentActivity) context)
 									.setBettingInformationShow();
+
 						} else {
 							touzhuDialog.zhuShu = getRadioZhu(buttonView
 									.getText().toString());
@@ -265,6 +270,8 @@ public class RadioGroupView {
 		}
 		layoutMain.addView(layoutOne);
 	}
+
+	
 
 	/**
 	 * 清空单选按钮
@@ -363,9 +370,9 @@ public class RadioGroupView {
 		for (int i = 0; i < checkId.length; i++) {
 			beijingChecks[i] = (CheckBox) v.findViewById(checkId[i]);
 			beijingChecks[i].setId(i);
-			/*Add by pengcx 20130516 start*/
+			/* Add by pengcx 20130516 start */
 			beijingChecks[i].setTextSize(15.0f);
-			/*Add by pengcx 20130516 end*/
+			/* Add by pengcx 20130516 end */
 			if (i >= num) {
 				beijingChecks[i].setVisibility(CheckBox.GONE);
 			} else if (i < 0) {
@@ -376,20 +383,75 @@ public class RadioGroupView {
 						.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 							public void onCheckedChanged(
 									CompoundButton buttonView, boolean isChecked) {
-								int checknum = buttonView.getId();
+								int beijingchecknum = buttonView.getId();
 								if (isChecked) {
-//									Log.i("111", "增加的注数:" +((BeiJingSingleGameIndentActivity) context)
-//											.getBettingNum(buttonView.getId() + 1));
 									((BeiJingSingleGameIndentActivity) context).bettingNum += ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
+									if (0 == buttonView.getId()) {
+										Toast.makeText(context, "单关", 1).show();
+										BeiJingSingleGameIndentActivity.freedomMaxprize += ((BeiJingSingleGameIndentActivity) context)
+												.computeDanGuanMaxPrize();
+										// BeiJingSingleGameIndentActivity.freedomMinprize
+										// += ((BeiJingSingleGameIndentActivity)
+										// context)
+										// .computeDanGuanMinPrize();
+									} else {
+										Toast.makeText(context, "多场", 1).show();
+										BeiJingSingleGameIndentActivity.freedomMaxprize += ((BeiJingSingleGameIndentActivity) context)
+												.computeDuoGuanMaxPrize(0,beijingchecknum + 1);
+										// BeiJingSingleGameIndentActivity.freedomMinprize
+										// += ((BeiJingSingleGameIndentActivity)
+										// context)
+										// .computeDuoGuanMinPrize(beijingchecknum
+										// + 1);
+									}
+									
+									int mixSelect = isBeijingMixChecked();
+									if (0 == beijingchecknum) {
+										BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+												.computeDanGuanMinPrize();
+									} else {
+										BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+												.computeDuoGuanMinPrize(0,mixSelect);
+									}
+
 								} else {
-//									Log.i("111", "减少的注数:" +((BeiJingSingleGameIndentActivity) context)
-//											.getBettingNum(buttonView.getId() + 1));
 									((BeiJingSingleGameIndentActivity) context).bettingNum -= ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
+									if (0 == buttonView.getId()) {
+										Toast.makeText(context, "单关", 1).show();
+										BeiJingSingleGameIndentActivity.freedomMaxprize -= ((BeiJingSingleGameIndentActivity) context)
+												.computeDanGuanMaxPrize();
+										// BeiJingSingleGameIndentActivity.freedomMinprize
+										// -= ((BeiJingSingleGameIndentActivity)
+										// context)
+										// .computeDanGuanMinPrize();
+
+									} else {
+										Toast.makeText(context, "多场", 1).show();
+										BeiJingSingleGameIndentActivity.freedomMaxprize -= ((BeiJingSingleGameIndentActivity) context)
+												.computeDuoGuanMaxPrize(0,beijingchecknum + 1);
+										// BeiJingSingleGameIndentActivity.freedomMinprize
+										// -= ((BeiJingSingleGameIndentActivity)
+										// context)
+										// .computeDuoGuanMinPrize(beijingchecknum
+										// + 1);
+									}
+
+									int mixSelect = isBeijingMixChecked();
+									if(0 == mixSelect){
+										BeiJingSingleGameIndentActivity.freedomMinprize = 0;
+										BeiJingSingleGameIndentActivity.freedomMaxprize = 0;
+									}
+									else if (1 == mixSelect) {
+										BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+												.computeDanGuanMinPrize();
+									} else {
+										BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+												.computeDuoGuanMinPrize(0,mixSelect);
+									}
 								}
-								
-//								Log.i("111","结果注数:"+((BeiJingSingleGameIndentActivity) context).bettingNum);
+
 								((BeiJingSingleGameIndentActivity) context)
 										.setBettingInformationShow();
 							}
@@ -476,6 +538,18 @@ public class RadioGroupView {
 		}
 		return 0;
 	}
+
+	/** add by pengcx 20130709 start */
+	public int isBeijingMixChecked() {
+		for (int i = 0; i < beijingChecks.length; i++) {
+			if (beijingChecks[i].isChecked()) {
+				return i + 1;
+			}
+		}
+		return 0;
+	}
+
+	/** add by pengcx 20130709 end */
 
 	/**
 	 * 根据选则的球队计算单选按钮数
@@ -900,6 +974,158 @@ public class RadioGroupView {
 		}
 		return zhuShu;
 	}
+
+	/*add by pengcx 20130709 start*/
+	protected void setBeiJingRadioPrize(String radioText) {
+		if (radioText.equals(getString(R.string.jc_touzhu_radio2_3))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(2, 1)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(2, 2);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(2, 1);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio3_4))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(3, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(3, 3);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(3, 2);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio3_7))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(3, 1)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(3, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(3, 3);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(3, 1);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio4_5))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(4, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(4, 4);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(4, 3);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio4_11))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(4, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(4, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(4, 4);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(4, 2);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio4_15))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(4, 1)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(4, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(4, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(4, 4);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(4, 1);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio5_6))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(5, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 5);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(5, 4);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio5_16))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(5, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 5);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(5, 3);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio5_26))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(5, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 5);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(5, 2);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio5_31))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(5, 1)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(5, 5);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(5, 1);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio6_7))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(6, 5)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 6);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(6, 5);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio6_22))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(6, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 5)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 6);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(6, 4);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio6_42))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(6, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 5)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 6);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(6, 3);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio6_57))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(6, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 5)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 6);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(6, 2);
+		} else if (radioText.equals(getString(R.string.jc_touzhu_radio6_63))) {
+			BeiJingSingleGameIndentActivity.freedomMaxprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMaxPrize(6, 1)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 2)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 3)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 4)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 5)
+					+ ((BeiJingSingleGameIndentActivity) context)
+							.computeDuoGuanMaxPrize(6, 6);
+			BeiJingSingleGameIndentActivity.freedomMinprize = ((BeiJingSingleGameIndentActivity) context)
+					.computeDuoGuanMinPrize(6, 1);
+		}
+	}
+	/*add by pengcx 20130709 end*/
+
 
 	private void setRadioPrize(String radioText) {
 		if (radioText.equals(getString(R.string.jc_touzhu_radio3_3))) {

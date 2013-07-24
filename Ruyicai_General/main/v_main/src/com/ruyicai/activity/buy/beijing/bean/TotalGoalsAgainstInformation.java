@@ -195,11 +195,52 @@ public class TotalGoalsAgainstInformation extends AgainstInformation {
 							.getString("goal_v7"));
 					totalGoalsAgainstInformations.add(againstInformation);
 				}
-				totalGoalsAgainstInformationList.add(totalGoalsAgainstInformations);
+				totalGoalsAgainstInformationList
+						.add(totalGoalsAgainstInformations);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return totalGoalsAgainstInformationList;
 	}
+
+	/** add by pengcx 20130708 start */
+	/**
+	 * 获取选中按钮的SP值
+	 * 
+	 * @param click_i
+	 *            选中按钮的索引
+	 * @return SP值
+	 */
+	public Double getSelectedSp(int click_i) {
+		String selectedSP = "";
+		switch (click_i) {
+		case 0:
+			selectedSP = getGoal_v0();
+			break;
+		case 1:
+			selectedSP = getGoal_v1();
+			break;
+		case 2:
+			selectedSP = getGoal_v2();
+			break;
+		case 3:
+			selectedSP = getGoal_v3();
+			break;
+		case 4:
+			selectedSP = getGoal_v4();
+			break;
+		case 5:
+			selectedSP = getGoal_v5();
+			break;
+		case 6:
+			selectedSP = getGoal_v6();
+			break;
+		case 7:
+			selectedSP = getGoal_v7();
+			break;
+		}
+		return Double.valueOf(selectedSP);
+	}
+	/** add by pengcx 20130708 end */
 }

@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -224,6 +222,16 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
 				.findViewById(R.id.home_layout);
+		if (winTieLossAgainstInformation.isV0IsClick()) {
+			homeTeamLayout
+					.setBackgroundResource(R.drawable.team_name_bj_yellow);
+			homeTeamTextView
+					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+		} else {
+			homeTeamLayout.setBackgroundResource(R.drawable.team_name_bj);
+			homeTeamTextView.setBackgroundResource(R.drawable.team_name_bj_top);
+		}
+
 		homeTeamLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -258,6 +266,14 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// vs“按钮”布局
 		final LinearLayout vsLayout = (LinearLayout) itemView
 				.findViewById(R.id.vs_layout);
+		if (winTieLossAgainstInformation.isV1IsClick()) {
+			vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+			vsTextView
+					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+		} else {
+			vsLayout.setBackgroundResource(R.drawable.team_name_bj);
+			vsTextView.setBackgroundResource(R.drawable.team_name_bj_top);
+		}
 		vsLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -289,6 +305,17 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// 客队“按钮”布局
 		final LinearLayout guestTeamLayout = (LinearLayout) itemView
 				.findViewById(R.id.guest_layout);
+		if (winTieLossAgainstInformation.isV3IsClick()) {
+			guestTeamLayout
+					.setBackgroundResource(R.drawable.team_name_bj_yellow);
+			guestTeamTextView
+					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+		} else {
+			guestTeamLayout.setBackgroundResource(R.drawable.team_name_bj);
+			guestTeamTextView
+					.setBackgroundResource(R.drawable.team_name_bj_top);
+		}
+
 		guestTeamLayout.setOnClickListener(new OnClickListener() {
 
 			@Override

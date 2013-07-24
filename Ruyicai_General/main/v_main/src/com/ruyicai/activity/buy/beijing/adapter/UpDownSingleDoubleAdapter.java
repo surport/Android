@@ -166,6 +166,13 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 		final LinearLayout upSingleLinearLayout = (LinearLayout) itemView
 				.findViewById(R.id.upsingle);
 		upSingleLinearLayout.setTag(false);
+		if ((upDownSingleDoubleAgainstInformation.isV1IsClick()) == true) {
+			upSingleLinearLayout
+					.setBackgroundResource(R.drawable.upsingle_click);
+		} else {
+			upSingleLinearLayout
+					.setBackgroundResource(R.drawable.upsingle_normal);
+		}
 		upSingleLinearLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -205,6 +212,13 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 		// 上双
 		final LinearLayout upDoubleLinearLayout = (LinearLayout) itemView
 				.findViewById(R.id.updouble);
+		if ((upDownSingleDoubleAgainstInformation.isV2IsClick()) == true) {
+			upDoubleLinearLayout
+					.setBackgroundResource(R.drawable.upsingle_click);
+		} else {
+			upDoubleLinearLayout
+					.setBackgroundResource(R.drawable.upsingle_normal);
+		}
 		upDoubleLinearLayout.setTag(false);
 		upDoubleLinearLayout.setOnClickListener(new OnClickListener() {
 
@@ -246,7 +260,13 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 		// 下单
 		final LinearLayout downSingleLinearLayout = (LinearLayout) itemView
 				.findViewById(R.id.downsingle);
-
+		if ((upDownSingleDoubleAgainstInformation.isV3IsClick()) == true) {
+			downSingleLinearLayout
+					.setBackgroundResource(R.drawable.upsingle_click);
+		} else {
+			downSingleLinearLayout
+					.setBackgroundResource(R.drawable.upsingle_normal);
+		}
 		downSingleLinearLayout.setTag(false);
 		downSingleLinearLayout.setOnClickListener(new OnClickListener() {
 
@@ -289,6 +309,14 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 		final LinearLayout downDoubleLayout = (LinearLayout) itemView
 				.findViewById(R.id.downdouble);
 		downDoubleLayout.setTag(false);
+
+		if ((upDownSingleDoubleAgainstInformation.isV4IsClick()) == true) {
+			downDoubleLayout.setBackgroundResource(R.drawable.upsingle_click);
+		} else {
+			downDoubleLayout.setBackgroundResource(R.drawable.upsingle_normal);
+
+		}
+
 		downDoubleLayout.setOnClickListener(new OnClickListener() {
 
 			@Override

@@ -2970,4 +2970,14 @@ public class PublicMethod {
 		textView.setText(userName);
 	}
 	/**add by yejc 20130718 end*/
+	
+	public static double[] ListToArray(List list) {
+		double[] array = new double[list.size()];
+		
+		for (int i = 0; i < list.size(); i++) {
+			array[i] = (Double) list.get(i);
+		}
+		
+		return array;
+	}
 }

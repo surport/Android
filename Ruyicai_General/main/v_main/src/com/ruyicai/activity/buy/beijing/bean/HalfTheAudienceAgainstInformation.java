@@ -161,7 +161,7 @@ public class HalfTheAudienceAgainstInformation extends AgainstInformation {
 
 		List<List<HalfTheAudienceAgainstInformation>> halfTheAudienceagainstInformationList = new ArrayList<List<HalfTheAudienceAgainstInformation>>();
 
-		int jsonarrayLength  = againstJsonArray.length();
+		int jsonarrayLength = againstJsonArray.length();
 		try {
 			for (int jsonarray_i = 0; jsonarray_i < jsonarrayLength; jsonarray_i++) {
 				List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations = new ArrayList<HalfTheAudienceAgainstInformation>();
@@ -216,4 +216,50 @@ public class HalfTheAudienceAgainstInformation extends AgainstInformation {
 		}
 		return halfTheAudienceagainstInformationList;
 	}
+
+	/**add by pengcx 20130709 start*/
+	/**
+	 * 获取选中按钮的SP值
+	 * 
+	 * @param click_i
+	 *            选中按钮的索引
+	 * @return SP值
+	 */
+	public Double getSelectedSp(int click_i) {
+		String selectedSP = "";
+
+		switch (click_i) {
+		case 0:
+			selectedSP = getHalf_v33();
+			break;
+		case 1:
+			selectedSP = getHalf_v31();
+			break;
+		case 2:
+			selectedSP = getHalf_v30();
+			break;
+		case 3:
+			selectedSP = getHalf_v13();
+			break;
+		case 4:
+			selectedSP = getHalf_v11();
+			break;
+		case 5:
+			selectedSP = getHalf_v10();
+			break;
+		case 6:
+			selectedSP = getHalf_v03();
+			break;
+		case 7:
+			selectedSP = getHalf_v01();
+			break;
+		case 8:
+			selectedSP = getHalf_v00();
+			break;
+		}
+
+		return Double.valueOf(selectedSP);
+	}
+	
+	/**add by pengcx 20130709 end*/
 }
