@@ -22,6 +22,7 @@ public class TotalGoalsAgainstInformation extends AgainstInformation {
 	private String goal_v5;
 	private String goal_v6;
 	private String goal_v7;
+	private boolean isDan;
 
 	private boolean[] isClicks = { false, false, false, false, false, false,
 			false, false };
@@ -96,6 +97,15 @@ public class TotalGoalsAgainstInformation extends AgainstInformation {
 
 	public void setIsClicks(boolean[] isClicks) {
 		this.isClicks = isClicks;
+	}
+
+
+	public boolean isDan() {
+		return isDan;
+	}
+
+	public void setDan(boolean isDan) {
+		this.isDan = isDan;
 	}
 
 	public TotalGoalsAgainstInformation clone() {

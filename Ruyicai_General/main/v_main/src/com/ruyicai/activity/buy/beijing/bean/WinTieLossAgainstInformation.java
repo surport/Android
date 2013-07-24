@@ -29,6 +29,8 @@ public class WinTieLossAgainstInformation extends AgainstInformation {
 	private boolean v1IsClick = false;
 	/** 是否选择负标识 */
 	private boolean v3IsClick = false;
+	/**是否选择胆*/
+	private boolean isDan;
 
 	private String letPoint;
 
@@ -86,6 +88,14 @@ public class WinTieLossAgainstInformation extends AgainstInformation {
 
 	public void setLetPoint(String letPoint) {
 		this.letPoint = letPoint;
+	}
+
+	public boolean isDan() {
+		return isDan;
+	}
+
+	public void setDan(boolean isDan) {
+		this.isDan = isDan;
 	}
 
 	/**

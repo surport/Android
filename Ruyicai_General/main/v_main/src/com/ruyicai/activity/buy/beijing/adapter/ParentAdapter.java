@@ -12,6 +12,13 @@ import android.widget.BaseAdapter;
 public abstract class ParentAdapter extends BaseAdapter {
 	/** 上下文对象 */
 	public Context context;
+	
+	
+	public ParentAdapter(Context context) {
+		super();
+		this.context = context;
+	}
+
 	/**
 	 * 跳转到分析界面
 	 */

@@ -39,6 +39,7 @@ public class OverAllAgainstInformation extends AgainstInformation {
 	private String score_v90;
 	private String score_v99;
 	private String score_v09;
+	private boolean isDan;
 
 	private boolean[] isClicks = { false, false, false, false, false, false,
 			false, false, false, false, false, false, false, false, false,
@@ -251,6 +252,14 @@ public class OverAllAgainstInformation extends AgainstInformation {
 
 	public void setIsClicks(boolean[] isClicks) {
 		this.isClicks = isClicks;
+	}
+
+	public boolean isDan() {
+		return isDan;
+	}
+
+	public void setDan(boolean isDan) {
+		this.isDan = isDan;
 	}
 
 	public OverAllAgainstInformation clone() {

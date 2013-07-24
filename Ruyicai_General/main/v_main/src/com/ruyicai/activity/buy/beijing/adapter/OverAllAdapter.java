@@ -39,19 +39,20 @@ import android.widget.Toast;
 public class OverAllAdapter extends ParentAdapter {
 	private static final String TAG = "OverAllAdapter";
 	private static final int SELECT_BUTTON_NUM = 25;
-	/*Modify by pengcx 20130617 start*/
+	protected static final int MAX_DAN = 7;
+	/* Modify by pengcx 20130617 start */
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "2:1",
 			"3:0", "3:1", "3:2", "4:0", "4:1", "4:2", "平其他", "0:0", "1:1",
 			"2:2", "3:3", "负其他", "0:1", "0:2", "1:2", "0:3", "1:3", "2:3",
 			"0:4", "1:4", "2:4" };
-	/*Modify by pengcx 20130617 end*/
+	/* Modify by pengcx 20130617 end */
 	/** 显示全场总比分对阵信息集合 */
 	private List<List<OverAllAgainstInformation>> overAllAgainstInformationList;
 
 	public OverAllAdapter(Context context,
 			List<List<OverAllAgainstInformation>> overAllAgainstInformationList) {
-		this.context = context;
+		super(context);
 		this.overAllAgainstInformationList = overAllAgainstInformationList;
 	}
 
@@ -203,6 +204,103 @@ public class OverAllAdapter extends ParentAdapter {
 				.findViewById(R.id.guest_team_name);
 		guestTeamTextView.setText(overAllAgainstInformation.getGuestTeam());
 
+		// 胆
+		final Button danTextButton = (Button) itemView
+				.findViewById(R.id.game_dan);
+		if (overAllAgainstInformation.isDan()) {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+		} else {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+		}
+
+		danTextButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (overAllAgainstInformation.isDan()) {
+					overAllAgainstInformation.setDan(false);
+					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+				} else {
+					if (isSelectDanLegal()) {
+						overAllAgainstInformation.setDan(true);
+						danTextButton
+								.setBackgroundResource(R.drawable.jc_btn_b);
+					}
+				}
+
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
+			}
+
+			private boolean isSelectDanLegal() {
+				if (overAllAgainstInformation.getClickNum() > 0) {
+					int selectDanNum = getSelectDanNum();
+					if (selectDanNum < MAX_DAN) {
+						int selectedTeamNum = getSelectedTeamNum();
+
+						if (selectedTeamNum < 3) {
+							Toast.makeText(context, "请您至少选择3场比赛，才能设胆",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						} else if (selectDanNum < (selectedTeamNum - 2)) {
+							return true;
+						} else {
+							Toast.makeText(context,
+									"胆码不能超过" + (selectedTeamNum - 2) + "个",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						}
+					} else {
+						Toast.makeText(context,
+								"您最多可以选择" + MAX_DAN + "场比赛进行设胆！",
+								Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+
+			private int getSelectedTeamNum() {
+				int selectTeamNum = 0;
+
+				for (int list_i = 0; list_i < overAllAgainstInformationList
+						.size(); list_i++) {
+					List<OverAllAgainstInformation> overAllAgainstInformations = overAllAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < overAllAgainstInformations
+							.size(); list_j++) {
+						OverAllAgainstInformation overAllAgainstInformation = overAllAgainstInformations
+								.get(list_j);
+						if (overAllAgainstInformation.getClickNum() > 0) {
+							selectTeamNum++;
+						}
+					}
+				}
+
+				return selectTeamNum;
+			}
+
+			private int getSelectDanNum() {
+				int selectDanNum = 0;
+
+				for (int list_i = 0; list_i < overAllAgainstInformationList
+						.size(); list_i++) {
+					List<OverAllAgainstInformation> overAllAgainstInformations = overAllAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < overAllAgainstInformations
+							.size(); list_j++) {
+						OverAllAgainstInformation overAllAgainstInformation = overAllAgainstInformations
+								.get(list_j);
+						if (overAllAgainstInformation.isDan()) {
+							selectDanNum++;
+						}
+					}
+				}
+
+				return selectDanNum;
+			}
+		});
+
 		// 投注按钮
 		TextView bettingButton = (Button) itemView
 				.findViewById(R.id.jc_main_list_item_button);
@@ -246,9 +344,6 @@ public class OverAllAdapter extends ParentAdapter {
 				trunExplain(getEvent(overAllAgainstInformation));
 			}
 		});
-		// 胆
-		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		danTextButton.setVisibility(View.INVISIBLE);
 
 		return itemView;
 	}
@@ -358,7 +453,12 @@ public class OverAllAdapter extends ParentAdapter {
 
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNum();
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
+
+				if (overAllAgainstInformation.isDan()
+						&& !overAllAgainstInformation.isSelected()) {
+					overAllAgainstInformation.setDan(false);
+				}
 
 				selectDialog.dismiss();
 			}
@@ -378,7 +478,7 @@ public class OverAllAdapter extends ParentAdapter {
 
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNum();
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
 
 				selectDialog.dismiss();
 			}

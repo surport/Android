@@ -158,8 +158,13 @@ public class BeiJingSingleGameActivity extends Activity {
 	/** 当前上下单双对阵信息对象集合 */
 	private List<List<UpDownSingleDoubleAgainstInformation>> nowUpDownSigleDoubleagainstInformationList;
 
+	private List<String> bettinginfoList;
+	private List<String> bettingDanList;
+
 	/** 当前选中的场次数 */
 	private int selectedGameNum = 0;
+	private int selectedDanNum = 0;
+
 	/** 当前期号 */
 	private String nowIssueString;
 	/** 网络请求返回消息 */
@@ -556,74 +561,94 @@ public class BeiJingSingleGameActivity extends Activity {
 				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 	}
 
-	public void refreshSelectNum() {
+	public void refreshSelectNumAndDanNum() {
 		selectedGameNum = 0;
+		selectedDanNum = 0;
 		switch (playMethodType) {
 		case WINTIELOSS:
-			refreshWinTieLossSelectNum();
+			refreshWinTieLossSelectNumAndDanNum();
 			break;
 		case TOTALGOALS:
-			refreshTotalGoalsSelectNum();
+			refreshTotalGoalsSelectNumAndDanNum();
 			break;
 		case OVERALL:
-			refreshOverAllSelectNum();
+			refreshOverAllSelectNumAndDanNum();
 			break;
 		case HALFTHEAUDIENCE:
-			refreshHalfTheAudienceSelectNum();
+			refreshHalfTheAudienceSelectNumAndDanNum();
 			break;
 		case UPDOWNSINGLEDOUBLE:
-			refreshUpDownSingleDoubleSelectNum();
+			refreshUpDownSingleDoubleSelectNumAndDanNum();
 			break;
 		}
 		selectNumTextView.setText("已经选择了" + selectedGameNum + "场比赛");
 	}
 
-	private void refreshUpDownSingleDoubleSelectNum() {
+	private void refreshUpDownSingleDoubleSelectNumAndDanNum() {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
 					selectedGameNum++;
 				}
-			}
-		}
-	}
 
-	private void refreshHalfTheAudienceSelectNum() {
-		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
-			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
-				if (halfTheAudienceAgainstInformation.isSelected()) {
-					selectedGameNum++;
+				if (upDownSingleDoubleAgainstInformation.isDan()) {
+					selectedDanNum++;
 				}
 			}
 		}
 	}
 
-	private void refreshOverAllSelectNum() {
+	private void refreshHalfTheAudienceSelectNumAndDanNum() {
+		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
+			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
+				if (halfTheAudienceAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+
+				if (halfTheAudienceAgainstInformation.isDan()) {
+					selectedDanNum++;
+				}
+			}
+		}
+	}
+
+	private void refreshOverAllSelectNumAndDanNum() {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
 					selectedGameNum++;
 				}
 
-			}
-		}
-	}
-
-	private void refreshTotalGoalsSelectNum() {
-		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
-			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
-				if (totalGoalsAgainstInformation.isSelected()) {
-					selectedGameNum++;
+				if (overAllAgainstInformation.isDan()) {
+					selectedDanNum++;
 				}
 			}
 		}
 	}
 
-	private void refreshWinTieLossSelectNum() {
+	private void refreshTotalGoalsSelectNumAndDanNum() {
+		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
+			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
+				if (totalGoalsAgainstInformation.isSelected()) {
+					selectedGameNum++;
+				}
+
+				if (totalGoalsAgainstInformation.isDan()) {
+					selectedDanNum++;
+				}
+			}
+		}
+	}
+
+	private void refreshWinTieLossSelectNumAndDanNum() {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
 					selectedGameNum++;
+				}
+
+				if (winTieLossAgainstInformation.isDan()) {
+					selectedDanNum++;
 				}
 			}
 		}
@@ -896,12 +921,16 @@ public class BeiJingSingleGameActivity extends Activity {
 					intent.putExtra("selectedagainst",
 							getSelectedAgainstString());
 					intent.putExtra("selectedgamenum", selectedGameNum);
+					getSelectedEventClickNumAndDanClickNum();
 					intent.putStringArrayListExtra("selectedeventclicknum",
-							(ArrayList<String>) getSelectedEventClickNum());
+							(ArrayList<String>) bettinginfoList);
+					intent.putStringArrayListExtra("selecteddanclicknum",
+							(ArrayList<String>) bettingDanList);
 					intent.putExtra("laterpartbettingcode",
 							getLaterPartBettingCode());
 					intent.putExtra("nowIssueString", nowIssueString);
 					intent.putExtra("lotno", playMethodType.getLotnoString());
+					intent.putExtra("selecteddannum", selectedDanNum);
 
 					startActivity(intent);
 				}
@@ -1092,6 +1121,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				break;
 			}
 			selectedGameNum = 0;
+			selectedDanNum = 0;
 			playMethodChangeDialog.dismiss();
 
 			getAndnalysisAgainstInformations();
@@ -1237,32 +1267,71 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void getUpDownSingleDoubleLaterPartBettingCode(
 			StringBuffer batchCodeStringBuffer) {
+		StringBuffer danBatchCodeStringBuffer = new StringBuffer();
+		StringBuffer noDanBatchCodeStringBuffer = new StringBuffer();
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
-					batchCodeStringBuffer
-							.append(upDownSingleDoubleAgainstInformation
-									.getTeamId() + "|");
-					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
-						batchCodeStringBuffer.append("1");
+					if (upDownSingleDoubleAgainstInformation.isDan()) {
+						appendUpDownSingleDoubleBatchCodeString(
+								danBatchCodeStringBuffer,
+								upDownSingleDoubleAgainstInformation);
+					} else {
+						appendUpDownSingleDoubleBatchCodeString(
+								noDanBatchCodeStringBuffer,
+								upDownSingleDoubleAgainstInformation);
 					}
-
-					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
-						batchCodeStringBuffer.append("2");
-					}
-
-					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
-						batchCodeStringBuffer.append("3");
-					}
-
-					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
-						batchCodeStringBuffer.append("4");
-					}
-
-					batchCodeStringBuffer.append("^");
 				}
 			}
 		}
+
+		appendDanAndNoDanBatchCode(batchCodeStringBuffer,
+				danBatchCodeStringBuffer, noDanBatchCodeStringBuffer);
+	}
+
+	/**
+	 * 拼接胆和非胆的注码字符串
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码字符串
+	 * @param danBatchCodeStringBuffer
+	 *            胆注码字符串
+	 * @param noDanBatchCodeStringBuffer
+	 *            非胆注码字符串
+	 */
+	private void appendDanAndNoDanBatchCode(StringBuffer batchCodeStringBuffer,
+			StringBuffer danBatchCodeStringBuffer,
+			StringBuffer noDanBatchCodeStringBuffer) {
+		if (danBatchCodeStringBuffer.length() > 0) {
+			batchCodeStringBuffer.append(danBatchCodeStringBuffer).append("$")
+					.append(noDanBatchCodeStringBuffer);
+		} else {
+			batchCodeStringBuffer.append(noDanBatchCodeStringBuffer);
+		}
+	}
+
+	private void appendUpDownSingleDoubleBatchCodeString(
+			StringBuffer batchCodeStringBuffer,
+			UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation) {
+		batchCodeStringBuffer.append(upDownSingleDoubleAgainstInformation
+				.getTeamId() + "|");
+		if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
+			batchCodeStringBuffer.append("1");
+		}
+
+		if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
+			batchCodeStringBuffer.append("2");
+		}
+
+		if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
+			batchCodeStringBuffer.append("3");
+		}
+
+		if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
+			batchCodeStringBuffer.append("4");
+		}
+
+		batchCodeStringBuffer.append("^");
 	}
 
 	/**
@@ -1273,53 +1342,73 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void getHalfTheAudienceLaterPartBetttingCode(
 			StringBuffer batchCodeStringBuffer) {
+		StringBuffer danBatchCodeStringBuffer = new StringBuffer();
+		StringBuffer noDanBatchCodeStringBuffer = new StringBuffer();
+
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
-					batchCodeStringBuffer
-							.append(halfTheAudienceAgainstInformation
-									.getTeamId() + "|");
-
-					boolean[] isClicks = halfTheAudienceAgainstInformation
-							.getIsClicks();
-					int length = isClicks.length;
-					for (int t = 0; t < length; t++) {
-						if (isClicks[t]) {
-							switch (t) {
-							case 0:
-								batchCodeStringBuffer.append("33");
-								break;
-							case 1:
-								batchCodeStringBuffer.append("31");
-								break;
-							case 2:
-								batchCodeStringBuffer.append("30");
-								break;
-							case 3:
-								batchCodeStringBuffer.append("13");
-								break;
-							case 4:
-								batchCodeStringBuffer.append("11");
-								break;
-							case 5:
-								batchCodeStringBuffer.append("10");
-								break;
-							case 6:
-								batchCodeStringBuffer.append("03");
-								break;
-							case 7:
-								batchCodeStringBuffer.append("01");
-								break;
-							case 8:
-								batchCodeStringBuffer.append("00");
-								break;
-							}
-						}
+					if (halfTheAudienceAgainstInformation.isDan()) {
+						appendHalfTheAudienceBatchCodeString(
+								danBatchCodeStringBuffer,
+								halfTheAudienceAgainstInformation);
+					} else {
+						appendHalfTheAudienceBatchCodeString(
+								noDanBatchCodeStringBuffer,
+								halfTheAudienceAgainstInformation);
 					}
-					batchCodeStringBuffer.append("^");
+
 				}
 			}
 		}
+
+		appendDanAndNoDanBatchCode(batchCodeStringBuffer,
+				danBatchCodeStringBuffer, noDanBatchCodeStringBuffer);
+
+	}
+
+	private void appendHalfTheAudienceBatchCodeString(
+			StringBuffer batchCodeStringBuffer,
+			HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation) {
+		batchCodeStringBuffer.append(halfTheAudienceAgainstInformation
+				.getTeamId() + "|");
+
+		boolean[] isClicks = halfTheAudienceAgainstInformation.getIsClicks();
+		int length = isClicks.length;
+		for (int t = 0; t < length; t++) {
+			if (isClicks[t]) {
+				switch (t) {
+				case 0:
+					batchCodeStringBuffer.append("33");
+					break;
+				case 1:
+					batchCodeStringBuffer.append("31");
+					break;
+				case 2:
+					batchCodeStringBuffer.append("30");
+					break;
+				case 3:
+					batchCodeStringBuffer.append("13");
+					break;
+				case 4:
+					batchCodeStringBuffer.append("11");
+					break;
+				case 5:
+					batchCodeStringBuffer.append("10");
+					break;
+				case 6:
+					batchCodeStringBuffer.append("03");
+					break;
+				case 7:
+					batchCodeStringBuffer.append("01");
+					break;
+				case 8:
+					batchCodeStringBuffer.append("00");
+					break;
+				}
+			}
+		}
+		batchCodeStringBuffer.append("^");
 	}
 
 	/**
@@ -1330,102 +1419,128 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void getOverAllLaterPartBettingCode(
 			StringBuffer batchCodeStringBuffer) {
+		StringBuffer danBatchCodeStringBuffer = new StringBuffer();
+		StringBuffer noDanBatchCodeStringBuffer = new StringBuffer();
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
-					batchCodeStringBuffer.append(overAllAgainstInformation
-							.getTeamId() + "|");
-
-					boolean[] isClicks = overAllAgainstInformation
-							.getIsClicks();
-					int length = isClicks.length;
-					for (int t = 0; t < length; t++) {
-						if (isClicks[t]) {
-							/** modify by pengcx 20130617 start */
-							switch (t) {
-							case 0:
-								batchCodeStringBuffer.append("90");
-								break;
-							case 1:
-								batchCodeStringBuffer.append("10");
-								break;
-							case 2:
-								batchCodeStringBuffer.append("20");
-								break;
-							case 3:
-								batchCodeStringBuffer.append("21");
-								break;
-							case 4:
-								batchCodeStringBuffer.append("30");
-								break;
-							case 5:
-								batchCodeStringBuffer.append("31");
-								break;
-							case 6:
-								batchCodeStringBuffer.append("32");
-								break;
-							case 7:
-								batchCodeStringBuffer.append("40");
-								break;
-							case 8:
-								batchCodeStringBuffer.append("41");
-								break;
-							case 9:
-								batchCodeStringBuffer.append("42");
-								break;
-							case 10:
-								batchCodeStringBuffer.append("99");
-								break;
-							case 11:
-								batchCodeStringBuffer.append("00");
-								break;
-							case 12:
-								batchCodeStringBuffer.append("11");
-								break;
-							case 13:
-								batchCodeStringBuffer.append("22");
-								break;
-							case 14:
-								batchCodeStringBuffer.append("33");
-								break;
-							case 15:
-								batchCodeStringBuffer.append("09");
-								break;
-							case 16:
-								batchCodeStringBuffer.append("01");
-								break;
-							case 17:
-								batchCodeStringBuffer.append("02");
-								break;
-							case 18:
-								batchCodeStringBuffer.append("12");
-								break;
-							case 19:
-								batchCodeStringBuffer.append("03");
-								break;
-							case 20:
-								batchCodeStringBuffer.append("13");
-								break;
-							case 21:
-								batchCodeStringBuffer.append("23");
-								break;
-							case 22:
-								batchCodeStringBuffer.append("04");
-								break;
-							case 23:
-								batchCodeStringBuffer.append("14");
-								break;
-							case 24:
-								batchCodeStringBuffer.append("24");
-								break;
-							}
-						}
-						/** modify by pengcx 20130617 end */
+					if (overAllAgainstInformation.isDan()) {
+						appendOverAllBatchCodeString(danBatchCodeStringBuffer,
+								overAllAgainstInformation);
+					} else {
+						appendOverAllBatchCodeString(danBatchCodeStringBuffer,
+								overAllAgainstInformation);
 					}
-					batchCodeStringBuffer.append("^");
+
 				}
 			}
 		}
+
+		appendDanAndNoDanBatchCode(batchCodeStringBuffer,
+				danBatchCodeStringBuffer, noDanBatchCodeStringBuffer);
+
+	}
+
+	/**
+	 * 拼接总比分赛事注码
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码字符串
+	 * @param overAllAgainstInformation
+	 *            总比赛事信息
+	 */
+	private void appendOverAllBatchCodeString(
+			StringBuffer batchCodeStringBuffer,
+			OverAllAgainstInformation overAllAgainstInformation) {
+		batchCodeStringBuffer.append(overAllAgainstInformation.getTeamId()
+				+ "|");
+
+		boolean[] isClicks = overAllAgainstInformation.getIsClicks();
+		int length = isClicks.length;
+		for (int t = 0; t < length; t++) {
+			if (isClicks[t]) {
+				/** modify by pengcx 20130617 start */
+				switch (t) {
+				case 0:
+					batchCodeStringBuffer.append("90");
+					break;
+				case 1:
+					batchCodeStringBuffer.append("10");
+					break;
+				case 2:
+					batchCodeStringBuffer.append("20");
+					break;
+				case 3:
+					batchCodeStringBuffer.append("21");
+					break;
+				case 4:
+					batchCodeStringBuffer.append("30");
+					break;
+				case 5:
+					batchCodeStringBuffer.append("31");
+					break;
+				case 6:
+					batchCodeStringBuffer.append("32");
+					break;
+				case 7:
+					batchCodeStringBuffer.append("40");
+					break;
+				case 8:
+					batchCodeStringBuffer.append("41");
+					break;
+				case 9:
+					batchCodeStringBuffer.append("42");
+					break;
+				case 10:
+					batchCodeStringBuffer.append("99");
+					break;
+				case 11:
+					batchCodeStringBuffer.append("00");
+					break;
+				case 12:
+					batchCodeStringBuffer.append("11");
+					break;
+				case 13:
+					batchCodeStringBuffer.append("22");
+					break;
+				case 14:
+					batchCodeStringBuffer.append("33");
+					break;
+				case 15:
+					batchCodeStringBuffer.append("09");
+					break;
+				case 16:
+					batchCodeStringBuffer.append("01");
+					break;
+				case 17:
+					batchCodeStringBuffer.append("02");
+					break;
+				case 18:
+					batchCodeStringBuffer.append("12");
+					break;
+				case 19:
+					batchCodeStringBuffer.append("03");
+					break;
+				case 20:
+					batchCodeStringBuffer.append("13");
+					break;
+				case 21:
+					batchCodeStringBuffer.append("23");
+					break;
+				case 22:
+					batchCodeStringBuffer.append("04");
+					break;
+				case 23:
+					batchCodeStringBuffer.append("14");
+					break;
+				case 24:
+					batchCodeStringBuffer.append("24");
+					break;
+				}
+			}
+			/** modify by pengcx 20130617 end */
+		}
+		batchCodeStringBuffer.append("^");
 	}
 
 	/**
@@ -1436,49 +1551,77 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void getTotalGoalsLaterPartBettingCode(
 			StringBuffer batchCodeStringBuffer) {
+		StringBuffer danBatchCodeStringBuffer = new StringBuffer();
+		StringBuffer noDanBatchCodeStringBuffer = new StringBuffer();
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
-					batchCodeStringBuffer.append(totalGoalsAgainstInformation
-							.getTeamId() + "|");
-
-					boolean[] isClicks = totalGoalsAgainstInformation
-							.getIsClicks();
-					int length = isClicks.length;
-					for (int t = 0; t < length; t++) {
-						if (isClicks[t]) {
-							switch (t) {
-							case 0:
-								batchCodeStringBuffer.append("0");
-								break;
-							case 1:
-								batchCodeStringBuffer.append("1");
-								break;
-							case 2:
-								batchCodeStringBuffer.append("2");
-								break;
-							case 3:
-								batchCodeStringBuffer.append("3");
-								break;
-							case 4:
-								batchCodeStringBuffer.append("4");
-								break;
-							case 5:
-								batchCodeStringBuffer.append("5");
-								break;
-							case 6:
-								batchCodeStringBuffer.append("6");
-								break;
-							case 7:
-								batchCodeStringBuffer.append("7");
-								break;
-							}
-						}
+					if (totalGoalsAgainstInformation.isDan()) {
+						appendTotalGoalsBatchCodeString(
+								danBatchCodeStringBuffer,
+								totalGoalsAgainstInformation);
+					} else {
+						appendTotalGoalsBatchCodeString(
+								noDanBatchCodeStringBuffer,
+								totalGoalsAgainstInformation);
 					}
-					batchCodeStringBuffer.append("^");
+
 				}
 			}
 		}
+
+		appendDanAndNoDanBatchCode(batchCodeStringBuffer,
+				danBatchCodeStringBuffer, noDanBatchCodeStringBuffer);
+
+	}
+
+	/**
+	 * 拼接总进球赛事注码
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码字符串
+	 * @param totalGoalsAgainstInformation
+	 *            总比分赛事信息
+	 */
+	private void appendTotalGoalsBatchCodeString(
+			StringBuffer batchCodeStringBuffer,
+			TotalGoalsAgainstInformation totalGoalsAgainstInformation) {
+		batchCodeStringBuffer.append(totalGoalsAgainstInformation.getTeamId()
+				+ "|");
+
+		boolean[] isClicks = totalGoalsAgainstInformation.getIsClicks();
+		int length = isClicks.length;
+		for (int t = 0; t < length; t++) {
+			if (isClicks[t]) {
+				switch (t) {
+				case 0:
+					batchCodeStringBuffer.append("0");
+					break;
+				case 1:
+					batchCodeStringBuffer.append("1");
+					break;
+				case 2:
+					batchCodeStringBuffer.append("2");
+					break;
+				case 3:
+					batchCodeStringBuffer.append("3");
+					break;
+				case 4:
+					batchCodeStringBuffer.append("4");
+					break;
+				case 5:
+					batchCodeStringBuffer.append("5");
+					break;
+				case 6:
+					batchCodeStringBuffer.append("6");
+					break;
+				case 7:
+					batchCodeStringBuffer.append("7");
+					break;
+				}
+			}
+		}
+		batchCodeStringBuffer.append("^");
 	}
 
 	/**
@@ -1489,29 +1632,59 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void getWinTieLossLaterPartBettingCode(
 			StringBuffer batchCodeStringBuffer) {
+		StringBuffer danBatchCodeStringBuffer = new StringBuffer();
+		StringBuffer noDanBatchCodeStringBuffer = new StringBuffer();
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
+
 				if (winTieLossAgainstInformation.isSelected()) {
-					batchCodeStringBuffer.append(winTieLossAgainstInformation
-							.getTeamId() + "|");
-					if (winTieLossAgainstInformation.isV0IsClick()) {
-						batchCodeStringBuffer.append("3");
+					if (winTieLossAgainstInformation.isDan()) {
+						appendWinTieLossBatchCodeString(
+								danBatchCodeStringBuffer,
+								winTieLossAgainstInformation);
+					} else {
+						appendWinTieLossBatchCodeString(
+								noDanBatchCodeStringBuffer,
+								winTieLossAgainstInformation);
 					}
-
-					if (winTieLossAgainstInformation.isV1IsClick()) {
-						batchCodeStringBuffer.append("1");
-					}
-
-					if (winTieLossAgainstInformation.isV3IsClick()) {
-						batchCodeStringBuffer.append("0");
-					}
-
-					batchCodeStringBuffer.append("^");
 				}
 			}
 		}
+
+		appendDanAndNoDanBatchCode(batchCodeStringBuffer,
+				danBatchCodeStringBuffer, noDanBatchCodeStringBuffer);
+
 	}
 
+	/**
+	 * 拼接胜平负赛事的注码
+	 * 
+	 * @param batchCodeStringBuffer
+	 *            注码字符串类
+	 * @param winTieLossAgainstInformation
+	 *            胜平负赛事信息类
+	 */
+	private void appendWinTieLossBatchCodeString(
+			StringBuffer batchCodeStringBuffer,
+			WinTieLossAgainstInformation winTieLossAgainstInformation) {
+		batchCodeStringBuffer.append(winTieLossAgainstInformation.getTeamId()
+				+ "|");
+		if (winTieLossAgainstInformation.isV0IsClick()) {
+			batchCodeStringBuffer.append("3");
+		}
+
+		if (winTieLossAgainstInformation.isV1IsClick()) {
+			batchCodeStringBuffer.append("1");
+		}
+
+		if (winTieLossAgainstInformation.isV3IsClick()) {
+			batchCodeStringBuffer.append("0");
+		}
+
+		batchCodeStringBuffer.append("^");
+	}
+	/**modify by pengcx 20130712 end*/
+	
 	/**
 	 * 获取当前选择的比赛的字符串，用户投注确认页面的赛事详情的显示
 	 * 
@@ -1591,6 +1764,9 @@ public class BeiJingSingleGameActivity extends Activity {
 						againstStringBufffer.append("下双");
 						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v4()));
 					}
+					if (upDownSingleDoubleAgainstInformation.isDan()) {
+						againstStringBufffer.append("(胆)");
+					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
 					againstStringBufffer.append("\n");
@@ -1639,6 +1815,11 @@ public class BeiJingSingleGameActivity extends Activity {
 					
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
+					
+					if (halfTheAudienceAgainstInformation.isDan()) {
+						againstStringBufffer.append("(胆)");
+					}
+					
 					againstStringBufffer.append("\n");
 					/* Modify by pengcx 20130708 end */
 				}
@@ -1682,6 +1863,9 @@ public class BeiJingSingleGameActivity extends Activity {
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
+					if (overAllAgainstInformation.isDan()) {
+						againstStringBufffer.append("(胆)");
+					}
 					againstStringBufffer.append("\n");
 					/* Modify by pengcx 20130708 end */
 				}
@@ -1726,6 +1910,10 @@ public class BeiJingSingleGameActivity extends Activity {
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
+					
+					if (totalGoalsAgainstInformation.isDan()) {
+						againstStringBufffer.append("(胆)");
+					}
 					againstStringBufffer.append("\n");
 					/* Modify by pengcx 20130708 end */
 				}
@@ -1773,6 +1961,10 @@ public class BeiJingSingleGameActivity extends Activity {
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
+					
+					if (winTieLossAgainstInformation.isDan()) {
+						againstStringBufffer.append("(胆)");
+					}
 					/* Modify by pengcx 20130708 end */
 					againstStringBufffer.append("\n");
 				}
@@ -1895,85 +2087,133 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * 
 	 * @return 投注次数集合
 	 */
-	public List<String> getSelectedEventClickNum() {
-		List<String> bettinginfoList = new ArrayList<String>();
-		switch (playMethodType) {
-		case WINTIELOSS:
-			getWinTieLossSelectdEventClickNum(bettinginfoList);
-			break;
-		case TOTALGOALS:
-			getTotalGoalsSelectedEventClickNum(bettinginfoList);
-			break;
-		case OVERALL:
-			getOverAllSelectedEventClickNum(bettinginfoList);
-			break;
-		case HALFTHEAUDIENCE:
-			getHalfTheAudienceSelectedEventClickNum(bettinginfoList);
-			break;
-		case UPDOWNSINGLEDOUBLE:
-			getUpDownSingleDoubleSelectedEventClickNum(bettinginfoList);
-			break;
+	public void getSelectedEventClickNumAndDanClickNum() {
+		if (bettingDanList != null) {
+			bettingDanList.clear();
+		} else {
+			bettingDanList = new ArrayList<String>();
 		}
 
-		return bettinginfoList;
+		if (bettinginfoList != null) {
+			bettinginfoList.clear();
+		} else {
+			bettinginfoList = new ArrayList<String>();
+		}
+
+		switch (playMethodType) {
+		case WINTIELOSS:
+			getWinTieLossSelectdEventClickNumAndDanClickNum(bettinginfoList,
+					bettingDanList);
+			break;
+		case TOTALGOALS:
+			getTotalGoalsSelectedEventClickNumAndDanClickNum(bettinginfoList,
+					bettingDanList);
+			break;
+		case OVERALL:
+			getOverAllSelectedEventClickNumAndDanClickNum(bettinginfoList,
+					bettingDanList);
+			break;
+		case HALFTHEAUDIENCE:
+			getHalfTheAudienceSelectedEventClickNumAndDanClickNum(
+					bettinginfoList, bettingDanList);
+			break;
+		case UPDOWNSINGLEDOUBLE:
+			getUpDownSingleDoubleSelectedEventClickNumAndDanClickNum(
+					bettinginfoList, bettingDanList);
+			break;
+		}
 	}
 
-	private void getUpDownSingleDoubleSelectedEventClickNum(
-			List<String> bettinginfoList) {
+	private void getUpDownSingleDoubleSelectedEventClickNumAndDanClickNum(
+			List<String> bettinginfoList, List<String> bettingDanList) {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
 					bettinginfoList.add(String
 							.valueOf(upDownSingleDoubleAgainstInformation
 									.getClickNum()));
+
+					if (upDownSingleDoubleAgainstInformation.isDan()) {
+						bettingDanList.add("true");
+					} else {
+						bettingDanList.add("false");
+					}
 				}
 			}
 		}
 	}
 
-	private void getHalfTheAudienceSelectedEventClickNum(
-			List<String> bettinginfoList) {
+	private void getHalfTheAudienceSelectedEventClickNumAndDanClickNum(
+			List<String> bettinginfoList, List<String> bettingDanList) {
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
 					bettinginfoList.add(String
 							.valueOf(halfTheAudienceAgainstInformation
 									.getClickNum()));
+
+					if (halfTheAudienceAgainstInformation.isDan()) {
+						bettingDanList.add("true");
+					} else {
+						bettingDanList.add("false");
+					}
 				}
 			}
 		}
 	}
 
-	private void getOverAllSelectedEventClickNum(List<String> bettinginfoList) {
+	private void getOverAllSelectedEventClickNumAndDanClickNum(
+			List<String> bettinginfoList, List<String> bettingDanList) {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
 					bettinginfoList.add(String
 							.valueOf(overAllAgainstInformation.getClickNum()));
+
+					if (overAllAgainstInformation.isDan()) {
+						bettingDanList.add("true");
+					} else {
+						bettingDanList.add("false");
+					}
 				}
 			}
 		}
 	}
 
-	private void getTotalGoalsSelectedEventClickNum(List<String> bettinginfoList) {
+	private void getTotalGoalsSelectedEventClickNumAndDanClickNum(
+			List<String> bettinginfoList, List<String> bettingDanList) {
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
 					bettinginfoList
 							.add(String.valueOf(totalGoalsAgainstInformation
 									.getClickNum()));
+
+					if (totalGoalsAgainstInformation.isDan()) {
+						bettingDanList.add("true");
+					} else {
+						bettingDanList.add("false");
+					}
 				}
+
 			}
 		}
 	}
 
-	private void getWinTieLossSelectdEventClickNum(List<String> bettinginfoList) {
+	private void getWinTieLossSelectdEventClickNumAndDanClickNum(
+			List<String> bettinginfoList, List<String> bettingDanList) {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
 					bettinginfoList
 							.add(String.valueOf(winTieLossAgainstInformation
 									.getClickNum()));
+
+					if (winTieLossAgainstInformation.isDan()) {
+						bettingDanList.add("true");
+					} else {
+						bettingDanList.add("false");
+					}
 				}
 			}
 		}

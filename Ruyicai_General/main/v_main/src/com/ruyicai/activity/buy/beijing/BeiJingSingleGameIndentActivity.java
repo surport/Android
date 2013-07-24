@@ -89,12 +89,14 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 	/** 选择的场次 */
 	private int selectedNum;
+	private int selectedDanNum;
 	/** 对阵字符串 */
 	private String againstedString;
 	/** 注數 */
 	public long bettingNum = 0;
 	/** 当前选择的场次集合 */
 	private List<String> bettingInfoList;
+	private List<String> bettingDanList;
 	/** 最大投注金额 */
 	private final int MAXAMT = 20000;
 	/** 投注信息类 */
@@ -116,6 +118,14 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	/** 最低预计奖金 */
 	/** add by pengcx 20130708 end */
 	private MyHandler handler = new MyHandler(this);
+
+	public int getSelectedDanNum() {
+		return selectedDanNum;
+	}
+
+	public void setSelectedDanNum(int selectedDanNum) {
+		this.selectedDanNum = selectedDanNum;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +184,11 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		bunchButton.setBackgroundResource(R.drawable.jc_alert_left_radio);
 		bunchButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
+		selectedDanNum = getIntent().getIntExtra("selecteddannum", 0);
+//		if (selectedDanNum > 0) {
+//			bunchButton.setVisibility(View.GONE);
+//		}
+
 		bunchStyleLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_jc_layout_group);
 
 		cooperationBuyButton = (Button) findViewById(R.id.alert_dialog_touzhu_button_cancel);
@@ -187,6 +202,8 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		againstedString = getIntent().getStringExtra("selectedagainst");
 		bettingInfoList = getIntent().getStringArrayListExtra(
 				"selectedeventclicknum");
+		bettingDanList = getIntent().getStringArrayListExtra(
+				"selecteddanclicknum");
 		laterpartbettingcode = getIntent().getStringExtra(
 				"laterpartbettingcode");
 		nowIssueString = getIntent().getStringExtra("nowIssueString");
@@ -299,10 +316,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				addSelectDuoButtons();
 				isFreedom = true;
 				bettingNum = 0;
-				/**add by pengcx 20130709 start*/
+				/** add by pengcx 20130709 start */
 				freedomMaxprize = 0;
 				freedomMinprize = 0;
-				/**add by pengcx 20130709 end*/
+				/** add by pengcx 20130709 end */
 				setBettingInformationShow();
 				break;
 			case R.id.jc_alert_btn_duochuan:
@@ -314,10 +331,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				addSelectDanButtons();
 				isFreedom = false;
 				bettingNum = 0;
-				/**add by pengcx 20130709 start*/
+				/** add by pengcx 20130709 start */
 				freedomMaxprize = 0;
 				freedomMinprize = 0;
-				/**add by pengcx 20130709 end*/
+				/** add by pengcx 20130709 end */
 				setBettingInformationShow();
 				break;
 			case R.id.alert_dialog_touzhu_button_ok:
@@ -392,8 +409,8 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 			break;
 
 		}
-		bunchStyleLinearLayout.addView(radioGroupView
-				.createBeijingDanView(maxChuanGuan));
+		bunchStyleLinearLayout.addView(radioGroupView.createBeijingDanView(
+				maxChuanGuan, selectedNum));
 	}
 
 	public void turnToCooperation() {
@@ -481,53 +498,105 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 					} else {
 						isFirst = false;
 					}
-					switch (beijingCheckBox.getId()) {
-					case 0:
-						bettingCodeString.append("500@");
-						break;
-					case 1:
-						bettingCodeString.append("502@");
-						break;
-					case 2:
-						bettingCodeString.append("503@");
-						break;
-					case 3:
-						bettingCodeString.append("504@");
-						break;
-					case 4:
-						bettingCodeString.append("505@");
-						break;
-					case 5:
-						bettingCodeString.append("506@");
-						break;
-					case 6:
-						bettingCodeString.append("507@");
-						break;
-					case 7:
-						bettingCodeString.append("508@");
-						break;
-					case 8:
-						bettingCodeString.append("109@");
-						break;
-					case 9:
-						bettingCodeString.append("110@");
-						break;
-					case 10:
-						bettingCodeString.append("111@");
-						break;
-					case 11:
-						bettingCodeString.append("112@");
-						break;
-					case 12:
-						bettingCodeString.append("113@");
-						break;
-					case 13:
-						bettingCodeString.append("114@");
-						break;
-					case 14:
-						bettingCodeString.append("115@");
-						break;
+					/** modify by pengcx 20130712 start */
+					if (selectedDanNum > 0) {
+						switch (beijingCheckBox.getId()) {
+						case 0:
+							bettingCodeString.append("600@");
+							break;
+						case 1:
+							bettingCodeString.append("602@");
+							break;
+						case 2:
+							bettingCodeString.append("603@");
+							break;
+						case 3:
+							bettingCodeString.append("604@");
+							break;
+						case 4:
+							bettingCodeString.append("605@");
+							break;
+						case 5:
+							bettingCodeString.append("606@");
+							break;
+						case 6:
+							bettingCodeString.append("607@");
+							break;
+						case 7:
+							bettingCodeString.append("608@");
+							break;
+						case 8:
+							bettingCodeString.append("209@");
+							break;
+						case 9:
+							bettingCodeString.append("210@");
+							break;
+						case 10:
+							bettingCodeString.append("211@");
+							break;
+						case 11:
+							bettingCodeString.append("212@");
+							break;
+						case 12:
+							bettingCodeString.append("213@");
+							break;
+						case 13:
+							bettingCodeString.append("214@");
+							break;
+						case 14:
+							bettingCodeString.append("215@");
+							break;
+						}
+					} else {
+						switch (beijingCheckBox.getId()) {
+						case 0:
+							bettingCodeString.append("500@");
+							break;
+						case 1:
+							bettingCodeString.append("502@");
+							break;
+						case 2:
+							bettingCodeString.append("503@");
+							break;
+						case 3:
+							bettingCodeString.append("504@");
+							break;
+						case 4:
+							bettingCodeString.append("505@");
+							break;
+						case 5:
+							bettingCodeString.append("506@");
+							break;
+						case 6:
+							bettingCodeString.append("507@");
+							break;
+						case 7:
+							bettingCodeString.append("508@");
+							break;
+						case 8:
+							bettingCodeString.append("109@");
+							break;
+						case 9:
+							bettingCodeString.append("110@");
+							break;
+						case 10:
+							bettingCodeString.append("111@");
+							break;
+						case 11:
+							bettingCodeString.append("112@");
+							break;
+						case 12:
+							bettingCodeString.append("113@");
+							break;
+						case 13:
+							bettingCodeString.append("114@");
+							break;
+						case 14:
+							bettingCodeString.append("115@");
+							break;
+						}
 					}
+					/** modify by pengcx 20130712 end */
 					bettingCodeString.append(laterpartbettingcode);
 					bettingCodeString
 							.append("_")
@@ -545,53 +614,106 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 					} else {
 						isFirst = false;
 					}
-					switch (radioButton.getId()) {
-					case 0:
-						bettingCodeString.append("509@");
-						break;
-					case 1:
-						bettingCodeString.append("527@");
-						break;
-					case 2:
-						bettingCodeString.append("511@");
-						break;
-					case 3:
-						bettingCodeString.append("540@");
-						break;
-					case 4:
-						bettingCodeString.append("529@");
-						break;
-					case 5:
-						bettingCodeString.append("514@");
-						break;
-					case 6:
-						bettingCodeString.append("545@");
-						break;
-					case 7:
-						bettingCodeString.append("541@");
-						break;
-					case 8:
-						bettingCodeString.append("532@");
-						break;
-					case 9:
-						bettingCodeString.append("518@");
-						break;
-					case 10:
-						bettingCodeString.append("550@");
-						break;
-					case 11:
-						bettingCodeString.append("546@");
-						break;
-					case 12:
-						bettingCodeString.append("543@");
-						break;
-					case 13:
-						bettingCodeString.append("536@");
-						break;
-					case 14:
-						bettingCodeString.append("523@");
-						break;
+
+					/** modify by pengcx 20130712 start */
+					if (selectedDanNum > 0) {
+						switch (radioButton.getId()) {
+						case 0:
+							bettingCodeString.append("609@");
+							break;
+						case 1:
+							bettingCodeString.append("627@");
+							break;
+						case 2:
+							bettingCodeString.append("611@");
+							break;
+						case 3:
+							bettingCodeString.append("640@");
+							break;
+						case 4:
+							bettingCodeString.append("629@");
+							break;
+						case 5:
+							bettingCodeString.append("614@");
+							break;
+						case 6:
+							bettingCodeString.append("645@");
+							break;
+						case 7:
+							bettingCodeString.append("641@");
+							break;
+						case 8:
+							bettingCodeString.append("632@");
+							break;
+						case 9:
+							bettingCodeString.append("618@");
+							break;
+						case 10:
+							bettingCodeString.append("650@");
+							break;
+						case 11:
+							bettingCodeString.append("646@");
+							break;
+						case 12:
+							bettingCodeString.append("643@");
+							break;
+						case 13:
+							bettingCodeString.append("636@");
+							break;
+						case 14:
+							bettingCodeString.append("623@");
+							break;
+						}
+					} else {
+						switch (radioButton.getId()) {
+						case 0:
+							bettingCodeString.append("509@");
+							break;
+						case 1:
+							bettingCodeString.append("527@");
+							break;
+						case 2:
+							bettingCodeString.append("511@");
+							break;
+						case 3:
+							bettingCodeString.append("540@");
+							break;
+						case 4:
+							bettingCodeString.append("529@");
+							break;
+						case 5:
+							bettingCodeString.append("514@");
+							break;
+						case 6:
+							bettingCodeString.append("545@");
+							break;
+						case 7:
+							bettingCodeString.append("541@");
+							break;
+						case 8:
+							bettingCodeString.append("532@");
+							break;
+						case 9:
+							bettingCodeString.append("518@");
+							break;
+						case 10:
+							bettingCodeString.append("550@");
+							break;
+						case 11:
+							bettingCodeString.append("546@");
+							break;
+						case 12:
+							bettingCodeString.append("543@");
+							break;
+						case 13:
+							bettingCodeString.append("536@");
+							break;
+						case 14:
+							bettingCodeString.append("523@");
+							break;
+						}
 					}
+					/** modify by pengcx 20130712 end */
 					bettingCodeString.append(laterpartbettingcode);
 					bettingCodeString
 							.append("_")
@@ -650,26 +772,45 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 	}
 
+	/**
+	 * 自由过关
+	 * 
+	 * @param select
+	 * @return
+	 */
 	public long getBettingNum(int select) {
 		List<Boolean> isDanList = new ArrayList<Boolean>();
-		for (int i = 0; i < bettingInfoList.size(); i++) {
-			isDanList.add(false);
+		for (int i = 0; i < bettingDanList.size(); i++) {
+			if (bettingDanList.get(i).equals("true")) {
+				isDanList.add(true);
+			} else {
+				isDanList.add(false);
+			}
 		}
-
 		long bettingNum = PublicMethod.getAllAmt(bettingInfoList, select,
-				isDanList, 0);
+				isDanList, selectedDanNum);
 
 		return bettingNum;
 	}
 
+	/**
+	 * 多串gu
+	 * 
+	 * @param selectnum
+	 * @param select
+	 * @return
+	 */
 	public long getChuanBettingNum(int selectnum, int select) {
 		List<Boolean> isDanList = new ArrayList<Boolean>();
-		for (int i = 0; i < bettingInfoList.size(); i++) {
-			isDanList.add(false);
+		for (int i = 0; i < bettingDanList.size(); i++) {
+			if (bettingDanList.get(i).equals("true")) {
+				isDanList.add(true);
+			} else {
+				isDanList.add(false);
+			}
 		}
-
 		long bettingNum = PublicMethod.getDouZhushu(selectnum, bettingInfoList,
-				select, isDanList, 0);
+				select, isDanList, selectedDanNum);
 		return bettingNum;
 	}
 
@@ -690,12 +831,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	public String getPredictMoneyTextString() {
 		double max = freedomMaxprize * getBettingMutile();
 		double min = freedomMinprize * getBettingMutile();
-		
+
 		predictStringBuffer = new StringBuffer();
-		predictStringBuffer
-				.append(PublicMethod.formatStringToTwoPoint(min))
-				.append("元~")
-				.append(PublicMethod.formatStringToTwoPoint(max))
+		predictStringBuffer.append(PublicMethod.formatStringToTwoPoint(min))
+				.append("元~").append(PublicMethod.formatStringToTwoPoint(max))
 				.append("元");
 		return predictStringBuffer.toString();
 	}
@@ -737,36 +876,42 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	 * @return
 	 */
 	public double computeDanGuanMaxPrize() {
-		return JCPrizePermutationandCombination.getBeijingDanGuanMaxPrize(
-				BeiJingSingleGameActivity.newSelectedSPList);
+		return JCPrizePermutationandCombination
+				.getBeijingDanGuanMaxPrize(BeiJingSingleGameActivity.newSelectedSPList);
 	}
 
 	public double computeDanGuanMinPrize() {
-		return JCPrizePermutationandCombination.getBeijingDanGuanMinPrize(
-		BeiJingSingleGameActivity.newSelectedSPList);
+		return JCPrizePermutationandCombination
+				.getBeijingDanGuanMinPrize(BeiJingSingleGameActivity.newSelectedSPList);
 	}
-	
+
 	/**
 	 * 计算多场最大预计奖金
+	 * 
 	 * @param select
 	 * @return
 	 */
-	public double computeDuoGuanMaxPrize(int team,int select) {
+	public double computeDuoGuanMaxPrize(int team, int select) {
 		double max = 0;
+		int isDanNum = 0;
 		List<Boolean> isDanList = new ArrayList<Boolean>();
-		for (int i = 0; i < bettingInfoList.size(); i++) {
-			isDanList.add(false);
+		for (int i = 0; i < bettingDanList.size(); i++) {
+			if (bettingDanList.get(i).equals("true")) {
+				isDanList.add(true);
+				isDanNum ++;
+			} else {
+				isDanList.add(false);
+			}
 		}
 		if (isFreedom) {
 			max = JCPrizePermutationandCombination
 					.getBeiJingFreedomGuoGuanMaxPrize(
 							BeiJingSingleGameActivity.newSelectedSPList,
-							select, isDanList, 0);
+							select, isDanList, isDanNum);
 		} else {
-			 max =
-			 JCPrizePermutationandCombination.getBeiJingDuoMaxPrize(team,
-			 BeiJingSingleGameActivity.newSelectedSPList, select, isDanList,
-			 0);
+			max = JCPrizePermutationandCombination.getBeiJingDuoMaxPrize(team,
+					BeiJingSingleGameActivity.newSelectedSPList, select,
+					isDanList, isDanNum);
 		}
 
 		return max;
@@ -778,22 +923,28 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	 * @param select
 	 * @return
 	 */
-	public double computeDuoGuanMinPrize(int team,int select) {
+	public double computeDuoGuanMinPrize(int team, int select) {
 		double min = 0;
+		int isDanNum = 0;
 		List<Boolean> isDanList = new ArrayList<Boolean>();
-		for (int i = 0; i < bettingInfoList.size(); i++) {
-			isDanList.add(false);
+		for (int i = 0; i < bettingDanList.size(); i++) {
+			if (bettingDanList.get(i).equals("true")) {
+				isDanList.add(true);
+				isDanNum ++;
+			} else {
+				isDanList.add(false);
+			}
 		}
-
+		
 		if (isFreedom) {
 			min = JCPrizePermutationandCombination
 					.getBeijingFreedomGuoGuanMixPrize(
 							BeiJingSingleGameActivity.newSelectedSPList,
-							select, isDanList, 0);
+							select, isDanList, isDanNum);
 		} else {
-			 min =
-			 JCPrizePermutationandCombination.getBeiJingDuoMinPrize(team,BeiJingSingleGameActivity.newSelectedSPList,
-					 select, isDanList, 0);
+			min = JCPrizePermutationandCombination.getBeiJingDuoMinPrize(team,
+					BeiJingSingleGameActivity.newSelectedSPList, select,
+					isDanList, isDanNum);
 		}
 
 		return min;

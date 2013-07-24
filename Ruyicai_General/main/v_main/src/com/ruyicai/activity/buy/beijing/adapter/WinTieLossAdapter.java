@@ -25,14 +25,15 @@ import android.widget.Toast;
  */
 public class WinTieLossAdapter extends ParentAdapter {
 	private static final String TAG = "WinTieLossAdapter";
-
+	/** 最大设胆个数 */
+	protected static final int MAX_DAN = 7;
 	/** 显示的让球胜平负对阵信息集合 */
 	private List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList;
 
 	public WinTieLossAdapter(
 			Context context,
 			List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList) {
-		this.context = context;
+		super(context);
 		this.winTieLossAgainstInformationList = winTieLossAgainstInformationList;
 	}
 
@@ -206,18 +207,127 @@ public class WinTieLossAdapter extends ParentAdapter {
 		v3textTextView.setText(winTieLossAgainstInformation.getV0());
 		/** modify by pengcx 20130514 end */
 
-		 // 析
-		 TextView analysisTextView = (TextView) itemView
-		 .findViewById(R.id.game_analysis);
+		// 析
+		TextView analysisTextView = (TextView) itemView
+				.findViewById(R.id.game_analysis);
 		analysisTextView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				trunExplain(getEvent(winTieLossAgainstInformation));
 			}
 		});
-		 // 胆
-		 Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		 danTextButton.setVisibility(View.INVISIBLE);
+		// 胆
+		final Button danTextButton = (Button) itemView
+				.findViewById(R.id.game_dan);
+		if (!winTieLossAgainstInformation.isDan()) {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+		} else {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+		}
+
+		danTextButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (winTieLossAgainstInformation.isDan()) {
+					winTieLossAgainstInformation.setDan(false);
+					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+				} else {
+					if (isSelectDanLegal()) {
+						winTieLossAgainstInformation.setDan(true);
+						danTextButton
+								.setBackgroundResource(R.drawable.jc_btn_b);
+					}
+				}
+
+				((BeiJingSingleGameActivity) context)
+						.refreshSelectNumAndDanNum();
+			}
+
+			/**
+			 * 选择胆是否合法
+			 *
+			 * @return 是否合法标识
+			 */
+			private boolean isSelectDanLegal() {
+				if (winTieLossAgainstInformation.getClickNum() > 0) {
+					int selectDanNum = getSelectDanNum();
+					if (selectDanNum < MAX_DAN) {
+						int selectedTeamNum = getSelectedTeamNum();
+
+						if (selectedTeamNum < 3) {
+							Toast.makeText(context, "请您至少选择3场比赛，才能设胆",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						} else if (selectDanNum < (selectedTeamNum - 2)) {
+							return true;
+						} else {
+							Toast.makeText(context,
+									"胆码不能超过" + (selectedTeamNum - 2) + "个",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						}
+					} else {
+						Toast.makeText(context,
+								"您最多可以选择" + MAX_DAN + "场比赛进行设胆！",
+								Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+
+			/**
+			 * 获取选择的球队的个数
+			 *
+			 * @return 选择的球队的个数
+			 */
+			private int getSelectedTeamNum() {
+				int selectTeamNum = 0;
+
+				for (int list_i = 0; list_i < winTieLossAgainstInformationList
+						.size(); list_i++) {
+					List<WinTieLossAgainstInformation> winTieLossAgainstInformations = winTieLossAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < winTieLossAgainstInformations
+							.size(); list_j++) {
+						WinTieLossAgainstInformation winTieLossAgainstInformation = winTieLossAgainstInformations
+								.get(list_j);
+						if (winTieLossAgainstInformation.getClickNum() > 0) {
+							selectTeamNum++;
+						}
+					}
+				}
+
+				return selectTeamNum;
+			}
+
+			/**
+			 * 获取选择的胆的个数
+			 *
+			 * @return 选择胆的个数
+			 */
+			private int getSelectDanNum() {
+				int selectDanNum = 0;
+
+				for (int list_i = 0; list_i < winTieLossAgainstInformationList
+						.size(); list_i++) {
+					List<WinTieLossAgainstInformation> winTieLossAgainstInformations = winTieLossAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < winTieLossAgainstInformations
+							.size(); list_j++) {
+						WinTieLossAgainstInformation winTieLossAgainstInformation = winTieLossAgainstInformations
+								.get(list_j);
+						if (winTieLossAgainstInformation.isDan()) {
+							selectDanNum++;
+						}
+					}
+				}
+
+				return selectDanNum;
+			}
+		});
 
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
@@ -254,8 +364,17 @@ public class WinTieLossAdapter extends ParentAdapter {
 						homeTeamTextView
 								.setBackgroundResource(R.drawable.team_name_bj_top);
 						winTieLossAgainstInformation.setV0IsClick(false);
+
+						// 取消胆按钮
+						if (winTieLossAgainstInformation.isDan()
+								&& !winTieLossAgainstInformation.isSelected()) {
+							winTieLossAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择15场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -293,8 +412,17 @@ public class WinTieLossAdapter extends ParentAdapter {
 						vsTextView
 								.setBackgroundResource(R.drawable.team_name_bj_top);
 						winTieLossAgainstInformation.setV1IsClick(false);
+
+						// 取消胆按钮
+						if (winTieLossAgainstInformation.isDan()
+								&& !winTieLossAgainstInformation.isSelected()) {
+							winTieLossAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择15场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -337,8 +465,17 @@ public class WinTieLossAdapter extends ParentAdapter {
 						guestTeamTextView
 								.setBackgroundResource(R.drawable.team_name_bj_top);
 						winTieLossAgainstInformation.setV3IsClick(false);
+
+						// 取消胆按钮
+						if (winTieLossAgainstInformation.isDan()
+								&& !winTieLossAgainstInformation.isSelected()) {
+							winTieLossAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择15场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();

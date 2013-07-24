@@ -31,6 +31,7 @@ public class UpDownSingleDoubleAgainstInformation extends AgainstInformation {
 	private boolean v3IsClick;
 	/** 下双是否选中 */
 	private boolean v4IsClick;
+	private boolean isDan;
 
 	public String getSxds_v1() {
 		return sxds_v1;
@@ -94,6 +95,14 @@ public class UpDownSingleDoubleAgainstInformation extends AgainstInformation {
 
 	public void setV4IsClick(boolean v4IsClick) {
 		this.v4IsClick = v4IsClick;
+	}
+
+	public boolean isDan() {
+		return isDan;
+	}
+
+	public void setDan(boolean isDan) {
+		this.isDan = isDan;
 	}
 
 	public UpDownSingleDoubleAgainstInformation clone() {

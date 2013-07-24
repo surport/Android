@@ -26,6 +26,7 @@ import android.widget.Toast;
  */
 public class UpDownSingleDoubleAdapter extends ParentAdapter {
 	private static final String TAG = "UpDownSingleDoubleAdapter";
+	protected static final int MAX_DAN = 7;
 
 	/** 显示上下的那双对阵信息集合 */
 	private List<List<UpDownSingleDoubleAgainstInformation>> upDownSingleDoubleAgainstInformationList;
@@ -33,7 +34,7 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 	public UpDownSingleDoubleAdapter(
 			Context context,
 			List<List<UpDownSingleDoubleAgainstInformation>> upDownSingleDoubleAgainstInformationList) {
-		this.context = context;
+		super(context);
 		this.upDownSingleDoubleAgainstInformationList = upDownSingleDoubleAgainstInformationList;
 	}
 
@@ -162,6 +163,118 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 				.findViewById(R.id.guest_team_name);
 		guestTeamTextView.setText(upDownSingleDoubleAgainstInformation
 				.getGuestTeam());
+
+		// 胆
+		final Button danTextButton = (Button) itemView
+				.findViewById(R.id.game_dan);
+		if (!upDownSingleDoubleAgainstInformation.isDan()) {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+		} else {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+		}
+		danTextButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (upDownSingleDoubleAgainstInformation.isDan()) {
+					upDownSingleDoubleAgainstInformation.setDan(false);
+					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+				} else {
+					if (isSelectDanLegal()) {
+						upDownSingleDoubleAgainstInformation.setDan(true);
+						danTextButton
+								.setBackgroundResource(R.drawable.jc_btn_b);
+					}
+				}
+
+				((BeiJingSingleGameActivity) context)
+						.refreshSelectNumAndDanNum();
+			}
+
+			/**
+			 * 选择胆是否合法
+			 *
+			 * @return 是否合法标识
+			 */
+			private boolean isSelectDanLegal() {
+				if (upDownSingleDoubleAgainstInformation.getClickNum() > 0) {
+					int selectDanNum = getSelectDanNum();
+					if (selectDanNum < MAX_DAN) {
+						int selectedTeamNum = getSelectedTeamNum();
+
+						if (selectedTeamNum < 3) {
+							Toast.makeText(context, "请您至少选择3场比赛，才能设胆",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						} else if (selectDanNum < (selectedTeamNum - 2)) {
+							return true;
+						} else {
+							Toast.makeText(context,
+									"胆码不能超过" + (selectedTeamNum - 2) + "个",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						}
+					} else {
+						Toast.makeText(context,
+								"您最多可以选择" + MAX_DAN + "场比赛进行设胆！",
+								Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+
+			/**
+			 * 获取选择的球队的个数
+			 *
+			 * @return 选择的球队的个数
+			 */
+			private int getSelectedTeamNum() {
+				int selectTeamNum = 0;
+
+				for (int list_i = 0; list_i < upDownSingleDoubleAgainstInformationList
+						.size(); list_i++) {
+					List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations = upDownSingleDoubleAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < upDownSingleDoubleAgainstInformations
+							.size(); list_j++) {
+						UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation = upDownSingleDoubleAgainstInformations
+								.get(list_j);
+						if (upDownSingleDoubleAgainstInformation.getClickNum() > 0) {
+							selectTeamNum++;
+						}
+					}
+				}
+
+				return selectTeamNum;
+			}
+
+			/**
+			 * 获取选择的胆的个数
+			 *
+			 * @return 选择胆的个数
+			 */
+			private int getSelectDanNum() {
+				int selectDanNum = 0;
+
+				for (int list_i = 0; list_i < upDownSingleDoubleAgainstInformationList
+						.size(); list_i++) {
+					List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations = upDownSingleDoubleAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < upDownSingleDoubleAgainstInformations
+							.size(); list_j++) {
+						UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation = upDownSingleDoubleAgainstInformations
+								.get(list_j);
+						if (upDownSingleDoubleAgainstInformation.isDan()) {
+							selectDanNum++;
+						}
+					}
+				}
+
+				return selectDanNum;
+			}
+		});
+
 		// 上单
 		final LinearLayout upSingleLinearLayout = (LinearLayout) itemView
 				.findViewById(R.id.upsingle);
@@ -191,8 +304,17 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 						upSingleLinearLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV1IsClick(false);
+						// 取消胆按钮
+						if (upDownSingleDoubleAgainstInformation.isDan()
+								&& !upDownSingleDoubleAgainstInformation
+										.isSelected()) {
+							upDownSingleDoubleAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -238,8 +360,17 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 						upDoubleLinearLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV2IsClick(false);
+						// 取消胆按钮
+						if (upDownSingleDoubleAgainstInformation.isDan()
+								&& !upDownSingleDoubleAgainstInformation
+										.isSelected()) {
+							upDownSingleDoubleAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -286,8 +417,17 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 						downSingleLinearLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV3IsClick(false);
+						// 取消胆按钮
+						if (upDownSingleDoubleAgainstInformation.isDan()
+								&& !upDownSingleDoubleAgainstInformation
+										.isSelected()) {
+							upDownSingleDoubleAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -335,8 +475,18 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 						downDoubleLayout.setTag(false);
 						upDownSingleDoubleAgainstInformation
 								.setV4IsClick(false);
+
+						// 取消胆按钮
+						if (upDownSingleDoubleAgainstInformation.isDan()
+								&& !upDownSingleDoubleAgainstInformation
+										.isSelected()) {
+							upDownSingleDoubleAgainstInformation.setDan(false);
+							danTextButton
+									.setBackgroundResource(R.drawable.jc_btn);
+						}
 					}
-					((BeiJingSingleGameActivity) context).refreshSelectNum();
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 				} else {
 					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -364,9 +514,7 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 				trunExplain(getEvent(upDownSingleDoubleAgainstInformation));
 			}
 		 });
-		 // 胆
-		 Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		 danTextButton.setVisibility(View.INVISIBLE);
+
 		return itemView;
 	}
 }

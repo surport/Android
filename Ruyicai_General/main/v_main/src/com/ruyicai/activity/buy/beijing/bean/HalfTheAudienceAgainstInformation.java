@@ -23,6 +23,7 @@ public class HalfTheAudienceAgainstInformation extends AgainstInformation {
 	private String half_v33;
 	private String half_v31;
 	private String half_v30;
+	private boolean isDan;
 
 	private boolean[] isClicks = { false, false, false, false, false, false,
 			false, false, false };
@@ -105,6 +106,14 @@ public class HalfTheAudienceAgainstInformation extends AgainstInformation {
 
 	public void setIsClicks(boolean[] isClicks) {
 		this.isClicks = isClicks;
+	}
+
+	public boolean isDan() {
+		return isDan;
+	}
+
+	public void setDan(boolean isDan) {
+		this.isDan = isDan;
 	}
 
 	public HalfTheAudienceAgainstInformation clone() {

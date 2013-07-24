@@ -293,6 +293,7 @@ public class ContentListView {
 							|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
 							|| lotno.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
 						textNum.setText(obj.getString("teamId"));
+						isDanMa = obj.getString("isDanMa");
 					} else {
 						textNum.setText(getWeek(obj.getString("weekId"))
 								+ obj.getString("teamId"));

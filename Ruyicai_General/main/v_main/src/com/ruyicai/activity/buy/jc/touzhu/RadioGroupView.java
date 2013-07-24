@@ -109,9 +109,9 @@ public class RadioGroupView {
 		if (teamNum > maxTeam) {
 			teamNum = maxTeam;
 		}
-		int danNum = getNum(teamNum, true);
+		int danNum = getNum(teamNum, true, false);
 		int danTeamNum = touzhuDialog.getIsDanNum();
-		int isDanNum = getDanNum(danTeamNum, true);
+		int isDanNum = getDanNum(danTeamNum, true, false);
 		LinearLayout layoutMain = new LinearLayout(context);
 		layoutMain.setOrientation(LinearLayout.VERTICAL);
 		if (danNum > LineNum) {
@@ -134,27 +134,32 @@ public class RadioGroupView {
 		return layoutMain;
 	}
 
-	public View createBeijingDanView(int teamNum) {
+	public View createBeijingDanView(int teamNum, int selectenum) {
 		int checkTeam = teamNum;
 		if (teamNum > beijingChuanMaxTeam) {
 			teamNum = beijingChuanMaxTeam;
 		}
 		int danNum = getBeijingCheckNum(teamNum);
-
+		int danTeamNum = ((BeiJingSingleGameIndentActivity) context)
+				.getSelectedDanNum();
+		int isDanNum = getDanNum(danTeamNum, true, true);
 		LinearLayout layoutMain = new LinearLayout(context);
 		layoutMain.setOrientation(LinearLayout.VERTICAL);
 		if (danNum > LineNum) {
 			int num = danNum % LineNum;
 			int line = danNum / LineNum;
 			for (int i = 0; i < line; i++) {
-				addLine(layoutMain, i, LineNum, 0, 0, teamNum, true);
+				addLine(layoutMain, i, LineNum, isDanNum, danTeamNum,
+						selectenum, true);
 			}
 			if (num != 0) {
-				addLine(layoutMain, line, num, 0, 0, teamNum, true);
+				addLine(layoutMain, line, num, isDanNum, danTeamNum,
+						selectenum, true);
 			}
 		} else {
 			LinearLayout layoutOne = new LinearLayout(context);
-			addLine(layoutMain, 0, danNum, 0, 0, teamNum, true);
+			addLine(layoutMain, 0, danNum, isDanNum, danTeamNum, selectenum,
+					true);
 		}
 
 		return layoutMain;
@@ -196,7 +201,7 @@ public class RadioGroupView {
 			int isDanNum, int danTeamNum, int teamNum, final boolean isBeijing) {
 		LinearLayout layoutOne = new LinearLayout(context);
 		int id = 0;
-		int last = getNum(teamNum - 1, true);
+		int last = getNum(teamNum - 1, true, isBeijing);
 		boolean isCheck = isLastCheck(teamNum, danTeamNum);
 		for (int j = 0; j < lineNum; j++) {
 			id = line * this.LineNum + j;
@@ -213,6 +218,7 @@ public class RadioGroupView {
 				radio.setTextColor(Color.BLACK);
 				radio.setButtonDrawable(R.drawable.radio_select);
 			}
+
 			if (isBeijing) {
 				radio.setText(beijingTextId[id]);
 			} else {
@@ -299,9 +305,9 @@ public class RadioGroupView {
 		if (teamNum > maxTeam) {
 			teamNum = maxTeam;
 		}
-		int num = getNum(teamNum, false);
+		int num = getNum(teamNum, false, false);
 		int danTeamNum = touzhuDialog.getIsDanNum();
-		int danNum = getDanNum(danTeamNum, false);
+		int danNum = getDanNum(danTeamNum, false, false);
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.buy_jc_touzhu_group_duo, null);
@@ -359,6 +365,8 @@ public class RadioGroupView {
 			teamNum = beijingMaxTeam;
 		}
 		int num = getBeijingRadioNum(teamNum);
+		int danTeamNum = ((BeiJingSingleGameIndentActivity) context)
+				.getSelectedDanNum();
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.beijing_touzhu_group_duo, null);
@@ -375,7 +383,7 @@ public class RadioGroupView {
 			/* Add by pengcx 20130516 end */
 			if (i >= num) {
 				beijingChecks[i].setVisibility(CheckBox.GONE);
-			} else if (i < 0) {
+			} else if (i < danTeamNum) {
 				beijingChecks[i].setEnabled(false);
 				beijingChecks[i].setTextColor(Color.GRAY);
 			} else {
@@ -388,22 +396,11 @@ public class RadioGroupView {
 									((BeiJingSingleGameIndentActivity) context).bettingNum += ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
 									if (0 == buttonView.getId()) {
-										Toast.makeText(context, "单关", 1).show();
 										BeiJingSingleGameIndentActivity.freedomMaxprize += ((BeiJingSingleGameIndentActivity) context)
 												.computeDanGuanMaxPrize();
-										// BeiJingSingleGameIndentActivity.freedomMinprize
-										// += ((BeiJingSingleGameIndentActivity)
-										// context)
-										// .computeDanGuanMinPrize();
 									} else {
-										Toast.makeText(context, "多场", 1).show();
 										BeiJingSingleGameIndentActivity.freedomMaxprize += ((BeiJingSingleGameIndentActivity) context)
 												.computeDuoGuanMaxPrize(0,beijingchecknum + 1);
-										// BeiJingSingleGameIndentActivity.freedomMinprize
-										// += ((BeiJingSingleGameIndentActivity)
-										// context)
-										// .computeDuoGuanMinPrize(beijingchecknum
-										// + 1);
 									}
 									
 									int mixSelect = isBeijingMixChecked();
@@ -419,23 +416,11 @@ public class RadioGroupView {
 									((BeiJingSingleGameIndentActivity) context).bettingNum -= ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
 									if (0 == buttonView.getId()) {
-										Toast.makeText(context, "单关", 1).show();
 										BeiJingSingleGameIndentActivity.freedomMaxprize -= ((BeiJingSingleGameIndentActivity) context)
 												.computeDanGuanMaxPrize();
-										// BeiJingSingleGameIndentActivity.freedomMinprize
-										// -= ((BeiJingSingleGameIndentActivity)
-										// context)
-										// .computeDanGuanMinPrize();
-
 									} else {
-										Toast.makeText(context, "多场", 1).show();
 										BeiJingSingleGameIndentActivity.freedomMaxprize -= ((BeiJingSingleGameIndentActivity) context)
 												.computeDuoGuanMaxPrize(0,beijingchecknum + 1);
-										// BeiJingSingleGameIndentActivity.freedomMinprize
-										// -= ((BeiJingSingleGameIndentActivity)
-										// context)
-										// .computeDuoGuanMinPrize(beijingchecknum
-										// + 1);
 									}
 
 									int mixSelect = isBeijingMixChecked();
@@ -458,11 +443,19 @@ public class RadioGroupView {
 						});
 			}
 		}
-		if (!isLastCheck(teamCheck, 0)) {
+		if (!isBeijingLastCheck(teamCheck, danTeamNum)) {
 			beijingChecks[num - 1].setEnabled(false);
 			beijingChecks[num - 1].setTextColor(Color.GRAY);
 		}
 		return v;
+	}
+
+	private boolean isBeijingLastCheck(int teamCheck, int danTeamNum) {
+		if (danTeamNum > 0 && teamCheck <= beijingMaxTeam) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	private int getBeijingRadioNum(int teamNum) {
@@ -557,62 +550,94 @@ public class RadioGroupView {
 	 * @param num
 	 * @return
 	 */
-	public int getNum(int teamNum, boolean isDan) {
+	public int getNum(int teamNum, boolean isDan, boolean isBeiJing) {
 		// isDan=true是多串过关
 		int num = 0;
 		switch (teamNum) {
 		case 2:
 			if (isDan) {
-				num = 0;
+				if (isBeiJing) {
+					num = 1;
+				} else {
+					num = 0;
+				}
 			} else {
 				num = 1;
 			}
 			break;
 		case 3:
 			if (isDan) {
-				num = 2;
+				if (isBeiJing) {
+					num = 3;
+				} else {
+					num = 2;
+				}
 			} else {
 				num = 2;
 			}
 			break;
 		case 4:
 			if (isDan) {
-				num = 6;
+				if (isBeiJing) {
+					num = 6;
+				} else {
+					num = 6;
+				}
 			} else {
 				num = 3;
 			}
 			break;
 		case 5:
 			if (isDan) {
-				num = 12;
+				if (isBeiJing) {
+					num = 10;
+				} else {
+					num = 12;
+				}
 			} else {
 				num = 4;
 			}
 			break;
 		case 6:
 			if (isDan) {
-				num = 21;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 21;
+				}
 			} else {
 				num = 5;
 			}
 			break;
 		case 7:
 			if (isDan) {
-				num = 26;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 26;
+				}
 			} else {
 				num = 6;
 			}
 			break;
 		case 8:
 			if (isDan) {
-				num = 32;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 32;
+				}
 			} else {
 				num = 7;
 			}
 			break;
 		default:
 			if (isDan) {
-				num = 32;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 32;
+				}
 			} else {
 				num = 7;
 			}
@@ -626,61 +651,94 @@ public class RadioGroupView {
 	 * @param num
 	 * @return
 	 */
-	public int getDanNum(int teamNum, boolean isDan) {
+	public int getDanNum(int teamNum, boolean isDan, boolean isBeiJing) {
 		// isDan=true是多串过关
 		int num = 0;
 		switch (teamNum) {
 		case 2:
 			if (isDan) {
-				num = 0;
+				if (isBeiJing) {
+					num = 1;
+				} else {
+					num = 0;
+				}
 			} else {
 				num = 1;
 			}
 			break;
 		case 3:
 			if (isDan) {
-				num = 2;
+				if (isBeiJing) {
+					num = 3;
+				} else {
+					num = 2;
+				}
 			} else {
 				num = 2;
 			}
 			break;
 		case 4:
 			if (isDan) {
-				num = 6;
+				if (isBeiJing) {
+					num = 6;
+				} else {
+					num = 6;
+				}
 			} else {
 				num = 3;
 			}
 			break;
 		case 5:
 			if (isDan) {
-				num = 12;
+				if (isBeiJing) {
+					num = 10;
+				} else {
+					num = 12;
+				}
+
 			} else {
 				num = 4;
 			}
 			break;
 		case 6:
 			if (isDan) {
-				num = 21;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 21;
+				}
 			} else {
 				num = 5;
 			}
 			break;
 		case 7:
 			if (isDan) {
-				num = 26;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 26;
+				}
 			} else {
 				num = 6;
 			}
 			break;
 		case 8:
 			if (isDan) {
-				num = 32;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 32;
+				}
 			} else {
 				num = 7;
 			}
 		case 9:
 			if (isDan) {
-				num = 32;
+				if (isBeiJing) {
+					num = 15;
+				} else {
+					num = 32;
+				}
 			} else {
 				num = 7;
 			}

@@ -40,11 +40,12 @@ public class TotalGoalsAdapter extends ParentAdapter {
 
 	/** 选择对话框选择按钮的个数 */
 	private static final int SELECT_BUTTON_NUM = 8;
+	protected static final int MAX_DAN = 7;
 
 	public TotalGoalsAdapter(
 			Context context,
 			List<List<TotalGoalsAgainstInformation>> totalGoalsAgainstInformationList) {
-		this.context = context;
+		super(context);
 		this.totalGoalsAgainstInformationList = totalGoalsAgainstInformationList;
 	}
 
@@ -191,6 +192,102 @@ public class TotalGoalsAdapter extends ParentAdapter {
 		TextView guestTeamTextView = (TextView) itemView
 				.findViewById(R.id.guest_team_name);
 		guestTeamTextView.setText(totalGoalsAgainstInformation.getGuestTeam());
+		// 胆
+		final Button danTextButton = (Button) itemView
+				.findViewById(R.id.game_dan);
+		if (totalGoalsAgainstInformation.isDan()) {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+		} else {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+		}
+
+		danTextButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (totalGoalsAgainstInformation.isDan()) {
+					totalGoalsAgainstInformation.setDan(false);
+					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+				} else {
+					if (isSelectDanLegal()) {
+						totalGoalsAgainstInformation.setDan(true);
+						danTextButton
+								.setBackgroundResource(R.drawable.jc_btn_b);
+					}
+				}
+
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
+			}
+
+			private boolean isSelectDanLegal() {
+				if (totalGoalsAgainstInformation.getClickNum() > 0) {
+					int selectDanNum = getSelectDanNum();
+					if (selectDanNum < MAX_DAN) {
+						int selectedTeamNum = getSelectedTeamNum();
+
+						if (selectedTeamNum < 3) {
+							Toast.makeText(context, "请您至少选择3场比赛，才能设胆",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						} else if (selectDanNum < (selectedTeamNum - 2)) {
+							return true;
+						} else {
+							Toast.makeText(context,
+									"胆码不能超过" + (selectedTeamNum - 2) + "个",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						}
+					} else {
+						Toast.makeText(context,
+								"您最多可以选择" + MAX_DAN + "场比赛进行设胆！",
+								Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+
+			private int getSelectedTeamNum() {
+				int selectTeamNum = 0;
+
+				for (int list_i = 0; list_i < totalGoalsAgainstInformationList
+						.size(); list_i++) {
+					List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations = totalGoalsAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < totalGoalsAgainstInformations
+							.size(); list_j++) {
+						TotalGoalsAgainstInformation totalGoalsAgainstInformation = totalGoalsAgainstInformations
+								.get(list_j);
+						if (totalGoalsAgainstInformation.getClickNum() > 0) {
+							selectTeamNum++;
+						}
+					}
+				}
+
+				return selectTeamNum;
+			}
+
+			private int getSelectDanNum() {
+				int selectDanNum = 0;
+
+				for (int list_i = 0; list_i < totalGoalsAgainstInformationList
+						.size(); list_i++) {
+					List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations = totalGoalsAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < totalGoalsAgainstInformations
+							.size(); list_j++) {
+						TotalGoalsAgainstInformation totalGoalsAgainstInformation = totalGoalsAgainstInformations
+								.get(list_j);
+						if (totalGoalsAgainstInformation.isDan()) {
+							selectDanNum++;
+						}
+					}
+				}
+
+				return selectDanNum;
+			}
+		});
 		// 投注按钮
 		Button bettingButton = (Button) itemView
 				.findViewById(R.id.jc_main_list_item_button);
@@ -236,9 +333,6 @@ public class TotalGoalsAdapter extends ParentAdapter {
 				trunExplain(getEvent(totalGoalsAgainstInformation));
 			}
 		});
-		// 胆
-		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		danTextButton.setVisibility(View.INVISIBLE);
 
 		return itemView;
 	}
@@ -313,8 +407,12 @@ public class TotalGoalsAdapter extends ParentAdapter {
 				}
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNum();
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
 
+				if (totalGoalsAgainstInformation.isDan()
+						&& !totalGoalsAgainstInformation.isSelected()) {
+					totalGoalsAgainstInformation.setDan(false);
+				}
 				selectDialog.dismiss();
 			}
 		});
@@ -333,7 +431,7 @@ public class TotalGoalsAdapter extends ParentAdapter {
 
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNum();
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
 
 				selectDialog.dismiss();
 			}

@@ -31,6 +31,7 @@ import android.widget.Toast;
 public class HalfTheAudienceAdapter extends ParentAdapter {
 	private static final String TAG = "HalfTheAudienceAdapter";
 	private static final int SELECT_BUTTON_NUM = 9;
+	protected static final int MAX_DAN = 7;
 
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜胜", "胜平", "胜负", "平胜", "平平",
@@ -41,8 +42,7 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 	public HalfTheAudienceAdapter(
 			Context context,
 			List<List<HalfTheAudienceAgainstInformation>> halfTheAudienceAgainstInformationList) {
-		super();
-		this.context = context;
+		super(context);
 		this.halfTheAudienceAgainstInformationList = halfTheAudienceAgainstInformationList;
 	}
 
@@ -164,6 +164,104 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 				.findViewById(R.id.guest_team_name);
 		guestTeamTextView.setText(halfTheAudienceAgainstInformation
 				.getGuestTeam());
+
+		// 胆
+		final Button danTextButton = (Button) itemView
+				.findViewById(R.id.game_dan);
+		if (halfTheAudienceAgainstInformation.isDan()) {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+		} else {
+			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+		}
+
+		danTextButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (halfTheAudienceAgainstInformation.isDan()) {
+					halfTheAudienceAgainstInformation.setDan(false);
+					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+				} else {
+					if (isSelectDanLegal()) {
+						halfTheAudienceAgainstInformation.setDan(true);
+						danTextButton
+								.setBackgroundResource(R.drawable.jc_btn_b);
+					}
+				}
+
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
+			}
+
+			private boolean isSelectDanLegal() {
+				if (halfTheAudienceAgainstInformation.getClickNum() > 0) {
+					int selectDanNum = getSelectDanNum();
+					if (selectDanNum < MAX_DAN) {
+						int selectedTeamNum = getSelectedTeamNum();
+
+						if (selectedTeamNum < 3) {
+							Toast.makeText(context, "请您至少选择3场比赛，才能设胆",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						} else if (selectDanNum < (selectedTeamNum - 2)) {
+							return true;
+						} else {
+							Toast.makeText(context,
+									"胆码不能超过" + (selectedTeamNum - 2) + "个",
+									Toast.LENGTH_SHORT).show();
+							return false;
+						}
+					} else {
+						Toast.makeText(context,
+								"您最多可以选择" + MAX_DAN + "场比赛进行设胆！",
+								Toast.LENGTH_SHORT).show();
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+
+			private int getSelectedTeamNum() {
+				int selectTeamNum = 0;
+
+				for (int list_i = 0; list_i < halfTheAudienceAgainstInformationList
+						.size(); list_i++) {
+					List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations = halfTheAudienceAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < halfTheAudienceAgainstInformations
+							.size(); list_j++) {
+						HalfTheAudienceAgainstInformation hahalfTheAudienceAgainstInformation = halfTheAudienceAgainstInformations
+								.get(list_j);
+						if (hahalfTheAudienceAgainstInformation.getClickNum() > 0) {
+							selectTeamNum++;
+						}
+					}
+				}
+
+				return selectTeamNum;
+			}
+
+			private int getSelectDanNum() {
+				int selectDanNum = 0;
+
+				for (int list_i = 0; list_i < halfTheAudienceAgainstInformationList
+						.size(); list_i++) {
+					List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations = halfTheAudienceAgainstInformationList
+							.get(list_i);
+					for (int list_j = 0; list_j < halfTheAudienceAgainstInformations
+							.size(); list_j++) {
+						HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation = halfTheAudienceAgainstInformations
+								.get(list_j);
+						if (halfTheAudienceAgainstInformation.isDan()) {
+							selectDanNum++;
+						}
+					}
+				}
+
+				return selectDanNum;
+			}
+		});
+
 		// 投注按钮
 		Button bettingButton = (Button) itemView
 				.findViewById(R.id.jc_main_list_item_button);
@@ -207,9 +305,6 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 				trunExplain(getEvent(halfTheAudienceAgainstInformation));
 			}
 		});
-		// 胆
-		Button danTextButton = (Button) itemView.findViewById(R.id.game_dan);
-		danTextButton.setVisibility(View.INVISIBLE);
 		
 		return itemView;
 	}
@@ -280,7 +375,12 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 				selectDialog.dismiss();
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNum();
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
+
+				if (halfTheAudienceAgainstInformation.isDan()
+						&& !halfTheAudienceAgainstInformation.isSelected()) {
+					halfTheAudienceAgainstInformation.setDan(false);
+				}
 			}
 		});
 		Button cancelButton = (Button) dialogView.findViewById(R.id.canel);
@@ -295,7 +395,7 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 				}
 				((BeiJingSingleGameActivity) context)
 						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNum();
+				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
 				selectDialog.dismiss();
 			}
 		});
