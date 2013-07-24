@@ -144,7 +144,7 @@ public class Trackdetail extends ActionActivity {
 		} else {
 			trackchetext.append("0");
 		}
-		amtyitext.append((Integer.valueOf(betAmount) - Integer
+		amtyitext.append((Long.valueOf(betAmount) - Long
 				.valueOf(remainderAmount)) / 100 + "元");
 		starttimetext.append(ordertime);
 		if (prizeEnd.equals("0")) {
@@ -153,7 +153,7 @@ public class Trackdetail extends ActionActivity {
 			iswinaftertext.append("是");
 		}
 		batchcodestarttext.append(beginBatch);
-		amtzongtext.append(Integer.valueOf(betAmount) / 100 + "元");
+		amtzongtext.append(Long.valueOf(betAmount) / 100 + "元");
 		String lessnum = Integer.valueOf(batchNums) - Integer.valueOf(lastNums)
 				+ "";
 		trackState(statetext, trackState, lessnum);
