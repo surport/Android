@@ -149,6 +149,9 @@ public class JcScoreListActivity extends Activity {
 			} else {
 				money_brank.setSelection(0, false);
 			}
+			/**add by yejc 20130725 start*/
+			index = money_brank.getSelectedItemPosition();
+			/**add by yejc 20130725 end*/
 
 		}
 	}
