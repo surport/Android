@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,12 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.net.newtransaction.recharge.AlipaySecurePayInterface;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
@@ -50,7 +46,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.account_alipay_secure_recharge_dialog);
 		initTextViewContent();
 

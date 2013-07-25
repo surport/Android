@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@id/textView1"
-        android:layout_width="120dip"
+        android:layout_width="100dip"
         android:layout_height="40dip"
         android:text="TextView"
         android:textColor="@color/black" />
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@id/textView2"
-        android:layout_width="30dip"
+        android:layout_width="15dip"
         android:layout_height="40dip"
         android:text="倍"
         android:textColor="@color/black" />

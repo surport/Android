@@ -905,7 +905,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		betPojo.setLotmulti(lotMulti);
 		betPojo.setBettype("bet");
 		betPojo.setAmount(amount);
-		betPojo.setAmt(0);
+		betPojo.setAmt(2);
 		betPojo.setIsSellWays("1");
 		betPojo.setOneAmount(info.getOneAmount());
 		betPojo.setZhushu(info.getBetNum());
