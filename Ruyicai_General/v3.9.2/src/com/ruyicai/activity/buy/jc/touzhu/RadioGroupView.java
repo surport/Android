@@ -23,14 +23,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 /**
- * 投注选择项组类
+ * 鎶曟敞閫夋嫨椤圭粍绫�
  * 
  * @author Administrator
  * 
  */
 public class RadioGroupView {
 	private Context context;
-	private int checkNum;// 选项组个数
+	private int checkNum;// 閫夐」缁勪釜鏁�
 	private final int LineNum = 4;
 	public List<RadioButton> radioBtns = new ArrayList<RadioButton>();
 	private int radioTextId[] = { R.string.jc_touzhu_radio3_3,
@@ -60,9 +60,9 @@ public class RadioGroupView {
 			R.string.jc_touzhu_radio6_22, R.string.jc_touzhu_radio6_42,
 			R.string.jc_touzhu_radio6_57, R.string.jc_touzhu_radio6_63 };
 	private TouzhuDialog touzhuDialog;
-	private int oneAmt = 2;// 单注金额
+	private int oneAmt = 2;// 鍗曟敞閲戦
 	private boolean isDan = false;
-	private int maxTeam = 8;// 最大串关数，8代表8串一
+	private int maxTeam = 8;// 鏈�ぇ涓插叧鏁帮紝8浠ｈ〃8涓蹭竴
 	private int beijingChuanMaxTeam = 6;
 	private int beijingMaxTeam = 15;
 	CheckBox checks[] = new CheckBox[7];
@@ -88,14 +88,14 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 设置最大串关数
+	 * 璁剧疆鏈�ぇ涓插叧鏁�
 	 */
 	public void setMaxTeam(int teamNum) {
 		maxTeam = teamNum;
 	}
 
 	/**
-	 * 创建单式机选界面
+	 * 鍒涘缓鍗曞紡鏈洪�鐣岄潰
 	 * 
 	 * @param number
 	 * @return
@@ -184,7 +184,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 加载每一行的单选按钮
+	 * 鍔犺浇姣忎竴琛岀殑鍗曢�鎸夐挳
 	 * 
 	 * @param layoutMain
 	 * @param line
@@ -228,7 +228,13 @@ public class RadioGroupView {
 				radio.setTextSize(PublicMethod.getPxInt(15, context));
 			} else if (width == 800) {
 				radio.setTextSize(PublicMethod.getPxInt(8, context));
-			} else {
+			}
+			/** add by pengcx 20130725 start*/
+			else if (width == 1080) {
+				radio.setTextSize(PublicMethod.getPxInt(4.5f, context));
+			}
+			/** add by pengcx 20130725 end*/
+			else {
 				radio.setTextSize(PublicMethod.getPxInt(10, context));
 			}
 			if (Constants.SCREEN_HEIGHT == 854) {
@@ -236,7 +242,7 @@ public class RadioGroupView {
 			}
 			radio.setId(id);
 			radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
-			int withPx = PublicMethod.getPxInt(75, context);// 将dip换算成px
+			int withPx = PublicMethod.getPxInt(75, context);// 灏哾ip鎹㈢畻鎴恜x
 			radio.setLayoutParams(new LayoutParams(withPx,
 					LayoutParams.WRAP_CONTENT));
 			radio.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -267,7 +273,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 清空单选按钮
+	 * 娓呯┖鍗曢�鎸夐挳
 	 * 
 	 * @param buttonView
 	 */
@@ -280,7 +286,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 创建多选界面
+	 * 鍒涘缓澶氶�鐣岄潰
 	 * 
 	 * @param visiableNum
 	 * @return
@@ -378,18 +384,18 @@ public class RadioGroupView {
 									CompoundButton buttonView, boolean isChecked) {
 								int checknum = buttonView.getId();
 								if (isChecked) {
-//									Log.i("111", "增加的注数:" +((BeiJingSingleGameIndentActivity) context)
+//									Log.i("111", "澧炲姞鐨勬敞鏁�" +((BeiJingSingleGameIndentActivity) context)
 //											.getBettingNum(buttonView.getId() + 1));
 									((BeiJingSingleGameIndentActivity) context).bettingNum += ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
 								} else {
-//									Log.i("111", "减少的注数:" +((BeiJingSingleGameIndentActivity) context)
+//									Log.i("111", "鍑忓皯鐨勬敞鏁�" +((BeiJingSingleGameIndentActivity) context)
 //											.getBettingNum(buttonView.getId() + 1));
 									((BeiJingSingleGameIndentActivity) context).bettingNum -= ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
 								}
 								
-//								Log.i("111","结果注数:"+((BeiJingSingleGameIndentActivity) context).bettingNum);
+//								Log.i("111","缁撴灉娉ㄦ暟:"+((BeiJingSingleGameIndentActivity) context).bettingNum);
 								((BeiJingSingleGameIndentActivity) context)
 										.setBettingInformationShow();
 							}
@@ -456,7 +462,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 最后一个多选按钮是否可以选
+	 * 鏈�悗涓�釜澶氶�鎸夐挳鏄惁鍙互閫�
 	 * 
 	 * @return
 	 */
@@ -478,13 +484,13 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 根据选则的球队计算单选按钮数
+	 * 鏍规嵁閫夊垯鐨勭悆闃熻绠楀崟閫夋寜閽暟
 	 * 
 	 * @param num
 	 * @return
 	 */
 	public int getNum(int teamNum, boolean isDan) {
-		// isDan=true是多串过关
+		// isDan=true鏄涓茶繃鍏�
 		int num = 0;
 		switch (teamNum) {
 		case 2:
@@ -547,13 +553,13 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 根据设胆数隐藏按钮数
+	 * 鏍规嵁璁捐儐鏁伴殣钘忔寜閽暟
 	 * 
 	 * @param num
 	 * @return
 	 */
 	public int getDanNum(int teamNum, boolean isDan) {
-		// isDan=true是多串过关
+		// isDan=true鏄涓茶繃鍏�
 		int num = 0;
 		switch (teamNum) {
 		case 2:
@@ -616,7 +622,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 获得投注时的注码
+	 * 鑾峰緱鎶曟敞鏃剁殑娉ㄧ爜
 	 * 
 	 * @return
 	 */
@@ -629,7 +635,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 获得多选注码
+	 * 鑾峰緱澶氶�娉ㄧ爜
 	 * 
 	 * @param check
 	 * @return
@@ -649,7 +655,7 @@ public class RadioGroupView {
 	}
 
 	/**
-	 * 获得单选注码
+	 * 鑾峰緱鍗曢�娉ㄧ爜
 	 * 
 	 * @param check
 	 * @return

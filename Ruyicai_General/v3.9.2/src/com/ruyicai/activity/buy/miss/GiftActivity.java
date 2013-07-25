@@ -28,6 +28,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Contacts.People;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -511,12 +512,12 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void LinkDialog() {
 		isDialog = true;
-		Cursor c = getContentResolver().query(People.CONTENT_URI, null, null,
+		Cursor c = getContentResolver().query(Phone.CONTENT_URI, null, null,
 				null, null);
 		persons.clear();
 		while (c.moveToNext()) {
-			int index = c.getColumnIndex(People.NUMBER);
-			int indexName = c.getColumnIndex(People.NAME);
+			int index = c.getColumnIndex(Phone.NUMBER);
+			int indexName = c.getColumnIndex(Phone.DISPLAY_NAME);
 			Person person = new Person(c.getString(indexName),
 					c.getString(index));
 			if (person.phone != null) {
