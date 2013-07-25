@@ -236,7 +236,13 @@ public class RadioGroupView {
 				radio.setTextSize(PublicMethod.getPxInt(15, context));
 			} else if (width == 800) {
 				radio.setTextSize(PublicMethod.getPxInt(8, context));
-			} else {
+			} 
+			/**add by pengcx 20130725 start**/
+			else if(width == 1080){
+				radio.setTextSize(PublicMethod.getPxInt(5.5f, context));
+			}
+			/**add by pengcx 20130725 end**/
+			else{
 				radio.setTextSize(PublicMethod.getPxInt(10, context));
 			}
 			if (Constants.SCREEN_HEIGHT == 854) {
