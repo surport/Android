@@ -598,12 +598,13 @@ public class NoticeMainActivity extends Activity {
 							.getLotteryAllNotice();// 开奖信息json对象
 					// 将获取到的开奖信息放到常量类中
 					analysisLotteryNoticeJsonObject(lotteryInfos);
+					Message msg = new Message();
+					msg.what = 0;
+					handler.sendMessage(msg);
 				} else {
 					// 不满足联网条件
+					progressdialog.dismiss();
 				}
-				Message msg = new Message();
-				msg.what = 0;
-				handler.sendMessage(msg);
 			}
 		}).start();
 	}
