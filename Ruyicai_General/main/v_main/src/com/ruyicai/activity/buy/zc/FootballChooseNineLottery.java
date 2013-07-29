@@ -863,7 +863,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 				FootballChooseNineLottery.this, "addInfo");
 		String sessionIdStr = pre.getStringValue("sessionid");
 		FootballLottery.tabPosition = 1;
-		Log.i("aaa", FootballLottery.tabPosition + "ss");
 		if (sessionIdStr == null || sessionIdStr.equals("")) {
 			Intent intentSession = new Intent(FootballChooseNineLottery.this,
 					UserLogin.class);

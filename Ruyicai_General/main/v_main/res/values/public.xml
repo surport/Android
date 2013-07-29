@@ -3405,6 +3405,12 @@
 	<public type="string" name="zuiduo99qi" id="0x7f08013f" />
 	<public type="string" name="zuxuan3" id="0x7f0800e3" />
 	<public type="string" name="zuxuan6" id="0x7f0800e4" />
+	<public type="string" name="get_more" id="0x7f0804ec" />
+	<public type="string" name="release_to_refresh" id="0x7f0804ed" />
+	<public type="string" name="pull_to_refresh" id="0x7f0804ee" />
+	<public type="string" name="refreshing" id="0x7f0804ef" />
+	<public type="string" name="updating" id="0x7f0804f0" />
+	
 	<public type="style" name="AnimationActivity" id="0x7f090040" />
 	<public type="style" name="ContentOverlay" id="0x7f09003e" />
 	<public type="style" name="HomeThreeBtn" id="0x7f09002b" />

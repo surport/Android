@@ -295,7 +295,7 @@
         <activity
             android:name="com.ruyicai.activity.buy.ssq.BettingSuccessActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.ruyicai.activity.buy.ssq.ReceiveAndBindEmailActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -631,7 +631,7 @@
             android:name="com.ruyicai.activity.join.JoinDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.ruyicai.activity.join.JoinDingActivity"
             android:configChanges="keyboardHidden|orientation"

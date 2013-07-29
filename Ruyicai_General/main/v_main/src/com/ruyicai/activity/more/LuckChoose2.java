@@ -89,7 +89,6 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		iScreenWidth = PublicMethod.getDisplayWidth(this);
-		Log.e("iscre", iScreenWidth + "");
 		if (iScreenWidth == 800) {
 			BALL_WIDTH = iScreenWidth / 10;
 		} else {

@@ -93,7 +93,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/loginselecter"
-            android:text="@string/ssq_bettingsuccess_returnbet"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

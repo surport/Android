@@ -286,7 +286,17 @@ public class LuckChoose2View extends SurfaceView implements
 			// 设置间隙
 			setZhuanpanNeirong(anniuXuanzhongId[1] == 1);
 		}
+		
+		/** add by pengcx 20130726 start*/
+		float scaleWidth = screenWidth / 480.0f;
+		float scaleHeight = screenHeight / 800.0f;
+		for(int i = 0; i < anniuZhongxinZuobiao.length; i++){
+			anniuZhongxinZuobiao[i][0] = (int) (anniuZhongxinZuobiao[i][0] * scaleWidth);
+			anniuZhongxinZuobiao[i][1] = (int) (anniuZhongxinZuobiao[i][1] * scaleHeight);
 
+		}
+		/** add by pengcx 20130726 end*/
+	
 		myThread = new SurfaceViewThread();
 		myThread.start();
 	}

@@ -228,28 +228,34 @@ public class RadioGroupView {
 			int width = PublicMethod.getDisplayWidth(context);
 			if (width == 720) {
 				radio.setTextSize(PublicMethod.getPxInt(7, context));
+				radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			} else if (width == 640) {
 				radio.setTextSize(PublicMethod.getPxInt(7, context));
+				radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			} else if (width == 240) {
 				radio.setTextSize(PublicMethod.getPxInt(20, context));
+				radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			} else if (width == 320) {
 				radio.setTextSize(PublicMethod.getPxInt(15, context));
+				radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			} else if (width == 800) {
 				radio.setTextSize(PublicMethod.getPxInt(8, context));
+				radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			} 
 			/**add by pengcx 20130725 start**/
 			else if(width == 1080){
 				radio.setTextSize(PublicMethod.getPxInt(5.5f, context));
+				radio.setPadding(PublicMethod.getPxInt(5, context), 0, 0, 0);
 			}
 			/**add by pengcx 20130725 end**/
 			else{
 				radio.setTextSize(PublicMethod.getPxInt(10, context));
+				radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			}
 			if (Constants.SCREEN_HEIGHT == 854) {
 				radio.setTextSize(PublicMethod.getPxInt(8, context));
 			}
 			radio.setId(id);
-			radio.setPadding(PublicMethod.getPxInt(20, context), 0, 0, 0);
 			int withPx = PublicMethod.getPxInt(75, context);// 将dip换算成px
 			radio.setLayoutParams(new LayoutParams(withPx,
 					LayoutParams.WRAP_CONTENT));

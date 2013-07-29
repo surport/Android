@@ -539,6 +539,7 @@
     <string name="ssq_bettingsuccess_emailaddress">邮箱地址：</string>
     <string name="ssq_bettingsuccess_emailprompt">请输入您要接收并绑定的邮箱地址(可在用户中心解绑)：</string>
     <string name="ssq_bettingsuccess_returnbet">返回投注</string>
+    <string name="ssq_bettingsuccess_returnjoin">返回合买</string>
     <string name="ssq_bettingsuccess_money">金额:</string>
     <string name="ssq_bettingsuccess_lotnotype">彩种:</string>
     <string name="ssq_bettingsuccess_sentschemetoemail">将此方案发送到邮箱</string>
@@ -1242,4 +1243,12 @@
     <string name="account_phone_card_password">"请输入充值卡密码"</string>
     <string name="account_phone_card_number">"请输入充值卡序号"</string>
     <string name="account_withdraw_detail_type">提现到支付宝</string>
+    
+    <!-- 下拉刷新 -->
+    <string name="get_more">获取更多</string>
+    <string name="release_to_refresh">松开刷新</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="updating">最近更新：</string>
+
 </resources>

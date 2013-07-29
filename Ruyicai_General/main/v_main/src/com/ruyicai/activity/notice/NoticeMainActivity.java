@@ -36,6 +36,7 @@ import android.widget.TextView;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.score.lq.JcLqScoreActivity;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
+import com.ruyicai.activity.notice.PullListView.OnRefreshListener;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
@@ -52,7 +53,7 @@ import com.umeng.analytics.MobclickAgent;
  * @author haojie
  * 
  */
-public class NoticeMainActivity extends Activity {
+public class NoticeMainActivity extends Activity implements OnRefreshListener{
 
 	public static final String TAG = "NoticePrizesOfLottery";
 	public final static String LOTTERYTYPE = "LOTTERYTYPE";
@@ -105,6 +106,7 @@ public class NoticeMainActivity extends Activity {
 			"sfc", "rxj", "lcb", "jqc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame" }; // 8.9
 	public static boolean isFirstNotice = true;
 	public boolean isnoticefresh = true;
+	public boolean ispushfresh = false;
 
 	/**
 	 * 消息处理函数
@@ -114,7 +116,9 @@ public class NoticeMainActivity extends Activity {
 			switch (msg.what) {
 			case 0:
 				showListView(ID_MAINLISTVIEW);
-				progressdialog.dismiss();
+				if (!ispushfresh) {
+					progressdialog.dismiss();
+				}
 				break;
 			}
 
@@ -125,6 +129,7 @@ public class NoticeMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notice_prizes_main);
 		setScale();
+		ispushfresh = false;
 		MobclickAgent.onEvent(this, "kaijianggonggao"); // BY贺思明 点击主导航上的“开奖公告”。
 	}
 
@@ -585,22 +590,16 @@ public class NoticeMainActivity extends Activity {
 	}
 
 	private void noticeNet() {
-		showDialog(DIALOG1_KEY); // 显示网络提示框 2010/7/4
+		if(!ispushfresh){
+			showDialog(DIALOG1_KEY);
+		}
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// 判断缓存时间,如果超过缓存时间,进行联网更新
-				if (Constants.lastNoticeTime == 0
-						|| (System.currentTimeMillis() - Constants.lastNoticeTime) / 1000 > Constants.NOTICE_CACHE_TIME_SECOND) {
-					// 是首次联网,或者缓存超时,联网获取数据
-					Constants.lastNoticeTime = System.currentTimeMillis();
-					JSONObject lotteryInfos = NoticeWinInterface.getInstance()
-							.getLotteryAllNotice();// 开奖信息json对象
-					// 将获取到的开奖信息放到常量类中
-					analysisLotteryNoticeJsonObject(lotteryInfos);
-				} else {
-					// 不满足联网条件
-				}
+				JSONObject lotteryInfos = NoticeWinInterface.getInstance()
+						.getLotteryAllNotice();// 开奖信息json对象
+				// 将获取到的开奖信息放到常量类中
+				analysisLotteryNoticeJsonObject(lotteryInfos);
 				Message msg = new Message();
 				msg.what = 0;
 				handler.sendMessage(msg);
@@ -655,7 +654,7 @@ public class NoticeMainActivity extends Activity {
 	private void showMainListView() {
 		setContentView(R.layout.notice_prizes_main);
 
-		ListView listview = (ListView) findViewById(R.id.notice_prizes_listview);
+		PullListView listview = (PullListView) findViewById(R.id.notice_prizes_listview);
 		list = NoticeDataProvider
 				.getListForMainListViewSimpleAdapter(NoticeMainActivity.this);// 获取开奖信息数据
 
@@ -663,6 +662,7 @@ public class NoticeMainActivity extends Activity {
 		MainEfficientAdapter adapter = new MainEfficientAdapter(this, str, list);
 		listview.setDividerHeight(0);
 		listview.setAdapter(adapter);
+		listview.setonRefreshListener(this);
 		// 设置点击监听
 		OnItemClickListener clickListener = new OnItemClickListener() {
 
@@ -1442,5 +1442,11 @@ public class NoticeMainActivity extends Activity {
 		}
 		}
 		return null;
+	}
+
+	@Override
+	public void onRefresh() {
+		ispushfresh = true;
+		noticeNet();
 	}
 }
