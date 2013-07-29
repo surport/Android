@@ -112,13 +112,13 @@ public class ZCDetailView extends LotnoDetailView {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, FootballLottery.class);
 				if (lotno == Constants.LOTNO_SFC) {
-					intent.putExtra("position", 0);
+					FootballLottery.tabPosition = 0;
 				} else if (lotno == Constants.LOTNO_RX9) {
-					intent.putExtra("position", 1);
+					FootballLottery.tabPosition = 1;
 				} else if (lotno == Constants.LOTNO_JQC) {
-					intent.putExtra("position", 2);
+					FootballLottery.tabPosition = 2;
 				} else if (lotno == Constants.LOTNO_LCB) {
-					intent.putExtra("position", 3);
+					FootballLottery.tabPosition = 3;
 				}
 				context.startActivity(intent);
 			}

@@ -814,7 +814,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 				FootballGoalsLottery.this, "addInfo");
 		String sessionIdStr = pre.getStringValue("sessionid");
 		FootballLottery.tabPosition = 2;
-		Log.i("aaa", FootballLottery.tabPosition + "ss");
 		if (sessionIdStr == null || sessionIdStr.equals("")) {
 			Intent intentSession = new Intent(FootballGoalsLottery.this,
 					UserLogin.class);

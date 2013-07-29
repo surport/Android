@@ -42,7 +42,7 @@ public class AddViewMiss {
 	/**
 	 * 
 	 */
-	private List<CodeInfo> codeList = new ArrayList<CodeInfo>();
+	private static List<CodeInfo> codeList = new ArrayList<CodeInfo>();
 	private Context context;
 	private String title;
 	private AlertDialog dialog;
@@ -66,7 +66,7 @@ public class AddViewMiss {
 	public AddViewMiss(LuckChoose2 luckChoose2) {
 		this.context = luckChoose2.getContext();
 	}
-
+    
 	public AddViewMiss(Context context) {
 		this.context = context;
 	}

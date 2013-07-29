@@ -2,21 +2,10 @@ package com.ruyicai.activity.buy.jc.score.zq;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
-import com.ruyicai.activity.buy.ssq.SsqJiXuan;
-import com.ruyicai.activity.buy.ssq.SsqZiDanTuo;
-import com.ruyicai.activity.buy.ssq.SsqZiZhiXuan;
-import com.ruyicai.constant.Constants;
-import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.util.PublicMethod;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;

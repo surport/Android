@@ -147,7 +147,7 @@ public class DanshiJiXuan extends Activity implements
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				int position = jixuanZhu.getSelectedItemPosition();
+				//int position = jixuanZhu.getSelectedItemPosition();
 				if (isOnclik) {
 					again();
 				} else {

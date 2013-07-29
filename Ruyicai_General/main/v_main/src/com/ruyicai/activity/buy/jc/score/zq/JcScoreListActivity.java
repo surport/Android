@@ -150,7 +150,7 @@ public class JcScoreListActivity extends Activity {
 				money_brank.setSelection(0, false);
 			}
 			/**add by yejc 20130725 start*/
-			index = money_brank.getSelectedItemPosition();
+			//index = money_brank.getSelectedItemPosition();
 			/**add by yejc 20130725 end*/
 
 		}

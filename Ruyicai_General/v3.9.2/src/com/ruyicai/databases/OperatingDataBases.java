@@ -43,7 +43,7 @@ public class OperatingDataBases {
 	public List<SystemInfoBean> getInfoList() {
 		List<SystemInfoBean> infoList = new ArrayList<SystemInfoBean>();
 		SQLiteDatabase db = systemInfoDBOpenHelper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("select _id, content from system_info", null);
+		Cursor cursor = db.rawQuery("select _id, content from system_info  order by _id desc", null);
 		if(cursor != null){
 			while(cursor.moveToNext()) {
 				SystemInfoBean bean = new SystemInfoBean();

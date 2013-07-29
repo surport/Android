@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.palmdream.RuyicaiAndroid"
     android:installLocation="auto"
-    android:versionCode="34"
-    android:versionName="3.9.0" >
+    android:versionCode="37"
+    android:versionName="3.10.0" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -295,7 +295,7 @@
         <activity
             android:name="com.ruyicai.activity.buy.ssq.BettingSuccessActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.ruyicai.activity.buy.ssq.ReceiveAndBindEmailActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -631,7 +631,7 @@
             android:name="com.ruyicai.activity.join.JoinDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="com.ruyicai.activity.join.JoinDingActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -835,7 +835,8 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name="com.ruyicai.activity.usercenter.FeedbackListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" 
+            android:launchMode="singleTop"/>
         <activity
             android:name="com.ruyicai.activity.more.CompanyInfo"
             android:configChanges="keyboardHidden|orientation"

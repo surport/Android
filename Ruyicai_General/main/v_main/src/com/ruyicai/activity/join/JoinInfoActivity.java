@@ -40,10 +40,12 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.QueryJoinInfoInterface;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -53,13 +55,6 @@ import com.umeng.analytics.MobclickAgent;
  * 
  */
 public class JoinInfoActivity extends Activity implements HandlerMsg {
-	// private List<Map<String, Object>>list1 =new
-	// ArrayList<Map<String,Object>>(); /* 列表适配器的数据源 */
-	// private List<Map<String, Object>>list2 =new
-	// ArrayList<Map<String,Object>>();
-	// private List<Map<String, Object>>list3 =new
-	// ArrayList<Map<String,Object>>();未知
-	private final static String INFO = "INFO";
 	public final static String ID = "id";
 	public final static String USER_NO = "starterUserNo";
 	private String issue = "", lotno = "";
@@ -82,12 +77,23 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	ProgressBar progressbar;
 	String Lotno, betcode;
 	private boolean isSelect = false;
+	/**add by yejc 20130726 start*/
+	RWSharedPreferences shellRW;
+	private String lotnoPosition = "lotno_position";
+	/**add by yejc 20130726 end*/
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.join_info_check);
+		/**add by yejc 20130726 start*/
+		shellRW = new RWSharedPreferences(this, ShellRWConstants.JOIN_LOTNO_INFO);
+		lottypeIndex = shellRW.getIntValue(lotnoPosition);
+		seletctitme = lottypeIndex;
+		initlotno(lottypeIndex);
+		initissue(lotno);
+		/**add by yejc 20130726 end*/
 		isRefresh = false;
 		initViewInfos();
 		getInfo();
@@ -126,12 +132,11 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		title.append("-" + PublicMethod.toLotno(lotno));
 		imgRetrun.setBackgroundResource(R.drawable.returnselecter);
 		imgRetrun.setText("筛选");
-		imgRetrun.setVisibility(view.VISIBLE);
+		imgRetrun.setVisibility(View.VISIBLE);
 		// ImageView的返回事件
 		imgRetrun.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				// finish();
 				selecetDialog().show();
 			}
@@ -157,11 +162,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				progressbar.setVisibility(ProgressBar.VISIBLE);
 				view.setEnabled(false);
-				// TODO Auto-generated method stub
 				addmore();
 
 			}
@@ -177,7 +179,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		} else {
 			viewInfos[topIndex][lottypeIndex].newPage = viewInfos[topIndex][lottypeIndex].allPage - 1;
 			view.setEnabled(true);
-			progressbar.setVisibility(view.INVISIBLE);
+			progressbar.setVisibility(View.INVISIBLE);
 			Toast.makeText(JoinInfoActivity.this, "已至尾页", Toast.LENGTH_SHORT)
 					.show();
 		}
@@ -194,7 +196,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				progress.setBackgroundResource(R.drawable.join_info_btn_b);
 				allAtm.setBackgroundResource(R.drawable.join_info_btn);
 				atm.setBackgroundResource(R.drawable.join_info_btn);
@@ -208,7 +209,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				progress.setBackgroundResource(R.drawable.join_info_btn);
 				allAtm.setBackgroundResource(R.drawable.join_info_btn_b);
 				atm.setBackgroundResource(R.drawable.join_info_btn);
@@ -221,7 +221,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				progress.setBackgroundResource(R.drawable.join_info_btn);
 				allAtm.setBackgroundResource(R.drawable.join_info_btn);
 				atm.setBackgroundResource(R.drawable.join_info_btn_b);
@@ -282,7 +281,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		handlerTwo.post(new Runnable() {
 			@Override
 			public void run() {
-				progressbar.setVisibility(view.INVISIBLE);
+				progressbar.setVisibility(View.INVISIBLE);
 				view.setEnabled(true);
 
 			}
@@ -296,7 +295,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						initList();
 					}
 				});
@@ -530,19 +528,16 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -550,7 +545,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			Info info = (Info) mList.get(position);
@@ -583,9 +577,9 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			}
 			if (info.getIsTop().equals("true")) {
 				holder.ding.setBackgroundResource(R.drawable.join_top);
-				holder.ding.setVisibility(view.VISIBLE);
+				holder.ding.setVisibility(View.VISIBLE);
 			} else {
-				holder.ding.setVisibility(view.GONE);
+				holder.ding.setVisibility(View.GONE);
 			}
 			int with = PublicMethod.getDisplayWidth(JoinInfoActivity.this);
 			if (with == 800) {
@@ -661,7 +655,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		setValue();
 		initList();
 	}
@@ -673,8 +666,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/*
@@ -684,7 +675,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -855,7 +845,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		}
 
 		public void setAllAtm(String allAtm) {
-
 			this.allAtm = Integer.toString(Integer.parseInt(allAtm) / 100);
 		}
 
@@ -936,14 +925,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 	}
 
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-
-	}
-
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		if (isRefresh) {
@@ -956,14 +938,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
-	}
-
-	protected void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
 	}
 
 	AlertDialog selecetDialog() {
@@ -975,7 +951,9 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 							public void onClick(DialogInterface dialog,
 									int which) {
-								// TODO Auto-generated method stub
+								/**add by yejc 20130726 start*/
+								shellRW.putIntValue(lotnoPosition, which);
+								/**add by yejc 20130726 end*/
 								seletctitme = which;
 								lottypeIndex = which;
 								initlotno(lottypeIndex);
