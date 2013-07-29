@@ -91,7 +91,7 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 1:
-//				setNoReadCount();
+				setNoReadCount();
 				break;
 			}
 		}
@@ -644,7 +644,7 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 			notReadLetterCount = 0;
 			notReadLetterCountString = "0";
 
-//			setNoReadCount();
+			setNoReadCount();
 		}
 
 	}
@@ -666,7 +666,7 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 					.getStringValue("notReadLetterCount"));
 
 			notReadLetterCountString = String.valueOf(notReadLetterCount);
-//			setNoReadCount();
+			setNoReadCount();
 		}
 
 	}

@@ -970,22 +970,22 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 				holder.log = (TextView) convertView.findViewById(R.id.tv_quan);
 				holder.title.setText(title);
 
-//				if (title.equals("我的消息") && sessionid != null
-//						&& !sessionid.equals("")) {
-//					int notReadLetterCount = Integer.valueOf(shellRW
-//							.getStringValue("notReadLetterCount"));
-//					if (notReadLetterCount > 0) {
-//						String notReadLetterCountString = String
-//								.valueOf(notReadLetterCount);
-//						holder.log.setVisibility(View.VISIBLE);
-//						holder.log.setText(notReadLetterCountString);
-//					} else {
-//						holder.log.setVisibility(View.INVISIBLE);
-//					}
-//
-//				} else {
-//					holder.log.setVisibility(View.INVISIBLE);
-//				}
+				if (title.equals("我的消息") && sessionid != null
+						&& !sessionid.equals("")) {
+					int notReadLetterCount = Integer.valueOf(shellRW
+							.getStringValue("notReadLetterCount"));
+					if (notReadLetterCount > 0) {
+						String notReadLetterCountString = String
+								.valueOf(notReadLetterCount);
+						holder.log.setVisibility(View.VISIBLE);
+						holder.log.setText(notReadLetterCountString);
+					} else {
+						holder.log.setVisibility(View.INVISIBLE);
+					}
+
+				} else {
+					holder.log.setVisibility(View.INVISIBLE);
+				}
 
 				holder.lefticon = (ImageView) convertView
 						.findViewById(R.id.usercenter_item_lefticon);

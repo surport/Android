@@ -138,6 +138,9 @@ public class JcScoreListActivity extends Activity {
 			} else {
 				money_brank.setSelection(0, false);
 			}
+			/**add by yejc 20130725 start*/
+			index = money_brank.getSelectedItemPosition();
+			/**add by yejc 20130725 end*/
 
 		}
 	}
@@ -160,7 +163,6 @@ public class JcScoreListActivity extends Activity {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		initListInfo();
 	}
@@ -412,7 +414,6 @@ public class JcScoreListActivity extends Activity {
 			holder.layoutLeft.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					if (info.isStart()) {
 						info.setStart(false);
 						holder.startImg
