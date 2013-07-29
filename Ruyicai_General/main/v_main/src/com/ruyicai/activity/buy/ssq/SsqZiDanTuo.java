@@ -6,17 +6,12 @@ package com.ruyicai.activity.buy.ssq;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONObject;
-
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -25,12 +20,10 @@ import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.code.ssq.SsqZiDanTuoCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.SsqMissJson;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.PublicConst;
@@ -53,6 +46,9 @@ public class SsqZiDanTuo extends ZixuanActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		}
 		zixuan = this;
 		setCode(ssqCode);
 		setIsTen(true);
@@ -115,7 +111,7 @@ public class SsqZiDanTuo extends ZixuanActivity {
 
 		areaNums[0] = new AreaNum(33, 8, 1, 5, redBallResId, 0, 1, Color.RED,
 				danma, true, false);
-		areaNums[1] = new AreaNum(33, 8, 2, 16, redBallResId, 0, 1, Color.RED,
+		areaNums[1] = new AreaNum(33, 8, 2, 19, redBallResId, 0, 1, Color.RED,
 				tuoma, true, false);
 		areaNums[2] = new AreaNum(16, 8, 1, 16, blueBallResId, 0, 1,
 				Color.BLUE, blue, true, false);
