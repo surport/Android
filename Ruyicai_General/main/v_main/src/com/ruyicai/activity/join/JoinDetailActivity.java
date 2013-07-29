@@ -48,6 +48,7 @@ import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.ContentListView;
 import com.ruyicai.activity.usercenter.detail.Hemaidetail;
@@ -1764,7 +1765,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	@Override
 	public void errorCode_0000() {
 		if (isJoinIn) {
-			succeedDialog("提示", message);
+//			succeedDialog("提示", message);
+			/** add by pengcx 20130725 start*/
+			Intent intent = new Intent(JoinDetailActivity.this,BettingSuccessActivity.class);
+			intent.putExtra("page", BettingSuccessActivity.JOINCOOPERATION);
+			intent.putExtra("lotno", detatil.getLotNo());
+			intent.putExtra("amount", Integer.valueOf((Integer.valueOf(amount) * 100)).toString());
+			startActivity(intent);
+			/** add by pengcx 20130725 end*/
 		} else {
 			setValue(getValue());
 

@@ -2750,6 +2750,7 @@ public final class R {
         public static final int account_withdraw_detail_remark_content=0x7f0804e4;
         public static final int account_withdraw_detail_remit_time=0x7f0804da;
         public static final int account_withdraw_detail_title=0x7f0804d6;
+        public static final int account_withdraw_detail_type=0x7f0804ea;
         public static final int account_withdraw_detail_withdraw_mode=0x7f0804df;
         public static final int account_withdraw_number=0x7f0804d7;
         /**  账户充值 

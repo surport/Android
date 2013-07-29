@@ -531,7 +531,6 @@ public class FootballSFLottery extends FootballFourteen implements
 				FootballSFLottery.this, "addInfo");
 		sessionid = pre.getStringValue("sessionid");
 		FootballLottery.tabPosition = 0;
-		Log.i("aaa", FootballLottery.tabPosition + "ss");
 		if (sessionid == null || sessionid.equals("")) {
 			Intent intentSession = new Intent(FootballSFLottery.this,
 					UserLogin.class);

@@ -41,7 +41,6 @@ public class FootballLottery extends BuyActivityGroup {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Log.i("aaa", tabPosition + "rr");
 		setTab(tabPosition);
 	}
 

@@ -752,7 +752,6 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 				FootballSixSemiFinal.this, "addInfo");
 		String sessionIdStr = pre.getStringValue("sessionid");
 		FootballLottery.tabPosition = 3;
-		Log.i("aaa", FootballLottery.tabPosition + "ss");
 		if (sessionIdStr == null || sessionIdStr.equals("")) {
 			Intent intentSession = new Intent(FootballSixSemiFinal.this,
 					UserLogin.class);
