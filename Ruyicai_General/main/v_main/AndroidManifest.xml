@@ -835,7 +835,8 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name="com.ruyicai.activity.usercenter.FeedbackListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" 
+            android:launchMode="singleTop"/>
         <activity
             android:name="com.ruyicai.activity.more.CompanyInfo"
             android:configChanges="keyboardHidden|orientation"

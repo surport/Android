@@ -133,6 +133,7 @@ public class FeedbackListActivity extends Activity {
 //	private List<Integer> selectedMsgList = new ArrayList<Integer>();
 	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
 	List<SystemInfoBean> infoList;
+	OperatingDataBases operatingDb;
 	/**add by yejc 20130419 end*/
 
 	@Override
@@ -163,7 +164,8 @@ public class FeedbackListActivity extends Activity {
 		mTabHost.setOnTabChangedListener(scroeTabChangedListener);
 		userno = shellRW.getStringValue("userno");
 //		getInfoNet(userno, latterIndex, false);
-		initLinear(systemInfo, linearId[0], initSystemInfo());
+		operatingDb = new OperatingDataBases(this);
+//		initLinear(systemInfo, linearId[0], initSystemInfo());
 	}
 
 	protected void onRestart() {
@@ -176,7 +178,7 @@ public class FeedbackListActivity extends Activity {
 		}
 
 		feedbackcount.setVisibility(View.INVISIBLE);
-	};
+	}
 
 	/**
 	 * TabHost切换监听器
@@ -341,13 +343,10 @@ public class FeedbackListActivity extends Activity {
 						.getStringExtra("feedBackArray"));
 				initListViewAfterNet(feedBackArray);
 			} else {
-				dialog.show();
+//				dialog.show();
 				Controller.getInstance(FeedbackListActivity.this).getFeedbackListNet(handler, userno);
 			}
 			/**add by yejc 20130708 end*/
-//			JSONArray feedBackArray = new JSONArray(this.getIntent()
-//					.getStringExtra("feedBackArray"));
-//			initListViewAfterNet(feedBackArray);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -393,8 +392,6 @@ public class FeedbackListActivity extends Activity {
 					Intent intent = new Intent(FeedbackListActivity.this,
 							MainGroup.class);
 					Constants.currentTab = "0";
-					//intent.putExtra(Constants.START_MAINGROUP_FROM_FEEDBACKLIST_KEY, 
-					//		Constants.START_MAINGROUP_FROM_FEEDBACKLIST_VALUE);
 					startActivity(intent);
 					finish();
 				} else {
@@ -836,12 +833,8 @@ public class FeedbackListActivity extends Activity {
 				
 				//add by yejc 20130708
 			case 11:
-				try {
-					JSONArray feedBackArray = new JSONArray((String)msg.obj);
-					initListViewAfterNet(feedBackArray);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				JSONArray feedBackArray = (JSONArray)msg.obj;
+				initListViewAfterNet(feedBackArray);
 				break;	
 
 			default:
@@ -1291,12 +1284,24 @@ public class FeedbackListActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+		initLinear(systemInfo, linearId[0], initSystemInfo());
 		/**add by yejc 20130419 start*/
 		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
         registerReceiver(selectTextBroadCast, filter);
         /**add by yejc 20130419 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
+	}
+
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		boolean isSystemInfo = intent.getBooleanExtra("isSystemInfo", false);
+		if(isSystemInfo) {
+			if (mTabHost.getCurrentTab() != 0) {
+				mTabHost.setCurrentTab(0);
+			}
+		}
 	}
 
 	/**
@@ -1319,7 +1324,7 @@ public class FeedbackListActivity extends Activity {
 				R.layout.usercenter_listview_layout, null);
 		tabSpecListView = (ListView) tabSpecLinearView
 				.findViewById(R.id.usercenter_listview_queryinfo);
-		OperatingDataBases operatingDb = new OperatingDataBases(this);
+		
 		infoList = operatingDb.getInfoList();
 		sysInfoAdapter = new SystemInfoAdapter(infoList);
 		tabSpecListView.setAdapter(sysInfoAdapter);
