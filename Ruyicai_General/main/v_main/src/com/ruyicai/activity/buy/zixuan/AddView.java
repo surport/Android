@@ -43,7 +43,7 @@ import android.widget.TextView.BufferType;
  */
 public class AddView {
 	// 号码篮中的注码集合
-	private static List<CodeInfo> codeList = new ArrayList<CodeInfo>();
+	private List<CodeInfo> codeList = new ArrayList<CodeInfo>();
 	private Context context;
 	private String title;
 	private AlertDialog dialog;

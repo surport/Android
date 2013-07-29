@@ -42,7 +42,7 @@ public class AddViewMiss {
 	/**
 	 * 
 	 */
-	private static List<CodeInfo> codeList = new ArrayList<CodeInfo>();
+	private List<CodeInfo> codeList = new ArrayList<CodeInfo>();
 	private Context context;
 	private String title;
 	private AlertDialog dialog;
