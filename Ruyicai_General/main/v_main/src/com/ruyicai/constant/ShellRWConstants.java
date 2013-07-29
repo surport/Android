@@ -29,4 +29,5 @@ public class ShellRWConstants {
 	public static final String CAIZHONGSETTING = "caizhongSetting";
 	public static final String AGENT_NUM = "agentNum";// 标示推荐人随机数
 	public static final String ACCOUNT_DISPAY_STATE = "account_dispay_state";
+	public static final String JOIN_LOTNO_INFO = "join_lotno_info";
 }

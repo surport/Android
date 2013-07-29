@@ -101,4 +101,13 @@ public class RWSharedPreferences {
 		editor.remove(key);
 		editor.commit();
 	}
+	
+	public void putIntValue(String key, int value) {
+		editor.putInt(key, value);
+		editor.commit();
+	}
+	
+	public int getIntValue(String key) {
+		return sp.getInt(key, 0);
+	}
 }
