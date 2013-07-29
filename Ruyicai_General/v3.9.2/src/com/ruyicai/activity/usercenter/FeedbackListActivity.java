@@ -80,8 +80,8 @@ public class FeedbackListActivity extends Activity {
 	final String CREATETIME = "createTime";
 	final String REPLY = "reply";
 	final String CONTENT = "content";
-	private int[] linearId = {R.id.system_info, /*R.id.latter, */R.id.message };
-	private String[] titles = {"系统信息", /*"站内信", */"我的留言" };
+	private int[] linearId = {R.id.system_info, R.id.latter, R.id.message };
+	private String[] titles = {"系统信息", "站内信", "我的留言" };
 	private LinearLayout message, latter, systemInfo;
 	TabHost mTabHost;
 	private LayoutInflater mInflater = null;
@@ -133,6 +133,7 @@ public class FeedbackListActivity extends Activity {
 //	private List<Integer> selectedMsgList = new ArrayList<Integer>();
 	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
 	List<SystemInfoBean> infoList;
+	OperatingDataBases operatingDb;
 	/**add by yejc 20130419 end*/
 
 	@Override
@@ -163,18 +164,19 @@ public class FeedbackListActivity extends Activity {
 		mTabHost.setOnTabChangedListener(scroeTabChangedListener);
 		userno = shellRW.getStringValue("userno");
 //		getInfoNet(userno, latterIndex, false);
-		initLinear(systemInfo, linearId[0], initSystemInfo());
+		operatingDb = new OperatingDataBases(this);
+//		initLinear(systemInfo, linearId[0], initSystemInfo());
 	}
 
 	protected void onRestart() {
 		super.onRestart();
-//		if (notReadLetterCount > 0) {
-//			lettercount.setVisibility(View.VISIBLE);
-//			lettercount.setText(String.valueOf(notReadLetterCount));
-//		} else {
-//			lettercount.setVisibility(View.INVISIBLE);
-//		}
-//
+		if (notReadLetterCount > 0) {
+			lettercount.setVisibility(View.VISIBLE);
+			lettercount.setText(String.valueOf(notReadLetterCount));
+		} else {
+			lettercount.setVisibility(View.INVISIBLE);
+		}
+
 		feedbackcount.setVisibility(View.INVISIBLE);
 	}
 
@@ -205,7 +207,9 @@ public class FeedbackListActivity extends Activity {
 						submitLayout.setVisibility(View.VISIBLE);
 						messageEditLayout.setVisibility(View.GONE);
 					}
-				} /*else if (tabId.equals(titles[1])) {
+				} else if (tabId.equals(titles[1])) {
+					// initLinear(scroedetail, linearId[0], view);
+//					editBut.setVisibility(View.VISIBLE);
 					type = 1;
 					feedback.setText(R.string.usercenter_submitfeedback);
 					if (latterlist.size() > 0) {
@@ -218,6 +222,7 @@ public class FeedbackListActivity extends Activity {
 							latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
 						}
 					}
+					/**add by yejc 20130422 start*/
 					if (isLatterEdit) {
 						editBut.setText(R.string.my_message_edit_cancel);
 						latterEditLayout.setVisibility(View.VISIBLE);
@@ -227,10 +232,12 @@ public class FeedbackListActivity extends Activity {
 						submitLayout.setVisibility(View.VISIBLE);
 					}
 					messageEditLayout.setVisibility(View.GONE);
-				}*/ else if (tabId.equals(titles[1])) {
-					type = 1;
+					/**add by yejc 20130422 end*/
+				} else if (tabId.equals(titles[2])) {
+//					editBut.setVisibility(View.VISIBLE);
+					type = 2;
 					feedback.setText(R.string.usercenter_submitfeedback);
-					initLinear(message, linearId[1], initmessage());
+					initLinear(message, linearId[2], initmessage());
 					feedbackcount.setVisibility(View.GONE);
 					if (!msgReadStateId.equals("")) {
 						msgUpdateReadState(msgReadStateId);// 更新已读状态
@@ -300,17 +307,17 @@ public class FeedbackListActivity extends Activity {
 		img.setBackgroundResource(R.drawable.tab_buy_selector);
 		title.setText(titles[index]);
 
-//		if (index == 1) {
-//			lettercount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
-//			if (notReadLetterCount > 0) {
-//				lettercount.setVisibility(View.VISIBLE);
-//				lettercount.setText(String.valueOf(notReadLetterCount));
-//			} else {
-//				lettercount.setVisibility(View.INVISIBLE);
-//			}
-//		}
-
 		if (index == 1) {
+			lettercount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
+			if (notReadLetterCount > 0) {
+				lettercount.setVisibility(View.VISIBLE);
+				lettercount.setText(String.valueOf(notReadLetterCount));
+			} else {
+				lettercount.setVisibility(View.INVISIBLE);
+			}
+		}
+
+		if (index == 2) {
 			feedbackcount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
 			feedbackcount.setVisibility(View.INVISIBLE);
 
@@ -336,7 +343,7 @@ public class FeedbackListActivity extends Activity {
 						.getStringExtra("feedBackArray"));
 				initListViewAfterNet(feedBackArray);
 			} else {
-				dialog.show();
+//				dialog.show();
 				Controller.getInstance(FeedbackListActivity.this).getFeedbackListNet(handler, userno);
 			}
 			/**add by yejc 20130708 end*/
@@ -442,7 +449,7 @@ public class FeedbackListActivity extends Activity {
 					initSystemInfoMapStatus(false);
 					latterEditLayout.setVisibility(View.GONE);
 					sysInfoAdapter.notifyDataSetChanged();
-				}/*else if (type == 1) {
+				}else if (type == 1) {
 					if (getResources().getString(R.string.my_message_edit_text)
 							.equals(button.getText().toString())) {
 						isLatterEdit = true;
@@ -459,7 +466,7 @@ public class FeedbackListActivity extends Activity {
 					initLatterMapStatus(false);
 					messageEditLayout.setVisibility(View.GONE);
 					adapter.notifyDataSetChanged();
-				}*/ else if(type == 1){
+				} else if(type == 2){
 					if (getResources().getString(R.string.my_message_edit_text)
 							.equals(button.getText().toString())) {
 						isMessageEdit = true;
@@ -705,7 +712,7 @@ public class FeedbackListActivity extends Activity {
 						messageSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
 					}
 				}
-			}/*else if (type == 1) {
+			}else if (type == 1) {
 				if (intent.getBooleanExtra(selectAllKey, false)) {
 					latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
 					isLatterSelectAll = false;
@@ -715,7 +722,7 @@ public class FeedbackListActivity extends Activity {
 						latterSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
 					}
 				}
-			} */else if (type == 1){
+			} else if (type == 2){
 				if (intent.getBooleanExtra(selectAllKey, false)) {
 					messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
 					isMessageSelectAll = false;
@@ -826,12 +833,8 @@ public class FeedbackListActivity extends Activity {
 				
 				//add by yejc 20130708
 			case 11:
-				try {
-					JSONArray feedBackArray = new JSONArray((String)msg.obj);
-					initListViewAfterNet(feedBackArray);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				JSONArray feedBackArray = (JSONArray)msg.obj;
+				initListViewAfterNet(feedBackArray);
 				break;	
 
 			default:
@@ -1281,12 +1284,24 @@ public class FeedbackListActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+		initLinear(systemInfo, linearId[0], initSystemInfo());
 		/**add by yejc 20130419 start*/
 		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
         registerReceiver(selectTextBroadCast, filter);
         /**add by yejc 20130419 end*/
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
+	}
+
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		boolean isSystemInfo = intent.getBooleanExtra("isSystemInfo", false);
+		if(isSystemInfo) {
+			if (mTabHost.getCurrentTab() != 0) {
+				mTabHost.setCurrentTab(0);
+			}
+		}
 	}
 
 	/**
@@ -1309,7 +1324,7 @@ public class FeedbackListActivity extends Activity {
 				R.layout.usercenter_listview_layout, null);
 		tabSpecListView = (ListView) tabSpecLinearView
 				.findViewById(R.id.usercenter_listview_queryinfo);
-		OperatingDataBases operatingDb = new OperatingDataBases(this);
+		
 		infoList = operatingDb.getInfoList();
 		sysInfoAdapter = new SystemInfoAdapter(infoList);
 		tabSpecListView.setAdapter(sysInfoAdapter);

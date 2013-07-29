@@ -50,6 +50,7 @@ public class SystemPushInfoReceiver extends BroadcastReceiver {
         	//打开自定义的Activity
         	Intent i = new Intent(context, FeedbackListActivity.class);
         	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        	i.putExtra("isSystemInfo", true);
         	context.startActivity(i);
         	
         } else {
