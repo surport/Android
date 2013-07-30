@@ -27,18 +27,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.jc.score.zq.JcScoreListActivity.ScoreInfo;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
-import com.ruyicai.constant.Constants;
-import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
-import com.ruyicai.net.newtransaction.LotnoGameInterface;
 import com.ruyicai.net.newtransaction.ScoreInfoInterface;
-import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RWSharedPreferences;
 
 /**
  * 竞彩足球即时比分详情

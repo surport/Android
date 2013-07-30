@@ -264,7 +264,7 @@ public abstract class FootBallLotteryFather extends Activity implements
 				/** 为这个tempView设置一个Id */
 				tempBallView.setId(aIdStart + iBallViewNo);
 				/** 将这个小球初始化出来 */
-				tempBallView.initBall(iBallViewWidth+5, iBallViewWidth-8, iStrTemp,
+				tempBallView.initBall(iBallViewWidth+5, PublicMethod.getPxInt(30, this), iStrTemp,
 						aResId);
 
 				/** 为初始化的小球设置监听 */
@@ -328,7 +328,7 @@ public abstract class FootBallLotteryFather extends Activity implements
 				/** 为这个tempView设置一个Id */
 				tempBallView.setId(aIdStart + iBallViewNo);
 				/** 将这个小球初始化出来 */
-				tempBallView.initBall(iBallViewWidth+5, iBallViewWidth/2+10, iStrTemp,
+				tempBallView.initBall(iBallViewWidth+5, PublicMethod.getPxInt(30, this), iStrTemp,
 						aResId);
 
 				/** 为初始化的小球设置监听 */

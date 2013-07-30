@@ -66,7 +66,7 @@ public class AddViewMiss {
 	public AddViewMiss(LuckChoose2 luckChoose2) {
 		this.context = luckChoose2.getContext();
 	}
-
+    
 	public AddViewMiss(Context context) {
 		this.context = context;
 	}

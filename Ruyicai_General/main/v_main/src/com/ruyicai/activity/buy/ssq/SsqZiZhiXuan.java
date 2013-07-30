@@ -33,6 +33,9 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		}
 		setCode(ssqCode);
 		setIsTen(true);
 		initGallery();
