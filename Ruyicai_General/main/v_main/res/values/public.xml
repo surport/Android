@@ -2321,6 +2321,8 @@
 	<public type="layout" name="win_lot_high_frequency_item" id="0x7f030115" />
 	<public type="layout" name="yonghufankuiview" id="0x7f030116" />
 	<public type="layout" name="zhuihaoshezhi" id="0x7f030117" />
+	<public type="layout" name="pullrefreshlist_head" id="0x7f0300cc" />
+	
 	<public type="menu" name="mainpage_menu" id="0x7f0c0000" />
 	<public type="string" name="Cancel" id="0x7f080365" />
 	<public type="string" name="Ensure" id="0x7f080364" />

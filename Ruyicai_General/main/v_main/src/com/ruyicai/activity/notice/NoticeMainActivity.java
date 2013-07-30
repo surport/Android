@@ -36,7 +36,8 @@ import android.widget.TextView;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.score.lq.JcLqScoreActivity;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
-import com.ruyicai.activity.notice.PullListView.OnRefreshListener;
+import com.ruyicai.activity.common.PullRefreshListView;
+import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
@@ -654,7 +655,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 	private void showMainListView() {
 		setContentView(R.layout.notice_prizes_main);
 
-		PullListView listview = (PullListView) findViewById(R.id.notice_prizes_listview);
+		PullRefreshListView listview = (PullRefreshListView) findViewById(R.id.notice_prizes_listview);
 		list = NoticeDataProvider
 				.getListForMainListViewSimpleAdapter(NoticeMainActivity.this);// 获取开奖信息数据
 
