@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <com.ruyicai.activity.notice.PullListView
+    <com.ruyicai.activity.common.PullRefreshListView
         android:id="@id/notice_prizes_listview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
