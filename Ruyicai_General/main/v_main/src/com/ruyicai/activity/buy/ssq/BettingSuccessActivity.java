@@ -180,7 +180,7 @@ public class BettingSuccessActivity extends Activity {
 		private void returnToBet() {
 			/** modify by pengcx 20130723 start*/
 			Intent intent = null;
-			if (pageInt == pageInt) {
+			if (pageInt == JOINCOOPERATION) {
 				intent = new Intent(BettingSuccessActivity.this,
 						JoinInfoActivity.class);
 			} else {
