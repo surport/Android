@@ -71,7 +71,9 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(YinPayActivity.this, "chongzhi ");// BY贺思明
 																		// 2012-6-29
-				beginYinpayRecharge(v);
+				if(PublicMethod.isRecharge(accountnum, YinPayActivity.this)) {
+					beginYinpayRecharge(v);
+				}
 			}
 		});
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
@@ -88,7 +90,8 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {

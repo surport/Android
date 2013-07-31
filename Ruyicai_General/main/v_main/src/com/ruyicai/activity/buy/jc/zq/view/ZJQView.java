@@ -101,18 +101,19 @@ public class ZJQView extends JcMainView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += info.getWeeks() + "  " + info.getTeamId() + "  ";
-				codeStr += info.getHome() + " vs " + info.getAway() + "\n总进球:";
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + " ";
+				codeStr += info.getHome() + " vs " + info.getAway() + "<br>总进球：";
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
-						codeStr += info.check[j].getChcekTitle() + " ";
+						codeStr += PublicMethod.stringToHtml(info.check[j].getChcekTitle(), Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 					}
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-				codeStr.subSequence(0, codeStr.length() - 1);
-				codeStr += "\n";
+//				codeStr.subSequence(0, codeStr.length() - 1);
+				codeStr += "<br>";
 			}
 		}
 		return codeStr;
@@ -213,13 +214,6 @@ public class ZJQView extends JcMainView {
 
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-			// homeTeam.getPaint().setFakeBoldText(true);
-			// final TextView textVS = (TextView) convertView
-			// .findViewById(R.id.game_vs);
-			// if (!"".equals(info.getLetPoint()) &&
-			// !"0".equals(info.getLetPoint())) {
-			// textVS.setText(info.getLetPoint());
-			// }
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
 
@@ -249,7 +243,6 @@ public class ZJQView extends JcMainView {
 				}
 			});
 
-			// textVS.setText(info.getWin());
 			guestTeam.setText(info.getAway());
 
 			if (!info.getBtnStr().equals("")) {

@@ -70,7 +70,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {
@@ -103,8 +104,10 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.alipay_secure_ok:
 			if (isOnClick) {
-				isOnClick = false;
-				isInstallSecurePay();
+				if(PublicMethod.isRecharge(accountnum, AlipaySecurePayDialog.this)) {
+					isOnClick = false;
+					isInstallSecurePay();
+				}
 			}
 			break;
 		}

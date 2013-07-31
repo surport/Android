@@ -106,22 +106,23 @@ public class SPfView extends JcMainView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += (info.getWeeks() + "  " + info.getTeamId()) + "  ";
-				codeStr += (info.getHome() + " vs " + info.getAway() + "\n胜平负:");
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) +  " ";
+				codeStr += (info.getHome() + " vs " + info.getAway() + "<br>胜平负：");
 				if (info.isWin()) {
-					codeStr += "胜";
+					codeStr += PublicMethod.stringToHtml("胜", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isLevel()) {
-					codeStr += "平";
+					codeStr += PublicMethod.stringToHtml("平", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isFail()) {
-					codeStr += "负";
+					codeStr += PublicMethod.stringToHtml("负", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 
-				codeStr += "\n";
+				codeStr += "<br>";
 			}
 
 		}

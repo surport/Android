@@ -80,15 +80,19 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 		secureCancel.setText("浏览器支付");
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				isWebView = true;
-				beginAlipayRecharge(accountnum);
+				if(PublicMethod.isRecharge(accountnum, AlipaySecureActivity.this)) {
+					isWebView = true;
+					beginAlipayRecharge(accountnum);
+				}
 			}
 		});
 		secureCancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// RechargeType.dismiss();
-				isWebView = false;
-				beginAlipayRecharge(accountnum);
+				if(PublicMethod.isRecharge(accountnum, AlipaySecureActivity.this)) {
+					isWebView = false;
+					beginAlipayRecharge(accountnum);
+				}
 			}
 		});
 	}
@@ -105,7 +109,8 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html", "UTF-8");
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {

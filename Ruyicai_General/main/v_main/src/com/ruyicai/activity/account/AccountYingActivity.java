@@ -90,7 +90,8 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 					handler.post(new Runnable() {
 						public void run() {
 //							textView.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {

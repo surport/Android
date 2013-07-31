@@ -154,7 +154,8 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 					handler.post(new Runnable() {
 						public void run() {
 //							alipayContent.setText(Html.fromHtml(conten));
-							alipayContent.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipayContent.loadData(conten, "text/html; charset=UTF-8", null);
+							alipayContent.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 					

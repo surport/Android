@@ -226,7 +226,7 @@
     <string name="phone_cards_recharge">手机充值卡充值</string>
     <string name="atm_recharge">银行转账</string>
     <string name="account_chongzhi">银行充值</string>
-    <string name="umpay_recharge">联动优势充值</string>
+    <string name="umpay_recharge">信用卡充值</string>
     <string name="umpay_phone_recharge">"话费充值"</string>
     <string name="account_chongzhi_good">"(推荐)"</string>
     <string name="freeHanding">"(免手续费)"</string>
@@ -882,7 +882,7 @@
     <string name="log_out_toast_no_login">您还没有登录，请先登录！</string>
     <!-- 账户充值 -->
     <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
-    <string name="account_umplay_alert">"支持大多数信用卡和借记卡，无限额。"</string>
+    <string name="account_umplay_alert">"支持大多数信用卡充值。"</string>
     <string name="account_umplay_phone_alert">"支持移动手机话费充值。"</string>
     <string name="account_phone_alert">支持移动、联通、电信话费充值卡。</string>
     <string name="account_zfb_alert">支持借记卡和信用卡充值，免开通网银。</string>
@@ -932,7 +932,7 @@
     <string name="jc_main_touzhu_alert_text_title">温馨提示</string>
     <string name="jc_main_touzhu_alert_btn_ziyou">自由过关</string>
     <string name="jc_main_touzhu_alert_btn_duochuan">多串过关</string>
-    <string name="jc_main_touzhu_alert_text">方案:</string>
+    <string name="jc_main_touzhu_alert_text">方案：</string>
     <string name="jc_main_touzhu_alert_btn_text">查看投注详情</string>
     <string name="jc_main_touzhu_alert_text_guo">过关方式：</string>
     <string name="jc_main_btn_text">场比赛</string>

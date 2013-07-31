@@ -71,7 +71,9 @@ public class LakalaActivity extends Activity {
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(LakalaActivity.this, "chongzhi");
-				beginYinpayRecharge(v);
+				if(PublicMethod.isRecharge(accountnum, LakalaActivity.this)) {
+					beginYinpayRecharge(v);
+				}
 			}
 		});
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
@@ -88,7 +90,8 @@ public class LakalaActivity extends Activity {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html", "UTF-8");
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {

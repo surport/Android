@@ -1,34 +1,19 @@
 package com.ruyicai.activity.buy.jc.lq.view;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.jc.JcMainView;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity;
-import com.ruyicai.activity.buy.jc.lq.view.SfView.JcInfoAdapter;
 import com.ruyicai.code.jc.lq.BasketDX;
-import com.ruyicai.code.jc.lq.BasketSF;
-import com.ruyicai.code.jc.lq.BasketSFC;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.PublicMethod;
 
 /**
  * 大小分
@@ -39,7 +24,6 @@ import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 public class DxView extends SfView {
 	@Override
 	public List<double[]> getOdds(List<Info> listInfo) {
-		// TODO Auto-generated method stub
 		return basketDx.getOddsList(listInfo);
 	}
 
@@ -64,13 +48,11 @@ public class DxView extends SfView {
 
 	@Override
 	public String getCode(String key, List<Info> listInfo) {
-		// TODO Auto-generated method stub
 		return basketDx.getCode(key, listInfo);
 	}
 
 	@Override
 	public String getLotno() {
-		// TODO Auto-generated method stub
 		return Constants.LOTNO_JCLQ_DXF;
 	}
 
@@ -87,14 +69,12 @@ public class DxView extends SfView {
 	 */
 	public void initListView(ListView listview, Context context,
 			List<List> listInfo) {
-		// TODO Auto-generated method stub
 		adapter = new JcInfoAdapter(context, listInfo, B_DX);
 		listview.setAdapter(adapter);
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return context.getString(R.string.jclq_dxf_danguan_title)
 					.toString();
@@ -117,17 +97,19 @@ public class DxView extends SfView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"：";
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ";
+				codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>大小分：";
 				if (info.isWin()) {
-					codeStr += "小";
+					codeStr += PublicMethod.stringToHtml("小", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isFail()) {
-					codeStr += "大";
+					codeStr += PublicMethod.stringToHtml("大", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-				codeStr += "\n\n";
+				codeStr += "<br>";
 			}
 
 		}

@@ -105,17 +105,28 @@ public class SfView extends JcMainView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"：";
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ";
+				if (Constants.LOTNO_JCLQ_RF.equals(getLotno())) {
+					if (!"".equals(info.getLetPoint())) {
+						codeStr += info.getAway() + " (" +info.getLetPoint() + ") " + info.getHome() + "(主)"+"<br>让分胜负";
+					} else {
+						codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>胜负";
+					}
+				} else {
+					codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>胜负";
+				}
+				
 				if (info.isWin()) {
-					codeStr += "主胜";
+					codeStr += PublicMethod.stringToHtml("主胜", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isFail()) {
-					codeStr += "主负";
+					codeStr += PublicMethod.stringToHtml("主负", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-				codeStr += "\n\n";
+				codeStr += "<br>";
 			}
 
 		}

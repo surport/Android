@@ -47,6 +47,7 @@
                     android:gravity="center_vertical"
                     android:hint="@string/account_yin_dna_pay_recharge_value_two"
                     android:numeric="integer"
+                    android:maxLength="5"
                     android:layout_marginLeft="5dip"
                     android:layout_marginRight="5dip"
                     android:scrollHorizontally="true"

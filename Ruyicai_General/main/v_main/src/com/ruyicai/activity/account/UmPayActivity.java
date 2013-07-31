@@ -67,14 +67,16 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		initTextViewContent();
 
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
-		accountTitleTextView.setText("联动优势充值");
+		accountTitleTextView.setText(R.string.umpay_recharge);
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(UmPayActivity.this, "chongzhi ");
-				beginUmpayRecharge(v);
+				if(PublicMethod.isRecharge(accountnum, UmPayActivity.this)) {
+					beginUmpayRecharge(v);
+				}
 			}
 		});
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
@@ -91,7 +93,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {

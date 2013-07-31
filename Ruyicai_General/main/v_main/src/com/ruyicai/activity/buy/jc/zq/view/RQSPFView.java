@@ -10,6 +10,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.PublicMethod;
 
 public class RQSPFView extends SPfView {
 
@@ -39,24 +40,29 @@ public class RQSPFView extends SPfView {
 		String codeStr = "";
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
-
 			if (info.onclikNum > 0) {
-				codeStr += info.getWeeks() + "  " + info.getTeamId() + "  ";
-				codeStr += info.getHome() + " vs " + info.getAway()
-						+ "\n让球胜平负:";
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + " ";
+				if (!"".equals(info.getLetPoint())) {
+					codeStr += info.getHome() + " ("+info.getLetPoint() + ") " + info.getAway()
+							+ "<br>让球胜平负：";
+				} else {
+					codeStr += info.getHome() + " (0) " + info.getAway()
+							+ "<br>让球胜平负：";
+				}
 				if (info.isWin()) {
-					codeStr += "胜";
+					codeStr += PublicMethod.stringToHtml("胜", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isLevel()) {
-					codeStr += "平";
+					codeStr += PublicMethod.stringToHtml("平", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isFail()) {
-					codeStr += "负";
+					codeStr += PublicMethod.stringToHtml("负", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-				codeStr += "\n";
+				codeStr += "<br>";
 			}
 
 		}

@@ -44,6 +44,7 @@
     <color name="bet_query_noaward_text_color">#cc9900</color>
     <color name="account_withdraw_text_color">#33CC33</color>
     <color name="account_warning_text_color">#669900</color>
+    <color name="jc_touzhu_background_color">#ffffcd</color>
     <!-- add end -->
     
 </resources>
