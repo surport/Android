@@ -71,9 +71,7 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(YinPayActivity.this, "chongzhi ");// BY贺思明
 																		// 2012-6-29
-				if(PublicMethod.isRecharge(accountnum, YinPayActivity.this)) {
-					beginYinpayRecharge(v);
-				}
+				beginYinpayRecharge(v);
 			}
 		});
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
@@ -120,13 +118,8 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (zfb_recharge_value_string.equals("0")) {
-				Toast.makeText(this, "充值金额不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (zfb_recharge_value_string.equals("")
-					|| zfb_recharge_value_string.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
+			if (zfb_recharge_value_string.length() < 2) {
+				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			} else {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨

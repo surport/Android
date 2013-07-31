@@ -104,10 +104,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.alipay_secure_ok:
 			if (isOnClick) {
-				if(PublicMethod.isRecharge(accountnum, AlipaySecurePayDialog.this)) {
-					isOnClick = false;
-					isInstallSecurePay();
-				}
+				isOnClick = false;
+				isInstallSecurePay();
 			}
 			break;
 		}
@@ -138,22 +136,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 				String phonenum = shellRW
 						.getStringValue(ShellRWConstants.PHONENUM);
 				String accountnumstr = accountnum.getText().toString();
-				if (accountnumstr.length() > 9) {
-					Toast.makeText(AlipaySecurePayDialog.this, "你有那么多钱吗?",
-							Toast.LENGTH_SHORT).show();
-					accountnum.setText("100");
-					isOnClick = true;
-					return;
-				}
-				if (accountnumstr.equals("")) {
-					Toast.makeText(AlipaySecurePayDialog.this, "请输入充值金额!",
-							Toast.LENGTH_SHORT).show();
-					isOnClick = true;
-					return;
-				}
-				int accountnum1 = Integer.parseInt(accountnumstr);
-				if (accountnum1 == 0) {
-					Toast.makeText(AlipaySecurePayDialog.this, "充值金额不能为0！",
+				if (accountnumstr.trim().length() < 2) {
+					Toast.makeText(AlipaySecurePayDialog.this, "充值金额至少为10元！",
 							Toast.LENGTH_SHORT).show();
 					isOnClick = true;
 					return;

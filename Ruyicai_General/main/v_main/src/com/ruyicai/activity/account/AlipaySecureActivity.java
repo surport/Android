@@ -80,19 +80,15 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 		secureCancel.setText("浏览器支付");
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				if(PublicMethod.isRecharge(accountnum, AlipaySecureActivity.this)) {
-					isWebView = true;
-					beginAlipayRecharge(accountnum);
-				}
+				isWebView = true;
+				beginAlipayRecharge(accountnum);
 			}
 		});
 		secureCancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// RechargeType.dismiss();
-				if(PublicMethod.isRecharge(accountnum, AlipaySecureActivity.this)) {
-					isWebView = false;
-					beginAlipayRecharge(accountnum);
-				}
+				isWebView = false;
+				beginAlipayRecharge(accountnum);
 			}
 		});
 	}
@@ -141,18 +137,12 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (zfb_recharge_value_string.equals("0")) {
-				Toast.makeText(this, "不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (zfb_recharge_value_string.equals("")
-					|| zfb_recharge_value_string.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
+			if (zfb_recharge_value_string.trim().length() < 2) {
+				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			} else {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨
 				RechargePojo rechargepojo = new RechargePojo();
-				;
 				rechargepojo.setAmount(zfb_recharge_value_string);
 				rechargepojo.setRechargetype("05");
 				rechargepojo.setCardtype("0300");

@@ -71,9 +71,7 @@ public class LakalaActivity extends Activity {
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(LakalaActivity.this, "chongzhi");
-				if(PublicMethod.isRecharge(accountnum, LakalaActivity.this)) {
-					beginYinpayRecharge(v);
-				}
+				beginYinpayRecharge(v);
 			}
 		});
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
@@ -140,13 +138,8 @@ public class LakalaActivity extends Activity {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (zfb_recharge_value_string.equals("0")) {
-				Toast.makeText(this, "充值金额不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (zfb_recharge_value_string.equals("")
-					|| zfb_recharge_value_string.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
+			if (zfb_recharge_value_string.trim().length() < 2) {
+				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			} else {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨

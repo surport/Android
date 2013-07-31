@@ -74,9 +74,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(UmPayActivity.this, "chongzhi ");
-				if(PublicMethod.isRecharge(accountnum, UmPayActivity.this)) {
-					beginUmpayRecharge(v);
-				}
+				beginUmpayRecharge(v);
 			}
 		});
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
@@ -122,13 +120,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (umPayRechargeValue.equals("0")) {
-				Toast.makeText(this, "充值金额不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (umPayRechargeValue.equals("")
-					|| umPayRechargeValue.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
+			if (umPayRechargeValue.length() < 2) {
+				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			} else {
 				RechargePojo rechargepojo = new RechargePojo();
 				rechargepojo.setAmount(umPayRechargeValue);
