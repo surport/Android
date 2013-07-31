@@ -2991,7 +2991,7 @@ public class PublicMethod {
 	 */
 	public static boolean isRecharge(EditText editText, Context context) {
 		String amount = editText.getText().toString().trim();
-		if (Integer.parseInt(amount) < 10) {
+		if (!"".equals(amount) && Integer.parseInt(amount) < 10) {
 			Toast.makeText(context, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			return false;
 		} else {
