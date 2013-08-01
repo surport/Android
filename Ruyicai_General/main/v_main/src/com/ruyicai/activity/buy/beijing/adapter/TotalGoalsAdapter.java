@@ -40,7 +40,7 @@ public class TotalGoalsAdapter extends ParentAdapter {
 
 	/** 选择对话框选择按钮的个数 */
 	private static final int SELECT_BUTTON_NUM = 8;
-	protected static final int MAX_DAN = 7;
+	protected static final int MAX_DAN = 5;
 
 	public TotalGoalsAdapter(
 			Context context,

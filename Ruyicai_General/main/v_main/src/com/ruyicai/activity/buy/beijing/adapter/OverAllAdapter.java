@@ -39,7 +39,7 @@ import android.widget.Toast;
 public class OverAllAdapter extends ParentAdapter {
 	private static final String TAG = "OverAllAdapter";
 	private static final int SELECT_BUTTON_NUM = 25;
-	protected static final int MAX_DAN = 7;
+	protected static final int MAX_DAN = 2;
 	/* Modify by pengcx 20130617 start */
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "2:1",

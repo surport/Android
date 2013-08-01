@@ -31,7 +31,7 @@ import android.widget.Toast;
 public class HalfTheAudienceAdapter extends ParentAdapter {
 	private static final String TAG = "HalfTheAudienceAdapter";
 	private static final int SELECT_BUTTON_NUM = 9;
-	protected static final int MAX_DAN = 7;
+	protected static final int MAX_DAN = 5;
 
 	/** 选择按钮标题 */
 	public static String selectButtonTitles[] = { "胜胜", "胜平", "胜负", "平胜", "平平",

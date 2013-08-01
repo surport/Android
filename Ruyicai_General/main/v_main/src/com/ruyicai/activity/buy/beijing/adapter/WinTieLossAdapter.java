@@ -26,7 +26,7 @@ import android.widget.Toast;
 public class WinTieLossAdapter extends ParentAdapter {
 	private static final String TAG = "WinTieLossAdapter";
 	/** 最大设胆个数 */
-	protected static final int MAX_DAN = 7;
+	protected static final int MAX_DAN = 13;
 	/** 显示的让球胜平负对阵信息集合 */
 	private List<List<WinTieLossAgainstInformation>> winTieLossAgainstInformationList;
 
