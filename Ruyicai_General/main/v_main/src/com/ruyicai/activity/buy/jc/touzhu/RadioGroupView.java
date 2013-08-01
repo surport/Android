@@ -370,7 +370,7 @@ public class RadioGroupView {
 		return v;
 	}
 
-	public View createBeijingDuoView(int teamNum) {
+	public View createBeijingDuoView(int teamNum,int selectNum) {
 
 		int teamCheck = teamNum;
 		if (teamNum > beijingMaxTeam) {
@@ -455,16 +455,20 @@ public class RadioGroupView {
 						});
 			}
 		}
-		if (!isBeijingLastCheck(teamCheck, danTeamNum)) {
+		if (!isBeijingLastCheck(teamCheck, danTeamNum,selectNum)) {
 			beijingChecks[num - 1].setEnabled(false);
 			beijingChecks[num - 1].setTextColor(Color.GRAY);
 		}
 		return v;
 	}
 
-	private boolean isBeijingLastCheck(int teamCheck, int danTeamNum) {
+	private boolean isBeijingLastCheck(int teamCheck, int danTeamNum,int selectNum) {
 		if (danTeamNum > 0 && teamCheck <= beijingMaxTeam) {
-			return false;
+			if(selectNum > teamCheck){
+				return true;
+			}else{
+				return false;
+			}
 		} else {
 			return true;
 		}

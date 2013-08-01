@@ -290,7 +290,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 		}
 		bunchStyleLinearLayout.addView(radioGroupView
-				.createBeijingDuoView(maxChuanGuan));
+				.createBeijingDuoView(maxChuanGuan,selectedNum));
 	}
 
 	class BeiJingSingleGameIndentOnClickListener implements OnClickListener {

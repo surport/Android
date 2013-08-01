@@ -26,7 +26,7 @@ import android.widget.Toast;
  */
 public class UpDownSingleDoubleAdapter extends ParentAdapter {
 	private static final String TAG = "UpDownSingleDoubleAdapter";
-	protected static final int MAX_DAN = 7;
+	protected static final int MAX_DAN = 5;
 
 	/** 显示上下的那双对阵信息集合 */
 	private List<List<UpDownSingleDoubleAgainstInformation>> upDownSingleDoubleAgainstInformationList;
