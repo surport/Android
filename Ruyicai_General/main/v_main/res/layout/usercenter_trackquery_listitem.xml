@@ -50,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_gravity="bottom"
-            android:layout_marginTop="15dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -58,8 +57,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:orientation="horizontal" >
-
-                <!-- 追号期数标题 -->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -83,7 +80,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="5dp"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -102,6 +98,29 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:text="500元"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:text="@string/usercenter_ordertime"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@id/usercenter_trackquery_ordertime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
             </LinearLayout>

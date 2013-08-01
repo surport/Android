@@ -1083,6 +1083,7 @@
         <activity
             android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity"
             android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 余额不足页面 -->

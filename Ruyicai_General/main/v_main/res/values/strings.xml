@@ -429,9 +429,9 @@
     <string name="usercenter_endTime">兑奖时间：</string>
     <string name="usercenter_winningCheck_abandonWinningTime">弃奖时间：</string>
     <string name="usercenter_winningCheck_lotteryMultiple">彩票倍数：</string>
-    <string name="usercenter_prizeMoney">中奖金额：</string>
+    <string name="usercenter_prizeMoney">奖金：</string>
     <string name="usercenter_wincode">开奖号码：</string>
-    <string name="usercenter_winprize_payMoney">付款金额：</string>
+    <string name="usercenter_winprize_payMoney">认购：</string>
     <string name="usercenter_winprize_qihao">(期号:</string>
     <!-- 用户中心-赠彩 -->
     <string name="usercenter_theLotteryOfGift">赠彩的彩票</string>
@@ -478,6 +478,7 @@
     <string name="usercenter_betcode">注码：</string>
     <string name="usercenter_betnum">注数：</string>
     <string name="usercenter_trackbatchnums">追号期数：</string>
+    <string name="usercenter_ordertime">发起时间：</string>
     <string name="usercenter_trackedbatchnums">已追期数：</string>
     <string name="usercenter_alltrackmoney">追号总额：</string>
     <string name="usercenter_startbatchnums">起始追期：</string>

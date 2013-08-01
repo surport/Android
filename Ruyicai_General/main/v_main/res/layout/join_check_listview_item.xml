@@ -23,6 +23,7 @@
             android:id="@id/join_check_item_text_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
             android:layout_toRightOf="@id/join_check_item_text_icon"
             android:textColor="@color/black" />
 
@@ -32,7 +33,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/join_check_item_text_icon"
             android:layout_alignLeft="@id/join_check_item_text_icon"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/black" />
+        <!-- 奖金 -->
+        <TextView
+            android:id="@id/join_check_item_text_prizeamt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/join_check_item_text_icon"
+            android:layout_toRightOf="@id/join_check_item_text_icon"
+            android:layout_marginLeft="100dp"
             android:textColor="@color/black" />
     </RelativeLayout>
 

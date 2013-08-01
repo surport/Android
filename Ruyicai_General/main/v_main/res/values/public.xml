@@ -3462,6 +3462,15 @@
 	<public type="id" name="alipay_secure_ok_alipay" id="0x7f0700db" />
 	<public type="id" name="jc_score_list_text" id="0x7f070632" /> 
 	
+	<public type="id" name="head_contentLayout" id="0x7f07063d" /> 
+	<public type="id" name="head_arrowImageView" id="0x7f07063e" /> 
+	<public type="id" name="head_progressBar" id="0x7f07063f" /> 
+	<public type="id" name="head_tipsTextView" id="0x7f070640" /> 
+	<public type="id" name="head_lastUpdatedTextView" id="0x7f070641" /> 
+	
+	<public type="id" name="join_check_item_text_prizeamt" id="0x7f07063c" />
+	<public type="id" name="usercenter_winprize_ordertime" id="0x7f070642" />
+	<public type="id" name="usercenter_trackquery_ordertime" id="0x7f070643" />   
 	
 	<public name="alert_dialog_jc_lotnotype" type="id" id="0x7f070639"/>
     <public name="alert_dialog_touzhu_linear_qihao_beishu" type="id" id="0x7f070119"/>

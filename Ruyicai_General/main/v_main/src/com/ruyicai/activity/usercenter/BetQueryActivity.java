@@ -22,6 +22,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -1088,13 +1091,20 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			final String prizeqihao = (String) mList.get(position)
 					.getBatchCode();
 			final String amount = (String) mList.get(position).getAmount();
-			final String fPayMoney = PublicMethod.formatMoney(amount);
+			final String fPayMoney = "￥" + Long.valueOf(amount)/100;
+			String payString = getString(R.string.usercenter_winprize_payMoney);// 投注金额字
+			SpannableStringBuilder fPayMoneyStringBuilder = new SpannableStringBuilder(
+					payString + fPayMoney);
+			fPayMoneyStringBuilder.setSpan(new ForegroundColorSpan(
+					Color.RED), 3, fPayMoneyStringBuilder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			final String lotName = (String) mList.get(position).getLotName();
 			final String prizemoney = (String) mList.get(position)
 					.getPrizeAmt();
-			final String formatPrizeName = PublicMethod.formatMoney(prizemoney);
 			final String prize_State = (String) mList.get(position)
 					.getPrizeState();
+			/**add by pengcx 20130731 start*/
+			final String ordertime = mList.get(position).getOrdertime();
+			/**add by pengcx 20130731 end*/
 			if (lotno.equals("J00001") || lotno.equals("J00002")
 					|| lotno.equals("J00003") || lotno.equals("J00004")
 					|| lotno.equals(Constants.LOTNO_JCLQ)
@@ -1126,18 +1136,21 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.usercenter_winprize_querydetail);
 				holder.predictmoney = (TextView) convertView
 						.findViewById(R.id.usercenter_winprize_predictmoney);
+				/**add by pengcx 20130731 start*/
+				holder.orderTime = (TextView) convertView
+						.findViewById(R.id.usercenter_winprize_ordertime);
+				/**add by pengcx 20130731 end*/
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-			holder.prizeqihao.setText("(期号:" + prizeqihao + ")");
+			holder.prizeqihao.setText("期号:" + prizeqihao);
 			noBuyAgain(holder.buyagain, holder.prizeqihao, isRepeatBuy, isJC);
-			String payString = getString(R.string.usercenter_winprize_payMoney);// 投注金额字
-
-			String prizeString = getString(R.string.usercenter_prizeMoney);// 中奖金额字
 			holder.lotteryname.setText(lotName);
-
-			holder.paymoney.setText(payString + fPayMoney);
+			/**add by pengcx 20130731 start*/
+			holder.orderTime.setText("认购时间：" + ordertime);
+			/**add by pengcx 20130731 end*/
+			holder.paymoney.setText(fPayMoneyStringBuilder);
 			if (prize_State.equals("0")) {
 				holder.prizemoney.setTextColor(Color.GRAY);
 				/*add by pengcx 20130609 start*/
@@ -1155,11 +1168,19 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 						|| Constants.LOTNO_JCLQ_HUN.equals(lotno)) {
 					holder.predictmoney.setVisibility(View.VISIBLE);
 					holder.prizemoney.setVisibility(View.GONE);
-					holder.predictmoney.setText("预计奖金：" + info.getExpectPrizeAmt());
-				}else{
+					String expectPrizeAmt = info.getExpectPrizeAmt()
+							.replaceAll("元", "");
+					SpannableStringBuilder fexpectPrizeAmtStringBuilder = new SpannableStringBuilder(
+							"预计奖金：￥" + expectPrizeAmt);
+					fexpectPrizeAmtStringBuilder.setSpan(
+							new ForegroundColorSpan(Color.RED), 5,
+							fexpectPrizeAmtStringBuilder.length(),
+							Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+					holder.predictmoney.setText(fexpectPrizeAmtStringBuilder);
+				} else {
 					holder.predictmoney.setVisibility(View.GONE);
 					holder.prizemoney.setVisibility(View.VISIBLE);
-					holder.prizemoney.setText("未开奖");
+					holder.prizemoney.setText("状态：未开奖");
 				}
 				/*add by pengcx 20130609 end*/
 			} else if (prize_State.equals("3")) {
@@ -1167,11 +1188,15 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 //				holder.prizemoney.setTextColor(Color.GRAY);
 				holder.prizemoney.setTextColor(getResources().getColor(R.color.bet_query_noaward_text_color));
 				/**modify by yejc 20130418 end*/
-				holder.prizemoney.setText("未中奖");
+				holder.prizemoney.setText("状态：未中奖");
 			} else {
-				String prizeStr = prizeString + formatPrizeName;
-				PublicMethod.setTextColor(holder.prizemoney, prizeStr, 5,
-						prizeStr.length(), Color.RED);
+				String prizeString = getString(R.string.usercenter_prizeMoney);// 中奖金额字
+				String fprizemoney = "￥" + Long.valueOf(prizemoney)/100;
+				SpannableStringBuilder fprizemoneyStringBuilder = new SpannableStringBuilder(
+						 prizeString + fprizemoney);
+				fprizemoneyStringBuilder.setSpan(new ForegroundColorSpan(
+						Color.RED), 0, fprizemoneyStringBuilder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				holder.prizemoney.setText(fprizemoneyStringBuilder);
 			}
 			holder.buyagain.setVisibility(View.GONE);
 
@@ -1193,6 +1218,9 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			Button buyagain;
 			
 			TextView predictmoney;
+			/**add by pengcx 20130731 start*/
+			TextView orderTime;
+			/**add by pengcx 20130731 end*/
 		}
 	}
 

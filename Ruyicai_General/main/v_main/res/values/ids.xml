@@ -1437,4 +1437,14 @@
     <item name="alert_dialog_jc_predictmoney" type="id"/>
     <item name="alert_dialog_touzhu_btn_look_code" type="id"/>
     <item name="alert_dialog_touzhu_textview_zhushu" type="id"/>
+    
+    <item name="head_contentLayout" type="id"/>
+    <item name="head_arrowImageView" type="id"/>
+    <item name="head_progressBar" type="id"/>
+    <item name="head_tipsTextView" type="id"/>
+    <item name="head_lastUpdatedTextView" type="id"/>
+    
+    <item name="join_check_item_text_prizeamt" type="id"/>
+    <item name="usercenter_winprize_ordertime" type="id"/>
+    <item name="usercenter_trackquery_ordertime" type="id"/>
 </resources>

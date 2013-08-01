@@ -524,6 +524,9 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			final String batchNums = (String) mList.get(position).getBatchNum();
 			final String lastNums = (String) mList.get(position).getLastNums();
 			final String trackId = (String) mList.get(position).getId();
+			/**add by pengcx 20130731 start*/
+			final String orderTime = mList.get(position).getOrderTime();
+			/**add by pengcx 20130731 end*/
 			String prizeEnd = (String) mList.get(position).getPrizeEnd();
 			final String isPrizeEnd;
 
@@ -551,6 +554,10 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 				// 取消追号按钮
 				holder.cancleTrack = (Button) convertView
 						.findViewById(R.id.usercenter_trackquery_cancle);
+				/**add by pengcx 20130731 start*/
+				//发起时间
+				holder.orderTime = (TextView) convertView.findViewById(R.id.usercenter_trackquery_ordertime);
+				/**add by pengcx 20130731 end*/
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -571,6 +578,9 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 					trackId, mList.get(position));
 
 			holder.trackAmount.setText(PublicMethod.formatMoney(betAmount));
+			/**add by pengcx 20130731 start*/
+			holder.orderTime.setText(orderTime);
+			/**add by pengcx 20130731 end*/
 			// 设置追号期数和已追期数内容
 			holder.batchNums.setText(lastNums + "/" + batchNums);
 
@@ -599,6 +609,9 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			TextView batchNums;
 			TextView batchNumed;
 			TextView trackAmount;
+			/**add by pengcx 20130731 start*/
+			TextView orderTime;
+			/**add by pengcx 20130731 end*/
 			Button cancleTrack;
 			Button lookdetail;
 		}

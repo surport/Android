@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -494,7 +495,9 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			String starter = info.getStarter();// 发起人
 			String buyAmt = info.getBuyAmt();
 			String prizeState = info.getPrizeState();
-
+			/**add by pengcx 20130731 start*/
+			String prizeAmt = info.getPrizeAmt();
+			/**add by pengcx 20130731 end*/
 			if (convertView == null) {
 				convertView = mInflater.inflate(
 						R.layout.join_check_listview_item, null);
@@ -509,6 +512,9 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.join_check_item_text_amt);
 				holder.time = (TextView) convertView
 						.findViewById(R.id.join_check_item_text_time);
+				/**add by pengcx 20130731 start*/
+				holder.prizeamt = (TextView) convertView.findViewById(R.id.join_check_item_text_prizeamt);
+				/**add by pengcx 20130731 end*/
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -517,19 +523,31 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 				starter = PublicMethod.getNewString(8, starter);
 			}
 			holder.icon.setText(lotName);
-
-			if (displayState.equals("(成功)") || displayState.equals("(认购中)")
+			/**add by pengcx 20130731 start*/
+			if (Integer.valueOf(info.getprizeamt()) > 0) {
+				holder.prizeamt.setVisibility(View.VISIBLE);
+				SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(
+						"奖金：" + prizeAmt);
+				spannableStringBuilder.setSpan(new ForegroundColorSpan(
+						Color.RED), 3, spannableStringBuilder.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				holder.prizeamt.setText(spannableStringBuilder);
+			} else {
+				holder.prizeamt.setVisibility(View.GONE);
+			}
+			
+			/**add by pengcx 20130731 end*/
+			if (displayState.equals("成功") || displayState.equals("认购中")
 					|| displayState.equals("已中奖") | displayState.equals("满员")) {
 				holder.result.setTextColor(Color.RED);
 			} else {
 				holder.result.setTextColor(Color.GRAY);
 			}
 
-			if (displayState.equals("(成功)") && prizeState.equals("3")) {
-				holder.result.setText("(未中奖)");
+			if (displayState.equals("成功") && prizeState.equals("3")) {
+				holder.result.setText("未中奖");
 				holder.result.setTextColor(Color.GRAY);
 			} else {
-				holder.result.setText(displayState);
+				holder.result.setText("状态：" + displayState);
 			}
 			holder.starter.setText(starter);
 			holder.time.setText(buyTime);
@@ -543,6 +561,10 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			TextView starter;
 			TextView time;
 			TextView atm;
+			/**add by pengcx 20130731 start*/
+			TextView prizeamt;
+			TextView state;
+			/**add by pengcx 20130731 end*/
 		}
 	}
 
@@ -983,6 +1005,11 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			return "￥" + PublicMethod.toYuan(prizeAmt);
 		}
 
+		/**add by pengcx 20130731 start*/
+		public String getprizeamt(){
+			return prizeAmt;
+		}
+		/**add by pengcx 20130731 end*/
 		public void setPrizeAmt(String prizeAmt) {
 			this.prizeAmt = prizeAmt;
 		}
@@ -996,22 +1023,22 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			String result = "";
 			switch (state) {
 			case 1:
-				result = "(认购中)";
+				result = "认购中";
 				break;
 			case 2:
-				result = "(满员)";
+				result = "满员";
 				break;
 			case 3:
-				result = "(成功)";
+				result = "成功";
 				break;
 			case 4:
-				result = "(撤单)";
+				result = "撤单";
 				break;
 			case 5:
-				result = "(流单)";
+				result = "流单";
 				break;
 			case 6:
-				result = "(已中奖)";
+				result = "已中奖";
 				break;
 			}
 			return result;
