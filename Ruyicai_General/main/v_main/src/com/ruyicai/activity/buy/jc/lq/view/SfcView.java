@@ -120,7 +120,7 @@ public class SfcView extends JcMainView {
 			if (info.onclikNum > 0) {
 				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
 						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ";
-				codeStr += info.getAway() + " vs " + info.getHome()+"(主)" + "<br>胜分差 ";
+				codeStr += info.getAway() + " vs " + info.getHome()+"(主)" + "<br>胜分差：";
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
 						codeStr += PublicMethod.stringToHtml(info.check[j].getChcekTitle(), Constants.JC_TOUZHU_TEXT_COLOR) + "  ";

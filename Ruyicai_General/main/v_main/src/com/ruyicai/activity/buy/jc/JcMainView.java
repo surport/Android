@@ -928,10 +928,11 @@ public abstract class JcMainView {
 					if (isLq) {
 						viewType = factory.inflate(R.layout.buy_lq_hun_dialog,
 								null);
+						setJcLqShowPlay(viewType); //add by yejc 20130801
 					} else {
 						viewType = factory.inflate(R.layout.buy_zq_hun_dialog,
 								null);
-						setShowPlay(viewType); //add by yejc 20130709
+						setJcZqShowPlay(viewType); //add by yejc 20130709
 					}
 				} else {
 					viewType = factory
@@ -966,7 +967,7 @@ public abstract class JcMainView {
 		public View getViewType() {
 			return viewType;
 		}
-		private void setShowPlay(View view) {
+		private void setJcZqShowPlay(View view) {
 			for (String str : unsupportPlay) {
 				if ("J00001_0".equals(str) || "J00001_1".equals(str)) { //胜平负
 					view.findViewById(R.id.linearLayout1).setVisibility(View.GONE);
@@ -982,6 +983,21 @@ public abstract class JcMainView {
 			}
 		}
 		/**add by yejc 20130709 end*/
+		/**add by yejc 20130801 start*/
+		private void setJcLqShowPlay(View view) {
+			for (String str : unsupportPlay) {
+				if ("J00005_0".equals(str) || "J00005_1".equals(str)) { //胜负玩法
+					view.findViewById(R.id.linearLayout1).setVisibility(View.GONE);
+				} else if ("J00006_0".equals(str) || "J00006_1".equals(str)) { // 比分
+					view.findViewById(R.id.linearLayout2).setVisibility(View.GONE);
+				} else if ("J00007_0".equals(str) || "J00007_1".equals(str)) { // 进球数
+					view.findViewById(R.id.linearLayout4).setVisibility(View.GONE);
+				} else if ("J00008_0".equals(str) || "J00008_1".equals(str)) {// 半全场
+					view.findViewById(R.id.linearLayout3).setVisibility(View.GONE);
+				}
+			}
+		}
+		/**add by yejc 20130801 end*/
 
 		private void initDialogView() {
 			/**add by yejc 20130704 start*/
@@ -1077,16 +1093,23 @@ public abstract class JcMainView {
 		private void initCheckNum() {
 			if (isHunHe()) {
 				int checkNum = 0;
+				/**add by yejc 20130801 start*/
+				String mapIndex = String.valueOf(mPosition+""+mIndex);//确保唯一性
+				/**add by yejc 20130801 end*/
 				if (isLq) {
 					if (isCheckIndex(8, 19)) {// 胜分差
 						checkNum = 4;
 					} else {
 						checkNum = 8;
 					}
-					/**move*/
-					if (checkNum < getTeamNum()) {
-						setTeamNum(checkNum);
+					/**add by yejc 20130801 start*/
+					mMap.put(mapIndex, checkNum);
+					if (mMap.containsValue(4)) {
+						setTeamNum(4);
+					} else  {
+						setTeamNum(8);
 					}
+					/**add by yejc 20130801 end*/
 				} else {
 					if (isCheckIndex(6, 14)) {// 半全场
 						checkNum = 4;
@@ -1098,7 +1121,6 @@ public abstract class JcMainView {
 						checkNum = 8;
 					}
 					/**add by yejc 20130722 start*/
-					String mapIndex = String.valueOf(mPosition+mIndex);
 					mMap.put(mapIndex, checkNum);
 					if (mMap.containsValue(4)) {
 						setTeamNum(4);

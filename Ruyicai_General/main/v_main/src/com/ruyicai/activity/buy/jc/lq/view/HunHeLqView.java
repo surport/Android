@@ -35,7 +35,7 @@ import com.ruyicai.util.PublicMethod;
  * 
  */
 public class HunHeLqView extends JcMainView {
-	private final int MAX_TEAM = 10;
+	private int MAX_TEAM = 8; // 最多串几场比赛
 	JcInfoAdapter adapter;
 	BasketHun basketHun;
 
@@ -97,6 +97,11 @@ public class HunHeLqView extends JcMainView {
 	public int getTeamNum() {
 		return MAX_TEAM;
 	}
+	
+	@Override
+	public void setTeamNum(int checkTeam) {
+		MAX_TEAM = checkTeam;
+	}
 
 	@Override
 	public String getLotno() {
@@ -142,6 +147,8 @@ public class HunHeLqView extends JcMainView {
 			int third = 0;
 			int fourth = 0;
 			if (info.onclikNum > 0) {
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ";
 				codeStr += info.getAway() + " vs " + info.getHome() + "(主)";
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
@@ -244,8 +251,8 @@ public class HunHeLqView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addView(info)/*addLayout(info)*/);
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addView(list.get(i), position, i));
 				}
 			}
 
@@ -263,7 +270,7 @@ public class HunHeLqView extends JcMainView {
 		}
 
 		// add by yejc 20130402
-		private View addView(final Info info) {
+		private View addView(final Info info, final int position, final int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_others, null);
 			TextView gameName = (TextView) convertView
@@ -311,6 +318,10 @@ public class HunHeLqView extends JcMainView {
 					if (info.onclikNum > 0 || isCheckTeam()) {
 						info.createDialog(BasketHun.titleStrs, false,
 								info.getAway() + " VS " + info.getHome());
+						/**add by yejc 20130801 start*/
+						mPosition = position;
+						mIndex = index;
+						/**add by yejc 20130801 end*/
 					}
 					isNoDan(info, btnDan);
 				}
@@ -366,12 +377,16 @@ public class HunHeLqView extends JcMainView {
 
 	@Override
 	public String getPlayType() {
-		if (isDanguan) {
-			return "J00007_0";
-		} else {
-			return "J00007_1";
-		}
+		/**close by yejc 20130801 start*/
+//		if (isDanguan) {
+//			return "J00007_0";
+//		} else {
+//			return "J00007_1";
+//		}
+		return "playtype"; //这里返回只要不为""并且不与其他玩法重复即可
+		/**close by yejc 20130801 end*/
 	}
+	
 
 	@Override
 	public List<double[]> getOdds(List<Info> listInfo) {

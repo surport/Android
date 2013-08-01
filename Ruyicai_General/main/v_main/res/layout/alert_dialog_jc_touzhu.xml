@@ -85,6 +85,7 @@
                         android:id="@id/alert_dialog_touzhu_text_zhuma"
                         style="@style/touzhuTextstyle"
                         android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
                         android:text="@string/jc_main_touzhu_alert_text" />
 
                     <TextView

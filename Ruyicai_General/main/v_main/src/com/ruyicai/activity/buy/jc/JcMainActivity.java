@@ -624,8 +624,12 @@ public class JcMainActivity extends Activity implements
 	 */
 	public void beginTouZhu() {
 		if (lqMainView.isTouZhuNet()) {
-			touzhuDialog = new TouzhuDialog(this, lqMainView);
-			touzhuDialog.alert();
+			if (touzhuDialog != null && touzhuDialog.isShowing()) {
+				return;
+			} else {
+				touzhuDialog = new TouzhuDialog(this, lqMainView);
+				touzhuDialog.alert();
+			}
 		}
 	}
 

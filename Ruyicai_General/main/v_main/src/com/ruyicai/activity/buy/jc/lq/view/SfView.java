@@ -109,12 +109,12 @@ public class SfView extends JcMainView {
 						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ";
 				if (Constants.LOTNO_JCLQ_RF.equals(getLotno())) {
 					if (!"".equals(info.getLetPoint())) {
-						codeStr += info.getAway() + " (" +info.getLetPoint() + ") " + info.getHome() + "(主)"+"<br>让分胜负";
+						codeStr += info.getAway() + " (" +info.getLetPoint() + ") " + info.getHome() + "(主)"+"<br>让分胜负：";
 					} else {
-						codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>胜负";
+						codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>胜负：";
 					}
 				} else {
-					codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>胜负";
+					codeStr += info.getAway() + " vs " + info.getHome() + "(主)"+"<br>胜负：";
 				}
 				
 				if (info.isWin()) {
