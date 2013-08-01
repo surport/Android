@@ -93,7 +93,6 @@ public class RfView extends SfView {
 
 	@Override
 	public String getPlayType() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return "J00006_0";
 		} else {

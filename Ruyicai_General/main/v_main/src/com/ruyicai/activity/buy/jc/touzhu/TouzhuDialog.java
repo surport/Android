@@ -450,4 +450,10 @@ public class TouzhuDialog {
 	public int getDuoZhushu(int teamNum, int select) {
 		return jcMainView.getDuoZhushu(teamNum, select);
 	}
+	
+	/**add by yejc 20130801 start*/
+	public boolean isShowing() {
+		return dialog.isShowing();
+	}
+	/**add by yejc 20130801 end*/
 }

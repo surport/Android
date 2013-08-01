@@ -388,11 +388,12 @@ public class HunHeZqView extends JcMainView {
 
 	@Override
 	public String getPlayType() {
-		if (isDanguan) {
-			return "J00002_0";
-		} else {
-			return "J00002_1";
-		}
+//		if (isDanguan) {
+//			return "J00002_0";
+//		} else {
+//			return "J00002_1";
+//		}
+		return "playtype"; //这里返回只要不为""并且不与其他玩法重复即可
 	}
 
 	@Override
