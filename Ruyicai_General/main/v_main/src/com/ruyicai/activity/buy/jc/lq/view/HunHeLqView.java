@@ -71,14 +71,16 @@ public class HunHeLqView extends JcMainView {
 	}
 
 	private void initTitles(final Info info) {
-		info.vStrs[0] = info.getWin();
-		info.vStrs[1] = info.getFail();
-		info.vStrs[2] = info.getLetWin();
+		/**modify by pengcx 20130801 start*/
+		info.vStrs[0] = info.getFail();
+		info.vStrs[1] = info.getWin();
+		info.vStrs[2] = info.getLetFail();
 		info.vStrs[3] = info.getLetPoint();
-		info.vStrs[4] = info.getLetFail();
+		info.vStrs[4] = info.getLetWin();
 		info.vStrs[5] = info.getBig();
 		info.vStrs[6] = info.getBasePoint();
 		info.vStrs[7] = info.getSmall();
+		/**modify by pengcx 20130801 end*/
 	}
 
 	/**
