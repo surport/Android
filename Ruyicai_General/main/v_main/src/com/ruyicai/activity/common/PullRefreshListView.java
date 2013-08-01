@@ -3,6 +3,7 @@ package com.ruyicai.activity.common;
 import java.util.Date;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
 import android.content.Context;
@@ -205,7 +206,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 		visibleLastItemIndex = firstVisiableItem + arg2 - 1;
 		visibleAllItemCount = arg2;
 
-		PublicMethod.myOutLog(TAG, "列表显示的第一个表项:" + visibleFirstItemIndex + ",最后一个表项:"
+		if (Constants.isDebug)PublicMethod.myOutLog(TAG, "列表显示的第一个表项:" + visibleFirstItemIndex + ",最后一个表项:"
 				+ visibleLastItemIndex + "总共显示的表项:" + visibleAllItemCount);
 		if (visibleFirstItemIndex == 1 && !isPush) {
 			setSelection(0);
@@ -223,7 +224,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 					isRecoredStartY = true;
 					isPush = true;
 					touchStartY = (int) event.getY();
-					PublicMethod.myOutLog(TAG, "在ACTION_DOWN时候，记录当前按下的Y坐标:" + touchStartY);
+					if (Constants.isDebug)PublicMethod.myOutLog(TAG, "在ACTION_DOWN时候，记录当前按下的Y坐标:" + touchStartY);
 				}
 				break;
 			case MotionEvent.ACTION_UP:
@@ -232,7 +233,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 					if (listState == PULL_TO_REFRESH) {
 						listState = DONE;
 						changeHeaderViewByState();
-						PublicMethod.myOutLog(TAG, "由下拉刷新状态，到done状态");
+						if (Constants.isDebug)PublicMethod.myOutLog(TAG, "由下拉刷新状态，到done状态");
 					}
 
 					// 如果下拉至RELEASE_TOREFRESH状态，松手，转变成REFRESHING状态，并调用onRefresh方法刷新
@@ -240,7 +241,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 						listState = REFRESHING;
 						changeHeaderViewByState();
 						onRefresh();
-						PublicMethod.myOutLog(TAG, "由松开刷新状态，转变成refreshing状态");
+						if (Constants.isDebug)PublicMethod.myOutLog(TAG, "由松开刷新状态，转变成refreshing状态");
 					}
 				}
 
@@ -254,7 +255,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 
 				// 如果还没有记录点击时的Y坐标，并且已经下拉至显示表头了，记录点击开始的Y坐标
 				if (!isRecoredStartY && visibleFirstItemIndex == 0) {
-					PublicMethod.myOutLog(TAG, "在move时候记录下位置");
+					if (Constants.isDebug)PublicMethod.myOutLog(TAG, "在move时候记录下位置");
 					isRecoredStartY = true;
 					touchStartY = tempY;
 				}
@@ -270,13 +271,13 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 								&& (tempY - touchStartY) > 0) {
 							listState = PULL_TO_REFRESH;
 							changeHeaderViewByState();
-							PublicMethod.myOutLog(TAG, "由松开刷新状态转变到下拉刷新状态");
+							if (Constants.isDebug)PublicMethod.myOutLog(TAG, "由松开刷新状态转变到下拉刷新状态");
 						}
 						// 一下子推到顶了
 						else if (tempY - touchStartY <= 0) {
 							listState = DONE;
 							changeHeaderViewByState();
-							PublicMethod.myOutLog(TAG, "由松开刷新状态转变到done状态");
+							if (Constants.isDebug)PublicMethod.myOutLog(TAG, "由松开刷新状态转变到done状态");
 						}
 					}
 					// 还没有到达显示松开刷新的时候,DONE或者是PULL_To_REFRESH状态
@@ -287,14 +288,14 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 							listState = RELEASE_TO_REFRESH;
 							isBack = true;
 							changeHeaderViewByState();
-							PublicMethod.myOutLog(TAG, "由done或者下拉刷新状态转变到松开刷新");
+							if (Constants.isDebug)PublicMethod.myOutLog(TAG, "由done或者下拉刷新状态转变到松开刷新");
 						}
 						// 上推到顶了
 						else if (tempY - touchStartY <= 0) {
 							listState = DONE;
 							changeHeaderViewByState();
 							isPush = false;
-							PublicMethod.myOutLog(TAG, "由DOne或者下拉刷新状态转变到done状态");
+							if (Constants.isDebug)PublicMethod.myOutLog(TAG, "由DOne或者下拉刷新状态转变到done状态");
 						}
 					}
 
@@ -342,7 +343,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 
 			tipsTextview.setText(getResources().getString(
 					R.string.release_to_refresh));
-			PublicMethod.myOutLog(TAG, "当前状态，松开刷新");
+			if (Constants.isDebug)PublicMethod.myOutLog(TAG, "当前状态，松开刷新");
 			break;
 		case PULL_TO_REFRESH:
 			progressBar.setVisibility(View.GONE);
@@ -362,7 +363,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 				tipsTextview.setText(getResources().getString(
 						R.string.pull_to_refresh));
 			}
-			PublicMethod.myOutLog(TAG, "当前状态，下拉刷新");
+			if (Constants.isDebug)PublicMethod.myOutLog(TAG, "当前状态，下拉刷新");
 			break;
 
 		case REFRESHING:
@@ -372,7 +373,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 			arrowImageView.setVisibility(View.GONE);
 			tipsTextview.setText(getResources().getString(R.string.refreshing));
 			lastUpdatedTextView.setVisibility(View.VISIBLE);
-			PublicMethod.myOutLog(TAG, "当前状态,正在刷新...");
+			if (Constants.isDebug)PublicMethod.myOutLog(TAG, "当前状态,正在刷新...");
 			break;
 		case DONE:
 			listHeadView.setPadding(0, -1 * listHeadViewHeight, 0, 0);
@@ -382,7 +383,7 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 			tipsTextview.setText(getResources().getString(
 					R.string.pull_to_refresh));
 			lastUpdatedTextView.setVisibility(View.VISIBLE);
-			PublicMethod.myOutLog(TAG, "当前状态，done");
+			if (Constants.isDebug)PublicMethod.myOutLog(TAG, "当前状态，done");
 			break;
 		}
 	}
