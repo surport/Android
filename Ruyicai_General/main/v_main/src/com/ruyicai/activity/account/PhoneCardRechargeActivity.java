@@ -74,7 +74,7 @@ public class PhoneCardRechargeActivity extends Activity implements HandlerMsg {
 //		TextView contentText = (TextView) findViewById(R.id.alipay_content);
 //		contentText.setText(Html.fromHtml(initTextViewContent()));
 		WebView alipay_content = (WebView) findViewById(R.id.alipay_content);
-		alipay_content.loadData(initTextViewContent(), "text/html; charset=UTF-8", null);
+		alipay_content.loadDataWithBaseURL("", initTextViewContent(), "text/html", "UTF-8", "");
 
 		final Spinner phone_card_value_spinner = (Spinner) findViewById(R.id.phone_card_value_spinner);
 		phone_card_value_spinner

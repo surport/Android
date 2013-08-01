@@ -2982,4 +2982,36 @@ public class PublicMethod {
 		
 		return array;
 	}
+	
+	/**
+	 * 判断充值金额是否满足条件
+	 * @param editText
+	 * @param context
+	 * @return
+	 */
+	public static boolean isRecharge(EditText editText, Context context) {
+		String amount = editText.getText().toString().trim();
+		if (!"".equals(amount) && Integer.parseInt(amount) < 10) {
+			Toast.makeText(context, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/**
+	 * 格式化文本内容到html格式
+	 * @param text
+	 * @param colorValue
+	 * @return
+	 */
+	public static String stringToHtml(String text, String colorValue) {
+		String html = "<font color="+colorValue+">"+text+"<//font>";
+		return html;
+	}
+	
+	public static String stringToHtml(String text, String colorValue, String fontSize) {
+		String html = "<font size="+fontSize+" color="+colorValue+">"+text+"<//font>";
+		return html;
+	}
 }

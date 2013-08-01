@@ -149,23 +149,54 @@ public class HunHeZqView extends JcMainView {
 			Info info = (Info) listInfo.get(i);
 
 			if (info.onclikNum > 0) {
-				codeStr += info.getWeeks() + " " + info.getTeamId() + "  ";
-				codeStr += (info.getHome() + " vs " + info.getAway() + "\n混合投注:");
+				int first = 0;
+				int second = 0;
+				int third = 0;
+				int fourth = 0;
+				int fifth = 0;
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + " ";
+				codeStr += (info.getHome() + " vs " + info.getAway());
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
-						int position = info.check[j].getPosition(); //add by yejc 20130722 start
-						if (position == 0 || position == 1 || position == 2) {
-							codeStr += "让"+info.check[j].getChcekTitle() + " ";
-						} else { //add by yejc 20130722 end
-							codeStr += info.check[j].getChcekTitle() + " ";
+						/**add by yejc 20130730 start*/
+						int position = info.check[j].getPosition(); 
+						String title = info.check[j].getChcekTitle();
+						if (position >= 0 && position <= 2) { // 让球胜平负
+							first++;
+							if (first == 1) {
+								codeStr += "<br>让球胜平负：";
+							}
+							title = "让" + title;
+						} else if (position >= 3 && position <= 5) { // 胜平负
+							second++;
+							if (second == 1) {
+								codeStr += "<br>胜平负：";
+							}
+						} else if (position >= 6 && position <= 14) { // 半全场
+							third++;
+							if (third == 1) {
+								codeStr += "<br>半全场：";
+							}
+						} else if (position >= 15 && position <= 22) { // 总进球
+							fourth++;
+							if (fourth == 1) {
+								codeStr += "<br>总进球：";
+							}
+						} else if (position >= 23 && position <= 53) { // 比分
+							fifth++;
+							if (fifth == 1) {
+								codeStr += "<br>比分：";
+							}
 						}
-						
+						codeStr += PublicMethod.stringToHtml(title, Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
+						/**add by yejc 20130730 end*/
 					}
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-				codeStr += "\n";
+				codeStr += "<br>";
 			}
 		}
 		return codeStr;
@@ -237,9 +268,12 @@ public class HunHeZqView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addView(info));
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addView(list.get(i), position, i));
 				}
+//				for (Info info : list) {
+//					holder.layout.addView(addView(info));
+//				}
 			}
 
 			return convertView;
@@ -256,7 +290,7 @@ public class HunHeZqView extends JcMainView {
 		}
 
 		// add by yejc 20130402
-		private View addView(final Info info) {
+		private View addView(final Info info, final int position, final int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_others, null);
 			TextView gameName = (TextView) convertView
@@ -304,7 +338,10 @@ public class HunHeZqView extends JcMainView {
 						info.setHunheZQ(true); //add by yejc 20130704
 						info.createDialog(FootHun.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
+						
 						/**add by yejc 20130704 start*/
+						mPosition = position;
+						mIndex = index;
 						View view = info.getViewType();
 						TextView tv = (TextView)view.findViewById(R.id.lq_rqspf_dialog_textview);
 						tv.setText("让球主"+info.getLetPoint());

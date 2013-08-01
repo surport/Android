@@ -356,12 +356,22 @@ public class ContentListView {
 									textover.setText(matchResult);
 								}
 							} else {
-								if (guestInt > hometInt) {
-									textover.setText("主负");
-								} else if (guestInt < hometInt) {
-									textover.setText("主胜");
-								} else if (guestInt == hometInt) {
-									textover.setText("平");
+								if (lotno.equals(Constants.LOTNO_JCZQ_RQSPF)) {
+									if (guestInt > hometInt) {
+										textover.setText("让负");
+									} else if (guestInt < hometInt) {
+										textover.setText("让胜");
+									} else if (guestInt == hometInt) {
+										textover.setText("让平");
+									}
+								} else {
+									if (guestInt > hometInt) {
+										textover.setText("主负");
+									} else if (guestInt < hometInt) {
+										textover.setText("主胜");
+									} else if (guestInt == hometInt) {
+										textover.setText("平");
+									}
 								}
 							}
 						}

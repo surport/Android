@@ -88,7 +88,8 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {
@@ -117,13 +118,8 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (zfb_recharge_value_string.equals("0")) {
-				Toast.makeText(this, "充值金额不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (zfb_recharge_value_string.equals("")
-					|| zfb_recharge_value_string.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
+			if (zfb_recharge_value_string.length() < 2) {
+				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			} else {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨

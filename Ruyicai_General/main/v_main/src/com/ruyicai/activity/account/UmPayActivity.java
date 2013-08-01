@@ -67,7 +67,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 		initTextViewContent();
 
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
-		accountTitleTextView.setText("联动优势充值");
+		accountTitleTextView.setText(R.string.umpay_recharge);
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
@@ -91,7 +91,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {
@@ -119,13 +120,8 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (umPayRechargeValue.equals("0")) {
-				Toast.makeText(this, "充值金额不能为0！", Toast.LENGTH_LONG).show();
-				return;
-			}
-			if (umPayRechargeValue.equals("")
-					|| umPayRechargeValue.length() == 0) {
-				Toast.makeText(this, "不能为空！", Toast.LENGTH_LONG).show();
+			if (umPayRechargeValue.length() < 2) {
+				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
 			} else {
 				RechargePojo rechargepojo = new RechargePojo();
 				rechargepojo.setAmount(umPayRechargeValue);

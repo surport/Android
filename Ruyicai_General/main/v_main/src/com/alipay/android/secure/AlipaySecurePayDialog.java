@@ -70,7 +70,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					handler.post(new Runnable() {
 						public void run() {
 //							alipay_content.setText(Html.fromHtml(conten));
-							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
+							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
 				} catch (JSONException e) {
@@ -135,22 +136,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 				String phonenum = shellRW
 						.getStringValue(ShellRWConstants.PHONENUM);
 				String accountnumstr = accountnum.getText().toString();
-				if (accountnumstr.length() > 9) {
-					Toast.makeText(AlipaySecurePayDialog.this, "你有那么多钱吗?",
-							Toast.LENGTH_SHORT).show();
-					accountnum.setText("100");
-					isOnClick = true;
-					return;
-				}
-				if (accountnumstr.equals("")) {
-					Toast.makeText(AlipaySecurePayDialog.this, "请输入充值金额!",
-							Toast.LENGTH_SHORT).show();
-					isOnClick = true;
-					return;
-				}
-				int accountnum1 = Integer.parseInt(accountnumstr);
-				if (accountnum1 == 0) {
-					Toast.makeText(AlipaySecurePayDialog.this, "充值金额不能为0！",
+				if (accountnumstr.trim().length() < 2) {
+					Toast.makeText(AlipaySecurePayDialog.this, "充值金额至少为10元！",
 							Toast.LENGTH_SHORT).show();
 					isOnClick = true;
 					return;

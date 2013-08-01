@@ -1733,43 +1733,48 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
-					againstStringBufffer
-							.append(upDownSingleDoubleAgainstInformation
-									.getTeamId() + "  ");
+					againstStringBufffer.append(
+							PublicMethod.stringToHtml(upDownSingleDoubleAgainstInformation.getTeamId(),
+									Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(upDownSingleDoubleAgainstInformation
 									.getHomeTeam())
 							.append(" vs ")
 							.append(upDownSingleDoubleAgainstInformation
-									.getGuestTeam()).append("\n上下单双：");
+									.getGuestTeam()).append("<br>上下单双：");
 					/* Modify by pengcx 20130703 end */
 
 					
 					/* Modify by pengcx 20130708 start */
 					List<Double> selectedSP = new ArrayList<Double>();
 					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
-						againstStringBufffer.append("上单");
+						againstStringBufffer.append(PublicMethod.stringToHtml("上单",
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v1()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
-						againstStringBufffer.append("上双");
+						againstStringBufffer.append(PublicMethod.stringToHtml("上双",
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v2()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
-						againstStringBufffer.append("下单");
+						againstStringBufffer.append(PublicMethod.stringToHtml("下单",
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v3()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
-						againstStringBufffer.append("下双");
+						againstStringBufffer.append(PublicMethod.stringToHtml("下双",
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v4()));
 					}
 					if (upDownSingleDoubleAgainstInformation.isDan()) {
-						againstStringBufffer.append("(胆)");
+						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)",
+								Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
-					againstStringBufffer.append("\n");
+					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
 				}
 			}
@@ -1787,16 +1792,16 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
-					againstStringBufffer
-							.append(halfTheAudienceAgainstInformation
-									.getTeamId() + "  ");
+					againstStringBufffer.append(
+							PublicMethod.stringToHtml(halfTheAudienceAgainstInformation.getTeamId(),
+									Constants.JC_TOUZHU_TITLE_TEXT_COLOR)+ "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(halfTheAudienceAgainstInformation
 									.getHomeTeam())
 							.append(" vs ")
 							.append(halfTheAudienceAgainstInformation
-									.getGuestTeam()).append("\n半全场：");
+									.getGuestTeam()).append("<br>半全场：");
 					/* Modify by pengcx 20130703 end */
 					
 					/* Modify by pengcx 20130708 start */
@@ -1806,7 +1811,8 @@ public class BeiJingSingleGameActivity extends Activity {
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
 							againstStringBufffer
-									.append(HalfTheAudienceAdapter.selectButtonTitles[click_i])
+									.append(PublicMethod.stringToHtml(HalfTheAudienceAdapter.selectButtonTitles[click_i],
+											Constants.JC_TOUZHU_TEXT_COLOR) + "  ")	
 									.append(" ");
 							selectedSP.add(halfTheAudienceAgainstInformation
 									.getSelectedSp(click_i));
@@ -1817,10 +1823,11 @@ public class BeiJingSingleGameActivity extends Activity {
 					newSelectedSPList.add(SPs);
 					
 					if (halfTheAudienceAgainstInformation.isDan()) {
-						againstStringBufffer.append("(胆)");
+						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
+								Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					
-					againstStringBufffer.append("\n");
+					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
 				}
 			}
@@ -1838,14 +1845,14 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
-					againstStringBufffer.append(overAllAgainstInformation
-							.getTeamId() + "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(overAllAgainstInformation.getTeamId(),
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)+ "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(overAllAgainstInformation.getHomeTeam())
 							.append(" vs ")
 							.append(overAllAgainstInformation.getGuestTeam())
-							.append("\n全场总比分：");
+							.append("<br>全场总比分：");
 					/* Modify by pengcx 20130703 end */
 					
 					/* Modify by pengcx 20130708 start */
@@ -1855,7 +1862,8 @@ public class BeiJingSingleGameActivity extends Activity {
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
 							againstStringBufffer.append(
-									OverAllAdapter.selectButtonTitles[click_i])
+									PublicMethod.stringToHtml(OverAllAdapter.selectButtonTitles[click_i],
+									Constants.JC_TOUZHU_TEXT_COLOR) + "  ")
 									.append(" ");
 							selectedSP.add(overAllAgainstInformation
 									.getSelectedSp(click_i));
@@ -1864,9 +1872,10 @@ public class BeiJingSingleGameActivity extends Activity {
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
 					if (overAllAgainstInformation.isDan()) {
-						againstStringBufffer.append("(胆)");
+						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
+								Constants.JC_TOUZHU_TEXT_COLOR));
 					}
-					againstStringBufffer.append("\n");
+					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
 				}
 
@@ -1885,14 +1894,14 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
-					againstStringBufffer.append(totalGoalsAgainstInformation
-							.getTeamId() + "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(totalGoalsAgainstInformation.getTeamId(), 
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(totalGoalsAgainstInformation.getHomeTeam())
 							.append(" vs ")
 							.append(totalGoalsAgainstInformation.getGuestTeam())
-							.append("\n总进球数：");
+							.append("<br>总进球数：");
 					/* Modify by pengcx 20130703 end */
 					boolean[] IsClicks = totalGoalsAgainstInformation
 							.getIsClicks();
@@ -1902,7 +1911,8 @@ public class BeiJingSingleGameActivity extends Activity {
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
 							againstStringBufffer
-									.append(TotalGoalsAdapter.selectButtonTitles[click_i])
+									.append(PublicMethod.stringToHtml(TotalGoalsAdapter.selectButtonTitles[click_i],
+											Constants.JC_TOUZHU_TEXT_COLOR) + "  ")
 									.append(" ");
 							selectedSP.add(totalGoalsAgainstInformation
 									.getSelectedSp(click_i));
@@ -1912,9 +1922,10 @@ public class BeiJingSingleGameActivity extends Activity {
 					newSelectedSPList.add(SPs);
 					
 					if (totalGoalsAgainstInformation.isDan()) {
-						againstStringBufffer.append("(胆)");
+						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
+								Constants.JC_TOUZHU_TEXT_COLOR));
 					}
-					againstStringBufffer.append("\n");
+					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
 				}
 			}
@@ -1932,30 +1943,34 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
-					againstStringBufffer.append(winTieLossAgainstInformation
-							.getTeamId() + "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(winTieLossAgainstInformation.getTeamId(), 
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ");
+					
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(winTieLossAgainstInformation.getHomeTeam())
-							.append(" vs ")
+							.append(getLetPoint(winTieLossAgainstInformation.getLetPoint()))
 							.append(winTieLossAgainstInformation.getGuestTeam())
-							.append("\n让球胜平负：");
+							.append("<br>让球胜平负：");
 					/* Modify by pengcx 20130703 end */
 
 					/* Modify by pengcx 20130708 start */
 					List<Double> selectedSP = new ArrayList<Double>();
 					if (winTieLossAgainstInformation.isV0IsClick()) {
-						againstStringBufffer.append("胜");
+						againstStringBufffer.append(PublicMethod.stringToHtml("胜", 
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double
 								.valueOf(winTieLossAgainstInformation.getV3()));
 					}
 					if (winTieLossAgainstInformation.isV1IsClick()) {
-						againstStringBufffer.append("平");
+						againstStringBufffer.append(PublicMethod.stringToHtml("平", 
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double
 								.valueOf(winTieLossAgainstInformation.getV1()));
 					}
 					if (winTieLossAgainstInformation.isV3IsClick()) {
-						againstStringBufffer.append("负");
+						againstStringBufffer.append(PublicMethod.stringToHtml("负", 
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double
 								.valueOf(winTieLossAgainstInformation.getV0()));
 					}
@@ -1963,10 +1978,11 @@ public class BeiJingSingleGameActivity extends Activity {
 					newSelectedSPList.add(SPs);
 					
 					if (winTieLossAgainstInformation.isDan()) {
-						againstStringBufffer.append("(胆)");
+						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
+								Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					/* Modify by pengcx 20130708 end */
-					againstStringBufffer.append("\n");
+					againstStringBufffer.append("<br>");
 				}
 			}
 		}
@@ -2255,5 +2271,13 @@ public class BeiJingSingleGameActivity extends Activity {
 			break;
 		}
 		return isLegal;
+	}
+	
+	private String getLetPoint(String letpoint) {
+		if (!"".equals(letpoint) && !"0".equals(letpoint)) {
+			return " ("+letpoint+") ";
+		} else {
+			return " vs ";
+		}
 	}
 }

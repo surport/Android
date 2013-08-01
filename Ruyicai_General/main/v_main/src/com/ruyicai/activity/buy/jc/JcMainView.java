@@ -1,7 +1,9 @@
 package com.ruyicai.activity.buy.jc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,6 +85,12 @@ public abstract class JcMainView {
 	public abstract String getAlertCode(List<Info> listInfo);
 
 	public abstract int getTeamNum();
+	
+	/**add by yejc 20130722 start*/
+	private Map<String, Integer> mMap = new HashMap<String, Integer>();
+	public int mPosition = -1;
+	public int mIndex = -1;
+	/**add by yejc 20130722 end*/
 
 	public JcMainView(Context context, BetAndGiftPojo betAndGift,
 			Handler handler, LinearLayout layout, String type,
@@ -957,8 +966,6 @@ public abstract class JcMainView {
 		public View getViewType() {
 			return viewType;
 		}
-		/**add by yejc 20130704 end*/
-		/**add by yejc 20130704 start*/
 		private void setShowPlay(View view) {
 			for (String str : unsupportPlay) {
 				if ("J00001_0".equals(str) || "J00001_1".equals(str)) { //胜平负
@@ -1042,7 +1049,18 @@ public abstract class JcMainView {
 					onclikNum = 0;
 					for (int i = 0; i < check.length; i++) {
 						if (check[i].getChecked()) {
-							btnStr += check[i].getChcekTitle() + "  ";
+							if (isHunHe() && !isLq) {
+								if (check[i].getPosition() == 0
+										|| check[i].getPosition() == 1
+										|| check[i].getPosition() == 2) {
+									btnStr += "让"+check[i].getChcekTitle() + "  ";
+								} else {
+									btnStr += check[i].getChcekTitle() + "  ";
+								}
+							} else {
+								btnStr += check[i].getChcekTitle() + "  ";
+							}
+							
 							onclikNum++;
 						}
 					}
@@ -1065,6 +1083,10 @@ public abstract class JcMainView {
 					} else {
 						checkNum = 8;
 					}
+					/**move*/
+					if (checkNum < getTeamNum()) {
+						setTeamNum(checkNum);
+					}
 				} else {
 					if (isCheckIndex(6, 14)) {// 半全场
 						checkNum = 4;
@@ -1075,10 +1097,22 @@ public abstract class JcMainView {
 					} else {// 胜平负
 						checkNum = 8;
 					}
+					/**add by yejc 20130722 start*/
+					String mapIndex = String.valueOf(mPosition+mIndex);
+					mMap.put(mapIndex, checkNum);
+					if (mMap.containsValue(4)) {
+						setTeamNum(4);
+					} else if (mMap.containsValue(6)) {
+						setTeamNum(6);
+					} else {
+						setTeamNum(8);
+					}
+					/**add by yejc 20130722 start*/
 				}
-				if (checkNum < getTeamNum()) {
-					setTeamNum(checkNum);
-				}
+				
+//				if (checkNum < getTeamNum()) {
+//					setTeamNum(checkNum);
+//				}
 			}
 		}
 

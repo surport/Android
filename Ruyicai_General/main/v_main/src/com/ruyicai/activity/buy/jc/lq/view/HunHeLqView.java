@@ -135,17 +135,43 @@ public class HunHeLqView extends JcMainView {
 		String codeStr = "";
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
+			int first = 0;
+			int second = 0;
+			int third = 0;
+			int fourth = 0;
 			if (info.onclikNum > 0) {
-				codeStr += info.getHome() + " vs " + info.getAway() + "：";
+				codeStr += info.getAway() + " vs " + info.getHome() + "(主)";
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
-						codeStr += info.check[j].getChcekTitle() + " ";
+						int position = info.check[j].getPosition(); 
+						if (position >= 0 && position <= 1) { // 胜负
+							first++;
+							if (first == 1) {
+								codeStr += "<br>胜负：";
+							}
+						} else if (position >= 2 && position <= 4) { // 让分胜负
+							second++;
+							if (second == 1) {
+								codeStr += "<br>让分胜负：";
+							}
+						} else if (position >= 5 && position <= 7) { // 大小分
+							third++;
+							if (third == 1) {
+								codeStr += "<br>大小分：";
+							}
+						} else if (position >= 8 && position <= 19) { // 胜分差
+							fourth++;
+							if (fourth == 1) {
+								codeStr += "<br>胜分差：";
+							}
+						}
+						codeStr += PublicMethod.stringToHtml(info.check[j].getChcekTitle(), Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 					}
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-				codeStr += "\n\n";
+				codeStr += "<br>";
 			}
 
 		}

@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.jc.JcMainView;
+import com.ruyicai.activity.buy.jc.zq.view.HunHeZqView;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.net.newtransaction.MsgUpdateReadState;
@@ -108,7 +110,8 @@ public class TouzhuDialog {
 				.findViewById(R.id.alert_dialog_jc_predictmoney);
 		schemeTextView = (TextView) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_scheme);
-		schemeTextView.setText(alertMsg);
+		schemeTextView.setText(Html.fromHtml(alertMsg));
+//		schemeTextView.setText(alertMsg);
 		schemeDetailTextView = (TextView) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
 		upDownImageView = (ImageView) v.findViewById(R.id.alert_dialog_touzhu_updown);
@@ -116,7 +119,14 @@ public class TouzhuDialog {
 				.findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
 		schemeDetailLinearLayout = (LinearLayout) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
-		schemeDetailTextView.setText(alertMsg);
+		
+//		if(jcMainView instanceof HunHeZqView) { //add by yejc 20130730 start
+//			schemeDetailTextView.setText(Html.fromHtml(alertMsg));
+//		} else { //add by yejc 20130730 end
+//			schemeDetailTextView.setText(alertMsg);
+//		}
+//		schemeDetailTextView.setText(alertMsg);
+		schemeDetailTextView.setText(Html.fromHtml(alertMsg));
 		schemeRelativeLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -125,12 +135,14 @@ public class TouzhuDialog {
 					int visibility = schemeDetailLinearLayout.getVisibility();
 					if (visibility == View.VISIBLE) {
 						schemeDetailLinearLayout.setVisibility(View.GONE);
-						schemeTextView.setText(alertMsg);
+//						schemeTextView.setText(alertMsg);
+						schemeTextView.setVisibility(View.VISIBLE);
 						upDownImageView.setImageResource(R.drawable.down_icon);
 					} else {
 						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
 						upDownImageView.setImageResource(R.drawable.up_icon);
-						schemeTextView.setText("");
+//						schemeTextView.setText("");
+						schemeTextView.setVisibility(View.INVISIBLE);
 					}
 				}
 			}

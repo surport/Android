@@ -84,16 +84,19 @@
                     <TextView
                         android:id="@id/alert_dialog_touzhu_text_zhuma"
                         style="@style/touzhuTextstyle"
+                        android:layout_centerVertical="true"
                         android:text="@string/jc_main_touzhu_alert_text" />
 
                     <TextView
                         android:id="@id/alert_dialog_touzhu_alert_scheme"
                         style="@style/touzhuTextstyle"
-                        android:layout_width="230dp"
+                        android:layout_width="226dp"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/alert_dialog_touzhu_text_zhuma"
                         android:ellipsize="end"
                         android:singleLine="true"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
                         android:textSize="15sp" />
 
                     <ImageView
@@ -102,6 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
                         android:src="@drawable/down_icon" />
                 </RelativeLayout>
 
@@ -119,13 +123,16 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingLeft="10dip"
+                    android:background="@drawable/jc_alert_bg"
                     android:visibility="gone" >
 
                     <TextView
                         android:id="@id/alert_dialog_touzhu_alert_textview_schemedetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="0.5dip"
+                        android:paddingLeft="10dip"
+                        android:background="@color/jc_touzhu_background_color"
                         android:textColor="@color/black" />
                 </LinearLayout>
 

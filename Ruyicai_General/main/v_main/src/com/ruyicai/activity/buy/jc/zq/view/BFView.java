@@ -116,19 +116,19 @@ public class BFView extends JcMainView {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				codeStr += info.getWeeks() + "  " + info.getTeamId() + "  ";
-				codeStr += info.getHome() + " vs " + info.getAway() + "\n比分: ";
-				;
+				codeStr += PublicMethod.stringToHtml(info.getWeeks() + " " + info.getTeamId(), 
+						Constants.JC_TOUZHU_TITLE_TEXT_COLOR);
+				codeStr += info.getHome() + " vs " + info.getAway() + "<br>比分：";
 				for (int j = 0; j < info.check.length; j++) {
 					if (info.check[j].isChecked()) {
-						codeStr += info.check[j].getChcekTitle() + " ";
+						codeStr += PublicMethod.stringToHtml(info.check[j].getChcekTitle(), 
+								Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 					}
 				}
 				if (info.isDan()) {
-					codeStr += "(胆)";
+					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR)+ "  ";
 				}
-
-				codeStr += "\n";
+				codeStr += "<br>";
 			}
 		}
 		return codeStr;
