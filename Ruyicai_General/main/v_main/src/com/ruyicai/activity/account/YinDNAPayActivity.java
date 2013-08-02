@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.handler.HandlerMsg;
@@ -59,6 +60,8 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 	private String[] bankNames = { "中国工商银行", "中国农业银行", "中国建设银行", "招商银行",
 			"中国邮政储蓄银行", "华夏银行", "兴业银行", "中信银行", "中国光大银行", "上海浦东发展银行", "深圳发展银行" };
 	private String strExpand;
+	EditText bankCardRechargeValue;
+	EditText bankCardRechargeValueNo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +184,10 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 	protected void createBankCardPhoneDialog() {
 		RECHARGTYPE = "01";
 		this.setContentView(R.layout.account_bank_card_phone_online_dialog);
+		/**add by yejc 20130802 start*/
+		bankCardRechargeValue = (EditText) findViewById(R.id.bank_card_phone_recharge_value);
+		bankCardRechargeValue.addTextChangedListener(new RechargeMoneyTextWatcher(bankCardRechargeValue));
+		/**add by yejc 20130802 end*/
 		bank_card_phone_bankid = (EditText) findViewById(R.id.bank_card_phone_bankid);
 		bank_card_phone_bankid.setText(bankCardNo);
 		bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);// 手机号
@@ -209,8 +216,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 
 	// 银行卡语音充值(DNA)
 	private void beiginBankCardPhoneOnline() {
-		EditText bank_card_phone_recharge_value = (EditText) findViewById(R.id.bank_card_phone_recharge_value);
-		final String rechargevalue = bank_card_phone_recharge_value.getText()
+		final String rechargevalue = bankCardRechargeValue.getText()
 				.toString();
 		EditText bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);
 		final String cardphonenum = bank_card_phone_phone_num.getText()
@@ -353,6 +359,10 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 				YinDNAPayActivity.this, "addInfo");
 		this.setContentView(R.layout.account_bank_card_phone_dialog);
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
+		/**add by yejc 20130802 start*/
+		bankCardRechargeValueNo = (EditText) findViewById(R.id.bank_card_phone_recharge_value);// 金额
+		bankCardRechargeValueNo.addTextChangedListener(new RechargeMoneyTextWatcher(bankCardRechargeValueNo));
+		/**add by yejc 20130802 end*/
 		String phonenum = pre.getStringValue(ShellRWConstants.MOBILEID);
 		bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);// 手机号
 		bank_card_phone_name = (EditText) findViewById(R.id.bank_card_phone_phone_name);// 姓名
@@ -408,8 +418,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 
 	// 银行卡语音充值(未绑定)DNA
 	private void beiginBankCardPhoneNo(String bankName) {
-		EditText bank_card_phone_recharge_value = (EditText) findViewById(R.id.bank_card_phone_recharge_value);// 金额
-		final String value = bank_card_phone_recharge_value.getText()
+		final String value = bankCardRechargeValueNo.getText()
 				.toString();
 		EditText bank_card_phone_bankid = (EditText) findViewById(R.id.bank_card_phone_bankid);// 银行卡号
 		final String bankid = bank_card_phone_bankid.getText().toString();
@@ -454,7 +463,7 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 					rechargepojo.setIswhite("false");
 					rechargepojo.setBankName(bankName);
 					recharge(rechargepojo);
-					bank_card_phone_recharge_value.setText("");
+					bankCardRechargeValueNo.setText("");
 					bank_card_phone_phone_num.setText("");
 					bank_card_phone_bankid.setText("");
 				} else {

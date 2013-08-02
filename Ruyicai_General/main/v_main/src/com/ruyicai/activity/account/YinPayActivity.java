@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ShellRWConstants;
@@ -67,6 +68,9 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
+		/**add by yejc 20130802 start*/
+		accountnum.addTextChangedListener(new RechargeMoneyTextWatcher(accountnum));
+		/**add by yejc 20130802 end*/
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(YinPayActivity.this, "chongzhi ");// BY贺思明
@@ -108,7 +112,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 
 	// 银联充值
 	private void beginYinpayRecharge(View Vi) {
-
 		String zfb_recharge_value_string = accountnum.getText().toString();
 		RWSharedPreferences pre = new RWSharedPreferences(YinPayActivity.this,
 				"addInfo");
@@ -118,9 +121,7 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (zfb_recharge_value_string.length() < 2) {
-				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
-			} else {
+			if (!PublicMethod.isRecharge(zfb_recharge_value_string, this)) {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨
 				RechargePojo rechargepojo = new RechargePojo();

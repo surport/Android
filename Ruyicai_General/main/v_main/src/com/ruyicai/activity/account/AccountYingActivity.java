@@ -36,6 +36,7 @@ import com.alipay.android.secure.BaseHelper;
 import com.alipay.android.secure.MobileSecurePayHelper;
 import com.alipay.android.secure.MobileSecurePayer;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
@@ -112,6 +113,9 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		secureOk.setOnClickListener(this);
 		accountnum = (EditText) findViewById(R.id.zfb_recharge_value);
+		/**add by yejc 20130802 start*/
+		accountnum.addTextChangedListener(new RechargeMoneyTextWatcher(accountnum));
+		/**add by yejc 20130802 end*/
 	}
 
 	private void initNameSpinner(final List<AccountName> listName) {

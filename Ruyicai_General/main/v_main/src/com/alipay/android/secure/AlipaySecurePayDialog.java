@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.recharge.AlipaySecurePayInterface;
@@ -56,6 +57,9 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		secureOk.setOnClickListener(this);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
 		PublicMethod.setTextViewContent(this); //add by yejc 20130718
+		/**add by yejc 20130802 start*/
+		accountnum.addTextChangedListener(new RechargeMoneyTextWatcher(accountnum));
+		/**add by yejc 20130802 end*/
 	}
 
 	private void initTextViewContent() {
@@ -136,12 +140,10 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 				String phonenum = shellRW
 						.getStringValue(ShellRWConstants.PHONENUM);
 				String accountnumstr = accountnum.getText().toString();
-				if (accountnumstr.trim().length() < 2) {
-					Toast.makeText(AlipaySecurePayDialog.this, "充值金额至少为10元！",
-							Toast.LENGTH_SHORT).show();
+				if (PublicMethod.isRecharge(accountnumstr, AlipaySecurePayDialog.this)) {
 					isOnClick = true;
 					return;
-				}
+				} 
 				// TODO Auto-generated method stub
 				String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
 				// if(Constants.LOT_SERVER.equals("http://202.43.151.10:8080/lotserver/RuyicaiServlet")){

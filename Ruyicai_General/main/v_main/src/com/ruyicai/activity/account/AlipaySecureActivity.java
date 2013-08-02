@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ShellRWConstants;
@@ -76,6 +77,9 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok_alipay);
 		secureCancel = (Button) findViewById(R.id.alipay_secure_cancel);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
+		/**add by yejc 20130802 start*/
+		accountnum.addTextChangedListener(new RechargeMoneyTextWatcher(accountnum));
+		/**add by yejc 20130802 end*/
 		secureOk.setText("wap支付");
 		secureCancel.setText("浏览器支付");
 		secureOk.setOnClickListener(new OnClickListener() {
@@ -137,9 +141,7 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (zfb_recharge_value_string.trim().length() < 2) {
-				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
-			} else {
+			if (!PublicMethod.isRecharge(zfb_recharge_value_string, this)) {
 				// 支付宝充值网络获取
 				// 改为线程 2010/7/9陈晨
 				RechargePojo rechargepojo = new RechargePojo();

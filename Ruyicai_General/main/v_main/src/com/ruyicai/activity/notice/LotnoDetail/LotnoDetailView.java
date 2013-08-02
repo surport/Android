@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
@@ -368,7 +369,6 @@ public abstract class LotnoDetailView {
 
 	public void prizeDetailDialog(View view) {
 		final AlertDialog dialog = new AlertDialog.Builder(context).create();
-		dialog.getWindow();
 		Button button = (Button) view.findViewById(R.id.notice_return_main);
 		button.setOnClickListener(new OnClickListener() {
 
@@ -379,6 +379,8 @@ public abstract class LotnoDetailView {
 		});
 		dialog.show();
 		dialog.getWindow().setContentView(view);
+		//add by yejc 20130802
+		dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 
 	}
 

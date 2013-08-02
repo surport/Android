@@ -2989,13 +2989,15 @@ public class PublicMethod {
 	 * @param context
 	 * @return
 	 */
-	public static boolean isRecharge(EditText editText, Context context) {
-		String amount = editText.getText().toString().trim();
-		if (!"".equals(amount) && Integer.parseInt(amount) < 10) {
-			Toast.makeText(context, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
-			return false;
-		} else {
+	public static boolean isRecharge(String amount, Context context) {
+		if ("".equals(amount.trim())) {
+			Toast.makeText(context, "请输入充值金额！",Toast.LENGTH_SHORT).show();
 			return true;
+		} else if("0".equals(amount.trim())) {
+			Toast.makeText(context, "充值金额不能为0！",Toast.LENGTH_SHORT).show();
+			return true;
+		}  else {
+			return false;
 		}
 	}
 	
