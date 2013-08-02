@@ -22,7 +22,6 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -396,20 +395,10 @@ public class JcScoreListActivity extends Activity {
 						.findViewById(R.id.jc_score_text_vteam);
 				holder1.startImg = (ImageView) convertView
 						.findViewById(R.id.jc_score_btn_start);
-//				holder1.overScore = (TextView) convertView
-//						.findViewById(R.id.jc_score_text_over_score);
 				holder1.halfScore = (TextView) convertView
 						.findViewById(R.id.jc_score_text_half_score);
-//				holder1.result = (TextView) convertView
-//						.findViewById(R.id.jc_score_text_result);
-//				holder1.red = (TextView) convertView
-//						.findViewById(R.id.jc_score_text_red);
-//				holder1.yellow = (TextView) convertView
-//						.findViewById(R.id.jc_score_text_yellow);
 				holder1.layoutLeft = (LinearLayout) convertView
 						.findViewById(R.id.jc_score_list_item_layout_left);
-//				holder1.layoutRed = (LinearLayout) convertView
-//						.findViewById(R.id.jc_score_layout_red_yellow);
 				holder1.homeScore = (TextView) convertView
 						.findViewById(R.id.jc_score_text_home_score);
 				holder1.guestScore = (TextView) convertView
@@ -419,8 +408,6 @@ public class JcScoreListActivity extends Activity {
 				holder1 = (ViewHolder) convertView.getTag();
 			}
 			final ViewHolder holder = holder1;
-//			holder.teamName.setTextColor(Color.GRAY);
-//			holder.time.setTextColor(Color.GRAY);
 			holder.teamName.setText(info.getTeamName());
 			holder.hTeam.setText(info.gethTeam());
 			holder.state.setText(info.getState());
@@ -459,23 +446,49 @@ public class JcScoreListActivity extends Activity {
 
 				}
 			});
-			if (!info.getHomeScore().equals("")
-					&& !info.getGuestScore().equals("")) {
-//				holder.overScore.setText(info.getHomeScore() + ":"
-//						+ info.getGuestScore());
+//			if (!info.getHomeScore().equals("")
+//					&& !info.getGuestScore().equals("")) {
+//				holder1.homeScore.setText(info.getHomeScore());
+//				holder1.guestScore.setText(info.getGuestScore());
+//			}
+			
+//			if (!isLq) {
+//				if (!info.getHomeHalfScore().equals("")
+//						&& !info.getGuestHalfScore().equals("")) {
+//					holder.halfScore.setText("(" + info.getHomeHalfScore()
+//							+ ":" + info.getGuestHalfScore() + ")");
+//				}
+//			}
+			
+			/**add by yejc 20130802 start*/
+			if ("".equals(info.getHomeScore())) {
+				holder1.homeScore.setText("");
+			} else {
 				holder1.homeScore.setText(info.getHomeScore());
+			}
+			
+			if ("".equals(info.getGuestScore())) {
+				holder1.guestScore.setText("");
+			} else {
 				holder1.guestScore.setText(info.getGuestScore());
 			}
+			
 			if (!isLq) {
-				if (!info.getHomeHalfScore().equals("")
-						&& !info.getGuestHalfScore().equals("")) {
-					holder.halfScore.setText("(" + info.getHomeHalfScore()
-							+ ":" + info.getGuestHalfScore() + ")");
+				holder.halfScore.append("(");
+				if ("".equals(info.getHomeHalfScore())) {
+					holder.halfScore.append("");
+				} else {
+					holder.halfScore.append(info.getHomeHalfScore());
 				}
-//				holder.red.setText(info.getRed());
-//				holder.yellow.setText(info.getYellow());
-//				holder.layoutRed.setVisibility(View.VISIBLE);
+				
+				if ("".equals(info.getGuestHalfScore())) {
+					holder.halfScore.append("");
+				} else {
+					holder.halfScore.append(info.getGuestHalfScore());
+				}
 			}
+			/**add by yejc 20130802 end*/
+			
 			return convertView;
 		}
 
@@ -497,14 +510,9 @@ public class JcScoreListActivity extends Activity {
 			TextView vTeam;// 客队
 			TextView time;// 开赛时间
 			TextView state;// 开赛进度
-//			TextView overScore;
 			TextView halfScore;
-//			TextView result;
-//			TextView red;
-//			TextView yellow;
 			ImageView startImg;
 			LinearLayout layoutLeft;
-//			LinearLayout layoutRed;
 			TextView homeScore;
 			TextView guestScore;
 		}
