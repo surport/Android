@@ -20,7 +20,7 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_width="300sp"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/jc_bgtop"
                 android:paddingTop="5sp" >
@@ -152,7 +152,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:paddingTop="15dip"
         android:src="@drawable/usercenter_ico_triangle" />
 
 </RelativeLayout>

@@ -219,33 +219,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
 	}
 
-//	private void getFeedbackListNet() {
-//		dialog.show();
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				Constants.feedBackData = FeedBackListInterface.getInstance()
-//						.getFeedbackList("0", "10", userno);
-//				try {
-//					Message msg = new Message();
-//					JSONObject feedjson = new JSONObject(Constants.feedBackData);
-//					String errorCode = feedjson.getString("error_code");
-//					// add by yejc 20130411
-//					if (feedjson.has("result")) {
-//						Constants.feedBackJSONArray = feedjson
-//								.getJSONArray("result");
-//					}
-//					msg.what = 11;
-//					msg.obj = Constants.feedBackJSONArray;
-//					// end
-//					handler.sendMessage(msg);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
-//	}
-
 	// 用户积分显示控件
 	protected void inituserpoint() {
 		nicknamecontent = (TextView) findViewById(R.id.nickcontent);

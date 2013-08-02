@@ -1235,7 +1235,7 @@
     <string name="more_settings_programme_content">开通方案存档功能后，系统将自动给您的邮箱发送一份投注方案详情，以供备份查看。</string>
     <string name="usercenter_feedback_bet">去投注</string>
     <string name="account_warning_text">"提醒"</string>
-    <string name="account_yin_dna_pay_recharge_value">"请输入充值金额，最少10元"</string>
+    <string name="account_yin_dna_pay_recharge_value">"请输入充值金额(整数)"</string>
     <string name="account_yin_dna_pay_recharge_value_two">"请输入充值金额，最少20元"</string>
     <string name="account_yin_dna_pay_card_number">"请输入银行卡号，不支持信用卡"</string>
     <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string>

@@ -154,6 +154,10 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
 		textZhuma = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma);
 		textTitle = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
+		renText = (TextView) findViewById(R.id.layout_join_text_rengou);
+		baoText = (TextView) findViewById(R.id.layout_join_text_baodi);
+		buyEdit = (EditText) findViewById(R.id.layout_join_edit_rengou);
+		safeEdit = (EditText) findViewById(R.id.layout_join_edit_baodi);
 		getNetIssue();
 		getTouzhuAlert();
 		if (type.equals("zc")) {
@@ -206,11 +210,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			}
 		});
 		titleText = (TextView) findViewById(R.id.layout_join_text_title);
-		renText = (TextView) findViewById(R.id.layout_join_text_rengou);
-		baoText = (TextView) findViewById(R.id.layout_join_text_baodi);
-		buyEdit = (EditText) findViewById(R.id.layout_join_edit_rengou);
 		minEdit = (EditText) findViewById(R.id.layout_join_edit_gendan);
-		safeEdit = (EditText) findViewById(R.id.layout_join_edit_baodi);
 		descriptionEdit = (EditText) findViewById(R.id.layout_join_edit_description);
 
 		buyEdit.setText("1");
@@ -544,10 +544,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void initImageView() {
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
+		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
+
 		/**add by pengcx 20130722 start*/
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
 			

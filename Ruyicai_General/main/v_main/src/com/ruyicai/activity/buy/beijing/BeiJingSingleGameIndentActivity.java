@@ -133,7 +133,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.alert_dialog_beijing_touzhu);
-
+		mutipleEditText = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		reduceMutipleButton = (ImageButton) findViewById(R.id.buy_zixuan_img_subtract_beishu);
 		reduceMutipleButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
@@ -143,8 +143,9 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		mutipleSeekBar = (SeekBar) findViewById(R.id.buy_jc_zixuan_seek_beishu);
 		mutipleSeekBar
 				.setOnSeekBarChangeListener(new BeiJingSingleGameIndentOnSeekBarChangeListener());
+
 		mutipleSeekBar.setProgress(1);
-		mutipleEditText = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
+
 		mutipleEditText.setText(String.valueOf(mutipleSeekBar.getProgress()));
 		mutipleEditText.addTextChangedListener(new TextWatcher() {
 

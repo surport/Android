@@ -532,15 +532,15 @@ public class DanshiJiXuan extends Activity implements
 	public void initImageView(View view) {
 		mSeekBarBeishu = (SeekBar) view
 				.findViewById(R.id.buy_zixuan_seek_beishu);
+		mTextQishu = (TextView) view.findViewById(R.id.buy_zixuan_text_qishu);
+		mTextBeishu = (TextView) view.findViewById(R.id.buy_zixuan_text_beishu);
+		mSeekBarQishu = (SeekBar) view.findViewById(R.id.buy_zixuan_seek_qishu);
+		
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
-		mSeekBarQishu = (SeekBar) view.findViewById(R.id.buy_zixuan_seek_qishu);
 		mSeekBarQishu.setOnSeekBarChangeListener(this);
 		mSeekBarQishu.setProgress(iProgressQishu);
-
-		mTextBeishu = (TextView) view.findViewById(R.id.buy_zixuan_text_beishu);
 		mTextBeishu.setText("" + iProgressBeishu);
-		mTextQishu = (TextView) view.findViewById(R.id.buy_zixuan_text_qishu);
 		mTextQishu.setText("" + iProgressQishu);
 		setSeekWhenAddOrSub(R.id.buy_zixuan_img_subtract_beishu, -1,
 				mSeekBarBeishu, true, view);
@@ -561,6 +561,12 @@ public class DanshiJiXuan extends Activity implements
 		View v = inflater.inflate(R.layout.alert_dialog_touzhu_new, null);
 		touZhuDialog = new AlertDialog.Builder(this).setTitle("您选择的是").create();
 		touZhuDialog.show();
+		check = (RadioButton) v.findViewById(R.id.alert_dialog_touzhu_check);
+		joinCheck = (RadioButton) v.findViewById(R.id.alert_dialog_join_check);
+		touzhuCheck = (RadioButton) v
+				.findViewById(R.id.alert_dialog_touzhu1_check);
+		textAlert = (TextView) v
+				.findViewById(R.id.alert_dialog_touzhu_text_alert);
 		initImageView(v);
 		if (betAndGift.isZhui()) {
 			initZhuiJia(v);
@@ -640,13 +646,9 @@ public class DanshiJiXuan extends Activity implements
 				}
 			}
 		});
-		check = (RadioButton) v.findViewById(R.id.alert_dialog_touzhu_check);
-		joinCheck = (RadioButton) v.findViewById(R.id.alert_dialog_join_check);
-		touzhuCheck = (RadioButton) v
-				.findViewById(R.id.alert_dialog_touzhu1_check);
+
 		touzhuCheck.setChecked(true);
-		textAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_alert);
+
 		check.setPadding(50, 0, 0, 0);
 		check.setButtonDrawable(R.drawable.check_select);
 		// 实现记住密码 和 复选框的状态

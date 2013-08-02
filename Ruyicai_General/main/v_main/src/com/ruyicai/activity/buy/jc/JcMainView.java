@@ -969,15 +969,15 @@ public abstract class JcMainView {
 		}
 		private void setJcZqShowPlay(View view) {
 			for (String str : unsupportPlay) {
-				if ("J00001_0".equals(str) || "J00001_1".equals(str)) { //胜平负
+				if ("J00001_1".equals(str)) { //胜平负
 					view.findViewById(R.id.linearLayout1).setVisibility(View.GONE);
-				} else if ("J00002_0".equals(str) || "J00002_1".equals(str)) { // 比分
+				} else if ("J00002_1".equals(str)) { // 比分
 					view.findViewById(R.id.linearLayout4).setVisibility(View.GONE);
-				} else if ("J00003_0".equals(str) || "J00003_1".equals(str)) { // 进球数
+				} else if ("J00003_1".equals(str)) { // 进球数
 					view.findViewById(R.id.linearLayout3).setVisibility(View.GONE);
-				} else if ("J00004_0".equals(str) || "J00004_1".equals(str)) {// 半全场
+				} else if ("J00004_1".equals(str)) {// 半全场
 					view.findViewById(R.id.linearLayout2).setVisibility(View.GONE);
-				} else if ("J00013_0".equals(str) || "J00013_1".equals(str)) {//让球胜平负
+				} else if ("J00013_1".equals(str)) {// 让球胜平负
 					view.findViewById(R.id.linearLayout_rangqiu).setVisibility(View.GONE);
 				}
 			}
@@ -986,13 +986,13 @@ public abstract class JcMainView {
 		/**add by yejc 20130801 start*/
 		private void setJcLqShowPlay(View view) {
 			for (String str : unsupportPlay) {
-				if ("J00005_0".equals(str) || "J00005_1".equals(str)) { //胜负玩法
+				if ("J00005_1".equals(str)) { //胜负玩法
 					view.findViewById(R.id.linearLayout1).setVisibility(View.GONE);
-				} else if ("J00006_0".equals(str) || "J00006_1".equals(str)) { // 比分
+				} else if ("J00006_1".equals(str)) { // 让分胜负
 					view.findViewById(R.id.linearLayout2).setVisibility(View.GONE);
-				} else if ("J00007_0".equals(str) || "J00007_1".equals(str)) { // 进球数
+				} else if ("J00007_1".equals(str)) { // 胜分差
 					view.findViewById(R.id.linearLayout4).setVisibility(View.GONE);
-				} else if ("J00008_0".equals(str) || "J00008_1".equals(str)) {// 半全场
+				} else if ("J00008_1".equals(str)) {// 大小分
 					view.findViewById(R.id.linearLayout3).setVisibility(View.GONE);
 				}
 			}

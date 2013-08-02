@@ -1164,11 +1164,13 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 				/*add by pengcx 20130609 end*/
 			} else if (prize_State.equals("3")) {
 				/**modify by yejc 20130418 start*/
+				holder.prizemoney.setVisibility(View.VISIBLE);
 //				holder.prizemoney.setTextColor(Color.GRAY);
 				holder.prizemoney.setTextColor(getResources().getColor(R.color.bet_query_noaward_text_color));
 				/**modify by yejc 20130418 end*/
 				holder.prizemoney.setText("未中奖");
 			} else {
+				holder.prizemoney.setVisibility(View.VISIBLE);
 				String prizeStr = prizeString + formatPrizeName;
 				PublicMethod.setTextColor(holder.prizemoney, prizeStr, 5,
 						prizeStr.length(), Color.RED);

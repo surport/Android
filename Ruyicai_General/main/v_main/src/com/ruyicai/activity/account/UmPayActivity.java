@@ -3,7 +3,9 @@ package com.ruyicai.activity.account;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.alipay.android.secure.AlipaySecurePayDialog;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
@@ -71,6 +73,9 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 
 		secureOk = (Button) findViewById(R.id.alipay_secure_ok);
 		accountnum = (EditText) findViewById(R.id.alipay_secure_recharge_value);
+		/**add by yejc 20130802 start*/
+		accountnum.addTextChangedListener(new RechargeMoneyTextWatcher(accountnum));
+		/**add by yejc 20130802 end*/
 		secureOk.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				MobclickAgent.onEvent(UmPayActivity.this, "chongzhi ");
@@ -120,9 +125,7 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 					UserLogin.class);
 			startActivity(intentSession);
 		} else {
-			if (umPayRechargeValue.length() < 2) {
-				Toast.makeText(this, "充值金额至少为10元！",Toast.LENGTH_SHORT).show();
-			} else {
+			if (!PublicMethod.isRecharge(umPayRechargeValue, this)) {
 				RechargePojo rechargepojo = new RechargePojo();
 				rechargepojo.setAmount(umPayRechargeValue);
 				rechargepojo.setRechargetype("11");

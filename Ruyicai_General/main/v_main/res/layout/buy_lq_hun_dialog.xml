@@ -70,7 +70,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/linearLayout1"
+                    android:id="@id/linearLayout2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -102,7 +102,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/linearLayout1"
+                    android:id="@id/linearLayout3"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -137,7 +137,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/linearLayout1"
+                    android:id="@id/linearLayout4"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -145,7 +145,6 @@
                     android:paddingTop="5dip" >
 
                     <LinearLayout
-                        android:id="@id/linearLayout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
@@ -178,7 +177,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/linearLayout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
@@ -211,7 +209,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/linearLayout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
@@ -244,7 +241,6 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/linearLayout1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 

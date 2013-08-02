@@ -1,8 +1,5 @@
 package com.ruyicai.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +15,6 @@ import com.ruyicai.net.newtransaction.FeedBackListInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
-import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.ProgressDialog;
@@ -26,20 +22,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.widget.Toast;
 
 public class Controller {
     private static final String TAG = "Controller";
     private static Controller sInstance;
     private Context mContext;
-    private Context mProviderContext;
     private JSONObject jsonObj;
     protected ProgressDialog dialog;
     
     protected Controller(Context _context) {
         mContext = _context;
-//        mProviderContext = _context;
     }
 
     /**
@@ -54,14 +46,6 @@ public class Controller {
         return sInstance;
     }
 
-    /**
-     * For testing only:  Inject a different context for provider access.  This will be
-     * used internally for access the underlying provider (e.g. getContentResolver().query()).
-     * @param providerContext the provider context to be used by this instance
-     */
-    public void setProviderContext(Context providerContext) {
-        mProviderContext = providerContext;
-    }
     
 	/**
 	 * 投注action

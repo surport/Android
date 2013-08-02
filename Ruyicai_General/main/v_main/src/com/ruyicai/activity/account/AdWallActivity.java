@@ -79,7 +79,7 @@ public class AdWallActivity extends Activity implements AdUtilityListener{
 
 		@Override
 		public void onFailedToReceiveAd(ImmobView arg0, int arg1) {
-			Toast.makeText(AdWallActivity.this, R.string.get_free_gold_network_error, Toast.LENGTH_LONG).show();
+//			Toast.makeText(AdWallActivity.this, R.string.get_free_gold_network_error, Toast.LENGTH_LONG).show();
 		}
 
 		@Override
