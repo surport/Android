@@ -1257,11 +1257,19 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 
 			} else if (iGameType.equals("gd-10")) {
 				int deletW = 4;
-				if (PublicMethod.getDisplayWidth(context) == 240) {
-					holder.name.setTextSize(PublicMethod.getPxInt(15, context));
-				} else {
-					holder.name.setTextSize(PublicMethod.getPxInt(7, context));
-				}
+//				if (PublicMethod.getDisplayWidth(context) == 240) {
+//					holder.name.setTextSize(PublicMethod.getPxInt(15, context));
+//				} else if(PublicMethod.getDisplayWidth(context) == 1080){
+//					holder.name.setTextSize(PublicMethod.getPxInt(4.7f, context));
+//				}else{
+//					holder.name.setTextSize(PublicMethod.getPxInt(7, context));
+//				}
+				/**add by pengcx 20130802 start*/
+				int width = PublicMethod.getDisplayWidth(context);
+				float scale = 480.0f/width;
+				float textSize = 10 * scale;
+				holder.name.setTextSize(PublicMethod.getPxInt(textSize, context));
+				/**add by pengcx 20130802 end*/
 				holder.date.setText(iDate);
 				holder.date.setVisibility(TextView.VISIBLE);
 				holder.issue.setText(iIssueNo);

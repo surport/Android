@@ -29,10 +29,10 @@
 
         <TextView
             android:id="@id/notice_prizes_main_title"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/notice_prizes"
-            android:text=""
+            android:singleLine="false"
             android:textColor="#333333"
             android:textSize="14sp" >
         </TextView>

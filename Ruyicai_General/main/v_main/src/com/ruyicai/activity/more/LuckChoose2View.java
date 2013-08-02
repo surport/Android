@@ -287,7 +287,7 @@ public class LuckChoose2View extends SurfaceView implements
 			setZhuanpanNeirong(anniuXuanzhongId[1] == 1);
 		}
 		
-		/** add by pengcx 20130726 start*/
+		/** add by pengcx 20130802 start*/
 		float scaleWidth = screenWidth / 480.0f;
 		float scaleHeight = screenHeight / 800.0f;
 		for(int i = 0; i < anniuZhongxinZuobiao.length; i++){
@@ -295,7 +295,10 @@ public class LuckChoose2View extends SurfaceView implements
 			anniuZhongxinZuobiao[i][1] = (int) (anniuZhongxinZuobiao[i][1] * scaleHeight);
 
 		}
-		/** add by pengcx 20130726 end*/
+		// 字体大小，距转盘中心边距缩放
+		fontSize *= scaleWidth;
+		paint.setTextSize(fontSize);
+		/** add by 20130802 20130726 end*/
 	
 		myThread = new SurfaceViewThread();
 		myThread.start();
@@ -346,10 +349,6 @@ public class LuckChoose2View extends SurfaceView implements
 
 				centerY *= scaleHeight
 						* (bmLuckChooseBackground.getHeight() / (float) 800);
-
-				// 字体大小，距转盘中心边距缩放
-				fontSize *= scaleWidth;
-				paint.setTextSize(fontSize);
 
 				strHeightGap *= scaleHeight;
 			}

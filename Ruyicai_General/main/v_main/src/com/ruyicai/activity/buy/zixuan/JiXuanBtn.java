@@ -150,12 +150,20 @@ public class JiXuanBtn {
 			param.setMargins(padding, padding, padding, padding);
 			btn.setWidth(width);
 			btn.setHeight(width);
+			
+//			if (width == 240) {
+//				btn.setTextSize(PublicMethod.getPxInt(20, activity));
+//			} else {
+//				btn.setTextSize(PublicMethod.getPxInt(11, activity));
+//			}
+			
+			/**add by pengcx 20130802 start*/
 			int width = PublicMethod.getDisplayWidth(activity);
-			if (width == 240) {
-				btn.setTextSize(PublicMethod.getPxInt(20, activity));
-			} else {
-				btn.setTextSize(PublicMethod.getPxInt(11, activity));
-			}
+			float scale = 480.0f/width;
+			float textSize = 11 * scale;
+			btn.setTextSize(PublicMethod.getPxInt(textSize, activity));
+			/**add by pengcx 20130802 end*/
+			
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
