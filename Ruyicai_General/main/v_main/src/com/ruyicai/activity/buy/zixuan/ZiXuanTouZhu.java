@@ -341,11 +341,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 * @param view
 	 */
 	public void initImageView() {
+		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
+
 		/**add by pengcx 20130722 start*/
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
 			

@@ -93,11 +93,12 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	}
 
 	private void init() {
+		zhuiqishezhi = (LinearLayout) findViewById(R.id.zhuiqishezhi);
 		initImageView();
 		if (betAndGift.isZhui()) {
 			initZhuiJia();
 		}
-		zhuiqishezhi = (LinearLayout) findViewById(R.id.zhuiqishezhi);
+
 		zhuiqi = (Button) findViewById(R.id.zhuiqi);
 		zhuiqi.setOnClickListener(new OnClickListener() {
 
@@ -636,13 +637,14 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void initImageView() {
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
+		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
+		mTextQishu = (EditText) findViewById(R.id.buy_zixuan_text_qishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		mSeekBarQishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_qishu);
 		mSeekBarQishu.setOnSeekBarChangeListener(this);
 		mSeekBarQishu.setProgress(iProgressQishu);
 
-		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
 		/**add by pengcx 20130722 start*/
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
 			
@@ -670,7 +672,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		});
 		/**add by pengcx 20130722 end*/
 		mTextBeishu.setText("" + iProgressBeishu);
-		mTextQishu = (EditText) findViewById(R.id.buy_zixuan_text_qishu);
 		mTextQishu.setText("" + iProgressQishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());

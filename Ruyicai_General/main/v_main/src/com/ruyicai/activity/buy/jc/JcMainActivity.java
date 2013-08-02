@@ -345,12 +345,13 @@ public class JcMainActivity extends Activity implements
 	 * @param view
 	 */
 	public void initImageView(View view) {
+		mTextBeishu = (EditText) view.findViewById(R.id.buy_zixuan_text_beishu);
 		mSeekBarBeishu = (SeekBar) view
 				.findViewById(R.id.buy_jc_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-		mTextBeishu = (EditText) view.findViewById(R.id.buy_zixuan_text_beishu);
+
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
@@ -710,8 +711,10 @@ public class JcMainActivity extends Activity implements
 		case R.id.buy_jc_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			touzhuDialog.setAlertText();
-			touzhuDialog.setPrizeText();
+			if (touzhuDialog != null) {
+				touzhuDialog.setAlertText();
+				touzhuDialog.setPrizeText();
+			}
 			break;
 		default:
 			break;
