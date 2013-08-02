@@ -1672,6 +1672,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 * @param view
 	 */
 	public void initImageView(View view) {
+		mTextBeishu = (EditText) view.findViewById(R.id.buy_zixuan_text_beishu);
 		mSeekBarBeishu = (SeekBar) view
 				.findViewById(R.id.buy_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
@@ -1679,7 +1680,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		mSeekBarQishu = (SeekBar) view.findViewById(R.id.buy_zixuan_seek_qishu);
 		mSeekBarQishu.setOnSeekBarChangeListener(this);
 		mSeekBarQishu.setProgress(iProgressQishu);
-		mTextBeishu = (EditText) view.findViewById(R.id.buy_zixuan_text_beishu);
+
 		mTextBeishu.setText("" + iProgressBeishu);
 		mTextQishu = (EditText) view.findViewById(R.id.buy_zixuan_text_qishu);
 		mTextQishu.setText("" + iProgressQishu);
