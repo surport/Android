@@ -330,6 +330,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		mSeekBarBeishu = (SeekBar) view
 				.findViewById(R.id.buy_zixuan_seek_beishu);
 		mTextBeishu = (EditText) view.findViewById(R.id.buy_zixuan_text_beishu);
+		mTextQishu = (EditText) view.findViewById(R.id.buy_zixuan_text_qishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		mSeekBarQishu = (SeekBar) view.findViewById(R.id.buy_zixuan_seek_qishu);
@@ -338,7 +339,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 
 
 		mTextBeishu.setText("" + iProgressBeishu);
-		mTextQishu = (EditText) view.findViewById(R.id.buy_zixuan_text_qishu);
 		mTextQishu.setText("" + iProgressQishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
