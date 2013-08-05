@@ -211,6 +211,7 @@ public class NoticeBallView extends View {
 				FIRST_WITH = 1;
 			} else {
 				FIRST_WITH = (int) (FIRST_WITH * release);
+				SECOND_WITH = (int) (SECOND_WITH * release); //add by yejc 20130805
 				setFistWith();
 			}
 		} else {
