@@ -51,7 +51,7 @@ public class GetFreeGoldActivity extends Activity {
 				"3、需要安装本机未安装过的软件才可获取彩金。<br/>\r\n" +
 				"4、获赠的彩金只能购彩，不能提现。<br/>\r\n</span>" +
 				"5、如意彩客服热线：400-665-1000。";
-		alipay_content.loadData(date, "text/html; charset=UTF-8", null);
+		alipay_content.loadDataWithBaseURL("", date, "text/html", "UTF-8", "");
 	}
 
 	private void getFreeGold() {

@@ -629,8 +629,8 @@
             android:id="@id/LinearLayout0000"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/LinearLayout0111"
             android:paddingBottom="50dip"
+            android:layout_marginTop="60dip"
             android:paddingLeft="10dip" >
 
             <LinearLayout
@@ -639,8 +639,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="265dip"
                 android:background="@drawable/fenxiangbg"
-                android:orientation="horizontal"
-                android:visibility="gone" >
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@id/join_detail_img_buy2"
