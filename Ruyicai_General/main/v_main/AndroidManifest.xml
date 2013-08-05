@@ -631,7 +631,7 @@
             android:name="com.ruyicai.activity.join.JoinDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="com.ruyicai.activity.join.JoinDingActivity"
             android:configChanges="keyboardHidden|orientation"
