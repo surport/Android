@@ -103,7 +103,9 @@ public class MyCheckBox extends CheckBox {
 				contentSize = 18;
 			}
 		} else {
-			if (width < 100) {
+			float standardWidth = PublicMethod.getDisplayWidth(context)/480.0f * 100;
+			
+			if (width < standardWidth) {
 				if (text.length() > 3) {
 					titleX = 3;
 					contentX = 3;
@@ -132,7 +134,6 @@ public class MyCheckBox extends CheckBox {
 		mPaint.setColor(Color.GRAY);
 		canvas.drawText(text, PublicMethod.getPxInt(contentX, context),
 				PublicMethod.getPxInt(contentY, context), mPaint);
-
 	}
 
 }
