@@ -1428,7 +1428,7 @@ public class BeiJingSingleGameActivity extends Activity {
 						appendOverAllBatchCodeString(danBatchCodeStringBuffer,
 								overAllAgainstInformation);
 					} else {
-						appendOverAllBatchCodeString(danBatchCodeStringBuffer,
+						appendOverAllBatchCodeString(noDanBatchCodeStringBuffer,
 								overAllAgainstInformation);
 					}
 
