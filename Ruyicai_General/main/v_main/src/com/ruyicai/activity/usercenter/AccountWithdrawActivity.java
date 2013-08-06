@@ -128,7 +128,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	EditText money;
 	EditText passwordzfb;
 	boolean isgetzfb = false;
-	private final int MAX_AMT = 50000;
 	
 	// add by yejc 20130322
 	private String accountBalance = "您的账户可提现余额为：";
@@ -636,8 +635,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 				changeWithdPojo.setUserno(userno);
 				changeWithdPojo.setPhonenum(phonenum);
 				changeWithdPojo.setSessionid(sessionid);
-				// Log.e("amoit",
-				// PublicMethod.doubleToFen(moneyStr)+"======"+moneyStr);
 
 				if (info.getBankName().equals("")
 						|| info.getBankName().equals("null")) {
@@ -698,8 +695,7 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	String dnaRemind = "1、持卡人名必须与用户信息绑定的真实姓名一致！提现只能提到银行卡上，暂不支持信用卡提现.<br>"
 			+ "2、可提现余额大于等于10元时，单笔提现金额不能小于10元，可提现余额小于10元时，需要一次性提清。<br>"
 			+ "3、为了防止少数用户利用信用卡套现和洗钱行为，保证正常用户的资金安全，本软件针对提款做出以下规定：累计充值资金消费未满30%，可提现金额为累计充值资金的70%；累计充值资金消费达到30%，不受此限制。<br>"
-			+ "4、银行卡提现不收取手续费。用工商、农业、建设、招商银行的银行卡16:00前的提款申请：当天到账；16:00后的提款申请：第二天到账。使用其它银行卡的提现，到账时间加一天。如有疑问，请致电客服热线：4006651000<br>"
-			+ "5、单笔提现金额最高5万元";
+			+ "4、银行卡提现不收取手续费。用工商、农业、建设、招商银行的银行卡16:00前的提款申请：当天到账；16:00后的提款申请：第二天到账。使用其它银行卡的提现，到账时间加一天。如有疑问，请致电客服热线：4006651000<br>";
 	/*Modify by pengcx 20130416 end*/
 
 	
@@ -855,9 +851,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 						.parseFloat(drawMoney)) {
 					Toast.makeText(AccountWithdrawActivity.this,
 							"您提现的金额大于您的可提现余额！", Toast.LENGTH_SHORT).show();
-				} else if (Float.parseFloat(moneyStr) > MAX_AMT) {
-					Toast.makeText(AccountWithdrawActivity.this,
-							"单笔提现金额最高5万元！", Toast.LENGTH_SHORT).show();
 				} else {
 					shellRW.putStringValue("bankno", String.valueOf(money_brank
 							.getSelectedItemPosition()));
@@ -1429,12 +1422,8 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 			holder.reason.setText(cashreason);
 			if ("1".equals(state) || "103".equals(state) || "105".equals(state)) {
 				holder.cashstate.setText(R.string.account_withdraw_detail_content);
-//				holder.cashstate.setTextColor(getResources()
-//						.getColor(R.color.red));
 			} else {
 				holder.cashstate.setText(cashstate);
-//				holder.cashstate.setTextColor(getResources()
-//						.getColor(R.color.gree_black));
 			}
 			initCashstateAndCheckBtn(holder, visible);
 			holder.check.setOnClickListener(new OnClickListener() {
@@ -1492,17 +1481,14 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	private void initCashstateAndCheckBtn(ViewHolder holder, final int mask) {
 		if (mask == 104) {
 			holder.check.setMaxHeight(20);
-//			holder.cashstate.setTextColor(Color.rgb(163, 163, 163));
 			holder.check.setBackgroundResource(R.drawable.shouqi);
 			holder.check.setText("");
 			holder.check.setVisibility(View.VISIBLE);
 		} else if (mask == 1) {
-//			holder.cashstate.setTextColor(Color.rgb(190, 108, 22));
 			holder.check.setText("取消");
 			holder.check.setBackgroundResource(R.drawable.quxiao_normal);
 			holder.check.setVisibility(View.VISIBLE);
 		} else {
-//			holder.cashstate.setTextColor(Color.rgb(21, 83, 26));
 			holder.check.setVisibility(View.GONE);
 		}
 	}

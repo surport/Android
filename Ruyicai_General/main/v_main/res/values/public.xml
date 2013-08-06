@@ -3484,5 +3484,5 @@
     <public name="alert_dialog_jc_predictmoney" type="id" id="0x7f070638"/>
     <public name="alert_dialog_touzhu_btn_look_code" type="id" id="0x7f070149"/>
     <public name="alert_dialog_touzhu_textview_zhushu" type="id" id="0x7f07053d"/>
-	
+	<public name="usercenter_winprize_linear" type="id" id="0x7f070642"/>
 </resources>

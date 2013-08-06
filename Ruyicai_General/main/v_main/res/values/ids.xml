@@ -1445,4 +1445,5 @@
     <item name="join_check_item_text_prizeamt" type="id"/>
     <item name="usercenter_winprize_ordertime" type="id"/>
     <item name="usercenter_trackquery_ordertime" type="id"/>
+    <item name="usercenter_winprize_linear" type="id"/>
 </resources>

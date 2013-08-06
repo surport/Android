@@ -414,10 +414,15 @@ public class WinPrizeActivity extends Activity {
 						.findViewById(R.id.usercenter_winprize_querydetail);
 				holder.buyagain = (Button) convertView
 						.findViewById(R.id.usercenter_winprize_buyagain);
+				/**add by yejc 20130806 start*/
+				holder.linearLyaout = (LinearLayout) convertView
+						.findViewById(R.id.usercenter_winprize_linear);
+				/**add by yejc 20130806 end*/
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
+			holder.linearLyaout.setOrientation(LinearLayout.VERTICAL); //add by yejc 20130806 start
 			String prizeString = getString(R.string.usercenter_prizeMoney);// 中奖金额字
 			holder.lotteryname.setText(lotName);
 			if (lotno.equals("J00001") || lotno.equals("J00002")
@@ -453,6 +458,7 @@ public class WinPrizeActivity extends Activity {
 			TextView prizemoney;
 			Button lookdetail;
 			Button buyagain;
+			LinearLayout linearLyaout; //add by yejc 20130806 start
 		}
 	}
 
