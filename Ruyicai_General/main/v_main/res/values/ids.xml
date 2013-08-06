@@ -667,7 +667,6 @@
     <item name="jc_zjq_button8" type="id"/>
     <item name="jion_info_check" type="id"/>
     <item name="jisuan" type="id"/>
-    <item name="join_Check_top" type="id"/>
     <item name="join_check_detail_cancel" type="id"/>
     <item name="join_check_detail_text_all_atm" type="id"/>
     <item name="join_check_detail_text_bao_atm" type="id"/>
@@ -689,7 +688,6 @@
     <item name="join_check_item_text_result" type="id"/>
     <item name="join_check_item_text_time" type="id"/>
     <item name="join_check_listView_item_jump" type="id"/>
-    <item name="join_check_middle" type="id"/>
     <item name="join_check_top_linear" type="id"/>
     <item name="join_chedan" type="id"/>
     <item name="join_detail_edit_baodi" type="id"/>

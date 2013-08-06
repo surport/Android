@@ -462,30 +462,33 @@ public class JcScoreListActivity extends Activity {
 			
 			/**add by yejc 20130802 start*/
 			if ("".equals(info.getHomeScore())) {
-				holder1.homeScore.setText("");
+				holder1.homeScore.setText("0");
 			} else {
 				holder1.homeScore.setText(info.getHomeScore());
 			}
 			
 			if ("".equals(info.getGuestScore())) {
-				holder1.guestScore.setText("");
+				holder1.guestScore.setText("0");
 			} else {
 				holder1.guestScore.setText(info.getGuestScore());
 			}
 			
 			if (!isLq) {
-				holder.halfScore.append("(");
+				String halfScoreStr = "";
+				halfScoreStr+= "(";
 				if ("".equals(info.getHomeHalfScore())) {
-					holder.halfScore.append("");
+					halfScoreStr+= "0";
 				} else {
-					holder.halfScore.append(info.getHomeHalfScore());
+					halfScoreStr+=info.getHomeHalfScore();
 				}
-				
+				halfScoreStr+= ":";
 				if ("".equals(info.getGuestHalfScore())) {
-					holder.halfScore.append("");
+					halfScoreStr+= "0";
 				} else {
-					holder.halfScore.append(info.getGuestHalfScore());
+					halfScoreStr+=info.getGuestHalfScore();
 				}
+				halfScoreStr+= ")";
+				holder.halfScore.setText(halfScoreStr);
 			}
 			/**add by yejc 20130802 end*/
 			

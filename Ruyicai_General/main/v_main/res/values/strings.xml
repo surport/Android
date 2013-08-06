@@ -1179,7 +1179,7 @@
     
     <string name="nmk3willSaleMessage">"快三即将发售，敬请期待"</string>  
     <string name="bdwillSaleMessage">"北京单场即将发售，敬请期待"</string>  
-    <string name="twentyClosedMessage">"22选5已经关闭"</string>  
+    <string name="twentyClosedMessage">"22选5已经停止销售"</string>  
     <string name="umpay_recharge_bingphone_submit">提交</string>
     <string name="umpay_recharge_info">"充值提示信息"</string>
     <string name="use_bindphone_number">"使用已绑定的手机号"</string>
