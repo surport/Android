@@ -1355,7 +1355,6 @@
 	<public type="id" name="jc_zjq_button8" id="0x7f07024e" />
 	<public type="id" name="jion_info_check" id="0x7f070437" />
 	<public type="id" name="jisuan" id="0x7f070390" />
-	<public type="id" name="join_Check_top" id="0x7f07040d" />
 	<public type="id" name="join_check_detail_cancel" id="0x7f07040a" />
 	<public type="id" name="join_check_detail_text_all_atm" id="0x7f070400" />
 	<public type="id" name="join_check_detail_text_bao_atm" id="0x7f070402" />
@@ -1377,7 +1376,6 @@
 	<public type="id" name="join_check_item_text_result" id="0x7f07040f" />
 	<public type="id" name="join_check_item_text_time" id="0x7f070412" />
 	<public type="id" name="join_check_listView_item_jump" id="0x7f070418" />
-	<public type="id" name="join_check_middle" id="0x7f070411" />
 	<public type="id" name="join_check_top_linear" id="0x7f0703fb" />
 	<public type="id" name="join_chedan" id="0x7f07041c" />
 	<public type="id" name="join_detail_edit_baodi" id="0x7f070440" />
@@ -3469,8 +3467,8 @@
 	<public type="id" name="head_lastUpdatedTextView" id="0x7f070641" /> 
 	
 	<public type="id" name="join_check_item_text_prizeamt" id="0x7f07063c" />
-	<public type="id" name="usercenter_winprize_ordertime" id="0x7f070642" />
-	<public type="id" name="usercenter_trackquery_ordertime" id="0x7f070643" />   
+	<public type="id" name="usercenter_winprize_ordertime" id="0x7f07040d" />
+	<public type="id" name="usercenter_trackquery_ordertime" id="0x7f070411" />   
 	
 	<public name="alert_dialog_jc_lotnotype" type="id" id="0x7f070639"/>
     <public name="alert_dialog_touzhu_linear_qihao_beishu" type="id" id="0x7f070119"/>
