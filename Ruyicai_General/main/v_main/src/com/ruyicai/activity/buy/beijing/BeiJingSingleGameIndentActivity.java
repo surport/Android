@@ -235,20 +235,20 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				if (bettingInfoList.size() > 1) {
-					int visibility = schemeDetailLinearLayout.getVisibility();
-					if (visibility == View.VISIBLE) {
-						schemeDetailLinearLayout.setVisibility(View.GONE);
-//						schemeTextView.setText(againstedString);
-						schemeTextView.setVisibility(View.VISIBLE);
-						upDownImageView.setImageResource(R.drawable.down_icon);
-					} else {
-						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
-						upDownImageView.setImageResource(R.drawable.up_icon);
-//						schemeTextView.setText("");
-						schemeTextView.setVisibility(View.INVISIBLE);
-					}
+				/**modify by pengcx 20130806 start*/
+				int visibility = schemeDetailLinearLayout.getVisibility();
+				if (visibility == View.VISIBLE) {
+					schemeDetailLinearLayout.setVisibility(View.GONE);
+					// schemeTextView.setText(againstedString);
+					schemeTextView.setVisibility(View.VISIBLE);
+					upDownImageView.setImageResource(R.drawable.down_icon);
+				} else {
+					schemeDetailLinearLayout.setVisibility(View.VISIBLE);
+					upDownImageView.setImageResource(R.drawable.up_icon);
+					// schemeTextView.setText("");
+					schemeTextView.setVisibility(View.INVISIBLE);
 				}
+				/**modify by pengcx 20130806 end*/
 			}
 		});
 		lotoTypeTextView.setText(PublicMethod.toLotno(lotnoString));

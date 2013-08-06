@@ -131,20 +131,20 @@ public class TouzhuDialog {
 
 			@Override
 			public void onClick(View v) {
-				if (teamNum > 1) {
-					int visibility = schemeDetailLinearLayout.getVisibility();
-					if (visibility == View.VISIBLE) {
-						schemeDetailLinearLayout.setVisibility(View.GONE);
-//						schemeTextView.setText(alertMsg);
-						schemeTextView.setVisibility(View.VISIBLE);
-						upDownImageView.setImageResource(R.drawable.down_icon);
-					} else {
-						schemeDetailLinearLayout.setVisibility(View.VISIBLE);
-						upDownImageView.setImageResource(R.drawable.up_icon);
-//						schemeTextView.setText("");
-						schemeTextView.setVisibility(View.INVISIBLE);
-					}
+				/**modify by pengcx 20130805 start*/
+				int visibility = schemeDetailLinearLayout.getVisibility();
+				if (visibility == View.VISIBLE) {
+					schemeDetailLinearLayout.setVisibility(View.GONE);
+					// schemeTextView.setText(alertMsg);
+					schemeTextView.setVisibility(View.VISIBLE);
+					upDownImageView.setImageResource(R.drawable.down_icon);
+				} else {
+					schemeDetailLinearLayout.setVisibility(View.VISIBLE);
+					upDownImageView.setImageResource(R.drawable.up_icon);
+					// schemeTextView.setText("");
+					schemeTextView.setVisibility(View.INVISIBLE);
 				}
+				/**modify by pengcx 20130805 end*/
 			}
 		});
 		lotoTypeTextView.setText(PublicMethod.toLotno(jcMainView.getLotno()));

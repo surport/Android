@@ -160,7 +160,9 @@ public class DLTDetailView extends LotnoDetailView {
 		linear13.setVisibility(LinearLayout.VISIBLE);
 		linear14.setVisibility(LinearLayout.VISIBLE);
 		linear15.setVisibility(LinearLayout.VISIBLE);
-		linear16.setVisibility(LinearLayout.VISIBLE);
+		/*modify by pengcx 20130806 start*/
+		linear16.setVisibility(LinearLayout.GONE);
+		/*modify by pengcx 20130806 end*/
 
 		prizename1.setText(R.string.prizedetail_fristprize);
 		prizename2.setText(R.string.prizedetail_zhuijia);
