@@ -642,7 +642,7 @@
             android:name="com.ruyicai.activity.join.JoinModifyActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <!-- gift -->
         <activity
             android:name="com.ruyicai.activity.gift.GiftActivity"

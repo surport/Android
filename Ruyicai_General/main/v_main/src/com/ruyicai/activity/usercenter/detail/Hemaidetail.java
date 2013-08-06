@@ -867,8 +867,8 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
-		if (detatil.getBatchCode().equals("null")
-				|| detatil.getBatchCode().equals("")) {
+		if ("null".equals(detatil.getBatchCode())
+				|| "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
 		} else {
 			batchcodetext.append("第" + detatil.getBatchCode() + "期");
@@ -882,17 +882,21 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		faqirengou.append(detatil.getBuyAmtByStarter() + "元");
 		minText1.append(detatil.getMinAmt() + "元");
 		name.append(detatil.getStarter());
-		describe.append(detatil.getDescription());
+		if (detatil.getDescription() != null ) {
+			describe.append(detatil.getDescription());
+		}
 		atm.append(detatil.getTotalAmt() + "元");
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
 		progress.append(detatil.getBuyProgress() + "%+"
 				+ detatil.getSafeProgress() + "%");
-		if (prizestate.equals("3") && detatil.getDisplayState().equals("成功")) {
+		if (prizestate.equals("3") && "成功".equals(detatil.getDisplayState())) {
 			state.append("未中奖");
 		} else {
-			state.append(detatil.getDisplayState());
+			if (detatil.getDisplayState() != null) {
+				state.append(detatil.getDisplayState());
+			}
 		}
 		shengAtm.append(detatil.getRemainderAmt() + "元");
 		person.append(detatil.getParticipantCount() + "人");
@@ -1546,7 +1550,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setTotalAmt(String totalAmt) {
-			this.totalAmt = String.valueOf(Integer.valueOf(totalAmt) / 100);
+			this.totalAmt = String.valueOf(Long.valueOf(totalAmt) / 100);
 		}
 
 		public String getMinAmt() {
@@ -1554,7 +1558,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setMinAmt(String minAmt) {
-			this.minAmt = String.valueOf(Integer.valueOf(minAmt) / 100);
+			this.minAmt = String.valueOf(Long.valueOf(minAmt) / 100);
 		}
 
 		public String getBuyProgress() {
@@ -1578,7 +1582,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setHasBuyAmt(String hasBuyAmt) {
-			this.hasBuyAmt = String.valueOf(Integer.valueOf(hasBuyAmt) / 100);
+			this.hasBuyAmt = String.valueOf(Long.valueOf(hasBuyAmt) / 100);
 		}
 
 		public String getSafeAmt() {
@@ -1586,11 +1590,16 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setSafeAmt(String safeAmt) {
-			this.safeAmt = String.valueOf(Integer.valueOf(safeAmt) / 100);
+			this.safeAmt = String.valueOf(Long.valueOf(safeAmt) / 100);
 		}
 
 		public String getDisplayState() {
 			String result = "";
+			/**add by yejc 20130806 start*/
+			if (displayState == null || "".equals(displayState)) {
+				return "";
+			}
+			/**add by yejc 20130806 end*/
 			switch (Integer.valueOf(displayState)) {
 			case 1:
 				result = "认购中";
@@ -1623,7 +1632,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setBuyAmtByStarter(String buyAmtByStarter) {
-			this.buyAmtByStarter = String.valueOf(Integer
+			this.buyAmtByStarter = String.valueOf(Long
 					.valueOf(buyAmtByStarter) / 100);
 		}
 
@@ -1641,7 +1650,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 
 		public void setRemainderAmt(String remainderAmt) {
 			this.remainderAmt = String
-					.valueOf(Integer.valueOf(remainderAmt) / 100);
+					.valueOf(Long.valueOf(remainderAmt) / 100);
 		}
 
 		public String getParticipantCount() {
