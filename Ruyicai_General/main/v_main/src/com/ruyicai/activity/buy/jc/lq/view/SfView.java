@@ -33,13 +33,9 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.jc.JcMainView;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity;
-import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.code.jc.lq.BasketSF;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.net.newtransaction.QueryJcInfoInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 

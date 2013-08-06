@@ -3,6 +3,7 @@ package com.ruyicai.activity.buy.jc.explain.lq;
 import android.os.Bundle;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.buy.jc.explain.zq.RecommendActivity;
+import com.ruyicai.constant.Constants;
 
 public class JcLqExplainActivity extends JcExplainActivity {
 	public static int Lq_TYPE;
@@ -23,5 +24,6 @@ public class JcLqExplainActivity extends JcExplainActivity {
 				LqEuropeActivity.class, LqScoreActivity.class,
 				LqAllScoreActivity.class, RecommendActivity.class};
 		type = "dataAnalysisJcl";
+		Constants.currentTickType = "jingCai";
 	}
 }

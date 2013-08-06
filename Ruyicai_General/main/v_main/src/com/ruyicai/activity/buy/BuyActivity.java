@@ -80,7 +80,6 @@ import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.dialog.ShortcutDialog;
 import com.ruyicai.net.newtransaction.PrizeRankInterface;
 import com.ruyicai.net.newtransaction.TopNewsInformationInterface;
-import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;

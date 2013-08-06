@@ -96,6 +96,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 		intent.putExtra("event", event);
 		intent.putExtra("home", home);
 		intent.putExtra("away", away);
+		Constants.currentTickType = "jingCai";
 		startActivity(intent);
 	}
 

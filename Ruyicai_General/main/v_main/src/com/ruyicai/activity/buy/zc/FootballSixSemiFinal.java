@@ -297,7 +297,7 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 
 				@Override
 				public void onClick(View v) {
-					ExplainInterface.COMMAND = "zuCai";
+					Constants.currentTickType = "zuCai";
 					Intent intent = new Intent(FootballSixSemiFinal.this, JcExplainActivity.class);
 					String event = Constants.LOTNO_LCB + "_" + mList.get(index).get(ISSUE)
 							+ "_" + mList.get(index).get(TEAM_ID);

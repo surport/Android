@@ -466,12 +466,12 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 
 				@Override
 				public void onClick(View v) {
-					ExplainInterface.COMMAND = "zuCai";
 					Intent intent = new Intent(FootballChooseNineLottery.this, JcExplainActivity.class);
 					String event = Constants.LOTNO_RX9 + "_" + mList.get(index).get(ISSUE)
 							+ "_" + mList.get(index).get(TEAM_ID);
 					intent.putExtra("event", event);
 					intent.putExtra(LOTNO_ZC, LOTNO_ZC);
+					Constants.currentTickType = "zuCai";
 					FootballChooseNineLottery.this.startActivity(intent);
 				}
 			});

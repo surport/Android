@@ -13,6 +13,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
 import com.ruyicai.net.newtransaction.QueryJcInfoInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
@@ -139,6 +140,7 @@ public abstract class JcMainView {
 	public void trunExplain(String event, String home, String away) {
 		Intent intent = new Intent(context, JcExplainActivity.class);
 		intent.putExtra("event", event);
+		Constants.currentTickType = "jingCai";
 		context.startActivity(intent);
 	}
 

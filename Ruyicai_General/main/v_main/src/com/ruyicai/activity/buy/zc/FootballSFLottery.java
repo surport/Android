@@ -415,12 +415,12 @@ public class FootballSFLottery extends FootballFourteen implements
 				
 				@Override
 				public void onClick(View v) {
-					ExplainInterface.COMMAND = "zuCai";
+					Constants.currentTickType = "zuCai";
 					Intent intent = new Intent(FootballSFLottery.this, JcExplainActivity.class);
 					String event = Constants.LOTNO_SFC + "_" + mList.get(index).get(ISSUE)
 							+ "_" + mList.get(index).get(TEAM_ID);
 					intent.putExtra("event", event);
-					intent.putExtra(LOTNO_ZC, LOTNO_ZC);
+					intent.putExtra(LOTNO_ZC, LOTNO_ZC);;
 					FootballSFLottery.this.startActivity(intent);
 				}
 			});

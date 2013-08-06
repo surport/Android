@@ -86,11 +86,7 @@ public class JcExplainActivity extends BuyActivityGroup {
 
 			@Override
 			public void run() {
-				if (Constants.BEIJINGSINGLE.equals(Constants.currentTickType)) {
-					str = ExplainInterface.getExplain(Constants.BEIJINGSINGLE,event, type);					
-				} else {
-					str = ExplainInterface.getExplain(event, type);
-				}
+				str = ExplainInterface.getExplain(Constants.currentTickType,event, type);					
 				try {
 					jsonObject = new JSONObject(str);
 					final String msg = jsonObject.getString("message");
