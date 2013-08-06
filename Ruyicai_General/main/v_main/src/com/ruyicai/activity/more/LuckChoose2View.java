@@ -49,7 +49,9 @@ public class LuckChoose2View extends SurfaceView implements
 	 * 图片旋转角度
 	 */
 	public static int degrees;
-
+	/**add by pengcx 20130806 start*/
+	public boolean isScale;
+	/**add by pengcx 20130806 end*/
 	/**
 	 * LuckChoose2引用， 用于回调
 	 */
@@ -61,7 +63,7 @@ public class LuckChoose2View extends SurfaceView implements
 	public void setLuckChoose2Instance(LuckChoose2 luckChoose2) {
 		this.luckChoose2 = luckChoose2;
 	}
-
+	
 	/**
 	 * 按钮事件
 	 */
@@ -288,16 +290,21 @@ public class LuckChoose2View extends SurfaceView implements
 		}
 		
 		/** add by pengcx 20130802 start*/
-		float scaleWidth = screenWidth / 480.0f;
-		float scaleHeight = screenHeight / 800.0f;
-		for(int i = 0; i < anniuZhongxinZuobiao.length; i++){
-			anniuZhongxinZuobiao[i][0] = (int) (anniuZhongxinZuobiao[i][0] * scaleWidth);
-			anniuZhongxinZuobiao[i][1] = (int) (anniuZhongxinZuobiao[i][1] * scaleHeight);
+		if(!isScale){
+			float scaleWidth = screenWidth / 480.0f;
+			float scaleHeight = screenHeight / 800.0f;
+			for(int i = 0; i < anniuZhongxinZuobiao.length; i++){
+				anniuZhongxinZuobiao[i][0] = (int) (anniuZhongxinZuobiao[i][0] * scaleWidth);
+				anniuZhongxinZuobiao[i][1] = (int) (anniuZhongxinZuobiao[i][1] * scaleHeight);
 
+			}
+			// 字体大小，距转盘中心边距缩放
+			fontSize *= scaleWidth;
+			paint.setTextSize(fontSize);
+			
+			isScale = true;
 		}
-		// 字体大小，距转盘中心边距缩放
-		fontSize *= scaleWidth;
-		paint.setTextSize(fontSize);
+		
 		/** add by 20130802 20130726 end*/
 	
 		myThread = new SurfaceViewThread();
