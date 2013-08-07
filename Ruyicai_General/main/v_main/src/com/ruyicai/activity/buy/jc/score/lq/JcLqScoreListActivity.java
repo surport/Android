@@ -10,8 +10,16 @@ import com.ruyicai.activity.buy.jc.score.zq.JcScoreListActivity;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.util.RWSharedPreferences;
 import android.content.Intent;
+import android.os.Bundle;
 
 public class JcLqScoreListActivity extends JcScoreListActivity {
+
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		playType = "jclq";
+	}
 
 	public void setReguestType() {
 		reguestType = "immediateScoreJcl";
@@ -45,6 +53,13 @@ public class JcLqScoreListActivity extends JcScoreListActivity {
 				info.setEvent(json.getString("event"));
 				info.setHomeScore(json.getString("guestScore"));
 				info.setGuestScore(json.getString("homeScore"));
+				if (json.has("matchStateMemo")) {
+					info.setMatchStateMemo(json.getString("matchStateMemo"));
+				}
+				
+				if (json.has("remainTime")) {
+					info.setRemainTime(json.getString("remainTime"));
+				}
 				try {
 					int homeInt = Integer.parseInt(info.getHomeScore());
 					int guestInt = Integer.parseInt(info.getGuestScore());

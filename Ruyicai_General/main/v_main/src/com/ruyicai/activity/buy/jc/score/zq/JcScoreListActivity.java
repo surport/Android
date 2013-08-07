@@ -60,6 +60,8 @@ public class JcScoreListActivity extends Activity {
 	protected boolean isBeiDan = false;
 	RefreshBroadcastReceiver refreshReceiver = new RefreshBroadcastReceiver();
 	public final static String BROADCAST_ACTION  = "BROADCAST_ACTION";
+	int tabIndex = 0;
+	protected String playType = "jczq";
 	/**add by yejc 20130712 end*/
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class JcScoreListActivity extends Activity {
 			TextView tv = (TextView)findViewById(R.id.jc_score_list_text);
 			tv.setText("选择期号：");
 		}
+		tabIndex = getIntent().getIntExtra("index", 0);
 		/**add by yejc 20130719 end*/
 	}
 
@@ -410,8 +413,25 @@ public class JcScoreListActivity extends Activity {
 			final ViewHolder holder = holder1;
 			holder.teamName.setText(info.getTeamName());
 			holder.hTeam.setText(info.gethTeam());
-			holder.state.setText(info.getState());
-			holder.state.setTextColor(setStateColor(info.getState()));
+			/**add by yejc 20130807 start*/
+			if (tabIndex == 2) {
+				if ("jclq".equals(playType)) {
+					holder.state.setText(info.getMatchStateMemo()+" "+
+				    info.getRemainTime());
+					holder.state.setTextColor(Color.RED);
+				} else if ("jczq".equals(playType)){
+					holder.state.setText(info.getProgressedTime());
+					holder.state.setTextColor(Color.RED);
+				} else {
+					holder.state.setText(info.getState());
+					holder.state.setTextColor(setStateColor(info.getState()));
+				}
+				/**add by yejc 20130807 end*/
+			} else {
+				holder.state.setText(info.getState());
+				holder.state.setTextColor(setStateColor(info.getState()));
+			}
+			
 			holder.time.setText("开赛：" + info.getTime());
 			holder.vTeam.setText(info.getvTeam());
 			if (isTrack(allcountries.get(index), info.getEvent())) {
@@ -564,6 +584,9 @@ public class JcScoreListActivity extends Activity {
 				info.setTime(json.getString("matchTime"));
 				info.setvTeam(json.getString("guestTeam"));
 				info.setEvent(json.getString("event"));
+				if(json.has("progressedTime")) {
+					info.setProgressedTime(json.getString("progressedTime"));
+				}
 				listInfo.add(info);
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -588,6 +611,33 @@ public class JcScoreListActivity extends Activity {
 		private String result = "";
 		private String red = "";
 		private String yellow = "";
+		private String matchStateMemo = "";
+		private String remainTime = "";
+		private String progressedTime = "";
+
+		public String getMatchStateMemo() {
+			return matchStateMemo;
+		}
+
+		public void setMatchStateMemo(String matchStateMemo) {
+			this.matchStateMemo = matchStateMemo;
+		}
+
+		public String getProgressedTime() {
+			return progressedTime;
+		}
+
+		public void setProgressedTime(String progressedTime) {
+			this.progressedTime = progressedTime;
+		}
+
+		public String getRemainTime() {
+			return remainTime;
+		}
+
+		public void setRemainTime(String remainTime) {
+			this.remainTime = remainTime;
+		}
 
 		public String getResult() {
 			return result;
