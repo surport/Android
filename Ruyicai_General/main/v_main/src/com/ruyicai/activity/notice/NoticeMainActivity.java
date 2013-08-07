@@ -670,7 +670,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				String iIssue = (String) list.get(position).get(ISSUE);
+				String iIssue = (String) list.get(position-1).get(ISSUE);
 				NoticeActivityGroup.ISSUE = iIssue;
 				TextView nameText = (TextView) view
 						.findViewById(R.id.notice_prizes_main_title);
