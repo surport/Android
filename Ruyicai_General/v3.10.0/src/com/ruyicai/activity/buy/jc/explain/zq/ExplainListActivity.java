@@ -167,6 +167,7 @@ public class ExplainListActivity extends BaseListActivity {
 	 */
 	protected List getHTerm10Info(JSONArray jsonArray, String title) {
 		List listInfo = new ArrayList<ExplainInfo>();
+		if (jsonArray == null) return listInfo;
 		for (int i = 0; i < jsonArray.length(); i++) {
 			ExplainInfo info = new ExplainInfo();
 			info.setTitleName(title);
