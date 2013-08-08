@@ -27,6 +27,7 @@ import android.widget.TableLayout;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.home.MainGroup;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.util.ImageUtil;
 import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
@@ -125,22 +126,9 @@ public class PhotoActivity extends Activity {
 	}
 
 	private Bitmap getMatrixBitmap(Context context, int position) {
-		Resources r = this.getResources();
-		InputStream is = r.openRawResource(mLabel[position]);
-		BitmapDrawable bmpDraw1 = new BitmapDrawable(is);
-		Bitmap bitmap = bmpDraw1.getBitmap();
-		// 缩放开机图片
-		Matrix matrix = new Matrix();
-		float iScreenWidth = PublicMethod.getDisplayWidth(context);
-		float iScreenHeight = PublicMethod.getDisplayHeight(context);
-		float w = iScreenWidth / bitmap.getWidth();
-		float h = iScreenHeight / bitmap.getHeight();
-		if (w != 1 || h != 1) {
-			matrix.postScale(w, h);
-			bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
-					bitmap.getHeight(), matrix, true);
-		}
-		return bitmap;
+		int iScreenWidth = PublicMethod.getDisplayWidth(context);
+		int iScreenHeight = PublicMethod.getDisplayHeight(context);
+		return ImageUtil.decodeSampledBitmapFromResource(this.getResources(), mLabel[position], iScreenWidth, iScreenHeight);
 	}
 
 	// hesiming 20120708 begin for replace FlingGallery with ViewPager.
