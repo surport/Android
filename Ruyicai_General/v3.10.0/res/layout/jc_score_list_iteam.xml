@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dip" >
+
+    <LinearLayout
+        android:id="@id/jc_score_list_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/jc_score_list_bg" >
+
+        <LinearLayout
+            android:id="@id/jc_score_list_item_layout_left"
+            android:layout_width="25dip"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@id/jc_score_btn_start"
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:background="@drawable/jc_list_start" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="5dip" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dip"
+                android:paddingRight="10dip" >
+
+                <TextView
+                    android:id="@id/jc_score_text_team_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@id/jc_score_text_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@id/jc_score_text_half_score"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dip" >
+
+                <Button
+                    android:id="@id/jc_score_btn_next"
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/jc_score_next_icon"
+                    android:focusable="false" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dip"
+                    android:layout_toLeftOf="@id/jc_score_btn_next"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dip" >
+
+                        <TextView
+                            android:id="@id/jc_score_text_hteam"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="15dip"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" >
+
+                            <TextView
+                                android:id="@id/jc_score_mark"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:background="@drawable/team_score_mark" />
+
+                            <TextView
+                                android:id="@id/jc_score_text_home_score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="3dip"
+                                android:layout_toLeftOf="@id/jc_score_mark"
+                                android:background="@drawable/team_score"
+                                android:gravity="center"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@id/jc_score_text_guest_score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="3dip"
+                                android:layout_toRightOf="@id/jc_score_mark"
+                                android:background="@drawable/team_score"
+                                android:gravity="center"
+                                android:textColor="@android:color/white" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@id/jc_score_text_vteam"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="15dip"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@id/jc_score_text_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dip"
+                        android:gravity="center"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/zc_sfc_listview_item_bg"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dip"
+        android:background="@color/zc_sfc_divider" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:orientation="horizontal" >
+
+        <View
+            android:layout_width="1.5dip"
+            android:layout_height="100dip"
+            android:background="@color/zc_sfc_divider" />
+
+        <LinearLayout
+            android:id="@id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:layout_weight="20"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@id/game_type"
+                android:layout_width="fill_parent"
+                android:layout_height="40dip"
+                android:gravity="center"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:background="@color/zc_sfc_divider" />
+
+            <TextView
+                android:id="@id/game_date"
+                android:layout_width="fill_parent"
+                android:layout_height="60dip"
+                android:background="@drawable/jc_bgbottom_for_zcsfc"
+                android:gravity="bottom|center"
+                android:paddingBottom="5dip"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1.5dip"
+            android:layout_height="100dip"
+            android:background="@color/zc_sfc_divider" />
+
+        <LinearLayout
+            android:id="@id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:layout_weight="7"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@id/game_num"
+                    android:layout_width="18dip"
+                    android:layout_height="18dip"
+                    android:layout_marginLeft="2dip"
+                    android:layout_marginTop="2dip"
+                    android:background="@drawable/textview_style"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@id/text_vs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dip"
+                    android:text="VS"
+                    android:textColor="@color/red"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@id/home_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="12dip"
+                    android:layout_toLeftOf="@id/text_vs"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@id/zc_sfc_analysis"
+                    android:layout_width="22dip"
+                    android:layout_height="22dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/fenxi"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@id/guest_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginTop="12dip"
+                    android:layout_toRightOf="@id/text_vs"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            	<LinearLayout
+            	    android:id="@id/shengfucai_layout"
+            	    android:layout_width="fill_parent"
+            	    android:layout_height="50dip"
+            	    android:layout_gravity="center"
+            	    android:gravity="center"
+            	    android:layout_weight="1" >
+
+            	    <TableLayout
+            	        android:id="@id/shengfucai_ball"
+            	        android:layout_width="fill_parent"
+            	        android:layout_height="wrap_content"
+            	        android:paddingLeft="6dip"
+            	        android:paddingRight="6dip"
+            	        android:layout_gravity="center"
+            	        android:gravity="center"
+            	        android:shrinkColumns="*"
+            	        android:stretchColumns="*"
+            	        android:orientation="horizontal" >
+            	    </TableLayout>
+            	</LinearLayout>
+ 
+        </LinearLayout>
+
+        <View
+            android:layout_width="1.5dip"
+            android:layout_height="100dip"
+            android:background="@color/zc_sfc_divider" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dip"
+        android:background="@color/zc_sfc_divider" />
+
+</LinearLayout>
