@@ -758,7 +758,40 @@ public class RadioGroupView {
 			} else {
 				num = 7;
 			}
+		
 			break;
+		/**add by pengcx 20130812 start*/
+		case 10:
+			if (isDan) {
+				if (isBeiJing) {
+					num = 15;
+				}
+			}
+		
+			break;
+		case 11:
+			if (isDan) {
+				if (isBeiJing) {
+					num = 15;
+				} 
+			}
+			break;
+		case 12:
+			if (isDan) {
+				if (isBeiJing) {
+					num = 15;
+				} 
+			}
+		
+			break;
+		case 13:
+			if (isDan) {
+				if (isBeiJing) {
+					num = 15;
+				} 
+			}
+			break;
+		/**add by pengcx 20130812 end*/
 		}
 		return num;
 	}
