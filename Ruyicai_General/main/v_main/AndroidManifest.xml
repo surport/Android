@@ -287,10 +287,6 @@
             android:name="com.ruyicai.activity.buy.ssq.SsqZiDanTuo"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.buy.ssq.SsqJiXuan"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
 
         <!-- ssc -->
         <activity
