@@ -976,19 +976,17 @@
             android:theme="@android:style/Theme.Dialog" />
         <!-- 腾讯 -->
         <activity
-            android:name="com.tencent.tauth.TAuthView"
-            android:configChanges="keyboardHidden|navigation|orientation"
+            android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:theme="@style/ThemeActivity" >
+            android:noHistory="true" >
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="auth" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="tencent100305073" /><!-- 100380359 100381104 222222 -->
             </intent-filter>
         </activity>
+
         <!-- 开奖订阅 -->
         <receiver
             android:name="com.ruyicai.service.StartServiceReceiver"
