@@ -10,19 +10,16 @@ package com.ruyicai.activity.common;
 
 import java.util.Calendar;
 import java.util.LinkedHashSet;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -67,12 +64,9 @@ import com.ruyicai.util.CallServicePhoneConfirm;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.RWSharedPreferences;
-import com.tencent.tauth.TAuthView;
-import com.tencent.tauth.TencentOpenAPI;
-import com.tencent.tauth.bean.OpenId;
-import com.tencent.tauth.bean.UserInfo;
-import com.tencent.tauth.http.Callback;
-import com.tencent.tauth.http.TDebug;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.third.share.Token;
 import com.third.share.Utility;
 import com.third.share.Weibo;
@@ -144,8 +138,8 @@ public class UserLogin extends Activity implements TextWatcher {
 
 	public String mAppid = "100305073";// 申请时分配的appid
 	private String scope = "get_user_info,get_user_profile,add_share,add_topic,list_album,upload_pic,add_album";// 授权范围
-	private AuthReceiver receiver;
 	public String mAccessToken, mOpenId;
+	private Tencent tencent;
 	public static final int PROGRESS = 100000;
 	ProgressDialog mAlixPayDialog = null;
 
@@ -326,6 +320,7 @@ public class UserLogin extends Activity implements TextWatcher {
 		shake = AnimationUtils.loadAnimation(this, R.anim.shake);
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		tencent = Tencent.createInstance(mAppid, this.getApplicationContext());
 		Bundle bundle = getIntent().getExtras();
 		context = this;
 		mAlixPayDialog = UserCenterDialog.onCreateDialog(context);
@@ -503,8 +498,7 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-				auth(mAppid, "_self");
-				registerIntentReceivers();
+				auth();
 			}
 		});
 		
@@ -844,23 +838,6 @@ public class UserLogin extends Activity implements TextWatcher {
 			}
 		});
 		/**add by yejc 20130424 end*/
-		// 绑定手机号复选框
-		// CheckBox check = (CheckBox) findViewById(R.id.user_register_check);
-		// check.setButtonDrawable(R.drawable.check_select);
-		// check.setChecked(false);
-		// check.setOnCheckedChangeListener(new
-		// CompoundButton.OnCheckedChangeListener() {
-		// @Override
-		// public void onCheckedChanged(CompoundButton buttonView,boolean
-		// isChecked) {
-		// if(isChecked){
-		// isBindPhone = "1";//1是绑定，0是不绑定
-		// }else{
-		// isBindPhone = "0";
-		// }
-		// }
-		// });
-		// 服务协议复选框
 		CheckBox checkProtocol = (CheckBox) findViewById(R.id.user_register_check_protocol);
 		checkProtocol.setButtonDrawable(R.drawable.check_select);
 		checkProtocol.setChecked(true);
@@ -1273,157 +1250,35 @@ public class UserLogin extends Activity implements TextWatcher {
 		System.out.println(str.indexOf("bc"));
 	}
 
-	private void registerIntentReceivers() {
-		receiver = new AuthReceiver();
-		IntentFilter filter = new IntentFilter();
-		filter.addAction(TAuthView.AUTH_BROADCAST);
-		registerReceiver(receiver, filter);
-	}
-
-	private void unregisterIntentReceivers() {
-		unregisterReceiver(receiver);
-	}
-
 	/**
 	 * 打开登录认证与授权页面
 	 * 
-	 * @param String
-	 *            clientId 申请时分配的appid
-	 * @param String
-	 *            target 打开登录页面的方式：“_slef”以webview方式打开; "_blank"以内置安装的浏览器方式打开
-	 * @author John.Meng<arzen1013@gmail> QQ:3440895
-	 * @date 2011-9-5
 	 */
-	private void auth(String clientId, String target) {
-		Intent intent = new Intent(UserLogin.this,
-				com.tencent.tauth.TAuthView.class);
-		intent.putExtra(TAuthView.CLIENT_ID, clientId);
-		intent.putExtra(TAuthView.SCOPE, scope);
-		intent.putExtra(TAuthView.TARGET, target);
-		intent.putExtra(TAuthView.CALLBACK, CALLBACK);
-		startActivity(intent);
-
-	}
-
-	/**
-	 * 广播的侦听，授权完成后的回调是以广播的形式将结果返回
-	 * 
-	 * @author John.Meng<arzen1013@gmail> QQ:3440895
-	 * @date 2011-9-5
-	 */
-	public class AuthReceiver extends BroadcastReceiver {
-
-		private static final String TAG = "AuthReceiver";
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			Bundle exts = intent.getExtras();
-			String raw = exts.getString("raw");
-			String access_token = exts.getString(TAuthView.ACCESS_TOKEN);
-			String expires_in = exts.getString(TAuthView.EXPIRES_IN);
-			String error_ret = exts.getString(TAuthView.ERROR_RET);
-			String error_des = exts.getString(TAuthView.ERROR_DES);
-			Log.i(TAG, String.format("raw: %s, access_token:%s, expires_in:%s",
-					raw, access_token, expires_in));
-
-			if (access_token != null) {
-				mAccessToken = access_token;
-				// ((TextView)findViewById(R.id.access_token)).setText(access_token);
-				// TDebug.msg("正在获取OpenID...", getApplicationContext());
-				Log.e("======", "===========");
-				showDialog(PROGRESS);
-				if (!isFinishing()) {
-
-				}
-				// 用access token 来获取open id
-				TencentOpenAPI.openid(access_token, new Callback() {
+	private void auth() {
+		if (!tencent.isSessionValid()) {
+			IUiListener listener = new BaseUiListener() {
 					@Override
-					public void onSuccess(final Object obj) {
-						handler.post(new Runnable() {
-							@Override
-							public void run() {
-								dismissDialog(PROGRESS);
-								// setOpenIdText(((OpenId)obj).getOpenId());
-								// Uid=((OpenId)obj).getOpenId();
-								mOpenId = ((OpenId) obj).getOpenId();
-								getQQnickname();
-
+					protected void doComplete(JSONObject values) {
+						try {
+							if (values.has("openid")) {
+								weiboToLogin("qq", values.getString("openid"), "",
+										packageName);
 							}
-						});
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
 					}
-
-					@Override
-					public void onFail(int ret, final String msg) {
-						handler.post(new Runnable() {
-							@Override
-							public void run() {
-								UserLogin.this.dismissDialog(PROGRESS);
-								mOpenId = "";
-								TDebug.msg(msg, getApplicationContext());
-							}
-						});
-					}
-				});
-
+				};
+				tencent.login(UserLogin.this, scope, listener);
+			} else {
+				tencent.logout(UserLogin.this);
 			}
-
-			if (error_ret != null) {
-				// ((TextView)findViewById(R.id.access_token)).setText("获取access token失败"
-				// + "\n错误码: " + error_ret + "\n错误信息: " + error_des);
-			}
-		}
-
-	}
-
-	public void getQQnickname() {
-		if (!satisfyConditions()) {
-			TDebug.msg("请先获取access token和open id", this);
-			return;
-		}
-		showDialog(PROGRESS);
-		TencentOpenAPI.userInfo(mAccessToken, mAppid, mOpenId, new Callback() {
-
-			@Override
-			public void onSuccess(final Object obj) {
-				handler.post(new Runnable() {
-					@Override
-					public void run() {
-						dismissDialog(PROGRESS);
-						i++;
-						nickname = ((UserInfo) obj).getNickName();
-						Log.e("用户信息", ((UserInfo) obj).getNickName() + "====="
-								+ i);
-						weiboToLogin("qq", mOpenId, nickname, packageName);
-					}
-				});
-			}
-
-			@Override
-			public void onFail(final int ret, final String msg) {
-				handler.post(new Runnable() {
-
-					@Override
-					public void run() {
-						dismissDialog(PROGRESS);
-						Log.e("用户信息", msg);
-					}
-				});
-			}
-		});
 	}
 
 	public boolean satisfyConditions() {
 		return mAccessToken != null && mAppid != null && mOpenId != null
 				&& !mAccessToken.equals("") && !mAppid.equals("")
 				&& !mOpenId.equals("");
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		if (receiver != null) {
-			unregisterIntentReceivers();
-		}
 	}
 	
 	IAlixPay mAlixPay = null;
@@ -1464,9 +1319,27 @@ public class UserLogin extends Activity implements TextWatcher {
 		}).start();
 	}
 	
-	@Override
-	protected void onStop() {
-		super.onStop();
-//		unbindService(mAlixPayConnection);
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        tencent.onActivityResult(requestCode, resultCode, data) ;
+    }
+    
+    private class BaseUiListener implements IUiListener {
+
+        @Override
+        public void onComplete(JSONObject response) {
+            doComplete(response);
+        }
+
+        protected void doComplete(JSONObject values) {
+        }
+
+        @Override
+        public void onError(UiError e) {
+        }
+
+        @Override
+        public void onCancel() {
+        }
+}
 }
