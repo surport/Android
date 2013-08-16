@@ -38,13 +38,15 @@
     <color name="zc_sfc_divider">#D0D0D0</color>
     <color name="zc_sfc_number_background">#A1A1A1</color>
     <color name="zc_sfc_listview_item_bg">#F6F6F6</color>
-    <color name="jczq_listview_item_bg">#EEEEEE</color>
+    <color name="jczq_listview_item_bg">#F9F9F9</color>
     <color name="jc_odds_text_color">#737373</color>
     <color name="jc_odds_bj_color">#FFCC35</color>
     <color name="bet_query_noaward_text_color">#cc9900</color>
     <color name="account_withdraw_text_color">#33CC33</color>
     <color name="account_warning_text_color">#669900</color>
     <color name="jc_touzhu_background_color">#ffffcd</color>
+    <color name="jc_main_background_color">#E4E4E4</color>
+    
     <!-- add end -->
     
 </resources>

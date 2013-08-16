@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.CheckBox;
@@ -27,6 +28,7 @@ public class MyCheckBox extends CheckBox {
 	private int height;
 	private int position;
 	private boolean isHorizontal = false;// 标题和赔率是否是横向
+	private Handler handler = null; //add by yejc 20130816
 
 	public MyCheckBox(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -56,6 +58,12 @@ public class MyCheckBox extends CheckBox {
 	public boolean getChecked() {
 		return isChecked;
 	}
+	
+	/**add by yejc 20130816 start*/
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
+	/**add by yejc 20130816 end*/
 
 	private void onChecked() {
 		setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -64,6 +72,11 @@ public class MyCheckBox extends CheckBox {
 					boolean isCheck) {
 				// TODO Auto-generated method stub
 				isChecked = isCheck;
+				/**add by yejc 20130816 start*/
+				if (handler != null) {
+					handler.sendEmptyMessage(0);
+				}
+				/**add by yejc 20130816 end*/
 			}
 		});
 	}

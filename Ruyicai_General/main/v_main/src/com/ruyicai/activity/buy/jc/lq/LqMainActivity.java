@@ -32,9 +32,8 @@ public class LqMainActivity extends JcMainActivity {
 		setType(Constants.JCBASKET);
 		createView(SF, isDanguan);
 		setLotNo(Constants.LOTNO_JCL);
-		setTitle(false);
 		setScoreBtn();
-		isTeamBtn(true);
+		isTeamBtn();
 		MobclickAgent.onEvent(this, "jingcailanqiu"); // BY贺思明 点击首页的“竞彩篮球”图标
 	}
 
