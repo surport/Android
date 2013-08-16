@@ -945,6 +945,10 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 				if (title.equals("我的消息") && sessionid != null
 						&& !sessionid.equals("")) {
+					if ("".equals(shellRW
+							.getStringValue("notReadLetterCount"))) {
+						shellRW.putStringValue("notReadLetterCount", "0");
+					}
 					int notReadLetterCount = Integer.valueOf(shellRW
 							.getStringValue("notReadLetterCount"));
 					if (notReadLetterCount > 0) {
