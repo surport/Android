@@ -330,7 +330,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				String renAmt = leavMount(detatil.getRemainderAmt(), amountEdit
 						.getText().toString());
 				amountEdit.setClickable(true);
-				amountEdit.setEnabled(true);
+				amountEdit.setEnabled(true); 
 				String amt = detatil.getTotalAmt();
 				amountProgress.setText("占总额" + progress(isNull(amount), amt)
 						+ "%");// 总金额
