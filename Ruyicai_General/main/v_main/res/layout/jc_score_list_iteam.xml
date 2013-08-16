@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dip" >
+    android:layout_height="90dip" >
 
     <LinearLayout
         android:id="@id/jc_score_list_item_layout"
@@ -25,14 +25,14 @@
         <LinearLayout
             android:id="@id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="80dip"
+            android:layout_height="90dip"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
             android:paddingLeft="5dip" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dip"
+                android:layout_height="32dip"
                 android:paddingRight="10dip" >
 
                 <TextView
@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
+                    android:layout_weight="1.8"
                     android:gravity="center"
                     android:textColor="@color/black" />
 
@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
+                    android:layout_weight="1.1"
                     android:gravity="center"
                     android:textColor="@color/black" />
 
@@ -65,7 +65,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip" >
+                android:layout_height="58dip" >
 
                 <Button
                     android:id="@id/jc_score_btn_next"
@@ -80,7 +80,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dip"
+                    android:layout_height="58dip"
                     android:layout_toLeftOf="@id/jc_score_btn_next"
                     android:orientation="vertical" >
 
@@ -145,7 +145,7 @@
                     <TextView
                         android:id="@id/jc_score_text_state"
                         android:layout_width="match_parent"
-                        android:layout_height="20dip"
+                        android:layout_height="18dip"
                         android:gravity="center"/>
                 </LinearLayout>
             </RelativeLayout>

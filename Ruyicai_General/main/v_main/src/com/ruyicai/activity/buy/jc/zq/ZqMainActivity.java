@@ -14,8 +14,7 @@ public class ZqMainActivity extends JcMainActivity {
 		createView(SF, false);
 		setLotNo(Constants.LOTNO_JCZ);
 		setScoreBtn();
-		setTitle(false);
-		isTeamBtn(true);
+		isTeamBtn();
 		MobclickAgent.onEvent(this, "jingcaizuqiu"); // BY贺思明 点击首页的“竞彩足球”图标
 	}
 

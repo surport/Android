@@ -26,7 +26,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,9 @@ import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -91,6 +96,11 @@ public abstract class JcMainView {
 	private Map<String, Integer> mMap = new HashMap<String, Integer>();
 	public int mPosition = -1;
 	public int mIndex = -1;
+	public Resources  resources;
+	public LayoutInflater factory;
+	public int white = 0;
+	public int black = 0;
+	public int oddsColor = 0;
 	/**add by yejc 20130722 end*/
 
 	public JcMainView(Context context, BetAndGiftPojo betAndGift,
@@ -111,7 +121,13 @@ public abstract class JcMainView {
 		setType(type);
 		initView();
 		getInfoNet();
-
+		/**add by yejc 20130816 start*/
+		resources = context.getResources();
+		factory = LayoutInflater.from(context);
+		white = resources.getColor(R.color.white);
+		black = resources.getColor(R.color.black);
+		oddsColor = resources.getColor(R.color.jc_odds_text_color);
+		/**add by yejc 20130816 end*/
 	}
 
 	private void initListWeeks() {
@@ -387,7 +403,8 @@ public abstract class JcMainView {
 	public void isNoDan(Info info, Button btnDan) {
 		if (info.onclikNum == 0 && info.isDan()) {
 			info.setDan(false);
-			btnDan.setBackgroundResource(R.drawable.jc_btn);
+			btnDan.setBackgroundResource(android.R.color.transparent);
+			btnDan.setTextColor(resources.getColor(R.color.black));
 		}
 	}
 
@@ -949,9 +966,9 @@ public abstract class JcMainView {
 					}
 				}
 
-				TextView textTitle = (TextView) viewType
-						.findViewById(R.id.layout_main_text_title);
-				textTitle.setText(title);
+//				TextView textTitle = (TextView) viewType
+//						.findViewById(R.id.layout_main_text_title);
+//				textTitle.setText(title);
 				initDialogView();
 				setChechState();
 				onClikOk();
@@ -1000,6 +1017,39 @@ public abstract class JcMainView {
 			}
 		}
 		/**add by yejc 20130801 end*/
+//		String text = "";
+		public void setJqsLayout(String titles[], LinearLayout layout, Handler handler) {
+			initCheckTitles(titles);
+			for (int i = 0; i < MAX; i++) {
+				check[i] = (MyCheckBox) layout.findViewById(checkId[i]);
+				check[i].setVisibility(CheckBox.VISIBLE);
+				check[i].setCheckText("" + vStrs[i]);
+				check[i].setPosition(i);
+				check[i].setCheckTitle(titles[i]);
+				check[i].setHandler(handler);
+//				check[i].setOnCheckedChangeListener(new OnCheckedChangeListener(){
+//
+//					@Override
+//					public void onCheckedChanged(CompoundButton buttonView,
+//							boolean isChecked) {
+//						((MyCheckBox)buttonView).setChecked(isChecked);
+//						for (int j = 0; j < MAX; j++) {
+//							if (check[j].getChecked()) {
+//								text += check[j].getChcekTitle() + "  ";
+//								onclikNum++;
+//								Log.i("yejc", "======j========"+j);
+//							} else {
+//								onclikNum--;
+//							}
+//						}
+//						Log.i("yejc", "======i========"+index);
+//						Log.i("yejc", "======text========"+text);
+//						bth.setText(text);
+//					}
+//					
+//				});
+			}
+		}
 
 		private void initDialogView() {
 			/**add by yejc 20130704 start*/
@@ -1133,10 +1183,6 @@ public abstract class JcMainView {
 					}
 					/**add by yejc 20130722 start*/
 				}
-				
-//				if (checkNum < getTeamNum()) {
-//					setTeamNum(checkNum);
-//				}
 			}
 		}
 
@@ -1396,6 +1442,49 @@ public abstract class JcMainView {
 			return SUN;
 		}
 		return week;
+	}
+	
+	public void showLayout (LinearLayout layout, LinearLayout detailLayout, int index, 
+			final Info info, String checkTitle[], final Button btn) {
+		if (layout.getChildCount() == 0) {
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+					(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			if (index == 0) {
+				RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+						(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				lParams.setMargins(0, PublicMethod.getPxInt(68.5f, context), 0, 0);
+				layout.setLayoutParams(lParams);
+			}
+			layout.addView(detailLayout, params);
+			Handler handler = new Handler(){
+				@Override
+				public void handleMessage(Message msg) {
+					super.handleMessage(msg);
+					String btnStr = "";
+					int likNum = 0;
+					for (int i = 0; i < info.check.length; i++) {
+						if (info.check[i].getChecked()) {
+							btnStr += info.check[i].getChcekTitle()
+									+ "  ";
+							likNum++;
+						}
+					}
+					info.onclikNum = likNum;
+					info.setBtnStr(btnStr);
+					btn.setText(btnStr);
+					setTeamNum();
+				}
+				
+			};
+			info.setJqsLayout(checkTitle, detailLayout, handler);
+			layout.setVisibility(View.VISIBLE);
+		} else {
+			if (layout.getVisibility() == View.VISIBLE) {
+				layout.setVisibility(View.GONE);
+			} else {
+				layout.setVisibility(View.VISIBLE);
+			}
+		}
 	}
 	
 	// end
