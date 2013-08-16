@@ -85,13 +85,11 @@ public class BeiJingSingleGameActivity extends Activity {
 	/** 下拉菜单按钮 */
 	private Button popupWindowButton;
 	/** 玩法切换按钮 */
-	private Button playMethodChangeButton;
+//	private Button playMethodChangeButton;
 	/** 赛事选择按钮 */
-	private Button eventSelectButton;
+	private LinearLayout eventSelectButton;
 	/** 即时比分按钮 */
 	private Button realtimeScoreButton;
-	/** 客队在前 */
-	private TextView guestTeamForwardTextView;
 	/** 对阵列表视图 */
 	private View againstView;
 	/** 对阵列表 */
@@ -658,11 +656,11 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * 初始化赛事信息栏显示
 	 */
 	private void initEventInformationBarShow() {
-		playMethodChangeButton = (Button) findViewById(R.id.buy_lq_main_btn_type);
-		playMethodChangeButton
-				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
+//		playMethodChangeButton = (Button) findViewById(R.id.buy_lq_main_btn_type);
+//		playMethodChangeButton
+//				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
-		eventSelectButton = (Button) findViewById(R.id.buy_lq_main_btn_team);
+		eventSelectButton = (LinearLayout) findViewById(R.id.buy_lq_main_btn_team);
 		eventSelectButton.setVisibility(View.VISIBLE);
 		eventSelectButton
 				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
@@ -670,9 +668,6 @@ public class BeiJingSingleGameActivity extends Activity {
 		realtimeScoreButton = (Button) findViewById(R.id.buy_lq_main_btn_score);
 		realtimeScoreButton.setVisibility(View.VISIBLE);
 		realtimeScoreButton.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
-
-		guestTeamForwardTextView = (TextView) findViewById(R.id.buy_jc_main_text_title);
-		guestTeamForwardTextView.setVisibility(View.INVISIBLE);
 	}
 
 	/**

@@ -348,15 +348,15 @@ public class TotalGoalsAdapter extends ParentAdapter {
 		final Dialog selectDialog = new AlertDialog.Builder(context).create();
 
 		// 标题
-		TextView titleTextView = (TextView) dialogView
-				.findViewById(R.id.layout_main_text_title);
+//		TextView titleTextView = (TextView) dialogView
+//				.findViewById(R.id.layout_main_text_title);
 		final TotalGoalsAgainstInformation totalGoalsAgainstInformation = (TotalGoalsAgainstInformation) v
 				.getTag();
 		StringBuilder titleString = new StringBuilder();
 		titleString.append(totalGoalsAgainstInformation.getHomeTeam())
 				.append(" VS ")
 				.append(totalGoalsAgainstInformation.getGuestTeam());
-		titleTextView.setText(titleString);
+//		titleTextView.setText(titleString);
 
 		/** 选择按钮的资源Id */
 		int[] selectButtonIds = { R.id.lq_sfc_dialog_check01,
