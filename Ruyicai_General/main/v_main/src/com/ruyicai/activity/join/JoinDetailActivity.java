@@ -339,7 +339,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				/**add by yejc 20130704 start*/
 				String str = s.toString();
 				if (str.length() == 1 && str.startsWith("0")) {
-					amountEdit.setText("");
+					amountEdit.setText("1");
 				} else if (str.length() > 1 && str.startsWith("0")) {
 					amountEdit.setText(str.subSequence(1, str.length()));
 				}
@@ -1775,7 +1775,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			/** add by pengcx 20130725 end*/
 		} else {
 			setValue(getValue());
-
+            if ("".equals(amountEdit.getText().toString())) {
+            	amountEdit.setText(1);
+            }
 			amountProgress.setText("占总额"
 					+ progress(amountEdit.getText().toString(),
 							detatil.getTotalAmt()) + "%");
