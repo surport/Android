@@ -882,6 +882,9 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 					String temp_obj = GetLotNohighFrequency.getInstance()
 							.getInfo(info.getLotno());
 					JSONObject json = new JSONObject(temp_obj);
+					/**add by fansm 20130819 start */
+					Constants.currentLotnoInfo = json;
+					/** add by fansm 20130819 end*/
 					final String issueStr = json.getString("batchcode");
 					progressDialog.cancel();
 					updateIssueHandler.post(new Runnable() {
