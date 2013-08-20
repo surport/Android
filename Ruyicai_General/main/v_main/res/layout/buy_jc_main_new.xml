@@ -72,7 +72,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="85dip"
-        android:background="@drawable/jc_team_select_background"
         android:orientation="vertical"
         android:visibility="gone" >
 
