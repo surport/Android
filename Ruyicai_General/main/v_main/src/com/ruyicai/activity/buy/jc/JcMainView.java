@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -97,7 +98,7 @@ public abstract class JcMainView {
 	public int mPosition = -1;
 	public int mIndex = -1;
 	public Resources  resources;
-	public LayoutInflater factory;
+	public LayoutInflater mFactory;
 	public int white = 0;
 	public int black = 0;
 	public int oddsColor = 0;
@@ -123,7 +124,7 @@ public abstract class JcMainView {
 		getInfoNet();
 		/**add by yejc 20130816 start*/
 		resources = context.getResources();
-		factory = LayoutInflater.from(context);
+		mFactory = LayoutInflater.from(context);
 		white = resources.getColor(R.color.white);
 		black = resources.getColor(R.color.black);
 		oddsColor = resources.getColor(R.color.jc_odds_text_color);
@@ -872,7 +873,16 @@ public abstract class JcMainView {
 		public String titles[];
 		private boolean isDan = false;
 		private boolean isLq = false;
+		private String lotno = "";
 
+
+		public String getLotno() {
+			return lotno;
+		}
+
+		public void setLotno(String lotno) {
+			this.lotno = lotno;
+		}
 
 		public String getLetV3Win() {
 			return letV3Win;
@@ -942,33 +952,40 @@ public abstract class JcMainView {
 			if (dialog == null) {
 				initCheckTitles(titles);
 				adapter = getAdapter();
-				LayoutInflater factory = LayoutInflater.from(context);
+//				LayoutInflater factory = LayoutInflater.from(context);
 				if (isHunHe()) {
 					if (isLq) {
-						viewType = factory.inflate(R.layout.buy_lq_hun_dialog,
+						viewType = mFactory.inflate(R.layout.buy_lq_hun_dialog,
 								null);
 						setJcLqShowPlay(viewType); //add by yejc 20130801
 					} else {
-						viewType = factory.inflate(R.layout.buy_zq_hun_dialog,
+						viewType = mFactory.inflate(R.layout.buy_zq_hun_dialog,
 								null);
 						setJcZqShowPlay(viewType); //add by yejc 20130709
 					}
 				} else {
-					viewType = factory
-							.inflate(R.layout.buy_lq_sfc_dialog, null);
-					LinearLayout layout1 = (LinearLayout) viewType
-							.findViewById(R.id.jc_check_dialog_layout2);
-					LinearLayout layout2 = (LinearLayout) viewType
-							.findViewById(R.id.jc_check_dialog_layout3);
-					if (isVisable) {
-						layout1.setVisibility(LinearLayout.VISIBLE);
-						layout2.setVisibility(LinearLayout.VISIBLE);
+					if (Constants.LOTNO_JCZQ_BF.equals(getLotno())) {
+						viewType = mFactory
+								.inflate(R.layout.buy_jc_zq_bf_layout, null);
+					} else if (Constants.LOTNO_JCLQ_SFC.equals(getLotno())){
+						
+					} else {
+						viewType = mFactory
+								.inflate(R.layout.buy_lq_sfc_dialog, null);
+						LinearLayout layout1 = (LinearLayout) viewType
+								.findViewById(R.id.jc_check_dialog_layout2);
+						LinearLayout layout2 = (LinearLayout) viewType
+								.findViewById(R.id.jc_check_dialog_layout3);
+						if (isVisable) {
+							layout1.setVisibility(LinearLayout.VISIBLE);
+							layout2.setVisibility(LinearLayout.VISIBLE);
+						}
 					}
 				}
 
-//				TextView textTitle = (TextView) viewType
-//						.findViewById(R.id.layout_main_text_title);
-//				textTitle.setText(title);
+				TextView textTitle = (TextView) viewType
+						.findViewById(R.id.layout_main_text_title);
+				textTitle.setText(title);
 				initDialogView();
 				setChechState();
 				onClikOk();
@@ -979,7 +996,12 @@ public abstract class JcMainView {
 				infoViewType = viewType;
 			}
 			dialog.show();
-			dialog.getWindow().setContentView(viewType);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+					PublicMethod.getPxInt(300, context), LinearLayout.LayoutParams.WRAP_CONTENT);
+//			int margin = PublicMethod.getPxInt(20, context);
+//			params.setMargins(margin, 0, margin, 0);
+			dialog.setContentView(viewType, params);
+//			dialog.getWindow().setContentView(viewType);
 		}
 		
 		/**add by yejc 20130704 start*/
@@ -1017,7 +1039,6 @@ public abstract class JcMainView {
 			}
 		}
 		/**add by yejc 20130801 end*/
-//		String text = "";
 		public void setJqsLayout(String titles[], LinearLayout layout, Handler handler) {
 			initCheckTitles(titles);
 			for (int i = 0; i < MAX; i++) {
@@ -1027,27 +1048,6 @@ public abstract class JcMainView {
 				check[i].setPosition(i);
 				check[i].setCheckTitle(titles[i]);
 				check[i].setHandler(handler);
-//				check[i].setOnCheckedChangeListener(new OnCheckedChangeListener(){
-//
-//					@Override
-//					public void onCheckedChanged(CompoundButton buttonView,
-//							boolean isChecked) {
-//						((MyCheckBox)buttonView).setChecked(isChecked);
-//						for (int j = 0; j < MAX; j++) {
-//							if (check[j].getChecked()) {
-//								text += check[j].getChcekTitle() + "  ";
-//								onclikNum++;
-//								Log.i("yejc", "======j========"+j);
-//							} else {
-//								onclikNum--;
-//							}
-//						}
-//						Log.i("yejc", "======i========"+index);
-//						Log.i("yejc", "======text========"+text);
-//						bth.setText(text);
-//					}
-//					
-//				});
 			}
 		}
 
@@ -1060,6 +1060,8 @@ public abstract class JcMainView {
 					check[i].setCheckText("" + vStrs[i]);
 					check[i].setPosition(i);
 					check[i].setCheckTitle(titles[i]);
+					check[i].setOddsPaintColorArray(new int[] { Color.GRAY, Color.WHITE });
+					check[i].setTextPaintColorArray(new int[]{Color.RED, Color.WHITE});
 				}
 				/**add by yejc 20130704 end*/
 			} else {
@@ -1069,6 +1071,13 @@ public abstract class JcMainView {
 					check[i].setCheckText("" + vStrs[i]);
 					check[i].setPosition(i);
 					check[i].setCheckTitle(titles[i]);
+					/**add by yejc 20130819 start*/
+					if (Constants.LOTNO_JCZQ_BF.equals(getLotno())) {
+						check[i].setOddsPaintColorArray(new int[]{Color.GRAY, Color.WHITE});
+						check[i].setTextPaintColorArray(new int[]{Color.RED, Color.WHITE});
+					}
+					/**add by yejc 20130819 end*/
+					
 				}
 			}
 		}
@@ -1084,6 +1093,10 @@ public abstract class JcMainView {
 				} else {
 					for (int i = 0; i < 6; i++) {
 						check[i].setHorizontal(true);
+					}
+					
+					for (int j = 15; j < 23; j++) {
+						check[j].setHorizontal(true);
 					}
 				}
 			}

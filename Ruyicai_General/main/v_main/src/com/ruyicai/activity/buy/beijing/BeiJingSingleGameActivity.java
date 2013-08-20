@@ -87,7 +87,8 @@ public class BeiJingSingleGameActivity extends Activity {
 	/** 玩法切换按钮 */
 //	private Button playMethodChangeButton;
 	/** 赛事选择按钮 */
-	private LinearLayout eventSelectButton;
+//	private LinearLayout eventSelectButton;
+	private Button eventSelectButton;
 	/** 即时比分按钮 */
 	private Button realtimeScoreButton;
 	/** 对阵列表视图 */
@@ -660,7 +661,7 @@ public class BeiJingSingleGameActivity extends Activity {
 //		playMethodChangeButton
 //				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
-		eventSelectButton = (LinearLayout) findViewById(R.id.buy_lq_main_btn_team);
+		eventSelectButton = (Button) findViewById(R.id.buy_lq_main_btn_team);
 		eventSelectButton.setVisibility(View.VISIBLE);
 		eventSelectButton
 				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());

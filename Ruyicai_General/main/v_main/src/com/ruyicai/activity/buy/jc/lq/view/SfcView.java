@@ -255,17 +255,6 @@ public class SfcView extends JcMainView {
 			gameDate.setText(date);
 			homeTeam.setText(info.getAway() + "(客)");
 			guestTeam.setText(info.getHome() + "(主)");
-			
-			gameName.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					if (context instanceof JcMainActivity) {
-						JcMainActivity activity = (JcMainActivity) context;
-						activity.createTeamDialog();
-					}
-				}
-			});
 
 			if (!info.getBtnStr().equals("")) {
 				btn.setText(info.getBtnStr());
@@ -274,6 +263,7 @@ public class SfcView extends JcMainView {
 				@Override
 				public void onClick(View v) {
 					if (info.onclikNum > 0 || isCheckTeam()) {
+						info.setLotno(Constants.LOTNO_JCLQ_SFC);
 						info.createDialog(BasketSFC.titleStrs, false,
 								info.getAway() + " VS " + info.getHome());
 					}

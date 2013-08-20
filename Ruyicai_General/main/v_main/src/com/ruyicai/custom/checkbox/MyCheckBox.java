@@ -29,6 +29,8 @@ public class MyCheckBox extends CheckBox {
 	private int position;
 	private boolean isHorizontal = false;// 标题和赔率是否是横向
 	private Handler handler = null; //add by yejc 20130816
+	private int oddsPaintColorArray[] = {Color.GRAY, Color.GRAY}; //add by yejc 20130816
+	private int textPaintColorArray[] = {Color.BLACK, Color.BLACK}; //add by yejc 20130816
 
 	public MyCheckBox(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -62,6 +64,23 @@ public class MyCheckBox extends CheckBox {
 	/**add by yejc 20130816 start*/
 	public void setHandler(Handler handler) {
 		this.handler = handler;
+	}
+	
+	
+	public int[] getOddsPaintColorArray() {
+		return oddsPaintColorArray;
+	}
+
+	public void setOddsPaintColorArray(int[] oddsPaintColorArray) {
+		this.oddsPaintColorArray = oddsPaintColorArray;
+	}
+
+	public int[] getTextPaintColorArray() {
+		return textPaintColorArray;
+	}
+
+	public void setTextPaintColorArray(int[] textPaintColorArray) {
+		this.textPaintColorArray = textPaintColorArray;
 	}
 	/**add by yejc 20130816 end*/
 
@@ -97,7 +116,13 @@ public class MyCheckBox extends CheckBox {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		mPaint.setTypeface(null);
-		mPaint.setColor(Color.BLACK);
+		mPaint.setFakeBoldText(true);
+		if (isChecked) {
+			mPaint.setColor(textPaintColorArray[1]);
+		} else {
+			mPaint.setColor(textPaintColorArray[0]);
+		}
+		
 		float width = getWidth();// 组建的宽度
 		int titleSize = 13;
 		int contentSize = 13;// 赔率大小
@@ -140,13 +165,33 @@ public class MyCheckBox extends CheckBox {
 		}
 		// 标题
 		mPaint.setTextSize(PublicMethod.getPxInt(titleSize, context));
-		canvas.drawText(title, PublicMethod.getPxInt(titleX, context),
-				PublicMethod.getPxInt(titleY, context), mPaint);
+		/**add by yejc 20130819 start*/
+		float titleWidth = mPaint.measureText(title);
+		float oddsWidth = mPaint.measureText(text);
+		float space = (width - titleWidth - oddsWidth)/3;
+		if (isHorizontal) {
+			canvas.drawText(title, space,
+					PublicMethod.getPxInt(titleY, context), mPaint);
+		} else {
+			canvas.drawText(title, (width - titleWidth)/2,
+					PublicMethod.getPxInt(titleY, context), mPaint);
+		}
+		
 		// 赔率
+		mPaint.setFakeBoldText(false);
 		mPaint.setTextSize(PublicMethod.getPxInt(contentSize, context));
-		mPaint.setColor(Color.GRAY);
-		canvas.drawText(text, PublicMethod.getPxInt(contentX, context),
-				PublicMethod.getPxInt(contentY, context), mPaint);
+		if (isChecked) {
+			mPaint.setColor(oddsPaintColorArray[1]);
+		} else {
+			mPaint.setColor(oddsPaintColorArray[0]);
+		}
+		if (isHorizontal) {
+			canvas.drawText(text, 2*space + titleWidth,
+					PublicMethod.getPxInt(contentY, context), mPaint);
+		} else {
+			canvas.drawText(text, (width - oddsWidth)/2,
+					PublicMethod.getPxInt(contentY, context), mPaint);
+		}
 	}
 
 }

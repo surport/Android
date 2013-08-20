@@ -264,7 +264,7 @@ public class BQCView extends JcMainView {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					LinearLayout detailLayout = (LinearLayout) factory
+					LinearLayout detailLayout = (LinearLayout) mFactory
 							.inflate(R.layout.buy_jc_zq_bqc_layout, null);
 					showLayout(layout, detailLayout, index, info, FootBQC.titleStrs, btn);
 					isNoDan(info, btnDan);

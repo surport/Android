@@ -259,6 +259,7 @@ public class BFView extends JcMainView {
 				@Override
 				public void onClick(View v) {
 					if (info.onclikNum > 0 || isCheckTeam()) {
+						info.setLotno(Constants.LOTNO_JCZQ_BF);
 						info.createDialog(FootBF.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
 					}

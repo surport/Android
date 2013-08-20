@@ -246,48 +246,7 @@ public class ZJQView extends JcMainView {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-//					if (layout.getChildCount() == 0) {
-//						LinearLayout detailLayout = (LinearLayout) factory
-//								.inflate(R.layout.buy_jc_zq_jq_layout, null);
-//						LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-//								(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//						if (index == 0) {
-//							RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
-//									(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//							lParams.setMargins(0, PublicMethod.getPxInt(68.5f, context), 0, 0);
-//							layout.setLayoutParams(lParams);
-//						}
-//						layout.addView(detailLayout, params);
-//						Handler handler = new Handler(){
-//							@Override
-//							public void handleMessage(Message msg) {
-//								super.handleMessage(msg);
-//								String btnStr = "";
-//								int likNum = 0;
-//								for (int i = 0; i < info.check.length; i++) {
-//									if (info.check[i].getChecked()) {
-//										btnStr += info.check[i].getChcekTitle()
-//												+ "  ";
-//										likNum++;
-//									}
-//								}
-//								info.onclikNum = likNum;
-//								info.setBtnStr(btnStr);
-//								btn.setText(btnStr);
-//								setTeamNum();
-//							}
-//							
-//						};
-//						info.setJqsLayout(checkTitle, detailLayout, handler);
-//						layout.setVisibility(View.VISIBLE);
-//					} else {
-//						if (layout.getVisibility() == View.VISIBLE) {
-//							layout.setVisibility(View.GONE);
-//						} else {
-//							layout.setVisibility(View.VISIBLE);
-//						}
-//					}
-					LinearLayout detailLayout = (LinearLayout) factory
+					LinearLayout detailLayout = (LinearLayout) mFactory
 							.inflate(R.layout.buy_jc_zq_jq_layout, null);
 					showLayout(layout, detailLayout, index, info, checkTitle, btn);
 					

@@ -46,7 +46,7 @@
     <color name="account_warning_text_color">#669900</color>
     <color name="jc_touzhu_background_color">#ffffcd</color>
     <color name="jc_main_background_color">#E4E4E4</color>
-    
+    <color name="jc_main_play_title_color">#336699</color>
     <!-- add end -->
     
 </resources>
