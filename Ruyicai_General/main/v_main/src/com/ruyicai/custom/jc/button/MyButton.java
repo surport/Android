@@ -33,8 +33,11 @@ public class MyButton extends ImageView {
 	private int size;
 	private float x, y;
 	private String codeStr;
-	private int paintColor = Color.BLACK; //add by yejc 20130809
+	/**add by yejc 20130809 start*/
+	private int paintColor = Color.BLACK; 
 	private int paintColorArray[] = {Color.BLACK, Color.BLACK};
+//	private float width = 0.0f;
+	/**add by yejc 20130809 end*/
 
 	public MyButton(Context context) {
 		super(context);
@@ -132,13 +135,27 @@ public class MyButton extends ImageView {
 	public void setPaintColorArray(int[] paintColorArray) {
 		this.paintColorArray = paintColorArray;
 	}
+	
+	/**add by yejc 20130820 start*/
+	public float getStartX() {
+		float textWidth = mPaint.measureText(textContent);
+		float width = getWidth();
+		return (width - textWidth)/2;
+	}
+	
+//	public float getStartY() {
+//		Paint.FontMetrics metrics = mPaint.getFontMetrics();
+//		float textHeight = (float)Math.ceil(metrics.descent - metrics.ascent);
+//		float height = getHeight();
+//		return (height - textHeight)/2;
+//	}
 
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		mPaint.setTypeface(null);
 		mPaint.setColor(paintColor);
 		mPaint.setTextSize(size);
-		canvas.drawText(textContent, x, y, mPaint);
+		canvas.drawText(textContent, getStartX(), y, mPaint);
 
 	}
 	

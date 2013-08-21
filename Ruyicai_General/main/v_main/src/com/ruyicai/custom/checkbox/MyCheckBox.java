@@ -1,5 +1,6 @@
 package com.ruyicai.custom.checkbox;
 
+import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
 import android.content.Context;
@@ -28,9 +29,12 @@ public class MyCheckBox extends CheckBox {
 	private int height;
 	private int position;
 	private boolean isHorizontal = false;// 标题和赔率是否是横向
-	private Handler handler = null; //add by yejc 20130816
-	private int oddsPaintColorArray[] = {Color.GRAY, Color.GRAY}; //add by yejc 20130816
-	private int textPaintColorArray[] = {Color.BLACK, Color.BLACK}; //add by yejc 20130816
+	/**add by yejc 20130816 start */
+	private Handler handler = null; 
+	private int oddsPaintColorArray[] = {Color.GRAY, Color.GRAY};
+	private int textPaintColorArray[] = {Color.BLACK, Color.BLACK};
+	private String lotno = "";
+	/**add by yejc 20130816 start */
 
 	public MyCheckBox(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -82,6 +86,14 @@ public class MyCheckBox extends CheckBox {
 	public void setTextPaintColorArray(int[] textPaintColorArray) {
 		this.textPaintColorArray = textPaintColorArray;
 	}
+	public String getLotno() {
+		return lotno;
+	}
+
+	public void setLotno(String lotno) {
+		this.lotno = lotno;
+	}
+
 	/**add by yejc 20130816 end*/
 
 	private void onChecked() {
@@ -186,8 +198,14 @@ public class MyCheckBox extends CheckBox {
 			mPaint.setColor(oddsPaintColorArray[0]);
 		}
 		if (isHorizontal) {
-			canvas.drawText(text, 2*space + titleWidth,
-					PublicMethod.getPxInt(contentY, context), mPaint);
+			if ((Constants.LOTNO_JCLQ_HUN.equals(lotno)) && 
+					(position == 3 || position == 6)) {
+				canvas.drawText(text, (width - oddsWidth)/2,
+						PublicMethod.getPxInt(contentY, context), mPaint);
+			} else {
+				canvas.drawText(text, 2*space + titleWidth,
+						PublicMethod.getPxInt(contentY, context), mPaint);
+			}
 		} else {
 			canvas.drawText(text, (width - oddsWidth)/2,
 					PublicMethod.getPxInt(contentY, context), mPaint);

@@ -97,12 +97,13 @@ public class JcMainActivity extends Activity implements
 	private LinearLayout teamLayersLayout;
 	private LinearLayout teamLayersLayoutUp;
 	private LinearLayout teamSelectLayout;
-//	private LinearLayout teamLayout;
 	ShowHandler showHandler = new ShowHandler();
 	private int screenWidth;
 	private int[] bgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
 	private int[] paintColor= {Color.BLACK, Color.WHITE};
 	private boolean isFirst = true;
+	private List<String> fiveLeagueList = new ArrayList<String>();
+	private String[] leagueName = {"NBA", "五大联赛"};
 	/**add by yejc 20130812 end*/
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,11 @@ public class JcMainActivity extends Activity implements
 		context = this;
 		screenWidth = PublicMethod.getDisplayWidth(this);
 		initView();
+		fiveLeagueList.add("意甲");
+		fiveLeagueList.add("英超");
+		fiveLeagueList.add("西甲");
+		fiveLeagueList.add("德甲");
+		fiveLeagueList.add("法甲");
 		handler.setBetAndGift(betAndGift);
 	}
 
@@ -234,6 +240,11 @@ public class JcMainActivity extends Activity implements
 		Button all = (Button)findViewById(R.id.all_check);
 		Button clear = (Button)findViewById(R.id.clear_check);
 		Button fiveLeague = (Button)findViewById(R.id.ok);
+		if (Constants.LOTNO_JCL.equals(lotNo)) {
+			fiveLeague.setText(leagueName[0]);
+		} else {
+			fiveLeague.setText(leagueName[1]);
+		}
 		all.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				for (MyButton btn : myBtns) {
@@ -254,7 +265,25 @@ public class JcMainActivity extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				//五大联赛
+				if (Constants.LOTNO_JCL.equals(lotNo)) {
+					for (MyButton btn : myBtns) {
+						if (leagueName[0].equals(btn.getBtnText())) {
+							btn.setOnClick(true);
+						} else {
+							btn.setOnClick(false);
+						}
+						btn.switchBg();
+					}
+				} else {
+					for (MyButton btn : myBtns) {
+						if (fiveLeagueList.contains(btn.getBtnText())) {
+							btn.setOnClick(true);
+						} else {
+							btn.setOnClick(false);
+						}
+						btn.switchBg();
+					}
+				}
 			}
 		});
 	}

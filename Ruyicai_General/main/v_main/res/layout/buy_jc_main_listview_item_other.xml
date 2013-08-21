@@ -189,7 +189,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="center"
                     android:text="胆"
-                    android:textColor="@color/text_press_selector"/>
+                    android:textColor="@color/black"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

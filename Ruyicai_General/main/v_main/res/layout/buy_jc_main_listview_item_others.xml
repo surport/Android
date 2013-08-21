@@ -142,7 +142,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:textColor="@color/text_press_selector"
+                        android:textColor="@color/black"
                         android:gravity="center"
                         android:text="胆"/>
                 </LinearLayout>
