@@ -344,7 +344,7 @@ public class HunHeZqView extends JcMainView {
 						mIndex = index;
 						View view = info.getViewType();
 						TextView tv = (TextView)view.findViewById(R.id.lq_rqspf_dialog_textview);
-						tv.setText("让球主"+info.getLetPoint());
+						tv.setText("主"+info.getLetPoint());
 						/**add by yejc 20130704 end*/
 					}
 					isNoDan(info, btnDan);

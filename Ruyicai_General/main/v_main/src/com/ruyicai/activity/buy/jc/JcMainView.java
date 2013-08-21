@@ -1108,16 +1108,15 @@ public abstract class JcMainView {
 							} else if (i == 6) {
 								check[i].setOddsPaintColorArray(new int[]{Color.BLUE, Color.WHITE});
 							} else {
-								check[i].setTextPaintColorArray(new int[]{
-										resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
 								check[i].setOddsPaintColorArray(new int[]{
 										resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
 							}
 						} else {
-							check[i].setTextPaintColorArray(new int[]{Color.RED, Color.WHITE});
 							check[i].setOddsPaintColorArray(new int[]{
 									resources.getColor(R.color.jc_hun_lq_title_color), Color.WHITE});
 						}
+						check[i].setTextPaintColorArray(new int[]{
+								resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
 						check[i].setLotno(Constants.LOTNO_JCLQ_HUN);
 					}
 					/**add by yejc 20130819 end*/

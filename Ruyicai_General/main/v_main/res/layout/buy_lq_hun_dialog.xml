@@ -65,7 +65,7 @@
                         android:id="@id/lq_sfc_dialog_check04"
                         android:layout_width="94dip"
                         android:layout_height="40dip"
-                        android:background="@drawable/jc_lq_hun_rfsf_center_bg"
+                        android:background="@drawable/jc_lq_hun_rfsf_dxf_center_bg"
                         android:button="@null"
                         custom:check_title="@string/jclq_sfc_dialog_title02" />
 
@@ -98,7 +98,7 @@
                         android:id="@id/lq_sfc_dialog_check07"
                         android:layout_width="94dip"
                         android:layout_height="40dip"
-                        android:background="@drawable/jc_lq_hun_dxf_center_bg"
+                        android:background="@drawable/jc_lq_hun_rfsf_dxf_center_bg"
                         android:button="@null"
                         android:visibility="gone"
                         custom:check_title="@string/jclq_sfc_dialog_title02" />
