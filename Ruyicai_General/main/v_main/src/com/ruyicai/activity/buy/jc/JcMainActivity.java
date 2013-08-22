@@ -402,8 +402,8 @@ public class JcMainActivity extends Activity implements
 	 * 初始化组建
 	 */
 	public void initView() {
-		playLayersLayout = (LinearLayout)findViewById(R.id.buy_jc_main_layout);
-		teamLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers);
+		playLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_middle);
+		teamLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_down);
 		teamLayersLayoutUp = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_up);
 		playLayout = (LinearLayout)findViewById(R.id.jc_play_select);
 		teamSelectLayout = (LinearLayout)findViewById(R.id.jc_main_team_select);
@@ -574,7 +574,7 @@ public class JcMainActivity extends Activity implements
 							break;
 						}
 						clearRadio(buttonView);
-						showHandler.sendEmptyMessageDelayed(1, 600);
+						showHandler.sendEmptyMessageDelayed(1, 500);
 					}
 				}
 			});
@@ -840,13 +840,13 @@ public class JcMainActivity extends Activity implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.buy_jc_main_layout:
+		case R.id.jc_main_team_layout_layers_middle:
 			viewType.setVisibility(View.GONE);
 			playLayersLayout.setVisibility(View.GONE);
 			teamLayersLayoutUp.setVisibility(View.GONE);
 			break;
 
-		case R.id.jc_main_team_layout_layers:
+		case R.id.jc_main_team_layout_layers_down:
 			showSelectedTeam();
 			break;
 			

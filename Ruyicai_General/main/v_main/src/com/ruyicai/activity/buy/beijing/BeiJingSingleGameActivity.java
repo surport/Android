@@ -1,7 +1,11 @@
 package com.ruyicai.activity.buy.beijing;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,16 +41,19 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -84,10 +91,9 @@ public class BeiJingSingleGameActivity extends Activity {
 	private TextView titleTextView;
 	/** 下拉菜单按钮 */
 	private Button popupWindowButton;
-	/** 玩法切换按钮 */
-//	private Button playMethodChangeButton;
+	/** 玩法切换布局 */
+	private LinearLayout playSelectBtnLayout; //add by yejc 20130822
 	/** 赛事选择按钮 */
-//	private LinearLayout eventSelectButton;
 	private Button eventSelectButton;
 	/** 即时比分按钮 */
 	private Button realtimeScoreButton;
@@ -103,15 +109,8 @@ public class BeiJingSingleGameActivity extends Activity {
 	private TextView selectNumTextView;
 	/** 投注按钮 */
 	private ImageButton bettingImageButton;
-
-	/** 赛事选择对话框 */
-	private Dialog eventSelectDialog;
-	/** 玩法切换对话框 */
-	private Dialog playMethodChangeDialog;
 	/** 玩法介绍对话框 */
 	private BuyGameDialog gameDialog;
-	/** 下拉菜单 */
-	private PopupWindow menuPopupwindow;
 
 	/** 胜平负对阵列表适配器 */
 	private WinTieLossAdapter winTieLossAdapter;
@@ -171,6 +170,22 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/** LayoutInflater对象 */
 	private LayoutInflater layoutInflater;
+	
+	/**add by yejc 20130822 start*/
+	private LinearLayout downLayersLayout;
+	private LinearLayout upLayersLayout;
+	private LinearLayout middleLayersLayout;
+	/**下拉弹出的玩法选择布局*/
+	private LinearLayout mainPalySelectLayout;
+	/**下拉弹出的赛事选择布局*/
+	private LinearLayout teamSelectLayout;
+	private int screenWidth;
+	private boolean isFirst = true;
+	Map<PlayMethodEnum, Button> palyMap = new HashMap<PlayMethodEnum, Button>();
+	private List<String> fiveLeagueList = new ArrayList<String>();
+	private int[] bgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
+	private int[] paintColor= {Color.BLACK, Color.WHITE};
+	/**add by yejc 20130822 end*/
 
 	/** Handler对象 */
 	private Handler handler = new Handler() {
@@ -505,6 +520,16 @@ public class BeiJingSingleGameActivity extends Activity {
 		playMethodType = PlayMethodEnum.WINTIELOSS;
 
 		setContentView(R.layout.buy_jc_main_new);
+		
+		/**add by yejc 20130822 start*/
+		initPlaySelectView();
+		fiveLeagueList.add("意甲");
+		fiveLeagueList.add("英超");
+		fiveLeagueList.add("西甲");
+		fiveLeagueList.add("德甲");
+		fiveLeagueList.add("法甲");
+		screenWidth = PublicMethod.getDisplayWidth(this);
+		/**add by yejc 20130822 end*/
 
 		initTitleBarShow();
 
@@ -895,12 +920,13 @@ public class BeiJingSingleGameActivity extends Activity {
 				createMenuPopupwindow();
 				break;
 			// 玩法选择按钮
-			case R.id.buy_lq_main_btn_type:
-				createPlayMethodChangeDialog();
-				break;
+//			case R.id.buy_lq_main_btn_type:
+//				createPlayMethodChangeDialog();
+//				break;
 			// 赛事选择按钮
 			case R.id.buy_lq_main_btn_team:
-				createeventSelectDialog();
+				showTeamLayout();
+//				createeventSelectDialog();
 				break;
 			// 重选按钮
 			case R.id.buy_zixuan_img_again:
@@ -940,6 +966,36 @@ public class BeiJingSingleGameActivity extends Activity {
 //				intent.putExtra("bebatchCode", "");
 				startActivity(intent);
 				break;
+			
+			/**add by yejc 20130822 start*/	
+			case R.id.jc_play_select:
+				createPlayMethodChangeDialog();
+				break;
+				
+			case R.id.jc_main_team_layout_layers_down:
+				showSelectedTeam();
+				break;
+			case R.id.jc_main_team_layout_layers_up:
+				if (teamSelectLayout.getVisibility() == View.VISIBLE) {
+					showSelectedTeam();
+				} else {
+					mainPalySelectLayout.setVisibility(View.GONE);
+					downLayersLayout.setVisibility(View.GONE);
+					middleLayersLayout.setVisibility(View.GONE);
+					upLayersLayout.setVisibility(View.GONE);
+				}
+				break;
+				
+			case R.id.jc_main_team_layout_layers_middle:
+				mainPalySelectLayout.setVisibility(View.GONE);
+				downLayersLayout.setVisibility(View.GONE);
+				middleLayersLayout.setVisibility(View.GONE);
+				upLayersLayout.setVisibility(View.GONE);
+				break;	
+				
+//			case R.id.jc_main_team_select:
+//				break;
+			/**add by yejc 20130822 end*/	
 			}
 		}
 	}
@@ -1012,37 +1068,32 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * @param dialogView
 	 *            对话框对象
 	 */
-	private void initPlayMethodChangeDialogShow(View dialogView) {
+	private void initPlayMethodChangeDialogShow() {
 		// 胜平负按钮
-		Button wintielossButton = (Button) dialogView
-				.findViewById(R.id.beijingsinglegame_playmethodchange_button_wintieloss);
+		Button wintielossButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_wintieloss);
 		wintielossButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 总进球数按钮
-		Button totalgoalsButton = (Button) dialogView
-				.findViewById(R.id.beijingsinglegame_playmethodchange_button_totalgoals);
+		Button totalgoalsButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_totalgoals);
 		totalgoalsButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 全场比分按钮
-		Button overallButton = (Button) dialogView
-				.findViewById(R.id.beijingsinglegame_playmethodchange_button_overall);
+		Button overallButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_overall);
 		overallButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 半全场按钮
-		Button halftheaudienceButton = (Button) dialogView
-				.findViewById(R.id.beijingsinglegame_playmethodchange_button_halftheaudience);
+		Button halftheaudienceButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_halftheaudience);
 		halftheaudienceButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 上下单双按钮
-		Button updownsigledoubleButton = (Button) dialogView
-				.findViewById(R.id.beijingsinglegame_playmethodchange_button_updownsigledouble);
+		Button updownsigledoubleButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_updownsigledouble);
 		updownsigledoubleButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
-
+		
 		// 根据当前的玩法，设置该玩法的按钮为选中状态
 		switch (playMethodType) {
 		case WINTIELOSS:
@@ -1076,6 +1127,25 @@ public class BeiJingSingleGameActivity extends Activity {
 					.getColorStateList(R.color.white));
 			break;
 		}
+		/**add by yejc 20130822 start*/
+		palyMap.clear();
+		palyMap.put(PlayMethodEnum.WINTIELOSS, wintielossButton);
+		palyMap.put(PlayMethodEnum.TOTALGOALS, totalgoalsButton);
+		palyMap.put(PlayMethodEnum.OVERALL, overallButton);
+		palyMap.put(PlayMethodEnum.HALFTHEAUDIENCE, halftheaudienceButton);
+		palyMap.put(PlayMethodEnum.UPDOWNSINGLEDOUBLE, updownsigledoubleButton);
+		Collection<Button> collection = palyMap.values();
+		Iterator<Button> iterator = collection.iterator();
+		for (; iterator.hasNext();) {
+			Button btn = iterator.next();
+			btn.setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
+			btn.setTextColor(getResources().getColor(R.color.black));
+		}
+		palyMap.get(playMethodType).setBackgroundResource(
+				R.drawable.beijing_playmethodbutton_click);
+		palyMap.get(playMethodType).setTextColor(
+				getResources().getColor(R.color.white));
+		/**add by yejc 20130822 end*/
 	}
 
 	/**
@@ -1118,7 +1188,14 @@ public class BeiJingSingleGameActivity extends Activity {
 			}
 			selectedGameNum = 0;
 			selectedDanNum = 0;
-			playMethodChangeDialog.dismiss();
+			
+			/**add by yejc 20130822 start*/
+			mainPalySelectLayout.setVisibility(View.GONE);
+			upLayersLayout.setVisibility(View.GONE);
+			middleLayersLayout.setVisibility(View.GONE);
+			downLayersLayout.setVisibility(View.GONE);
+			/**add by yejc 20130822 end*/
+//			playMethodChangeDialog.dismiss();
 
 			getAndnalysisAgainstInformations();
 		}
@@ -1128,52 +1205,34 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * 创建玩法切换对话框
 	 */
 	public void createPlayMethodChangeDialog() {
-		View dialogView = layoutInflater.inflate(
-				R.layout.beijingsinglegame_playmethodchange_dialog, null);
+		mainPalySelectLayout.setVisibility(View.VISIBLE);
+		upLayersLayout.setVisibility(View.VISIBLE);
+		middleLayersLayout.setVisibility(View.VISIBLE);
+		setLayoutHeight(45);
+		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this, 
+        		R.anim.jc_top_menu_window_enter));
 
-		playMethodChangeDialog = new AlertDialog.Builder(this).create();
-		playMethodChangeDialog.show();
-		playMethodChangeDialog.getWindow().setContentView(dialogView);
-
-		initPlayMethodChangeDialogShow(dialogView);
+		initPlayMethodChangeDialogShow();
 	}
 
 	/**
 	 * 创建赛事选择对话框
 	 */
 	public void createeventSelectDialog() {
-		if (eventSelectDialog == null) {
-			eventSelectDialog = new AlertDialog.Builder(this).create();
-		}
-
-		View DialogView = layoutInflater.inflate(R.layout.jc_main_team_dialog,
-				null);
-
-		// 赛事选择对话框标题
-		TextView title = (TextView) DialogView
-				.findViewById(R.id.zfb_text_title);
-		title.setText(getString(R.string.jc_main_team_check));
-
 		// 赛事按钮容器布局
-		LinearLayout selectButtonLayout = (LinearLayout) DialogView
-				.findViewById(R.id.jc_linear_check_all);
+		LinearLayout selectButtonLayout = (LinearLayout)findViewById(R.id.jc_linear_check_all);
 		addEventSelectButtonToLayout(selectButtonLayout);
 
-		eventSelectDialog.show();
-		eventSelectDialog.getWindow().setContentView(DialogView);
-
 		// 全选按钮
-		Button allSelectButton = (Button) DialogView
-				.findViewById(R.id.all_check);
+		Button allSelectButton = (Button)findViewById(R.id.all_check);
 		allSelectButton
 				.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 		// 全清按钮
-		Button allClearButton = (Button) DialogView
-				.findViewById(R.id.clear_check);
+		Button allClearButton = (Button)findViewById(R.id.clear_check);
 		allClearButton
 				.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 		// 确定按钮
-		Button okButton = (Button) DialogView.findViewById(R.id.ok);
+		Button okButton = (Button)findViewById(R.id.ok);
 		okButton.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 	}
 
@@ -1183,7 +1242,7 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * @param selectButtonLayout
 	 */
 	private void addEventSelectButtonToLayout(LinearLayout selectButtonLayout) {
-		int buttonOfPreLine = 2;
+		int buttonOfPreLine = 4;
 		int buttonNum = 0;
 		if (eventsList != null) {
 			buttonNum = eventsList.size();
@@ -2014,13 +2073,19 @@ public class BeiJingSingleGameActivity extends Activity {
 	private void addButtonToLine(int buttonOfPreLine, int line_i,
 			LinearLayout linearLayout, int button_j) {
 		final MyButton button = new MyButton(this);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				PublicMethod.getPxInt(135, this), PublicMethod.getPxInt(35,
-						this));
-		params.setMargins(PublicMethod.getPxInt(10, this),
-				PublicMethod.getPxInt(20, this), 0, 0);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((screenWidth-PublicMethod.getPxInt(50, context))/4, 
+				PublicMethod.getPxInt(40, context));
+		if (button_j == 0) {
+			params.setMargins(0,
+					PublicMethod.getPxInt(10, context), 0, 0);
+		} else {
+			params.setMargins(PublicMethod.getPxInt(10, context),
+					PublicMethod.getPxInt(10, context), 0, 0);
+		}
+		button.initBg(bgId);
+		button.setPaintColorArray(paintColor);
 		button.setLayoutParams(params);
-
+		
 		String buttonString = eventsList.get(line_i * buttonOfPreLine
 				+ button_j);
 		button.setBtnText(buttonString);
@@ -2067,27 +2132,15 @@ public class BeiJingSingleGameActivity extends Activity {
 				}
 				break;
 			case R.id.ok:
-				/** modify by pengcx 20130617 start */
-				if (nowSelectedEventsList != null) {
-					nowSelectedEventsList.clear();
-
-					for (MyButton eventButton : eventSelectButtons) {
-						if (eventButton.isOnClick()) {
-							nowSelectedEventsList.add(eventButton.getBtnText());
-						}
+				//五大联赛
+				for (MyButton btn : eventSelectButtons) {
+					if (fiveLeagueList.contains(btn.getBtnText())) {
+						btn.setOnClick(true);
+					} else {
+						btn.setOnClick(false);
 					}
+					btn.switchBg();
 				}
-
-				if (nowSelectedEventsList != null
-						&& nowSelectedEventsList.size() != 0) {
-					refreshAgainstInformationShow(false, true);
-					eventSelectDialog.dismiss();
-				} else {
-					Toast.makeText(BeiJingSingleGameActivity.this,
-							"请至少选择一个赛事!", Toast.LENGTH_SHORT).show();
-				}
-				/** modify by pengcx 20130617 end */
-
 				break;
 			}
 
@@ -2276,4 +2329,69 @@ public class BeiJingSingleGameActivity extends Activity {
 			return " vs ";
 		}
 	}
+	
+	/**add by yejc 20130822 start*/
+	private void initPlaySelectView() {
+		BeijingSingleGameButtonOnClickListener listener = new BeijingSingleGameButtonOnClickListener();
+		playSelectBtnLayout = (LinearLayout)findViewById(R.id.jc_play_select);
+		downLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_down);
+		middleLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_middle);
+		upLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_up);
+		mainPalySelectLayout = (LinearLayout)findViewById(R.id.beidan_play_change_layout);
+		teamSelectLayout = (LinearLayout)findViewById(R.id.jc_main_team_select);
+		playSelectBtnLayout.setOnClickListener(listener);
+		downLayersLayout.setOnClickListener(listener);
+		middleLayersLayout.setOnClickListener(listener);
+		upLayersLayout.setOnClickListener(listener);
+		teamSelectLayout.setOnClickListener(listener);
+	}
+	
+	private void showTeamLayout() {
+		if (teamSelectLayout.getVisibility() == View.GONE
+				|| teamSelectLayout.getVisibility() == View.INVISIBLE) {
+			if (isFirst) {
+				createeventSelectDialog();
+				isFirst = false;
+			}
+			teamSelectLayout.setVisibility(View.VISIBLE);
+			downLayersLayout.setVisibility(View.VISIBLE);
+			upLayersLayout.setVisibility(View.VISIBLE);
+			setLayoutHeight(85);
+			teamSelectLayout.startAnimation(AnimationUtils.loadAnimation(
+					context, R.anim.jc_top_menu_window_enter));
+		} else {
+			showSelectedTeam();
+		}
+	}
+	
+	private void setLayoutHeight(int dip) {
+		ViewGroup.LayoutParams params = upLayersLayout.getLayoutParams();
+		params.height = PublicMethod.getPxInt(dip, context);
+		upLayersLayout.setLayoutParams(params);
+	}
+	
+	private void showSelectedTeam() {
+		if (nowSelectedEventsList != null) {
+			nowSelectedEventsList.clear();
+
+			for (MyButton eventButton : eventSelectButtons) {
+				if (eventButton.isOnClick()) {
+					nowSelectedEventsList.add(eventButton.getBtnText());
+				}
+			}
+		}
+
+		if (nowSelectedEventsList != null
+				&& nowSelectedEventsList.size() != 0) {
+			refreshAgainstInformationShow(false, true);
+			teamSelectLayout.setVisibility(View.GONE);
+			downLayersLayout.setVisibility(View.GONE);
+			middleLayersLayout.setVisibility(View.GONE);
+			upLayersLayout.setVisibility(View.GONE);
+		} else {
+			Toast.makeText(BeiJingSingleGameActivity.this,
+					"请至少选择一个赛事!", Toast.LENGTH_SHORT).show();
+		}
+	}
+	/**add by yejc 20130822 end*/
 }
