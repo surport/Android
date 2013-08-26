@@ -74,7 +74,7 @@ public class MyButton extends ImageView {
 		setBackgroundResource(bgId[0]);
 		size = PublicMethod.getPxInt(15, context);
 		x = PublicMethod.getPxInt(5, context);
-		y = PublicMethod.getPxInt(23, context);
+		y = PublicMethod.getPxInt(28, context);
 	}
 
 	/**
@@ -137,12 +137,12 @@ public class MyButton extends ImageView {
 	}
 	
 	/**add by yejc 20130820 start*/
-	public float getStartX() {
-		float textWidth = mPaint.measureText(textContent);
-		float width = getWidth();
-		return (width - textWidth)/2;
-	}
-	
+//	public float getStartX() {
+//		float textWidth = mPaint.measureText(textContent);
+//		float width = getWidth();
+//		return (width - textWidth)/2;
+//	}
+//	
 //	public float getStartY() {
 //		Paint.FontMetrics metrics = mPaint.getFontMetrics();
 //		float textHeight = (float)Math.ceil(metrics.descent - metrics.ascent);
@@ -155,7 +155,23 @@ public class MyButton extends ImageView {
 		mPaint.setTypeface(null);
 		mPaint.setColor(paintColor);
 		mPaint.setTextSize(size);
-		canvas.drawText(textContent, getStartX(), y, mPaint);
+		float textWidth = mPaint.measureText(textContent);
+		float width = getWidth();
+		if (textWidth > width) {
+			int length = textContent.length()/2;
+			String firstLine = textContent.substring(0, length);
+			String secondLine = textContent.substring(length, textContent.length());
+			float firstStartX = (width - mPaint.measureText(firstLine))/2;
+			float secondStartX = (width - mPaint.measureText(secondLine))/2;
+			canvas.drawText(firstLine, firstStartX, PublicMethod.getPxInt(15, context), mPaint);
+			
+			canvas.drawText(secondLine, secondStartX, PublicMethod.getPxInt(32, context), mPaint);
+			
+		} else {
+			float textStartX = (width - textWidth)/2;
+			canvas.drawText(textContent, textStartX, y, mPaint);
+		}
+		
 
 	}
 	

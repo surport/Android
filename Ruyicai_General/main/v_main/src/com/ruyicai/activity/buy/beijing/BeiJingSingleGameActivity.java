@@ -45,6 +45,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -160,7 +161,7 @@ public class BeiJingSingleGameActivity extends Activity {
 	private List<String> bettingDanList;
 
 	/** 当前选中的场次数 */
-	private int selectedGameNum = 0;
+	public int selectedGameNum = 0;
 	private int selectedDanNum = 0;
 
 	/** 当前期号 */
@@ -182,7 +183,6 @@ public class BeiJingSingleGameActivity extends Activity {
 	private int screenWidth;
 	private boolean isFirst = true;
 	Map<PlayMethodEnum, Button> palyMap = new HashMap<PlayMethodEnum, Button>();
-	private List<String> fiveLeagueList = new ArrayList<String>();
 	private int[] bgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
 	private int[] paintColor= {Color.BLACK, Color.WHITE};
 	/**add by yejc 20130822 end*/
@@ -523,11 +523,6 @@ public class BeiJingSingleGameActivity extends Activity {
 		
 		/**add by yejc 20130822 start*/
 		initPlaySelectView();
-		fiveLeagueList.add("意甲");
-		fiveLeagueList.add("英超");
-		fiveLeagueList.add("西甲");
-		fiveLeagueList.add("德甲");
-		fiveLeagueList.add("法甲");
 		screenWidth = PublicMethod.getDisplayWidth(this);
 		/**add by yejc 20130822 end*/
 
@@ -1517,80 +1512,80 @@ public class BeiJingSingleGameActivity extends Activity {
 				/** modify by pengcx 20130617 start */
 				switch (t) {
 				case 0:
-					batchCodeStringBuffer.append("90");
-					break;
-				case 1:
 					batchCodeStringBuffer.append("10");
 					break;
-				case 2:
+				case 1:
 					batchCodeStringBuffer.append("20");
 					break;
-				case 3:
+				case 2:
 					batchCodeStringBuffer.append("21");
 					break;
-				case 4:
+				case 3:
 					batchCodeStringBuffer.append("30");
 					break;
-				case 5:
+				case 4:
 					batchCodeStringBuffer.append("31");
 					break;
-				case 6:
+				case 5:
 					batchCodeStringBuffer.append("32");
 					break;
-				case 7:
+				case 6:
 					batchCodeStringBuffer.append("40");
 					break;
-				case 8:
+				case 7:
 					batchCodeStringBuffer.append("41");
 					break;
-				case 9:
+				case 8:
 					batchCodeStringBuffer.append("42");
 					break;
+				case 9:
+					batchCodeStringBuffer.append("90");
+					break;	
 				case 10:
-					batchCodeStringBuffer.append("99");
-					break;
-				case 11:
 					batchCodeStringBuffer.append("00");
 					break;
-				case 12:
+				case 11:
 					batchCodeStringBuffer.append("11");
 					break;
-				case 13:
+				case 12:
 					batchCodeStringBuffer.append("22");
 					break;
-				case 14:
+				case 13:
 					batchCodeStringBuffer.append("33");
 					break;
-				case 15:
-					batchCodeStringBuffer.append("09");
+				case 14:
+					batchCodeStringBuffer.append("99");
 					break;
-				case 16:
+				case 15:
 					batchCodeStringBuffer.append("01");
 					break;
-				case 17:
+				case 16:
 					batchCodeStringBuffer.append("02");
 					break;
-				case 18:
+				case 17:
 					batchCodeStringBuffer.append("12");
 					break;
-				case 19:
+				case 18:
 					batchCodeStringBuffer.append("03");
 					break;
-				case 20:
+				case 19:
 					batchCodeStringBuffer.append("13");
 					break;
-				case 21:
+				case 20:
 					batchCodeStringBuffer.append("23");
 					break;
-				case 22:
+				case 21:
 					batchCodeStringBuffer.append("04");
 					break;
-				case 23:
+				case 22:
 					batchCodeStringBuffer.append("14");
 					break;
-				case 24:
+				case 23:
 					batchCodeStringBuffer.append("24");
 					break;
+				case 24:
+					batchCodeStringBuffer.append("09");
+					break;	
 				}
 			}
 			/** modify by pengcx 20130617 end */
@@ -2074,7 +2069,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			LinearLayout linearLayout, int button_j) {
 		final MyButton button = new MyButton(this);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((screenWidth-PublicMethod.getPxInt(50, context))/4, 
-				PublicMethod.getPxInt(40, context));
+				PublicMethod.getPxInt(42, context));
 		if (button_j == 0) {
 			params.setMargins(0,
 					PublicMethod.getPxInt(10, context), 0, 0);
@@ -2127,14 +2122,18 @@ public class BeiJingSingleGameActivity extends Activity {
 				break;
 			case R.id.clear_check:
 				for (MyButton eventButton : eventSelectButtons) {
-					eventButton.setOnClick(false);
+					if(eventButton.isOnClick()) {
+						eventButton.setOnClick(false);
+					} else {
+						eventButton.setOnClick(true);
+					}
 					eventButton.switchBg();
 				}
 				break;
 			case R.id.ok:
 				//五大联赛
 				for (MyButton btn : eventSelectButtons) {
-					if (fiveLeagueList.contains(btn.getBtnText())) {
+					if (PublicMethod.isFiveLeague(btn.getBtnText())) {
 						btn.setOnClick(true);
 					} else {
 						btn.setOnClick(false);
@@ -2393,5 +2392,27 @@ public class BeiJingSingleGameActivity extends Activity {
 					"请至少选择一个赛事!", Toast.LENGTH_SHORT).show();
 		}
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			if (mainPalySelectLayout.getVisibility() == View.VISIBLE
+					|| teamSelectLayout.getVisibility() == View.VISIBLE) {
+				mainPalySelectLayout.setVisibility(View.GONE);
+				downLayersLayout.setVisibility(View.GONE);
+				middleLayersLayout.setVisibility(View.GONE);
+				upLayersLayout.setVisibility(View.GONE);
+				teamSelectLayout.setVisibility(View.GONE);
+			} else {
+				finish();
+			}
+
+			break;
+		}
+		return false;
+	}
+	
+	
 	/**add by yejc 20130822 end*/
 }

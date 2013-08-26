@@ -3016,6 +3016,17 @@ public class PublicMethod {
 		String html = "<font size="+fontSize+" color="+colorValue+">"+text+"<//font>";
 		return html;
 	}
+	
+	public static boolean isFiveLeague(String league) {
+		String[] fiveLeague = {"意甲", "英超", "西甲", "德甲", "法甲"};
+		for (int i = 0; i < fiveLeague.length; i++) {
+			if (league.contains(fiveLeague[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	/**add by pengcx 20130808 start*/
 	/**

@@ -60,7 +60,7 @@ public class WinTieLossAdapter extends ParentAdapter {
 
 		Button upDownButton = (Button) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_btn);
-		upDownButton.setBackgroundResource(R.drawable.buy_jc_btn_close);
+		upDownButton.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 		LinearLayout linearLayout = (LinearLayout) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
 
@@ -129,19 +129,19 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// 如果对阵列表需要展开
 		if (winTieLossAgainstInformations.get(0).isShow()) {
 			linearLayout.setVisibility(View.VISIBLE);
-			button.setBackgroundResource(R.drawable.buy_jc_btn_open);
+			button.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 
 			int size = winTieLossAgainstInformations.size();
 			for (int info_i = 0; info_i < size; info_i++) {
 				View itemView = getWinTieLossAgainstListItemView(winTieLossAgainstInformations
-						.get(info_i));
+						.get(info_i), info_i);
 				linearLayout.addView(itemView);
 			}
 		}
 		// 不展开
 		else {
 			linearLayout.setVisibility(LinearLayout.GONE);
-			button.setBackgroundResource(R.drawable.buy_jc_btn_close);
+			button.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 		}
 	}
 
@@ -154,9 +154,17 @@ public class WinTieLossAdapter extends ParentAdapter {
 	 * @return 视图对象
 	 */
 	private View getWinTieLossAgainstListItemView(
-			final WinTieLossAgainstInformation winTieLossAgainstInformation) {
+			final WinTieLossAgainstInformation winTieLossAgainstInformation, int index) {
 		View itemView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_listview_item_other, null);
+		/**add by yejc 20130823 start*/
+		View divider = (View)itemView.findViewById(R.id.jc_main_divider_up);
+		if (index == 0) {
+			divider.setVisibility(View.VISIBLE);
+		} else {
+			divider.setVisibility(View.GONE);
+		}
+		/**add by yejc 20130823 end*/
 
 		// 联赛名称
 		TextView leagueTextView = (TextView) itemView
@@ -177,7 +185,7 @@ public class WinTieLossAdapter extends ParentAdapter {
 		homeTeamTextView.setText(winTieLossAgainstInformation.getHomeTeam());
 
 		// 主队赔率
-		TextView v0TextView = (TextView) itemView
+		final TextView v0TextView = (TextView) itemView
 				.findViewById(R.id.home_team_odds);
 		/** modify by pengcx 20130514 start */
 		v0TextView.setText(winTieLossAgainstInformation.getV3());
@@ -193,7 +201,7 @@ public class WinTieLossAdapter extends ParentAdapter {
 		}
 		/** modify by pengcx 20130514 end */
 		// VS赔率
-		TextView v1TextView = (TextView) itemView
+		final TextView v1TextView = (TextView) itemView
 				.findViewById(R.id.game_vs_odds);
 		v1TextView.setText(winTieLossAgainstInformation.getV1());
 		// 客队
@@ -201,7 +209,7 @@ public class WinTieLossAdapter extends ParentAdapter {
 				.findViewById(R.id.guest_team_name);
 		guestTeamTextView.setText(winTieLossAgainstInformation.getGuestTeam());
 		// 客队赔率
-		TextView v3textTextView = (TextView) itemView
+		final TextView v3textTextView = (TextView) itemView
 				.findViewById(R.id.guest_team_odds);
 		/** modify by pengcx 20130514 start */
 		v3textTextView.setText(winTieLossAgainstInformation.getV0());
@@ -220,9 +228,11 @@ public class WinTieLossAdapter extends ParentAdapter {
 		final Button danTextButton = (Button) itemView
 				.findViewById(R.id.game_dan);
 		if (!winTieLossAgainstInformation.isDan()) {
-			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+			danTextButton.setBackgroundResource(android.R.color.transparent);
+			danTextButton.setTextColor(black);
 		} else {
 			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+			danTextButton.setTextColor(white);
 		}
 
 		danTextButton.setOnClickListener(new OnClickListener() {
@@ -231,12 +241,14 @@ public class WinTieLossAdapter extends ParentAdapter {
 			public void onClick(View v) {
 				if (winTieLossAgainstInformation.isDan()) {
 					winTieLossAgainstInformation.setDan(false);
-					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+					danTextButton.setBackgroundResource(android.R.color.transparent);
+					danTextButton.setTextColor(black);
 				} else {
 					if (isSelectDanLegal()) {
 						winTieLossAgainstInformation.setDan(true);
 						danTextButton
 								.setBackgroundResource(R.drawable.jc_btn_b);
+						danTextButton.setTextColor(white);
 					}
 				}
 
@@ -332,15 +344,10 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// 主队“按钮”布局
 		final LinearLayout homeTeamLayout = (LinearLayout) itemView
 				.findViewById(R.id.home_layout);
-		if (winTieLossAgainstInformation.isV0IsClick()) {
-			homeTeamLayout
-					.setBackgroundResource(R.drawable.team_name_bj_yellow);
-			homeTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-		} else {
-			homeTeamLayout.setBackgroundResource(R.drawable.team_name_bj);
-			homeTeamTextView.setBackgroundResource(R.drawable.team_name_bj_top);
-		}
+		/**modify by yejc 20130823 start*/
+		setViewStyle(homeTeamLayout, homeTeamTextView, v0TextView,
+				winTieLossAgainstInformation.isV0IsClick());
+		/**modify by yejc 20130823 start*/
 
 		homeTeamLayout.setOnClickListener(new OnClickListener() {
 
@@ -353,16 +360,8 @@ public class WinTieLossAdapter extends ParentAdapter {
 						|| winTieLossAgainstInformation.isSelected()) {
 					// 根据当前的选中状态设置背景图片，并改变相关的选中属性
 					if (!winTieLossAgainstInformation.isV0IsClick()) {
-						homeTeamLayout
-								.setBackgroundResource(R.drawable.team_name_bj_yellow);
-						homeTeamTextView
-								.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						winTieLossAgainstInformation.setV0IsClick(true);
 					} else {
-						homeTeamLayout
-								.setBackgroundResource(R.drawable.team_name_bj);
-						homeTeamTextView
-								.setBackgroundResource(R.drawable.team_name_bj_top);
 						winTieLossAgainstInformation.setV0IsClick(false);
 
 						// 取消胆按钮
@@ -370,9 +369,13 @@ public class WinTieLossAdapter extends ParentAdapter {
 								&& !winTieLossAgainstInformation.isSelected()) {
 							winTieLossAgainstInformation.setDan(false);
 							danTextButton
-									.setBackgroundResource(R.drawable.jc_btn);
+									.setBackgroundResource(android.R.color.transparent);
+							danTextButton.setTextColor(black);
 						}
 					}
+					setViewStyle(homeTeamLayout, homeTeamTextView, v0TextView,
+							winTieLossAgainstInformation.isV0IsClick());
+
 					((BeiJingSingleGameActivity) context)
 							.refreshSelectNumAndDanNum();
 				} else {
@@ -385,14 +388,11 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// vs“按钮”布局
 		final LinearLayout vsLayout = (LinearLayout) itemView
 				.findViewById(R.id.vs_layout);
-		if (winTieLossAgainstInformation.isV1IsClick()) {
-			vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-			vsTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-		} else {
-			vsLayout.setBackgroundResource(R.drawable.team_name_bj);
-			vsTextView.setBackgroundResource(R.drawable.team_name_bj_top);
-		}
+		/**modify by yejc 20130823 start*/
+		setViewStyle(vsLayout, vsTextView, v1TextView,
+				winTieLossAgainstInformation.isV1IsClick());
+		/**modify by yejc 20130823 end*/
+		
 		vsLayout.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -403,24 +403,22 @@ public class WinTieLossAdapter extends ParentAdapter {
 						|| winTieLossAgainstInformation.isSelected()) {
 					// 根据当前的选中状态设置背景图片，并改变相关的选中属性
 					if (!winTieLossAgainstInformation.isV1IsClick()) {
-						vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-						vsTextView
-								.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						winTieLossAgainstInformation.setV1IsClick(true);
 					} else {
-						vsLayout.setBackgroundResource(R.drawable.team_name_bj);
-						vsTextView
-								.setBackgroundResource(R.drawable.team_name_bj_top);
 						winTieLossAgainstInformation.setV1IsClick(false);
-
 						// 取消胆按钮
 						if (winTieLossAgainstInformation.isDan()
 								&& !winTieLossAgainstInformation.isSelected()) {
 							winTieLossAgainstInformation.setDan(false);
 							danTextButton
-									.setBackgroundResource(R.drawable.jc_btn);
+									.setBackgroundResource(android.R.color.transparent);
+							danTextButton.setTextColor(black);
 						}
 					}
+					/**add by yejc 20130823 start*/
+					setViewStyle(vsLayout, vsTextView, v1TextView,
+							winTieLossAgainstInformation.isV1IsClick());
+					/**add by yejc 20130823 end*/
 					((BeiJingSingleGameActivity) context)
 							.refreshSelectNumAndDanNum();
 				} else {
@@ -433,16 +431,10 @@ public class WinTieLossAdapter extends ParentAdapter {
 		// 客队“按钮”布局
 		final LinearLayout guestTeamLayout = (LinearLayout) itemView
 				.findViewById(R.id.guest_layout);
-		if (winTieLossAgainstInformation.isV3IsClick()) {
-			guestTeamLayout
-					.setBackgroundResource(R.drawable.team_name_bj_yellow);
-			guestTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-		} else {
-			guestTeamLayout.setBackgroundResource(R.drawable.team_name_bj);
-			guestTeamTextView
-					.setBackgroundResource(R.drawable.team_name_bj_top);
-		}
+		/**modify by yejc 20130823 start*/
+		setViewStyle(guestTeamLayout, guestTeamTextView, v3textTextView,
+				winTieLossAgainstInformation.isV3IsClick());
+		/**modify by yejc 20130823 end*/
 
 		guestTeamLayout.setOnClickListener(new OnClickListener() {
 
@@ -454,16 +446,8 @@ public class WinTieLossAdapter extends ParentAdapter {
 						|| winTieLossAgainstInformation.isSelected()) {
 					// 根据当前的选中状态设置背景图片，并改变相关的选中属性
 					if (!winTieLossAgainstInformation.isV3IsClick()) {
-						guestTeamLayout
-								.setBackgroundResource(R.drawable.team_name_bj_yellow);
-						guestTeamTextView
-								.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
 						winTieLossAgainstInformation.setV3IsClick(true);
 					} else {
-						guestTeamLayout
-								.setBackgroundResource(R.drawable.team_name_bj);
-						guestTeamTextView
-								.setBackgroundResource(R.drawable.team_name_bj_top);
 						winTieLossAgainstInformation.setV3IsClick(false);
 
 						// 取消胆按钮
@@ -471,9 +455,14 @@ public class WinTieLossAdapter extends ParentAdapter {
 								&& !winTieLossAgainstInformation.isSelected()) {
 							winTieLossAgainstInformation.setDan(false);
 							danTextButton
-									.setBackgroundResource(R.drawable.jc_btn);
+									.setBackgroundResource(android.R.color.transparent);
+							danTextButton.setTextColor(black);
 						}
 					}
+					/**modify by yejc 20130823 start*/
+					setViewStyle(guestTeamLayout, guestTeamTextView, v3textTextView,
+							winTieLossAgainstInformation.isV3IsClick());
+					/**modify by yejc 20130823 end*/
 					((BeiJingSingleGameActivity) context)
 							.refreshSelectNumAndDanNum();
 				} else {
@@ -485,4 +474,20 @@ public class WinTieLossAdapter extends ParentAdapter {
 
 		return itemView;
 	}
+	
+	/**add by yejc 20130823 start*/
+	private void setViewStyle(LinearLayout teamLayout, TextView team, TextView odds, boolean isChecked) {
+		if (isChecked) {
+			teamLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+			team.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+			team.setTextColor(white);
+			odds.setTextColor(white);
+		} else {
+			teamLayout.setBackgroundResource(android.R.color.transparent);
+			team.setBackgroundResource(android.R.color.transparent);
+			team.setTextColor(black);
+			odds.setTextColor(oddsColor);
+		}
+	}
+	/**add by yejc 20130823 end*/
 }

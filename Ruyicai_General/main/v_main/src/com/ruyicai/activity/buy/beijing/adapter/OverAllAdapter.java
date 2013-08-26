@@ -11,6 +11,7 @@ import com.ruyicai.util.PublicMethod;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +35,10 @@ public class OverAllAdapter extends ParentAdapter {
 	protected static final int MAX_DAN = 2;
 	/* Modify by pengcx 20130617 start */
 	/** 选择按钮标题 */
-	public static String selectButtonTitles[] = { "胜其它", "1:0", "2:0", "2:1",
-			"3:0", "3:1", "3:2", "4:0", "4:1", "4:2", "平其他", "0:0", "1:1",
-			"2:2", "3:3", "负其他", "0:1", "0:2", "1:2", "0:3", "1:3", "2:3",
-			"0:4", "1:4", "2:4" };
+	public static String selectButtonTitles[] = {"1:0", "2:0", "2:1",
+			"3:0", "3:1", "3:2", "4:0", "4:1", "4:2", "胜其它", "0:0", "1:1",
+			"2:2", "3:3", "平其他", "0:1", "0:2", "1:2", "0:3", "1:3", "2:3",
+			"0:4", "1:4", "2:4", "负其他"};
 	/* Modify by pengcx 20130617 end */
 	/** 显示全场总比分对阵信息集合 */
 	private List<List<OverAllAgainstInformation>> overAllAgainstInformationList;
@@ -70,7 +71,7 @@ public class OverAllAdapter extends ParentAdapter {
 
 		Button button = (Button) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_btn);
-		button.setBackgroundResource(R.drawable.buy_jc_btn_close);
+		button.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 		LinearLayout linearLayout = (LinearLayout) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
 
@@ -140,7 +141,7 @@ public class OverAllAdapter extends ParentAdapter {
 		// 如果真开对阵
 		if (totalGoalsAgainstInformations.get(0).isShow()) {
 			linearLayout.setVisibility(View.VISIBLE);
-			button.setBackgroundResource(R.drawable.buy_jc_btn_open);
+			button.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 
 			int size = totalGoalsAgainstInformations.size();
 			for (int info_i = 0; info_i < size; info_i++) {
@@ -152,7 +153,7 @@ public class OverAllAdapter extends ParentAdapter {
 		// 不展开
 		else {
 			linearLayout.setVisibility(LinearLayout.GONE);
-			button.setBackgroundResource(R.drawable.buy_jc_btn_close);
+			button.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 		}
 	}
 
@@ -201,8 +202,10 @@ public class OverAllAdapter extends ParentAdapter {
 				.findViewById(R.id.game_dan);
 		if (overAllAgainstInformation.isDan()) {
 			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+			danTextButton.setTextColor(white);
 		} else {
-			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+			danTextButton.setBackgroundResource(android.R.color.transparent);
+			danTextButton.setTextColor(black);
 		}
 
 		danTextButton.setOnClickListener(new OnClickListener() {
@@ -211,12 +214,15 @@ public class OverAllAdapter extends ParentAdapter {
 			public void onClick(View v) {
 				if (overAllAgainstInformation.isDan()) {
 					overAllAgainstInformation.setDan(false);
-					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+					danTextButton.setBackgroundResource(android.R.color.transparent);
+					danTextButton.setTextColor(black);
 				} else {
 					if (isSelectDanLegal()) {
 						overAllAgainstInformation.setDan(true);
 						danTextButton
 								.setBackgroundResource(R.drawable.jc_btn_b);
+						danTextButton.setTextColor(white);
+						
 					}
 				}
 
@@ -347,19 +353,19 @@ public class OverAllAdapter extends ParentAdapter {
 	 */
 	public void createOverAllSelectDialog(View v) {
 		View dialogView = LayoutInflater.from(context).inflate(
-				R.layout.buy_lq_sfc_dialog, null);
+				R.layout.buy_jc_zq_bf_layout, null);
 		final Dialog selectDialog = new AlertDialog.Builder(context).create();
 
 		// 标题
-//		TextView titleTextView = (TextView) dialogView
-//				.findViewById(R.id.layout_main_text_title);
+		TextView titleTextView = (TextView) dialogView
+				.findViewById(R.id.layout_main_text_title);
 		final OverAllAgainstInformation overAllAgainstInformation = (OverAllAgainstInformation) v
 				.getTag();
 		StringBuilder titleString = new StringBuilder();
 		titleString.append(overAllAgainstInformation.getHomeTeam())
 				.append(" VS ")
 				.append(overAllAgainstInformation.getGuestTeam());
-//		titleTextView.setText(titleString);
+		titleTextView.setText(titleString);
 
 		/** 选择按钮的资源Id */
 		int[] selectButtonIds = { R.id.lq_sfc_dialog_check01,
@@ -377,7 +383,7 @@ public class OverAllAdapter extends ParentAdapter {
 				R.id.lq_sfc_dialog_check027, R.id.lq_sfc_dialog_check028 };
 		/*Modify by pengcx 20130515 start*/
 		/** 选择按钮sp */
-		String selectButtonSPs[] = { overAllAgainstInformation.getScore_v90(),
+		String selectButtonSPs[] = {
 				overAllAgainstInformation.getScore_v10(),
 				overAllAgainstInformation.getScore_v20(),
 				overAllAgainstInformation.getScore_v21(),
@@ -387,12 +393,14 @@ public class OverAllAdapter extends ParentAdapter {
 				overAllAgainstInformation.getScore_v40(),
 				overAllAgainstInformation.getScore_v41(),
 				overAllAgainstInformation.getScore_v42(),
-				overAllAgainstInformation.getScore_v99(),
+				overAllAgainstInformation.getScore_v90(),
+				
 				overAllAgainstInformation.getScore_v00(),
 				overAllAgainstInformation.getScore_v11(),
 				overAllAgainstInformation.getScore_v22(),
 				overAllAgainstInformation.getScore_v33(),
-				overAllAgainstInformation.getScore_v09(),
+				overAllAgainstInformation.getScore_v99(),
+				
 				overAllAgainstInformation.getScore_v01(),
 				overAllAgainstInformation.getScore_v02(),
 				overAllAgainstInformation.getScore_v12(),
@@ -401,7 +409,8 @@ public class OverAllAdapter extends ParentAdapter {
 				overAllAgainstInformation.getScore_v23(),
 				overAllAgainstInformation.getScore_v04(),
 				overAllAgainstInformation.getScore_v14(),
-				overAllAgainstInformation.getScore_v24() };
+				overAllAgainstInformation.getScore_v24(),
+				overAllAgainstInformation.getScore_v09()};
 		/*Modify by pengcx 20130515 end*/
 
 		/** 选择对话框选择按钮 */
@@ -415,14 +424,17 @@ public class OverAllAdapter extends ParentAdapter {
 			selectButtons[button_i].setChecked(overAllAgainstInformation
 					.getIsClicks()[button_i]);
 			selectButtons[button_i].setCheckTitle(selectButtonTitles[button_i]);
+			selectButtons[button_i].setTextPaintColorArray(new int[]{
+					resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
+			selectButtons[button_i].setOddsPaintColorArray(new int[]{Color.GRAY, Color.WHITE});
 		}
 
 		LinearLayout layout1 = (LinearLayout) dialogView
-				.findViewById(R.id.jc_check_dialog_layout2);
+				.findViewById(R.id.LinearLayout03);
 		LinearLayout layout2 = (LinearLayout) dialogView
-				.findViewById(R.id.jc_check_dialog_layout3);
-		layout1.setVisibility(LinearLayout.VISIBLE);
-		layout2.setVisibility(LinearLayout.VISIBLE);
+				.findViewById(R.id.LinearLayout07);
+		layout1.setVisibility(LinearLayout.GONE);
+		layout2.setVisibility(LinearLayout.GONE);
 
 		selectDialog.show();
 		selectDialog.getWindow().setContentView(dialogView);
