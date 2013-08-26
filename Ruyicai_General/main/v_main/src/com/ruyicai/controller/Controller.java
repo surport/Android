@@ -12,9 +12,11 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.InternetUtils;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.FeedBackListInterface;
+import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
+import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.ProgressDialog;
@@ -45,7 +47,33 @@ public class Controller {
         }
         return sInstance;
     }
-
+    
+	/**
+	 * 获取期号
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public String toNetIssue(String type) {
+		// 成功获取到了期号信息
+		String issueStr = "";
+		try {
+			issueStr = GetLotNohighFrequency.getInstance().getInfo(type);
+			JSONObject allIssue = new JSONObject(issueStr);
+			/**add by fansm 20130819 start*/
+			String error_code = allIssue.getString("error_code");
+			/**add by fansm 20130819 end*/
+			if (error_code.equals("0000")) {
+				// 成功获取到了期号信息
+				issueStr = allIssue.getString("batchcode");
+			} else{
+				issueStr = "";
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return issueStr;
+	}
     
 	/**
 	 * 投注action
@@ -78,6 +106,22 @@ public class Controller {
 		});
 		t.start();
    }
+   
+	/**
+	 * 获取期号
+	 * @param handler
+	 * @param type
+	 * @return
+	 */
+	public void toNetIssue(final MyHandler handler,final String type) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				final String issue = toNetIssue(type);
+				handler.handleMsg("0000",issue);
+			}
+		}).start();
+	}
    /**
     * set return obj
     * @param obj

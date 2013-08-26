@@ -35,6 +35,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.miss.JoinStartActivity;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
@@ -187,7 +188,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				final String issue = PublicMethod.toNetIssue(betAndGift
+				final String issue = Controller.getInstance(ZiXuanTouZhu.this).toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 
@@ -289,29 +290,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		if (controller != null) {
 			controller.doBettingAction(handler, betAndGift);
 		}
-//		progressdialog = UserCenterDialog.onCreateDialog(this);
-//		progressdialog.show();
-//		// 加入是否改变切入点判断 陈晨 8.11
-//		Thread t = new Thread(new Runnable() {
-//			String str = "00";
-//
-//			@Override
-//			public void run() {
-//				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-//				try {
-//					JSONObject obj = new JSONObject(str);
-//					String msg = obj.getString("message");
-//					String error = obj.getString("error_code");
-//					handler.handleMsg(error, msg);
-//					isNoIssue(handler, obj);
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				progressdialog.dismiss();
-//			}
-//
-//		});
-//		t.start();
 	}
 
 	/**

@@ -73,7 +73,7 @@ public class JoinDingActivity extends Activity {
 	private void getInfo() {
 		Intent intent = getIntent();
 		starterUserNo = intent.getStringExtra(JoinInfoActivity.USER_NO);
-		lotno = intent.getStringExtra(JoinHallActivity.LOTNO);
+		lotno = intent.getStringExtra(Constants.LOTNO);
 		infoNet(starterUserNo, lotno);
 	}
 

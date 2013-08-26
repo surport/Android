@@ -38,9 +38,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.miss.GiftActivity;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.JoinStartInterface;
@@ -322,22 +324,7 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 				.toString())));
 		betAndGift.setCommisionRation(commisionRation);
 		betAndGift.setVisibility(visible);
-		if (betAndGift.getLotno().equals(
-				Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
-				|| betAndGift.getLotno().equals(
-						Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
-				|| betAndGift.getLotno().equals(
-						Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
-				|| betAndGift.getLotno().equals(
-						Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
-				|| betAndGift.getLotno().equals(
-						Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
-			betAndGift.setBatchcode(PublicMethod.toNetIssue(betAndGift
-					.getLotno()));
-		}else {
-			betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
-		}
-		
+		betAndGift.setBatchcode(Controller.getInstance(JoinStartActivityjc.this).toNetIssue(betAndGift.getLotno()));
 		betAndGift.setDescription(descriptionEdit.getText().toString());
 
 	}

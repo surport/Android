@@ -51,9 +51,9 @@ import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
-import com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.JoinStartInterface;
@@ -263,7 +263,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = PublicMethod.toNetIssue(betAndGift
+				final String issue = Controller.getInstance(JoinStartActivity.this).toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 

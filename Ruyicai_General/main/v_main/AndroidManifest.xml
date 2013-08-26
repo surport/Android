@@ -357,10 +357,6 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ruyicai.activity.buy.fc3d.Fc3dJiXuan"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.ruyicai.activity.buy.fc3d.FC3DZuSan"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
@@ -608,10 +604,6 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name="com.ruyicai.activity.join.JoinHallActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.join.JoinCheckActivity"
             android:configChanges="keyboardHidden|orientation"

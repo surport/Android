@@ -107,7 +107,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		initBatchCode(Constants.LOTNO_JQC);
 		initBatchCodeView();
 		createVeiw();
 		showDialog(DIALOG1_KEY);

@@ -547,9 +547,6 @@ public class BuyActivityGroup extends ActivityGroup {
 				if (!issueStr.equalsIgnoreCase("")) {
 					try {
 						JSONObject allIssue = new JSONObject(issueStr);
-						/** add by fansm 20130819 start*/
-						Constants.currentLotnoInfo = allIssue;
-						/** add by fansm 20130819 end*/
 						final String issueStr2 = allIssue
 								.getString("batchcode");
 						String timeran = allIssue.getString("time_remaining");

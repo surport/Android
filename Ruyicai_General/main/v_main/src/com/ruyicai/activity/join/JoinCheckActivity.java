@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.detail.Hemaidetail;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.QueryJoinCheckInterface;
@@ -669,7 +670,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 								JoinModifyActivity.class);
 						intent.putExtra(JoinInfoActivity.USER_NO,
 								info.getStarterno());
-						intent.putExtra(JoinHallActivity.LOTNO, info.getLotNo());
+						intent.putExtra(Constants.LOTNO, info.getLotNo());
 						intent.putExtra("id", info.getId());
 						intent.putExtra("time", info.getCreateTime());
 						intent.putExtra("times", info.getTimes());
@@ -697,7 +698,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 								JoinDingActivity.class);
 						intent.putExtra(JoinInfoActivity.USER_NO,
 								info.getStarterno());
-						intent.putExtra(JoinHallActivity.LOTNO, info.getLotNo());
+						intent.putExtra(Constants.LOTNO, info.getLotNo());
 						startActivity(intent);
 						isrefresh = true;
 					}
@@ -786,7 +787,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			public void run() {
 				String str = "00";
 				str = QueryJoinCheckInterface.queryLotJoinCheck(userno,
-						phonenum, "" + newPage, JoinHallActivity.PAGENUM);
+						phonenum, "" + newPage, Constants.PAGENUM);
 				tHandler.post(new Runnable() {
 					@Override
 					public void run() {

@@ -46,7 +46,6 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.home.MainGroup;
 import com.ruyicai.activity.home.MainGroup.NoReadUpdateReceiver;
 import com.ruyicai.activity.info.LotInfoActivity;
-import com.ruyicai.activity.info.LotInfoConcreteActivity;
 import com.ruyicai.activity.info.LotInfoDomain;
 import com.ruyicai.activity.more.FeedBack;
 import com.ruyicai.activity.usercenter.UserScoreActivity.ScroeQueryAdapter;

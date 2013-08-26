@@ -31,10 +31,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.ContentListView;
 import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
@@ -411,7 +413,7 @@ public class Betdetail extends Activity {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = PublicMethod.toNetIssue(lotno);
+				final String issue = Controller.getInstance(Betdetail.this).toNetIssue(lotno);
 				if (issue.equals("")) {
 					handler.post(new Runnable() {
 

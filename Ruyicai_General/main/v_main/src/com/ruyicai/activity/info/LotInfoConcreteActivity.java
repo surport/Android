@@ -33,8 +33,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -374,9 +376,7 @@ public class LotInfoConcreteActivity extends Activity implements
 					type = obj.getString("lottype");
 					bet_code = obj.getString("bet_code");
 					view_code = obj.getString("view_code");
-					JSONObject LotnoInfo = PublicMethod
-							.getCurrentLotnoBatchCode(lotno);
-					betno = LotnoInfo.getString("batchCode");
+					betno = Controller.getInstance(LotInfoConcreteActivity.this).toNetIssue(lotno);
 					SpannableStringBuilder strsp = new SpannableStringBuilder(
 							view_code);
 					ThrowintoSpan span = new ThrowintoSpan(

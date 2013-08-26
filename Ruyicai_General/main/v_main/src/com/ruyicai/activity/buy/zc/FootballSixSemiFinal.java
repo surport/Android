@@ -115,23 +115,8 @@ public class FootballSixSemiFinal extends FootBallLotteryFather implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.buy_footballlottery_layout);
-		initBatchCode(Constants.LOTNO_LCB);
+
 		iScreenWidth = PublicMethod.getDisplayWidth(this);
-		JSONObject rx9LotnoInfo = PublicMethod
-				.getCurrentLotnoBatchCode(Constants.LOTNO_LCB);
-		if (rx9LotnoInfo != null) {
-			// 成功获取到了期号信息
-			try {
-				batchCode = rx9LotnoInfo.getString("batchCode");
-				qihaoxinxi[0] = batchCode;
-				qihaoxinxi[1] = rx9LotnoInfo.getString("endTime");
-				qihaoxinxi[2] = Constants.LOTNO_LCB;
-			} catch (JSONException e) {
-				qihaoxinxi[0] = "";
-				qihaoxinxi[1] = "";
-				qihaoxinxi[2] = Constants.LOTNO_LCB;
-			}
-		}
 		layout_football_issue = (Button) findViewById(R.id.layout_football_issue);
 		layout_football_time = (TextView) findViewById(R.id.layout_football_time);
 		initBatchCodeView();

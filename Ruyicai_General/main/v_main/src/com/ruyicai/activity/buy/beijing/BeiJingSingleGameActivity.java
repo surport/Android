@@ -26,6 +26,7 @@ import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.net.newtransaction.BeiJingSingleGameInterface;
 import com.ruyicai.util.PublicMethod;
@@ -697,7 +698,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			@Override
 			public void run() {
 				// 获取当前期号
-				nowIssueString = PublicMethod.toNetIssue(playMethodType
+				nowIssueString = Controller.getInstance(BeiJingSingleGameActivity.this).toNetIssue(playMethodType
 						.getLotnoString());
 
 				// 如果获取期号成功，则继续获取对阵信息

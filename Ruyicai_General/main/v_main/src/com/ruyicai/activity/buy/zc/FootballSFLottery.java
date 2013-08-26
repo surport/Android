@@ -110,7 +110,6 @@ public class FootballSFLottery extends FootballFourteen implements
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		initBatchCode(Constants.LOTNO_SFC);
 		initBatchCodeView();
 		showDialog(DIALOG1_KEY);
 		getZCAdvanceBatchCodeData(Constants.LOTNO_SFC);

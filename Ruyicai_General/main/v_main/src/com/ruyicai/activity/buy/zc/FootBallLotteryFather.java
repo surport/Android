@@ -105,24 +105,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 		createVeiw();
 	}
 
-	public void initBatchCode(final String lotteryType) {
-		JSONObject footballLotnoInfo = PublicMethod
-				.getCurrentLotnoBatchCode(lotteryType);
-		if (footballLotnoInfo != null) {
-			// 成功获取到了期号信息
-			try {
-				batchCode = footballLotnoInfo.getString("batchCode");
-				qihaoxinxi[0] = batchCode;
-				qihaoxinxi[1] = footballLotnoInfo.getString("endTime");
-				qihaoxinxi[2] = lotteryType;
-			} catch (JSONException e) {
-				qihaoxinxi[0] = "";
-				qihaoxinxi[1] = "";
-				qihaoxinxi[2] = lotteryType;
-			}
-		}
-	}
-
 	/**
 	 * 初始化足彩期数和截止时间信息
 	 */

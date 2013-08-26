@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView.BufferType;
 
@@ -15,13 +13,10 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.code.ssc.FiveStarCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.jixuan.Balls;
-import com.ruyicai.jixuan.SscBalls;
 import com.ruyicai.json.miss.SscMissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
-import com.ruyicai.util.AreaInfo;
 import com.ruyicai.util.PublicMethod;
 
 public class SscFiveStar extends ZixuanAndJiXuan {

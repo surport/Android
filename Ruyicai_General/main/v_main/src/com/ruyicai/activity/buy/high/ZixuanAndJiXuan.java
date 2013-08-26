@@ -1,8 +1,5 @@
 package com.ruyicai.activity.buy.high;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,8 +34,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -66,11 +61,9 @@ import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
-import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.code.ssc.OneStarCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -85,7 +78,6 @@ import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RWSharedPreferences;
 import com.ruyicai.util.SensorActivity;
 
 public abstract class ZixuanAndJiXuan extends BaseActivity implements
@@ -149,8 +141,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	/** 号码篮对象 */
 	public AddView addView;
 	private boolean isJiXuan = false;
-	private Button codeInfo;
-	private TextView textTitleAlert;
 	protected boolean isTen = true;
 	protected int MAX_ZHU = 10000;// 每笔最多为1万注
 	private final int All_ZHU = 99;
@@ -159,7 +149,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public boolean isMiss = true;// 是否进行遗漏值查询
 	public boolean isshouyi = false;
 	public int hightballs;
-	private CheckBox shouyi;
 	/** 是否滑动页面显示遗漏值 */
 	protected boolean isMove = false;
 	public Map<Integer, HighItemView> missView = new HashMap<Integer, HighItemView>();
@@ -394,12 +383,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			missView.get(id).setMissList(missView.get(0).getMissList());
 		}
 		initMissText(missView.get(id).getAreaNum(), true, id);
-	}
-
-	private AddView initAddView(View zhixuanview, boolean isZixuan) {
-		final TextView textNum = (TextView) zhixuanview
-				.findViewById(R.id.buy_zixuan_add_text_num);
-		return new AddView(textNum, this, isZixuan);
 	}
 
 	private void refreshView(int type, int id) {
@@ -1706,132 +1689,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	}
 
 	/**
-	 * 第一次启动投注提示框
-	 */
-	public void initTouZhuDialog(String alert) {
-		LayoutInflater inflater = (LayoutInflater) this
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View v = inflater.inflate(R.layout.alert_dialog_touzhu_new, null);
-		RadioGroup group = (RadioGroup) v.findViewById(R.id.RadioGroup01);
-		group.setVisibility(RadioGroup.GONE);
-		touZhuDialog = new Dialog(this, R.style.MyDialog);
-		issueText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		shouyi = (CheckBox) v.findViewById(R.id.checkboxzhuihao);
-		shouyi.setChecked(false);
-		if (addView.getSize() <= 1) {
-			shouyi.setVisibility(View.VISIBLE);
-		} else {
-			shouyi.setVisibility(View.GONE);
-		}
-		alertText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_one);
-		textZhuma = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_zhuma);
-		textTitleAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
-		issueText.setText(getBatchCode());
-		alertText.setText(alert);
-		textTitleAlert.setText("注码：" + "共有" + addView.getSize() + "笔投注");
-		addView.getCodeList().get(addView.getSize() - 1)
-				.setTextCodeColor(textZhuma, null, null);
-		codeInfo = (Button) v
-				.findViewById(R.id.alert_dialog_touzhu_btn_look_code);
-		isCodeText(codeInfo);
-		codeInfo.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				addView.createCodeInfoDialog();
-				addView.showDialog();
-			}
-		});
-		initImageView(v);
-		CheckBox checkPrize = (CheckBox) v
-				.findViewById(R.id.alert_dialog_touzhu_check_prize);
-		checkPrize.setChecked(true);
-
-		// 设置betAndGift.prizeend与checkPrize保持一致
-		betAndGift.setPrizeend("1");
-
-		checkPrize.setButtonDrawable(R.drawable.check_on_off);
-		checkPrize
-				.setOnCheckedChangeListener(new android.widget.CompoundButton.OnCheckedChangeListener() {
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						if (isChecked) {
-							betAndGift.setPrizeend("1");
-						} else {
-							betAndGift.setPrizeend("0");
-						}
-					}
-				});
-		shouyi.setChecked(false);
-		shouyi.setOnCheckedChangeListener(new android.widget.CompoundButton.OnCheckedChangeListener() {
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				isshouyi = isChecked;
-			}
-		});
-		Button cancel = (Button) v
-				.findViewById(R.id.alert_dialog_touzhu_button_cancel);
-		Button ok = (Button) v.findViewById(R.id.alert_dialog_touzhu_button_ok);
-		cancel.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				touZhuDialog.cancel();
-				clearProgress();
-			}
-		});
-		ok.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				RWSharedPreferences pre = new RWSharedPreferences(
-						ZixuanAndJiXuan.this, "addInfo");
-				sessionId = pre.getStringValue("sessionid");
-				phonenum = pre.getStringValue("phonenum");
-				userno = pre.getStringValue("userno");
-				if (sessionId.equals("")) {
-					toLogin = true;
-					Intent intentSession = new Intent(ZixuanAndJiXuan.this,
-							UserLogin.class);
-					startActivityForResult(intentSession, 0);
-				} else {
-					toLogin = false;
-					touZhu();
-				}
-			}
-
-		});
-
-		touZhuDialog.setCancelable(false);
-		touZhuDialog.setContentView(v);
-		touZhuDialog.show();
-	}
-
-	/**
-	 * 用户投注
-	 */
-	private void touZhu() {
-		initBet();
-		touZhuDialog.cancel();
-		if (isshouyi) {
-			toRevenueActivity();
-		} else {
-			touZhuNet();
-			clearProgress();
-		}
-	}
-
-	private void isCodeText(Button codeInfo) {
-		if (addView.getSize() > 1) {
-			codeInfo.setVisibility(Button.VISIBLE);
-		} else {
-			codeInfo.setVisibility(Button.GONE);
-		}
-	}
-
-	/**
 	 * 清空倍数和期数的进度条
 	 */
 	public void clearProgress() {
@@ -1841,25 +1698,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		mSeekBarQishu.setProgress(iProgressQishu);
 	}
 
-	/**
-	 * 再次启动提示框
-	 */
-	public void initAlerDialog(String alert) {
-		clearProgress();
-		issueText.setText(getBatchCode());
-		alertText.setText(alert);
-		textTitleAlert.setText("注码：" + "共有" + addView.getSize() + "笔投注");
-		addView.getCodeList().get(addView.getSize() - 1)
-				.setTextCodeColor(textZhuma, null, null);
-		isCodeText(codeInfo);
-		shouyi.setChecked(false);
-		if (addView.getSize() <= 1) {
-			shouyi.setVisibility(View.VISIBLE);
-		} else {
-			shouyi.setVisibility(View.GONE);
-		}
-		touZhuDialog.show();
-	}
 
 	/**
 	 * 当前注数
@@ -2108,36 +1946,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		betAndGift.setBet_code(addView.getTouzhuCode(iProgressBeishu,
 				betAndGift.getAmt() * 100));
 
-	}
-
-	public void toRevenueActivity() {
-		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-		try {
-			ObjectOutputStream objStream = new ObjectOutputStream(byteStream);
-			objStream.writeObject(betAndGift);
-		} catch (IOException e) {
-			return; // should not happen, so donot do error handling
-		}
-
-		Intent intent = new Intent(ZixuanAndJiXuan.this,
-				High_Frequencyrevenue_Recovery.class);
-		intent.putExtra("info", byteStream.toByteArray());
-		intent.putExtra("zhuma", textZhuma.getText().toString());
-		intent.putExtra("lotno", lotnoStr);
-		intent.putExtra("lingtball", hightballs);
-		intent.putExtra("zhushu", addView.getAllZhu());
-		startActivity(intent);
-		clearArea();
-		clearProgress();
-	}
-
-	/**
-	 * 投注联网
-	 */
-	public void touZhuNet() {
-		lotno = PublicMethod.toLotno(betAndGift.getLotno());
-		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
-		Controller.getInstance(context).doBettingAction(handler, betAndGift);
 	}
 
 	public void isMissNet(MissJson missJson, String sellWay, boolean isZHMiss) {
