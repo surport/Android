@@ -347,28 +347,21 @@ public class NoticeInfoActivity extends Activity {
 					iNumbers = PublicMethod.formatNum(iNumbers, 1);
 				}
 			} else if (lotType == LISTTEN) {
-//				if (PublicMethod.getDisplayWidth(context) == 240) {
-//					holder.date.setTextSize(PublicMethod.getPxInt(16, context));
-//					iNumbers = PublicMethod.formatNum(iNumbers, 2);
-//				}
-//				/**add by pengcx 20130802 start*/
-//				else if (PublicMethod.getDisplayWidth(context) == 1080) {
-//					holder.date.setTextSize(PublicMethod.getPxInt(5, context));
-//					iNumbers = PublicMethod.formatNum(iNumbers, 2);
-//				} 
-//				/**add by pengcx 20130802 end*/
-//				else {
-//					holder.date.setTextSize(PublicMethod.getPxInt(10, context));
-//					iNumbers = PublicMethod.formatNum(iNumbers, 2);
-//				}
-				/**add by pengcx 20130802 start*/
+				/** add by pengcx 20130802 start */
 				int width = PublicMethod.getDisplayWidth(context);
-				float scale = 480.0f/width;
+				float scale = 480.0f / width;
 				float textSize = 11 * scale;
-				holder.date.setTextSize(PublicMethod.getPxInt(textSize, context));
+				holder.date.setTextSize(PublicMethod
+						.getPxInt(textSize, context));
 				iNumbers = PublicMethod.formatNum(iNumbers, 2);
-				/**add by pengcx 20130802 end*/
-			} else {
+				/** add by pengcx 20130802 end */
+			}
+			/** add by pengcx 20130808 start */
+			else if (lotType == NMK3) {
+				iNumbers = PublicMethod.formatNMK3Num(iNumbers, 2);
+			}
+			/** add by pengcx 20130808 end */
+			else {
 				iNumbers = PublicMethod.formatNum(iNumbers, 2);
 			}
 			holder.date.setText(iNumbers);

@@ -3016,4 +3016,39 @@ public class PublicMethod {
 		String html = "<font size="+fontSize+" color="+colorValue+">"+text+"<//font>";
 		return html;
 	}
+
+	/**add by pengcx 20130808 start*/
+	/**
+	 * 格式化内蒙快三开奖号码
+	 * 
+	 * @param iNumbers
+	 *            开奖号码
+	 * @param i
+	 *            每个开奖号码的位数
+	 * @return 显示的开奖号码
+	 */
+	public static String formatNMK3Num(String iNumbers, int num) {
+		String iShowNumber = "";
+		int sumValue = 0;
+		
+		int length = iNumbers.length() / num;
+		for (int i = 0; i < length; i++) {
+			String chileNumber = iNumbers.substring(i * num + 1, i * num + num);
+			sumValue += Integer.valueOf(chileNumber);
+			iShowNumber += chileNumber;
+			if (i != length - 1) {
+				iShowNumber += ",";
+			}
+		}
+		
+		if (sumValue >= 10) {
+			iShowNumber += "    " + sumValue;
+		}else{ 
+			iShowNumber += "      " + sumValue;
+		}
+		
+		
+		return iShowNumber;
+	}
+	/**add by pengcx 20130808 end*/
 }
