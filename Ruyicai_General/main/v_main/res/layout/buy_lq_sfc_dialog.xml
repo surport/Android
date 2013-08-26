@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://www.ruyicai.com/res/custom"
-    android:layout_width="306dip"
-    android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/white">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="@color/white">
 
-    <RelativeLayout
+   <!--  <RelativeLayout
         android:id="@id/main_buy_title"
         android:layout_width="306dip"
         android:layout_height="wrap_content"
@@ -21,25 +22,17 @@
             android:textColor="@color/white"
             android:textSize="20dip" >
         </TextView>
-    </RelativeLayout>
+    </RelativeLayout> -->
 
-    <ScrollView
-        android:layout_width="306dip"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/main_buy_title"
-        android:background="@color/white"
-        android:paddingBottom="50dip"
-        android:paddingTop="10dip"
-        android:scrollbars="vertical" >
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/jc_dialog_bg1"
             android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/jc_dialog_bg1"
                 android:orientation="vertical" >
@@ -630,7 +623,6 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
     <LinearLayout
         android:layout_width="306dip"

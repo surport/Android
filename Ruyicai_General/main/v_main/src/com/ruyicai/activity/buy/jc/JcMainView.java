@@ -26,7 +26,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +37,9 @@ import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -91,6 +97,13 @@ public abstract class JcMainView {
 	private Map<String, Integer> mMap = new HashMap<String, Integer>();
 	public int mPosition = -1;
 	public int mIndex = -1;
+	public Resources  resources;
+	public LayoutInflater mFactory;
+	public int white = 0;
+	public int black = 0;
+	public int red = 0;
+	public int green = 0;
+	public int oddsColor = 0;
 	/**add by yejc 20130722 end*/
 
 	public JcMainView(Context context, BetAndGiftPojo betAndGift,
@@ -111,7 +124,15 @@ public abstract class JcMainView {
 		setType(type);
 		initView();
 		getInfoNet();
-
+		/**add by yejc 20130816 start*/
+		resources = context.getResources();
+		mFactory = LayoutInflater.from(context);
+		white = resources.getColor(R.color.white);
+		black = resources.getColor(R.color.black);
+		red = resources.getColor(R.color.red);
+		green = resources.getColor(R.color.gree_black);
+		oddsColor = resources.getColor(R.color.jc_odds_text_color);
+		/**add by yejc 20130816 end*/
 	}
 
 	private void initListWeeks() {
@@ -319,7 +340,6 @@ public abstract class JcMainView {
 		if (jsonItem.has("letVs_v3")) {
 			itemInfo.setLetV3Win(jsonItem.getString("letVs_v3"));
 		}
-//		itemInfo.setLevel(isLevel)
 		setDifferValue(jsonItem, itemInfo);
 		for (String str : unsupportStr) {
 			if (getPlayType().equals(str)) {
@@ -387,7 +407,8 @@ public abstract class JcMainView {
 	public void isNoDan(Info info, Button btnDan) {
 		if (info.onclikNum == 0 && info.isDan()) {
 			info.setDan(false);
-			btnDan.setBackgroundResource(R.drawable.jc_btn);
+			btnDan.setBackgroundResource(android.R.color.transparent);
+			btnDan.setTextColor(resources.getColor(R.color.black));
 		}
 	}
 
@@ -855,7 +876,15 @@ public abstract class JcMainView {
 		public String titles[];
 		private boolean isDan = false;
 		private boolean isLq = false;
+		private String lotno = "";
 
+		public String getLotno() {
+			return lotno;
+		}
+
+		public void setLotno(String lotno) {
+			this.lotno = lotno;
+		}
 
 		public String getLetV3Win() {
 			return letV3Win;
@@ -925,27 +954,34 @@ public abstract class JcMainView {
 			if (dialog == null) {
 				initCheckTitles(titles);
 				adapter = getAdapter();
-				LayoutInflater factory = LayoutInflater.from(context);
 				if (isHunHe()) {
 					if (isLq) {
-						viewType = factory.inflate(R.layout.buy_lq_hun_dialog,
+						viewType = mFactory.inflate(R.layout.buy_lq_hun_dialog,
 								null);
 						setJcLqShowPlay(viewType); //add by yejc 20130801
 					} else {
-						viewType = factory.inflate(R.layout.buy_zq_hun_dialog,
+						viewType = mFactory.inflate(R.layout.buy_zq_hun_dialog,
 								null);
 						setJcZqShowPlay(viewType); //add by yejc 20130709
 					}
 				} else {
-					viewType = factory
-							.inflate(R.layout.buy_lq_sfc_dialog, null);
-					LinearLayout layout1 = (LinearLayout) viewType
-							.findViewById(R.id.jc_check_dialog_layout2);
-					LinearLayout layout2 = (LinearLayout) viewType
-							.findViewById(R.id.jc_check_dialog_layout3);
-					if (isVisable) {
-						layout1.setVisibility(LinearLayout.VISIBLE);
-						layout2.setVisibility(LinearLayout.VISIBLE);
+					if (Constants.LOTNO_JCZQ_BF.equals(getLotno())) {
+						viewType = mFactory
+								.inflate(R.layout.buy_jc_zq_bf_layout, null);
+					} else if (Constants.LOTNO_JCLQ_SFC.equals(getLotno())){
+						viewType = mFactory
+								.inflate(R.layout.buy_jc_lq_sfc_layout, null);
+					} else {
+						viewType = mFactory
+								.inflate(R.layout.buy_lq_sfc_dialog, null);
+						LinearLayout layout1 = (LinearLayout) viewType
+								.findViewById(R.id.jc_check_dialog_layout2);
+						LinearLayout layout2 = (LinearLayout) viewType
+								.findViewById(R.id.jc_check_dialog_layout3);
+						if (isVisable) {
+							layout1.setVisibility(LinearLayout.VISIBLE);
+							layout2.setVisibility(LinearLayout.VISIBLE);
+						}
 					}
 				}
 
@@ -962,7 +998,12 @@ public abstract class JcMainView {
 				infoViewType = viewType;
 			}
 			dialog.show();
-			dialog.getWindow().setContentView(viewType);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+					PublicMethod.getPxInt(300, context), LinearLayout.LayoutParams.WRAP_CONTENT);
+//			int margin = PublicMethod.getPxInt(20, context);
+//			params.setMargins(margin, 0, margin, 0);
+			dialog.setContentView(viewType, params);
+//			dialog.getWindow().setContentView(viewType);
 		}
 		
 		/**add by yejc 20130704 start*/
@@ -1000,6 +1041,17 @@ public abstract class JcMainView {
 			}
 		}
 		/**add by yejc 20130801 end*/
+		public void setJqsLayout(String titles[], LinearLayout layout, Handler handler) {
+			initCheckTitles(titles);
+			for (int i = 0; i < MAX; i++) {
+				check[i] = (MyCheckBox) layout.findViewById(checkId[i]);
+				check[i].setVisibility(CheckBox.VISIBLE);
+				check[i].setCheckText("" + vStrs[i]);
+				check[i].setPosition(i);
+				check[i].setCheckTitle(titles[i]);
+				check[i].setHandler(handler);
+			}
+		}
 
 		private void initDialogView() {
 			/**add by yejc 20130704 start*/
@@ -1010,6 +1062,22 @@ public abstract class JcMainView {
 					check[i].setCheckText("" + vStrs[i]);
 					check[i].setPosition(i);
 					check[i].setCheckTitle(titles[i]);
+					if (i >= 0 && i <= 5) {
+						check[i].setTextPaintColorArray(new int[]{
+								resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
+						check[i].setOddsPaintColorArray(new int[] {
+								resources.getColor(R.color.jc_hun_title_color), Color.WHITE });
+					} else if (i >=6 && i <=22) {
+						check[i].setTextPaintColorArray(new int[]{
+								resources.getColor(R.color.jc_hun_zq_bqc_title_color), Color.WHITE});
+						check[i].setOddsPaintColorArray(new int[] {
+								resources.getColor(R.color.jc_hun_zq_bqc_title_color), Color.WHITE });
+					} else {
+						check[i].setTextPaintColorArray(new int[]{
+								resources.getColor(R.color.jc_hun_zq_bf_title_color), Color.WHITE});
+						check[i].setOddsPaintColorArray(new int[] {
+								resources.getColor(R.color.jc_hun_zq_bf_title_color), Color.WHITE });
+					}
 				}
 				/**add by yejc 20130704 end*/
 			} else {
@@ -1019,6 +1087,40 @@ public abstract class JcMainView {
 					check[i].setCheckText("" + vStrs[i]);
 					check[i].setPosition(i);
 					check[i].setCheckTitle(titles[i]);
+					/**add by yejc 20130819 start*/
+					if (Constants.LOTNO_JCZQ_BF.equals(getLotno())) {
+						check[i].setTextPaintColorArray(new int[]{
+								resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
+						check[i].setOddsPaintColorArray(new int[]{Color.GRAY, Color.WHITE});
+					} else if (Constants.LOTNO_JCLQ_SFC.equals(getLotno())) {
+						if (i >= 0 && i <= 5) {
+							check[i].setTextPaintColorArray(new int[]{
+									resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
+						} else {
+							check[i].setTextPaintColorArray(new int[]{
+									resources.getColor(R.color.jc_hun_lq_title_color), Color.WHITE});
+						}
+						check[i].setOddsPaintColorArray(new int[]{Color.GRAY, Color.WHITE});
+					} else {
+						if (i >= 0 && i <= 7) {
+							if (i == 3) {
+								check[i].setOddsPaintColorArray(new int[]{Color.RED, Color.WHITE});
+							} else if (i == 6) {
+								check[i].setOddsPaintColorArray(new int[]{Color.BLUE, Color.WHITE});
+							} else {
+								check[i].setOddsPaintColorArray(new int[]{
+										resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
+							}
+						} else {
+							check[i].setOddsPaintColorArray(new int[]{
+									resources.getColor(R.color.jc_hun_lq_title_color), Color.WHITE});
+						}
+						check[i].setTextPaintColorArray(new int[]{
+								resources.getColor(R.color.jc_hun_title_color), Color.WHITE});
+						check[i].setLotno(Constants.LOTNO_JCLQ_HUN);
+					}
+					/**add by yejc 20130819 end*/
+					
 				}
 			}
 		}
@@ -1034,6 +1136,10 @@ public abstract class JcMainView {
 				} else {
 					for (int i = 0; i < 6; i++) {
 						check[i].setHorizontal(true);
+					}
+					
+					for (int j = 15; j < 23; j++) {
+						check[j].setHorizontal(true);
 					}
 				}
 			}
@@ -1053,6 +1159,7 @@ public abstract class JcMainView {
 						onclikNum = 0;
 					}
 					setTeamNum();
+					setDanState(); //add by yejc 20130821
 					adapter.notifyDataSetChanged();
 				}
 			});
@@ -1084,10 +1191,19 @@ public abstract class JcMainView {
 					}
 					initCheckNum();
 					setTeamNum();
+					setDanState(); //add by yejc 20130821
 					adapter.notifyDataSetChanged();
 				}
 			});
 		}
+		
+		/**add by yejc 20130821 start*/
+		private void setDanState() {
+			if (onclikNum == 0 && isDan()) {
+				setDan(false);
+			}
+		}
+		/**add by yejc 20130821 end*/
 
 		/**
 		 * 设置混合过关自由过关串数
@@ -1133,10 +1249,6 @@ public abstract class JcMainView {
 					}
 					/**add by yejc 20130722 start*/
 				}
-				
-//				if (checkNum < getTeamNum()) {
-//					setTeamNum(checkNum);
-//				}
 			}
 		}
 
@@ -1396,6 +1508,49 @@ public abstract class JcMainView {
 			return SUN;
 		}
 		return week;
+	}
+	
+	public void showLayout (LinearLayout layout, LinearLayout detailLayout, int index, 
+			final Info info, String checkTitle[], final Button btn) {
+		if (layout.getChildCount() == 0) {
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+					(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			if (index == 0) {
+				RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+						(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				lParams.setMargins(0, PublicMethod.getPxInt(68.5f, context), 0, 0);
+				layout.setLayoutParams(lParams);
+			}
+			layout.addView(detailLayout, params);
+			Handler handler = new Handler(){
+				@Override
+				public void handleMessage(Message msg) {
+					super.handleMessage(msg);
+					String btnStr = "";
+					int likNum = 0;
+					for (int i = 0; i < info.check.length; i++) {
+						if (info.check[i].getChecked()) {
+							btnStr += info.check[i].getChcekTitle()
+									+ "  ";
+							likNum++;
+						}
+					}
+					info.onclikNum = likNum;
+					info.setBtnStr(btnStr);
+					btn.setText(btnStr);
+					setTeamNum();
+				}
+				
+			};
+			info.setJqsLayout(checkTitle, detailLayout, handler);
+			layout.setVisibility(View.VISIBLE);
+		} else {
+			if (layout.getVisibility() == View.VISIBLE) {
+				layout.setVisibility(View.GONE);
+			} else {
+				layout.setVisibility(View.VISIBLE);
+			}
+		}
 	}
 	
 	// end

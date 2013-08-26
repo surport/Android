@@ -15,26 +15,18 @@ import com.ruyicai.activity.buy.jc.lq.view.RfView;
 import com.ruyicai.activity.buy.jc.lq.view.SfView;
 import com.ruyicai.activity.buy.jc.lq.view.SfcView;
 import com.ruyicai.activity.buy.jc.score.lq.JcLqScoreActivity;
-import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
-import com.ruyicai.activity.buy.jc.zq.view.BFView;
-import com.ruyicai.activity.buy.jc.zq.view.BQCView;
-import com.ruyicai.activity.buy.jc.zq.view.HunHeZqView;
-import com.ruyicai.activity.buy.jc.zq.view.SPfView;
-import com.ruyicai.activity.buy.jc.zq.view.ZJQView;
-import com.ruyicai.activity.notice.NoticeJcActivity;
 import com.ruyicai.activity.notice.NoticeJclActivity;
 import com.ruyicai.constant.Constants;
 import com.umeng.analytics.MobclickAgent;
 
 public class LqMainActivity extends JcMainActivity {
 	public void onCreate(Bundle savedInstanceState) {
+		setLotNo(Constants.LOTNO_JCL);
 		super.onCreate(savedInstanceState);
 		setType(Constants.JCBASKET);
 		createView(SF, isDanguan);
-		setLotNo(Constants.LOTNO_JCL);
-		setTitle(false);
 		setScoreBtn();
-		isTeamBtn(true);
+		isTeamBtn();
 		MobclickAgent.onEvent(this, "jingcailanqiu"); // BY贺思明 点击首页的“竞彩篮球”图标
 	}
 

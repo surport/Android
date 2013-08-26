@@ -48,6 +48,7 @@ public class BQCView extends JcMainView {
 			List<String> checkTeam) {
 		super(context, betAndGift, handler, layout, type, isdanguan, checkTeam);
 		footbqcCode = new FootBQC(context);
+		
 	}
 
 	public void setDifferValue(JSONObject jsonItem, Info itemInfo)
@@ -193,8 +194,8 @@ public class BQCView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addView(info));
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addView(list.get(i), i));
 				}
 			}
 
@@ -212,9 +213,15 @@ public class BQCView extends JcMainView {
 		}
 
 		// add by yejc 20130402
-		private View addView(final Info info) {
+		private View addView(final Info info, final int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_others, null);
+			View divider = (View)convertView.findViewById(R.id.jc_main_divider_up);
+			if (index == 0) {
+				divider.setVisibility(View.VISIBLE);
+			} else {
+				divider.setVisibility(View.GONE);
+			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
@@ -222,23 +229,18 @@ public class BQCView extends JcMainView {
 
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-			// homeTeam.getPaint().setFakeBoldText(true);
-			// final TextView textVS = (TextView) convertView
-			// .findViewById(R.id.game_vs);
-			// if (!"".equals(info.getLetPoint()) &&
-			// !"0".equals(info.getLetPoint())) {
-			// textVS.setText(info.getLetPoint());
-			// }
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
 
-			TextView btn = (Button) convertView
+			final Button btn = (Button) convertView
 					.findViewById(R.id.jc_main_list_item_button);
 
 			TextView analysis = (TextView) convertView
 					.findViewById(R.id.game_analysis);
 			final Button btnDan = (Button) convertView
 					.findViewById(R.id.game_dan);
+			final LinearLayout layout = (LinearLayout) convertView
+					.findViewById(R.id.jc_play_detail_layout);
 
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
@@ -257,20 +259,14 @@ public class BQCView extends JcMainView {
 					}
 				}
 			});
-
-			// textVS.setText(info.getWin());
 			guestTeam.setText(info.getAway());
 
-			if (!info.getBtnStr().equals("")) {
-				btn.setText(info.getBtnStr());
-			}
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (info.onclikNum > 0 || isCheckTeam()) {
-						info.createDialog(FootBQC.titleStrs, false,
-								info.getHome() + " VS " + info.getAway());
-					}
+					LinearLayout detailLayout = (LinearLayout) mFactory
+							.inflate(R.layout.buy_jc_zq_bqc_layout, null);
+					showLayout(layout, detailLayout, index, info, FootBQC.titleStrs, btn);
 					isNoDan(info, btnDan);
 				}
 			});
@@ -283,11 +279,13 @@ public class BQCView extends JcMainView {
 					public void onClick(View v) {
 						if (info.isDan()) {
 							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
+							btnDan.setBackgroundResource(android.R.color.transparent);
+							btnDan.setTextColor(black);
 						} else if (info.onclikNum > 0 && isDanCheckTeam()
 								&& isDanCheck()) {
 							info.setDan(true);
 							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+							btnDan.setTextColor(white);
 						}
 					}
 				});
@@ -303,8 +301,10 @@ public class BQCView extends JcMainView {
 			/** add by pnegcx 20130624 start */
 			if (info.isDan()) {
 				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+				btnDan.setTextColor(white);
 			} else {
-				btnDan.setBackgroundResource(R.drawable.jc_btn);
+				btnDan.setBackgroundResource(android.R.color.transparent);
+				btnDan.setTextColor(black);
 			}
 			/** add by pnegcx 20130624 end */
 

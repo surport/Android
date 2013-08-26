@@ -41,14 +41,14 @@ public class FootBF {
 	private static final String BF_05 = "05";
 	private static final String BF_15 = "15";
 	private static final String BF_25 = "25";
-	public static String bqcType[] = { BF_90, BF_10, BF_20, BF_21, BF_30,
-			BF_31, BF_32, BF_40, BF_41, BF_42, BF_50, BF_51, BF_52, BF_99,
-			BF_00, BF_11, BF_22, BF_33, BF_09, BF_01, BF_02, BF_12, BF_03,
-			BF_13, BF_23, BF_04, BF_14, BF_24, BF_05, BF_15, BF_25 };
-	public static String titleStrs[] = { "胜其它", "1:0", "2:0", "2:1", "3:0",
-			"3:1", "3:2", "4:0", "4:1", "4:2", "5:0", "5:1", "5:2", "平其它",
-			"0:0", "1:1", "2:2", "3:3", "负其它", "0:1", "0:2", "1:2", "0:3",
-			"1:3", "2:3", "0:4", "1:4", "2:4", "0:5", "1:5", "2:5" };
+	public static String bqcType[] = { BF_10, BF_20, BF_21, BF_30,
+			BF_31, BF_32, BF_40, BF_41, BF_42, BF_50, BF_51, BF_52, BF_90,
+			BF_00, BF_11, BF_22, BF_33,BF_99, BF_01, BF_02, BF_12, BF_03,
+			BF_13, BF_23, BF_04, BF_14, BF_24, BF_05, BF_15, BF_25, BF_09 };
+	public static String titleStrs[] = { "1:0", "2:0", "2:1", "3:0",
+			"3:1", "3:2", "4:0", "4:1", "4:2", "5:0", "5:1", "5:2", "胜其它", 
+			"0:0", "1:1", "2:2", "3:3", "平其它", "0:1", "0:2", "1:2", "0:3",
+			"1:3", "2:3", "0:4", "1:4", "2:4", "0:5", "1:5", "2:5","负其它" };
 	JcType jcType;
 
 	public FootBF(Context context) {

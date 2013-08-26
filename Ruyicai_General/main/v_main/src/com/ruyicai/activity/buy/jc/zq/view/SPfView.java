@@ -181,7 +181,9 @@ public class SPfView extends JcMainView {
 					.findViewById(R.id.buy_jc_main_view_list_item_btn);
 			holder.layout = (LinearLayout) convertView
 					.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
-			holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+			holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
+			holder.itemLayout = (LinearLayout) convertView
+					.findViewById(R.id.linearLayout1);
 			if (list.size() == 0) {
 				holder.btn.setVisibility(Button.GONE);
 			} else {
@@ -195,8 +197,8 @@ public class SPfView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addLayout(info, null));
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addLayout(list.get(i), i));
 				}
 			}
 			return convertView;
@@ -205,17 +207,23 @@ public class SPfView extends JcMainView {
 		private void isOpen(final ArrayList<Info> list, final ViewHolder holder) {
 			if (list.get(0).isOpen) {
 				holder.layout.setVisibility(LinearLayout.VISIBLE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_open);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 			} else {
 				holder.layout.setVisibility(LinearLayout.GONE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 			}
 		}
 
 		// add by yejc 20130402
-		private View addLayout(final Info info, String str) {
+		private View addLayout(final Info info, int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_other, null);
+			View divider = (View)convertView.findViewById(R.id.jc_main_divider_up);
+			if (index == 0) {
+				divider.setVisibility(View.VISIBLE);
+			} else {
+				divider.setVisibility(View.GONE);
+			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
@@ -233,19 +241,17 @@ public class SPfView extends JcMainView {
 					.findViewById(R.id.guest_team_name);
 			final TextView guestOdds = (TextView) convertView
 					.findViewById(R.id.guest_team_odds);
-
 			TextView analysis = (TextView) convertView
 					.findViewById(R.id.game_analysis);
 			final Button btnDan = (Button) convertView
 					.findViewById(R.id.game_dan);
-
 			final LinearLayout homeLayout = (LinearLayout) convertView
 					.findViewById(R.id.home_layout);
 			final LinearLayout vsLayout = (LinearLayout) convertView
 					.findViewById(R.id.vs_layout);
 			final LinearLayout guestLayout = (LinearLayout) convertView
 					.findViewById(R.id.guest_layout);
-
+			
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
 					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
@@ -270,47 +276,48 @@ public class SPfView extends JcMainView {
 			}
 			guestTeam.setText(info.getAway());
 
-			gameName.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					if (context instanceof JcMainActivity) {
-						JcMainActivity activity = (JcMainActivity) context;
-						activity.createTeamDialog();
-					}
-				}
-			});
-
 			if (info.isFail()) {
 				guestLayout
 						.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				guestTeam
 						.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+				guestTeam.setTextColor(white);
+				guestOdds.setTextColor(white);
 			} else {
-				guestLayout.setBackgroundResource(R.drawable.team_name_bj);
-				guestTeam.setBackgroundResource(R.drawable.team_name_bj_top);
+				guestLayout.setBackgroundResource(android.R.color.transparent);
+				guestTeam.setBackgroundResource(android.R.color.transparent);
+				guestTeam.setTextColor(black);
+				guestOdds.setTextColor(oddsColor);
 			}
 			if (info.isWin()) {
-				homeLayout
-						.setBackgroundResource(R.drawable.team_name_bj_yellow);
+				homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+				homeOdds.setTextColor(white);
+				homeTeam.setTextColor(white);
 			} else {
-				homeLayout.setBackgroundResource(R.drawable.team_name_bj);
-				homeTeam.setBackgroundResource(R.drawable.team_name_bj_top);
+				homeLayout.setBackgroundResource(android.R.color.transparent);
+				homeTeam.setBackgroundResource(android.R.color.transparent);
+				homeOdds.setTextColor(oddsColor);
+				homeTeam.setTextColor(black);
 			}
 			if (info.isLevel()) {
 				vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 				textVS.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+				textVS.setTextColor(white);
+				textOdds.setTextColor(white);
 			} else {
-				vsLayout.setBackgroundResource(R.drawable.team_name_bj);
-				textVS.setBackgroundResource(R.drawable.team_name_bj_top);
+				vsLayout.setBackgroundResource(android.R.color.transparent);
+				textVS.setTextColor(black);
+				textOdds.setTextColor(oddsColor);
 			}
 
 			/** add by pnegcx 20130624 start */
 			if (info.isDan()) {
 				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+				btnDan.setTextColor(white);
 			} else {
-				btnDan.setBackgroundResource(R.drawable.jc_btn);
+				btnDan.setBackgroundResource(android.R.color.transparent);
+				btnDan.setTextColor(black);
 			}
 			/** add by pnegcx 20130624 end */
 
@@ -321,14 +328,16 @@ public class SPfView extends JcMainView {
 						info.setWin(!info.isWin());
 						if (info.isWin()) {
 							info.onclikNum++;
-							homeLayout
-									.setBackgroundResource(R.drawable.team_name_bj_yellow);
+							homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+							homeOdds.setTextColor(white);
+							homeTeam.setTextColor(white);
 						} else {
 							info.onclikNum--;
-							homeLayout
-									.setBackgroundResource(R.drawable.team_name_bj);
-							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top);
+							homeLayout.setBackgroundResource(android.R.color.transparent);
+							homeTeam.setBackgroundResource(android.R.color.transparent);
+							homeOdds.setTextColor(oddsColor);
+							homeTeam.setTextColor(black);
 						}
 						isNoDan(info, btnDan);
 						setTeamNum();
@@ -344,10 +353,14 @@ public class SPfView extends JcMainView {
 							info.onclikNum++;
 							vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
 							textVS.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+							textVS.setTextColor(white);
+							textOdds.setTextColor(white);
 						} else {
 							info.onclikNum--;
-							vsLayout.setBackgroundResource(R.drawable.team_name_bj);
-							textVS.setBackgroundResource(R.drawable.team_name_bj_top);
+							vsLayout.setBackgroundResource(android.R.color.transparent);
+							textVS.setBackgroundResource(android.R.color.transparent);
+							textVS.setTextColor(black);
+							textOdds.setTextColor(oddsColor);
 						}
 						isNoDan(info, btnDan);
 						setTeamNum();
@@ -361,16 +374,16 @@ public class SPfView extends JcMainView {
 						info.setFail(!info.isFail());
 						if (info.isFail()) {
 							info.onclikNum++;
-							guestLayout
-									.setBackgroundResource(R.drawable.team_name_bj_yellow);
-							guestTeam
-									.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+							guestLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+							guestTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+							guestTeam.setTextColor(white);
+							guestOdds.setTextColor(white);
 						} else {
 							info.onclikNum--;
-							guestLayout
-									.setBackgroundResource(R.drawable.team_name_bj);
-							guestTeam
-									.setBackgroundResource(R.drawable.team_name_bj_top);
+							guestLayout.setBackgroundResource(android.R.color.transparent);
+							guestTeam.setBackgroundResource(android.R.color.transparent);
+							guestTeam.setTextColor(black);
+							guestOdds.setTextColor(oddsColor);
 						}
 						isNoDan(info, btnDan);
 						setTeamNum();
@@ -386,11 +399,13 @@ public class SPfView extends JcMainView {
 					public void onClick(View v) {
 						if (info.isDan()) {
 							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
+							btnDan.setBackgroundResource(android.R.color.transparent);
+							btnDan.setTextColor(black);
 						} else if (info.onclikNum > 0 && isDanCheckTeam()
 								&& isDanCheck()) {
 							info.setDan(true);
 							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+							btnDan.setTextColor(white);
 						}
 					}
 				});
@@ -420,6 +435,7 @@ public class SPfView extends JcMainView {
 			Button btn3;
 			Button btn;
 			LinearLayout layout;
+			LinearLayout itemLayout;
 
 		}
 	}

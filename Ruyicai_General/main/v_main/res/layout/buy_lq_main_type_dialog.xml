@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buy_jc_play_select_layout"
     android:layout_width="300dip"
-    android:layout_height="fill_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
-
-    <RelativeLayout
-        android:id="@id/main_buy_title"
-        android:layout_width="300dip"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shouye_top" >
-
-        <TextView
-            android:id="@id/layout_main_text_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="@string/jclq_type_title"
-            android:textColor="@color/white"
-            android:textSize="20dip" >
-        </TextView>
-    </RelativeLayout>
+    android:layout_height="wrap_content"
+    android:layout_marginTop="45dip"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/jc_play_select_background"
+    android:orientation="vertical"
+    android:visibility="gone">
 
     <LinearLayout
         android:layout_width="300dip"
@@ -76,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="10dip"
+                android:paddingLeft="8dip"
                 android:paddingTop="10dip" >
 
                 <RadioButton
@@ -185,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
                 android:button="@drawable/jc_hunhe_select"
-                android:layout_marginLeft="10dip" />
+                android:layout_marginLeft="8dip" />
         </LinearLayout>
     </LinearLayout>
 

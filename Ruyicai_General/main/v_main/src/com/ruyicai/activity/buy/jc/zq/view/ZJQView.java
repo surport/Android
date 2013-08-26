@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.content.Context;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
@@ -185,8 +188,8 @@ public class ZJQView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addView(info));
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addView(list.get(i), i));
 				}
 			}
 
@@ -196,17 +199,23 @@ public class ZJQView extends JcMainView {
 		private void isOpen(final ArrayList<Info> list, final ViewHolder holder) {
 			if (list.get(0).isOpen) {
 				holder.layout.setVisibility(LinearLayout.VISIBLE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_open);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 			} else {
 				holder.layout.setVisibility(LinearLayout.GONE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 			}
 		}
 
 		// add by yejc 20130402
-		private View addView(final Info info) {
+		private View addView(final Info info, final int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_others, null);
+			View divider = (View)convertView.findViewById(R.id.jc_main_divider_up);
+			if (index == 0) {
+				divider.setVisibility(View.VISIBLE);
+			} else {
+				divider.setVisibility(View.GONE);
+			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
@@ -217,13 +226,15 @@ public class ZJQView extends JcMainView {
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
 
-			TextView btn = (Button) convertView
+			final Button btn = (Button) convertView
 					.findViewById(R.id.jc_main_list_item_button);
 
 			TextView analysis = (TextView) convertView
 					.findViewById(R.id.game_analysis);
 			final Button btnDan = (Button) convertView
 					.findViewById(R.id.game_dan);
+			final LinearLayout layout = (LinearLayout) convertView
+					.findViewById(R.id.jc_play_detail_layout);
 
 			gameName.setText(info.getTeam());
 			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
@@ -231,30 +242,14 @@ public class ZJQView extends JcMainView {
 					+ "(截)";
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
-
-			gameName.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					if (context instanceof JcMainActivity) {
-						JcMainActivity activity = (JcMainActivity) context;
-						activity.createTeamDialog();
-					}
-				}
-			});
-
 			guestTeam.setText(info.getAway());
-
-			if (!info.getBtnStr().equals("")) {
-				btn.setText(info.getBtnStr());
-			}
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (info.onclikNum > 0 || isCheckTeam()) {
-						info.createDialog(checkTitle, false, info.getHome()
-								+ " VS " + info.getAway());
-					}
+					LinearLayout detailLayout = (LinearLayout) mFactory
+							.inflate(R.layout.buy_jc_zq_jq_layout, null);
+					showLayout(layout, detailLayout, index, info, checkTitle, btn);
+					
 					isNoDan(info, btnDan);
 				}
 			});
@@ -267,11 +262,13 @@ public class ZJQView extends JcMainView {
 					public void onClick(View v) {
 						if (info.isDan()) {
 							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
+							btnDan.setBackgroundResource(android.R.color.transparent);
+							btnDan.setTextColor(black);
 						} else if (info.onclikNum > 0 && isDanCheckTeam()
 								&& isDanCheck()) {
 							info.setDan(true);
 							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+							btnDan.setTextColor(white);
 						}
 					}
 				});
@@ -288,7 +285,7 @@ public class ZJQView extends JcMainView {
 			if (info.isDan()) {
 				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
 			} else {
-				btnDan.setBackgroundResource(R.drawable.jc_btn);
+				btnDan.setBackgroundResource(android.R.color.transparent);
 			}
 			/** add by pnegcx 20130624 end */
 			return convertView;

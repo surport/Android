@@ -1,25 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="85dip"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@id/RelativeLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" >
+
+            <LinearLayout
+                android:id="@id/buy_lq_mian_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@id/buy_zixuan_relativelayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/buy_bottom_bg"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" >
+
+                <ImageButton
+                    android:id="@id/buy_zixuan_img_again"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:background="#00000000"
+                    android:src="@drawable/selecet_chongxuan" >
+                </ImageButton>
+
+                <TextView
+                    android:id="@id/buy_jc_main_text_team_num"
+                    style="@style/textSize16"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="90dip"
+                    android:text="" />
+
+                <ImageButton
+                    android:id="@id/buy_zixuan_img_touzhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="#00000000"
+                    android:src="@drawable/jc_touzhu_select" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/jc_main_team_layout_layers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/jc_main_team_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="85dip"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <include layout="@layout/jc_main_team_dialog" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dip"
+        android:paddingTop="45dip"
+        android:background="@drawable/jc_team_select_button_bg"
+        android:gravity="center_vertical" >
+
+        <!--
+             <Button
+            android:id="@id/buy_lq_main_btn_type"
+            android:layout_width="110dip"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/football_advancebatchcode"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="5dip"
+            android:text="玩法切换"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+android:background="@drawable/jc_team_selector"
+        -->
+
+        <LinearLayout
+            android:id="@+id/buy_lq_main_layout_team"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button android:id="@id/buy_lq_main_btn_team"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="@string/jc_main_team_check"
+                android:textColor="@color/black"
+                android:textSize="18sp" >
+            </Button>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dip"
+                android:src="@drawable/jc_game_select" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+        <Button
+            android:id="@id/buy_lq_main_btn_score"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/jc_main_score"
+            android:textColor="@color/black"
+            android:textSize="18sp" >
+        </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buy_jc_main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <include layout="@layout/buy_lq_main_type_dialog" />
 
     <RelativeLayout
         android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shouye_top" >
+        android:layout_height="45dip"
+        android:background="@drawable/buy_bottom_bg" >
 
-        <TextView
-            android:id="@id/layout_main_text_title"
+        <LinearLayout
+            android:id="@+id/jc_play_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/layout_main_text_title_one"
-            android:paddingLeft="10dip"
-            android:textColor="@color/white"
-            android:textSize="20dip" >
-        </TextView>
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:id="@id/layout_main_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="20dip" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/jc_team_select_down" />
+        </LinearLayout>
 
         <Button
             android:id="@id/layout_main_img_return"
@@ -31,112 +190,15 @@
             android:background="@drawable/buy_group_top_icon"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/white"
-            android:textSize="15dip" >
-        </Button>
+            android:textSize="15dip" />
     </RelativeLayout>
-
+    
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dip"
-        android:background="@drawable/buy_bot_bg"
-        android:gravity="center_vertical"
-        android:paddingTop="5sp" >
+        android:id="@+id/jc_main_team_layout_layers_up"
+        android:layout_width="match_parent"
+        android:layout_height="85dip"
+        android:layout_gravity="top"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
 
-        <Button
-            android:id="@id/buy_lq_main_btn_type"
-            android:layout_width="110dip"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/football_advancebatchcode"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="5dip"
-            android:text="玩法切换"
-            android:textColor="@color/black"
-            android:textSize="18sp" >
-        </Button>
-
-        <Button
-            android:id="@id/buy_lq_main_btn_team"
-            android:layout_width="110dip"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/football_advancebatchcode"
-            android:gravity="left|center_vertical"
-            android:paddingLeft="5dip"
-            android:text="@string/jc_main_team_check"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:visibility="gone" >
-        </Button>
-
-        <Button
-            android:id="@id/buy_lq_main_btn_score"
-            android:layout_width="80dip"
-            android:layout_height="30dp"
-            android:layout_marginLeft="5dip"
-            android:background="@drawable/buy_jx_btn_selector"
-            android:paddingLeft="5dip"
-            android:text="@string/jc_main_score"
-            android:textColor="@color/black"
-            android:textSize="16sp" >
-        </Button>
-
-        <TextView
-            android:id="@id/buy_jc_main_text_title"
-            style="@style/textSize16"
-            android:paddingLeft="10sp"
-            android:text="@string/jclq_title" >
-        </TextView>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@id/RelativeLayout01"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/white" >
-
-        <LinearLayout
-            android:id="@id/buy_lq_mian_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@id/buy_zixuan_relativelayout"
-            android:layout_width="fill_parent"
-            android:layout_height="50dip"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/buy_bottom_bg"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip" >
-
-            <ImageButton
-                android:id="@id/buy_zixuan_img_again"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="#00000000"
-                android:src="@drawable/selecet_chongxuan" >
-            </ImageButton>
-	    
-	    <TextView
-                android:id="@id/buy_jc_main_text_team_num"
-                style="@style/textSize16"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="90dip"
-                android:text="" />
-
-            <ImageButton
-                android:id="@id/buy_zixuan_img_touzhu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="#00000000"
-                android:src="@drawable/jc_touzhu_select" />
-        </RelativeLayout>
-    </RelativeLayout>
-
-</LinearLayout>
+</FrameLayout>

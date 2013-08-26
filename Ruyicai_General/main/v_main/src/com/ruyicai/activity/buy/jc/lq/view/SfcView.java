@@ -186,7 +186,7 @@ public class SfcView extends JcMainView {
 					.findViewById(R.id.buy_jc_main_view_list_item_btn);
 			holder.layout = (LinearLayout) convertView
 					.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
-			holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+			holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 
 			if (list.size() == 0) {
 				holder.btn.setVisibility(Button.GONE);
@@ -202,7 +202,7 @@ public class SfcView extends JcMainView {
 					}
 				});
 				for (Info info : list) {
-					holder.layout.addView(addView(info)/*addLayout(info)*/);
+					holder.layout.addView(addView(info));
 				}
 			}
 
@@ -212,10 +212,10 @@ public class SfcView extends JcMainView {
 		private void isOpen(final ArrayList<Info> list, final ViewHolder holder) {
 			if (list.get(0).isOpen) {
 				holder.layout.setVisibility(LinearLayout.VISIBLE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_open);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 			} else {
 				holder.layout.setVisibility(LinearLayout.GONE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 			}
 		}
 		
@@ -228,22 +228,12 @@ public class SfcView extends JcMainView {
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
-
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-//			homeTeam.getPaint().setFakeBoldText(true);
-			final TextView textVS = (TextView) convertView
-					.findViewById(R.id.game_vs);
-//			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
-//				textVS.setText(info.getLetPoint());
-//			}
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
-//			guestTeam.getPaint().setFakeBoldText(true);
-
 			TextView btn = (Button) convertView
 					.findViewById(R.id.jc_main_list_item_button);
-
 			TextView analysis = (TextView) convertView
 					.findViewById(R.id.game_analysis);
 			final Button btnDan = (Button) convertView
@@ -255,17 +245,6 @@ public class SfcView extends JcMainView {
 			gameDate.setText(date);
 			homeTeam.setText(info.getAway() + "(客)");
 			guestTeam.setText(info.getHome() + "(主)");
-			
-			gameName.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					if (context instanceof JcMainActivity) {
-						JcMainActivity activity = (JcMainActivity) context;
-						activity.createTeamDialog();
-					}
-				}
-			});
 
 			if (!info.getBtnStr().equals("")) {
 				btn.setText(info.getBtnStr());
@@ -274,6 +253,7 @@ public class SfcView extends JcMainView {
 				@Override
 				public void onClick(View v) {
 					if (info.onclikNum > 0 || isCheckTeam()) {
+						info.setLotno(Constants.LOTNO_JCLQ_SFC);
 						info.createDialog(BasketSFC.titleStrs, false,
 								info.getAway() + " VS " + info.getHome());
 					}
@@ -290,11 +270,13 @@ public class SfcView extends JcMainView {
 					public void onClick(View v) {
 						if (info.isDan()) {
 							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
+							btnDan.setBackgroundResource(android.R.color.transparent);
+							btnDan.setTextColor(black);
 						} else if (info.onclikNum > 0 && isDanCheckTeam()
 								&& isDanCheck()) {
 							info.setDan(true);
 							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+							btnDan.setTextColor(white);
 						}
 					}
 				});
@@ -309,12 +291,9 @@ public class SfcView extends JcMainView {
 		}
 		// end
 		
-
-
 		class ViewHolder {
 			Button btn;
 			LinearLayout layout;
-
 		}
 	}
 

@@ -87,7 +87,6 @@ public class DxView extends SfView {
 
 	@Override
 	public String getTypeTitle() {
-		// TODO Auto-generated method stub
 		return context.getString(R.string.jclq_dialog_dxf_guoguan_title)
 				.toString();
 	}
@@ -118,7 +117,6 @@ public class DxView extends SfView {
 
 	@Override
 	public String getPlayType() {
-		// TODO Auto-generated method stub
 		if (isDanguan) {
 			return "J00008_0";
 		} else {

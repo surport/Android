@@ -200,8 +200,8 @@ public class BFView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addView(info));
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addView(list.get(i), i));
 				}
 			}
 
@@ -211,17 +211,23 @@ public class BFView extends JcMainView {
 		private void isOpen(final ArrayList<Info> list, final ViewHolder holder) {
 			if (list.get(0).isOpen) {
 				holder.layout.setVisibility(LinearLayout.VISIBLE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_open);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 			} else {
 				holder.layout.setVisibility(LinearLayout.GONE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 			}
 		}
 
 		// add by yejc 20130402
-		private View addView(final Info info) {
+		private View addView(final Info info, int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_others, null);
+			View divider = (View)convertView.findViewById(R.id.jc_main_divider_up);
+			if (index == 0) {
+				divider.setVisibility(View.VISIBLE);
+			} else {
+				divider.setVisibility(View.GONE);
+			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
@@ -229,13 +235,6 @@ public class BFView extends JcMainView {
 
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
-			// homeTeam.getPaint().setFakeBoldText(true);
-			// final TextView textVS = (TextView) convertView
-			// .findViewById(R.id.game_vs);
-			// if (!"".equals(info.getLetPoint()) &&
-			// !"0".equals(info.getLetPoint())) {
-			// textVS.setText(info.getLetPoint());
-			// }
 			final TextView guestTeam = (TextView) convertView
 					.findViewById(R.id.guest_team_name);
 			TextView btn = (Button) convertView
@@ -252,20 +251,7 @@ public class BFView extends JcMainView {
 			gameDate.setText(date);
 			homeTeam.setText(info.getHome());
 
-			gameName.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					if (context instanceof JcMainActivity) {
-						JcMainActivity activity = (JcMainActivity) context;
-						activity.createTeamDialog();
-					}
-				}
-			});
-
-			// textVS.setText(info.getWin());
 			guestTeam.setText(info.getAway());
-
 			if (!info.getBtnStr().equals("")) {
 				btn.setText(info.getBtnStr());
 			}
@@ -273,6 +259,7 @@ public class BFView extends JcMainView {
 				@Override
 				public void onClick(View v) {
 					if (info.onclikNum > 0 || isCheckTeam()) {
+						info.setLotno(Constants.LOTNO_JCZQ_BF);
 						info.createDialog(FootBF.titleStrs, true,
 								info.getHome() + " VS " + info.getAway());
 					}
@@ -288,11 +275,13 @@ public class BFView extends JcMainView {
 					public void onClick(View v) {
 						if (info.isDan()) {
 							info.setDan(false);
-							btnDan.setBackgroundResource(R.drawable.jc_btn);
+							btnDan.setBackgroundResource(android.R.color.transparent);
+							btnDan.setTextColor(black);
 						} else if (info.onclikNum > 0 && isDanCheckTeam()
 								&& isDanCheck()) {
 							info.setDan(true);
 							btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+							btnDan.setTextColor(white);
 						}
 					}
 				});
@@ -309,7 +298,7 @@ public class BFView extends JcMainView {
 			if (info.isDan()) {
 				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
 			} else {
-				btnDan.setBackgroundResource(R.drawable.jc_btn);
+				btnDan.setBackgroundResource(android.R.color.transparent);
 			}
 			/** add by pnegcx 20130624 end */
 			return convertView;

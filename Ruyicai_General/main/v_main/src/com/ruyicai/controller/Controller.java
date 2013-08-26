@@ -243,33 +243,6 @@ public class Controller {
 	}
 	
 	
-//	/**
-//	 * 读取广告墙的显示状态
-//	 */
-//	public void readAdWallStateNet() {
-//		final RWSharedPreferences shellRW = new RWSharedPreferences(
-//				mContext, ShellRWConstants.ACCOUNT_DISPAY_STATE);
-//		new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
-//						.rechargeDescribe("scoreWallDisplay");
-//				try {
-//					if (jsonObject != null) {
-//						String content = jsonObject.getString("content").toString();
-//						if ("true".equals(content)) {
-//							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, true);
-//						} else {
-//							shellRW.putBooleanValue(Constants.ADWALL_DISPLAY_STATE, false);
-//						}
-//					}
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
-//	}
-	
 	/**
 	 * 读取账户充值的显示状态
 	 */
