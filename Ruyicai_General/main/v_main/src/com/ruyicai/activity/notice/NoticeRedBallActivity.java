@@ -26,6 +26,7 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 	@Override
 	public void onMessageListener() {
 		layout.removeAllViews();
+		selectlayout.removeAllViews();
 		ballBlueView = null;
 		ballRedView = null;
 		addBallViewagain(true);
@@ -39,16 +40,16 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 	 */
 	public void addBallViewagain(boolean isRed) {
 		List<JSONObject> list = getballlist();
-	
+
 		Collections.reverse(list);
 		switch (NoticeActivityGroup.LOTNO) {
 		// 广东11-5
 		case NoticeActivityGroup.ID_SUB_GD115_LISTVIEW:
 			ballRedView = new NoticeBallView(this);
-			ballBlueView = new NoticeBallView(this);
 			ballRedView.initNoticeBall(list.size(), 11, 1, list, true,
 					"gd11-5", 1 * NoticeMainActivity.SCALE);
 			layout.addView(ballRedView);
+			bottomlayout.setVisibility(View.VISIBLE);
 			hScrollView.setPadding(0, 0, 0, 0);
 			break;
 		// 广东快乐十分
@@ -67,8 +68,6 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 		case NoticeActivityGroup.ID_SUB_SHUANGSEQIU_LISTVIEW:
 			ballRedView = new NoticeBallView(this);
 			ballBlueView = new NoticeBallView(this);
-			ballRedView.setTextCode(textRedCode);
-			ballBlueView.setTextCode(textBlueCode);
 			ballRedView.initNoticeBall(list.size(), 33, 1, list, true, "ssq",
 					1 * NoticeMainActivity.SCALE);
 			ballBlueView.initNoticeBall(list.size(), 16, 1, list, false, "ssq",
@@ -76,6 +75,23 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 			bottomlayout.setVisibility(View.VISIBLE);
 			layout.addView(ballRedView);
 			layout.addView(ballBlueView);
+			
+			/** add by pengcx 20130808 start */
+			/** 创建红球和篮球选号面板 */
+			ballSelectedRedView = new NoticeBallView(this);
+			ballSelectedBlueView = new NoticeBallView(this);
+			ballSelectedRedView.initNoticeBall(3, 33, 1, null, true, "ssq",
+					1 * NoticeMainActivity.SCALE);
+			ballSelectedBlueView.initNoticeBall(3, 16, 1, null, false, "ssq",
+					1 * NoticeMainActivity.SCALE);
+			ballSelectedRedView.setTextCode(textRedCodeOne);
+			ballSelectedRedView.setTextCodeTow(textRedCodeTwo);
+			ballSelectedBlueView.setTextCode(textBlueCodeOne);
+			ballSelectedBlueView.setTextCodeTow(textBlueCodeTwo);
+			selectlayout.addView(ballSelectedRedView);
+			selectlayout.addView(ballSelectedBlueView);
+			/** add by pengcx 20130808 end */
+			
 			break;
 		case NoticeActivityGroup.ID_SUB_FUCAI3D_LISTVIEW:
 			ballRedView = new NoticeBallView(this);
@@ -91,11 +107,25 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 					1 * NoticeMainActivity.SCALE);
 			ballBlueView.initNoticeBall(list.size(), 30, 1, list, false, "qlc",
 					1 * NoticeMainActivity.SCALE);
-			ballRedView.setTextCode(textRedCode);
-			ballBlueView.setTextCode(textBlueCode);
 			bottomlayout.setVisibility(View.VISIBLE);
 			layout.addView(ballRedView);
 			layout.addView(ballBlueView);
+			
+			/** add by pengcx 20130808 start */
+			/** 创建红球和篮球选号面板 */
+			ballSelectedRedView = new NoticeBallView(this);
+			ballSelectedBlueView = new NoticeBallView(this);
+			ballSelectedRedView.initNoticeBall(3, 30, 1, null, true, "qlc",
+					1 * NoticeMainActivity.SCALE);
+			ballSelectedBlueView.initNoticeBall(3, 30, 1, null, false, "qlc",
+					1 * NoticeMainActivity.SCALE);
+			ballSelectedRedView.setTextCode(textRedCodeOne);
+			ballSelectedRedView.setTextCodeTow(textRedCodeTwo);
+			ballSelectedBlueView.setTextCode(textBlueCodeOne);
+			ballSelectedBlueView.setTextCodeTow(textBlueCodeTwo);
+			selectlayout.addView(ballSelectedRedView);
+			selectlayout.addView(ballSelectedBlueView);
+			/** add by pengcx 20130808 end */
 			break;
 		case NoticeActivityGroup.ID_SUB_PAILIESAN_LISTVIEW:
 			// zlm 排列三
@@ -129,11 +159,25 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 					1 * NoticeMainActivity.SCALE);
 			ballBlueView.initNoticeBall(list.size(), 12, 1, list, false,
 					"cjdlt", 1 * NoticeMainActivity.SCALE);
-			ballRedView.setTextCode(textRedCode);
-			ballBlueView.setTextCode(textBlueCode);
 			bottomlayout.setVisibility(View.VISIBLE);
 			layout.addView(ballRedView);
 			layout.addView(ballBlueView);
+			
+			/** add by pengcx 20130812 start */
+			/** 创建红球和篮球选号面板 */
+			ballSelectedRedView = new NoticeBallView(this);
+			ballSelectedBlueView = new NoticeBallView(this);
+			ballSelectedRedView.initNoticeBall(3, 35, 1, null, true, "cjdlt",
+					1 * NoticeMainActivity.SCALE);
+			ballSelectedBlueView.initNoticeBall(3, 12, 1, null, false, "cjdlt",
+					1 * NoticeMainActivity.SCALE);
+			ballSelectedRedView.setTextCode(textRedCodeOne);
+			ballSelectedRedView.setTextCodeTow(textRedCodeTwo);
+			ballSelectedBlueView.setTextCode(textBlueCodeOne);
+			ballSelectedBlueView.setTextCodeTow(textBlueCodeTwo);
+			selectlayout.addView(ballSelectedRedView);
+			selectlayout.addView(ballSelectedBlueView);
+			/** add by pengcx 20130812 end */
 			break;
 		case NoticeActivityGroup.ID_SUB_SHISHICAI_LISTVIEW:
 			// zlm 时时彩
@@ -149,6 +193,7 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 			ballRedView.initNoticeBall(list.size(), 11, 1, list, isRed, "11-5",
 					1 * NoticeMainActivity.SCALE);
 			layout.addView(ballRedView);
+			bottomlayout.setVisibility(View.VISIBLE);
 			hScrollView.setPadding(0, 0, 0, 0);
 			break;
 		case NoticeActivityGroup.ID_SUB_YDJ_LISTVIEW:

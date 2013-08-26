@@ -72,6 +72,8 @@ public class NoticeActivityGroup extends ActivityGroup {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.notice_main_group);
+		/** add by pengcx 20130809 start */
+		/** add by pengcx 20130809 end */
 		context = this;
 		mTabHost = (TabHost) findViewById(R.id.tab_host);
 		tabWidget = mTabHost.getTabWidget();
@@ -146,7 +148,7 @@ public class NoticeActivityGroup extends ActivityGroup {
 		} else if (screenWith > 480) {
 			NoticeMainActivity.BALL_WIDTH = screenWith / 480 * 46;
 			NoticeMainActivity.SCALE = (float) 1.5;
-		} 
+		}
 	}
 
 	/**
@@ -157,7 +159,7 @@ public class NoticeActivityGroup extends ActivityGroup {
 		final int[] imageid = { R.drawable.notice_down, R.drawable.notice_up };
 		// 标题文本
 		title = (TextView) findViewById(R.id.layout_main_text_title);
-		//升序降序按钮
+		// 升序降序按钮
 		imgIcon = (Button) findViewById(R.id.layout_main_img_return);
 		imgIcon.setText(buttontext[0]);
 		imgIcon.setOnClickListener(new OnClickListener() {
@@ -223,9 +225,10 @@ public class NoticeActivityGroup extends ActivityGroup {
 			init(titles6, topTitles6, allId6, SIZE);
 			break;
 		case NoticeActivityGroup.ID_SUB_DLC_LISTVIEW:
-			String[] topTitles7 = { "江西11选5开奖公告", "江西11选5开奖公告" };
-			String[] titles7 = { "开奖分布", "开奖号码" };
+			String[] topTitles7 = { "江西11选5开奖公告", "江西11选5开奖公告", "江西11选5开奖公告" };
+			String[] titles7 = { "开奖分布", "前三走势", "开奖号码" };
 			Class[] allId7 = { NoticeRedBallActivity.class,
+					BeforThreeNoticeBallActivity.class,
 					NoticeInfoActivity.class };
 			init(titles7, topTitles7, allId7);
 			break;
@@ -282,9 +285,11 @@ public class NoticeActivityGroup extends ActivityGroup {
 			init(titlesqxc, topTitlesqxc, allIdqxc);
 			break;
 		case NoticeActivityGroup.ID_SUB_GD115_LISTVIEW:
-			String[] topTitlesGD115 = { "广东11选5开奖公告", "广东11选5开奖公告" };
-			String[] titlesGD115 = { "开奖分布", "开奖号码" };
+			String[] topTitlesGD115 = { "广东11选5开奖公告", "广东11选5开奖公告",
+					"广东11选5开奖公告" };
+			String[] titlesGD115 = { "开奖分布", "前三走势", "开奖号码" };
 			Class[] allIdGD115 = { NoticeRedBallActivity.class,
+					BeforThreeNoticeBallActivity.class,
 					NoticeInfoActivity.class };
 			init(titlesGD115, topTitlesGD115, allIdGD115);
 			break;

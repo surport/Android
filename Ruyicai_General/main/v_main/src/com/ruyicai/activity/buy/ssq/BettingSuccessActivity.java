@@ -19,6 +19,7 @@ import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.activity.join.JoinInfoActivity;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -50,10 +51,14 @@ public class BettingSuccessActivity extends Activity {
 	public static final int PRESENT = 4;
 	/** 收益追号 */
 	public static final int HIGHTADDTO = 5;
-	/** add by pengcx 20130723 start*/
+	/** add by pengcx 20130723 start */
 	/** 参与合买成功标识 */
-	public static final int JOINCOOPERATION = 6;
-	/** add by pengcx 20130723 end*/
+	public static final int JOINCOOPERATION = 10;
+	/** add by pengcx 20130723 end */
+	/** add by pengcx 20130809 start */
+	/** 开奖走势成功标识 */
+	public static final int NOTICEBALL = 11;
+	/** add by pengcx 20130809 end */
 
 	/** 彩种编号 */
 	private String lotnoString;
@@ -72,6 +77,7 @@ public class BettingSuccessActivity extends Activity {
 
 	/** 全局共享参数 */
 	private RWSharedPreferences shellRW;
+	private int fromInt;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +89,7 @@ public class BettingSuccessActivity extends Activity {
 		Intent intent = getIntent();
 		// 获取页面标识
 		pageInt = intent.getIntExtra("page", -1);
+		fromInt = intent.getIntExtra("from", -1);
 		// 获取彩种编号
 		lotnoString = intent.getStringExtra("lotno");
 		// 获取投注金额
@@ -93,8 +100,8 @@ public class BettingSuccessActivity extends Activity {
 		// 初始化返回按钮
 		returnBettingButton = (Button) findViewById(R.id.ssq_bettingsuccess_returnbetting);
 		returnBettingButton.setOnClickListener(new ButtonOnClickListener());
-		
-		/** modify by pengcx 20130723 start*/
+
+		/** modify by pengcx 20130723 start */
 		// 初始化投注提示语显示
 		promptTextView = (TextView) findViewById(R.id.ssq_bettingsuccess_prompt);
 		switch (pageInt) {
@@ -118,12 +125,13 @@ public class BettingSuccessActivity extends Activity {
 			promptTextView.setText("恭喜您，方案发起成功!");
 			returnBettingButton.setText(R.string.ssq_bettingsuccess_returnbet);
 			break;
-		case JOINCOOPERATION:
+		}
+		
+		if(fromInt == JOINCOOPERATION){
 			promptTextView.setText("恭喜您，参与合买成功!");
 			returnBettingButton.setText(R.string.ssq_bettingsuccess_returnjoin);
-			break;
 		}
-		/** modify by pengcx 20130723 end*/
+		/** modify by pengcx 20130723 end */
 		// 初始化彩种的显示
 		lottypeTextView = (TextView) findViewById(R.id.ssq_bettingsuccess_lottype);
 		String lottypeStrig = PublicMethod.toLotno(lotnoString);
@@ -178,11 +186,16 @@ public class BettingSuccessActivity extends Activity {
 		 * 返回投注
 		 */
 		private void returnToBet() {
-			/** modify by pengcx 20130723 start*/
+			/** modify by pengcx 20130723 start */
 			Intent intent = null;
-			if (pageInt == JOINCOOPERATION) {
+			if (fromInt == JOINCOOPERATION) {
 				intent = new Intent(BettingSuccessActivity.this,
 						JoinInfoActivity.class);
+			} else if (fromInt == NOTICEBALL) {
+				intent = new Intent(BettingSuccessActivity.this,
+						NoticeActivityGroup.class);
+				intent.putExtra("isPosition", true);
+				intent.putExtra("position", 1);
 			} else {
 				if (lotnoString.equals(Constants.LOTNO_SSQ)) {
 					intent = new Intent(BettingSuccessActivity.this, Ssq.class);
@@ -253,7 +266,7 @@ public class BettingSuccessActivity extends Activity {
 							BeiJingSingleGameActivity.class);
 				}
 			}
-			/** modify by pengcx 20130723 end*/
+			/** modify by pengcx 20130723 end */
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 		}

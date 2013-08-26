@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.constant.Constants;
 
 public class OrderDetails extends BuyActivityGroup {
@@ -21,10 +22,16 @@ public class OrderDetails extends BuyActivityGroup {
 
 	private Class[] allId = { ZiXuanTouZhu.class, ZixuanZhuihao.class,
 			JoinStartActivity.class, GiftActivity.class };
+	/**add by pengcx 20130809 start*/
+	static int fromInt;
+	/**add by pengcx 20130809 end*/
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/**add by pengcx 20130809 start*/
+		fromInt = getIntent().getIntExtra("from", 0);
+		/**add by pengcx 20130809 end*/
 		Constants.type = "fc";
 		isIssue(false);
 		if (isFromTrackQuery) {

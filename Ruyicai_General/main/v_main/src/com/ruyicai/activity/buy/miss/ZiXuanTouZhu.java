@@ -414,6 +414,10 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		{
 			intent.putExtra("isssq", true);
 		}
+		if(OrderDetails.fromInt != 0){
+			intent.putExtra("from", OrderDetails.fromInt);
+		}
+		
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());

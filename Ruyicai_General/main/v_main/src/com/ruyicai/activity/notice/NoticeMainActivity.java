@@ -54,7 +54,7 @@ import com.umeng.analytics.MobclickAgent;
  * @author haojie
  * 
  */
-public class NoticeMainActivity extends Activity implements OnRefreshListener{
+public class NoticeMainActivity extends Activity implements OnRefreshListener {
 
 	public static final String TAG = "NoticePrizesOfLottery";
 	public final static String LOTTERYTYPE = "LOTTERYTYPE";
@@ -99,12 +99,12 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 	// 添加排列三、超级大乐透图标
 	private static final String[] titles = { "双色球", "福彩3D", "七乐彩", "大乐透",
 			"排列三", "排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "广东11选5",
-			"足彩胜负", "任选九", "六场半", "进球彩", "竞彩足球", "竞彩篮球", "广东快乐十分", "快三", 
-			"北京单场"};
+			"足彩胜负", "任选九", "六场半", "进球彩", "竞彩足球", "竞彩篮球", "广东快乐十分", "快三", "北京单场" };
 	// 新加获取时时彩信息
 	public static final String iGameName[] = { "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "gd-11-5",
-			"sfc", "rxj", "lcb", "jqc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame" }; // 8.9
+			"sfc", "rxj", "lcb", "jqc", "jcz", "jcl", "gd-10", "nmk3",
+			"beijingsinglegame" }; // 8.9
 	public static boolean isFirstNotice = true;
 	public boolean isnoticefresh = true;
 	public boolean ispushfresh = false;
@@ -591,7 +591,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 	}
 
 	private void noticeNet() {
-		if(!ispushfresh){
+		if (!ispushfresh) {
 			showDialog(DIALOG1_KEY);
 		}
 		new Thread(new Runnable() {
@@ -670,7 +670,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				String iIssue = (String) list.get(position-1).get(ISSUE);
+				String iIssue = (String) list.get(position - 1).get(ISSUE);
 				NoticeActivityGroup.ISSUE = iIssue;
 				TextView nameText = (TextView) view
 						.findViewById(R.id.notice_prizes_main_title);
@@ -707,6 +707,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_PAILIESAN_LISTVIEW;
 					Intent intent = new Intent(NoticeMainActivity.this,
 							NoticeActivityGroup.class);
+					intent.putExtra("isPosition", false);
 					startActivity(intent);
 				}
 				// 点击超级大乐透跳转到超级大乐透子列表中
@@ -714,6 +715,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_DLT_LISTVIEW;
 					Intent intent = new Intent(NoticeMainActivity.this,
 							NoticeActivityGroup.class);
+					intent.putExtra("isPosition", false);
 					startActivity(intent);
 				}
 				// 点击时时彩跳转到时时彩子列表中
@@ -1257,19 +1259,21 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 
 			} else if (iGameType.equals("gd-10")) {
 				int deletW = 4;
-//				if (PublicMethod.getDisplayWidth(context) == 240) {
-//					holder.name.setTextSize(PublicMethod.getPxInt(15, context));
-//				} else if(PublicMethod.getDisplayWidth(context) == 1080){
-//					holder.name.setTextSize(PublicMethod.getPxInt(4.7f, context));
-//				}else{
-//					holder.name.setTextSize(PublicMethod.getPxInt(7, context));
-//				}
-				/**add by pengcx 20130802 start*/
+				// if (PublicMethod.getDisplayWidth(context) == 240) {
+				// holder.name.setTextSize(PublicMethod.getPxInt(15, context));
+				// } else if(PublicMethod.getDisplayWidth(context) == 1080){
+				// holder.name.setTextSize(PublicMethod.getPxInt(4.7f,
+				// context));
+				// }else{
+				// holder.name.setTextSize(PublicMethod.getPxInt(7, context));
+				// }
+				/** add by pengcx 20130802 start */
 				int width = PublicMethod.getDisplayWidth(context);
-				float scale = 480.0f/width;
+				float scale = 480.0f / width;
 				float textSize = 10 * scale;
-				holder.name.setTextSize(PublicMethod.getPxInt(textSize, context));
-				/**add by pengcx 20130802 end*/
+				holder.name.setTextSize(PublicMethod
+						.getPxInt(textSize, context));
+				/** add by pengcx 20130802 end */
 				holder.date.setText(iDate);
 				holder.date.setVisibility(TextView.VISIBLE);
 				holder.issue.setText(iIssueNo);
@@ -1363,40 +1367,44 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener{
 				int iShowNumber;
 				OneBallView tempBallView;
 				for (i1 = 0; i1 < 3; i1++) {
-					iShowNumber = Integer.valueOf(iNumbers.substring(i1 * 2,
-							i1 * 2 + 2));
-					String isNum = PublicMethod.getZhuMa(iShowNumber);
+					/** modify by pengcx 20130808 start */
+					iShowNumber = Integer.valueOf(iNumbers.substring(
+							i1 * 2 + 1, i1 * 2 + 2));
+					/** modify by pengcx 20130808 end */
 					tempBallView = new OneBallView(convertView.getContext(), 1);
-					tempBallView.initBall(BALL_WIDTH, BALL_WIDTH, isNum,
-							aRedColorResId);
+					tempBallView.initBall(BALL_WIDTH, BALL_WIDTH, iShowNumber
+							+ "", aRedColorResId);
 					holder.numbers.addView(tempBallView);
 				}
 			}
-			
-			//北京单场
+
+			// 北京单场
 			else if (iGameType.equals(iGameName[20])) {
 				holder.rLayout.setVisibility(RelativeLayout.GONE);
 				holder.lookBtn.setVisibility(Button.VISIBLE);
-				holder.lookBtn.setBackgroundResource(R.drawable.join_info_btn_selecter);
+				holder.lookBtn
+						.setBackgroundResource(R.drawable.join_info_btn_selecter);
 				holder.lookBtn.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						isnoticefresh = false;
-						Intent intent = new Intent(context, NoticeBeijingSingleActivity.class);
-						intent.putExtra(Constants.PLAY_METHOD_TYPE, Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS);
+						Intent intent = new Intent(context,
+								NoticeBeijingSingleActivity.class);
+						intent.putExtra(Constants.PLAY_METHOD_TYPE,
+								Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS);
 						context.startActivity(intent);
 					}
 				});
 				holder.scoreBtn.setVisibility(View.GONE);
-//				holder.scoreBtn.setBackgroundResource(R.drawable.join_info_btn_selecter);
-//				holder.scoreBtn.setOnClickListener(new OnClickListener() {
-//					@Override
-//					public void onClick(View v) {
-//						isnoticefresh = false;
-//						Intent intent = new Intent(context, JcScoreActivity.class);
-//						context.startActivity(intent);
-//					}
-//				});
+				// holder.scoreBtn.setBackgroundResource(R.drawable.join_info_btn_selecter);
+				// holder.scoreBtn.setOnClickListener(new OnClickListener() {
+				// @Override
+				// public void onClick(View v) {
+				// isnoticefresh = false;
+				// Intent intent = new Intent(context, JcScoreActivity.class);
+				// context.startActivity(intent);
+				// }
+				// });
 			}
 
 			return convertView;
