@@ -856,6 +856,7 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 							.getSelectedItemPosition()));
 					shellRW.putStringValue("banktruename", nameStr);
 					Log.e("bankname", nameStr);
+					bankNoStr = bankNoStr.replaceAll(" ", ""); //add by yejc 20130826
 					shellRW.putStringValue("bankid", bankNoStr);
 					changeWithdPojo.setType("1");// 1:普通提现;2支付宝提现
 					changeWithdPojo.setName(nameStr);

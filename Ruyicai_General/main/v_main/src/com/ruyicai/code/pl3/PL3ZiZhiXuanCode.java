@@ -3,6 +3,8 @@
  */
 package com.ruyicai.code.pl3;
 
+import java.util.List;
+
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;
 
@@ -11,7 +13,7 @@ import com.ruyicai.pojo.AreaNum;
  * 
  */
 public class PL3ZiZhiXuanCode extends CodeInterface {
-	String zhixuan = "1|";// ֱѡ
+	static String zhixuan = "1|";// ֱѡ
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
 		// TODO Auto-generated method stub
@@ -40,4 +42,25 @@ public class PL3ZiZhiXuanCode extends CodeInterface {
 
 	}
 
+	public static String simulateZhuma(List<Integer> hundreds, List<Integer> decades,
+			List<Integer> units) {
+		// TODO Auto-generated method stub
+		String strZM = "";
+		strZM = zhixuan;
+		if (hundreds.size() > 0 && decades.size() > 0 && units.size() > 0) {
+			for (int i = 0; i < hundreds.size(); i++) {
+				strZM += (hundreds.get(i)) + "";
+			}
+			strZM += ",";
+			for (int i = 0; i < decades.size(); i++) {
+				strZM += (decades.get(i)) + "";
+			}
+			strZM += ",";
+			for (int i = 0; i < units.size(); i++) {
+				strZM += (units.get(i)) + "";
+			}
+
+		}
+		return strZM;
+	}
 }

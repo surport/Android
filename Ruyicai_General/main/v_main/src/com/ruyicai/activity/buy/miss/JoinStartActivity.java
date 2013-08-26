@@ -704,7 +704,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		{
 			intent.putExtra("isssq", true);
 		}
+		if(OrderDetails.fromInt != 0){
+			intent.putExtra("from", OrderDetails.fromInt);
+		}
 		intent.putExtra("page", BettingSuccessActivity.COOPERATION);
+		
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
 		startActivity(intent);

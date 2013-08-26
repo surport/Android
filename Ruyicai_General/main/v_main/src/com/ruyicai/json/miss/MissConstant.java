@@ -48,6 +48,8 @@ public class MissConstant {
 	public static final String SSQ_Miss = "F47104MV_X";// 双色球自选
 	public static final String SSQ_DAN = "SSQ_DAN_TUO";// 双色球胆码
 	public static final String SSQ_ZI = "SSQ_ZI";// 双色球胆码
+	
+	public static final String QLC_Miss = "F47102MV_X";
 
 	public static final String DLT_Miss = "T01001MV_X";
 	public static final String DLT_DAN = "DLT_DAN_TUO";

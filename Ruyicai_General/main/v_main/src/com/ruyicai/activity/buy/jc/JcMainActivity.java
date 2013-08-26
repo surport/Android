@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -97,12 +98,12 @@ public class JcMainActivity extends Activity implements
 	private LinearLayout teamLayersLayout;
 	private LinearLayout teamLayersLayoutUp;
 	private LinearLayout teamSelectLayout;
-//	private LinearLayout teamLayout;
 	ShowHandler showHandler = new ShowHandler();
 	private int screenWidth;
 	private int[] bgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
 	private int[] paintColor= {Color.BLACK, Color.WHITE};
 	private boolean isFirst = true;
+	private String[] leagueName = {"NBA", "五大联赛"};
 	/**add by yejc 20130812 end*/
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -228,12 +229,19 @@ public class JcMainActivity extends Activity implements
 		} else {
 			myBtns = new MyButton[0];
 		}
-		if (JcMainView.listTeam != null && JcMainView.listTeam.length > 0) {
+		if (JcMainView.listTeam != null && JcMainView.listTeam.length > 0
+				&& !"".equals(JcMainView.listTeam[0].trim())) {
 			addLayout(layoutMain, myBtns);
 		}
+		Log.i("yejc", "======JcMainView.listTeam.length="+JcMainView.listTeam.length);
 		Button all = (Button)findViewById(R.id.all_check);
 		Button clear = (Button)findViewById(R.id.clear_check);
 		Button fiveLeague = (Button)findViewById(R.id.ok);
+		if (Constants.LOTNO_JCL.equals(lotNo)) {
+			fiveLeague.setText(leagueName[0]);
+		} else {
+			fiveLeague.setText(leagueName[1]);
+		}
 		all.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				for (MyButton btn : myBtns) {
@@ -245,7 +253,11 @@ public class JcMainActivity extends Activity implements
 		clear.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				for (MyButton btn : myBtns) {
-					btn.setOnClick(false);
+					if(btn.isOnClick()) {
+						btn.setOnClick(false);
+					} else {
+						btn.setOnClick(true);
+					}
 					btn.switchBg();
 				}
 			}
@@ -254,7 +266,25 @@ public class JcMainActivity extends Activity implements
 
 			@Override
 			public void onClick(View v) {
-				//五大联赛
+				if (Constants.LOTNO_JCL.equals(lotNo)) {
+					for (MyButton btn : myBtns) {
+						if (leagueName[0].equals(btn.getBtnText())) {
+							btn.setOnClick(true);
+						} else {
+							btn.setOnClick(false);
+						}
+						btn.switchBg();
+					}
+				} else {
+					for (MyButton btn : myBtns) {
+						if (PublicMethod.isFiveLeague(btn.getBtnText())) {
+							btn.setOnClick(true);
+						} else {
+							btn.setOnClick(false);
+						}
+						btn.switchBg();
+					}
+				}
 			}
 		});
 	}
@@ -297,7 +327,7 @@ public class JcMainActivity extends Activity implements
 		for (int j = 0; j < lastNum; j++) {
 			final MyButton btn = new MyButton(context);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((screenWidth-PublicMethod.getPxInt(50, context))/4, 
-					PublicMethod.getPxInt(40, context));
+					PublicMethod.getPxInt(42, context));
 			if (j == 0) {
 				params.setMargins(0,
 						PublicMethod.getPxInt(10, context), 0, 0);
@@ -373,8 +403,8 @@ public class JcMainActivity extends Activity implements
 	 * 初始化组建
 	 */
 	public void initView() {
-		playLayersLayout = (LinearLayout)findViewById(R.id.buy_jc_main_layout);
-		teamLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers);
+		playLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_middle);
+		teamLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_down);
 		teamLayersLayoutUp = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_up);
 		playLayout = (LinearLayout)findViewById(R.id.jc_play_select);
 		teamSelectLayout = (LinearLayout)findViewById(R.id.jc_main_team_select);
@@ -386,13 +416,6 @@ public class JcMainActivity extends Activity implements
 		playLayersLayout.setOnClickListener(this);
 		teamLayersLayout.setOnClickListener(this);
 		teamLayersLayoutUp.setOnClickListener(this);
-//		Button btnType = (Button) findViewById(R.id.buy_lq_main_btn_type);
-//		btnType.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				createDialog();
-//			}
-//		});
 		ImageButton zixuanTouzhu = (ImageButton) findViewById(R.id.buy_zixuan_img_touzhu);
 		zixuanTouzhu.setOnClickListener(new OnClickListener() {
 			@Override
@@ -545,7 +568,7 @@ public class JcMainActivity extends Activity implements
 							break;
 						}
 						clearRadio(buttonView);
-						showHandler.sendEmptyMessageDelayed(1, 600);
+						showHandler.sendEmptyMessageDelayed(1, 500);
 					}
 				}
 			});
@@ -811,13 +834,13 @@ public class JcMainActivity extends Activity implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.buy_jc_main_layout:
+		case R.id.jc_main_team_layout_layers_middle:
 			viewType.setVisibility(View.GONE);
 			playLayersLayout.setVisibility(View.GONE);
 			teamLayersLayoutUp.setVisibility(View.GONE);
 			break;
 
-		case R.id.jc_main_team_layout_layers:
+		case R.id.jc_main_team_layout_layers_down:
 			showSelectedTeam();
 			break;
 			

@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:textColor="@color/jc_main_play_title_color"
-            android:textSize="20dip" >
+            android:textSize="18sp" >
         </TextView>
 
         <View
@@ -96,7 +96,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/jc_zq_hun_rqspf_left_bg"
                         android:gravity="center"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/jc_hun_title_color" />
 
                     <com.ruyicai.custom.checkbox.MyCheckBox
                         android:id="@id/lq_sfc_dialog_rangqiu1"
@@ -219,11 +219,10 @@
                             android:visibility="gone"
                             custom:check_title="@string/jclq_sfc_dialog_title02" />
 
-                        <Button
+                        <View
                             android:layout_width="56dip"
                             android:layout_height="50dip"
-                            android:background="@drawable/jc_zq_hun_bqc_right_bottom_selector"
-                            android:enabled="false" />
+                            android:background="@drawable/jc_zq_hun_bqc_right_bottom_selector"/>
                     </LinearLayout>
                 </LinearLayout>
 

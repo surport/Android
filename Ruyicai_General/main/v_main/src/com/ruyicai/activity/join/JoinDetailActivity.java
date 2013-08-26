@@ -1768,7 +1768,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 //			succeedDialog("提示", message);
 			/** add by pengcx 20130725 start*/
 			Intent intent = new Intent(JoinDetailActivity.this,BettingSuccessActivity.class);
-			intent.putExtra("page", BettingSuccessActivity.JOINCOOPERATION);
+			intent.putExtra("from", BettingSuccessActivity.JOINCOOPERATION);
 			intent.putExtra("lotno", detatil.getLotNo());
 			intent.putExtra("amount", Integer.valueOf((Integer.valueOf(amount) * 100)).toString());
 			startActivity(intent);

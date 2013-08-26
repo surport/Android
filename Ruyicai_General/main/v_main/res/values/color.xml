@@ -47,6 +47,10 @@
     <color name="jc_touzhu_background_color">#ffffcd</color>
     <color name="jc_main_background_color">#E4E4E4</color>
     <color name="jc_main_play_title_color">#336699</color>
+    <color name="jc_hun_title_color">#990000</color>
+    <color name="jc_hun_lq_title_color">#009900</color>
+    <color name="jc_hun_zq_bqc_title_color">#666600</color>
+    <color name="jc_hun_zq_bf_title_color">#569548</color>
     <!-- add end -->
     
 </resources>

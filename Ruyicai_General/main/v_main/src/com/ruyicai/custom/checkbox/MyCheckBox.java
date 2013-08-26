@@ -1,5 +1,6 @@
 package com.ruyicai.custom.checkbox;
 
+import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
 import android.content.Context;
@@ -20,17 +21,20 @@ public class MyCheckBox extends CheckBox {
 	private static final String ATTR_TITLE = "check_title";
 	private static final String ATTR_HEIGHT = "layout_height";
 	private static final int DEFAULTVALUE_DEGREES = 0;
-	private String title;
-	private String text;
+	private String title = "";
+	private String text = "";
 	private Context context;
 	private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private boolean isChecked = false;
 	private int height;
 	private int position;
 	private boolean isHorizontal = false;// 标题和赔率是否是横向
-	private Handler handler = null; //add by yejc 20130816
-	private int oddsPaintColorArray[] = {Color.GRAY, Color.GRAY}; //add by yejc 20130816
-	private int textPaintColorArray[] = {Color.BLACK, Color.BLACK}; //add by yejc 20130816
+	/**add by yejc 20130816 start */
+	private Handler handler = null; 
+	private int oddsPaintColorArray[] = {Color.GRAY, Color.GRAY};
+	private int textPaintColorArray[] = {Color.BLACK, Color.BLACK};
+	private String lotno = "";
+	/**add by yejc 20130816 start */
 
 	public MyCheckBox(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -82,6 +86,14 @@ public class MyCheckBox extends CheckBox {
 	public void setTextPaintColorArray(int[] textPaintColorArray) {
 		this.textPaintColorArray = textPaintColorArray;
 	}
+	public String getLotno() {
+		return lotno;
+	}
+
+	public void setLotno(String lotno) {
+		this.lotno = lotno;
+	}
+
 	/**add by yejc 20130816 end*/
 
 	private void onChecked() {
@@ -126,48 +138,55 @@ public class MyCheckBox extends CheckBox {
 		float width = getWidth();// 组建的宽度
 		int titleSize = 13;
 		int contentSize = 13;// 赔率大小
-		int titleX = 20;// 标题x坐标
+//		int titleX = 20;// 标题x坐标
 		int titleY = 18;// 标题y坐标
-		int contentX = 20;// 标题x坐标
+//		int contentX = 20;// 标题x坐标
 		int contentY = 42;// 标题y坐标
 
 		if (isHorizontal) {
-			titleX = 10;
+//			titleX = 10;
 			titleY = 25;
-			contentX = 45;
+//			contentX = 45;
 			contentY = 25;
 			if (title.equals("")) {
-				contentX = 20;
+//				contentX = 20;
 				contentSize = 18;
 			}
 		} else {
 			float standardWidth = PublicMethod.getDisplayWidth(context)/480.0f * 100;
 			
 			if (width < standardWidth) {
-				if (text.length() > 3) {
-					titleX = 3;
-					contentX = 3;
-				} else {
-					titleX = 10;
-					contentX = 10;
-				}
+//				if (text.length() > 3) {
+//					titleX = 3;
+//					contentX = 3;
+//				} else {
+//					titleX = 10;
+//					contentX = 10;
+//				}
 				contentSize = 13;
 			} else {
 				if (title.length() > 3) {
 					titleSize = 13;
-					titleX = 1;
-				} else if (title.length() == 1) {
+//					titleX = 1;
+				} /*else if (title.length() == 1) {
 					titleX = 15;
 				} else if (title.length() == 2) {
 					titleX = 25;
-				}
+				}*/
 			}
 		}
 		// 标题
 		mPaint.setTextSize(PublicMethod.getPxInt(titleSize, context));
 		/**add by yejc 20130819 start*/
-		float titleWidth = mPaint.measureText(title);
-		float oddsWidth = mPaint.measureText(text);
+		float titleWidth = 0.0f;
+		if (title != null) {
+			titleWidth = mPaint.measureText(title);
+		}
+		float oddsWidth = 0.0f;
+		if (text != null) {
+			oddsWidth = mPaint.measureText(text);
+		}
+		
 		float space = (width - titleWidth - oddsWidth)/3;
 		if (isHorizontal) {
 			canvas.drawText(title, space,
@@ -186,8 +205,14 @@ public class MyCheckBox extends CheckBox {
 			mPaint.setColor(oddsPaintColorArray[0]);
 		}
 		if (isHorizontal) {
-			canvas.drawText(text, 2*space + titleWidth,
-					PublicMethod.getPxInt(contentY, context), mPaint);
+			if ((Constants.LOTNO_JCLQ_HUN.equals(lotno)) && 
+					(position == 3 || position == 6)) {
+				canvas.drawText(text, (width - oddsWidth)/2.5f,
+						PublicMethod.getPxInt(contentY, context), mPaint);
+			} else {
+				canvas.drawText(text, 2*space + titleWidth,
+						PublicMethod.getPxInt(contentY, context), mPaint);
+			}
 		} else {
 			canvas.drawText(text, (width - oddsWidth)/2,
 					PublicMethod.getPxInt(contentY, context), mPaint);

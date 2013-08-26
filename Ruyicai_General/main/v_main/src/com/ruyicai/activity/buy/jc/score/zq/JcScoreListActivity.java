@@ -185,10 +185,22 @@ public class JcScoreListActivity extends Activity {
 	}
 
 	public void initListInfo() {
-		if (allcountries == null) {
-			getScoreNet(TYPE, "", reguestType);
+		if (tabIndex == 2) {
+			layoutSpinner.setVisibility(View.GONE);
+			if (isLq) {
+				getCurrentScoreNet("jingCaiLq");
+			} else if (isBeiDan) {
+				getCurrentScoreNet("beiDan");
+			} else{
+				getCurrentScoreNet("jingCaiZq");
+			}
+			
 		} else {
-			spinnerOnclik(allcountries.get(index));
+			if (allcountries == null) {
+				getScoreNet(TYPE, "", reguestType);
+			} else {
+				spinnerOnclik(allcountries.get(index));
+			}
 		}
 	}
 
@@ -274,6 +286,11 @@ public class JcScoreListActivity extends Activity {
 				info.setGuestHalfScore(json.getString("guestHalfScore"));
 				info.setRed(json.getString("red"));
 				info.setYellow(json.getString("yellow"));
+				/**add by yejc 20130826 start*/
+				if(json.has("progressedTime")) {
+					info.setProgressedTime(json.getString("progressedTime"));
+				}
+				/**add by yejc 20130826 end*/
 //				try {
 //					int homeInt = Integer.parseInt(info.getHomeScore());
 //					int guestInt = Integer.parseInt(info.getGuestScore());
@@ -420,7 +437,7 @@ public class JcScoreListActivity extends Activity {
 				    info.getRemainTime());
 					holder.state.setTextColor(Color.RED);
 				} else if ("jczq".equals(playType)){
-					holder.state.setText(info.getProgressedTime());
+					holder.state.setText(info.getProgressedTime()+"'");
 					holder.state.setTextColor(Color.RED);
 				} else {
 					holder.state.setText(info.getState());
@@ -584,9 +601,9 @@ public class JcScoreListActivity extends Activity {
 				info.setTime(json.getString("matchTime"));
 				info.setvTeam(json.getString("guestTeam"));
 				info.setEvent(json.getString("event"));
-				if(json.has("progressedTime")) {
-					info.setProgressedTime(json.getString("progressedTime"));
-				}
+//				if(json.has("progressedTime")) {
+//					info.setProgressedTime(json.getString("progressedTime"));
+//				}
 				listInfo.add(info);
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -778,6 +795,49 @@ public class JcScoreListActivity extends Activity {
 	protected void onPause() {
 		super.onPause();
 		unregisterReceiver(refreshReceiver);
+	}
+	
+	/**
+	 * 获取列表联网
+	 */
+	public void getCurrentScoreNet(final String command) {
+		mProgress = UserCenterDialog.onCreateDialog(context);
+		mProgress.show();
+		final Handler handler = new Handler();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					String re = ScoreListInterface.getCurrentScore(command,"processingMatches");
+					mProgress.dismiss();
+					final JSONObject obj = new JSONObject(re);
+					String error_code = obj.getString("error_code");
+					final String message = obj.getString("message");
+					if (error_code.equals("0000")) {
+						final JSONArray jsonArray = obj.getJSONArray("result");
+
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								listInfo = getScoreInfo(jsonArray);
+								initList();
+							}
+						});
+					} else {
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								Toast.makeText(context, message,
+										Toast.LENGTH_SHORT).show();
+							}
+						});
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+
 	}
 	/**add by yejc 20130716 end*/
 }

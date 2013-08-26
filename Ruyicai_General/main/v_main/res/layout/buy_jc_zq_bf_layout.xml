@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://www.ruyicai.com/res/custom"
     android:layout_width="300dip"
     android:layout_height="wrap_content"
     android:background="@drawable/jc_bf_bg"
     android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/layout_main_text_title"
-        android:layout_width="match_parent"
-        android:layout_height="45dip"
-        android:gravity="center"
-        android:textColor="@color/jc_main_play_title_color" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1.5dip"
-        android:layout_marginLeft="50dip"
-        android:layout_marginRight="50dip"
-        android:background="@color/zc_sfc_divider" />
     
-    <RelativeLayout android:layout_width="300dip"
-        android:layout_height="wrap_content">
-
     <ScrollView
         android:layout_width="300dip"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:layout_marginBottom="65dip" >
+        android:paddingBottom="60dip"
+        android:paddingTop="47dip" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -199,7 +183,7 @@
                     custom:check_title="@string/jclq_sfc_dialog_title01" />
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:id="@id/LinearLayout03"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
                 android:layout_marginTop="5dip"
@@ -521,7 +505,7 @@
                     custom:check_title="@string/jclq_sfc_dialog_title01" />
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:id="@id/LinearLayout07"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
                 android:layout_marginTop="5dip"
@@ -599,13 +583,35 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/layout_main_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/jc_main_play_title_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dip"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
+        android:background="@color/zc_sfc_divider" />
+    
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dip"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
         android:padding="10dip" >
 
         <Button
@@ -617,7 +623,7 @@
             android:gravity="center"
             android:text="确 定"
             android:textColor="@color/white"
-            android:textSize="18sp" >
+            android:textSize="20sp" >
         </Button>
 
         <View
@@ -639,6 +645,4 @@
         </Button>
     </LinearLayout>
     
-    </RelativeLayout>
-
-</LinearLayout>
+</FrameLayout>

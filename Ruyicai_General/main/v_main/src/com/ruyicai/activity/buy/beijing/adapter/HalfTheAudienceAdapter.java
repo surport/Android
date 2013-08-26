@@ -7,10 +7,9 @@ import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.beijing.bean.HalfTheAudienceAgainstInformation;
 import com.ruyicai.custom.checkbox.MyCheckBox;
 import com.ruyicai.util.PublicMethod;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +68,7 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 
 		Button button = (Button) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_btn);
-		button.setBackgroundResource(R.drawable.buy_jc_btn_close);
+		button.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 		LinearLayout linearLayout = (LinearLayout) convertView
 				.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
 
@@ -120,24 +120,34 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 			List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations) {
 		if (halfTheAudienceAgainstInformations.get(0).isShow()) {
 			linearLayout.setVisibility(View.VISIBLE);
-			button.setBackgroundResource(R.drawable.buy_jc_btn_open);
+			button.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 
 			int size = halfTheAudienceAgainstInformations.size();
 			for (int info_i = 0; info_i < size; info_i++) {
 				View itemView = getHalfTheAudienceAgainstListItemView(halfTheAudienceAgainstInformations
-						.get(info_i));
+						.get(info_i), info_i);
 				linearLayout.addView(itemView);
 			}
 		} else {
 			linearLayout.setVisibility(LinearLayout.GONE);
-			button.setBackgroundResource(R.drawable.buy_jc_btn_close);
+			button.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 		}
 	}
 
 	private View getHalfTheAudienceAgainstListItemView(
-			final HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation) {
+			final HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation, final int index) {
 		View itemView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_listview_item_others, null);
+		/**add by yejc 20130823 start*/
+		final LinearLayout layout = (LinearLayout) itemView
+				.findViewById(R.id.jc_play_detail_layout);
+		View divider = (View)itemView.findViewById(R.id.jc_main_divider_up);
+		if (index == 0) {
+			divider.setVisibility(View.VISIBLE);
+		} else {
+			divider.setVisibility(View.GONE);
+		}
+		/**add by yejc 20130823 end*/
 		// 联赛名称
 		TextView leagueTextView = (TextView) itemView
 				.findViewById(R.id.game_name);
@@ -170,8 +180,10 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 				.findViewById(R.id.game_dan);
 		if (halfTheAudienceAgainstInformation.isDan()) {
 			danTextButton.setBackgroundResource(R.drawable.jc_btn_b);
+			danTextButton.setTextColor(white);
 		} else {
-			danTextButton.setBackgroundResource(R.drawable.jc_btn);
+			danTextButton.setBackgroundResource(android.R.color.transparent);
+			danTextButton.setTextColor(black);
 		}
 
 		danTextButton.setOnClickListener(new OnClickListener() {
@@ -180,12 +192,14 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 			public void onClick(View v) {
 				if (halfTheAudienceAgainstInformation.isDan()) {
 					halfTheAudienceAgainstInformation.setDan(false);
-					danTextButton.setBackgroundResource(R.drawable.jc_btn);
+					danTextButton.setBackgroundResource(android.R.color.transparent);
+					danTextButton.setTextColor(black);
 				} else {
 					if (isSelectDanLegal()) {
 						halfTheAudienceAgainstInformation.setDan(true);
 						danTextButton
 								.setBackgroundResource(R.drawable.jc_btn_b);
+						danTextButton.setTextColor(white);
 					}
 				}
 
@@ -288,7 +302,7 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 				if (((BeiJingSingleGameActivity) context)
 						.isSelectedEventNumLegal()
 						|| halfTheAudienceAgainstInformation.isSelected()) {
-					createHalfTheAudienceSelectDialog(v);
+					createHalfTheAudienceSelectDialog(v, layout, index);
 				} else {
 					Toast.makeText(context, "您最多可以选择10场比赛进行投注！",
 							Toast.LENGTH_SHORT).show();
@@ -309,96 +323,95 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 		return itemView;
 	}
 
-	private void createHalfTheAudienceSelectDialog(View v) {
-		View dialogView = LayoutInflater.from(context).inflate(
-				R.layout.buy_lq_sfc_dialog, null);
-		final Dialog selectDialog = new AlertDialog.Builder(context).create();
+	private void createHalfTheAudienceSelectDialog(final View v, LinearLayout layout, int index) {
+		if (layout.getChildCount() == 0) {
+			View dialogView = LayoutInflater.from(context).inflate(
+					R.layout.buy_jc_zq_bqc_layout, null);
+			final MyCheckBox[] selectButtons = new MyCheckBox[SELECT_BUTTON_NUM];
+			final HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation = (HalfTheAudienceAgainstInformation) v
+					.getTag();
+			StringBuilder titleString = new StringBuilder();
+			titleString.append(halfTheAudienceAgainstInformation.getHomeTeam())
+					.append(" VS ")
+					.append(halfTheAudienceAgainstInformation.getGuestTeam());
+			
+			Handler handler = new Handler(){
+				@Override
+				public void handleMessage(Message msg) {
+					super.handleMessage(msg);
+					String btnStr = "";
+					for (int i = 0; i < halfTheAudienceAgainstInformation.getIsClicks().length; i++) {
+						if (selectButtons[i].getChecked()) {
+							btnStr += selectButtons[i].getChcekTitle()
+									+ "  ";
+							halfTheAudienceAgainstInformation.getIsClicks()[i] = true;
+						} else {
+							halfTheAudienceAgainstInformation.getIsClicks()[i] = false;
+						}
+					}
+					((Button)v).setText(btnStr);
+					
+					((BeiJingSingleGameActivity) context)
+							.refreshSelectNumAndDanNum();
 
-		// 标题
-//		TextView titleTextView = (TextView) dialogView
-//				.findViewById(R.id.layout_main_text_title);
-		final HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation = (HalfTheAudienceAgainstInformation) v
-				.getTag();
-		StringBuilder titleString = new StringBuilder();
-		titleString.append(halfTheAudienceAgainstInformation.getHomeTeam())
-				.append(" VS ")
-				.append(halfTheAudienceAgainstInformation.getGuestTeam());
-//		titleTextView.setText(titleString);
-
-		/** 选择按钮的资源Id */
-		int[] selectButtonIds = { R.id.lq_sfc_dialog_check01,
-				R.id.lq_sfc_dialog_check02, R.id.lq_sfc_dialog_check03,
-				R.id.lq_sfc_dialog_check04, R.id.lq_sfc_dialog_check05,
-				R.id.lq_sfc_dialog_check06, R.id.lq_sfc_dialog_check07,
-				R.id.lq_sfc_dialog_check08, R.id.lq_sfc_dialog_check09, };
-		/** 选择按钮sp */
-		String selectButtonSPs[] = {
-				halfTheAudienceAgainstInformation.getHalf_v33(),
-				halfTheAudienceAgainstInformation.getHalf_v31(),
-				halfTheAudienceAgainstInformation.getHalf_v30(),
-				halfTheAudienceAgainstInformation.getHalf_v13(),
-				halfTheAudienceAgainstInformation.getHalf_v11(),
-				halfTheAudienceAgainstInformation.getHalf_v10(),
-				halfTheAudienceAgainstInformation.getHalf_v03(),
-				halfTheAudienceAgainstInformation.getHalf_v01(),
-				halfTheAudienceAgainstInformation.getHalf_v00() };
-
-		/** 选择对话框选择按钮 */
-		final MyCheckBox[] selectButtons = new MyCheckBox[SELECT_BUTTON_NUM];
-		for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
-			selectButtons[button_i] = (MyCheckBox) dialogView
-					.findViewById(selectButtonIds[button_i]);
-			selectButtons[button_i].setVisibility(CheckBox.VISIBLE);
-			selectButtons[button_i].setCheckText(selectButtonSPs[button_i]);
-			selectButtons[button_i].setPosition(button_i);
-			selectButtons[button_i]
-					.setChecked(halfTheAudienceAgainstInformation.getIsClicks()[button_i]);
-			selectButtons[button_i].setCheckTitle(selectButtonTitles[button_i]);
-		}
-
-		selectDialog.show();
-		selectDialog.getWindow().setContentView(dialogView);
-
-		Button okButton = (Button) dialogView.findViewById(R.id.ok);
-		okButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
-					MyCheckBox selectButton = selectButtons[button_i];
-					if (selectButton.getChecked() == true) {
-						halfTheAudienceAgainstInformation.getIsClicks()[button_i] = true;
-					} else {
-						halfTheAudienceAgainstInformation.getIsClicks()[button_i] = false;
+					if (halfTheAudienceAgainstInformation.isDan()
+							&& !halfTheAudienceAgainstInformation.isSelected()) {
+						halfTheAudienceAgainstInformation.setDan(false);
 					}
 				}
-				selectDialog.dismiss();
-				((BeiJingSingleGameActivity) context)
-						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
 
-				if (halfTheAudienceAgainstInformation.isDan()
-						&& !halfTheAudienceAgainstInformation.isSelected()) {
-					halfTheAudienceAgainstInformation.setDan(false);
-				}
-			}
-		});
-		Button cancelButton = (Button) dialogView.findViewById(R.id.canel);
-		cancelButton.setOnClickListener(new OnClickListener() {
+			};
 
-			@Override
-			public void onClick(View v) {
-				boolean[] isClicks = halfTheAudienceAgainstInformation
-						.getIsClicks();
-				for (int i = 0; i < isClicks.length; i++) {
-					isClicks[i] = false;
-				}
-				((BeiJingSingleGameActivity) context)
-						.refreshAgainstInformationShow(false, false);
-				((BeiJingSingleGameActivity) context).refreshSelectNumAndDanNum();
-				selectDialog.dismiss();
+			/** 选择按钮的资源Id */
+			int[] selectButtonIds = { R.id.lq_sfc_dialog_check01,
+					R.id.lq_sfc_dialog_check02, R.id.lq_sfc_dialog_check03,
+					R.id.lq_sfc_dialog_check04, R.id.lq_sfc_dialog_check05,
+					R.id.lq_sfc_dialog_check06, R.id.lq_sfc_dialog_check07,
+					R.id.lq_sfc_dialog_check08, R.id.lq_sfc_dialog_check09, };
+			/** 选择按钮sp */
+			String selectButtonSPs[] = {
+					halfTheAudienceAgainstInformation.getHalf_v33(),
+					halfTheAudienceAgainstInformation.getHalf_v31(),
+					halfTheAudienceAgainstInformation.getHalf_v30(),
+					halfTheAudienceAgainstInformation.getHalf_v13(),
+					halfTheAudienceAgainstInformation.getHalf_v11(),
+					halfTheAudienceAgainstInformation.getHalf_v10(),
+					halfTheAudienceAgainstInformation.getHalf_v03(),
+					halfTheAudienceAgainstInformation.getHalf_v01(),
+					halfTheAudienceAgainstInformation.getHalf_v00() };
+
+			/** 选择对话框选择按钮 */
+			
+			for (int button_i = 0; button_i < SELECT_BUTTON_NUM; button_i++) {
+				selectButtons[button_i] = (MyCheckBox) dialogView
+						.findViewById(selectButtonIds[button_i]);
+				selectButtons[button_i].setVisibility(CheckBox.VISIBLE);
+				selectButtons[button_i].setCheckText(selectButtonSPs[button_i]);
+				selectButtons[button_i].setPosition(button_i);
+				selectButtons[button_i]
+						.setChecked(halfTheAudienceAgainstInformation.getIsClicks()[button_i]);
+				selectButtons[button_i].setCheckTitle(selectButtonTitles[button_i]);
+				selectButtons[button_i].setHandler(handler);
 			}
-		});
+			
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+					(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			if (index == 0) {
+				RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+						(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				lParams.setMargins(0, PublicMethod.getPxInt(68.5f, context), 0, 0);
+				layout.setLayoutParams(lParams);
+			}
+			layout.addView(dialogView, params);
+			layout.setVisibility(View.VISIBLE);
+		} else {
+			if (layout.getVisibility() == View.VISIBLE) {
+				layout.setVisibility(View.GONE);
+			} else {
+				layout.setVisibility(View.VISIBLE);
+			}
+		}
+		
 	}
 
 }
