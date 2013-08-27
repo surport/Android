@@ -144,8 +144,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		Intent intent = getIntent();
 		if (intent != null) {
 			caseId = intent.getStringExtra(JoinInfoActivity.ID);
-			lotno = intent.getStringExtra(JoinHallActivity.LOTNO);
-			issue = intent.getStringExtra(JoinHallActivity.ISSUE);
+			lotno = intent.getStringExtra(Constants.LOTNO);
+			issue = intent.getStringExtra(Constants.ISSUE);
 			starterUserNo = intent.getStringExtra(JoinInfoActivity.USER_NO);
 		}
 	}
@@ -180,7 +180,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				Intent intent = new Intent(JoinDetailActivity.this,
 						JoinDingActivity.class);
 				intent.putExtra(JoinInfoActivity.USER_NO, starterUserNo);
-				intent.putExtra(JoinHallActivity.LOTNO, lotno);
+				intent.putExtra(Constants.LOTNO, lotno);
 				startActivity(intent);
 			}
 		});

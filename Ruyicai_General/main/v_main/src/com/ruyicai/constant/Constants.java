@@ -344,5 +344,8 @@ public class Constants {
 	public static final String JC_TOUZHU_TEXT_COLOR = "#990000";
 	public static final String JC_TOUZHU_TITLE_TEXT_COLOR = "red";
 	/**add by yejc 20130527 start*/
+	public static final String LOTNO = "Lotno";
+	public static final String PAGENUM = "10";// 每页显示的条数
+	public static final String ISSUE = "Issue";
 	
 }

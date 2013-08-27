@@ -366,8 +366,13 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 		String phonenum = pre.getStringValue(ShellRWConstants.MOBILEID);
 		bank_card_phone_phone_num = (EditText) findViewById(R.id.bank_card_phone_phone_num);// 手机号
 		bank_card_phone_name = (EditText) findViewById(R.id.bank_card_phone_phone_name);// 姓名
-		bank_card_phone_name.setText(name);
-		bank_card_phone_phone_num.setText(phonenum);
+		if ("".equals(name.trim())) {
+			bank_card_phone_name.setText(name.trim());
+		}
+		if ("".equals(phonenum.trim())) {
+			bank_card_phone_phone_num.setText(phonenum.trim());
+		}
+		
 		EditText bank_card_phone_bankid = (EditText) findViewById(R.id.bank_card_phone_bankid);// 银行卡号
 		EditText bank_card_phone_idcard = (EditText) findViewById(R.id.bank_card_phone_phone_idcard);// 身份证号
 		EditText bank_card_phone_home = (EditText) findViewById(R.id.bank_card_phone_phone_home);// 户籍所在地
@@ -394,10 +399,19 @@ public class YinDNAPayActivity extends Activity implements HandlerMsg {
 
 		});
 		spinner.setSelection(0);
-		bank_card_phone_bankid.setText(bankCardNo);
-		bank_card_phone_idcard.setText(certid);
-		bank_card_phone_home.setText(certAddress);
-		bank_card_phone_province.setText(bankAddress);
+		if ("".equals(bankCardNo.trim())) {
+			bank_card_phone_bankid.setText(bankCardNo.trim());
+		}
+		if ("".equals(certid.trim())) {
+			bank_card_phone_idcard.setText(certid.trim());
+		}
+		if ("".equals(certAddress.trim())) {
+			bank_card_phone_home.setText(certAddress.trim());
+		}
+		if ("".equals(bankAddress.trim())) {
+			bank_card_phone_province.setText(bankAddress.trim());
+		}
+		
 		final Button ok = (Button) findViewById(R.id.alipay_secure_ok);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {

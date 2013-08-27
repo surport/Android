@@ -14,31 +14,31 @@ import org.json.JSONObject;
  * 
  */
 public class OverAllAgainstInformation extends AgainstInformation {
-	private String score_v10;
-	private String score_v20;
-	private String score_v21;
-	private String score_v30;
-	private String score_v31;
-	private String score_v32;
-	private String score_v40;
-	private String score_v41;
-	private String score_v42;
-	private String score_v00;
-	private String score_v11;
-	private String score_v22;
-	private String score_v33;
-	private String score_v01;
-	private String score_v02;
-	private String score_v12;
-	private String score_v03;
-	private String score_v13;
-	private String score_v23;
-	private String score_v04;
-	private String score_v14;
-	private String score_v24;
-	private String score_v90;
-	private String score_v99;
-	private String score_v09;
+	private String score_v10 = "";
+	private String score_v20 = "";
+	private String score_v21 = "";
+	private String score_v30 = "";
+	private String score_v31 = "";
+	private String score_v32 = "";
+	private String score_v40 = "";
+	private String score_v41 = "";
+	private String score_v42 = "";
+	private String score_v00 = "";
+	private String score_v11 = "";
+	private String score_v22 = "";
+	private String score_v33 = "";
+	private String score_v01 = "";
+	private String score_v02 = "";
+	private String score_v12 = "";
+	private String score_v03 = "";
+	private String score_v13 = "";
+	private String score_v23 = "";
+	private String score_v04 = "";
+	private String score_v14 = "";
+	private String score_v24 = "";
+	private String score_v90 = "";
+	private String score_v99 = "";
+	private String score_v09 = "";
 	private boolean isDan;
 
 	private boolean[] isClicks = { false, false, false, false, false, false,

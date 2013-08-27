@@ -297,8 +297,10 @@ public class BFView extends JcMainView {
 			/** add by pnegcx 20130624 start */
 			if (info.isDan()) {
 				btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+				btnDan.setTextColor(white);
 			} else {
 				btnDan.setBackgroundResource(android.R.color.transparent);
+				btnDan.setTextColor(black);
 			}
 			/** add by pnegcx 20130624 end */
 			return convertView;

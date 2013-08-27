@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.activity.notice.PrizeBallLinearLayout;
 import com.ruyicai.constant.Constants;

@@ -1,14 +1,9 @@
 package com.ruyicai.activity.buy.gdeleven;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.HighFrequencyNoticeHistroyActivity;
@@ -26,8 +21,6 @@ import com.ruyicai.jixuan.GdelevenRxBalls;
 import com.ruyicai.json.miss.DlcMissJson;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.SscZMissJson;
-import com.ruyicai.pojo.BallTable;
-import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
 public class GdEleven extends Dlc {

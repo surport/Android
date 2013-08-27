@@ -50,8 +50,10 @@ import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.join.JoinInfoActivity;
 import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.JoinStartInterface;
@@ -129,7 +131,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 			@Override
 			public void run() {
-				final String issue = PublicMethod.toNetIssue(betAndGift
+				final String issue = Controller.getInstance(JoinStartActivity.this).toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 

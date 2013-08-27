@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.ruyicai.activity.info.LotInfoConcreteActivity;
 import com.ruyicai.activity.notice.LotnoDetail.DLTDetailView;
 import com.ruyicai.activity.notice.LotnoDetail.FC3DetailView;
 import com.ruyicai.activity.notice.LotnoDetail.LotnoDetailView;

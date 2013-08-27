@@ -37,6 +37,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
@@ -222,7 +223,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = PublicMethod.toNetIssue(betAndGift
+				final String issue = Controller.getInstance(ZixuanZhuihao.this).toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 

@@ -39,8 +39,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.QueryJoinInfoInterface;
@@ -277,7 +279,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		String str = "00";
 		str = QueryJoinInfoInterface.queryLotJoinInfo(lotno, issue, orderBy,
 				orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
-				JoinHallActivity.PAGENUM);
+				Constants.PAGENUM);
 		handlerTwo.post(new Runnable() {
 			@Override
 			public void run() {
@@ -436,8 +438,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					Intent intent = new Intent(JoinInfoActivity.this,
 							JoinDetailActivity.class);
 					intent.putExtra(ID, info.getId());
-					intent.putExtra(JoinHallActivity.LOTNO, info.getLotno());
-					intent.putExtra(JoinHallActivity.ISSUE, info.getBatchCode());
+					intent.putExtra(Constants.LOTNO, info.getLotno());
+					intent.putExtra(Constants.ISSUE, info.getBatchCode());
 					intent.putExtra(USER_NO, info.getStarterUserNo());
 					startActivity(intent);
 				}
@@ -502,7 +504,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	public String getIssue(String type) {
 		String issue = "";
 		// 获取期号和截止时间
-		issue = PublicMethod.toNetIssue(type);
+		issue = Controller.getInstance(JoinInfoActivity.this).toNetIssue(type);
 		return issue;
 	}
 

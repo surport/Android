@@ -44,6 +44,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
+import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
@@ -541,150 +542,12 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	public void alert() {
 		touzhuNet();// 投注类型和彩种
 		toLogin = true;
-		// isGift = false;
-		// isJoin = false;
 		isTouzhu = true;
-		// if(touZhuDialog == null){
-		// initTouZhuDialog();
-		// }else{
-		// initAlerDialog();
-		// }
 		ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 		app.setPojo(betAndGift);
 		app.setAddview(addView);
 		Intent intent = new Intent(ZixuanActivity.this, OrderDetails.class);
 		startActivity(intent);
-	}
-
-	/**
-	 * 第一次启动投注提示框
-	 */
-	public void initTouZhuDialog() {
-		LayoutInflater inflater = (LayoutInflater) this
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View v = inflater.inflate(R.layout.alert_dialog_touzhu_new, null);
-		check = (RadioButton) v.findViewById(R.id.alert_dialog_touzhu_check);
-		joinCheck = (RadioButton) v.findViewById(R.id.alert_dialog_join_check);
-		touzhuCheck = (RadioButton) v
-				.findViewById(R.id.alert_dialog_touzhu1_check);
-		textAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_alert);
-		touZhuDialog = new Dialog(this, R.style.MyDialog);
-		initImageView(v);
-		if (betAndGift.isZhui()) {
-			initZhuiJia(v);
-		}
-		issueText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		alertText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_one);
-		textZhuma = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_zhuma);
-		textTitle = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
-		addView.getCodeList().get(addView.getSize() - 1)
-				.setTextCodeColor(textZhuma, null, null);
-		issueText.setText(PublicMethod.toIssue(betAndGift.getLotno()) + "期");
-		alertText.setText(getTouzhuAlert());
-		textTitle.setText("注码：" + "共有" + addView.getSize() + "笔投注");
-		Button cancel = (Button) v
-				.findViewById(R.id.alert_dialog_touzhu_button_cancel);
-		Button ok = (Button) v.findViewById(R.id.alert_dialog_touzhu_button_ok);
-		codeInfo = (Button) v
-				.findViewById(R.id.alert_dialog_touzhu_btn_look_code);
-		isCodeText(codeInfo);
-		codeInfo.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				addView.createCodeInfoDialog();
-				addView.showDialog();
-			}
-		});
-		cancel.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				toLogin = false;
-				touZhuDialog.cancel();
-				clearProgress();
-			}
-		});
-		ok.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				RWSharedPreferences pre = new RWSharedPreferences(
-						ZixuanActivity.this, "addInfo");
-				sessionId = pre.getStringValue("sessionid");
-				phonenum = pre.getStringValue("phonenum");
-				userno = pre.getStringValue("userno");
-				if (userno.equals("")) {
-					toLogin = true;
-					Intent intentSession = new Intent(ZixuanActivity.this,
-							UserLogin.class);
-					startActivityForResult(intentSession, 0);
-				} else {
-					touZhu();
-				}
-			}
-		});
-		CheckBox checkPrize = (CheckBox) v
-				.findViewById(R.id.alert_dialog_touzhu_check_prize);
-		checkPrize.setChecked(true);
-
-		// 设置betAndGift.prizeend与checkPrize保持一致
-		betAndGift.setPrizeend("1");
-
-		checkPrize.setButtonDrawable(R.drawable.check_on_off);
-		checkPrize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				// TODO Auto-generated method stub
-				if (isChecked) {
-					betAndGift.setPrizeend("1");
-				} else {
-					betAndGift.setPrizeend("0");
-				}
-			}
-		});
-
-		touzhuCheck.setChecked(true);
-		check.setPadding(50, 0, 0, 0);
-		check.setButtonDrawable(R.drawable.check_select);
-		// 实现记住密码 和 复选框的状态
-		check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				isGift = isChecked;
-			}
-		});
-		joinCheck.setPadding(50, 0, 0, 0);
-		joinCheck.setButtonDrawable(R.drawable.check_select);
-		// 实现记住密码 和 复选框的状态
-		joinCheck
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						isJoin = isChecked;
-					}
-				});
-		touzhuCheck.setPadding(50, 0, 0, 0);
-		touzhuCheck.setButtonDrawable(R.drawable.check_select);
-		// 实现记住密码 和 复选框的状态
-		touzhuCheck
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						isTouzhu = isChecked;
-					}
-				});
-		stateCheck();
-		touZhuDialog.setCancelable(false);
-		touZhuDialog.setContentView(v);
-		touZhuDialog.show();
 	}
 
 	/**
@@ -748,22 +611,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		mSeekBarQishu.setProgress(iProgressQishu);
-	}
-
-	/**
-	 * 再次启动提示框
-	 */
-	public void initAlerDialog() {
-		touzhuCheck.setChecked(true);
-		clearProgress();
-		stateCheck();
-		issueText.setText(PublicMethod.toIssue(betAndGift.getLotno()) + "期");
-		textTitle.setText("注码：" + "共有" + addView.getSize() + "笔投注");
-		addView.getCodeList().get(addView.getSize() - 1)
-				.setTextCodeColor(textZhuma, null, null);
-		isCodeText(codeInfo);
-		alertText.setText(getTouzhuAlert());
-		touZhuDialog.show();
 	}
 
 	/**
@@ -841,7 +688,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		betAndGift.setBet_code(addView.getTouzhuCode(iProgressBeishu,
 				betAndGift.getAmt() * 100));
 		lotno = PublicMethod.toLotno(betAndGift.getLotno());
-		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));// 期号
+		betAndGift.setBatchcode(Controller.getInstance(ZixuanActivity.this).toNetIssue(betAndGift.getLotno()));// 期号
 	}
 
 	/**

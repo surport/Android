@@ -80,6 +80,7 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 				String error_code = "00";
 				String re = "";
 				String message = "";
+				batchCode = "";
 				re = GetLotNohighFrequency.getInstance().getInfo(
 						Constants.LOTNO_SSC);
 				if (!re.equalsIgnoreCase("")) {
@@ -124,9 +125,7 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 							}
 						});
 					}
-				} else {
-
-				}
+				} 
 			}
 		});
 		thread.start();

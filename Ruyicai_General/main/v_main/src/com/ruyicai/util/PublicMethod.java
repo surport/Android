@@ -496,62 +496,6 @@ public class PublicMethod {
 
 	}
 
-	/**
-	 * 获取当前期号信息
-	 * 
-	 * @param lotno
-	 * @return
-	 */
-	public static JSONObject getCurrentLotnoBatchCode(String lotno) {
-		try {
-			return Constants.currentLotnoInfo.getJSONObject(lotno);
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	/**
-	 * 联网获取期号
-	 * 
-	 * @param lotno
-	 * @param term
-	 * @param time
-	 * @param updateIssueHandler
-	 */
-	public static void getIssue(final String lotno, final TextView term,
-			final TextView time, final Handler updateIssueHandler) {
-		Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					term.setText("期号获取中....");
-					JSONObject softupdateObj = new JSONObject(
-							SoftwareUpdateInterface.getInstance()
-									.softwareupdate(null));
-					Constants.currentLotnoInfo = softupdateObj
-							.getJSONObject("currentBatchCode");// 获取网络的期号信息
-					JSONObject temp_obj = Constants.currentLotnoInfo
-							.getJSONObject(lotno);
-					final String issueStr = temp_obj.getString("batchCode");
-					final String timeStr = temp_obj.getString("endTime");
-					updateIssueHandler.post(new Runnable() {
-						public void run() {
-							term.setText("第" + issueStr + "期");
-							time.setText("截止时间：" + timeStr);
-						}
-					});// 获取成功
-				} catch (Exception e) {
-					e.printStackTrace();
-					updateIssueHandler.post(new Runnable() {
-						public void run() {
-							term.setText("期号获取失败");
-						}
-					});// 获取成功
-				}
-			}
-		});
-		t.start();
-	}
 
 	// /**
 	// * 打开网址
@@ -2024,55 +1968,7 @@ public class PublicMethod {
 		return closeTicketKeyName;
 	}
 
-	/**
-	 * 获取期号
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public static String toIssue(String type) {
-		JSONObject ssqLotnoInfo = PublicMethod.getCurrentLotnoBatchCode(type);
-		String issueStr = "";
-		if (ssqLotnoInfo != null) {
-			// 成功获取到了期号信息
-			try {
-				issueStr = ssqLotnoInfo.getString("batchCode");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-		return issueStr;
-	}
 
-	/**
-	 * 获取期号
-	 * 
-	 * @param type
-	 * @return
-	 */
-	public static String toNetIssue(String type) {
-		// 成功获取到了期号信息
-		String issueStr = "";
-		try {
-			issueStr = GetLotNohighFrequency.getInstance().getInfo(type);
-			JSONObject allIssue = new JSONObject(issueStr);
-			String error_code = allIssue.getString("error_code");
-			
-			/*Modify by pengcx 20130515 start*/
-			if (error_code.equals("0000")) {
-				// 成功获取到了期号信息
-				issueStr = allIssue.getString("batchcode");
-			}/*else if(error_code.equals("0")){
-				issueStr = allIssue.getString("message");
-			}*/else{
-				issueStr = "";
-			}
-			/*Modify by pengcx 20130515 end*/
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return issueStr;
-	}
 
 	/**
 	 * 转换成分
@@ -3016,6 +2912,17 @@ public class PublicMethod {
 		String html = "<font size="+fontSize+" color="+colorValue+">"+text+"<//font>";
 		return html;
 	}
+	
+	public static boolean isFiveLeague(String league) {
+		String[] fiveLeague = {"意甲", "英超", "西甲", "德甲", "法甲"};
+		for (int i = 0; i < fiveLeague.length; i++) {
+			if (league.contains(fiveLeague[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 	/**add by pengcx 20130808 start*/
 	/**
@@ -3051,4 +2958,20 @@ public class PublicMethod {
 		return iShowNumber;
 	}
 	/**add by pengcx 20130808 end*/
+	public static String formatLongToTimeStr(Long l) {
+		int hour = 0;
+		int minute = 0;
+		int second = 0;
+		second = l.intValue();
+		if (second > 60) {
+			minute = second / 60;
+			second = second % 60;
+		}
+		if (minute > 60) {
+			hour = minute / 60;
+			minute = minute % 60;
+		}
+		return (String.valueOf(hour) + ":" + String.valueOf(minute) + ":" + String
+				.valueOf(second));
+	}
 }

@@ -6,39 +6,12 @@ import java.util.List;
 import org.json.JSONArray;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
-import com.ruyicai.activity.buy.jc.zq.view.SPfView.JcInfoAdapter;
-import com.ruyicai.activity.join.JoinDetailActivity;
-import com.ruyicai.activity.join.JoinHallActivity;
-import com.ruyicai.activity.join.JoinInfoActivity;
-import com.ruyicai.activity.more.CaiPSY;
-import com.ruyicai.activity.more.ChangJWT;
-import com.ruyicai.activity.more.GongNZY;
-import com.ruyicai.activity.more.HelpTitles;
-import com.ruyicai.activity.more.LotteryGame;
-import com.ruyicai.activity.more.MoreActivity;
-import com.ruyicai.activity.more.TeSGN;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * 欧指和亚盘的界面的基类

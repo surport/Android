@@ -21,8 +21,8 @@ public class MyCheckBox extends CheckBox {
 	private static final String ATTR_TITLE = "check_title";
 	private static final String ATTR_HEIGHT = "layout_height";
 	private static final int DEFAULTVALUE_DEGREES = 0;
-	private String title;
-	private String text;
+	private String title = "";
+	private String text = "";
 	private Context context;
 	private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private boolean isChecked = false;
@@ -178,8 +178,15 @@ public class MyCheckBox extends CheckBox {
 		// 标题
 		mPaint.setTextSize(PublicMethod.getPxInt(titleSize, context));
 		/**add by yejc 20130819 start*/
-		float titleWidth = mPaint.measureText(title);
-		float oddsWidth = mPaint.measureText(text);
+		float titleWidth = 0.0f;
+		if (title != null) {
+			titleWidth = mPaint.measureText(title);
+		}
+		float oddsWidth = 0.0f;
+		if (text != null) {
+			oddsWidth = mPaint.measureText(text);
+		}
+		
 		float space = (width - titleWidth - oddsWidth)/3;
 		if (isHorizontal) {
 			canvas.drawText(title, space,

@@ -21,16 +21,11 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.code.ssc.BigSamllCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.jixuan.Balls;
-import com.ruyicai.jixuan.SscBalls;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.SscMissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
-import com.ruyicai.pojo.OneBallView;
-import com.ruyicai.util.AreaInfo;
-import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 
 public class SscBigSmall extends ZixuanAndJiXuan {
@@ -198,35 +193,6 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 
 		return "注码：" + "\n" + "十位：" + getStrZhuMa(shi) + "\n" + "个位："
 				+ getStrZhuMa(ge);
-
-	}
-
-	private String getTouzhuAlertjixuan() {
-		String zhumaString = "";
-		for (int i = 0; i < balls.size(); i++) {
-			for (int j = 0; j < balls.get(i).getVZhuma().size(); j++) {
-				zhumaString += getStrZhuMajixuan(balls.get(i).getBalls(j));
-				if (j != balls.get(i).getVZhuma().size() - 1) {
-					zhumaString += ",";
-				}
-			}
-			if (i != balls.size() - 1) {
-				zhumaString += "\n";
-			}
-		}
-		int beishu = mSeekBarBeishu.getProgress();
-		int iZhuShu = balls.size() * beishu;
-		return "第" + Ssc.batchCode + "期\n"
-				+ "注数："
-				+ iZhuShu / mSeekBarBeishu.getProgress()
-				+ "注"
-				+ "\n"
-				+ // 注数不能算上倍数 陈晨 20100713
-				"倍数：" + mSeekBarBeishu.getProgress() + "倍" + "\n" + "追号："
-				+ mSeekBarQishu.getProgress() + "期" + "\n" + "金额："
-				+ (iZhuShu * 2) + "元" + "\n" + "冻结金额："
-				+ (2 * (mSeekBarQishu.getProgress() - 1) * iZhuShu) + "元"
-				+ "\n" + "注码" + "\n" + zhumaString + "\n" + "确认支付吗？";
 
 	}
 

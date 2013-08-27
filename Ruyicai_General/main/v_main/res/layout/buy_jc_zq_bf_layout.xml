@@ -183,7 +183,7 @@
                     custom:check_title="@string/jclq_sfc_dialog_title01" />
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:id="@id/LinearLayout03"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
                 android:layout_marginTop="5dip"
@@ -505,7 +505,7 @@
                     custom:check_title="@string/jclq_sfc_dialog_title01" />
             </LinearLayout>
 
-            <LinearLayout
+            <LinearLayout android:id="@id/LinearLayout07"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
                 android:layout_marginTop="5dip"

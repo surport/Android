@@ -11,7 +11,6 @@ import java.util.Vector;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +19,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -29,8 +27,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -39,14 +35,12 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.buy.zixuan.OrderDetails;
-import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
@@ -55,10 +49,8 @@ import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.jixuan.Balls;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RWSharedPreferences;
 import com.ruyicai.util.SensorActivity;
 import com.umeng.analytics.MobclickAgent;
 
@@ -85,7 +77,6 @@ public class DanshiJiXuan extends Activity implements
 	private Toast toast;
 	private boolean toLogin = false;
 	ProgressDialog progressdialog;
-	private static final int DIALOG1_KEY = 0;// 进度条的值2010/7/4
 	public BetAndGiftPojo betAndGift = new BetAndGiftPojo();// 投注信息类
 	MyHandler handler = new MyHandler(this);// 自定义handler
 	public String phonenum, sessionId, userno;
@@ -132,8 +123,7 @@ public class DanshiJiXuan extends Activity implements
 		toast = Toast.makeText(this, "左右摇晃手机，重新选号！", Toast.LENGTH_SHORT);
 		toast.show();
 		balls = new Vector<Balls>();
-		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+		
 		// 初始化spinner
 		jixuanZhu = (Spinner) findViewById(R.id.buy_danshi_jixuan_spinner);
 		if (Constants.SCREEN_WIDTH == 240) {
@@ -147,7 +137,6 @@ public class DanshiJiXuan extends Activity implements
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				int position = jixuanZhu.getSelectedItemPosition();
 				if (isOnclik) {
 					again();
 				} else {
@@ -199,21 +188,6 @@ public class DanshiJiXuan extends Activity implements
 			}
 
 		});
-
-		// ImageButton again = (ImageButton)
-		// findViewById(R.id.buy_danshi_jixuan_img_again);
-		// again.setOnClickListener(new OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// zhumaView.removeAllViews();
-		// balls = new Vector();
-		// for (int i = 0; i < jixuanZhu.getSelectedItemPosition() + 1; i++) {
-		// Balls ball = ballOne.createBalls();
-		// balls.add(ball);
-		// }
-		// createTable(zhumaView);
-		// }
-		// });
 	}
 
 	/**
@@ -338,32 +312,6 @@ public class DanshiJiXuan extends Activity implements
 
 	private int getZhushu() {
 		return addView.getSize();
-	}
-
-	/**
-	 * 投注提示显示注码
-	 * 
-	 * @return
-	 */
-	private String getZhuma() {
-		String zhumaString = "";
-		for (int i = 0; i < balls.size(); i++) {
-			for (int j = 0; j < balls.get(i).getVZhuma().size(); j++) {
-				if (isTen) {
-					zhumaString += balls.get(i).getTenShowZhuma(j);
-				} else {
-					zhumaString += balls.get(i).getShowZhuma(j);
-				}
-
-				if (j != balls.get(i).getVZhuma().size() - 1) {
-					zhumaString += "+";
-				}
-			}
-			if (i != balls.size() - 1) {
-				zhumaString += "\n";
-			}
-		}
-		return "注码：" + "\n" + zhumaString;
 	}
 
 	/**
@@ -506,9 +454,6 @@ public class DanshiJiXuan extends Activity implements
 		buyImplement.touzhuNet();// 投注类型和彩种
 		setZhuShu(balls.size());
 		toLogin = false;
-		// isGift = false;
-		// isJoin = false;
-		// isTouzhu = true;
 		initBet();
 		ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 		app.setPojo(betAndGift);
@@ -552,184 +497,6 @@ public class DanshiJiXuan extends Activity implements
 				false, view);
 	}
 
-	/**
-	 * 第一次启动投注提示框
-	 */
-	public void initTouZhuDialog() {
-		LayoutInflater inflater = (LayoutInflater) this
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View v = inflater.inflate(R.layout.alert_dialog_touzhu_new, null);
-		touZhuDialog = new AlertDialog.Builder(this).setTitle("您选择的是").create();
-		touZhuDialog.show();
-		check = (RadioButton) v.findViewById(R.id.alert_dialog_touzhu_check);
-		joinCheck = (RadioButton) v.findViewById(R.id.alert_dialog_join_check);
-		touzhuCheck = (RadioButton) v
-				.findViewById(R.id.alert_dialog_touzhu1_check);
-		textAlert = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_alert);
-		initImageView(v);
-		if (betAndGift.isZhui()) {
-			initZhuiJia(v);
-		}
-		issueText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		alertText = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_one);
-		textZhuma = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_zhuma);
-		addView.getCodeList().get(addView.getSize() - 1)
-				.setTextCodeColor(textZhuma, null, null);
-		textTitle = (TextView) v
-				.findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
-		textTitle.setText("注码：" + "共有" + addView.getSize() + "笔投注");
-		issueText.setText(PublicMethod.toIssue(betAndGift.getLotno()) + "期");
-		alertText.setText(getTouzhuAlertJixuan());
-		Button cancel = (Button) v
-				.findViewById(R.id.alert_dialog_touzhu_button_cancel);
-		Button ok = (Button) v.findViewById(R.id.alert_dialog_touzhu_button_ok);
-		codeInfo = (Button) v
-				.findViewById(R.id.alert_dialog_touzhu_btn_look_code);
-		isCodeText(codeInfo);
-		codeInfo.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				addView.createCodeInfoDialog();
-				addView.showDialog();
-			}
-		});
-		cancel.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				touZhuDialog.cancel();
-				toLogin = false;
-				clearProgress();
-			}
-		});
-		ok.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				RWSharedPreferences pre = new RWSharedPreferences(
-						DanshiJiXuan.this, "addInfo");
-				sessionId = pre.getStringValue("sessionid");
-				phonenum = pre.getStringValue("phonenum");
-				userno = pre.getStringValue("userno");
-				if (sessionId.equals("")) {
-					toLogin = true;
-					Intent intentSession = new Intent(DanshiJiXuan.this,
-							UserLogin.class);
-					startActivityForResult(intentSession, 0);
-				} else {
-
-				}
-				touZhu();
-			}
-
-		});
-		CheckBox checkPrize = (CheckBox) v
-				.findViewById(R.id.alert_dialog_touzhu_check_prize);
-
-		checkPrize.setChecked(true);
-
-		// 设置betAndGift.prizeend与checkPrize保持一致
-		betAndGift.setPrizeend("1");
-
-		checkPrize.setButtonDrawable(R.drawable.check_on_off);
-		checkPrize.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
-					betAndGift.setPrizeend("1");
-				} else {
-					betAndGift.setPrizeend("0");
-				}
-			}
-		});
-
-		touzhuCheck.setChecked(true);
-
-		check.setPadding(50, 0, 0, 0);
-		check.setButtonDrawable(R.drawable.check_select);
-		// 实现记住密码 和 复选框的状态
-		check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				isGift = isChecked;
-			}
-		});
-		joinCheck.setPadding(50, 0, 0, 0);
-		joinCheck.setButtonDrawable(R.drawable.check_select);
-		// 实现记住密码 和 复选框的状态
-		joinCheck
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						isJoin = isChecked;
-					}
-				});
-		touzhuCheck.setPadding(50, 0, 0, 0);
-		touzhuCheck.setButtonDrawable(R.drawable.check_select);
-		// 实现记住密码 和 复选框的状态
-		touzhuCheck
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						isTouzhu = isChecked;
-					}
-				});
-		stateCheck();
-		touZhuDialog.setCancelable(false);
-		touZhuDialog.getWindow().setContentView(v);
-	}
-
-	/**
-	 * 用户投注
-	 */
-	private void touZhu() {
-		toLogin = false;
-		initBet();
-		touZhuDialog.cancel();
-		if (isGift) {
-			String code = addView.getsharezhuma();
-			toActivity(code);
-		} else if (isJoin) {
-			toJoinActivity();
-		} else if (isTouzhu) {
-			touZhuNet();
-		}
-		clearProgress();
-	}
-
-	/**
-	 * 显示追加投注
-	 * 
-	 * @param view
-	 */
-	private void initZhuiJia(View view) {
-		LinearLayout toggleLinear = (LinearLayout) view
-				.findViewById(R.id.buy_zixuan_linear_toggle);
-		toggleLinear.setVisibility(LinearLayout.VISIBLE);
-		ToggleButton zhuijiatouzhu = (ToggleButton) view
-				.findViewById(R.id.dlt_zhuijia);
-		zhuijiatouzhu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-				if (isChecked) {
-					betAndGift.setAmt(3);
-					betAndGift.setIssuper("0");
-				} else {
-					betAndGift.setIssuper("");
-					betAndGift.setAmt(2);
-				}
-				addView.setCodeAmt(betAndGift.getAmt());
-				alertText.setText(getTouzhuAlertJixuan());
-			}
-		});
-	}
 
 	/**
 	 * 清空倍数和期数的进度条
@@ -739,30 +506,6 @@ public class DanshiJiXuan extends Activity implements
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		mSeekBarQishu.setProgress(iProgressQishu);
-	}
-
-	/**
-	 * 再次启动提示框
-	 */
-	public void initAlerDialog() {
-		touzhuCheck.setChecked(true);
-		clearProgress();
-		stateCheck();
-		issueText.setText(PublicMethod.toIssue(betAndGift.getLotno()) + "期");
-		textTitle.setText("注码：" + "共有" + addView.getSize() + "笔投注");
-		addView.getCodeList().get(addView.getSize() - 1)
-				.setTextCodeColor(textZhuma, null, null);
-		isCodeText(codeInfo);
-		alertText.setText(getTouzhuAlertJixuan());
-		touZhuDialog.show();
-	}
-
-	private void isCodeText(Button codeInfo) {
-		if (addView.getSize() > 1) {
-			codeInfo.setVisibility(Button.VISIBLE);
-		} else {
-			codeInfo.setVisibility(Button.GONE);
-		}
 	}
 
 	/**
@@ -841,14 +584,13 @@ public class DanshiJiXuan extends Activity implements
 		betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 		betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 		betAndGift.setBatchnum("" + iProgressQishu);// batchnum 追号期数 默认为1（不追号）
-		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
 		betAndGift.setAmount("" + addView.getSize() * iProgressBeishu
 				* betAndGift.getAmt() * 100);// amount 金额 单位为分（总金额）
 		// betAndGift.setBet_code(ballOne.getZhuma(balls, iProgressBeishu));
 		betAndGift.setBet_code(addView.getTouzhuCode(iProgressBeishu,
 				betAndGift.getAmt() * 100));
 		lotno = PublicMethod.toLotno(betAndGift.getLotno());
-		betAndGift.setBatchcode(PublicMethod.toIssue(betAndGift.getLotno()));
+		betAndGift.setBatchcode(Controller.getInstance(DanshiJiXuan.this).toNetIssue(betAndGift.getLotno()));
 
 	}
 

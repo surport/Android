@@ -63,11 +63,13 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.dialog.BaseDialog;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -161,7 +163,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = PublicMethod.toNetIssue(betAndGift
+				final String issue = Controller.getInstance(GiftActivity.this).toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 
@@ -986,64 +988,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			}
 		}
 		return result;
-	}
-
-	/**
-	 * 发短信方法
-	 * 
-	 */
-	private void sendSMS() {
-		new Thread() {
-			public void run() {
-				boolean sendOk = true;
-				for (int i = 0; i < successPersons.size(); i++) {
-					String content = null;
-					if (betAndGift.getLotno().equals(Constants.LOTNO_JC)
-							|| betAndGift.getLotno().equals(
-									Constants.LOTNO_JCLQ)
-							|| betAndGift.getLotno().equals(
-									Constants.LOTNO_JCLQ_RF)
-							|| betAndGift.getLotno().equals(
-									Constants.LOTNO_JCLQ_SFC)
-							|| betAndGift.getLotno().equals(
-									Constants.LOTNO_JCLQ_DXF)) {
-						content = "您的好友" + betAndGift.getPhonenum() + "送您"
-								+ PublicMethod.toLotno(betAndGift.getLotno())
-								+ " 彩票" + zhu + "注," + zhumaStr + "留言如下："
-								+ betAndGift.getAdvice()
-								+ " 请您登录如意彩平台领取彩票，详询www.ruyicai.com";
-					} else {
-						content = "您的好友" + betAndGift.getPhonenum() + "送您"
-								+ PublicMethod.toLotno(betAndGift.getLotno())
-								+ "  第"
-								+ PublicMethod.toIssue(betAndGift.getLotno())
-								+ "期彩票" + zhu + "注," + zhumaStr + "留言如下："
-								+ betAndGift.getAdvice()
-								+ " 请您登录如意彩平台领取彩票，详询www.ruyicai.com";
-					}
-					String code = successPersons.get(i);
-					sendOk = PublicMethod.sendSMS(code, content);// (String)iNumbers.elementAt(i));//
-					if (sendOk == false) {
-						break;
-					}
-				}
-				if (sendOk) {
-					handlerTwo.post(new Runnable() {
-						public void run() {
-							Toast.makeText(GiftActivity.this, "已发送短信告知好友！",
-									Toast.LENGTH_SHORT).show();
-						}
-					});
-				} else {
-					handlerTwo.post(new Runnable() {
-						public void run() {
-							Toast.makeText(GiftActivity.this, "发送短信失败！",
-									Toast.LENGTH_SHORT).show();
-						}
-					});
-				}
-			}
-		}.start();
 	}
 
 	/**

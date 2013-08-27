@@ -179,8 +179,8 @@ public class SfView extends JcMainView {
 						isOpen(list, holder);
 					}
 				});
-				for (Info info : list) {
-					holder.layout.addView(addView(info, type));
+				for (int i = 0; i < list.size(); i++) {
+					holder.layout.addView(addView(list.get(i), type, i));
 				}
 			}
 			return convertView;
@@ -198,9 +198,15 @@ public class SfView extends JcMainView {
 		}
 		
 		// add by yejc 20130402
-		private View addView(final Info info, final int type) {
+		private View addView(final Info info, final int type, int index) {
 			View convertView = mInflater.inflate(
 					R.layout.buy_jc_main_listview_item_other, null);
+			View divider = (View)convertView.findViewById(R.id.jc_main_divider_up);
+			if (index == 0) {
+				divider.setVisibility(View.VISIBLE);
+			} else {
+				divider.setVisibility(View.GONE);
+			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView

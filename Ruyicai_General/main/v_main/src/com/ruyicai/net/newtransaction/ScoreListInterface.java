@@ -45,6 +45,26 @@ public class ScoreListInterface {
 	}
 	
 	/**
+	 * 获取进行中的比赛
+	 */
+	public static String getCurrentScore(String command, String reguestType) {
+		String re = "";
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, command);
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, reguestType);
+			re = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return re;
+	}
+	
+	/**
 	 * 获取北单即时比分
 	 */
 	public static String getBeiDanScore(String type, String reguestType, 

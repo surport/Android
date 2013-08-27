@@ -109,7 +109,6 @@ public class FootballChooseNineLottery extends FootballFourteen implements
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		initBatchCode(Constants.LOTNO_RX9);
 		initBatchCodeView();
 		showDialog(DIALOG1_KEY);
 		getZCAdvanceBatchCodeData(Constants.LOTNO_RX9);
