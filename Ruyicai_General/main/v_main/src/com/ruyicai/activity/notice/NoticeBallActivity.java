@@ -173,7 +173,11 @@ public class NoticeBallActivity extends Activity {
 						if (isBeforeThree) {
 							ballSelectedRedView.setFirstDraw(true);
 						}
-						ballSelectedRedView.invalidate();
+
+						if (ballSelectedRedView != null) {
+							ballSelectedRedView.invalidate();
+						}
+
 					}
 
 					@Override
@@ -190,7 +194,9 @@ public class NoticeBallActivity extends Activity {
 						if (isBeforeThree) {
 							ballSelectedRedView.setFirstDraw(true);
 						}
-						ballSelectedRedView.invalidate();
+						if (ballSelectedRedView != null) {
+							ballSelectedRedView.invalidate();
+						}
 					}
 
 					@Override
