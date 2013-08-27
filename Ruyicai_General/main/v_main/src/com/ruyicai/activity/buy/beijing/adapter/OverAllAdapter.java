@@ -146,7 +146,7 @@ public class OverAllAdapter extends ParentAdapter {
 			int size = totalGoalsAgainstInformations.size();
 			for (int info_i = 0; info_i < size; info_i++) {
 				View itemView = getOverAllAgainstListItemView(totalGoalsAgainstInformations
-						.get(info_i));
+						.get(info_i), info_i);
 				linearLayout.addView(itemView);
 			}
 		}
@@ -165,9 +165,17 @@ public class OverAllAdapter extends ParentAdapter {
 	 * @return
 	 */
 	private View getOverAllAgainstListItemView(
-			final OverAllAgainstInformation overAllAgainstInformation) {
+			final OverAllAgainstInformation overAllAgainstInformation, final int index) {
 		View itemView = LayoutInflater.from(context).inflate(
 				R.layout.buy_jc_main_listview_item_others, null);
+		/**add by yejc 20130823 start*/
+		View divider = (View)itemView.findViewById(R.id.jc_main_divider_up);
+		if (index == 0) {
+			divider.setVisibility(View.VISIBLE);
+		} else {
+			divider.setVisibility(View.GONE);
+		}
+		/**add by yejc 20130823 end*/
 
 		// 赛事
 		TextView leagueTextView = (TextView) itemView
@@ -437,7 +445,9 @@ public class OverAllAdapter extends ParentAdapter {
 		layout2.setVisibility(LinearLayout.GONE);
 
 		selectDialog.show();
-		selectDialog.getWindow().setContentView(dialogView);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				PublicMethod.getPxInt(300, context), LinearLayout.LayoutParams.WRAP_CONTENT);
+		selectDialog.setContentView(dialogView, params);
 
 		// 确定按钮
 		Button okButton = (Button) dialogView.findViewById(R.id.ok);
