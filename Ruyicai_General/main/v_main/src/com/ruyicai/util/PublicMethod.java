@@ -2958,4 +2958,20 @@ public class PublicMethod {
 		return iShowNumber;
 	}
 	/**add by pengcx 20130808 end*/
+	public static String formatLongToTimeStr(Long l) {
+		int hour = 0;
+		int minute = 0;
+		int second = 0;
+		second = l.intValue();
+		if (second > 60) {
+			minute = second / 60;
+			second = second % 60;
+		}
+		if (minute > 60) {
+			hour = minute / 60;
+			minute = minute % 60;
+		}
+		return (String.valueOf(hour) + ":" + String.valueOf(minute) + ":" + String
+				.valueOf(second));
+	}
 }

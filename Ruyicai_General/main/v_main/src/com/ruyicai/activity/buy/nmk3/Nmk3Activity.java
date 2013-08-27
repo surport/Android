@@ -9,10 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
@@ -63,6 +60,7 @@ public class Nmk3Activity extends BuyActivityGroup {
 				String error_code = "00";
 				String re = "";
 				String message = "";
+				batchCode = "";
 				re = GetLotNohighFrequency.getInstance().getInfo(
 						Constants.LOTNO_NMK3);
 				if (!re.equalsIgnoreCase("")) {

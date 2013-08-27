@@ -566,7 +566,7 @@ public class BuyActivityGroup extends ActivityGroup {
 									public void run() {
 										builder.clear();
 										String lasttime = "离截止还剩:"
-												+ formatLongToTimeStr(lesstime);
+												+ PublicMethod.formatLongToTimeStr(lesstime);
 										builder.append(lasttime);
 										builder.setSpan(span_RED, 6,
 												lasttime.length(),
@@ -620,22 +620,6 @@ public class BuyActivityGroup extends ActivityGroup {
 		}
 	}
 
-	public String formatLongToTimeStr(Long l) {
-		int hour = 0;
-		int minute = 0;
-		int second = 0;
-		second = l.intValue();
-		if (second > 60) {
-			minute = second / 60;
-			second = second % 60;
-		}
-		if (minute > 60) {
-			hour = minute / 60;
-			minute = minute % 60;
-		}
-		return (String.valueOf(hour) + ":" + String.valueOf(minute) + ":" + String
-				.valueOf(second));
-	}
 
 	/**
 	 * 查询上期开奖号码
