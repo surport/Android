@@ -276,40 +276,11 @@ public class SPfView extends JcMainView {
 			}
 			guestTeam.setText(info.getAway());
 
-			if (info.isFail()) {
-				guestLayout
-						.setBackgroundResource(R.drawable.team_name_bj_yellow);
-				guestTeam
-						.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-				guestTeam.setTextColor(white);
-				guestOdds.setTextColor(white);
-			} else {
-				guestLayout.setBackgroundResource(android.R.color.transparent);
-				guestTeam.setBackgroundResource(android.R.color.transparent);
-				guestTeam.setTextColor(black);
-				guestOdds.setTextColor(oddsColor);
-			}
-			if (info.isWin()) {
-				homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-				homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-				homeOdds.setTextColor(white);
-				homeTeam.setTextColor(white);
-			} else {
-				homeLayout.setBackgroundResource(android.R.color.transparent);
-				homeTeam.setBackgroundResource(android.R.color.transparent);
-				homeOdds.setTextColor(oddsColor);
-				homeTeam.setTextColor(black);
-			}
-			if (info.isLevel()) {
-				vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-				textVS.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-				textVS.setTextColor(white);
-				textOdds.setTextColor(white);
-			} else {
-				vsLayout.setBackgroundResource(android.R.color.transparent);
-				textVS.setTextColor(black);
-				textOdds.setTextColor(oddsColor);
-			}
+			setViewStyle(homeLayout, homeTeam, homeOdds, info.isWin());
+			
+			setViewStyle(guestLayout, guestTeam, guestOdds, info.isFail());
+			
+			setViewStyle(vsLayout, textVS, textOdds, info.isLevel());
 
 			/** add by pnegcx 20130624 start */
 			if (info.isDan()) {
@@ -328,17 +299,10 @@ public class SPfView extends JcMainView {
 						info.setWin(!info.isWin());
 						if (info.isWin()) {
 							info.onclikNum++;
-							homeLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-							homeTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-							homeOdds.setTextColor(white);
-							homeTeam.setTextColor(white);
 						} else {
 							info.onclikNum--;
-							homeLayout.setBackgroundResource(android.R.color.transparent);
-							homeTeam.setBackgroundResource(android.R.color.transparent);
-							homeOdds.setTextColor(oddsColor);
-							homeTeam.setTextColor(black);
 						}
+						setViewStyle(homeLayout, homeTeam, homeOdds, info.isWin());
 						isNoDan(info, btnDan);
 						setTeamNum();
 					}
@@ -351,17 +315,10 @@ public class SPfView extends JcMainView {
 						info.setLevel(!info.isLevel());
 						if (info.isLevel()) {
 							info.onclikNum++;
-							vsLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-							textVS.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-							textVS.setTextColor(white);
-							textOdds.setTextColor(white);
 						} else {
 							info.onclikNum--;
-							vsLayout.setBackgroundResource(android.R.color.transparent);
-							textVS.setBackgroundResource(android.R.color.transparent);
-							textVS.setTextColor(black);
-							textOdds.setTextColor(oddsColor);
 						}
+						setViewStyle(vsLayout, textVS, textOdds, info.isLevel());
 						isNoDan(info, btnDan);
 						setTeamNum();
 					}
@@ -374,17 +331,10 @@ public class SPfView extends JcMainView {
 						info.setFail(!info.isFail());
 						if (info.isFail()) {
 							info.onclikNum++;
-							guestLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
-							guestTeam.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
-							guestTeam.setTextColor(white);
-							guestOdds.setTextColor(white);
 						} else {
 							info.onclikNum--;
-							guestLayout.setBackgroundResource(android.R.color.transparent);
-							guestTeam.setBackgroundResource(android.R.color.transparent);
-							guestTeam.setTextColor(black);
-							guestOdds.setTextColor(oddsColor);
 						}
+						setViewStyle(guestLayout, guestTeam, guestOdds, info.isFail());
 						isNoDan(info, btnDan);
 						setTeamNum();
 					}
@@ -448,5 +398,21 @@ public class SPfView extends JcMainView {
 			return "J00001_1";
 		}
 	}
+	
+	/**add by yejc 20130823 start*/
+	private void setViewStyle(LinearLayout teamLayout, TextView team, TextView odds, boolean isChecked) {
+		if (isChecked) {
+			teamLayout.setBackgroundResource(R.drawable.team_name_bj_yellow);
+			team.setBackgroundResource(R.drawable.team_name_bj_top_yellow);
+			team.setTextColor(white);
+			odds.setTextColor(white);
+		} else {
+			teamLayout.setBackgroundResource(android.R.color.transparent);
+			team.setBackgroundResource(android.R.color.transparent);
+			team.setTextColor(black);
+			odds.setTextColor(oddsColor);
+		}
+	}
+	/**add by yejc 20130823 end*/
 
 }

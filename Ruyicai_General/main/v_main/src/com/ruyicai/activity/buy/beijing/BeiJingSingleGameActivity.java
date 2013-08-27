@@ -1240,7 +1240,7 @@ public class BeiJingSingleGameActivity extends Activity {
 	private void addEventSelectButtonToLayout(LinearLayout selectButtonLayout) {
 		int buttonOfPreLine = 4;
 		int buttonNum = 0;
-		if (eventsList != null) {
+		if (eventsList != null && !"".equals(eventsList.get(0).trim())) {
 			buttonNum = eventsList.size();
 		}
 

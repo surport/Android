@@ -180,7 +180,7 @@ public class BQCView extends JcMainView {
 					.findViewById(R.id.buy_jc_main_view_list_item_btn);
 			holder.layout = (LinearLayout) convertView
 					.findViewById(R.id.buy_jc_main_view_list_item_linearLayout);
-			holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+			holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 			if (list.size() == 0) {
 				holder.btn.setVisibility(Button.GONE);
 			} else {
@@ -205,10 +205,10 @@ public class BQCView extends JcMainView {
 		private void isOpen(final ArrayList<Info> list, final ViewHolder holder) {
 			if (list.get(0).isOpen) {
 				holder.layout.setVisibility(LinearLayout.VISIBLE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_open);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_open);
 			} else {
 				holder.layout.setVisibility(LinearLayout.GONE);
-				holder.btn.setBackgroundResource(R.drawable.buy_jc_btn_close);
+				holder.btn.setBackgroundResource(R.drawable.buy_jc_item_btn_close);
 			}
 		}
 

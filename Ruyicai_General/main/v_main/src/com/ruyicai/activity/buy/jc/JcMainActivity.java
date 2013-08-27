@@ -233,7 +233,6 @@ public class JcMainActivity extends Activity implements
 				&& !"".equals(JcMainView.listTeam[0].trim())) {
 			addLayout(layoutMain, myBtns);
 		}
-		Log.i("yejc", "======JcMainView.listTeam.length="+JcMainView.listTeam.length);
 		Button all = (Button)findViewById(R.id.all_check);
 		Button clear = (Button)findViewById(R.id.clear_check);
 		Button fiveLeague = (Button)findViewById(R.id.ok);

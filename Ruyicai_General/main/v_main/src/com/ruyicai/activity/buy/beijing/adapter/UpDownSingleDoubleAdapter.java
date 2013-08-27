@@ -392,9 +392,8 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 			TextView upSingleTextView = (TextView) itemView
 					.findViewById(R.id.upsingle_textview);
 			StringBuilder upSingleString = new StringBuilder();
-			upSingleString.append("(")
-					.append(upDownSingleDoubleAgainstInformation.getSxds_v1())
-					.append(")");
+			upSingleString
+					.append(upDownSingleDoubleAgainstInformation.getSxds_v1());
 			upSingleTextView.setText(upSingleString);
 
 			// 上双
@@ -451,9 +450,8 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 			TextView upDoubleTextView = (TextView) itemView
 					.findViewById(R.id.updouble_textview);
 			StringBuilder upDoubleString = new StringBuilder();
-			upDoubleString.append("(")
-					.append(upDownSingleDoubleAgainstInformation.getSxds_v2())
-					.append(")");
+			upDoubleString
+					.append(upDownSingleDoubleAgainstInformation.getSxds_v2());
 			upDoubleTextView.setText(upDoubleString);
 
 			// 下单
@@ -510,9 +508,8 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 			TextView downSingleTextView = (TextView) itemView
 					.findViewById(R.id.downsingle_textview);
 			StringBuilder downSingleString = new StringBuilder();
-			downSingleString.append("(")
-					.append(upDownSingleDoubleAgainstInformation.getSxds_v3())
-					.append(")");
+			downSingleString
+					.append(upDownSingleDoubleAgainstInformation.getSxds_v3());
 			downSingleTextView.setText(downSingleString);
 
 			// 下双
@@ -571,9 +568,8 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 			TextView downDoubleTextView = (TextView) itemView
 					.findViewById(R.id.downdouble_textview);
 			StringBuilder downDoubleString = new StringBuilder();
-			downDoubleString.append("(")
-					.append(upDownSingleDoubleAgainstInformation.getSxds_v4())
-					.append(")");
+			downDoubleString
+					.append(upDownSingleDoubleAgainstInformation.getSxds_v4());
 			downDoubleTextView.setText(downDoubleString);
 			
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
