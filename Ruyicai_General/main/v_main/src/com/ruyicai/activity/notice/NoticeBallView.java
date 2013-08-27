@@ -527,7 +527,7 @@ public class NoticeBallView extends View {
 		bitBlackBall = getBitmapFromRes(R.drawable.notice_ball_black, WITH,
 				WITH);
 		downSelectButton = getBitmapFromRes(R.drawable.down_select_button,
-				SECOND_WITH / 2, WITH);
+				(int)(SECOND_WITH /1.7), WITH);
 		bitNmk3Ico = getBitmapFromRes(R.drawable.nmk3_jiaoico,
 				(int) (WITH / 1.8), (int) (WITH / 1.8));
 	}
@@ -2082,7 +2082,7 @@ public class NoticeBallView extends View {
 									.equals("11-5")) && isBeforeThree)) {
 								canvas.drawText(PublicMethod.isTen(balls[m]),
 										(FIRST_WITH + j * WITH + with)
-												+ (row * WITH * m) + 4, WITH
+												+ (row * WITH * m), WITH
 												+ i * WITH + height, p);
 							} else {
 								canvas.drawText("" + balls[m], (FIRST_WITH + j
