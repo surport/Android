@@ -64,7 +64,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
     		Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL, 
     		Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE, 
     		Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE};
-    private String[] playTypeText = new String[5];
+    private String[] playTypeText = {"让球胜平负", "总进球数", "比分", "半全场", "上下单双"};
 	
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -76,12 +76,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
         Bundle bundle = this.getIntent().getExtras();  
         /*获取Bundle中的数据,获得玩法类型*/
         playMethodType =  bundle.getString(Constants.PLAY_METHOD_TYPE);
-
-        playTypeText[0] = getString(R.string.beijingsinglegame_textview_wintieloss);
-		playTypeText[1] = getString(R.string.beijingsinglegame_textview_totalgoals);
-		playTypeText[2] = getString(R.string.beijingsinglegame_textview_over);
-		playTypeText[3] = getString(R.string.beijingsinglegame_textview_halftheaudience);
-		playTypeText[4] = getString(R.string.beijingsinglegame_textview_updownsigledouble);
 		
 		initView();
 		
