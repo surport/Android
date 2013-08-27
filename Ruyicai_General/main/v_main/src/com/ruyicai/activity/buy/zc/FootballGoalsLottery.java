@@ -27,7 +27,6 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,8 +39,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,8 +53,6 @@ import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
-import com.ruyicai.net.newtransaction.ExplainInterface;
 import com.ruyicai.net.newtransaction.FootballLotteryAdvanceBatchcode;
 import com.ruyicai.net.transaction.FootballInterface;
 import com.ruyicai.pojo.BallTable;
@@ -66,7 +61,7 @@ import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 public class FootballGoalsLottery extends FootBallLotteryFather implements
-		OnClickListener, /*OnSeekBarChangeListener, */HandlerMsg {
+		OnClickListener, HandlerMsg {
 
 	private String codeStr;
 	private RadioButton check;
@@ -89,8 +84,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	ListView mlist;
 	TextView mTextSumMoney;
 	List<Map<String, Object>> list;
-//	SeekBar mSeekBarBeishu;
-//	TextView mTextBeishu;
 	int iProgressBeishu  = 1;
 	Vector<BallTable> ballTables = new Vector<BallTable>();
 	ImageButton jinqc_btn_touzhu;
@@ -604,18 +597,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	}
 
 	public void createVeiw() {
-
-//		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
-//		mSeekBarBeishu.setOnSeekBarChangeListener(this);
-//		iProgressBeishu = 1;
-//		mSeekBarBeishu.setProgress(iProgressBeishu);
-//		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
-//		mTextBeishu.setText("" + iProgressBeishu);
-//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, null,
-//				-1, mSeekBarBeishu, true);
-//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, null, 1,
-//				mSeekBarBeishu, true);
-
 		jinqc_btn_touzhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		jinqc_btn_touzhu.setOnClickListener(new OnClickListener() {
 			@Override
@@ -839,10 +820,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		intent.putExtra("tpye", "zc");
 		intent.putExtra("zhuma", getZhuMa());
 		startActivity(intent);
-//		for (int i = 0; i < ballTables.size(); i++) {
-//			ballTables.get(i).clearAllHighlights();
-//		}
-//		setTeamNum(0);
 	}
 
 	public boolean isTouZhu() {
@@ -853,34 +830,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		}
 		return false;
 	}
-
-	/**
-	 * 加减按钮事件监听方法
-	 */
-//	private void setSeekWhenAddOrSub(int idFind, View iV, final int isAdd,
-//			final SeekBar mSeekBar, final boolean isBeiShu) {
-//		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
-//		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (isBeiShu) {
-//					if (isAdd == 1) {
-//						iProgressBeishu++;
-//						if (iProgressBeishu > 200) {
-//							iProgressBeishu = 200;
-//						}
-//						mSeekBar.setProgress(iProgressBeishu);
-//					} else {
-//						iProgressBeishu--;
-//						if (iProgressBeishu < 1) {
-//							iProgressBeishu = 1;
-//						}
-//						mSeekBar.setProgress(iProgressBeishu);
-//					}
-//				}
-//			}
-//		});
-//	}
 
 	// // 提示框1 用来提醒选球规则
 	// // fqc delete 删除取消按钮 7/14/2010
@@ -902,32 +851,6 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 	public void touZhuNet() {
 		Controller.getInstance(FootballGoalsLottery.this).doBettingAction(touzhuhandler, betPojo);
 	}
-
-//	@Override
-//	public void onProgressChanged(SeekBar seekBar, int progress,
-//			boolean fromUser) {
-//		if (progress < 1) {
-//			seekBar.setProgress(1);
-//		}
-//		int iProgress = seekBar.getProgress();
-//		switch (seekBar.getId()) {
-//		case R.id.buy_footballlottery_seekbar_muti:
-//			iProgressBeishu = iProgress;
-//			mTextBeishu.setText("" + iProgressBeishu);
-//			changeTextSumMoney(getZhuShu());
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//
-//	@Override
-//	public void onStartTrackingTouch(SeekBar seekBar) {
-//	}
-//
-//	@Override
-//	public void onStopTrackingTouch(SeekBar seekBar) {
-//	}
 
 	/** 获取分析的数据 */
 	public void getFootballAnalysisData(final int index) {
@@ -1124,10 +1047,10 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 		}).start();
 	}
 
-	private void showBatchcodesDialog(/*String[] batchCodes*/) {
+	private void showBatchcodesDialog() {
 		AlertDialog batchCodedialog = new AlertDialog.Builder(
 				FootballGoalsLottery.this).setTitle("进球彩预售期")
-				.setItems(spanBactchCodes/*batchCodes*/, new DialogInterface.OnClickListener() {
+				.setItems(spanBactchCodes, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
 						getTeamInfo(which);

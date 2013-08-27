@@ -69,8 +69,7 @@ import com.ruyicai.util.RWSharedPreferences;
  * @author win
  *
  */
-public class FootballSFLottery extends FootballFourteen implements
-		/*OnSeekBarChangeListener, */HandlerMsg {
+public class FootballSFLottery extends FootballFourteen implements HandlerMsg {
 	private String codeStr;
 	private RadioButton check;
 	private RadioButton joinCheck;
@@ -91,8 +90,6 @@ public class FootballSFLottery extends FootballFourteen implements
 	ListView mlist;
 	TextView mTextSumMoney;
 	List<Map<String, Object>> list;
-//	SeekBar mSeekBarBeishu;
-//	TextView mTextBeishu;
 	int iProgressBeishu = 1;
 	ImageButton sfc_btn_touzhu;
 	private Vector<BallTable> ballTables = new Vector<BallTable>();
@@ -261,7 +258,7 @@ public class FootballSFLottery extends FootballFourteen implements
 					isOne = false;
 					getTeamInfo(0);
 				} else {
-					showBatchcodesDialog(/*bactchCodes*/);
+					showBatchcodesDialog();
 				}
 				break;
 			}
@@ -282,17 +279,6 @@ public class FootballSFLottery extends FootballFourteen implements
 	}
 
 	public void createVeiw() {
-//		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
-//		mSeekBarBeishu.setOnSeekBarChangeListener(this);
-//		iProgressBeishu = 1;
-//		mSeekBarBeishu.setProgress(iProgressBeishu);
-//		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
-//		mTextBeishu.setText("" + iProgressBeishu);
-//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, null,
-//				-1, mSeekBarBeishu, true);
-//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, null, 1,
-//				mSeekBarBeishu, true);
-
 		sfc_btn_touzhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		sfc_btn_touzhu.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -470,7 +456,6 @@ public class FootballSFLottery extends FootballFourteen implements
 	 */
 	private int getZhuShu() {
 		int iReturnValue = 0;
-//		int beishu = mSeekBarBeishu.getProgress();
 		for (int i = 0; i < ballTables.size(); i++) {
 			if (i != 0) {
 				iReturnValue *= ballTables.get(i).getHighlightBallNums();
@@ -478,34 +463,8 @@ public class FootballSFLottery extends FootballFourteen implements
 				iReturnValue = ballTables.get(i).getHighlightBallNums();
 			}
 		}
-		return iReturnValue/* * beishu*/;
+		return iReturnValue;
 	}
-
-//	@Override
-//	public void onProgressChanged(SeekBar seekBar, int progress,
-//			boolean fromUser) {
-//		if (progress < 1)
-//			seekBar.setProgress(1);
-//		int iProgress = seekBar.getProgress();
-//
-//		switch (seekBar.getId()) {
-//		case R.id.buy_footballlottery_seekbar_muti:
-//			iProgressBeishu = iProgress;
-//			mTextBeishu.setText("" + iProgressBeishu);
-//			changeTextSumMoney(getZhuShu());
-//			break;
-//		default:
-//			break;
-//		}
-//	}
-//
-//	@Override
-//	public void onStartTrackingTouch(SeekBar seekBar) {
-//	}
-//
-//	@Override
-//	public void onStopTrackingTouch(SeekBar seekBar) {
-//	}
 
 	/**
 	 * 获取注码
@@ -556,10 +515,6 @@ public class FootballSFLottery extends FootballFourteen implements
 		intent.putExtra("tpye", "zc");
 		intent.putExtra("zhuma", getZhuma());
 		startActivity(intent);
-//		for (int i = 0; i < ballTables.size(); i++) {
-//			ballTables.get(i).clearAllHighlights();
-//		}
-//		setTeamNum(0);
 	}
 
 	public boolean isTouZhu() {
@@ -570,34 +525,6 @@ public class FootballSFLottery extends FootballFourteen implements
 		}
 		return false;
 	}
-
-	/**
-	 * 加减按钮事件监听方法
-	 */
-//	private void setSeekWhenAddOrSub(int idFind, View iV, final int isAdd,
-//			final SeekBar mSeekBar, final boolean isBeiShu) {
-//		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
-//		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (isBeiShu) {
-//					if (isAdd == 1) {
-//						iProgressBeishu++;
-//						if (iProgressBeishu > 200) {
-//							iProgressBeishu = 200;
-//						}
-//						mSeekBar.setProgress(iProgressBeishu);
-//					} else {
-//						iProgressBeishu--;
-//						if (iProgressBeishu < 1) {
-//							iProgressBeishu = 1;
-//						}
-//						mSeekBar.setProgress(iProgressBeishu);
-//					}
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * 分析数据解析
@@ -854,11 +781,6 @@ public class FootballSFLottery extends FootballFourteen implements
 		startActivity(intent);
 	}
 
-//	private String getFormatZhuma() {
-//		return "第" + batchCode + "期\n" + "截止日期：" + qihaoxinxi[1] + "\n"
-//				+ "选号结果：\n" + getZhuma();
-//	}
-
 	/**
 	 * 单复式投注调用函数
 	 * 
@@ -992,10 +914,10 @@ public class FootballSFLottery extends FootballFourteen implements
 		return this;
 	}
 
-	private void showBatchcodesDialog(/*String[] batchCodes*/) {
+	private void showBatchcodesDialog() {
 		AlertDialog batchCodedialog = new AlertDialog.Builder(
 				FootballSFLottery.this).setTitle("胜负彩预售期")
-				.setItems(spanBactchCodes/*batchCodes*/, new DialogInterface.OnClickListener() {
+				.setItems(spanBactchCodes, new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
 						getTeamInfo(which);

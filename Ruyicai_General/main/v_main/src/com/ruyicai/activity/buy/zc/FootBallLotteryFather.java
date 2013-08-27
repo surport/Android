@@ -44,12 +44,10 @@ import com.umeng.analytics.MobclickAgent;
  * @author miao
  */
 public abstract class FootBallLotteryFather extends Activity implements
-		OnClickListener/*, SeekBar.OnSeekBarChangeListener */{
+		OnClickListener{
 	String batchCode;
 	public int iScreenWidth;
-//	public SeekBar mSeekBarBeishu;
 	public int iProgressBeishu = 1;
-//	protected TextView mTextBeishu;
 	String sessionid, phonenum, userno;
 	private BuyImplement buyImplement;// 投注要实现的方法
 	BetAndGiftPojo betPojo = new BetAndGiftPojo();
@@ -132,17 +130,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 * 创建购彩页面
 	 */
 	public void createVeiw() {
-//		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_footballlottery_seekbar_muti);
-//		mSeekBarBeishu.setOnSeekBarChangeListener(this);
-//		iProgressBeishu = 1;
-//		mSeekBarBeishu.setProgress(iProgressBeishu);
-//		mTextBeishu = (TextView) findViewById(R.id.buy_footballlottery_text_beishu);
-//		mTextBeishu.setText("" + iProgressBeishu);
-//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_subtract_beishu, -1,
-//				mSeekBarBeishu, true);
-//		setSeekWhenAddOrSub(R.id.buy_footballlottery_img_add_beishu, 1,
-//				mSeekBarBeishu, true);
-
 		sfc_btn_touzhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		sfc_btn_touzhu.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -150,33 +137,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 			}
 		});
 	}
-
-	/**
-	 * fqc edit 添加一个参数 isBeiShu 来判断当前是倍数还是期数 。
-	 * 
-	 * @param idFind
-	 * @param iV
-	 * @param isAdd
-	 * @param mSeekBar
-	 * @param isBeiShu
-	 */
-//	protected void setSeekWhenAddOrSub(int idFind, final int isAdd,
-//			final SeekBar mSeekBar, final boolean isBeiShu) {
-//		ImageButton subtractBeishuBtn = (ImageButton) findViewById(idFind);
-//		subtractBeishuBtn.setOnClickListener(new ImageButton.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				if (isBeiShu) {
-//					if (isAdd == 1) {
-//						mSeekBar.setProgress(++iProgressBeishu);
-//					} else {
-//						mSeekBar.setProgress(--iProgressBeishu);
-//					}
-//					iProgressBeishu = mSeekBar.getProgress();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * <b>设置足彩界面队列列表子选项背景的方法</b>
@@ -380,16 +340,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 	 */
 	public void onClick(View v) {}
 
-//	@Override
-//	public void onProgressChanged(SeekBar seekBar, int progress,
-//			boolean fromUser) {}
-//
-//	@Override
-//	public void onStartTrackingTouch(SeekBar seekBar) {}
-//
-//	@Override
-//	public void onStopTrackingTouch(SeekBar seekBar) {}
-
 	String formatBatchCode(String batchCode) {
 		return "第" + batchCode + "期";
 	}
@@ -470,7 +420,6 @@ public abstract class FootBallLotteryFather extends Activity implements
 	}
 	
 	public abstract Vector<BallTable> getBallTableVector();
-//	public abstract BaseAdapter getAdapter();
 	
 	private void resetBall() {
 		Vector<BallTable> vBallTable = getBallTableVector();
