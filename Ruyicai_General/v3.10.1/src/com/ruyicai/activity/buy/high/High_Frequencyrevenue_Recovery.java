@@ -48,6 +48,7 @@ import com.ruyicai.net.newtransaction.ShouyiDataInterface;
 import com.ruyicai.net.newtransaction.getRecoveryBatchCode;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.pojo.ShouyiPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
@@ -430,7 +431,7 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 		int onceamt = 0;
 		try {
 			for (int i = 0; i < shouyidata.size(); i++) {
-				onceamt += Double.valueOf(shouyidata.get(i).getDangqitouru());
+				onceamt += Double.valueOf(CheckUtil.isNull(shouyidata.get(i).getDangqitouru()));
 			}
 			amt = String.valueOf(onceamt);
 		} catch (Exception ex) {
