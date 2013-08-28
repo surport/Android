@@ -75,6 +75,7 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.GiftMessageInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
@@ -696,7 +697,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		if (type.equals("zc")) {
 			zhushu.setText(betAndGift.getZhushu() + "注     ");
 			jine.setText("金额：" + iProgressQishu
-					* (Integer.valueOf(betAndGift.getAmount()) / 100)
+					* (Integer.valueOf(CheckUtil.isNull(betAndGift.getAmount())) / 100)
 					* iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addviewmiss.getAllZhu() + "注     ");

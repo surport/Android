@@ -59,6 +59,7 @@ import com.ruyicai.net.newtransaction.WinQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.AccountDetailQueryPojo;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.net.newtransaction.pojo.UserScroeDetailQueryPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -945,12 +946,8 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 				if (title.equals("我的消息") && sessionid != null
 						&& !sessionid.equals("")) {
-					if ("".equals(shellRW
-							.getStringValue("notReadLetterCount"))) {
-						shellRW.putStringValue("notReadLetterCount", "0");
-					}
-					int notReadLetterCount = Integer.valueOf(shellRW
-							.getStringValue("notReadLetterCount"));
+					int notReadLetterCount = Integer.valueOf(CheckUtil.isNull(shellRW
+							.getStringValue("notReadLetterCount")));
 					if (notReadLetterCount > 0) {
 						String notReadLetterCountString = String
 								.valueOf(notReadLetterCount);

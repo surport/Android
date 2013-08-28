@@ -61,6 +61,7 @@ import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -455,8 +456,8 @@ public class Dlc extends ZixuanAndJiXuan {
 						JSONObject obj = new JSONObject(re);
 						message = obj.getString("message");
 						error_code = obj.getString("error_code");
-						lesstime = Integer.valueOf(obj
-								.getString("time_remaining"));
+						lesstime = Integer.valueOf(CheckUtil.isNull(obj
+								.getString("time_remaining")));
 						batchCode = obj.getString("batchcode");
 						while (isRun) {
 							if (isEnd(lesstime)) {

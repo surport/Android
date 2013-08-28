@@ -45,6 +45,7 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.getRecoveryBatchCode;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -365,7 +366,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 						edit.setSelection(edit.length());
 					} else {
 						if (isFromTrackQuery) {
-							int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+							int zhuShu = Integer.valueOf(CheckUtil.isNull(betAndGift.getZhushu()));
 							text3.setText(betAndGift.getAmt()*zhuShu*Integer.valueOf(edit.getText().toString())+ "元");
 						} else {
 							text3.setText(addviewmiss.getAllAmt()

@@ -235,7 +235,7 @@ public class HalfTheAudienceAgainstInformation extends AgainstInformation {
 	 * @return SP值
 	 */
 	public Double getSelectedSp(int click_i) {
-		String selectedSP = "";
+		String selectedSP = "0";
 
 		switch (click_i) {
 		case 0:

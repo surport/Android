@@ -161,4 +161,18 @@ public class CheckUtil {
 		}
         return false;
 	}
+	
+	/**
+	 * 判断字符串是否是空值
+	 * 
+	 */
+	public static String isNull(String str) {
+		String string;
+		if (str == null || "".equals(str)) {
+			return "0";
+		} else {
+			return str;
+		}
+
+	}
 }

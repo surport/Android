@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 
 import android.util.Log;
@@ -199,7 +200,7 @@ public class JCPrizePermutationandCombination {
 			maxPrize += sonDouble[sonDouble.length - 1];
 		}
 		String maxValue = PublicMethod.formatStringToTwoPoint(maxPrize * 2 * 0.65);
-		return Double.valueOf(maxValue);
+		return Double.valueOf(CheckUtil.isNull(maxValue));
 	}
 
 	/**
@@ -219,7 +220,7 @@ public class JCPrizePermutationandCombination {
 		Arrays.sort(mixArrays);
 		String mixValue = PublicMethod.formatStringToTwoPoint(mixArrays[0] * 2 * 0.65);
 
-		return Double.valueOf(mixValue);
+		return Double.valueOf(CheckUtil.isNull(mixValue));
 	}
 
 	/** add bypengcx 20130709 end */

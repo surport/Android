@@ -59,6 +59,7 @@ import com.ruyicai.net.newtransaction.GiftQueryInterface;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
@@ -572,7 +573,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			holder.lotName.setText(lotName);
 
 			final String lastBatch = ""
-					+ (Integer.valueOf(batchNums) - Integer.valueOf(lastNums));
+					+ (Integer.valueOf(CheckUtil.isNull(batchNums)) - Integer.valueOf(CheckUtil.isNull(lastNums)));
 			trackState(holder.trackState, trackState, lastBatch);
 			cancleTrackVisible(holder.cancleTrack, trackState, lastBatch,
 					trackId, mList.get(position));

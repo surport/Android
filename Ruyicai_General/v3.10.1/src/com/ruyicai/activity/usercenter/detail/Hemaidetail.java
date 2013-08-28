@@ -60,6 +60,7 @@ import com.ruyicai.net.newtransaction.JoinCannelInterface;
 import com.ruyicai.net.newtransaction.JoinInInterface;
 import com.ruyicai.net.newtransaction.QueryJoinCanyuInterface;
 import com.ruyicai.net.newtransaction.QueryJoinDetailInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.tencent.weibo.oauthv1.OAuthV1;
@@ -1550,7 +1551,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setTotalAmt(String totalAmt) {
-			this.totalAmt = String.valueOf(Long.valueOf(totalAmt) / 100);
+			this.totalAmt = String.valueOf(Long.valueOf(CheckUtil.isNull(totalAmt)) / 100);
 		}
 
 		public String getMinAmt() {
@@ -1558,7 +1559,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setMinAmt(String minAmt) {
-			this.minAmt = String.valueOf(Long.valueOf(minAmt) / 100);
+			this.minAmt = String.valueOf(Long.valueOf(CheckUtil.isNull(minAmt)) / 100);
 		}
 
 		public String getBuyProgress() {
@@ -1582,7 +1583,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setHasBuyAmt(String hasBuyAmt) {
-			this.hasBuyAmt = String.valueOf(Long.valueOf(hasBuyAmt) / 100);
+			this.hasBuyAmt = String.valueOf(Long.valueOf(CheckUtil.isNull(hasBuyAmt)) / 100);
 		}
 
 		public String getSafeAmt() {
@@ -1590,7 +1591,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		}
 
 		public void setSafeAmt(String safeAmt) {
-			this.safeAmt = String.valueOf(Long.valueOf(safeAmt) / 100);
+			this.safeAmt = String.valueOf(Long.valueOf(CheckUtil.isNull(safeAmt)) / 100);
 		}
 
 		public String getDisplayState() {
@@ -1650,7 +1651,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 
 		public void setRemainderAmt(String remainderAmt) {
 			this.remainderAmt = String
-					.valueOf(Long.valueOf(remainderAmt) / 100);
+					.valueOf(Long.valueOf(CheckUtil.isNull(remainderAmt)) / 100);
 		}
 
 		public String getParticipantCount() {

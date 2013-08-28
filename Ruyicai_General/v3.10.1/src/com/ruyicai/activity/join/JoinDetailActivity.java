@@ -60,6 +60,7 @@ import com.ruyicai.net.newtransaction.JoinCannelInterface;
 import com.ruyicai.net.newtransaction.JoinInInterface;
 import com.ruyicai.net.newtransaction.QueryJoinCanyuInterface;
 import com.ruyicai.net.newtransaction.QueryJoinDetailInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.tencent.weibo.oauthv1.OAuthV1;
@@ -332,7 +333,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				amountEdit.setClickable(true);
 				amountEdit.setEnabled(true); 
 				String amt = detatil.getTotalAmt();
-				amountProgress.setText("占总额" + progress(isNull(amount), amt)
+				amountProgress.setText("占总额" + progress(CheckUtil.isNull(amount), amt)
 						+ "%");// 总金额
 				leavTextView(amountText, true);
 				leavTextView(safeText, false);
@@ -362,14 +363,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			public void afterTextChanged(Editable s) {
 				String amt = safeAmtEdit.getText().toString();
 				isSafeAmtZero = amt;
-				amt = isNull(amt);
+				amt = CheckUtil.isNull(amt);
 				String renAmt = leavMount(detatil.getRemainderAmt(), amountEdit
 						.getText().toString());
 				String baoAmt = leavMount(renAmt, detatil.getSafeAmt());
 				safeAmtEdit.setClickable(true);
 				safeAmtEdit.setEnabled(true);
 				safeProgress.setText("占总额"
-						+ progress(isNull(amt), detatil.getTotalAmt()) + "%");
+						+ progress(CheckUtil.isNull(amt), detatil.getTotalAmt()) + "%");
 				if (Integer.parseInt(baoAmt) > 0) {
 					leavTextView(safeText, false);
 				}
@@ -611,8 +612,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 	public String leavMount(String allAmt, String amt) {
 		String amtStr = "";
-		amtStr = Integer.toString(Integer.parseInt(isNull(allAmt))
-				- Integer.parseInt(isNull(amt)));
+		amtStr = Integer.toString(Integer.parseInt(CheckUtil.isNull(allAmt))
+				- Integer.parseInt(CheckUtil.isNull(amt)));
 		return amtStr;
 	}
 
@@ -1007,9 +1008,11 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		safeAmt = safeAmtEdit.getText().toString();
 		String renAmt = leavMount(detatil.getRemainderAmt(), amountEdit
 				.getText().toString());
-		int amountInt = Integer.parseInt(isNull(amount));
-		int safeAmtInt = Integer.parseInt(isNull(safeAmt));
-		if (amount.equals("") && safeAmt.equals("")) {
+		amount = CheckUtil.isNull(amount);
+		safeAmt = CheckUtil.isNull(safeAmt);
+		int amountInt = Integer.parseInt(amount);
+		int safeAmtInt = Integer.parseInt(safeAmt);
+		if ("".equals(amount) && "".equals(safeAmt)) {
 			Toast.makeText(JoinDetailActivity.this, "认购金额或保底金额不能为空",
 					Toast.LENGTH_SHORT).show();
 		} else if (amountInt == 0 && safeAmtInt == 0) {
@@ -1046,8 +1049,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			@Override
 			public void run() {
 				str = JoinInInterface.betLotJoin(userno, phonenum, caseId,
-						PublicMethod.toFen(isNull(amount)),
-						PublicMethod.toFen(isNull(safeAmt)));
+						PublicMethod.toFen(CheckUtil.isNull(amount)),
+						PublicMethod.toFen(CheckUtil.isNull(safeAmt)));
 				try {
 					json = new JSONObject(str);
 					message = json.getString("message");
@@ -1876,20 +1879,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		Weibo weibo = Weibo.getInstance();
 		weibo.share2weibo(this, weibo.getAccessToken().getToken(), weibo
 				.getAccessToken().getSecret(), content, "");
-	}
-
-	/**
-	 * 判断字符串是否是空值
-	 * 
-	 */
-	public String isNull(String str) {
-		String string;
-		if (str == null || str.equals("")) {
-			return "0";
-		} else {
-			return str;
-		}
-
 	}
 
 	@Override

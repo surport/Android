@@ -58,6 +58,7 @@ import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.JoinStartInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
@@ -259,7 +260,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		if (type.equals("zc")) {
 			zhushu.setText(betAndGift.getZhushu() + "注     ");
 			jine.setText(iProgressQishu
-					* (Integer.valueOf(betAndGift.getAmount()) / 100)
+					* (Integer.valueOf(CheckUtil.isNull(betAndGift.getAmount())) / 100)
 					* iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addviewmiss.getAllZhu() + "注     ");
