@@ -175,6 +175,7 @@ public class NoticeBallActivity extends Activity {
 						}
 
 						if (ballSelectedRedView != null) {
+							ballSelectedRedView.ballsChcekOne.clear();
 							ballSelectedRedView.invalidate();
 						}
 
@@ -185,6 +186,7 @@ public class NoticeBallActivity extends Activity {
 
 					}
 				});
+
 		twoSelectButtonSpinner
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -194,7 +196,9 @@ public class NoticeBallActivity extends Activity {
 						if (isBeforeThree) {
 							ballSelectedRedView.setFirstDraw(true);
 						}
+
 						if (ballSelectedRedView != null) {
+							ballSelectedRedView.ballsChcekTwo.clear();
 							ballSelectedRedView.invalidate();
 						}
 					}
