@@ -1009,7 +1009,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				.getText().toString());
 		int amountInt = Integer.parseInt(isNull(amount));
 		int safeAmtInt = Integer.parseInt(isNull(safeAmt));
-		if (amount.equals("") && safeAmt.equals("")) {
+		amount = isNull(amount);
+		safeAmt = isNull(safeAmt);
+		if ("".equals(amount) && "".equals(safeAmt)) {
 			Toast.makeText(JoinDetailActivity.this, "认购金额或保底金额不能为空",
 					Toast.LENGTH_SHORT).show();
 		} else if (amountInt == 0 && safeAmtInt == 0) {
