@@ -710,13 +710,12 @@ public class NoticeBallActivity extends Activity {
 				break;
 			}
 
-			if(betNums1 <= 10000 && betNums2 <= 10000){
+			if (betNums1 <= 10000 && betNums2 <= 10000) {
 				Intent intent = new Intent(this, OrderDetails.class);
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 				intent.putExtra("isAlert", false);
 				startActivity(intent);
 			}
-		
 
 		} else {
 			showPromtFour(isOneRight, isTowRight, i, j);
@@ -939,7 +938,8 @@ public class NoticeBallActivity extends Activity {
 			List<Integer> redListTwo, int oneSelectItem, int towSelectItem) {
 		String lotno = "";
 		String code = "";
-		long betNums = 0;
+		long betNums1 = 0;
+		long betNums2 = 0;
 		int oneRight = isBetLegitimacyThree(redListOne, oneSelectItem);
 		int twoRight = -1;
 		if (oneRight == -1 || oneRight == 0) {
@@ -958,8 +958,8 @@ public class NoticeBallActivity extends Activity {
 							.simulateZhuma(redListOne, oneSelectItem);
 					lotno = Constants.LOTNO_GD_11_5;
 				}
-				betNums = caculateBetThree(redListOne.size(), oneSelectItem);
-				addViewAndTouZhuThree(betNums, redListOne, lotno, code);
+				betNums1 = caculateBetThree(redListOne.size(), oneSelectItem);
+				addViewAndTouZhuThree(betNums1, redListOne, lotno, code);
 
 			}
 
@@ -972,14 +972,17 @@ public class NoticeBallActivity extends Activity {
 							.simulateZhuma(redListTwo, towSelectItem);
 					lotno = Constants.LOTNO_GD_11_5;
 				}
-				betNums = caculateBetThree(redListTwo.size(), towSelectItem);
-				addViewAndTouZhuThree(betNums, redListTwo, lotno, code);
+				betNums2 = caculateBetThree(redListTwo.size(), towSelectItem);
+				addViewAndTouZhuThree(betNums2, redListTwo, lotno, code);
 			}
 
-			Intent intent = new Intent(this, OrderDetails.class);
-			intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-			intent.putExtra("isAlert", false);
-			startActivity(intent);
+			if (betNums1 <= 10000 && betNums2 <= 10000) {
+				Intent intent = new Intent(this, OrderDetails.class);
+				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+				intent.putExtra("isAlert", false);
+				startActivity(intent);
+			}
+
 		} else {
 			showPromtThree(oneRight, twoRight, oneSelectItem, towSelectItem);
 		}
@@ -1058,9 +1061,8 @@ public class NoticeBallActivity extends Activity {
 		} else if (oneRight > 0 && twoRight > 0) {
 			Toast.makeText(this, "还需要" + oneRight + "个小球", Toast.LENGTH_SHORT)
 					.show();
-		}else if(oneRight == -2 || twoRight == -2){
-			Toast.makeText(this, "只能选择8个小球进行投注", Toast.LENGTH_SHORT)
-			.show();
+		} else if (oneRight == -2 || twoRight == -2) {
+			Toast.makeText(this, "只能选择8个小球进行投注", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -1071,12 +1073,12 @@ public class NoticeBallActivity extends Activity {
 		} else if (redListOne.size() > 0 && redListOne.size() <= selectNum) {
 			legalState = selectNum - redListOne.size();
 		} else if (redListOne.size() > selectNum) {
-			if(selectNum == 8){
+			if (selectNum == 8) {
 				legalState = -2;
-			}else{
+			} else {
 				legalState = 0;
 			}
-			
+
 		}
 
 		return legalState;
@@ -1140,13 +1142,13 @@ public class NoticeBallActivity extends Activity {
 			} else {
 				intent = new Intent(this, OrderDetails.class);
 			}
-			
-			if(betNums1 <= 10000 && betNums2 <= 10000){
+
+			if (betNums1 <= 10000 && betNums2 <= 10000) {
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 				intent.putExtra("isAlert", false);
 				startActivity(intent);
 			}
-			
+
 		} else {
 			showPromtOther(oneRight, twoRight);
 		}
@@ -1382,13 +1384,13 @@ public class NoticeBallActivity extends Activity {
 							code);
 				}
 
-				if(betNums1 <= 10000 && betNums2 <= 10000){
+				if (betNums1 <= 10000 && betNums2 <= 10000) {
 					Intent intent = new Intent(this, OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
 				}
-			
+
 			} else {
 				showPromt(isOneRight, isTowRight, redNum, blueNum);
 			}
@@ -1427,14 +1429,14 @@ public class NoticeBallActivity extends Activity {
 							code);
 				}
 
-				if(betNums1 <= 10000 && betNums2 <= 10000){
+				if (betNums1 <= 10000 && betNums2 <= 10000) {
 					Intent intent = new Intent(this,
 							com.ruyicai.activity.buy.zixuan.OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
 				}
-			
+
 			} else {
 				showPromt(isOneRight, isTowRight, redNum, blueNum);
 			}
@@ -1473,14 +1475,14 @@ public class NoticeBallActivity extends Activity {
 					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
 							code);
 				}
-				
-				if(betNums1 <= 10000 && betNums2 <= 10000){
+
+				if (betNums1 <= 10000 && betNums2 <= 10000) {
 					Intent intent = new Intent(this, OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
 				}
-			
+
 			} else {
 				showPromt(isOneRight, isTowRight, redNum, blueNum);
 			}
