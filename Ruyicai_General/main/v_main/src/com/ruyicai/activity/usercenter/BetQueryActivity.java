@@ -53,6 +53,7 @@ import com.ruyicai.net.newtransaction.BetDetailsInterface;
 import com.ruyicai.net.newtransaction.BetQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
@@ -1091,7 +1092,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			final String prizeqihao = (String) mList.get(position)
 					.getBatchCode();
 			final String amount = (String) mList.get(position).getAmount();
-			final String fPayMoney = "￥" + Long.valueOf(amount)/100;
+			final String fPayMoney = "￥" + Long.valueOf(CheckUtil.isNull(amount))/100;
 			String payString = getString(R.string.usercenter_winprize_payMoney);// 投注金额字
 			SpannableStringBuilder fPayMoneyStringBuilder = new SpannableStringBuilder(
 					payString + fPayMoney);
@@ -1196,7 +1197,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 				holder.prizemoney.setVisibility(View.VISIBLE);
 				holder.predictmoney.setVisibility(View.GONE);
 				String prizeString = getString(R.string.usercenter_prizeMoney);// 中奖金额字
-				String fprizemoney = "￥" + Long.valueOf(prizemoney)/100;
+				String fprizemoney = "￥" + Long.valueOf(CheckUtil.isNull(prizemoney))/100;
 				SpannableStringBuilder fprizemoneyStringBuilder = new SpannableStringBuilder(
 						 prizeString + fprizemoney);
 				fprizemoneyStringBuilder.setSpan(new ForegroundColorSpan(

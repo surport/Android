@@ -46,6 +46,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.home.HomeActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.NoticeWinInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.FormatZhuma;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -175,8 +176,8 @@ public class PrizeNotificationService extends Service {
 		}
 		if (errorcode.equals("0000")) {
 			try {
-				nextNetTime = Integer.valueOf(prizeReturn
-						.getString("noticeTime"));
+				nextNetTime = Integer.valueOf(CheckUtil.isNull(prizeReturn
+						.getString("noticeTime")));
 			} catch (JSONException e) {
 				// TODO: handle exception
 				nextNetTime = 600;
@@ -192,7 +193,7 @@ public class PrizeNotificationService extends Service {
 					map.put("batchCode", batchCode);
 					map.put("winCode", winCode);
 					listPrizeNet.add(map);
-					batchCodeValueNet[i] = Integer.valueOf(batchCode);
+					batchCodeValueNet[i] = Integer.valueOf(CheckUtil.isNull(batchCode));
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

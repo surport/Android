@@ -33,6 +33,7 @@ import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.net.newtransaction.BeiJingSingleGameInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -1802,22 +1803,22 @@ public class BeiJingSingleGameActivity extends Activity {
 					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
 						againstStringBufffer.append(PublicMethod.stringToHtml("上单",
 								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v1()));
+						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v1())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
 						againstStringBufffer.append(PublicMethod.stringToHtml("上双",
 								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v2()));
+						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v2())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
 						againstStringBufffer.append(PublicMethod.stringToHtml("下单",
 								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v3()));
+						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v3())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
 						againstStringBufffer.append(PublicMethod.stringToHtml("下双",
 								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(upDownSingleDoubleAgainstInformation.getSxds_v4()));
+						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v4())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isDan()) {
 						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)",

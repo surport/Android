@@ -20,6 +20,7 @@ import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -166,7 +167,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				String mutipleString = mutipleEditText.getText().toString();
 
 				if (!mutipleString.equals("")) {
-					mutipleSeekBar.setProgress(Integer.valueOf(mutipleString));
+					mutipleSeekBar.setProgress(Integer.valueOf(CheckUtil.isNull(mutipleString)));
 				}
 
 				if (mutipleString.length() > 5) {

@@ -37,6 +37,7 @@ import com.ruyicai.activity.usercenter.info.TrackQueryInfo;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo2;
 import com.ruyicai.net.newtransaction.CancelTrackInterface;
 import com.ruyicai.net.newtransaction.TrackDailInterface;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -144,8 +145,8 @@ public class Trackdetail extends ActionActivity {
 		} else {
 			trackchetext.append("0");
 		}
-		amtyitext.append((Long.valueOf(betAmount) - Long
-				.valueOf(remainderAmount)) / 100 + "元");
+		amtyitext.append((Long.valueOf(CheckUtil.isNull(betAmount)) - Long
+				.valueOf(CheckUtil.isNull(remainderAmount))) / 100 + "元");
 		starttimetext.append(ordertime);
 		if (prizeEnd.equals("0")) {
 			iswinaftertext.append("否");
@@ -153,8 +154,8 @@ public class Trackdetail extends ActionActivity {
 			iswinaftertext.append("是");
 		}
 		batchcodestarttext.append(beginBatch);
-		amtzongtext.append(Long.valueOf(betAmount) / 100 + "元");
-		String lessnum = Integer.valueOf(batchNums) - Integer.valueOf(lastNums)
+		amtzongtext.append(Long.valueOf(CheckUtil.isNull(betAmount)) / 100 + "元");
+		String lessnum = Integer.valueOf(CheckUtil.isNull(batchNums)) - Integer.valueOf(CheckUtil.isNull(lastNums))
 				+ "";
 		trackState(statetext, trackState, lessnum);
 		if (statetext.getText().toString()
