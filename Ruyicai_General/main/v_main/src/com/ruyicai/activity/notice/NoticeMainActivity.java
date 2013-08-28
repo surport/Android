@@ -730,6 +730,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_DLC_LISTVIEW;
 					Intent intent = new Intent(NoticeMainActivity.this,
 							NoticeActivityGroup.class);
+					intent.putExtra("isPosition", false);
 					startActivity(intent);
 				}
 				// 点击11-5跳转到11运夺金子列表中
@@ -770,6 +771,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_GD115_LISTVIEW;
 					Intent intent = new Intent(NoticeMainActivity.this,
 							NoticeActivityGroup.class);
+					intent.putExtra("isPosition", false);
 					startActivity(intent);
 				}
 				// 广东快乐十分

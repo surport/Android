@@ -175,6 +175,7 @@ public class NoticeBallActivity extends Activity {
 						}
 
 						if (ballSelectedRedView != null) {
+							ballSelectedRedView.ballsChcekOne.clear();
 							ballSelectedRedView.invalidate();
 						}
 
@@ -185,6 +186,7 @@ public class NoticeBallActivity extends Activity {
 
 					}
 				});
+
 		twoSelectButtonSpinner
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -194,7 +196,9 @@ public class NoticeBallActivity extends Activity {
 						if (isBeforeThree) {
 							ballSelectedRedView.setFirstDraw(true);
 						}
+
 						if (ballSelectedRedView != null) {
+							ballSelectedRedView.ballsChcekTwo.clear();
 							ballSelectedRedView.invalidate();
 						}
 					}
@@ -652,7 +656,8 @@ public class NoticeBallActivity extends Activity {
 			List<Integer> twoUnits, int i, int j) {
 		String lotno = "";
 		String code = "";
-		long betNums = 0;
+		long betNums1 = 0;
+		long betNums2 = 0;
 
 		int isOneRight = isBetLegitimacyFour(oneHundreds, oneDecades, oneUnits,
 				i);
@@ -672,18 +677,18 @@ public class NoticeBallActivity extends Activity {
 				if (isOneRight == 0) {
 					code = DlcCode.simulateZhumaOther(oneHundreds, oneDecades,
 							oneUnits, i);
-					betNums = caculateBetNumFour(oneHundreds, oneDecades,
+					betNums1 = caculateBetNumFour(oneHundreds, oneDecades,
 							oneUnits, i);
-					addViewAndTouZhuFour(betNums, oneHundreds, oneDecades,
+					addViewAndTouZhuFour(betNums1, oneHundreds, oneDecades,
 							oneUnits, lotno, code);
 				}
 
 				if (isTowRight == 0) {
 					code = DlcCode.simulateZhumaOther(twoHundreds, twoDecades,
 							twoUnits, j);
-					betNums = caculateBetNumFour(twoHundreds, twoDecades,
+					betNums2 = caculateBetNumFour(twoHundreds, twoDecades,
 							twoUnits, j);
-					addViewAndTouZhuFour(betNums, twoHundreds, twoDecades,
+					addViewAndTouZhuFour(betNums2, twoHundreds, twoDecades,
 							twoUnits, lotno, code);
 				}
 				break;
@@ -692,27 +697,29 @@ public class NoticeBallActivity extends Activity {
 				if (isOneRight == 0) {
 					code = GdelevenCode.simulateZhumaOther(oneHundreds,
 							oneDecades, oneUnits, i);
-					betNums = caculateBetNumFour(oneHundreds, oneDecades,
+					betNums1 = caculateBetNumFour(oneHundreds, oneDecades,
 							oneUnits, i);
-					addViewAndTouZhuFour(betNums, oneHundreds, oneDecades,
+					addViewAndTouZhuFour(betNums1, oneHundreds, oneDecades,
 							oneUnits, lotno, code);
 				}
 
 				if (isTowRight == 0) {
 					code = GdelevenCode.simulateZhumaOther(twoHundreds,
 							twoDecades, twoUnits, j);
-					betNums = caculateBetNumFour(twoHundreds, twoDecades,
+					betNums2 = caculateBetNumFour(twoHundreds, twoDecades,
 							twoUnits, j);
-					addViewAndTouZhuFour(betNums, twoHundreds, twoDecades,
+					addViewAndTouZhuFour(betNums2, twoHundreds, twoDecades,
 							twoUnits, lotno, code);
 				}
 				break;
 			}
 
-			Intent intent = new Intent(this, OrderDetails.class);
-			intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-			intent.putExtra("isAlert", false);
-			startActivity(intent);
+			if (betNums1 <= 10000 && betNums2 <= 10000) {
+				Intent intent = new Intent(this, OrderDetails.class);
+				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+				intent.putExtra("isAlert", false);
+				startActivity(intent);
+			}
 
 		} else {
 			showPromtFour(isOneRight, isTowRight, i, j);
@@ -935,7 +942,8 @@ public class NoticeBallActivity extends Activity {
 			List<Integer> redListTwo, int oneSelectItem, int towSelectItem) {
 		String lotno = "";
 		String code = "";
-		long betNums = 0;
+		long betNums1 = 0;
+		long betNums2 = 0;
 		int oneRight = isBetLegitimacyThree(redListOne, oneSelectItem);
 		int twoRight = -1;
 		if (oneRight == -1 || oneRight == 0) {
@@ -954,8 +962,8 @@ public class NoticeBallActivity extends Activity {
 							.simulateZhuma(redListOne, oneSelectItem);
 					lotno = Constants.LOTNO_GD_11_5;
 				}
-				betNums = caculateBetThree(redListOne.size(), oneSelectItem);
-				addViewAndTouZhuThree(betNums, redListOne, lotno, code);
+				betNums1 = caculateBetThree(redListOne.size(), oneSelectItem);
+				addViewAndTouZhuThree(betNums1, redListOne, lotno, code);
 
 			}
 
@@ -968,14 +976,17 @@ public class NoticeBallActivity extends Activity {
 							.simulateZhuma(redListTwo, towSelectItem);
 					lotno = Constants.LOTNO_GD_11_5;
 				}
-				betNums = caculateBetThree(redListTwo.size(), towSelectItem);
-				addViewAndTouZhuThree(betNums, redListTwo, lotno, code);
+				betNums2 = caculateBetThree(redListTwo.size(), towSelectItem);
+				addViewAndTouZhuThree(betNums2, redListTwo, lotno, code);
 			}
 
-			Intent intent = new Intent(this, OrderDetails.class);
-			intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-			intent.putExtra("isAlert", false);
-			startActivity(intent);
+			if (betNums1 <= 10000 && betNums2 <= 10000) {
+				Intent intent = new Intent(this, OrderDetails.class);
+				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+				intent.putExtra("isAlert", false);
+				startActivity(intent);
+			}
+
 		} else {
 			showPromtThree(oneRight, twoRight, oneSelectItem, towSelectItem);
 		}
@@ -1054,6 +1065,8 @@ public class NoticeBallActivity extends Activity {
 		} else if (oneRight > 0 && twoRight > 0) {
 			Toast.makeText(this, "还需要" + oneRight + "个小球", Toast.LENGTH_SHORT)
 					.show();
+		} else if (oneRight == -2 || twoRight == -2) {
+			Toast.makeText(this, "只能选择8个小球进行投注", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -1064,7 +1077,12 @@ public class NoticeBallActivity extends Activity {
 		} else if (redListOne.size() > 0 && redListOne.size() <= selectNum) {
 			legalState = selectNum - redListOne.size();
 		} else if (redListOne.size() > selectNum) {
-			legalState = 0;
+			if (selectNum == 8) {
+				legalState = -2;
+			} else {
+				legalState = 0;
+			}
+
 		}
 
 		return legalState;
@@ -1076,7 +1094,8 @@ public class NoticeBallActivity extends Activity {
 			List<Integer> twoUnits) {
 		String lotno = "";
 		String code = "";
-		long betNums = 0;
+		long betNums1 = 0;
+		long betNums2 = 0;
 		int oneRight = isBetLegitimacyOther(oneHundreds, oneDecades, oneUnits);
 		int twoRight = 0;
 		if (oneRight == 0 || oneRight == 4) {
@@ -1098,9 +1117,9 @@ public class NoticeBallActivity extends Activity {
 					lotno = Constants.LOTNO_PL3;
 				}
 
-				betNums = caculateBetNumsOther(oneHundreds.size(),
+				betNums1 = caculateBetNumsOther(oneHundreds.size(),
 						oneDecades.size(), oneUnits.size());
-				addViewAndTouZhuOther(betNums, oneHundreds, oneDecades,
+				addViewAndTouZhuOther(betNums1, oneHundreds, oneDecades,
 						oneUnits, lotno, code);
 			}
 
@@ -1114,9 +1133,9 @@ public class NoticeBallActivity extends Activity {
 							twoDecades, twoUnits);
 					lotno = Constants.LOTNO_PL3;
 				}
-				betNums = caculateBetNumsOther(twoHundreds.size(),
+				betNums2 = caculateBetNumsOther(twoHundreds.size(),
 						twoDecades.size(), twoUnits.size());
-				addViewAndTouZhuOther(betNums, twoHundreds, twoDecades,
+				addViewAndTouZhuOther(betNums2, twoHundreds, twoDecades,
 						twoUnits, lotno, code);
 			}
 
@@ -1127,9 +1146,12 @@ public class NoticeBallActivity extends Activity {
 			} else {
 				intent = new Intent(this, OrderDetails.class);
 			}
-			intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-			intent.putExtra("isAlert", false);
-			startActivity(intent);
+
+			if (betNums1 <= 10000 && betNums2 <= 10000) {
+				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+				intent.putExtra("isAlert", false);
+				startActivity(intent);
+			}
 
 		} else {
 			showPromtOther(oneRight, twoRight);
@@ -1327,7 +1349,8 @@ public class NoticeBallActivity extends Activity {
 	private void setTouZhuInfo(List<Integer> redList, List<Integer> blueList,
 			List<Integer> redListTwo, List<Integer> blueListTwo) {
 		String code = "";
-		long betNums = 0;
+		long betNums1 = 0;
+		long betNums2 = 0;
 		String lotno = "";
 		int redNum = 0, blueNum = 0;
 		int isOneRight;
@@ -1351,24 +1374,27 @@ public class NoticeBallActivity extends Activity {
 
 				if (isOneRight == 0) {
 					code = SsqZiZhiXuanCode.simulateZhuma(redList, blueList);
-					betNums = caculateBetNums(redList.size(), blueList.size(),
+					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums, redList, blueList, lotno, code);
+					addViewAndTouZhu(betNums1, redList, blueList, lotno, code);
 				}
 
 				if (isTowRight == 0) {
 					code = SsqZiZhiXuanCode.simulateZhuma(redListTwo,
 							blueListTwo);
-					betNums = caculateBetNums(redListTwo.size(),
+					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums, redListTwo, blueListTwo, lotno,
+					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
 							code);
 				}
 
-				Intent intent = new Intent(this, OrderDetails.class);
-				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-				intent.putExtra("isAlert", false);
-				startActivity(intent);
+				if (betNums1 <= 10000 && betNums2 <= 10000) {
+					Intent intent = new Intent(this, OrderDetails.class);
+					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+					intent.putExtra("isAlert", false);
+					startActivity(intent);
+				}
+
 			} else {
 				showPromt(isOneRight, isTowRight, redNum, blueNum);
 			}
@@ -1393,25 +1419,28 @@ public class NoticeBallActivity extends Activity {
 
 				if (isOneRight == 0) {
 					code = QlcZiZhiXuanCode.simulateZhuma(redList, blueList);
-					betNums = caculateBetNums(redList.size(), blueList.size(),
+					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums, redList, blueList, lotno, code);
+					addViewAndTouZhu(betNums1, redList, blueList, lotno, code);
 				}
 
 				if (isTowRight == 0) {
 					code = QlcZiZhiXuanCode.simulateZhuma(redListTwo,
 							blueListTwo);
-					betNums = caculateBetNums(redListTwo.size(),
+					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums, redListTwo, blueListTwo, lotno,
+					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
 							code);
 				}
 
-				Intent intent = new Intent(this,
-						com.ruyicai.activity.buy.zixuan.OrderDetails.class);
-				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-				intent.putExtra("isAlert", false);
-				startActivity(intent);
+				if (betNums1 <= 10000 && betNums2 <= 10000) {
+					Intent intent = new Intent(this,
+							com.ruyicai.activity.buy.zixuan.OrderDetails.class);
+					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+					intent.putExtra("isAlert", false);
+					startActivity(intent);
+				}
+
 			} else {
 				showPromt(isOneRight, isTowRight, redNum, blueNum);
 			}
@@ -1437,24 +1466,27 @@ public class NoticeBallActivity extends Activity {
 
 				if (isOneRight == 0) {
 					code = DltNormalSelectCode.simulateZhuma(redList, blueList);
-					betNums = caculateBetNums(redList.size(), blueList.size(),
+					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums, redList, blueList, lotno, code);
+					addViewAndTouZhu(betNums1, redList, blueList, lotno, code);
 				}
 
 				if (isTowRight == 0) {
 					code = DltNormalSelectCode.simulateZhuma(redListTwo,
 							blueListTwo);
-					betNums = caculateBetNums(redListTwo.size(),
+					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums, redListTwo, blueListTwo, lotno,
+					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
 							code);
 				}
 
-				Intent intent = new Intent(this, OrderDetails.class);
-				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-				intent.putExtra("isAlert", false);
-				startActivity(intent);
+				if (betNums1 <= 10000 && betNums2 <= 10000) {
+					Intent intent = new Intent(this, OrderDetails.class);
+					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
+					intent.putExtra("isAlert", false);
+					startActivity(intent);
+				}
+
 			} else {
 				showPromt(isOneRight, isTowRight, redNum, blueNum);
 			}
