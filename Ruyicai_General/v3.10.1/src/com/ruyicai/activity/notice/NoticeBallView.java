@@ -1487,13 +1487,13 @@ public class NoticeBallView extends View {
 								break;
 							}
 							canvas.drawBitmap(downSelectButton, FIRST_WITH
-									- SECOND_WITH - 30, i * WITH, null);
+									- SECOND_WITH - 20, i * WITH, null);
 							canvas.drawText(selectText, FIRST_WITH
-									- SECOND_WITH - 20, i * WITH + height, p);
+									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
 								if(selectButtonList.size() < 2){
 									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 30, i * WITH,
+											- SECOND_WITH - 20, i * WITH,
 											SECOND_WITH / 2, WITH, i + 1, "3");
 									selectButtonList.add(ball);
 								}
@@ -1521,13 +1521,13 @@ public class NoticeBallView extends View {
 								break;
 							}
 							canvas.drawBitmap(downSelectButton, FIRST_WITH
-									- SECOND_WITH - 30, i * WITH, null);
+									- SECOND_WITH - 20, i * WITH, null);
 							canvas.drawText(selectText, FIRST_WITH
-									- SECOND_WITH - 20, i * WITH + height, p);
+									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
 								if(selectButtonList.size() < 2){
 									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 30, i * WITH,
+											- SECOND_WITH - 20, i * WITH,
 											SECOND_WITH / 2, WITH, i + 1, "3");
 									selectButtonList.add(ball);
 								}
@@ -1584,11 +1584,11 @@ public class NoticeBallView extends View {
 								break;
 							}
 							canvas.drawText(selectText, FIRST_WITH
-									- SECOND_WITH - 20, i * WITH + height, p);
+									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
 								if(selectButtonList.size() < 2){
 									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 30, i * WITH,
+											- SECOND_WITH - 20, i * WITH,
 											SECOND_WITH / 2, WITH, i, "5");
 									selectButtonList.add(ball);
 								}
@@ -1623,11 +1623,11 @@ public class NoticeBallView extends View {
 								break;
 							}
 							canvas.drawText(selectText, FIRST_WITH
-									- SECOND_WITH - 20, i * WITH + height, p);
+									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
 								if(selectButtonList.size() < 2){
 									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 30, i * WITH,
+											- SECOND_WITH - 20, i * WITH,
 											SECOND_WITH / 2, WITH, i, "5");
 									selectButtonList.add(ball);
 								}
