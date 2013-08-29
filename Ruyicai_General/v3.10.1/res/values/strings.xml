@@ -1241,7 +1241,6 @@
     <string name="account_yin_dna_pay_card_number">"请输入银行卡号，不支持信用卡"</string>
     <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string>
     <string name="umpay_huafubao_confirm_install">"为保证您的交易安全，需要您安装话付宝支付服务，才能进行付款。\n\n点击确定，立即安装。"</string>
-    <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string>
     <string name="account_phone_card_password">"请输入充值卡密码"</string>
     <string name="account_phone_card_number">"请输入充值卡序号"</string>
     <string name="account_withdraw_detail_type">提现到支付宝</string>
