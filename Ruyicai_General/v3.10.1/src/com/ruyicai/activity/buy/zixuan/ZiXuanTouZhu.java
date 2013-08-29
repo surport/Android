@@ -150,14 +150,18 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onClick(View v) {
 				/** modify by pengcx start 20130531 */
-				String lotno = betAndGift.getLotno();
-				if (lotno.equals(Constants.LOTNO_JQC)
-						|| lotno.equals(Constants.LOTNO_LCB)
-						|| lotno.equals(Constants.LOTNO_SFC)
-						|| lotno.equals(Constants.LOTNO_RX9)) {
-					finish();
+				if (OrderDetails.isAlert) {
+					String lotno = betAndGift.getLotno();
+					if (lotno.equals(Constants.LOTNO_JQC)
+							|| lotno.equals(Constants.LOTNO_LCB)
+							|| lotno.equals(Constants.LOTNO_SFC)
+							|| lotno.equals(Constants.LOTNO_RX9)) {
+						finish();
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				} else {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+					finish();
 				}
 				/** modify by pengcx end 20130531 */
 			}
@@ -537,8 +541,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			if (addview != null && addview.getSize() != 0) {
-				alertExit(getString(R.string.buy_alert_exit_detail));
+			if (OrderDetails.isAlert) {
+				if (addview != null && addview.getSize() != 0) {
+					alertExit(getString(R.string.buy_alert_exit_detail));
+				} else {
+					finish();
+				}
 			} else {
 				finish();
 			}
