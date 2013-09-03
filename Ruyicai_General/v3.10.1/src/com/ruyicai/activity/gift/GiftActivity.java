@@ -127,9 +127,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	JSONObject obj;
 	boolean isMsg = true;// 是否是获取赠言
 	String giftMsg;
-	int allAtm;
+	long allAtm;
 	LinearLayout beishulayLayout;
-	int zhu;
+	long zhu;
 	boolean isDialog = false;
 	private int restrictMax = 8;
 	private int endMax = 8;
@@ -466,7 +466,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 				+ "赠送金额：" + allAtm + "元";
 		builder.append(zhushuStr);
 		builder.setSpan(new ForegroundColorSpan(Color.RED), zhushuStr.length()
-				- (Integer.toString(allAtm).length() + 1), zhushuStr.length(),
+				- (Long.toString(allAtm).length() + 1), zhushuStr.length(),
 				Spanned.SPAN_COMPOSING);
 		this.zhushu.setText(builder, BufferType.EDITABLE);
 		// this.zhushu.setText(zhushuStr);
@@ -1031,7 +1031,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setUserno(userno);
 		betAndGift.setBettype("gift");
 		betAndGift.setDescription("");
-		betAndGift.setAmount(PublicMethod.toFen(Integer.toString(allAtm)));
+		betAndGift.setAmount(PublicMethod.toFen(Long.toString(allAtm)));
 		betAndGift.setTo_mobile_code(editPhone.getText().toString()
 				.replace("，", ","));
 		if (!Constants.type.equals("zc")) {
