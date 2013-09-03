@@ -88,7 +88,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			"对跟单者截止后公开", "保密" };
 	private RadioGroup baoRadioGroup;
 	private RadioGroup openRadioGroup;
-	private int allAtm;
+	private long allAtm;
 	private String commisionRation = "1";
 	private String visible = "0";
 	String message;
@@ -306,9 +306,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	}
 
 	public void setEditText() {
-		int buyInt = Integer.parseInt(isNull(buyEdit.getText().toString()));
-		int safeInt = Integer.parseInt(isNull(safeEdit.getText().toString()));
-		int minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
+		long buyInt = Integer.parseInt(isNull(buyEdit.getText().toString()));
+		long safeInt = Integer.parseInt(isNull(safeEdit.getText().toString()));
+		long minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
 		if (buyInt > allAtm) {
 			buyInt = allAtm;
 			buyEdit.setText("" + buyInt);
@@ -477,7 +477,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	public void isJoin() {
 		int buyInt = Integer.parseInt(isNull(buyEdit.getText().toString()));
 		int safeInt = Integer.parseInt(isNull(safeEdit.getText().toString()));
-		int minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
+		long minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
 		if (buyInt == 0 && safeInt == 0) {
 			Toast.makeText(this, "认购金额和保底金额不能都为0！", Toast.LENGTH_SHORT).show();
 		} else if (allAtm - buyInt > 0 && minInt == 0) {

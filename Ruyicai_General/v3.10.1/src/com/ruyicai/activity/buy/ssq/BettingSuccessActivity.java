@@ -139,7 +139,7 @@ public class BettingSuccessActivity extends Activity {
 
 		// 初始化金额的显示
 		amtTextView = (TextView) findViewById(R.id.ssq_bettingsuccess_amt);
-		int menoy = Integer.valueOf(amountString) / 100;
+		long menoy = Long.valueOf(amountString) / 100;
 		amtTextView.setText(menoy + "元");
 
 		// 如果没有绑定，则显示；否则默认不显示
