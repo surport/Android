@@ -62,7 +62,11 @@ public class Constants {
 	public static String kAppKey = "801184275";
 	public static String kAppSecret = "3439c0843c81965196b165b09bb6edf3";
 	public static String kAppRedirectURI = "http://www.ruyicai.com";
-
+    /**
+     * 微信
+     */
+	public static final String APP_ID = "wxeda3b3b79897e78e";
+	
 	public static boolean hasLogin = false;// 用户是否已经登录标示
 	public static String sessionId = "";
 	public static final String KEY = "<>hj12@#$$%^~~ff";
