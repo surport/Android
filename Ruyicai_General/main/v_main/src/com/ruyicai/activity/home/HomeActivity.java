@@ -62,6 +62,8 @@ import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -88,6 +90,7 @@ public class HomeActivity extends Activity {
 	private String softwareUpdateInfo;
 	private String packageName;
 	private String todaykaijianginfo;
+	private IWXAPI api = null;
 	// 客户端正常加载顺序是 1->3->5->6->4
 	// 处理消息
 	public Handler mHandler = new Handler() {
@@ -163,8 +166,19 @@ public class HomeActivity extends Activity {
 		checkCaizhongSetting();// 获取彩种设置
 		// JPushInterface.setDebugMode(true);
 		JPushInterface.init(this);
+		registerToWeiXin();
 	}
-
+	/**
+	 * 注册到微信
+	 */
+    private void registerToWeiXin() {
+    	try {
+	    	api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+			api.registerApp(Constants.APP_ID);
+    	} catch (Exception ex) {
+    		
+    	}
+    }
 	/**
 	 * 设置高频彩单选按钮间距
 	 */
