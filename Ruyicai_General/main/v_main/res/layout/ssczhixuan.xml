@@ -166,34 +166,14 @@
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="10dip" >
+                    android:paddingTop="20dp" >
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/list_top"
-                        android:gravity="center_vertical"
-                        android:visibility="invisible" >
-
-                        <TextView
-                            android:id="@id/buy_zixuan_text_prize_num_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5dip"
-                            android:text="@string/gaopincai_prize_title"
-                            android:textColor="@color/red"
-                            android:textSize="18dip" >
-                        </TextView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@id/ssczhixuan_layout_prize_num"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingLeft="5dip" >
-                    </LinearLayout>
+                    <ListView
+                        android:id="@+id/buy_zixuan_latest_lottery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@null"
+                        android:listSelector="@color/white" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

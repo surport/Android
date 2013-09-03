@@ -18,7 +18,8 @@
     <LinearLayout
         android:id="@id/buyview"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
     </LinearLayout>
 
 </LinearLayout>

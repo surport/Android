@@ -2,8 +2,10 @@ package com.ruyicai.activity.buy.nmk3;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
@@ -12,6 +14,7 @@ import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.pojo.AreaNum;
+import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
 
 /**
@@ -25,11 +28,13 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "直选" };
 		setContentView(R.layout.sscbuyview);
 		highttype = "NMK3-HE";
 		init();
 		childtypes.setVisibility(View.GONE);
+
 	}
 
 	@Override
@@ -187,4 +192,49 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 		codeInfo.setTouZhuType("hezhi");
 	}
 
+	/**
+	 * 显示投注奖金
+	 */
+	public void showBetMoney(View v) {
+		String numbers = ((OneBallView) v).getiShowString();
+		String prompt = null;
+		if (numbers.equals("4")) {
+			prompt = "奖金80元";
+		} else if (numbers.equals("5")) {
+			prompt = "奖金40元";
+		} else if (numbers.equals("6")) {
+			prompt = "奖金25元";
+		} else if (numbers.equals("7")) {
+			prompt = "奖金16元";
+		} else if (numbers.equals("8")) {
+			prompt = "奖金12元";
+		} else if (numbers.equals("9")) {
+			prompt = "奖金10元";
+		} else if (numbers.equals("10")) {
+			prompt = "奖金9元";
+		} else if (numbers.equals("11")) {
+			prompt = "奖金9元";
+		} else if (numbers.equals("12")) {
+			prompt = "奖金10元";
+		} else if (numbers.equals("13")) {
+			prompt = "奖金12元";
+		} else if (numbers.equals("14")) {
+			prompt = "奖金16元";
+		} else if (numbers.equals("15")) {
+			prompt = "奖金25元";
+		} else if (numbers.equals("16")) {
+			prompt = "奖金40元";
+		} else if (numbers.equals("17")) {
+			prompt = "奖金80元";
+		}
+
+		if (toast == null) {
+			toast = Toast.makeText(this, prompt, Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+			toast.show();
+		} else {
+			toast.setText(prompt);
+			toast.show();
+		}
+	}
 }

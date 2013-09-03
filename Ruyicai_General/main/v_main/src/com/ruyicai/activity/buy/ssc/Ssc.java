@@ -51,6 +51,8 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		setIssue();
 		MobclickAgent.onEvent(this, "shishicai"); // BY贺思明 点击首页的“时时彩”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
+		relativeLayout1.setVisibility(View.GONE);
+		betInfoTextView.setVisibility(View.VISIBLE);
 	}
 
 	public void turnHosity() {
@@ -212,5 +214,4 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		}
 		isRun = false;
 	}
-
 }

@@ -32,6 +32,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,19 +104,23 @@ public class Dlc extends ZixuanAndJiXuan {
 	private Context context;
 	Handler gameHandler = new Handler();
 	protected TextView lastcode;
-	/*Add by fansm 20130417 start*/
+	/* Add by fansm 20130417 start */
 	private TextView lastCodeTxt;
 	private Button refreshBtn;
 	private String showMessage = "";
-	/*Add by fansm 20130417 end*/
+	/* Add by fansm 20130417 end */
+	private RelativeLayout relativeLayout;
+	private TextView betInfo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		/*Add by fansm 20130416 start*/
-		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
-		/*Add by fansm 20130416 end*/
-		batchCode = ""; //add by yejc 20130708
+		super.lotno = Constants.LOTNO_11_5;
+		/* Add by fansm 20130416 start */
+		if (Constants.isDebug)
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		/* Add by fansm 20130416 end */
+		batchCode = ""; // add by yejc 20130708
 		context = this;
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutMain = inflater.inflate(R.layout.buy_dlc_main, null);
@@ -126,6 +131,8 @@ public class Dlc extends ZixuanAndJiXuan {
 		initSpinner();
 		setIssue(lotno);
 		setlastbatchcode(lotno);
+		relativeLayout.setVisibility(View.GONE);
+		betInfo.setVisibility(View.VISIBLE);
 		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 	}
@@ -212,13 +219,14 @@ public class Dlc extends ZixuanAndJiXuan {
 	 * 初始化组件
 	 */
 	private void initView() {
-
+		relativeLayout = (RelativeLayout) findViewById(R.id.last_batchcode);
+		betInfo = (TextView) findViewById(R.id.bet_info);
 		titleOne = (TextView) findViewById(R.id.layout_main_text_title_one);
 		issue = (TextView) findViewById(R.id.layout_main_text_issue);
 		time = (TextView) findViewById(R.id.layout_main_text_time);
 		imgRetrun = (Button) findViewById(R.id.layout_main_img_return);
 		lastcode = (TextView) findViewById(R.id.last_batchcode_textlable_red);
-		/*Add by fansm 20130417 start*/
+		/* Add by fansm 20130417 start */
 		refreshBtn = (Button) findViewById(R.id.refresh_code);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
 		refreshBtn.setVisibility(View.VISIBLE);
@@ -227,7 +235,7 @@ public class Dlc extends ZixuanAndJiXuan {
 				setlastbatchcode(lotno);
 			}
 		});
-		/*Add by fansm 20130417 end*/
+		/* Add by fansm 20130417 end */
 		titleOne.setText(getString(R.string.dlc));
 		imgRetrun.setVisibility(View.VISIBLE);
 		// ImageView的返回事件
@@ -282,7 +290,7 @@ public class Dlc extends ZixuanAndJiXuan {
 				.findViewById(R.id.buy_group_layout6);
 		final LinearLayout layoutParentPicture = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout6);
-		
+
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -325,13 +333,14 @@ public class Dlc extends ZixuanAndJiXuan {
 			}
 
 		});
-		
+
 		layoutParentPicture.setVisibility(View.VISIBLE);
 		layoutPicture.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				setNoticeLotno(Lotno);
-				layoutPicture.setBackgroundResource(R.drawable.buy_group_layout_b);
+				layoutPicture
+						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				Intent intent = new Intent(Dlc.this, NoticeActivityGroup.class);
 				intent.putExtra("position", 0);
 				startActivity(intent);
@@ -390,6 +399,7 @@ public class Dlc extends ZixuanAndJiXuan {
 				int position = typeSpinner.getSelectedItemPosition();
 				action(position);
 				startSensor();
+				showBetInfo("请选择选号小球");
 			}
 
 			@Override
@@ -502,12 +512,13 @@ public class Dlc extends ZixuanAndJiXuan {
 	}
 
 	public void setlastbatchcode(final String type) {
-		/*Add by fansm 20130417 start*/
-		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), 
-				"setlastbatchcode()");
+		/* Add by fansm 20130417 start */
+		if (Constants.isDebug)
+			PublicMethod.outLog(this.getClass().getSimpleName(),
+					"setlastbatchcode()");
 		lastCodeTxt.setText(getString(R.string.refresh_lastCode_msg));
 		lastcode.setText("");
-		/*Add by fansm 20130417 end*/
+		/* Add by fansm 20130417 end */
 		final Handler tHandler = new Handler();
 		Thread thread = new Thread(new Runnable() {
 
@@ -523,17 +534,18 @@ public class Dlc extends ZixuanAndJiXuan {
 						JSONArray prizeArray = prizemore.getJSONArray("result");
 						JSONObject prizeJson = (JSONObject) prizeArray.get(0);
 						final String wincode = prizeJson.getString("winCode");
-						/*Add by fansm 20130417 start*/
-						final String batchCode = prizeJson.getString("batchCode");
-						/*Add by fansm 20130417 end*/
+						/* Add by fansm 20130417 start */
+						final String batchCode = prizeJson
+								.getString("batchCode");
+						/* Add by fansm 20130417 end */
 						tHandler.post(new Runnable() {
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
 								lastcode.setText(parseStrforcode(type, wincode));
-								/*Add by fansm 20130417 start*/
+								/* Add by fansm 20130417 start */
 								lastCodeTxt.setText("第" + batchCode + "期开奖：");
-								/*Add by fansm 20130417 end*/
+								/* Add by fansm 20130417 end */
 							}
 						});
 
@@ -621,10 +633,10 @@ public class Dlc extends ZixuanAndJiXuan {
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						setIssue(lotno);
-						/*Add by fansm 20130416 start*/
-						/*refresh last code*/
-						//setlastbatchcode(lotno);
-						/*Add by fansm 20130416 end*/
+						/* Add by fansm 20130416 start */
+						/* refresh last code */
+						// setlastbatchcode(lotno);
+						/* Add by fansm 20130416 end */
 					}
 
 				})
@@ -657,6 +669,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
+		showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
 
 	public void onCheckAction(int checkedId) {
@@ -853,9 +866,8 @@ public class Dlc extends ZixuanAndJiXuan {
 						if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT
 								&& areaNums[1].table.getOneBallStatue(nBallId) != 0) {
 							areaNums[1].table.clearOnBallHighlight(nBallId);
-							toast.setText(getResources().getString(
+							showBetInfo(getResources().getString(
 									R.string.ssq_toast_danma_title));
-							toast.show();
 						}
 
 					} else if (i == 1) {
@@ -864,9 +876,8 @@ public class Dlc extends ZixuanAndJiXuan {
 						if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT
 								&& areaNums[0].table.getOneBallStatue(nBallId) != 0) {
 							areaNums[0].table.clearOnBallHighlight(nBallId);
-							toast.setText(getResources().getString(
+							showBetInfo(getResources().getString(
 									R.string.ssq_toast_tuoma_title));
-							toast.show();
 						}
 					}
 				}
@@ -1016,8 +1027,10 @@ public class Dlc extends ZixuanAndJiXuan {
 		return textSum;
 
 	};
+
 	/**
 	 * 获得胆拖投注的投注状态
+	 * 
 	 * @param iZhuShu
 	 * @return
 	 */
@@ -1032,17 +1045,17 @@ public class Dlc extends ZixuanAndJiXuan {
 		if (dan + tuo < num + 1 || dan < 1 || dan > num - 1 || tuo < 2
 				|| tuo > tuoNum) {
 			if (state.equals("R2") || state.equals("Z2")) {
-				isTouzhu = "请选择:\"1个胆码；\n" + " 2~"+tuoNum+"个拖码；\n"
+				isTouzhu = "请选择:\"1个胆码；\n" + " 2~" + tuoNum + "个拖码；\n"
 						+ " 胆码与拖码个数之和不小于" + (num + 1) + "个";
 			} else {
-				isTouzhu = "请选择:\n1~" + (num - 1) + "个胆码；\n"
-						+ " 2~"+tuoNum+"个拖码；\n" + " 胆码与拖码个数之和不小于" + (num + 1) + "个";
+				isTouzhu = "请选择:\n1~" + (num - 1) + "个胆码；\n" + " 2~" + tuoNum
+						+ "个拖码；\n" + " 胆码与拖码个数之和不小于" + (num + 1) + "个";
 			}
 		} else if (iZhuShu > MAX_ZHU) {
 			isTouzhu = "false";
 		} else {
 			isTouzhu = "true";
-		}	
+		}
 		return isTouzhu;
 	}
 
@@ -1092,7 +1105,7 @@ public class Dlc extends ZixuanAndJiXuan {
 			} else {
 				int ballNums = areaNums[0].table.getHighlightBallNums();
 				int oneNum = num - ballNums;
-				if (!checkBallNum(ballNums,num)) {
+				if (!checkBallNum(ballNums, num)) {
 					return isTouzhu = this.showMessage;
 				}
 				if (oneNum > 0) {
@@ -1116,21 +1129,24 @@ public class Dlc extends ZixuanAndJiXuan {
 		}
 		return isTouzhu;
 	}
+
 	/**
 	 * 判断球数
+	 * 
 	 * @param ballNums
 	 * @param num
 	 * @return
 	 */
-	private boolean checkBallNum(int ballNums,int num) {
+	private boolean checkBallNum(int ballNums, int num) {
 		if ("R8".equals(state) && Constants.LOTNO_GD_11_5.equals(lotno)) {
 			if (ballNums > num) {
-				showMessage = "只能选择"+num+"个球进行投注！";
-				return false;	
+				showMessage = "只能选择" + num + "个球进行投注！";
+				return false;
 			}
 		}
 		return true;
 	}
+
 	/**
 	 * 投注注码
 	 * 
@@ -1349,7 +1365,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		isRun = false;
-//		batchCode = ""; //move to onCreate by yejc 20130708
+		// batchCode = ""; //move to onCreate by yejc 20130708
 	}
 
 	void setLotoNoAndType(CodeInfo codeInfo) {
@@ -1360,9 +1376,12 @@ public class Dlc extends ZixuanAndJiXuan {
 			codeInfo.setTouZhuType("zhixuan");
 		}
 	}
-	
+
 	public void setNoticeLotno(int Lotno) {
 		NoticeActivityGroup.LOTNO = Lotno;
 	}
 
+	public void showBetInfo(String text) {
+		betInfo.setText(text);
+	}
 }

@@ -1065,7 +1065,9 @@ public class NoticeBallActivity extends Activity {
 		} else if (oneRight > 0 && twoRight > 0) {
 			Toast.makeText(this, "还需要" + oneRight + "个小球", Toast.LENGTH_SHORT)
 					.show();
-		} else if (oneRight == -2 || twoRight == -2) {
+		} else if (oneRight == -2
+				|| twoRight == -2
+				&& NoticeActivityGroup.LOTNO == NoticeActivityGroup.ID_SUB_GD115_LISTVIEW) {
 			Toast.makeText(this, "只能选择8个小球进行投注", Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -1077,7 +1079,8 @@ public class NoticeBallActivity extends Activity {
 		} else if (redListOne.size() > 0 && redListOne.size() <= selectNum) {
 			legalState = selectNum - redListOne.size();
 		} else if (redListOne.size() > selectNum) {
-			if (selectNum == 8) {
+			if (selectNum == 8
+					&& NoticeActivityGroup.LOTNO == NoticeActivityGroup.ID_SUB_GD115_LISTVIEW) {
 				legalState = -2;
 			} else {
 				legalState = 0;

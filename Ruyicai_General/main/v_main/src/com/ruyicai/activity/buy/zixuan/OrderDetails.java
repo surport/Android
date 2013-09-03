@@ -1,5 +1,6 @@
 package com.ruyicai.activity.buy.zixuan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import com.ruyicai.activity.join.JoinStartActivity;
 import com.ruyicai.constant.Constants;
 
 public class OrderDetails extends BuyActivityGroup {
+	public static boolean isAlert = true;// 温馨提示
 	private String[] titles = { "投注", "追号", "合买", "赠送" };
 	private String[] topTitles = { "投注确认", "追号设置", "发起合买", "赠送彩票" };
 	private Class[] allId = { ZiXuanTouZhu.class, ZixuanZhuihao.class,
@@ -19,6 +21,8 @@ public class OrderDetails extends BuyActivityGroup {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Intent intent = getIntent();
+		isAlert = intent.getBooleanExtra("isAlert", true);
 		Constants.type = "fc";
 		isIssue(false);
 		init(titles, topTitles, allId);

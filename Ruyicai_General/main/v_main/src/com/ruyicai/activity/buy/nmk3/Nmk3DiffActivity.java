@@ -25,6 +25,7 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "三不同号", "二不同号" };
 		BallResId[0] = R.drawable.nmk3_normal;
 		BallResId[1] = R.drawable.nmk3_click;
@@ -36,8 +37,10 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		radioId = checkedId;
 		onCheckAction(checkedId);
+		((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
+				iProgressBeishu));
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -45,7 +48,6 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
 	}
-
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
@@ -166,10 +168,10 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		} else {
 			if (getZhuShu() > 1) {
 				playMethod = "21";
-			}else {
+			} else {
 				playMethod = "20";
 			}
-			
+
 		}
 
 		return playMethod;

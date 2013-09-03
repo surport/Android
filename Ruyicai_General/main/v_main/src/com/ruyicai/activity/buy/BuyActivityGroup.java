@@ -90,6 +90,7 @@ public class BuyActivityGroup extends ActivityGroup {
 	public boolean isFromTrackQuery = false;
 
 	/** add by yejc 20130422 start */
+	protected TextView betInfoTextView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +111,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		mInflater = LayoutInflater.from(this);
 		// 初始化标题组建的显示
 		initView();
+		betInfoTextView = (TextView) findViewById(R.id.bet_info);
 		// 监听tab切换事件
 		mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String tabId) {
@@ -122,6 +124,7 @@ public class BuyActivityGroup extends ActivityGroup {
 //						}
 						return;
 					}
+					betInfoTextView.setText("请选择投注号码");
 				}
 			}
 		});
@@ -936,5 +939,9 @@ public class BuyActivityGroup extends ActivityGroup {
 	protected void onDestroy() {
 		super.onDestroy();
 		isRun = false;
+	}
+	
+	public void showBetInfo(String text){
+		betInfoTextView.setText(text);
 	}
 }

@@ -59,7 +59,7 @@ public class InsufficientBalanceActivity extends Activity {
 
 		// 初始化金额的显示
 		amtTextView = (TextView) findViewById(R.id.insufficient_balance_amt);
-		int menoy = Integer.valueOf(amountString) / 100;
+		long menoy = Long.valueOf(amountString) / 100;
 		amtTextView.setText(menoy + "元");
 
 		// 初始化直接支付按钮

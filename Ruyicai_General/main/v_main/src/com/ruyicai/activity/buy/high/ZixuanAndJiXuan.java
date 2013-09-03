@@ -30,13 +30,17 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -51,11 +55,13 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
+import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZHmissViewItem;
+import com.ruyicai.activity.buy.nmk3.Nmk3Activity;
 import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
@@ -72,6 +78,7 @@ import com.ruyicai.jixuan.SscBalls;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.MissJson;
 import com.ruyicai.net.newtransaction.MissInterface;
+import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
@@ -287,6 +294,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	protected ViewPager mGallery;
 	// 缓存需要左右滑动的视图群的列表容器
 	public List<BuyViewItemMiss> itemViewArray;
+	private ListView latestLotteryList;
 
 	/**
 	 * 创建可滑动直选页面
@@ -305,7 +313,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		setNewPosition(0);
 		this.code = code;
 		buyview.removeAllViews();
-		
+
 		if (missView.get(id) == null) {
 			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View zhixuanview = inflater.inflate(R.layout.ssczhixuan_new, null);
@@ -341,7 +349,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		if (missView.get(id) == null) {
 			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View zhixuanview = inflater.inflate(R.layout.ssczhixuan, null);
-
+			latestLotteryList = (ListView) zhixuanview
+					.findViewById(R.id.buy_zixuan_latest_lottery);
 			initZixuanView(zhixuanview);
 			initViewItem(areaNum, isTen, zhixuanview, isMiss, type);
 			initBotm(zhixuanview);
@@ -371,6 +380,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		if (missView.get(id) == null) {
 			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View zhixuanview = inflater.inflate(R.layout.ssczhixuan, null);
+			latestLotteryList = (ListView) zhixuanview
+					.findViewById(R.id.buy_zixuan_latest_lottery);
 			initZixuanView(zhixuanview);
 			initViewItemDan(areaNum, isTen, zhixuanview, isMiss, type);
 			initBotm(zhixuanview);
@@ -397,6 +408,84 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		showEditTitle(type);
 		setTextPrize(type);
 		buyview.addView(missView.get(id).getView());
+		initLatestLotteryList();
+	}
+
+	private void initLatestLotteryList() {
+		final Handler handler = new Handler();
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				JSONObject prizemore = PrizeInfoInterface.getInstance()
+						.getNoticePrizeInfo(lotno, "1", "10");
+
+				try {
+					final String msg = prizemore.getString("message");
+					final String code = prizemore.getString("error_code");
+					if (code.equals("0000")) {
+						JSONArray prizeArray = prizemore.getJSONArray("result");
+
+						final List<LatestLotteryInfo> latestLotteryInfos = new ArrayList<LatestLotteryInfo>(
+								10);
+						for (int i = 0; i < 10; i++) {
+							JSONObject prizeJson1 = (JSONObject) prizeArray
+									.get(i);
+							LatestLotteryInfo latestLotteryInfo = new LatestLotteryInfo();
+							latestLotteryInfo.setBatchCode(prizeJson1
+									.getString("batchCode"));
+							latestLotteryInfo.setWinCode(prizeJson1
+									.getString("winCode"));
+							latestLotteryInfos.add(latestLotteryInfo);
+						}
+						handler.post(new Runnable() {
+
+							@Override
+							public void run() {
+								latestLotteryListAdapter listAdapter = new latestLotteryListAdapter(
+										context, latestLotteryInfos);
+								if (latestLotteryList != null) {
+									latestLotteryList.setAdapter(listAdapter);
+									setListViewHeightBasedOnChildren(latestLotteryList);
+								}
+							}
+						});
+
+					} else {
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+										.show();
+							}
+						});
+					}
+				} catch (JSONException e) {
+				}
+			}
+		}).start();
+	}
+
+	public void setListViewHeightBasedOnChildren(ListView listView) {
+		// 获取ListView对应的Adapter
+		ListAdapter listAdapter = listView.getAdapter();
+		if (listAdapter == null) {
+			return;
+		}
+
+		int totalHeight = 0;
+		for (int i = 0, len = listAdapter.getCount(); i < len; i++) { // listAdapter.getCount()返回数据项的数目
+			View listItem = listAdapter.getView(i, null, listView);
+			listItem.measure(0, 0); // 计算子项View 的宽高
+			totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+		}
+
+		ViewGroup.LayoutParams params = listView.getLayoutParams();
+		params.height = totalHeight
+				+ (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+		// listView.getDividerHeight()获取子项间分隔符占用的高度
+		// params.height最后得到整个ListView完整显示需要的高度
+		listView.setLayoutParams(params);
 	}
 
 	private void initMissText(AreaNum areaNums[], boolean isDanTuo, int id) {
@@ -579,6 +668,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		// 设置 ViewPager 的 Adapter
 		MainViewPagerAdapter MianAdapter = new MainViewPagerAdapter(null);
 		View view = numView.createView();
+		latestLotteryList = (ListView) view
+				.findViewById(R.id.buy_zixuan_latest_lottery);
 		numView.rightBtn(view);
 		numView.rightBtnBG(R.drawable.buy_zh_miss_btn);
 
@@ -834,10 +925,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			break;
 		case Constants.SSC_THREE_GROUP_THREE:
 			textPrize.setText(getString(R.string.ssc_prize_third_three));
-			break;	
+			break;
 		case Constants.SSC_THREE_GROUP_SIX:
 			textPrize.setText(getString(R.string.ssc_prize_third_six));
-			break;	
+			break;
 		case FIVE:
 			textPrize.setText(getString(R.string.ssc_prize_five_zx));
 			break;
@@ -1266,12 +1357,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 	}
 
-	/**
-	 * 计算注数和金额的方法
-	 * 
-	 */
 	public void changeTextSumMoney() {
-		String text = textSumMoney(areaNums, iProgressBeishu);
+		String text = textSumMoney(itemViewArray.get(0).areaNums,
+				iProgressBeishu);
 		if (toast == null) {
 			toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -1333,10 +1421,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			viewNumPerLine = 1;
 			lineNum = 1;
 			iBallViewWidth = (iFieldWidth - scrollBarWidth) / 3;
-			/**add by pengcx 20130718 start*/
+			/** add by pengcx 20130718 start */
 			int screenHeight = PublicMethod.getDisplayHeight(context);
 			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35);
-			/**add by pengcx 20130718 end*/
+			/** add by pengcx 20130718 end */
 			lastLineViewNum = 0;
 			margin = (iFieldWidth - scrollBarWidth - iBallViewWidth
 					* viewNumPerLine) / 2;
@@ -1348,10 +1436,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
 				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
 				|| type == NMK3_DIFF_TWO) {
-			/**add by pengcx 20130718 start*/
+			/** add by pengcx 20130718 start */
 			int screenHeight = PublicMethod.getDisplayHeight(context);
 			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
-			/**add by pengcx 20130718 end*/
+			/** add by pengcx 20130718 end */
 		}
 
 		for (int row = 0; row < lineNum; row++) {
@@ -1503,7 +1591,18 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		int iBallId = v.getId();
 		isBallTable(iBallId);
 		showEditText();
-		changeTextSumMoney();
+		String text = textSumMoney(areaNums, iProgressBeishu);
+		showBetMoney(v);
+		if (getParent() == null) {
+			((Dlc) this).showBetInfo(text);
+		} else {
+			((BuyActivityGroup) getParent()).showBetInfo(text);
+		}
+	}
+	
+	public void showBetMoney(View v)
+	{
+		
 	}
 
 	/**
@@ -1697,7 +1796,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		mSeekBarQishu.setProgress(iProgressQishu);
 	}
-
 
 	/**
 	 * 当前注数
@@ -2071,7 +2169,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			areaNums[i].table.clearAllHighlights();
 		}
 		editZhuma.setText("");
-		
+
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
@@ -2137,5 +2235,110 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			break;
 		}
 		return false;
+	}
+
+	public void setLotnoX(String lotno) {
+		this.lotno = lotno;
+	}
+
+	class latestLotteryListAdapter extends BaseAdapter {
+		private Context context;
+		private List<LatestLotteryInfo> latestLotteryList;
+		private LayoutInflater inflater;
+
+		public latestLotteryListAdapter(Context context,
+				List<LatestLotteryInfo> latestLotteryList) {
+			super();
+			this.context = context;
+			this.latestLotteryList = latestLotteryList;
+			this.inflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public int getCount() {
+			return latestLotteryList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return latestLotteryList.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder holder = null;
+			if (convertView == null) {
+				holder = new ViewHolder();
+				convertView = inflater.inflate(R.layout.latestlottery_listitem,
+						null);
+				holder.issue = (TextView) convertView
+						.findViewById(R.id.latestlottery_textview_issue);
+				holder.winningNumber = (TextView) convertView
+						.findViewById(R.id.latestlottery_textview_winningnumbers);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			String batchCode = latestLotteryList.get(position).getBatchCode();
+			StringBuffer batchCodeString = new StringBuffer();
+			batchCodeString.append("第").append(batchCode.substring(0, 8))
+					.append("-").append(batchCode.substring(8)).append("期");
+			holder.issue.setText(batchCodeString);
+
+			String winCodeString = null;
+			if (lotno == Constants.LOTNO_NMK3) {
+				winCodeString = PublicMethod.formatNMK3Num(latestLotteryList
+						.get(position).getWinCode(), 2);
+			} else if (lotno == Constants.LOTNO_SSC) {
+				winCodeString = PublicMethod.formatSSCNum(latestLotteryList
+						.get(position).getWinCode(), 1);
+			} else {
+				winCodeString = PublicMethod.formatNum(
+						latestLotteryList.get(position).getWinCode(), 2);
+			}
+
+			holder.winningNumber.setText(winCodeString);
+
+			if (position % 2 == 0) {
+				convertView
+						.setBackgroundResource(R.color.latest_lottery_list_one);
+			} else {
+				convertView
+						.setBackgroundResource(R.color.latest_lottery_list_two);
+			}
+
+			return convertView;
+		}
+	}
+
+	static class ViewHolder {
+		public TextView issue;
+		public TextView winningNumber;
+	}
+}
+
+class LatestLotteryInfo {
+	private String batchCode;
+	private String winCode;
+
+	public String getBatchCode() {
+		return batchCode;
+	}
+
+	public void setBatchCode(String batchCode) {
+		this.batchCode = batchCode;
+	}
+
+	public String getWinCode() {
+		return winCode;
+	}
+
+	public void setWinCode(String winCode) {
+		this.winCode = winCode;
 	}
 }

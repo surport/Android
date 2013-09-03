@@ -1,6 +1,7 @@
 package com.ruyicai.activity.buy.nmk3;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
@@ -23,6 +24,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "通选", "单选" };
 		BallResId[0] = R.drawable.nmk3_normal;
 		BallResId[1] = R.drawable.nmk3_click;
@@ -33,6 +35,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
+		((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
 
 	@Override

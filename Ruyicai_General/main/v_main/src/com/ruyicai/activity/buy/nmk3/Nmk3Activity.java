@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
@@ -45,6 +48,8 @@ public class Nmk3Activity extends BuyActivityGroup {
 			}
 		});
 		/**add by yejc 20130723 end*/
+		relativeLayout1.setVisibility(View.GONE);
+		betInfoTextView.setVisibility(View.VISIBLE);
 	}
 
 	/**
@@ -140,5 +145,4 @@ public class Nmk3Activity extends BuyActivityGroup {
 			return false;
 		}
 	}
-
 }

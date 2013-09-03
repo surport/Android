@@ -17,7 +17,8 @@
             <LinearLayout
                 android:id="@id/linearLayout1"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
+                android:layout_height="fill_parent" 
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
@@ -433,6 +434,19 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp" >
+
+                    <ListView
+                        android:id="@+id/buy_zixuan_latest_lottery"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@null"
+                        android:listSelector="@color/white" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 

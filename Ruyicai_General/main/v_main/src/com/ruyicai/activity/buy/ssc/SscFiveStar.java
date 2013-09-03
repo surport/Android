@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.code.ssc.FiveStarCode;
@@ -28,6 +29,7 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
 		childtype = new String[] { "五星直选", "五星通选" };
 		setContentView(R.layout.sscbuyview);
@@ -47,6 +49,7 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
+		((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 		isMissNet(new SscMissJson(), sellWay, false);// 获取遗漏值
 	}
 

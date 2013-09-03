@@ -25,6 +25,7 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "复选", "单选" };
 		BallResId[0] = R.drawable.nmk3_normal;
 		BallResId[1] = R.drawable.nmk3_click;
@@ -36,6 +37,8 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		radioId = checkedId;
 		onCheckAction(checkedId);
+		((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
+				iProgressBeishu));
 	}
 
 	@Override
@@ -165,17 +168,15 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			}
 			// 如果是单式
 			else if (getZhuShu() == 1) {
-				//分别获取两个选号面板的号码
-				int[] aearnumbers0 = areaNums[0].table
-						.getHighlightBallNOs();
-				int[] aearnumbers1 = areaNums[1].table
-						.getHighlightBallNOs();
+				// 分别获取两个选号面板的号码
+				int[] aearnumbers0 = areaNums[0].table.getHighlightBallNOs();
+				int[] aearnumbers1 = areaNums[1].table.getHighlightBallNOs();
 				String numberPart = "";
-				//判断面板号码的大小
-				if((aearnumbers0[0]%10) > aearnumbers1[0]){
+				// 判断面板号码的大小
+				if ((aearnumbers0[0] % 10) > aearnumbers1[0]) {
 					montageSmallNumber(numbersPart, aearnumbers1);
 					montageBigNumber(numbersPart, aearnumbers0);
-				}else{
+				} else {
 					montageBigNumber(numbersPart, aearnumbers0);
 					montageSmallNumber(numbersPart, aearnumbers1);
 				}
@@ -187,19 +188,18 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 
 	private void montageBigNumber(StringBuffer numbersPart, int[] aearnumbers0) {
 		String numberPart;
-		//在拼接前面大的号码
+		// 在拼接前面大的号码
 		String numbers = String.valueOf(aearnumbers0[0]);
 		for (int number_j = 0; number_j < numbers.length(); number_j++) {
-			numberPart = PublicMethod.getZhuMa(Integer
-					.valueOf((String) numbers.subSequence(
-							number_j, number_j + 1)));
+			numberPart = PublicMethod.getZhuMa(Integer.valueOf((String) numbers
+					.subSequence(number_j, number_j + 1)));
 			numbersPart.append(numberPart);
 		}
 	}
 
 	private void montageSmallNumber(StringBuffer numbersPart, int[] aearnumbers1) {
 		String numberPart;
-		//拼接后面小的号码
+		// 拼接后面小的号码
 		numberPart = PublicMethod.getZhuMa(aearnumbers1[0]);
 		numbersPart.append(numberPart);
 	}

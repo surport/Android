@@ -36,6 +36,7 @@ public class TenActivity extends Dlc {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setLotnoX(Constants.LOTNO_ten);
 		setTitleOne(getString(R.string.tenTitle));
 		highttype = "DLC";
 		setLotno();
@@ -175,9 +176,8 @@ public class TenActivity extends Dlc {
 						if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT
 								&& areaNums[1].table.getOneBallStatue(nBallId) != 0) {
 							areaNums[1].table.clearOnBallHighlight(nBallId);
-							toast.setText(getResources().getString(
+							showBetInfo(getResources().getString(
 									R.string.ssq_toast_danma_title));
-							toast.show();
 						}
 
 					} else if (i == 1) {
@@ -186,9 +186,8 @@ public class TenActivity extends Dlc {
 						if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT
 								&& areaNums[0].table.getOneBallStatue(nBallId) != 0) {
 							areaNums[0].table.clearOnBallHighlight(nBallId);
-							toast.setText(getResources().getString(
+							showBetInfo(getResources().getString(
 									R.string.ssq_toast_tuoma_title));
-							toast.show();
 						}
 					}
 				} else if (state.equals("Q2")) {

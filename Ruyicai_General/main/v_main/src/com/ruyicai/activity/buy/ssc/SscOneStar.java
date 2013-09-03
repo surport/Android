@@ -27,6 +27,7 @@ public class SscOneStar extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		lotno = Constants.LOTNO_SSC;
 		super.onCreate(savedInstanceState);
 		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");

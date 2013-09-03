@@ -52,5 +52,7 @@
     <color name="jc_hun_zq_bqc_title_color">#666600</color>
     <color name="jc_hun_zq_bf_title_color">#569548</color>
     <!-- add end -->
-    
+    <color name="latest_lottery_list_one">#ffffff</color>
+    <color name="latest_lottery_list_two">#fffbe2</color>
+
 </resources>

@@ -37,6 +37,7 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
 		isbigsmall = true;
 		childtype = new String[] { "直选" };

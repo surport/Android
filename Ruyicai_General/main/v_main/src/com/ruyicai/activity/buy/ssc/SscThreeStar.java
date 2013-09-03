@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.code.ssc.ThreeStarCode;
@@ -32,6 +33,7 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
 		childtype = new String[] { "直选" ,"组三","组六"};
 		setContentView(R.layout.sscbuyview);
@@ -49,7 +51,7 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
-
+		((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
 
 	public void onCheckAction(int checkedId) {

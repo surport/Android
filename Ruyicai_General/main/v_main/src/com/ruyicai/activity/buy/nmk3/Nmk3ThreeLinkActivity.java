@@ -23,6 +23,7 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "直选" };
 		setContentView(R.layout.sscbuyview);
 		BallResId[0] = R.drawable.nmk3_normal;

@@ -126,7 +126,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	String message;
 	JSONObject obj;
 	boolean isMsg = true;// 是否是获取赠言
-	int allAtm;
+	long allAtm;
 	int zhu;
 	boolean isDialog = false;
 	private int restrictMax = 8;

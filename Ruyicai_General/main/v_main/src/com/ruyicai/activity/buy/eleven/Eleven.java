@@ -31,6 +31,7 @@ public class Eleven extends Dlc {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setLotnoX(Constants.LOTNO_eleven);
 		setTitleOne(getString(R.string.eleven));
 		highttype = "DLC";
 		setLotno();
