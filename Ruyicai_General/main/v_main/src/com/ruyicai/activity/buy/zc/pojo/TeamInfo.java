@@ -3,9 +3,7 @@ package com.ruyicai.activity.buy.zc.pojo;
 import android.os.Handler;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
 
 /**
@@ -24,17 +22,6 @@ public class TeamInfo {
 	private boolean isWin = false; 
 	private boolean isLevel = false;
 	private boolean isFail = false;
-	private boolean isHalfWin = false; 
-	private boolean isHalfLevel = false;
-	private boolean isHalfFail = false;
-	private boolean isHomeV0 = false; 
-	private boolean isHomeV1 = false;
-	private boolean isHomeV2 = false;
-	private boolean isHomeV3 = false; 
-	private boolean isGuestV0 = false;
-	private boolean isGuestV1 = false;
-	private boolean isGuestV2 = false;
-	private boolean isGuestV3 = false;
 	private boolean isDan = false;
 	public int onClickNum = 0;
 	public MyCheckBox[] check;
@@ -116,73 +103,6 @@ public class TeamInfo {
 	public void setFail(boolean isFail) {
 		this.isFail = isFail;
 	}
-	public boolean isHalfWin() {
-		return isHalfWin;
-	}
-	public void setHalfWin(boolean isHalfWin) {
-		this.isHalfWin = isHalfWin;
-	}
-	public boolean isHalfLevel() {
-		return isHalfLevel;
-	}
-	public void setHalfLevel(boolean isHalfLevel) {
-		this.isHalfLevel = isHalfLevel;
-	}
-	public boolean isHalfFail() {
-		return isHalfFail;
-	}
-	public void setHalfFail(boolean isHalfFail) {
-		this.isHalfFail = isHalfFail;
-	}
-	public boolean isHomeV0() {
-		return isHomeV0;
-	}
-	public void setHomeV0(boolean isHomeV0) {
-		this.isHomeV0 = isHomeV0;
-	}
-	public boolean isHomeV1() {
-		return isHomeV1;
-	}
-	public void setHomeV1(boolean isHomeV1) {
-		this.isHomeV1 = isHomeV1;
-	}
-	public boolean isHomeV2() {
-		return isHomeV2;
-	}
-	public void setHomeV2(boolean isHomeV2) {
-		this.isHomeV2 = isHomeV2;
-	}
-	public boolean isHomeV3() {
-		return isHomeV3;
-	}
-	public void setHomeV3(boolean isHomeV3) {
-		this.isHomeV3 = isHomeV3;
-	}
-	public boolean isGuestV0() {
-		return isGuestV0;
-	}
-	public void setGuestV0(boolean isGuestV0) {
-		this.isGuestV0 = isGuestV0;
-	}
-	public boolean isGuestV1() {
-		return isGuestV1;
-	}
-	public void setGuestV1(boolean isGuestV1) {
-		this.isGuestV1 = isGuestV1;
-	}
-	public boolean isGuestV2() {
-		return isGuestV2;
-	}
-	public void setGuestV2(boolean isGuestV2) {
-		this.isGuestV2 = isGuestV2;
-	}
-	public boolean isGuestV3() {
-		return isGuestV3;
-	}
-	public void setGuestV3(boolean isGuestV3) {
-		this.isGuestV3 = isGuestV3;
-	}
-	
 	
 	public String getSelectedTeamString() {
 		StringBuffer team = new StringBuffer();

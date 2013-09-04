@@ -244,8 +244,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			int zhuShu = Integer.valueOf(betAndGift.getZhushu())
-					* iProgressBeishu;
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu())/* * iProgressBeishu*/;
 			zhushu.setText(zhuShu + "注     ");
 			jine.setText(iProgressQishu
 					* (Integer.valueOf(betAndGift.getAmount()) / 100)
@@ -270,10 +269,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			betAndGift.setUserno(userno);
 			betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
-			int amount = Integer.valueOf(betAndGift.getAmount())
-					* iProgressBeishu;
-			int zhuShu = Integer.valueOf(betAndGift.getZhushu())
-					* iProgressBeishu;
+			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
 			betAndGift.setAmount(String.valueOf(amount));
 			betAndGift.setZhushu(String.valueOf(zhuShu));
 		}

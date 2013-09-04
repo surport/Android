@@ -18,15 +18,15 @@ import com.ruyicai.activity.buy.BuyActivityGroup;
 public class NoticeZCActivity extends BuyActivityGroup {
 	int lotnoZC[] = { NoticeActivityGroup.ID_SUB_SFC_LISTVIEW,
 			NoticeActivityGroup.ID_SUB_RXJ_LISTVIEW,
-			NoticeActivityGroup.ID_SUB_JQC_LISTVIEW,
-			NoticeActivityGroup.ID_SUB_LCB_LISTVIEW };
+			NoticeActivityGroup.ID_SUB_LCB_LISTVIEW,
+			NoticeActivityGroup.ID_SUB_JQC_LISTVIEW};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		isIssue(false);
 		String[] topTitles8 = { "足彩开奖公告", "足彩开奖公告", "足彩开奖公告", "足彩开奖公告" };
-		String[] titles8 = { "胜负彩", "任选九", "进球彩", "六场半" };
+		String[] titles8 = { "胜负彩", "任选九", "六场半", "进球彩" };
 		Class[] allId8 = { NoticeInfoActivity.class, NoticeInfoActivity.class,
 				NoticeInfoActivity.class, NoticeInfoActivity.class };
 		init(titles8, topTitles8, allId8);

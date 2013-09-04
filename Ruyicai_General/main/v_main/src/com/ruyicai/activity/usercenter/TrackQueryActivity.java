@@ -695,6 +695,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 	private void setContinueBtn(Button btn, final TrackQueryInfo info) {
 		if (info.getIsRepeatBuy().equals("true")) {
 			btn.setBackgroundResource(R.drawable.user_continue_issue_selector);
+			btn.setClickable(true);
 			btn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					/**add by yejc 20130510 start*/
@@ -731,6 +732,8 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			});
 		} else {
 			btn.setBackgroundResource(R.drawable.btn_qxzq_stop);
+			btn.setFocusable(false); //add by yejc 20130903
+			btn.setClickable(false);
 		}
 	}
 

@@ -78,24 +78,13 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 		}
 	}
 	
-//	public int getTeamNum(List<TeamInfo> list) {
-//		int teamNum = 0;
-//		for (int i = 0; i < list.size(); i++) {
-//			TeamInfo info = list.get(i);
-//			if (info.getClickNum() > 0) {
-//				teamNum++;
-//			}
-//		}
-//		return teamNum;
-//	}
-	
 	protected void turnAnalysis(String lotno, String teamId) {
 		Constants.currentTickType = "zuCai";
 		Intent intent = new Intent(mContext, JcExplainActivity.class);
 		String event = lotno + "_" + getCurrentIssue()
 				+ "_" + teamId;
 		intent.putExtra("event", event);
-		Log.i("yejc", "======event=");
+		Log.i("yejc", "======event="+event);
 		intent.putExtra(LOTNO_ZC, LOTNO_ZC);
 		mContext.startActivity(intent);
 	}

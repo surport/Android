@@ -213,26 +213,35 @@ public class FootBallMainActivity extends Activity {
 			btn.setTag(mIssueIndex);
 			btn.setLayoutParams(params);
 			myBtns[line * lineNum + j] = btn;
-			String issue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(line * lineNum + j)).getBatchCode();
+			AdvanceBatchCode aBatchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(line * lineNum + j);
+			String issue = aBatchCode.getBatchCode();
+			String state = aBatchCode.getState();
 			btn.setBtnText(issue);
-			btn.initBg(mBgId);
-			btn.setPaintColorArray(mPaintColor);
-			btn.switchBg();
-			btn.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					for (int i = 0; i < myBtns.length; i++) {
-						myBtns[i].setOnClick(false);
-						myBtns[i].switchBg();
+			if ("5".equals(state)) {
+				btn.initBg(new int[]{R.drawable.zc_wait_issue, R.drawable.zc_wait_issue});
+				btn.setPaintColorArray(new int[]{Color.BLACK, Color.BLACK});
+				btn.switchBg();
+			} else {
+				btn.initBg(mBgId);
+				btn.setPaintColorArray(mPaintColor);
+				btn.switchBg();
+				btn.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						for (int i = 0; i < myBtns.length; i++) {
+							myBtns[i].setOnClick(false);
+							myBtns[i].switchBg();
+						}
+						btn.setOnClick(true);
+						btn.switchBg();
+						int which = (Integer)((MyButton)v).getTag();
+						String selectIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode();
+						getData(mLotnoArray[mPlayIndex], selectIssue);
+						setViewState();
 					}
-					btn.setOnClick(true);
-					btn.switchBg();
-					int which = (Integer)((MyButton)v).getTag();
-					String selectIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode();
-					getData(mLotnoArray[mPlayIndex], selectIssue);
-					setViewState();
-				}
-			});
+				});
+			}
+			
 			layoutOne.addView(btn);
 			mIssueIndex++;
 		}
@@ -319,7 +328,9 @@ public class FootBallMainActivity extends Activity {
 				break;
 				
 			case R.id.buy_zixuan_img_again:
-				mFootBallAdapters[mPlayIndex].clearSelected();
+				if (mFootBallAdapters[mPlayIndex] != null) {
+					mFootBallAdapters[mPlayIndex].clearSelected();
+				}
 				setTeamNum(0);
 				break;
 				
@@ -567,6 +578,9 @@ public class FootBallMainActivity extends Activity {
 	}
 	
 	public void beginTouZhu() {
+		if (mFootBallAdapters[mPlayIndex] == null) {
+			return;
+		}
 		int iZhuShu = mFootBallAdapters[mPlayIndex].getZhuShu();// 注数是注数*倍数的结果
 		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
 		sessionid = pre.getStringValue("sessionid");

@@ -81,7 +81,9 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 			copyHolder.divider.setVisibility(View.GONE);
 		}
 		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		copyHolder.gameDate.setText(mTeamList.get(position).getDate());
+		String tiem = mTeamList.get(position).getTeamId() + "\n"
+				+PublicMethod.getEndTime(mTeamList.get(position).getDate()) + " (赛)";
+		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		copyHolder.textVS.setText("VS");
 		copyHolder.guestTeam.setText(mTeamList.get(position).getGuestTeam());
@@ -189,16 +191,24 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 
 	@Override
 	protected boolean isTouZhu() {
+		for (int i = 0; i < mTeamList.size(); i++) {
+			TeamInfo info = mTeamList.get(i);
+			if (!isCheckIndex(info, 0, 2) || !isCheckIndex(info, 3, 5)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
 	protected boolean isCheckIndex(TeamInfo info, int start, int end) {
 		boolean isIndex = false;
-		for (int i = 0; i < info.check.length; i++) {
-			if (info.check[i].getChecked()) {
-				if (i >= start && i <= end) {
-					isIndex = true;
-					break;
+		if (info.check != null) {
+			for (int i = 0; i < info.check.length; i++) {
+				if (info.check[i].getChecked()) {
+					if (i >= start && i <= end) {
+						isIndex = true;
+						break;
+					}
 				}
 			}
 		}

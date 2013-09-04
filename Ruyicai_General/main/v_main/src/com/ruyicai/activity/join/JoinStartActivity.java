@@ -284,19 +284,14 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
 //			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
-			zhushu.setText(mZhushu *iProgressBeishu + "注     ");
-			jine.setText(+iProgressQishu * mZhushu *
+			zhushu.setText(mZhushu + "注     ");
+			jine.setText(iProgressQishu * mZhushu *
 					2 * iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addview.getAllZhu() + "注     ");
 			jine.setText(iProgressQishu * addview.getAllAmt() * iProgressBeishu
 					+ "元");
 		}
-		// return "注数："
-		// + addview.getAllZhu() + "注     "
-		// + "金额：" +
-		// + iProgressQishu * addview.getAllAmt() * iProgressBeishu
-		// + "元";
 	}
 
 	public void onEditTextClik() {
@@ -464,7 +459,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 //			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
-			String zhuShu = String.valueOf(mZhushu* iProgressBeishu);
+			String zhuShu = String.valueOf(mZhushu);
 			String amount = String.valueOf(mZhushu *iProgressBeishu*200);
 			betAndGift.setAmount(amount);
 			betAndGift.setZhushu(zhuShu);

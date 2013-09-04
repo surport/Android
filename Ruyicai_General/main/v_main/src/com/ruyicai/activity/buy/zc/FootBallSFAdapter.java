@@ -4,6 +4,8 @@ import java.util.List;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.zc.pojo.TeamInfo;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.util.PublicMethod;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +86,10 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 			copyHolder.divider.setVisibility(View.GONE);
 		}
 		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		copyHolder.gameDate.setText(mTeamList.get(position).getDate());
+		String tiem = mTeamList.get(position).getTeamId() + "\n"+
+				PublicMethod.getEndTime(mTeamList.get(position).getDate()) 
+				+ " (Èü)";
+		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		copyHolder.homeOdds.setText(mTeamList.get(position).getHomeOdds());
 		copyHolder.textVS.setText("VS");

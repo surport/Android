@@ -9,13 +9,14 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@color/white"
         android:paddingTop="85dip" >
 
         <ListView
             android:id="@id/buy_footballlottery_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="55dip"
+            android:layout_marginBottom="50dip"
             android:background="@color/white"
             android:divider="@color/zc_sfc_listview_item_bg"
             android:dividerHeight="0dip" >

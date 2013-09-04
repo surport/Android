@@ -5,6 +5,8 @@ import java.util.List;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.zc.pojo.TeamInfo;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.util.PublicMethod;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +84,9 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 			copyHolder.divider.setVisibility(View.GONE);
 		}
 		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		copyHolder.gameDate.setText(mTeamList.get(position).getDate());
+		String tiem = mTeamList.get(position).getTeamId() + "\n"
+				+ PublicMethod.getEndTime(mTeamList.get(position).getDate()) + " (赛)";
+		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		copyHolder.homeOdds.setText(mTeamList.get(position).getHomeOdds());
 		copyHolder.textVS.setText("VS");
@@ -154,6 +158,10 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 						if (info.isDan()) {
 							copyHolder.btnDan.setBackgroundResource(R.drawable.jc_btn_b);
 							copyHolder.btnDan.setTextColor(white);
+							if (mContext instanceof FootBallMainActivity) {
+								FootBallMainActivity activity = (FootBallMainActivity)mContext;
+								activity.changeTextSumMoney(getZhuShu());
+							}
 						} else {
 							copyHolder.btnDan.setBackgroundResource(android.R.color.transparent);
 							copyHolder.btnDan.setTextColor(black);

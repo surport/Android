@@ -77,7 +77,9 @@ public class FootBall4CJQAdapter extends FootBall6CBAdapter{
 			copyHolder.divider.setVisibility(View.GONE);
 		}
 		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		copyHolder.gameDate.setText(mTeamList.get(position).getDate());
+		String tiem = mTeamList.get(position).getTeamId() + "\n"
+				+PublicMethod.getEndTime(mTeamList.get(position).getDate()) + " (赛)";
+		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		copyHolder.textVS.setText("VS");
 		copyHolder.guestTeam.setText(mTeamList.get(position).getGuestTeam());
@@ -149,6 +151,12 @@ public class FootBall4CJQAdapter extends FootBall6CBAdapter{
 
 	@Override
 	protected boolean isTouZhu() {
+		for (int i = 0; i < mTeamList.size(); i++) {
+			TeamInfo info = mTeamList.get(i);
+			if (!isCheckIndex(info, 0, 3) || !isCheckIndex(info, 4, 7)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	

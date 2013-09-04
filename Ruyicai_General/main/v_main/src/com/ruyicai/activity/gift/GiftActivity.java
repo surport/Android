@@ -709,9 +709,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			zhushu.setText(Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu + "注     ");
+			zhushu.setText(Integer.valueOf(betAndGift.getZhushu()) + "注     ");
 			jine.setText("金额：" + iProgressQishu
-					* (Integer.valueOf(betAndGift.getAmount()) / 100)
+					* Integer.valueOf(betAndGift.getZhushu())*2
 					* iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addview.getAllZhu() + "注     ");
@@ -1052,7 +1052,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			betAndGift.setIsSellWays("");
 			
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
-			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
 			betAndGift.setZhushu(String.valueOf(zhuShu));
 //			betAndGift.setAmount(String.valueOf(amount));
 		}
@@ -1090,7 +1090,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		phonenum = pre.getStringValue("phonenum");
 		userno = pre.getStringValue("userno");
 		String alertStr = "您将要赠送" + checkedPersons.size() + "位朋友，赠送金额为"
-				+ allAtm * checkedPersons.size() + "元，" + "是否赠送？";
+				+ zhu*2*iProgressBeishu * checkedPersons.size() + "元，" + "是否赠送？";
 		String phone = editPhone.getText().toString();
 		if (isNum(phone)) {
 			touDialog("确认要赠送吗？", alertStr);
