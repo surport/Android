@@ -166,7 +166,7 @@ public class HomeActivity extends Activity {
 		checkCaizhongSetting();// 获取彩种设置
 		// JPushInterface.setDebugMode(true);
 		JPushInterface.init(this);
-		registerToWeiXin();
+		//registerToWeiXin();
 	}
 	/**
 	 * 注册到微信
