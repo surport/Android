@@ -88,7 +88,7 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
 		String tiem = mTeamList.get(position).getTeamId() + "\n"+
 				PublicMethod.getEndTime(mTeamList.get(position).getDate()) 
-				+ " (Èü)";
+				+ " (èµ›)";
 		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		copyHolder.homeOdds.setText(mTeamList.get(position).getHomeOdds());

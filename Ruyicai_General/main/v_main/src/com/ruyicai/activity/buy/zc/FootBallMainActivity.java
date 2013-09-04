@@ -402,7 +402,6 @@ public class FootBallMainActivity extends Activity {
 						.show();
 				break;
 			case 1:
-				progressdialog.dismiss();
 				initList();
 				break;
 			
@@ -456,6 +455,9 @@ public class FootBallMainActivity extends Activity {
 		}
 		
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
+		if (progressdialog.isShowing()) {
+			progressdialog.dismiss();
+		}
 	}
 	
 	private void getTeamInfo(int which) {

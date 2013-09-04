@@ -318,11 +318,11 @@
 	<public type="drawable" name="jc_touzhu" id="0x7f0200ef" />
 	<public type="drawable" name="jc_touzhu_b" id="0x7f0200f0" />
 	<public type="drawable" name="jc_touzhu_select" id="0x7f0200f1" />
-	<public type="drawable" name="jc_zjq_btn" id="0x7f0200f2" />
-	<public type="drawable" name="jc_zjq_btn_40" id="0x7f0200f3" />
-	<public type="drawable" name="jc_zjq_btn_40_gray" id="0x7f0200f4" />
-	<public type="drawable" name="jc_zjq_btn_b" id="0x7f0200f5" />
-	<public type="drawable" name="jc_zjq_btn_b_40" id="0x7f0200f6" />
+	<public type="drawable" name="zc_wait_issue" id="0x7f0200f2" />
+	<public type="drawable" name="zc_team_select_bg" id="0x7f0200f3" />
+	<public type="drawable" name="jc_zq_hun_spf__right_bg" id="0x7f0200f4" />
+	<public type="drawable" name="jc_zq_hun_spf_left_bg" id="0x7f0200f5" />
+	<public type="drawable" name="jc_zq_hun_spf__center_bg" id="0x7f0200f6" />
 	<public type="drawable" name="jiajiang" id="0x7f0200f7" />
 	<public type="drawable" name="jixuan_list_bg" id="0x7f0200f8" />
 	<public type="drawable" name="join_11x5" id="0x7f0200f9" />
@@ -2157,8 +2157,8 @@
 	<public type="layout" name="buy_lq_main_view" id="0x7f030049" />
 	<public type="layout" name="buy_lq_sfc_dialog" id="0x7f03004a" />
 	<public type="layout" name="buy_main_group" id="0x7f03004b" />
-	<public type="layout" name="buy_zc_sfc_main_listview_item" id="0x7f03004c" />
-	<public type="layout" name="buy_zc_six_main_listview_item" id="0x7f03004d" />
+	<public type="layout" name="buy_zc_4cjq_layout" id="0x7f03004c" />
+	<public type="layout" name="buy_zc_lcb_layout" id="0x7f03004d" />
 	<public type="layout" name="buy_zh_view" id="0x7f03004e" />
 	<public type="layout" name="buy_zh_view_item" id="0x7f03004f" />
 	<public type="layout" name="buy_zixuan_activity" id="0x7f030050" />
