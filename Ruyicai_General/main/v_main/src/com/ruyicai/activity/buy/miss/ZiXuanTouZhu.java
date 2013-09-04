@@ -436,7 +436,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			// changeTextSumMoney();
 			break;
 		default:
 			break;

@@ -460,7 +460,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			// changeTextSumMoney();
 			break;
 		case R.id.buy_zixuan_seek_qishu:
 			iProgressQishu = iProgress;
@@ -944,7 +943,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		isBallTable(iBallId);
 		showEditText();
 		changeTextSumMoney();
-
 	}
 
 	private static final int VOICE_RECOGNITION_REQUEST_CODE = 1234;
@@ -1121,5 +1119,8 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		
 		return false;
 	}
-
+	
+	public void showBetInfo(String text){
+		
+	}
 }

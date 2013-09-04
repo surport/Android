@@ -20,7 +20,8 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 	public abstract void showEditText();
 
 	public abstract void changeTextSumMoney();
-
+	public abstract void showBetInfo(String Text);
+	
 	public abstract void again();
 
 	public AreaNum areaNums[];
@@ -116,7 +117,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 		public void action() {
 			if (areaNums != null) {
 				if (areaNums[0].isAgain) {
-					int[] iHighlightBallId = PublicMethod.getRandomsWithoutCollision(areaNums.length,0,areaNums[0].areaNum - 1);
+					int[] iHighlightBallId = PublicMethod
+							.getRandomsWithoutCollision(areaNums.length, 0,
+									areaNums[0].areaNum - 1);
 					for (int i = 0; i < areaNums.length; i++) {
 						areaNums[i].table.clearAllHighlights();
 						areaNums[i].table.changeBallState(

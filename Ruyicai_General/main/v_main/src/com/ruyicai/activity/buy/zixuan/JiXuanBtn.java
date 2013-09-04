@@ -4,10 +4,12 @@ import java.util.Vector;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BaseActivity;
+import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.dlc.Dlc;
+import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.SensorActivity;
 
 import android.content.Context;
 import android.util.Log;
@@ -150,20 +152,20 @@ public class JiXuanBtn {
 			param.setMargins(padding, padding, padding, padding);
 			btn.setWidth(width);
 			btn.setHeight(width);
-			
-//			if (width == 240) {
-//				btn.setTextSize(PublicMethod.getPxInt(20, activity));
-//			} else {
-//				btn.setTextSize(PublicMethod.getPxInt(11, activity));
-//			}
-			
-			/**add by pengcx 20130802 start*/
+
+			// if (width == 240) {
+			// btn.setTextSize(PublicMethod.getPxInt(20, activity));
+			// } else {
+			// btn.setTextSize(PublicMethod.getPxInt(11, activity));
+			// }
+
+			/** add by pengcx 20130802 start */
 			int width = PublicMethod.getDisplayWidth(activity);
-			float scale = 480.0f/width;
+			float scale = 480.0f / width;
 			float textSize = 11 * scale;
 			btn.setTextSize(PublicMethod.getPxInt(textSize, activity));
-			/**add by pengcx 20130802 end*/
-			
+			/** add by pengcx 20130802 end */
+
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -198,12 +200,26 @@ public class JiXuanBtn {
 			activity.isBallTable(iBallId[i]);
 		}
 		activity.showEditText();
-		activity.changeTextSumMoney();
+		if (activity instanceof Dlc) {
+			((Dlc) activity).showBetInfo("");
+		} else if (activity instanceof ZixuanAndJiXuan) {
+
+			((ZixuanAndJiXuan) activity).showBetInfo("");
+		} else {
+			activity.changeTextSumMoney();
+		}
+
 	}
 
 	public void onclickText() {
 		activity.showEditText();
-		activity.changeTextSumMoney();
+		if (activity instanceof Dlc) {
+			((Dlc) activity).showBetInfo("");
+		} else if (activity instanceof ZixuanAndJiXuan) {
+			((ZixuanAndJiXuan) activity).showBetInfo("");
+		} else {
+			activity.changeTextSumMoney();
+		}
 	}
 
 }

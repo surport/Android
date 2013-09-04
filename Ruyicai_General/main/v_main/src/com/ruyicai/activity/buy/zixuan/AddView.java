@@ -346,8 +346,8 @@ public class AddView {
 		return allZhu;
 	}
 
-	public int getAllAmt() {
-		int allAmt = 0;
+	public long getAllAmt() {
+		long allAmt = 0;
 		for (CodeInfo codeInfo : codeList) {
 			allAmt += codeInfo.getAmt();
 		}

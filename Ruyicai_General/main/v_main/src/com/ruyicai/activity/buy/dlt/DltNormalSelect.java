@@ -235,5 +235,4 @@ public class DltNormalSelect extends ZixuanActivity {
 		codeInfo.setLotoNo(Constants.LOTNO_DLT);
 		codeInfo.setTouZhuType("zhixuan");
 	}
-
 }

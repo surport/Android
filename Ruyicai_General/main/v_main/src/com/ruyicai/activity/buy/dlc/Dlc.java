@@ -1382,6 +1382,11 @@ public class Dlc extends ZixuanAndJiXuan {
 	}
 
 	public void showBetInfo(String text) {
-		betInfo.setText(text);
+		if (text.equals("")) {
+			betInfo.setText(textSumMoney(areaNums, iProgressBeishu));
+		} else {
+			betInfo.setText(text);
+		}
+
 	}
 }

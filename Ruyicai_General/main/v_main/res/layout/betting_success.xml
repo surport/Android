@@ -87,14 +87,38 @@
 
         <!-- 返回投注按钮 -->
 
-        <Button
-            android:id="@id/ssq_bettingsuccess_returnbetting"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/loginselecter"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <!-- 返回投注按钮 -->
+
+            <Button
+                android:id="@id/ssq_bettingsuccess_returnbetting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/loginselecter"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <!-- 投注详情按钮 -->
+
+            <Button
+                android:id="@+id/ssq_bettingsuccess_betdetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/loginselecter"
+                android:text="投注详情"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <!-- 发送到邮箱 -->
 

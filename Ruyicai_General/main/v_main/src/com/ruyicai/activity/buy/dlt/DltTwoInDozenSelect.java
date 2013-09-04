@@ -169,5 +169,4 @@ public class DltTwoInDozenSelect extends ZixuanActivity {
 		codeInfo.setLotoNo(Constants.LOTNO_DLT);
 		codeInfo.setTouZhuType("12xuan2");
 	}
-
 }

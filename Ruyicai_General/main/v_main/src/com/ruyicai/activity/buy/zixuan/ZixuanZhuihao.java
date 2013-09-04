@@ -834,7 +834,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			subscribeInfocheck.clear();
 			checkinfo = null;
 			zhuiqishezhi.setVisibility(View.VISIBLE);
-			// changeTextSumMoney();
 			break;
 		case R.id.buy_zixuan_seek_qishu:
 			iProgressQishu = iProgress;

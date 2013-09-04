@@ -820,7 +820,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 //					+ progress(isNull(safeEdit.getText().toString()), ""
 //							+ allAtm) + "%");// 总金额
 			/**close by yejc 20130520 end*/
-			// changeTextSumMoney();
 			break;
 		default:
 			break;

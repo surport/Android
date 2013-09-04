@@ -115,16 +115,12 @@ public class BuyActivityGroup extends ActivityGroup {
 		// 监听tab切换事件
 		mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String tabId) {
+				betInfoTextView.setText("请选择投注号码");
 				for (int i = 0; i < titles.length; i++) {
 					if (tabId.equals(titles[i])) {
 						title.setText(topTitles[i]);
-//						if (Constants.LOTNO_ZC.equals(lotNo)) {
-//							FootballLottery.tabPosition = i;
-//							Log.i("aaa", FootballLottery.tabPosition + "ss");
-//						}
 						return;
 					}
-					betInfoTextView.setText("请选择投注号码");
 				}
 			}
 		});
@@ -569,7 +565,8 @@ public class BuyActivityGroup extends ActivityGroup {
 									public void run() {
 										builder.clear();
 										String lasttime = "离截止还剩:"
-												+ PublicMethod.formatLongToTimeStr(lesstime);
+												+ PublicMethod
+														.formatLongToTimeStr(lesstime);
 										builder.append(lasttime);
 										builder.setSpan(span_RED, 6,
 												lasttime.length(),
@@ -622,7 +619,6 @@ public class BuyActivityGroup extends ActivityGroup {
 			return false;
 		}
 	}
-
 
 	/**
 	 * 查询上期开奖号码
@@ -940,8 +936,8 @@ public class BuyActivityGroup extends ActivityGroup {
 		super.onDestroy();
 		isRun = false;
 	}
-	
-	public void showBetInfo(String text){
+
+	public void showBetInfo(String text) {
 		betInfoTextView.setText(text);
 	}
 }

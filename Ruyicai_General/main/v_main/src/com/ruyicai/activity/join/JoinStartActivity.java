@@ -88,7 +88,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			"对跟单者截止后公开", "保密" };
 	private RadioGroup baoRadioGroup;
 	private RadioGroup openRadioGroup;
-	private int allAtm;
+	private long allAtm;
 	private String commisionRation = "1";
 	private String visible = "0";
 	String message;
@@ -114,8 +114,8 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	LinearLayout beishulayLayout;
 	private AddView addview;
 	private Context context;
-	private int mAmount = 0;
-	private int mZhushu = 1;
+	private long mAmount = 0;
+	private long mZhushu = 1;
 	private final int ZC_MAX = 10000;
 
 	@Override
@@ -128,9 +128,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		betAndGift = app.getPojo();
 		addview = app.getAddview();
 		if (Constants.type.equals("zc")) {
-			allAtm = Integer.valueOf(betAndGift.getAmount()) / 100;
+			allAtm = Long.valueOf(betAndGift.getAmount()) / 100;
 //			mAmount = Integer.valueOf(betAndGift.getAmount());
-			mZhushu = Integer.valueOf(betAndGift.getZhushu());
+			mZhushu = Long.valueOf(betAndGift.getZhushu());
 		} else {
 			allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
 
@@ -306,9 +306,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	}
 
 	public void setEditText() {
-		int buyInt = Integer.parseInt(isNull(buyEdit.getText().toString()));
-		int safeInt = Integer.parseInt(isNull(safeEdit.getText().toString()));
-		int minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
+		long buyInt = Integer.parseInt(isNull(buyEdit.getText().toString()));
+		long safeInt = Integer.parseInt(isNull(safeEdit.getText().toString()));
+		long minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
 		if (buyInt > allAtm) {
 			buyInt = allAtm;
 			buyEdit.setText("" + buyInt);
@@ -477,7 +477,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	public void isJoin() {
 		int buyInt = Integer.parseInt(isNull(buyEdit.getText().toString()));
 		int safeInt = Integer.parseInt(isNull(safeEdit.getText().toString()));
-		int minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
+		long minInt = Integer.parseInt(isNull(minEdit.getText().toString()));
 		if (buyInt == 0 && safeInt == 0) {
 			Toast.makeText(this, "认购金额和保底金额不能都为0！", Toast.LENGTH_SHORT).show();
 		} else if (allAtm - buyInt > 0 && minInt == 0) {
@@ -817,7 +817,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			if (Constants.type.equals("zc")) {
 				mAmount = /*Integer.valueOf(betAndGift.getZhushu()) * */mZhushu*200 * iProgressBeishu;
 				allAtm = mAmount / 100;
-//				allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
 			} else {
 			   allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
 			}
@@ -827,7 +826,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			baoText.setText("占总额"
 					+ progress(isNull(safeEdit.getText().toString()), ""
 							+ allAtm) + "%");// 总金额
-			// changeTextSumMoney();
 			break;
 		default:
 			break;

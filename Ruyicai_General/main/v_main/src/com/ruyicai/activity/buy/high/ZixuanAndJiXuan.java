@@ -1344,7 +1344,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			// changeTextSumMoney();
 			break;
 		case R.id.buy_zixuan_seek_qishu:
 			iProgressQishu = iProgress;
@@ -1599,10 +1598,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			((BuyActivityGroup) getParent()).showBetInfo(text);
 		}
 	}
-	
-	public void showBetMoney(View v)
-	{
-		
+
+	public void showBetMoney(View v) {
+
 	}
 
 	/**
@@ -2218,6 +2216,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				});
 		dialog.show();
 
+	}
+
+	public void showBetInfo(String text) {
+		if (getParent() != null) {
+			((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums,
+					iProgressBeishu));
+		}
 	}
 
 	/**

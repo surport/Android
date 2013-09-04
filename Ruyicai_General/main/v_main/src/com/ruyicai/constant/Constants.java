@@ -21,17 +21,17 @@ public class Constants {
 	public static final String APPNAME = "RUYICAI";
 	public static int MEMUTYPE = 0;
 
-	/*Add by fansm 20130412 start*/
-	/*debug mode*/
-    public static boolean isDebug = false;
-    public static String TAG = "RUYICAI";
-    /*Add by fansm 20130412 end*/
+	/* Add by fansm 20130412 start */
+	/* debug mode */
+	public static boolean isDebug = false;
+	public static String TAG = "RUYICAI";
+	/* Add by fansm 20130412 end */
 
-	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
-//	public static final String SERVER_URL = "http://192.168.0.42:80/jrtLot/";
+	// public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
+	public static final String SERVER_URL = "http://202.43.152.173:8099/jrtLot/";
 
-	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-//	public static String LOT_SERVER = "http://192.168.0.42:80/lotserver/RuyicaiServlet";//测试线
+	// public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
 
 	/**
 	 * 彩种设置
@@ -62,11 +62,11 @@ public class Constants {
 	public static String kAppKey = "801184275";
 	public static String kAppSecret = "3439c0843c81965196b165b09bb6edf3";
 	public static String kAppRedirectURI = "http://www.ruyicai.com";
-    /**
-     * 微信
-     */
+	/**
+	 * 微信
+	 */
 	public static final String APP_ID = "wxeda3b3b79897e78e";
-	
+
 	public static boolean hasLogin = false;// 用户是否已经登录标示
 	public static String sessionId = "";
 	public static final String KEY = "<>hj12@#$$%^~~ff";
@@ -170,8 +170,6 @@ public class Constants {
 
 	public static JSONObject currentLotnoInfo = new JSONObject();
 
-
-	
 	public static final String LOTNO_SSQ = "F47104"; // 双色球
 	public static final String LOTNO_QLC = "F47102"; // 七乐彩
 	public static final String LOTNO_FC3D = "F47103"; // 福彩3D
@@ -187,9 +185,9 @@ public class Constants {
 	public static final String LOTNO_QXC = "T01009"; // 七星彩
 	public static final String LOTNO_PL5 = "T01011"; // 排列五
 	public static final String LOTNO_JC = "J00001"; // 竞彩
-	public static final String LOTNO_NMK3 = "F47107";//内蒙快三
-	public static final String  LOTNO_BJ_SINGLE = "BD";//北京单场
-	
+	public static final String LOTNO_NMK3 = "F47107";// 内蒙快三
+	public static final String LOTNO_BJ_SINGLE = "BD";// 北京单场
+
 	public static final String LOTNO_ZC = "ZC"; // 进球彩
 	public static final String LOTNO_JQC = "T01005"; // 进球彩
 	public static final String LOTNO_LCB = "T01006"; // 足彩六场半
@@ -224,11 +222,11 @@ public class Constants {
 	public static final int SSC_THREE = 30;
 	public static final int SSC_THREE_GROUP_THREE = 31;
 	public static final int SSC_THREE_GROUP_SIX = 32;
-	
+
 	public static final String BEIJINGSINGLE = "beiDan";
 	public static final String PLAY_METHOD_TYPE = "playMethodType";
 	public static final String NEW_JINGCAI = "jingCai";
-	
+
 	public static String currentTickType = "";
 	public static String currentLoto = "";
 	public static String currentTab = "";
@@ -260,15 +258,20 @@ public class Constants {
 	public static final String JCZLABEL = "jcz";
 	public static final String GDLABEL = "gd-11-5";
 	public static final String ZCLABEL = "zc";
-	
-	
-    /**add by fansm 20130515 start*/
-	public static String[][] lotnoNameList = {{"hmdt","hmdt"},{LOTNO_SSQ,SSQLABEL},{LOTNO_DLT,DLTLABEL}
-	    ,{LOTNO_FC3D,FC3DLABEL},{LOTNO_11_5,DLCLABEL},{LOTNO_SSC,SSCLABEL},{LOTNO_JCZ,JCZLABEL}
-        ,{LOTNO_NMK3,NMK3LABEL},{LOTNO_eleven,YDJLABEL},{"zjjh","zjjh"},{LOTNO_GD_11_5,GDLABEL}
-        ,{LOTNO_PL3,PL3LABEL},{LOTNO_QLC,QLCLABEL},{LOTNO_22_5,TWENTYBEL},{LOTNO_PL5,PL5LABEL}
-        ,{LOTNO_QXC,QXCLABEL},{LOTNO_ZC,ZCLABEL},{LOTNO_JCL,"jcl"},{LOTNO_ten,"gd-10"},{LOTNO_BJ_SINGLE,BDLABEL}};    
-	/**add by fansm 20130515 end */
+
+	/** add by fansm 20130515 start */
+	public static String[][] lotnoNameList = { { "hmdt", "hmdt" },
+			{ LOTNO_SSQ, SSQLABEL }, { LOTNO_DLT, DLTLABEL },
+			{ LOTNO_FC3D, FC3DLABEL }, { LOTNO_11_5, DLCLABEL },
+			{ LOTNO_SSC, SSCLABEL }, { LOTNO_JCZ, JCZLABEL },
+			{ LOTNO_NMK3, NMK3LABEL }, { LOTNO_eleven, YDJLABEL },
+			{ "zjjh", "zjjh" }, { LOTNO_GD_11_5, GDLABEL },
+			{ LOTNO_PL3, PL3LABEL }, { LOTNO_QLC, QLCLABEL },
+			{ LOTNO_22_5, TWENTYBEL }, { LOTNO_PL5, PL5LABEL },
+			{ LOTNO_QXC, QXCLABEL }, { LOTNO_ZC, ZCLABEL },
+			{ LOTNO_JCL, "jcl" }, { LOTNO_ten, "gd-10" },
+			{ LOTNO_BJ_SINGLE, BDLABEL } };
+	/** add by fansm 20130515 end */
 
 	/**
 	 * 彩票状态
@@ -277,7 +280,6 @@ public class Constants {
 	public static final String TWENWILLSALES = "22-5-willsale";
 	public static final String TWENCLOSED = "22-5-closed";
 	public static final String BDWILLSATES = "beijingsinglegame-willsale";
-	
 
 	/**
 	 * 竞彩足球TYpe标示
@@ -313,22 +315,21 @@ public class Constants {
 	public static String MAC;
 
 	public static final String SUCCESS_CODE = "0000";
-	
-	
+
 	public static final String SALE_STOPED = "0";
 	public static final String SALEINGL = "1";
 	public static final String SALE_WILLING = "2";
 	public static final String ADD_AWARD_OK = "1";
 	public static final String ADD_AWARD_NO = "0";
-	
-	/**add by yejc 20130527 start*/
+
+	/** add by yejc 20130527 start */
 	/**
 	 * 联动优势话费充值
 	 */
 	public final static String UMPAY_SERVER_URL = "http://payment.umpay.com/hfwebbusi/pay/wxVersionUpdate.do";
 	// 话付宝安全支付服务apk的名称，必须与assets目录下的apk名称一致
 	public static final String PAY_PLUGIN_NAME = "huafubaopsV1.2.0_0002.apk";
-	
+
 	public static final String ALIPAY_PACK_NAME = "com.alipay.android.app";
 	public static final String UMPAY_PHONE_PACK_NAME = "com.umpay.huafubao";
 	public static final String UMPAY_BANKID = "ump003";
@@ -347,9 +348,9 @@ public class Constants {
 	public static final String PHONE_RECHARGE_CARD_DISPLAY_STATE = "phone_recharge_card_display_state";
 	public static final String JC_TOUZHU_TEXT_COLOR = "#990000";
 	public static final String JC_TOUZHU_TITLE_TEXT_COLOR = "red";
-	/**add by yejc 20130527 start*/
+	/** add by yejc 20130527 start */
 	public static final String LOTNO = "Lotno";
 	public static final String PAGENUM = "10";// 每页显示的条数
 	public static final String ISSUE = "Issue";
-	
+
 }

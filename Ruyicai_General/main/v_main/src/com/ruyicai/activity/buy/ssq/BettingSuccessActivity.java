@@ -1,5 +1,7 @@
 package com.ruyicai.activity.buy.ssq;
 
+import org.json.JSONObject;
+
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.dlc.Dlc;
@@ -18,21 +20,41 @@ import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootballLottery;
+import com.ruyicai.activity.join.JoinCheckActivity;
 import com.ruyicai.activity.join.JoinInfoActivity;
+import com.ruyicai.activity.more.FeedBack;
 import com.ruyicai.activity.notice.NoticeActivityGroup;
+import com.ruyicai.activity.usercenter.AccountDetailsActivity;
+import com.ruyicai.activity.usercenter.BalanceQueryActivity;
+import com.ruyicai.activity.usercenter.BetQueryActivity;
+import com.ruyicai.activity.usercenter.FeedbackListActivity;
+import com.ruyicai.activity.usercenter.GiftQueryActivity;
+import com.ruyicai.activity.usercenter.NewUserCenter;
+import com.ruyicai.activity.usercenter.TrackQueryActivity;
+import com.ruyicai.activity.usercenter.UserScoreActivity;
+import com.ruyicai.activity.usercenter.WinPrizeActivity;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.net.newtransaction.BetQueryInterface;
+import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 投注成功页面
@@ -72,12 +94,41 @@ public class BettingSuccessActivity extends Activity {
 	private TextView amtTextView;
 	/** 返回投注界面按钮 */
 	private Button returnBettingButton;
+	/** 投注详情按钮 */
+	private Button betDetailButton;
 	/** 将方案发送到邮箱 */
 	private RelativeLayout sendToEmailLayout;
 
 	/** 全局共享参数 */
 	private RWSharedPreferences shellRW;
 	private int fromInt;
+	ProgressDialog dialog;
+
+	final Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case 1:
+				dialog.dismiss();
+				Toast.makeText(BettingSuccessActivity.this, (String) msg.obj,
+						Toast.LENGTH_LONG).show();
+				break;
+			case 2:
+				dialog.dismiss();
+				Intent intent = new Intent(BettingSuccessActivity.this,
+						WinPrizeActivity.class);
+				intent.putExtra("winjson", (String) msg.obj);
+				startActivity(intent);
+				break;
+			case 4:
+				dialog.dismiss();
+				Intent intentbet = new Intent(BettingSuccessActivity.this,
+						BetQueryActivity.class);
+				intentbet.putExtra("betjson", (String) msg.obj);
+				startActivity(intentbet);
+				break;
+			}
+		}
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -126,11 +177,43 @@ public class BettingSuccessActivity extends Activity {
 			returnBettingButton.setText(R.string.ssq_bettingsuccess_returnbet);
 			break;
 		}
-		
-		if(fromInt == JOINCOOPERATION){
+
+		if (fromInt == JOINCOOPERATION) {
 			promptTextView.setText("恭喜您，参与合买成功!");
 			returnBettingButton.setText(R.string.ssq_bettingsuccess_returnjoin);
 		}
+
+		betDetailButton = (Button) findViewById(R.id.ssq_bettingsuccess_betdetail);
+		betDetailButton.setOnClickListener(new ButtonOnClickListener());
+		if (lotnoString.equals(Constants.LOTNO_JCZQ_HUN)
+				|| lotnoString.equals(Constants.LOTNO_JCZQ)
+				|| lotnoString.equals(Constants.LOTNO_JCZQ_RQSPF)
+				|| lotnoString.equals(Constants.LOTNO_JCZQ_ZQJ)
+				|| lotnoString.equals(Constants.LOTNO_JCZQ_BF)
+				|| lotnoString.equals(Constants.LOTNO_JCZQ_BQC)
+				|| lotnoString.equals(Constants.LOTNO_ZC)
+				|| lotnoString.equals(Constants.LOTNO_JQC)
+				|| lotnoString.equals(Constants.LOTNO_LCB)
+				|| lotnoString.equals(Constants.LOTNO_SFC)
+				|| lotnoString.equals(Constants.LOTNO_RX9)
+				|| lotnoString.equals(Constants.LOTNO_JCLQ)
+				|| lotnoString.equals(Constants.LOTNO_JCLQ_RF)
+				|| lotnoString.equals(Constants.LOTNO_JCLQ_SFC)
+				|| lotnoString.equals(Constants.LOTNO_JCLQ_DXF)
+				|| lotnoString.equals(Constants.LOTNO_JCLQ_HUN)
+				|| lotnoString
+						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)
+				|| lotnoString
+						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+				|| lotnoString
+						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+				|| lotnoString
+						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+				|| lotnoString
+						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+			betDetailButton.setVisibility(View.VISIBLE);
+		}
+
 		/** modify by pengcx 20130723 end */
 		// 初始化彩种的显示
 		lottypeTextView = (TextView) findViewById(R.id.ssq_bettingsuccess_lottype);
@@ -139,7 +222,7 @@ public class BettingSuccessActivity extends Activity {
 
 		// 初始化金额的显示
 		amtTextView = (TextView) findViewById(R.id.ssq_bettingsuccess_amt);
-		int menoy = Integer.valueOf(amountString) / 100;
+		long menoy = Long.valueOf(amountString) / 100;
 		amtTextView.setText(menoy + "元");
 
 		// 如果没有绑定，则显示；否则默认不显示
@@ -165,6 +248,18 @@ public class BettingSuccessActivity extends Activity {
 		}
 	}
 
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case 0: {
+			dialog = new ProgressDialog(this);
+			dialog.setMessage("网络连接中...");
+			dialog.setIndeterminate(true);
+			return dialog;
+		}
+		}
+		return null;
+	}
+
 	class ButtonOnClickListener implements OnClickListener {
 
 		@Override
@@ -178,6 +273,53 @@ public class BettingSuccessActivity extends Activity {
 				Intent intent2 = new Intent(BettingSuccessActivity.this,
 						ReceiveAndBindEmailActivity.class);
 				startActivity(intent2);
+				break;
+			case R.id.ssq_bettingsuccess_betdetail:
+				if (pageInt == COOPERATION) {
+					Intent intent = new Intent(BettingSuccessActivity.this,
+							JoinCheckActivity.class);
+					startActivity(intent);
+				} else {
+					showDialog(0);
+					new Thread(new Runnable() {
+						public void run() {
+							String userno = shellRW
+									.getStringValue(ShellRWConstants.USERNO);
+							BetAndWinAndTrackAndGiftQueryPojo betQueryPojo = new BetAndWinAndTrackAndGiftQueryPojo();
+							betQueryPojo.setUserno(userno);
+							betQueryPojo.setPageindex("0");
+							betQueryPojo.setMaxresult("10");
+							betQueryPojo.setType("betList");
+
+							Message msg = new Message();
+							String jsonString = BetQueryInterface.getInstance()
+									.betQuery(betQueryPojo);
+							try {
+								JSONObject aa = new JSONObject(jsonString);
+								String errcode = aa.getString("error_code");
+								String message = aa.getString("message");
+								if (errcode.equals("0047")) {
+									msg.what = 1;
+									msg.obj = message;
+									handler.sendMessage(msg);
+								} else if (errcode.equals("0000")) {
+									msg.what = 4;
+									msg.obj = jsonString;
+									handler.sendMessage(msg);
+								} else {
+									msg.what = 1;
+									msg.obj = message;
+									handler.sendMessage(msg);
+								}
+							} catch (Exception e) {
+								msg.what = 2;
+								msg.obj = jsonString;
+								handler.sendMessage(msg);
+							}
+						}
+					}).start();
+				}
+
 				break;
 			}
 		}

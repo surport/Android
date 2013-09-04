@@ -625,8 +625,6 @@ public class LotInfoConcreteActivity extends Activity implements
 					+ "" + "\n" + "追号:" + (qishu - 1) + "期" + "\n" + "金额:"
 					+ 2 * zhushu * beishu + "元" + "\n" + "冻结金额:" + 2 * zhushu
 					* beishu * (qishu - 1) + "元");
-
-			// changeTextSumMoney();
 			break;
 		case R.id.buy_zixuan_seek_qishu:
 			if (lotno.equals("T01006") || lotno.equals("T01005")

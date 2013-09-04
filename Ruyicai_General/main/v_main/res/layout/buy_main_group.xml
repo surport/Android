@@ -22,6 +22,7 @@
             android:textColor="@color/white"
             android:textSize="20dip" >
         </TextView>
+
         <Button
             android:id="@id/refresh_code"
             android:layout_width="wrap_content"
@@ -35,6 +36,7 @@
             android:visibility="invisible" >
         </Button>
         <!-- 下拉列表按钮 -->
+
         <Button
             android:id="@id/layout_main_img_return"
             android:layout_width="wrap_content"
@@ -90,6 +92,18 @@
             android:visibility="gone" >
         </TextView>
     </RelativeLayout>
+    <!-- 显示投注信息 -->
+
+    <TextView
+        android:id="@+id/bet_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:textColor="@color/black"
+        android:textSize="14dip"
+        android:visibility="gone" 
+        android:text="请选择投注号码">
+    </TextView>
 
     <RelativeLayout
         android:id="@id/main_buy_relat_issue"

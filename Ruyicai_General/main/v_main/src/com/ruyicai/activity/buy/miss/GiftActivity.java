@@ -1252,7 +1252,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
 			allAtm = addviewmiss.getAllAmt() * iProgressBeishu;
-			// changeTextSumMoney();
 			break;
 		default:
 			break;

@@ -67,9 +67,9 @@ import android.widget.Toast;
 
 /**
  * 北京单场选号页面
- *
+ * 
  * @author Administrator
- *
+ * 
  */
 public class BeiJingSingleGameActivity extends Activity {
 	private static final String TAG = "BeiJingSingleGameActivity";
@@ -95,7 +95,7 @@ public class BeiJingSingleGameActivity extends Activity {
 	/** 下拉菜单按钮 */
 	private Button popupWindowButton;
 	/** 玩法切换布局 */
-	private LinearLayout playSelectBtnLayout; //add by yejc 20130822
+	private LinearLayout playSelectBtnLayout; // add by yejc 20130822
 	/** 赛事选择按钮 */
 	private Button eventSelectButton;
 	/** 即时比分按钮 */
@@ -173,21 +173,22 @@ public class BeiJingSingleGameActivity extends Activity {
 
 	/** LayoutInflater对象 */
 	private LayoutInflater layoutInflater;
-	
-	/**add by yejc 20130822 start*/
+
+	/** add by yejc 20130822 start */
 	private LinearLayout downLayersLayout;
 	private LinearLayout upLayersLayout;
 	private LinearLayout middleLayersLayout;
-	/**下拉弹出的玩法选择布局*/
+	/** 下拉弹出的玩法选择布局 */
 	private LinearLayout mainPalySelectLayout;
-	/**下拉弹出的赛事选择布局*/
+	/** 下拉弹出的赛事选择布局 */
 	private LinearLayout teamSelectLayout;
 	private int screenWidth;
 	private boolean isFirst = true;
 	Map<PlayMethodEnum, Button> palyMap = new HashMap<PlayMethodEnum, Button>();
-	private int[] bgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
-	private int[] paintColor= {Color.BLACK, Color.WHITE};
-	/**add by yejc 20130822 end*/
+	private int[] bgId = { R.drawable.jc_main_team_select_normal,
+			R.drawable.jc_main_team_select_click };
+	private int[] paintColor = { Color.BLACK, Color.WHITE };
+	/** add by yejc 20130822 end */
 
 	/** Handler对象 */
 	private Handler handler = new Handler() {
@@ -219,83 +220,102 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		switch (playMethodType) {
 		case WINTIELOSS:
-			getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
-
-			if (winTieLossAdapter == null) {
-				winTieLossAdapter = new WinTieLossAdapter(
-						BeiJingSingleGameActivity.this,
-						nowWinTieLossAgainstInformationList);
-			}
-
-			if (isReset) {
-				againstListView.setAdapter(winTieLossAdapter);
+			if (nowWinTieLossAgainstInformationList == null) {
+				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
 			} else {
-				winTieLossAdapter.notifyDataSetChanged();
+				getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
+				if (winTieLossAdapter == null) {
+					winTieLossAdapter = new WinTieLossAdapter(
+							BeiJingSingleGameActivity.this,
+							nowWinTieLossAgainstInformationList);
+				}
+
+				if (isReset) {
+					againstListView.setAdapter(winTieLossAdapter);
+				} else {
+					winTieLossAdapter.notifyDataSetChanged();
+				}
 			}
 
 			break;
 		case TOTALGOALS:
-			getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
-
-			if (totalGoalsAdapter == null) {
-				totalGoalsAdapter = new TotalGoalsAdapter(
-						BeiJingSingleGameActivity.this,
-						nowTotalGoalsAgainstInformationList);
-			}
-
-			if (isReset) {
-				againstListView.setAdapter(totalGoalsAdapter);
+			if (nowTotalGoalsAgainstInformationList == null) {
+				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
 			} else {
-				totalGoalsAdapter.notifyDataSetChanged();
+				getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
+				if (totalGoalsAdapter == null) {
+					totalGoalsAdapter = new TotalGoalsAdapter(
+							BeiJingSingleGameActivity.this,
+							nowTotalGoalsAgainstInformationList);
+				}
+
+				if (isReset) {
+					againstListView.setAdapter(totalGoalsAdapter);
+				} else {
+					totalGoalsAdapter.notifyDataSetChanged();
+				}
 			}
+
 			break;
 		case OVERALL:
-			getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
-
-			if (overAllAdapter == null) {
-				overAllAdapter = new OverAllAdapter(
-						BeiJingSingleGameActivity.this,
-						nowOverAllagainstInformationList);
-			}
-
-			if (isReset) {
-				againstListView.setAdapter(overAllAdapter);
+			if (nowOverAllagainstInformationList == null) {
+				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
 			} else {
-				overAllAdapter.notifyDataSetChanged();
+				getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
+
+				if (overAllAdapter == null) {
+					overAllAdapter = new OverAllAdapter(
+							BeiJingSingleGameActivity.this,
+							nowOverAllagainstInformationList);
+				}
+
+				if (isReset) {
+					againstListView.setAdapter(overAllAdapter);
+				} else {
+					overAllAdapter.notifyDataSetChanged();
+				}
 			}
 
 			break;
 		case HALFTHEAUDIENCE:
-			getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
-
-			if (halfTheAudienceAdapter == null) {
-				halfTheAudienceAdapter = new HalfTheAudienceAdapter(
-						BeiJingSingleGameActivity.this,
-						nowHalfTheAudienceagainstInformationList);
-			}
-
-			if (isReset) {
-				againstListView.setAdapter(halfTheAudienceAdapter);
+			if (nowHalfTheAudienceagainstInformationList == null) {
+				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
 			} else {
-				halfTheAudienceAdapter.notifyDataSetChanged();
+				getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
+
+				if (halfTheAudienceAdapter == null) {
+					halfTheAudienceAdapter = new HalfTheAudienceAdapter(
+							BeiJingSingleGameActivity.this,
+							nowHalfTheAudienceagainstInformationList);
+				}
+
+				if (isReset) {
+					againstListView.setAdapter(halfTheAudienceAdapter);
+				} else {
+					halfTheAudienceAdapter.notifyDataSetChanged();
+				}
+
 			}
 
 			break;
 		case UPDOWNSINGLEDOUBLE:
-			getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
-
-			if (upDownSingleDoubleAdapter == null) {
-				upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
-						BeiJingSingleGameActivity.this,
-						nowUpDownSigleDoubleagainstInformationList);
-			}
-
-			if (isReset) {
-				againstListView.setAdapter(upDownSingleDoubleAdapter);
+			if (nowUpDownSigleDoubleagainstInformationList == null) {
+				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
 			} else {
-				upDownSingleDoubleAdapter.notifyDataSetChanged();
-			}
+				getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
 
+				if (upDownSingleDoubleAdapter == null) {
+					upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
+							BeiJingSingleGameActivity.this,
+							nowUpDownSigleDoubleagainstInformationList);
+				}
+
+				if (isReset) {
+					againstListView.setAdapter(upDownSingleDoubleAdapter);
+				} else {
+					upDownSingleDoubleAdapter.notifyDataSetChanged();
+				}
+			}
 			break;
 		}
 		// againstLinearLayout.addView(againstView);
@@ -522,11 +542,11 @@ public class BeiJingSingleGameActivity extends Activity {
 		playMethodType = PlayMethodEnum.WINTIELOSS;
 
 		setContentView(R.layout.buy_jc_main_new);
-		
-		/**add by yejc 20130822 start*/
+
+		/** add by yejc 20130822 start */
 		initPlaySelectView();
 		screenWidth = PublicMethod.getDisplayWidth(this);
-		/**add by yejc 20130822 end*/
+		/** add by yejc 20130822 end */
 
 		initTitleBarShow();
 
@@ -679,9 +699,10 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * 初始化赛事信息栏显示
 	 */
 	private void initEventInformationBarShow() {
-//		playMethodChangeButton = (Button) findViewById(R.id.buy_lq_main_btn_type);
-//		playMethodChangeButton
-//				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
+		// playMethodChangeButton = (Button)
+		// findViewById(R.id.buy_lq_main_btn_type);
+		// playMethodChangeButton
+		// .setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 
 		eventSelectButton = (Button) findViewById(R.id.buy_lq_main_btn_team);
 		eventSelectButton.setVisibility(View.VISIBLE);
@@ -690,7 +711,8 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		realtimeScoreButton = (Button) findViewById(R.id.buy_lq_main_btn_score);
 		realtimeScoreButton.setVisibility(View.VISIBLE);
-		realtimeScoreButton.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
+		realtimeScoreButton
+				.setOnClickListener(new BeijingSingleGameButtonOnClickListener());
 	}
 
 	/**
@@ -719,8 +741,9 @@ public class BeiJingSingleGameActivity extends Activity {
 			@Override
 			public void run() {
 				// 获取当前期号
-				nowIssueString = Controller.getInstance(BeiJingSingleGameActivity.this).toNetIssue(playMethodType
-						.getLotnoString());
+				nowIssueString = Controller.getInstance(
+						BeiJingSingleGameActivity.this).toNetIssue(
+						playMethodType.getLotnoString());
 
 				// 如果获取期号成功，则继续获取对阵信息
 				if (nowIssueString != null && !nowIssueString.equals("网络异常")) {
@@ -882,7 +905,7 @@ public class BeiJingSingleGameActivity extends Activity {
 		} else {
 			nowSelectedEventsList.clear();
 		}
-		
+
 		/** add by pengcx 20130708 start */
 		// 当前选中的赛事集合
 		if (newSelectedSPList == null) {
@@ -917,13 +940,13 @@ public class BeiJingSingleGameActivity extends Activity {
 				createMenuPopupwindow();
 				break;
 			// 玩法选择按钮
-//			case R.id.buy_lq_main_btn_type:
-//				createPlayMethodChangeDialog();
-//				break;
+			// case R.id.buy_lq_main_btn_type:
+			// createPlayMethodChangeDialog();
+			// break;
 			// 赛事选择按钮
 			case R.id.buy_lq_main_btn_team:
 				showTeamLayout();
-//				createeventSelectDialog();
+				// createeventSelectDialog();
 				break;
 			// 重选按钮
 			case R.id.buy_zixuan_img_again:
@@ -933,7 +956,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			// 投注按钮
 			case R.id.buy_zixuan_img_touzhu:
 				if (isLegalSelect()) {
-					
+
 					Intent intent = new Intent(BeiJingSingleGameActivity.this,
 							BeiJingSingleGameIndentActivity.class);
 
@@ -955,20 +978,20 @@ public class BeiJingSingleGameActivity extends Activity {
 				}
 
 				break;
-				
+
 			case R.id.buy_lq_main_btn_score:
 				Intent intent = new Intent(BeiJingSingleGameActivity.this,
 						BeijingScoreActivity.class);
-				intent.putExtra("lotno",playMethodType.getLotnoString());
-//				intent.putExtra("bebatchCode", "");
+				intent.putExtra("lotno", playMethodType.getLotnoString());
+				// intent.putExtra("bebatchCode", "");
 				startActivity(intent);
 				break;
-			
-			/**add by yejc 20130822 start*/	
+
+			/** add by yejc 20130822 start */
 			case R.id.jc_play_select:
 				createPlayMethodChangeDialog();
 				break;
-				
+
 			case R.id.jc_main_team_layout_layers_down:
 				showSelectedTeam();
 				break;
@@ -982,17 +1005,17 @@ public class BeiJingSingleGameActivity extends Activity {
 					upLayersLayout.setVisibility(View.GONE);
 				}
 				break;
-				
+
 			case R.id.jc_main_team_layout_layers_middle:
 				mainPalySelectLayout.setVisibility(View.GONE);
 				downLayersLayout.setVisibility(View.GONE);
 				middleLayersLayout.setVisibility(View.GONE);
 				upLayersLayout.setVisibility(View.GONE);
-				break;	
-				
-//			case R.id.jc_main_team_select:
-//				break;
-			/**add by yejc 20130822 end*/	
+				break;
+
+			// case R.id.jc_main_team_select:
+			// break;
+			/** add by yejc 20130822 end */
 			}
 		}
 	}
@@ -1067,30 +1090,30 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void initPlayMethodChangeDialogShow() {
 		// 胜平负按钮
-		Button wintielossButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_wintieloss);
+		Button wintielossButton = (Button) findViewById(R.id.beijingsinglegame_playmethodchange_button_wintieloss);
 		wintielossButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 总进球数按钮
-		Button totalgoalsButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_totalgoals);
+		Button totalgoalsButton = (Button) findViewById(R.id.beijingsinglegame_playmethodchange_button_totalgoals);
 		totalgoalsButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 全场比分按钮
-		Button overallButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_overall);
+		Button overallButton = (Button) findViewById(R.id.beijingsinglegame_playmethodchange_button_overall);
 		overallButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 半全场按钮
-		Button halftheaudienceButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_halftheaudience);
+		Button halftheaudienceButton = (Button) findViewById(R.id.beijingsinglegame_playmethodchange_button_halftheaudience);
 		halftheaudienceButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
 
 		// 上下单双按钮
-		Button updownsigledoubleButton = (Button)findViewById(R.id.beijingsinglegame_playmethodchange_button_updownsigledouble);
+		Button updownsigledoubleButton = (Button) findViewById(R.id.beijingsinglegame_playmethodchange_button_updownsigledouble);
 		updownsigledoubleButton
 				.setOnClickListener(new PlayMethodChangeDialogButtonOnClickListener());
-		
+
 		// 根据当前的玩法，设置该玩法的按钮为选中状态
 		switch (playMethodType) {
 		case WINTIELOSS:
@@ -1124,7 +1147,7 @@ public class BeiJingSingleGameActivity extends Activity {
 					.getColorStateList(R.color.white));
 			break;
 		}
-		/**add by yejc 20130822 start*/
+		/** add by yejc 20130822 start */
 		palyMap.clear();
 		palyMap.put(PlayMethodEnum.WINTIELOSS, wintielossButton);
 		palyMap.put(PlayMethodEnum.TOTALGOALS, totalgoalsButton);
@@ -1142,7 +1165,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				R.drawable.beijing_playmethodbutton_click);
 		palyMap.get(playMethodType).setTextColor(
 				getResources().getColor(R.color.white));
-		/**add by yejc 20130822 end*/
+		/** add by yejc 20130822 end */
 	}
 
 	/**
@@ -1185,14 +1208,14 @@ public class BeiJingSingleGameActivity extends Activity {
 			}
 			selectedGameNum = 0;
 			selectedDanNum = 0;
-			
-			/**add by yejc 20130822 start*/
+
+			/** add by yejc 20130822 start */
 			mainPalySelectLayout.setVisibility(View.GONE);
 			upLayersLayout.setVisibility(View.GONE);
 			middleLayersLayout.setVisibility(View.GONE);
 			downLayersLayout.setVisibility(View.GONE);
-			/**add by yejc 20130822 end*/
-//			playMethodChangeDialog.dismiss();
+			/** add by yejc 20130822 end */
+			// playMethodChangeDialog.dismiss();
 
 			getAndnalysisAgainstInformations();
 		}
@@ -1206,8 +1229,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		upLayersLayout.setVisibility(View.VISIBLE);
 		middleLayersLayout.setVisibility(View.VISIBLE);
 		setLayoutHeight(45);
-		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this, 
-        		R.anim.jc_top_menu_window_enter));
+		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
+				R.anim.jc_top_menu_window_enter));
 
 		initPlayMethodChangeDialogShow();
 	}
@@ -1217,19 +1240,19 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	public void createeventSelectDialog() {
 		// 赛事按钮容器布局
-		LinearLayout selectButtonLayout = (LinearLayout)findViewById(R.id.jc_linear_check_all);
+		LinearLayout selectButtonLayout = (LinearLayout) findViewById(R.id.jc_linear_check_all);
 		addEventSelectButtonToLayout(selectButtonLayout);
 
 		// 全选按钮
-		Button allSelectButton = (Button)findViewById(R.id.all_check);
+		Button allSelectButton = (Button) findViewById(R.id.all_check);
 		allSelectButton
 				.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 		// 全清按钮
-		Button allClearButton = (Button)findViewById(R.id.clear_check);
+		Button allClearButton = (Button) findViewById(R.id.clear_check);
 		allClearButton
 				.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 		// 确定按钮
-		Button okButton = (Button)findViewById(R.id.ok);
+		Button okButton = (Button) findViewById(R.id.ok);
 		okButton.setOnClickListener(new EventSelectDialogButtonOnClickListener());
 	}
 
@@ -1480,7 +1503,8 @@ public class BeiJingSingleGameActivity extends Activity {
 						appendOverAllBatchCodeString(danBatchCodeStringBuffer,
 								overAllAgainstInformation);
 					} else {
-						appendOverAllBatchCodeString(noDanBatchCodeStringBuffer,
+						appendOverAllBatchCodeString(
+								noDanBatchCodeStringBuffer,
 								overAllAgainstInformation);
 					}
 
@@ -1542,7 +1566,7 @@ public class BeiJingSingleGameActivity extends Activity {
 					break;
 				case 9:
 					batchCodeStringBuffer.append("90");
-					break;	
+					break;
 				case 10:
 					batchCodeStringBuffer.append("00");
 					break;
@@ -1587,7 +1611,7 @@ public class BeiJingSingleGameActivity extends Activity {
 					break;
 				case 24:
 					batchCodeStringBuffer.append("09");
-					break;	
+					break;
 				}
 			}
 			/** modify by pengcx 20130617 end */
@@ -1735,8 +1759,9 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		batchCodeStringBuffer.append("^");
 	}
-	/**modify by pengcx 20130712 end*/
-	
+
+	/** modify by pengcx 20130712 end */
+
 	/**
 	 * 获取当前选择的比赛的字符串，用户投注确认页面的赛事详情的显示
 	 * 
@@ -1744,7 +1769,7 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	public String getSelectedAgainstString() {
 		StringBuffer againstStringBufffer = new StringBuffer();
-		
+
 		/** add by pengcx 20130708 start */
 		// 当前选中的赛事集合
 		if (newSelectedSPList == null) {
@@ -1785,9 +1810,10 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<UpDownSingleDoubleAgainstInformation> upDownSingleDoubleAgainstInformations : nowUpDownSigleDoubleagainstInformationList) {
 			for (UpDownSingleDoubleAgainstInformation upDownSingleDoubleAgainstInformation : upDownSingleDoubleAgainstInformations) {
 				if (upDownSingleDoubleAgainstInformation.isSelected()) {
-					againstStringBufffer.append(
-							PublicMethod.stringToHtml(upDownSingleDoubleAgainstInformation.getTeamId(),
-									Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(
+							upDownSingleDoubleAgainstInformation.getTeamId(),
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)
+							+ "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(upDownSingleDoubleAgainstInformation
@@ -1797,32 +1823,39 @@ public class BeiJingSingleGameActivity extends Activity {
 									.getGuestTeam()).append("<br>上下单双：");
 					/* Modify by pengcx 20130703 end */
 
-					
 					/* Modify by pengcx 20130708 start */
 					List<Double> selectedSP = new ArrayList<Double>();
 					if (upDownSingleDoubleAgainstInformation.isV1IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("上单",
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v1())));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"上单", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						selectedSP.add(Double.valueOf(CheckUtil
+								.isNull(upDownSingleDoubleAgainstInformation
+										.getSxds_v1())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV2IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("上双",
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v2())));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"上双", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						selectedSP.add(Double.valueOf(CheckUtil
+								.isNull(upDownSingleDoubleAgainstInformation
+										.getSxds_v2())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV3IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("下单",
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v3())));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"下单", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						selectedSP.add(Double.valueOf(CheckUtil
+								.isNull(upDownSingleDoubleAgainstInformation
+										.getSxds_v3())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isV4IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("下双",
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
-						selectedSP.add(Double.valueOf(CheckUtil.isNull(upDownSingleDoubleAgainstInformation.getSxds_v4())));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"下双", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						selectedSP.add(Double.valueOf(CheckUtil
+								.isNull(upDownSingleDoubleAgainstInformation
+										.getSxds_v4())));
 					}
 					if (upDownSingleDoubleAgainstInformation.isDan()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)",
-								Constants.JC_TOUZHU_TEXT_COLOR));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"(胆)", Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
@@ -1844,9 +1877,10 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<HalfTheAudienceAgainstInformation> halfTheAudienceAgainstInformations : nowHalfTheAudienceagainstInformationList) {
 			for (HalfTheAudienceAgainstInformation halfTheAudienceAgainstInformation : halfTheAudienceAgainstInformations) {
 				if (halfTheAudienceAgainstInformation.isSelected()) {
-					againstStringBufffer.append(
-							PublicMethod.stringToHtml(halfTheAudienceAgainstInformation.getTeamId(),
-									Constants.JC_TOUZHU_TITLE_TEXT_COLOR)+ "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(
+							halfTheAudienceAgainstInformation.getTeamId(),
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)
+							+ "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(halfTheAudienceAgainstInformation
@@ -1855,7 +1889,7 @@ public class BeiJingSingleGameActivity extends Activity {
 							.append(halfTheAudienceAgainstInformation
 									.getGuestTeam()).append("<br>半全场：");
 					/* Modify by pengcx 20130703 end */
-					
+
 					/* Modify by pengcx 20130708 start */
 					List<Double> selectedSP = new ArrayList<Double>();
 					boolean[] IsClicks = halfTheAudienceAgainstInformation
@@ -1863,22 +1897,24 @@ public class BeiJingSingleGameActivity extends Activity {
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
 							againstStringBufffer
-									.append(PublicMethod.stringToHtml(HalfTheAudienceAdapter.selectButtonTitles[click_i],
-											Constants.JC_TOUZHU_TEXT_COLOR) + "  ")	
-									.append(" ");
+									.append(PublicMethod
+											.stringToHtml(
+													HalfTheAudienceAdapter.selectButtonTitles[click_i],
+													Constants.JC_TOUZHU_TEXT_COLOR)
+											+ "  ").append(" ");
 							selectedSP.add(halfTheAudienceAgainstInformation
 									.getSelectedSp(click_i));
 						}
 					}
-					
+
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
-					
+
 					if (halfTheAudienceAgainstInformation.isDan()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
-								Constants.JC_TOUZHU_TEXT_COLOR));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"(胆)", Constants.JC_TOUZHU_TEXT_COLOR));
 					}
-					
+
 					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
 				}
@@ -1897,8 +1933,10 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<OverAllAgainstInformation> overAllAgainstInformations : nowOverAllagainstInformationList) {
 			for (OverAllAgainstInformation overAllAgainstInformation : overAllAgainstInformations) {
 				if (overAllAgainstInformation.isSelected()) {
-					againstStringBufffer.append(PublicMethod.stringToHtml(overAllAgainstInformation.getTeamId(),
-							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)+ "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(
+							overAllAgainstInformation.getTeamId(),
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)
+							+ "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(overAllAgainstInformation.getHomeTeam())
@@ -1906,17 +1944,19 @@ public class BeiJingSingleGameActivity extends Activity {
 							.append(overAllAgainstInformation.getGuestTeam())
 							.append("<br>全场总比分：");
 					/* Modify by pengcx 20130703 end */
-					
+
 					/* Modify by pengcx 20130708 start */
 					List<Double> selectedSP = new ArrayList<Double>();
 					boolean[] IsClicks = overAllAgainstInformation
 							.getIsClicks();
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
-							againstStringBufffer.append(
-									PublicMethod.stringToHtml(OverAllAdapter.selectButtonTitles[click_i],
-									Constants.JC_TOUZHU_TEXT_COLOR) + "  ")
-									.append(" ");
+							againstStringBufffer
+									.append(PublicMethod
+											.stringToHtml(
+													OverAllAdapter.selectButtonTitles[click_i],
+													Constants.JC_TOUZHU_TEXT_COLOR)
+											+ "  ").append(" ");
 							selectedSP.add(overAllAgainstInformation
 									.getSelectedSp(click_i));
 						}
@@ -1924,8 +1964,8 @@ public class BeiJingSingleGameActivity extends Activity {
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
 					if (overAllAgainstInformation.isDan()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
-								Constants.JC_TOUZHU_TEXT_COLOR));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"(胆)", Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
@@ -1946,8 +1986,10 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<TotalGoalsAgainstInformation> totalGoalsAgainstInformations : nowTotalGoalsAgainstInformationList) {
 			for (TotalGoalsAgainstInformation totalGoalsAgainstInformation : totalGoalsAgainstInformations) {
 				if (totalGoalsAgainstInformation.isSelected()) {
-					againstStringBufffer.append(PublicMethod.stringToHtml(totalGoalsAgainstInformation.getTeamId(), 
-							Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ");
+					againstStringBufffer.append(PublicMethod.stringToHtml(
+							totalGoalsAgainstInformation.getTeamId(),
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)
+							+ "  ");
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(totalGoalsAgainstInformation.getHomeTeam())
@@ -1963,19 +2005,21 @@ public class BeiJingSingleGameActivity extends Activity {
 					for (int click_i = 0; click_i < IsClicks.length; click_i++) {
 						if (IsClicks[click_i] == true) {
 							againstStringBufffer
-									.append(PublicMethod.stringToHtml(TotalGoalsAdapter.selectButtonTitles[click_i],
-											Constants.JC_TOUZHU_TEXT_COLOR) + "  ")
-									.append(" ");
+									.append(PublicMethod
+											.stringToHtml(
+													TotalGoalsAdapter.selectButtonTitles[click_i],
+													Constants.JC_TOUZHU_TEXT_COLOR)
+											+ "  ").append(" ");
 							selectedSP.add(totalGoalsAgainstInformation
 									.getSelectedSp(click_i));
 						}
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
-					
+
 					if (totalGoalsAgainstInformation.isDan()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
-								Constants.JC_TOUZHU_TEXT_COLOR));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"(胆)", Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					againstStringBufffer.append("<br>");
 					/* Modify by pengcx 20130708 end */
@@ -1995,13 +2039,16 @@ public class BeiJingSingleGameActivity extends Activity {
 		for (List<WinTieLossAgainstInformation> winTieLossAgainstInformations : nowWinTieLossAgainstInformationList) {
 			for (WinTieLossAgainstInformation winTieLossAgainstInformation : winTieLossAgainstInformations) {
 				if (winTieLossAgainstInformation.isSelected()) {
-					againstStringBufffer.append(PublicMethod.stringToHtml(winTieLossAgainstInformation.getTeamId(), 
-							Constants.JC_TOUZHU_TITLE_TEXT_COLOR) + "  ");
-					
+					againstStringBufffer.append(PublicMethod.stringToHtml(
+							winTieLossAgainstInformation.getTeamId(),
+							Constants.JC_TOUZHU_TITLE_TEXT_COLOR)
+							+ "  ");
+
 					/* Modify by pengcx 20130703 start */
 					againstStringBufffer
 							.append(winTieLossAgainstInformation.getHomeTeam())
-							.append(getLetPoint(winTieLossAgainstInformation.getLetPoint()))
+							.append(getLetPoint(winTieLossAgainstInformation
+									.getLetPoint()))
 							.append(winTieLossAgainstInformation.getGuestTeam())
 							.append("<br>让球胜平负：");
 					/* Modify by pengcx 20130703 end */
@@ -2009,29 +2056,29 @@ public class BeiJingSingleGameActivity extends Activity {
 					/* Modify by pengcx 20130708 start */
 					List<Double> selectedSP = new ArrayList<Double>();
 					if (winTieLossAgainstInformation.isV0IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("胜", 
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"胜", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double
 								.valueOf(winTieLossAgainstInformation.getV3()));
 					}
 					if (winTieLossAgainstInformation.isV1IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("平", 
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"平", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double
 								.valueOf(winTieLossAgainstInformation.getV1()));
 					}
 					if (winTieLossAgainstInformation.isV3IsClick()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("负", 
-								Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"负", Constants.JC_TOUZHU_TEXT_COLOR) + "  ");
 						selectedSP.add(Double
 								.valueOf(winTieLossAgainstInformation.getV0()));
 					}
 					double[] SPs = PublicMethod.ListToArray(selectedSP);
 					newSelectedSPList.add(SPs);
-					
+
 					if (winTieLossAgainstInformation.isDan()) {
-						againstStringBufffer.append(PublicMethod.stringToHtml("(胆)", 
-								Constants.JC_TOUZHU_TEXT_COLOR));
+						againstStringBufffer.append(PublicMethod.stringToHtml(
+								"(胆)", Constants.JC_TOUZHU_TEXT_COLOR));
 					}
 					/* Modify by pengcx 20130708 end */
 					againstStringBufffer.append("<br>");
@@ -2070,11 +2117,11 @@ public class BeiJingSingleGameActivity extends Activity {
 	private void addButtonToLine(int buttonOfPreLine, int line_i,
 			LinearLayout linearLayout, int button_j) {
 		final MyButton button = new MyButton(this);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((screenWidth-PublicMethod.getPxInt(50, context))/4, 
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				(screenWidth - PublicMethod.getPxInt(50, context)) / 4,
 				PublicMethod.getPxInt(42, context));
 		if (button_j == 0) {
-			params.setMargins(0,
-					PublicMethod.getPxInt(10, context), 0, 0);
+			params.setMargins(0, PublicMethod.getPxInt(10, context), 0, 0);
 		} else {
 			params.setMargins(PublicMethod.getPxInt(10, context),
 					PublicMethod.getPxInt(10, context), 0, 0);
@@ -2082,7 +2129,7 @@ public class BeiJingSingleGameActivity extends Activity {
 		button.initBg(bgId);
 		button.setPaintColorArray(paintColor);
 		button.setLayoutParams(params);
-		
+
 		String buttonString = eventsList.get(line_i * buttonOfPreLine
 				+ button_j);
 		button.setBtnText(buttonString);
@@ -2124,7 +2171,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				break;
 			case R.id.clear_check:
 				for (MyButton eventButton : eventSelectButtons) {
-					if(eventButton.isOnClick()) {
+					if (eventButton.isOnClick()) {
 						eventButton.setOnClick(false);
 					} else {
 						eventButton.setOnClick(true);
@@ -2133,7 +2180,7 @@ public class BeiJingSingleGameActivity extends Activity {
 				}
 				break;
 			case R.id.ok:
-				//五大联赛
+				// 五大联赛
 				for (MyButton btn : eventSelectButtons) {
 					if (PublicMethod.isFiveLeague(btn.getBtnText())) {
 						btn.setOnClick(true);
@@ -2322,31 +2369,31 @@ public class BeiJingSingleGameActivity extends Activity {
 		}
 		return isLegal;
 	}
-	
+
 	private String getLetPoint(String letpoint) {
 		if (!"".equals(letpoint) && !"0".equals(letpoint)) {
-			return " ("+letpoint+") ";
+			return " (" + letpoint + ") ";
 		} else {
 			return " vs ";
 		}
 	}
-	
-	/**add by yejc 20130822 start*/
+
+	/** add by yejc 20130822 start */
 	private void initPlaySelectView() {
 		BeijingSingleGameButtonOnClickListener listener = new BeijingSingleGameButtonOnClickListener();
-		playSelectBtnLayout = (LinearLayout)findViewById(R.id.jc_play_select);
-		downLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_down);
-		middleLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_middle);
-		upLayersLayout = (LinearLayout)findViewById(R.id.jc_main_team_layout_layers_up);
-		mainPalySelectLayout = (LinearLayout)findViewById(R.id.beidan_play_change_layout);
-		teamSelectLayout = (LinearLayout)findViewById(R.id.jc_main_team_select);
+		playSelectBtnLayout = (LinearLayout) findViewById(R.id.jc_play_select);
+		downLayersLayout = (LinearLayout) findViewById(R.id.jc_main_team_layout_layers_down);
+		middleLayersLayout = (LinearLayout) findViewById(R.id.jc_main_team_layout_layers_middle);
+		upLayersLayout = (LinearLayout) findViewById(R.id.jc_main_team_layout_layers_up);
+		mainPalySelectLayout = (LinearLayout) findViewById(R.id.beidan_play_change_layout);
+		teamSelectLayout = (LinearLayout) findViewById(R.id.jc_main_team_select);
 		playSelectBtnLayout.setOnClickListener(listener);
 		downLayersLayout.setOnClickListener(listener);
 		middleLayersLayout.setOnClickListener(listener);
 		upLayersLayout.setOnClickListener(listener);
 		teamSelectLayout.setOnClickListener(listener);
 	}
-	
+
 	private void showTeamLayout() {
 		if (teamSelectLayout.getVisibility() == View.GONE
 				|| teamSelectLayout.getVisibility() == View.INVISIBLE) {
@@ -2364,13 +2411,13 @@ public class BeiJingSingleGameActivity extends Activity {
 			showSelectedTeam();
 		}
 	}
-	
+
 	private void setLayoutHeight(int dip) {
 		ViewGroup.LayoutParams params = upLayersLayout.getLayoutParams();
 		params.height = PublicMethod.getPxInt(dip, context);
 		upLayersLayout.setLayoutParams(params);
 	}
-	
+
 	private void showSelectedTeam() {
 		if (nowSelectedEventsList != null) {
 			nowSelectedEventsList.clear();
@@ -2382,16 +2429,15 @@ public class BeiJingSingleGameActivity extends Activity {
 			}
 		}
 
-		if (nowSelectedEventsList != null
-				&& nowSelectedEventsList.size() != 0) {
+		if (nowSelectedEventsList != null && nowSelectedEventsList.size() != 0) {
 			refreshAgainstInformationShow(false, true);
 			teamSelectLayout.setVisibility(View.GONE);
 			downLayersLayout.setVisibility(View.GONE);
 			middleLayersLayout.setVisibility(View.GONE);
 			upLayersLayout.setVisibility(View.GONE);
 		} else {
-			Toast.makeText(BeiJingSingleGameActivity.this,
-					"请至少选择一个赛事!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(BeiJingSingleGameActivity.this, "请至少选择一个赛事!",
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -2414,7 +2460,6 @@ public class BeiJingSingleGameActivity extends Activity {
 		}
 		return false;
 	}
-	
-	
-	/**add by yejc 20130822 end*/
+
+	/** add by yejc 20130822 end */
 }

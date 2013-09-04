@@ -63,11 +63,7 @@ public class ZHmissViewItem extends BuyViewItemMiss {
 		View view = inflate.inflate(R.layout.buy_zh_view, null);
 		layoutMian = (LinearLayout) view.findViewById(R.id.buy_zh_view_layout);
 		leftBtn(view);
-		// layoutMian = (LinearLayout) view;
 		addLayout(layoutMian);
-		// if(missBtnList!=null&&missList.size()>0){
-		// initBallOnclik();
-		// }
 		return view;
 	}
 
@@ -135,7 +131,6 @@ public class ZHmissViewItem extends BuyViewItemMiss {
 		btn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				btn.onAction();
 				zixuan.changeTextSumMoney();
 			}
