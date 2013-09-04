@@ -177,7 +177,7 @@ public class UmPayPhoneActivity extends Activity implements HandlerMsg, Huafubao
 
 	@Override
 	public Context getContext() {
-		return null;
+		return this;
 	}
 	
 	

@@ -174,7 +174,7 @@ public class WithdrawDetailActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public Context getContext() {
-		return null;
+		return this;
 	}
 
 }
