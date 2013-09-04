@@ -144,35 +144,25 @@ public class MyCheckBox extends CheckBox {
 		int contentY = 42;// 标题y坐标
 
 		if (isHorizontal) {
-//			titleX = 10;
-			titleY = 25;
-//			contentX = 45;
-			contentY = 25;
+			if (Constants.LOTNO_JQC.equals(lotno)) {
+				titleY = 30;
+				contentY = 30;
+			} else {
+				titleY = 25;
+				contentY = 25;
+			}
 			if (title.equals("")) {
-//				contentX = 20;
 				contentSize = 18;
 			}
 		} else {
 			float standardWidth = PublicMethod.getDisplayWidth(context)/480.0f * 100;
 			
 			if (width < standardWidth) {
-//				if (text.length() > 3) {
-//					titleX = 3;
-//					contentX = 3;
-//				} else {
-//					titleX = 10;
-//					contentX = 10;
-//				}
 				contentSize = 13;
 			} else {
 				if (title.length() > 3) {
 					titleSize = 13;
-//					titleX = 1;
-				} /*else if (title.length() == 1) {
-					titleX = 15;
-				} else if (title.length() == 2) {
-					titleX = 25;
-				}*/
+				} 
 			}
 		}
 		// 标题
@@ -189,8 +179,14 @@ public class MyCheckBox extends CheckBox {
 		
 		float space = (width - titleWidth - oddsWidth)/3;
 		if (isHorizontal) {
-			canvas.drawText(title, space,
-					PublicMethod.getPxInt(titleY, context), mPaint);
+			if (text != null && !"".equals(text)) {
+				canvas.drawText(title, space,
+						PublicMethod.getPxInt(titleY, context), mPaint);
+			} else {
+				canvas.drawText(title, (width - titleWidth)/2,
+						PublicMethod.getPxInt(titleY, context), mPaint);
+			}
+			
 		} else {
 			canvas.drawText(title, (width - titleWidth)/2,
 					PublicMethod.getPxInt(titleY, context), mPaint);

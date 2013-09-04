@@ -33,7 +33,6 @@ import android.widget.ImageView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 

@@ -65,7 +65,7 @@ import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
-import com.ruyicai.activity.buy.zc.FootballLottery;
+import com.ruyicai.activity.buy.zc.FootBallMainActivity;
 import com.ruyicai.activity.expert.ExpertActivity;
 import com.ruyicai.activity.info.LotInfoActivity;
 import com.ruyicai.activity.join.JoinInfoActivity;
@@ -130,7 +130,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
 			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
 			GdEleven.class, PL3.class, Qlc.class, TwentyTwo.class, PL5.class,
-			QXC.class, FootballLottery.class, LqMainActivity.class,
+			QXC.class, FootBallMainActivity.class, LqMainActivity.class,
 			TenActivity.class, BeiJingSingleGameActivity.class };
 
 	private int[] imgViewsId = { R.id.mainpage_hemai_sign,

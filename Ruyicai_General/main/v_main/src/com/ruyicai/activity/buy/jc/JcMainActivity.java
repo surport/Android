@@ -445,7 +445,7 @@ public class JcMainActivity extends Activity implements
 	public void createDialog() {
 		viewType.setVisibility(View.VISIBLE);
 		teamLayersLayoutUp.setVisibility(View.VISIBLE);
-		setLayoutHeight(45);
+		PublicMethod.setLayoutHeight(45, teamLayersLayoutUp, context);
 		viewType.startAnimation(AnimationUtils.loadAnimation(this, 
         		R.anim.jc_top_menu_window_enter));
 		playLayersLayout.setVisibility(View.VISIBLE);
@@ -863,7 +863,7 @@ public class JcMainActivity extends Activity implements
 				teamSelectLayout.setVisibility(View.VISIBLE);
 				teamLayersLayout.setVisibility(View.VISIBLE);
 				teamLayersLayoutUp.setVisibility(View.VISIBLE);
-				setLayoutHeight(85);
+				PublicMethod.setLayoutHeight(85, teamLayersLayoutUp, context);
 				teamSelectLayout.startAnimation(AnimationUtils.loadAnimation(
 						context, R.anim.jc_top_menu_window_enter));
 			} else {
@@ -879,11 +879,6 @@ public class JcMainActivity extends Activity implements
 			break;
 		}
 	}
-	
-	private void setLayoutHeight(int dip) {
-		ViewGroup.LayoutParams params = teamLayersLayoutUp.getLayoutParams();
-		params.height = PublicMethod.getPxInt(dip, context);
-		teamLayersLayoutUp.setLayoutParams(params);
-	}
+
 	
 }
