@@ -1434,7 +1434,6 @@ public class NoticeBallActivity extends Activity {
 					code1 = QlcZiZhiXuanCode.simulateZhuma(redList, blueList);
 					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums1, redList, blueList, lotno, code1);
 				}
 
 				if (isTowRight == 0) {
@@ -1442,8 +1441,6 @@ public class NoticeBallActivity extends Activity {
 							blueListTwo);
 					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
-							code2);
 				}
 
 				if (betNums1 <= 10000 && betNums2 <= 10000) {
@@ -1492,7 +1489,6 @@ public class NoticeBallActivity extends Activity {
 							.simulateZhuma(redList, blueList);
 					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums1, redList, blueList, lotno, code1);
 				}
 
 				if (isTowRight == 0) {
@@ -1500,8 +1496,6 @@ public class NoticeBallActivity extends Activity {
 							blueListTwo);
 					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
-							code2);
 				}
 
 				if (betNums1 <= 10000 && betNums2 <= 10000) {
@@ -1518,6 +1512,8 @@ public class NoticeBallActivity extends Activity {
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
+				}else{
+					dialogExcessive(10000);
 				}
 
 			} else {
