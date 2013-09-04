@@ -194,7 +194,6 @@ public class JcScoreListActivity extends Activity {
 			} else{
 				getCurrentScoreNet("jingCaiZq");
 			}
-			
 		} else {
 			if (allcountries == null) {
 				getScoreNet(TYPE, "", reguestType);
@@ -423,6 +422,8 @@ public class JcScoreListActivity extends Activity {
 						.findViewById(R.id.jc_score_text_home_score);
 				holder1.guestScore = (TextView) convertView
 						.findViewById(R.id.jc_score_text_guest_score);
+				holder1.attentionLayout = (LinearLayout)convertView
+						.findViewById(R.id.jc_score_list_item_layout_left);
 				convertView.setTag(holder1);
 			} else {
 				holder1 = (ViewHolder) convertView.getTag();
@@ -443,59 +444,53 @@ public class JcScoreListActivity extends Activity {
 					holder.state.setText(info.getState());
 					holder.state.setTextColor(setStateColor(info.getState()));
 				}
+				holder1.attentionLayout.setVisibility(View.GONE);
 				/**add by yejc 20130807 end*/
+			} else if(tabIndex == 3) {
+				holder.state.setText(info.getState());
+				holder.state.setTextColor(setStateColor(info.getState()));
+				holder1.attentionLayout.setVisibility(View.GONE);
 			} else {
 				holder.state.setText(info.getState());
 				holder.state.setTextColor(setStateColor(info.getState()));
+				holder1.attentionLayout.setVisibility(View.VISIBLE);
+				
+				if (isTrack(allcountries.get(index), info.getEvent())) {
+					info.setStart(true);
+					holder.startImg
+							.setBackgroundResource(R.drawable.jc_list_start_b);
+				} else {
+					info.setStart(false);
+					holder.startImg.setBackgroundResource(R.drawable.jc_list_start);
+				}
+				holder.layoutLeft.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						if (info.isStart()) {
+							info.setStart(false);
+							holder.startImg
+									.setBackgroundResource(R.drawable.jc_list_start);
+							deletShellRw(allcountries.get(index), info.getEvent());
+							Toast.makeText(context, "已取消关注", Toast.LENGTH_SHORT)
+									.show();
+							if (isTrack) {
+								initList();
+							}
+						} else {
+							info.setStart(true);
+							holder.startImg
+									.setBackgroundResource(R.drawable.jc_list_start_b);
+							addShellRw(allcountries.get(index), info.getEvent());
+							Toast.makeText(context, "已添加至我的关注", Toast.LENGTH_SHORT)
+									.show();
+						}
+
+					}
+				});
 			}
 			
 			holder.time.setText("开赛：" + info.getTime());
 			holder.vTeam.setText(info.getvTeam());
-			if (isTrack(allcountries.get(index), info.getEvent())) {
-				info.setStart(true);
-				holder.startImg
-						.setBackgroundResource(R.drawable.jc_list_start_b);
-			} else {
-				info.setStart(false);
-				holder.startImg.setBackgroundResource(R.drawable.jc_list_start);
-			}
-			holder.layoutLeft.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (info.isStart()) {
-						info.setStart(false);
-						holder.startImg
-								.setBackgroundResource(R.drawable.jc_list_start);
-						deletShellRw(allcountries.get(index), info.getEvent());
-						Toast.makeText(context, "已取消关注", Toast.LENGTH_SHORT)
-								.show();
-						if (isTrack) {
-							initList();
-						}
-					} else {
-						info.setStart(true);
-						holder.startImg
-								.setBackgroundResource(R.drawable.jc_list_start_b);
-						addShellRw(allcountries.get(index), info.getEvent());
-						Toast.makeText(context, "已添加至我的关注", Toast.LENGTH_SHORT)
-								.show();
-					}
-
-				}
-			});
-//			if (!info.getHomeScore().equals("")
-//					&& !info.getGuestScore().equals("")) {
-//				holder1.homeScore.setText(info.getHomeScore());
-//				holder1.guestScore.setText(info.getGuestScore());
-//			}
-			
-//			if (!isLq) {
-//				if (!info.getHomeHalfScore().equals("")
-//						&& !info.getGuestHalfScore().equals("")) {
-//					holder.halfScore.setText("(" + info.getHomeHalfScore()
-//							+ ":" + info.getGuestHalfScore() + ")");
-//				}
-//			}
 			
 			/**add by yejc 20130802 start*/
 			if ("".equals(info.getHomeScore())) {
@@ -555,6 +550,7 @@ public class JcScoreListActivity extends Activity {
 			LinearLayout layoutLeft;
 			TextView homeScore;
 			TextView guestScore;
+			LinearLayout attentionLayout;
 		}
 	}
 

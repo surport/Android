@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
-import com.ruyicai.activity.buy.zc.FootBallLotteryFather;
+import com.ruyicai.activity.buy.zc.FootBallBaseAdapter;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.ExplainInterface;
@@ -42,8 +42,8 @@ public class JcExplainActivity extends BuyActivityGroup {
 		isIssue(false);
 		/**add by yejc 20130425 start*/
 		event = getIntentInfo();
-		if (FootBallLotteryFather.LOTNO_ZC.equals(getIntent().getStringExtra(
-				FootBallLotteryFather.LOTNO_ZC))
+		if (FootBallBaseAdapter.LOTNO_ZC.equals(getIntent().getStringExtra(
+				FootBallBaseAdapter.LOTNO_ZC))
 		    || Constants.BEIJINGSINGLE.equals(Constants.currentTickType)) {
 			titles = new String[3];
 			String [] temp = { "分析", "欧指", "亚盘" };

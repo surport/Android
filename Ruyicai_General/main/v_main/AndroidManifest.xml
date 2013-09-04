@@ -255,23 +255,7 @@
             android:screenOrientation="portrait" />
         <!-- zc -->
         <activity
-            android:name="com.ruyicai.activity.buy.zc.FootballLottery"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.buy.zc.FootballSFLottery"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.buy.zc.FootballGoalsLottery"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.buy.zc.FootballChooseNineLottery"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.buy.zc.FootballSixSemiFinal"
+            android:name="com.ruyicai.activity.buy.zc.FootBallMainActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <!-- ssq -->

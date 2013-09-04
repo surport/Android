@@ -1,68 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/bg"
-    android:orientation="vertical" >
+    android:background="@color/white" >
+
+    <!-- 主界面布局 -->
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp" >
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:paddingTop="85dip" >
 
-        <Button
-            android:id="@id/layout_football_issue"
-            android:layout_width="120dp"
-            android:layout_height="34dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/football_advancebatchcode"
-            android:paddingLeft="5dp"
-            android:paddingRight="25dp"
-            android:textColor="@color/black"
-            android:textSize="14dip" />
-
-        <TextView
-            android:id="@id/layout_football_time"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="14dip" >
-        </TextView>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <ScrollView
-            android:id="@id/ScrollView01"
+        <ListView
+            android:id="@id/buy_footballlottery_list"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/buy_zixuan_relativelayout">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dip"
-                android:layout_marginRight="2dip"
-                android:orientation="vertical" >
-
-                <ListView
-                    android:id="@id/buy_footballlottery_list"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1530dip"
-                    android:background="@color/list_color"
-                    android:divider="@color/zc_sfc_listview_item_bg"
-                    android:dividerHeight="5dp" >
-                </ListView>
-            </LinearLayout>
-        </ScrollView>
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="50dip"
+            android:background="@color/white"
+            android:divider="@color/zc_sfc_listview_item_bg"
+            android:dividerHeight="0dip" >
+        </ListView>
 
         <RelativeLayout
             android:id="@id/buy_zixuan_relativelayout"
@@ -101,4 +59,99 @@
         </RelativeLayout>
     </RelativeLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/jc_main_team_layout_layers_down"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <!-- 赛事选择下拉框 -->
+
+    <LinearLayout
+        android:id="@+id/jc_main_team_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="85dip"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@id/jc_linear_check_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zc_team_select_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dip" />
+    </LinearLayout>
+
+    <!-- 期号和时间 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dip"
+        android:background="@drawable/jc_team_select_button_bg"
+        android:gravity="center_vertical"
+        android:paddingTop="45dip" >
+
+        <LinearLayout
+            android:id="@+id/buy_lq_main_layout_team"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_weight="3"
+            android:gravity="center" >
+
+            <Button
+                android:id="@id/layout_football_issue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="18sp" >
+            </Button>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dip"
+                android:src="@drawable/jc_game_select" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/layout_football_time"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_alignParentRight="true"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14dip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/jc_main_team_layout_layers_middle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <!-- 竞彩篮球，足球玩法切换下拉框 -->
+
+    <include layout="@layout/zc_playchange_dialog" />
+
+    <!-- 标题栏 -->
+
+    <include layout="@layout/jc_main_title_bar" />
+
+    <LinearLayout
+        android:id="@+id/jc_main_team_layout_layers_up"
+        android:layout_width="match_parent"
+        android:layout_height="85dip"
+        android:layout_gravity="top"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+</FrameLayout>

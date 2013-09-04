@@ -65,10 +65,8 @@ import com.umeng.analytics.MobclickAgent;
  * 
  */
 public class BetQueryActivity extends Activity implements HandlerMsg {
-//	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
 	private LinearLayout usecenerLinear;
 	private Button returnButton;
-//	private Button kindButton;
 	private TextView titleTextView;
 	private LinearLayout kind;// 按彩种查询
 	private Spinner betkindspinner;
@@ -115,9 +113,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	List<BetQueryInfo> jclqdatalist = new ArrayList<BetQueryInfo>();
 	List<BetQueryInfo> twentydatalist = new ArrayList<BetQueryInfo>();
 	List<BetQueryInfo> sfcdatalist = new ArrayList<BetQueryInfo>();
-//	List<BetQueryInfo> rxjdatalist = new ArrayList<BetQueryInfo>();
-//	List<BetQueryInfo> lcbdatalist = new ArrayList<BetQueryInfo>();
-//	List<BetQueryInfo> jqcdatalist = new ArrayList<BetQueryInfo>();
 	List<BetQueryInfo> tendatalist = new ArrayList<BetQueryInfo>();
 	
 	List<BetQueryInfo> beijingSinglelist = new ArrayList<BetQueryInfo>();
@@ -130,7 +125,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	View view;
 	ProgressBar progressbar;
 	boolean isfirst = false;
-//	private final int MAX_AMT = 10000000;
 
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -226,17 +220,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			sfcindex = page;
 			break;
-		/**close by yejc 20130506 start*/
-//		case 17:
-//			rxjindex = page;
-//			break;
-//		case 18:
-//			lcbindex = page;
-//			break;
-//		case 19:
-//			jqcindxe = page;
-//			break;
-		/**close by yejc 20130506 start*/
 		/**add by yejc 20130506 start*/
 		case 17:
 			tenindex = page;
@@ -302,17 +285,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			page = sfcindex;
 			break;
-		/**close by yejc 20130506 start*/	
-//		case 17:
-//			page = rxjindex;
-//			break;
-//		case 18:
-//			page = lcbindex;
-//			break;
-//		case 19:
-//			page = jqcindxe;
-//			break;
-		/**close by yejc 20130506 end*/
 		/**add by yejc 20130506 start*/	
 		case 17:
 			page = tenindex;
@@ -379,17 +351,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			sfcpages = page;
 			break;
-		/**close by yejc 20130506 start*/
-//		case 17:
-//			rxjpages = page;
-//			break;
-//		case 18:
-//			lcbpages = page;
-//			break;
-//		case 19:
-//			jqcpages = page;
-//			break;
-		/**close by yejc 20130506 start*/
 		/**add by yejc 20130506 start*/
 		case 17:
 			tenpages = page;
@@ -455,17 +416,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			page = sfcpages;
 			break;
-		/**close by yejc 20130506 start*/	
-//		case 17:
-//			page = rxjpages;
-//			break;
-//		case 18:
-//			page = lcbpages;
-//			break;
-//		case 19:
-//			page = jqcpages;
-//			break;
-		/**close by yejc 20130506 end*/	
 		/**add by yejc 20130506 start*/	
 		case 17:
 			page = tenpages;
@@ -531,20 +481,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		case 16:
 			initListView(queryinfolist, sfcdatalist);
 			break;
-			/**close by yejc 20130507 start*/
-//		case 17:
-//			initListView(queryinfolist, rxjdatalist);
-//			break;
-//		case 18:
-//			initListView(queryinfolist, lcbdatalist);
-//			break;
-//		case 19:
-//			initListView(queryinfolist, jqcdatalist);
-//			break;
-//		case 20:
-//			initListView(queryinfolist, tendatalist);
-//			break;
-			/**close by yejc 20130507 end*/
 			
 		/**add by yejc 20130506 start*/	
 		case 17:
@@ -1029,15 +965,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 						twentydatalist.add(betQueryinfo);
 					} else if (typekind == 16) {
 						sfcdatalist.add(betQueryinfo);
-					} /*else if (typekind == 17) {
-						rxjdatalist.add(betQueryinfo);
-					} else if (typekind == 18) {
-						lcbdatalist.add(betQueryinfo);
-					} else if (typekind == 19) {
-						jqcdatalist.add(betQueryinfo);
-					} else if (typekind == 20) {
-						tendatalist.add(betQueryinfo);
-					}*/ else if (typekind == 17) {
+					} else if (typekind == 17) {
 						tendatalist.add(betQueryinfo);
 					} else if (typekind == 18) {
 						beijingSinglelist.add(betQueryinfo);

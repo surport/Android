@@ -82,7 +82,7 @@ import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
-import com.ruyicai.activity.buy.zc.FootballLottery;
+import com.ruyicai.activity.buy.zc.FootBallMainActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -677,7 +677,7 @@ public class PublicMethod {
 				|| lotNo.equals(Constants.LOTNO_RX9)
 				|| lotNo.equals(Constants.LOTNO_JQC)
 				|| lotNo.equals(Constants.LOTNO_LCB)) {
-			intent = new Intent(context, FootballLottery.class);
+			intent = new Intent(context, FootBallMainActivity.class);
 		} else if (lotNo.equals(Constants.LOTNO_JCLQ)
 				|| lotNo.equals(Constants.LOTNO_JCLQ_RF)
 				|| lotNo.equals(Constants.LOTNO_JCLQ_SFC)
@@ -2897,6 +2897,7 @@ public class PublicMethod {
 		}
 	}
 	
+	/**add by yejc 20130818 start*/
 	/**
 	 * 格式化文本内容到html格式
 	 * @param text
@@ -2921,6 +2922,13 @@ public class PublicMethod {
 			}
 		}
 		return false;
+	}
+	/**add by yejc 20130818 end*/
+	
+	public static void setLayoutHeight(int dip, LinearLayout layout, Context context) {
+		ViewGroup.LayoutParams params = layout.getLayoutParams();
+		params.height = getPxInt(dip, context);
+		layout.setLayoutParams(params);
 	}
 
 

@@ -6,7 +6,6 @@ import android.widget.RadioGroup;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
-import com.ruyicai.activity.buy.zc.FootballChooseNineLottery;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;

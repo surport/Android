@@ -8,15 +8,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.zc.FootballLottery;
+import com.ruyicai.activity.buy.zc.FootBallMainActivity;
 import com.ruyicai.activity.notice.PrizeBallLinearLayout;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
@@ -108,16 +106,15 @@ public class ZCDetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(context, FootballLottery.class);
+				Intent intent = new Intent(context, FootBallMainActivity.class);
 				if (lotno == Constants.LOTNO_SFC) {
-					FootballLottery.tabPosition = 0;
+					intent.putExtra("index", 0);
 				} else if (lotno == Constants.LOTNO_RX9) {
-					FootballLottery.tabPosition = 1;
+					intent.putExtra("index", 1);
 				} else if (lotno == Constants.LOTNO_JQC) {
-					FootballLottery.tabPosition = 2;
+					intent.putExtra("index", 3);
 				} else if (lotno == Constants.LOTNO_LCB) {
-					FootballLottery.tabPosition = 3;
+					intent.putExtra("index", 2);
 				}
 				context.startActivity(intent);
 			}
@@ -126,7 +123,6 @@ public class ZCDetailView extends LotnoDetailView {
 
 	@Override
 	public String getShareString() {
-		// TODO Auto-generated method stub
 		StringBuffer str = new StringBuffer();
 		try {
 			str.append("#如意彩客户端#，").append(
@@ -143,7 +139,6 @@ public class ZCDetailView extends LotnoDetailView {
 					+ context.getString(R.string.game_card_yuan) + ",");
 			str.append("在@如意彩 买彩票，中奖福地，精“彩”不断！也许下一个大奖就属于您！");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return str.toString();

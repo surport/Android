@@ -20,20 +20,11 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ImageView;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
@@ -375,24 +366,6 @@ public class OneBallView extends ImageView {
 				Constants.red_long = bitmap;
 			}
 			bitmap = Constants.red_long;
-			break;
-			
-			//add by yejc 20130326
-		case R.drawable.jc_zjq_btn_40: 
-		case R.drawable.jc_zjq_btn_b_40:
-		case R.drawable.jc_zjq_btn_40_gray:	
-			if (bitmap == null) {
-				bitmap = new BitmapDrawable(is).getBitmap();
-			}
-
-			width = bitmap.getWidth();
-			height = bitmap.getHeight();
-			sw = ((float) iWidth) / width;
-			sh = ((float) iHeight) / height;
-			matrix = new Matrix();
-			matrix.postScale(sw, sh);
-			bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix,
-					true);
 			break;
 		}
 

@@ -34,7 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.more.LuckChoose2;
 import com.ruyicai.activity.notice.NoticeActivityGroup;
@@ -431,28 +430,6 @@ public class BuyActivityGroup extends ActivityGroup {
 				intent.putExtra("position", 1);
 			}
 			startActivity(intent);
-		}
-		if (lotNo == Constants.LOTNO_ZC) {
-			if (mTabHost.getCurrentTab() == 0) {
-				Intent intent = new Intent(this, NoticeZCActivity.class);
-				intent.putExtra("position", 0);
-				startActivity(intent);
-			}
-			if (mTabHost.getCurrentTab() == 1) {
-				Intent intent = new Intent(this, NoticeZCActivity.class);
-				intent.putExtra("position", 1);
-				startActivity(intent);
-			}
-			if (mTabHost.getCurrentTab() == 2) {
-				Intent intent = new Intent(this, NoticeZCActivity.class);
-				intent.putExtra("position", 2);
-				startActivity(intent);
-			}
-			if (mTabHost.getCurrentTab() == 3) {
-				Intent intent = new Intent(this, NoticeZCActivity.class);
-				intent.putExtra("position", 3);
-				startActivity(intent);
-			}
 		}
 
 		// 点击时时彩跳转到进球彩子列表中

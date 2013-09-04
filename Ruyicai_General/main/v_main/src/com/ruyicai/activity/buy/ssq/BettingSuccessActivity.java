@@ -19,8 +19,8 @@ import com.ruyicai.activity.buy.qxc.QXC;
 import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.ten.TenActivity;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
-import com.ruyicai.activity.buy.zc.FootballLottery;
 import com.ruyicai.activity.join.JoinCheckActivity;
+import com.ruyicai.activity.buy.zc.FootBallMainActivity;
 import com.ruyicai.activity.join.JoinInfoActivity;
 import com.ruyicai.activity.more.FeedBack;
 import com.ruyicai.activity.notice.NoticeActivityGroup;
@@ -383,7 +383,7 @@ public class BettingSuccessActivity extends Activity {
 						|| lotnoString.equals(Constants.LOTNO_SFC)
 						|| lotnoString.equals(Constants.LOTNO_RX9)) {
 					intent = new Intent(BettingSuccessActivity.this,
-							FootballLottery.class);
+							FootBallMainActivity.class);
 				} else if (lotnoString.equals(Constants.LOTNO_JCLQ)
 						|| lotnoString.equals(Constants.LOTNO_JCLQ_RF)
 						|| lotnoString.equals(Constants.LOTNO_JCLQ_SFC)

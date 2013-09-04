@@ -997,7 +997,7 @@ public class FootballGoalsLottery extends FootBallLotteryFather implements
 									.getString("batchCode")));
 							aa.setEndTime(formatEndtime(item
 									.getString("endTime")));
-							bactchCodes[i] = item.getString("batchCode");
+							bactchCodes[i] = item.getString("batchCode").trim();
 							/**add by yejc 20130425 start*/
 							String batchCode = item.getString("batchCode");
 							if (item.has("state")) {

@@ -1006,7 +1006,7 @@ public class FootballSFLottery extends FootballFourteen implements HandlerMsg {
 								}
 							}
 							/**add by yejc 20130425 end*/
-							bactchCodes[i] = item.getString("batchCode");
+							bactchCodes[i] = item.getString("batchCode").trim();
 							bactchArray.add(aa);
 							if (qihaoxinxi[1] != null
 									|| "".equals(qihaoxinxi[1])) {

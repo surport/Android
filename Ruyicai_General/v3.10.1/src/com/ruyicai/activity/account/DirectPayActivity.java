@@ -384,6 +384,6 @@ public class DirectPayActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public Context getContext() {
-		return null;
+		return this;
 	}
 }

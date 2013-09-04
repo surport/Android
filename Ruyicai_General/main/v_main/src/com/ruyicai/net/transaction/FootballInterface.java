@@ -6,15 +6,12 @@ import android.util.Log;
 
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.InternetUtils;
+import com.ruyicai.util.ProtocolManager;
 import com.ruyicai.util.URLEncoder;
 
 public class FootballInterface {
 
 	private static FootballInterface instance;
-
-	private FootballInterface() {
-
-	}
 
 	public static synchronized FootballInterface getInstance() {
 		if (instance == null) {
@@ -22,38 +19,43 @@ public class FootballInterface {
 		}
 		return instance;
 	}
-
-	/**
-	 * 获得足彩对阵
-	 * 
-	 * @param lotno
-	 *            彩种编号
-	 * @param batchCode
-	 *            当前期
-	 * @return
-	 */
-	public static String getZCData(String lotno, String batchCode) {
-		String action = "zcAction.do";
-		String method = "getFlData";
+	
+	public String getAdvanceBatchCodeList(String Lotno) {
 		String reValue = "";
 		try {
-			String para = "";
-			JSONObject paras = new JSONObject();
-			paras.put("lotno", lotno);
-			paras.put("batchCode", batchCode);
-			para = URLEncoder.encode(paras.toString());
 
-			String re = InternetUtils
-					.GetMethodOpenHttpConnectJrt(Constants.SERVER_URL + action
-							+ ";jsessionid=" + Constants.sessionId + "?method="
-							+ method + "&jsonString=" + para);
-			Log.e("re====", "re==" + re);
-			if (re != null && re.length() > 0) {
-				reValue = re;
-			}
+			JSONObject jsonProtocol = ProtocolManager.getInstance()
+					.getDefaultJsonProtocol();
+			jsonProtocol.put(ProtocolManager.COMMAND, "QueryLot");
+			jsonProtocol.put(ProtocolManager.TYPE, "zcIssue");
+			jsonProtocol.put(ProtocolManager.LOTNO, Lotno);
+			reValue = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
+		return reValue;
+	}
+	
+	
+	/**
+	 * 获得足彩对阵
+	 * 改为新接口 by yejc 20130829
+	 */
+	public String getZCData(String lotno, String batchCode) {
+		String reValue = "";
+		try {
+			JSONObject jsonProtocol = ProtocolManager.getInstance()
+					.getDefaultJsonProtocol();
+			jsonProtocol.put(ProtocolManager.COMMAND, "zuCai");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "duiZhen"); //requestType":"duiZhen"
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put(ProtocolManager.BATCHCODE, batchCode);
+			reValue = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return reValue;
 	}
 
