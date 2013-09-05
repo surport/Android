@@ -880,6 +880,10 @@ public class NoticeBallActivity extends Activity {
 		} else if (isOneRight == 3 || isTowRight == 3) {
 			Toast.makeText(this, "至少需要一个三位小球", Toast.LENGTH_SHORT).show();
 		}
+
+		if (isOneRight == 5 || isTowRight == 5) {
+			Toast.makeText(this, "请选择正确的投注号码", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private int isBetLegitimacyFour(List<Integer> oneHundreds,
@@ -903,6 +907,11 @@ public class NoticeBallActivity extends Activity {
 			} else if (oneDecades.size() <= 0) {
 				legalState = 2;
 			}
+
+			if ((caculateBetNumFour(oneHundreds, oneDecades, oneUnits, i) == 0)
+					&& ((oneHundreds.size() + oneDecades.size()) != 0)) {
+				legalState = 5;
+			}
 		} else if (i == 2) {
 			if (oneHundreds.size() == 0 && oneDecades.size() == 0
 					&& oneUnits.size() == 0) {
@@ -916,6 +925,12 @@ public class NoticeBallActivity extends Activity {
 				legalState = 2;
 			} else if (oneUnits.size() <= 0) {
 				legalState = 3;
+			}
+
+			if ((caculateBetNumFour(oneHundreds, oneDecades, oneUnits, i) == 0)
+					&& ((oneHundreds.size() + oneDecades.size() + oneUnits
+							.size()) != 0)) {
+				legalState = 5;
 			}
 		} else if (i == 3) {
 			if (oneHundreds.size() == 0) {
@@ -1512,7 +1527,7 @@ public class NoticeBallActivity extends Activity {
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", true);
 					startActivity(intent);
-				}else{
+				} else {
 					dialogExcessive(10000);
 				}
 
