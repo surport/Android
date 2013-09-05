@@ -121,8 +121,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (OrderDetails.isAlert) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+
 				} else {
 					finish();
 				}
@@ -411,10 +416,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	private boolean isclearaddview = true;
 
 	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		clearProgress();
-
 	}
 
 	@Override
@@ -497,6 +505,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -504,6 +513,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -524,7 +534,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			}
 			/**add by yejc 20130510 end*/
 			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+				} else {
+					alertExit(getString(R.string.buy_alert_exit_detail));
+				}
+
 			} else {
 				finish();
 			}

@@ -717,7 +717,7 @@ public class NoticeBallActivity extends Activity {
 			if (betNums1 <= 10000 && betNums2 <= 10000) {
 				Intent intent = new Intent(this, OrderDetails.class);
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-				intent.putExtra("isAlert", false);
+				intent.putExtra("isAlert", true);
 				startActivity(intent);
 			}
 
@@ -983,7 +983,7 @@ public class NoticeBallActivity extends Activity {
 			if (betNums1 <= 10000 && betNums2 <= 10000) {
 				Intent intent = new Intent(this, OrderDetails.class);
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-				intent.putExtra("isAlert", false);
+				intent.putExtra("isAlert", true);
 				startActivity(intent);
 			}
 
@@ -1152,7 +1152,7 @@ public class NoticeBallActivity extends Activity {
 
 			if (betNums1 <= 10000 && betNums2 <= 10000) {
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-				intent.putExtra("isAlert", false);
+				intent.putExtra("isAlert", true);
 				startActivity(intent);
 			}
 
@@ -1402,7 +1402,7 @@ public class NoticeBallActivity extends Activity {
 
 					Intent intent = new Intent(this, OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-					intent.putExtra("isAlert", false);
+					intent.putExtra("isAlert", true);
 					startActivity(intent);
 				} else {
 					dialogExcessive(10000);
@@ -1455,7 +1455,7 @@ public class NoticeBallActivity extends Activity {
 					Intent intent = new Intent(this,
 							com.ruyicai.activity.buy.zixuan.OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-					intent.putExtra("isAlert", false);
+					intent.putExtra("isAlert", true);
 					startActivity(intent);
 				} else {
 					dialogExcessive(10000);
@@ -1510,7 +1510,7 @@ public class NoticeBallActivity extends Activity {
 					}
 					Intent intent = new Intent(this, OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
-					intent.putExtra("isAlert", false);
+					intent.putExtra("isAlert", true);
 					startActivity(intent);
 				}else{
 					dialogExcessive(10000);

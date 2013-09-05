@@ -435,7 +435,7 @@ public class AddViewMiss {
 		private String touZhuCode;// 投注时的注码，传给后台的
 		List<String> codes = new ArrayList<String>();
 		List<Integer> colors = new ArrayList<Integer>();
-		int amt;
+		long amt;
 		int zhuShu;
 		private String lotoNo;
 		private String touZhuType;
@@ -481,7 +481,7 @@ public class AddViewMiss {
 			this.touZhuCode = touZhuCode;
 		}
 
-		public int getAmt() {
+		public long getAmt() {
 			return amt;
 		}
 

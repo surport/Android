@@ -64,6 +64,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
+import com.ruyicai.activity.buy.zixuan.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -260,7 +261,16 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addview.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+
+				} else {
+					finish();
+				}
 			}
 		});
 		language = (ImageButton) findViewById(R.id.gift_img_language);
@@ -1163,13 +1173,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+	}
+
+	public void clearProgress() {
 		if (isclearaddview) {
 			if (addview != null) {
 				addview.clearInfo();
 				addview.updateTextNum();
 			}
 		}
-
 	}
 
 	public void errorCode_000000() {
@@ -1213,6 +1225,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -1220,6 +1233,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -1239,7 +1253,11 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 				dialogOk();
 			} else {
 				if (addview != null && addview.getSize() != 0) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				} else {
 					finish();
 				}

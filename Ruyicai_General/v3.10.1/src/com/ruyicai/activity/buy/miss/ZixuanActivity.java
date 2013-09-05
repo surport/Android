@@ -1121,5 +1121,8 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		
 		return false;
 	}
-
+	
+	public void showBetInfo(String text){
+		
+	}
 }
