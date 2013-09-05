@@ -595,8 +595,8 @@ public class NoticeBallActivity extends Activity {
 					}
 
 					if (twoSelectButtonSpinner.getSelectedItemPosition() == 3) {
-						twoHundreds.addAll(oneDecades);
-						oneDecades.clear();
+						twoHundreds.addAll(twoDecades);
+						twoDecades.clear();
 						PublicMethod.rankIntList(twoHundreds);
 					} else if (twoSelectButtonSpinner.getSelectedItemPosition() == 4) {
 						twoHundreds.addAll(twoDecades);
