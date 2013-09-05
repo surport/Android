@@ -1351,7 +1351,8 @@ public class NoticeBallActivity extends Activity {
 
 	private void setTouZhuInfo(List<Integer> redList, List<Integer> blueList,
 			List<Integer> redListTwo, List<Integer> blueListTwo) {
-		String code = "";
+		String code1 = "";
+		String code2 = "";
 		long betNums1 = 0;
 		long betNums2 = 0;
 		String lotno = "";
@@ -1376,26 +1377,35 @@ public class NoticeBallActivity extends Activity {
 				lotno = Constants.LOTNO_SSQ;
 
 				if (isOneRight == 0) {
-					code = SsqZiZhiXuanCode.simulateZhuma(redList, blueList);
+					code1 = SsqZiZhiXuanCode.simulateZhuma(redList, blueList);
 					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums1, redList, blueList, lotno, code);
 				}
 
 				if (isTowRight == 0) {
-					code = SsqZiZhiXuanCode.simulateZhuma(redListTwo,
+					code2 = SsqZiZhiXuanCode.simulateZhuma(redListTwo,
 							blueListTwo);
 					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
-							code);
 				}
 
 				if (betNums1 <= 10000 && betNums2 <= 10000) {
+					if (isOneRight == 0) {
+						addViewAndTouZhu(betNums1, redList, blueList, lotno,
+								code1);
+					}
+
+					if (isTowRight == 0) {
+						addViewAndTouZhu(betNums2, redListTwo, blueListTwo,
+								lotno, code2);
+					}
+
 					Intent intent = new Intent(this, OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
+				} else {
+					dialogExcessive(10000);
 				}
 
 			} else {
@@ -1421,27 +1431,34 @@ public class NoticeBallActivity extends Activity {
 				lotno = Constants.LOTNO_QLC;
 
 				if (isOneRight == 0) {
-					code = QlcZiZhiXuanCode.simulateZhuma(redList, blueList);
+					code1 = QlcZiZhiXuanCode.simulateZhuma(redList, blueList);
 					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums1, redList, blueList, lotno, code);
 				}
 
 				if (isTowRight == 0) {
-					code = QlcZiZhiXuanCode.simulateZhuma(redListTwo,
+					code2 = QlcZiZhiXuanCode.simulateZhuma(redListTwo,
 							blueListTwo);
 					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
-							code);
 				}
 
 				if (betNums1 <= 10000 && betNums2 <= 10000) {
+					if (isOneRight == 0) {
+						addViewAndTouZhu(betNums1, redList, blueList, lotno,
+								code1);
+					}
+					if (isTowRight == 0) {
+						addViewAndTouZhu(betNums2, redListTwo, blueListTwo,
+								lotno, code2);
+					}
 					Intent intent = new Intent(this,
 							com.ruyicai.activity.buy.zixuan.OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
+				} else {
+					dialogExcessive(10000);
 				}
 
 			} else {
@@ -1468,26 +1485,35 @@ public class NoticeBallActivity extends Activity {
 				lotno = Constants.LOTNO_DLT;
 
 				if (isOneRight == 0) {
-					code = DltNormalSelectCode.simulateZhuma(redList, blueList);
+					code1 = DltNormalSelectCode
+							.simulateZhuma(redList, blueList);
 					betNums1 = caculateBetNums(redList.size(), blueList.size(),
 							redNum, blueNum);
-					addViewAndTouZhu(betNums1, redList, blueList, lotno, code);
 				}
 
 				if (isTowRight == 0) {
-					code = DltNormalSelectCode.simulateZhuma(redListTwo,
+					code2 = DltNormalSelectCode.simulateZhuma(redListTwo,
 							blueListTwo);
 					betNums2 = caculateBetNums(redListTwo.size(),
 							blueListTwo.size(), redNum, blueNum);
-					addViewAndTouZhu(betNums2, redListTwo, blueListTwo, lotno,
-							code);
 				}
 
 				if (betNums1 <= 10000 && betNums2 <= 10000) {
+					if (isOneRight == 0) {
+						addViewAndTouZhu(betNums1, redList, blueList, lotno,
+								code1);
+					}
+
+					if (isTowRight == 0) {
+						addViewAndTouZhu(betNums2, redListTwo, blueListTwo,
+								lotno, code2);
+					}
 					Intent intent = new Intent(this, OrderDetails.class);
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", false);
 					startActivity(intent);
+				}else{
+					dialogExcessive(10000);
 				}
 
 			} else {
