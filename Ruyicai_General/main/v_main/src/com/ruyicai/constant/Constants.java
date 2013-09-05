@@ -328,7 +328,7 @@ public class Constants {
 	 */
 	public final static String UMPAY_SERVER_URL = "http://payment.umpay.com/hfwebbusi/pay/wxVersionUpdate.do";
 	// 话付宝安全支付服务apk的名称，必须与assets目录下的apk名称一致
-	public static final String PAY_PLUGIN_NAME = "huafubaopsV1.2.0_0002.apk";
+	public static final String PAY_PLUGIN_NAME = "huafubaops1.3.1.apk";
 
 	public static final String ALIPAY_PACK_NAME = "com.alipay.android.app";
 	public static final String UMPAY_PHONE_PACK_NAME = "com.umpay.huafubao";
