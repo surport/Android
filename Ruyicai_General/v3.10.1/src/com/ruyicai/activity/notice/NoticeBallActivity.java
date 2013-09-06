@@ -2537,5 +2537,56 @@ public class NoticeBallActivity extends Activity {
 
 	protected void onStop() {
 		super.onStop();
+		clearSelectedBall();
+	}
+	
+	private void clearSelectedBall() {
+		if (isLogin()) {
+			switch (NoticeActivityGroup.LOTNO) {
+			// 广东11-5
+			case NoticeActivityGroup.ID_SUB_GD115_LISTVIEW:
+				if (isBeforeThree) {
+					ballSelectedRedView.resetSelect();
+					
+				} else {
+					ballSelectedRedView.resetSelect();
+				}
+				ballSelectedRedView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_SHUANGSEQIU_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedBlueView.resetSelect();
+				ballSelectedRedView.invalidate();
+				ballSelectedBlueView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_FUCAI3D_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedRedView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_QILECAI_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedBlueView.resetSelect();
+				ballSelectedRedView.invalidate();
+				ballSelectedBlueView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_PAILIESAN_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				break;
+			case NoticeActivityGroup.ID_SUB_DLT_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedBlueView.resetSelect();
+				ballSelectedRedView.invalidate();
+				ballSelectedBlueView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_DLC_LISTVIEW:
+				if (isBeforeThree) {
+					ballSelectedRedView.resetSelect();
+				} else {
+					ballSelectedRedView.resetSelect();
+				}
+				ballSelectedRedView.invalidate();
+				break;
+			}
+		}
 	}
 }

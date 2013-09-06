@@ -2127,6 +2127,11 @@ public class NoticeBallView extends View {
 		}
 		/** modify by pengcx 20130812 end */
 	}
+	
+	public void resetSelect(){
+		ballsChcekOne.clear();
+		ballsChcekTwo.clear();
+	}
 
 	/**
 	 * 获取图片
