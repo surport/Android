@@ -1,7 +1,6 @@
 package com.ruyicai.activity.buy.jc.touzhu;
 
 import java.util.List;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -9,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,18 +15,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.jc.JcMainActivity;
 import com.ruyicai.activity.buy.jc.JcMainView;
-import com.ruyicai.activity.buy.jc.zq.view.HunHeZqView;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.dialog.MessageDialog;
-import com.ruyicai.net.newtransaction.MsgUpdateReadState;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
@@ -50,7 +43,6 @@ public class TouzhuDialog {
 	public double freedomMixprize = 0;
 	public int zhuShu = 0;
 	public boolean isRadio = false;// false是自由过关,true是多串过关
-	private final int MAXAMT = 200000;// 最大投注金额
 	String returnStr = "";
 
 	/** add by pengcx 20130703 start */
@@ -111,7 +103,6 @@ public class TouzhuDialog {
 		schemeTextView = (TextView) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_scheme);
 		schemeTextView.setText(Html.fromHtml(alertMsg));
-//		schemeTextView.setText(alertMsg);
 		schemeDetailTextView = (TextView) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
 		upDownImageView = (ImageView) v.findViewById(R.id.alert_dialog_touzhu_updown);
@@ -120,12 +111,6 @@ public class TouzhuDialog {
 		schemeDetailLinearLayout = (LinearLayout) v
 				.findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
 		
-//		if(jcMainView instanceof HunHeZqView) { //add by yejc 20130730 start
-//			schemeDetailTextView.setText(Html.fromHtml(alertMsg));
-//		} else { //add by yejc 20130730 end
-//			schemeDetailTextView.setText(alertMsg);
-//		}
-//		schemeDetailTextView.setText(alertMsg);
 		schemeDetailTextView.setText(Html.fromHtml(alertMsg));
 		schemeRelativeLayout.setOnClickListener(new OnClickListener() {
 
@@ -135,13 +120,11 @@ public class TouzhuDialog {
 				int visibility = schemeDetailLinearLayout.getVisibility();
 				if (visibility == View.VISIBLE) {
 					schemeDetailLinearLayout.setVisibility(View.GONE);
-					// schemeTextView.setText(alertMsg);
 					schemeTextView.setVisibility(View.VISIBLE);
 					upDownImageView.setImageResource(R.drawable.down_icon);
 				} else {
 					schemeDetailLinearLayout.setVisibility(View.VISIBLE);
 					upDownImageView.setImageResource(R.drawable.up_icon);
-					// schemeTextView.setText("");
 					schemeTextView.setVisibility(View.INVISIBLE);
 				}
 				/**modify by pengcx 20130805 end*/
@@ -229,16 +212,10 @@ public class TouzhuDialog {
 			} else if (zhuShu == 0) {
 				Toast.makeText(context, "请选择过关方式", Toast.LENGTH_SHORT).show();
 			} else {
-				if (isAmtDialog()) {
-					if (getAllAmt() > MAXAMT) {
-						alertInfo(
-								context.getString(R.string.jc_main_touzhu_alert_text_content_new),
-								context.getString(R.string.jc_main_touzhu_alert_text_title));
-					} else if (zhuShu > 10000) {
-						alertInfo(
-								context.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
-								context.getString(R.string.jc_main_touzhu_alert_text_title));
-					}
+				if (zhuShu > 100000) {
+					alertInfo(
+							context.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
+							context.getString(R.string.jc_main_touzhu_alert_text_title));
 				} else {
 					switch (v.getId()) {
 					case R.id.alert_dialog_touzhu_button_cancel:
@@ -255,22 +232,6 @@ public class TouzhuDialog {
 
 		}
 	};
-
-	/**
-	 * 是否弹出温馨提示
-	 * 
-	 * @return
-	 */
-	public boolean isAmtDialog() {
-		int allAmt = getAllAmt();
-		if (allAmt > MAXAMT || allAmt < 0) {
-			return true;
-		} else if (zhuShu > 10000) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
 	/**
 	 * 提示框1 用来提醒选球规则
@@ -338,18 +299,6 @@ public class TouzhuDialog {
 		app.setPojo(context.betAndGift);
 		context.touZhuNet();
 	}
-
-	/**
-	 * 投注详情提示框
-	 * 
-	 * @param title
-	 * @param msg
-	 */
-	// public void showInfoDialog(String title, String msg) {
-	// MessageDialog msgDialog = new MessageDialog(context, title, msg);
-	// msgDialog.showDialog();
-	// msgDialog.createFillDialog();
-	// }
 
 	/**
 	 * 中奖范围
