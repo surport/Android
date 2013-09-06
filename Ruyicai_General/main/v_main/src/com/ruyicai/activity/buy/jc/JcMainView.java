@@ -34,10 +34,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
@@ -228,6 +230,8 @@ public abstract class JcMainView {
 	private void infoNet() {
 		final ProgressDialog dialog = UserCenterDialog.onCreateDialog(context);
 		dialog.show();
+		View dialogView = PublicMethod.getView(context);
+		dialog.getWindow().setContentView(dialogView);
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
 

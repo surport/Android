@@ -772,6 +772,13 @@
             android:name="com.ruyicai.activity.account.GetFreeGoldActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
+        <!-- 彩金码兑换彩金 -->
+        <activity
+            android:name="com.ruyicai.activity.account.ExchangeGoldActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait" />
+        
         <activity
             android:name="com.ruyicai.activity.account.AdWallActivity"
             android:configChanges="keyboardHidden|orientation"

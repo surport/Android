@@ -180,6 +180,8 @@ public class ProtocolManager {
 	 * rechargetype 充值接口中使用
 	 */
 	public static String RECHARGETYPE = "rechargetype";
+	
+	public static String COUPONCODE = "couponCode";
 
 	/**
 	 * cardno 充值接口中使用
