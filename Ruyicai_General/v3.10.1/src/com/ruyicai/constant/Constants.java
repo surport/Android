@@ -48,7 +48,7 @@ public class Constants {
 	/**
 	 * 打新包需要修改
 	 */
-	public static String SOFTWARE_VERSION = "3.10.0";
+	public static String SOFTWARE_VERSION = "3.10.1";
 	public static String MERCHANT_PACKAGE = "com.palmdream.RuyicaiAndroid";// 商户包名
 	/**
 	 * 新浪分享修改
