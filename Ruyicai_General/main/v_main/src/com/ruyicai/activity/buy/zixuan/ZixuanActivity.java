@@ -106,7 +106,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	public List<BuyViewItem> itemViewArray = new ArrayList<BuyViewItem>();
 	public String[] mLabelArray = new String[SCREENUM];
 	public AddView addView;
-	private LinearLayout layoutBottom;
 	protected int MAX_ZHU = 10000;
 	protected int ALL_ZHU = 99;
 
@@ -166,7 +165,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		editZhuma = (EditText) findViewById(R.id.buy_zixuan_edit_zhuma);
 		mTextSumMoney.setText(getResources().getString(
 				R.string.please_choose_number));
-		layoutBottom = (LinearLayout) findViewById(R.id.buy_activity_bottom_layout);
 		final TextView textNum = (TextView) findViewById(R.id.buy_zixuan_add_text_num);
 		Button add_dialog = (Button) findViewById(R.id.buy_zixuan_img_add_delet);
 		addView = new AddView(textNum, this);
@@ -548,51 +546,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		app.setAddview(addView);
 		Intent intent = new Intent(ZixuanActivity.this, OrderDetails.class);
 		startActivity(intent);
-	}
-
-	/**
-	 * 投注方法
-	 */
-	private void touZhu() {
-		toLogin = false;
-		touZhuDialog.cancel();
-		initBet();
-		// TODO Auto-generated method stub
-		if (isGift) {
-			toActivity(addView.getsharezhuma());
-		} else if (isJoin) {
-			toJoinActivity();
-		} else if (isTouzhu) {
-			touZhuNet();
-		}
-		clearProgress();
-	}
-
-	/**
-	 * 显示追加投注
-	 * 
-	 * @param view
-	 */
-	private void initZhuiJia(View view) {
-		LinearLayout toggleLinear = (LinearLayout) view
-				.findViewById(R.id.buy_zixuan_linear_toggle);
-		toggleLinear.setVisibility(LinearLayout.VISIBLE);
-		ToggleButton zhuijiatouzhu = (ToggleButton) view
-				.findViewById(R.id.dlt_zhuijia);
-		zhuijiatouzhu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-				if (isChecked) {
-					betAndGift.setAmt(3);
-					betAndGift.setIssuper("0");
-				} else {
-					betAndGift.setIssuper("");
-					betAndGift.setAmt(2);
-				}
-				addView.setCodeAmt(betAndGift.getAmt());
-				alertText.setText(getTouzhuAlert());
-			}
-		});
 	}
 
 	/**
