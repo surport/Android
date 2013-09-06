@@ -751,7 +751,11 @@ public class BeiJingSingleGameActivity extends Activity {
 		final ProgressDialog connectDialog = UserCenterDialog
 				.onCreateDialog(this);
 		connectDialog.show();
-
+		/**add by yejc 20130906 start*/
+		final View dialogView = PublicMethod.getView(context);
+		connectDialog.getWindow().setContentView(dialogView);
+		/**add by yejc 20130906 end*/
+		
 		new Thread(new Runnable() {
 
 			@Override
@@ -778,6 +782,12 @@ public class BeiJingSingleGameActivity extends Activity {
 					handler.sendMessage(message);
 				}
 				// 取消对话框
+				/**add by yejc 20130906 start*/
+				if(dialogView != null) {
+					ImageView imageView = (ImageView)dialogView.findViewById(R.id.imageView);
+					imageView.clearAnimation();
+				}
+				/**add by yejc 20130906 end*/
 				connectDialog.dismiss();
 			}
 		}).start();

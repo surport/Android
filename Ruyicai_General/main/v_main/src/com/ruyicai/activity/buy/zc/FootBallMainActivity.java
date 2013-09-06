@@ -20,7 +20,6 @@ import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,6 +38,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -56,7 +56,7 @@ public class FootBallMainActivity extends Activity {
 	private TextView textTeamNum;
 	private PopupWindow popupwindow;
 	private BuyGameDialog gameDialog;
-	private Handler gameHandler = new Handler();
+	private Handler gameHandler = new Handler(); 
 	/** 标题 */
 	private TextView titleView;
 	private ImageButton againButton;
@@ -73,27 +73,25 @@ public class FootBallMainActivity extends Activity {
 	private LinearLayout issueSelectLayout;
 	private int mScreenWidth;
 	private Button[] playBtn = null;
-	private String[] mLotnoArray = { Constants.LOTNO_SFC, Constants.LOTNO_RX9,
-			Constants.LOTNO_LCB, Constants.LOTNO_JQC };
-	private final int DIALOG_KEY = 0;
+	private String[] mLotnoArray = {Constants.LOTNO_SFC, Constants.LOTNO_RX9, 
+			Constants.LOTNO_LCB, Constants.LOTNO_JQC};
 	private ProgressDialog progressdialog;
 	private String advanceBatchCodeData;
 	private JSONObject obj;
 	private String re;
 	private Context mContext;
 	private MyButton[] myBtns;
-	private int[] mBgId = { R.drawable.jc_main_team_select_normal,
-			R.drawable.jc_main_team_select_click };
-	private int[] mPaintColor = { Color.BLACK, Color.WHITE };
+	private int[] mBgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
+	private int[] mPaintColor= {Color.BLACK, Color.WHITE};
 	private int mIssueIndex = 0;
 	private int mPlayIndex = 0;
 	private ImageButton startTouZhu;
-
+	
 	private FootBallBaseAdapter[] mFootBallAdapters = new FootBallBaseAdapter[4];
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
 	private ArrayList[] mIssueArray = new ArrayList[4];
-
-	private RelativeLayout noGamePrompt;
+	private View mDialogView;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +101,8 @@ public class FootBallMainActivity extends Activity {
 		mPlayIndex = getIntent().getIntExtra("index", 0);
 		mScreenWidth = PublicMethod.getDisplayWidth(this);
 		mContext = this;
+		progressdialog = new ProgressDialog(this);
 		initView();
-		showDialog(DIALOG_KEY);
 		getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 	}
 
@@ -137,7 +135,7 @@ public class FootBallMainActivity extends Activity {
 		layout_football_issue.setOnClickListener(listener);
 		againButton.setOnClickListener(listener);
 	}
-
+	
 	private void showPlayChangeDialog() {
 		mainPalySelectLayout.setVisibility(View.VISIBLE);
 		upLayersLayout.setVisibility(View.VISIBLE);
@@ -151,28 +149,25 @@ public class FootBallMainActivity extends Activity {
 			playBtn[1] = (Button) findViewById(R.id.zc_play_change_button_rx9);
 			playBtn[2] = (Button) findViewById(R.id.zc_play_change_button_6cb);
 			playBtn[3] = (Button) findViewById(R.id.zc_play_change_button_4jq);
-			playBtn[mPlayIndex]
-					.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
-			playBtn[mPlayIndex].setTextColor(getResources().getColor(
-					R.color.white));
+			playBtn[mPlayIndex].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+			playBtn[mPlayIndex].setTextColor(getResources().getColor(R.color.white));
 			PlayChangeBtnClickListener clickListener = new PlayChangeBtnClickListener();
 			for (int i = 0; i < playBtn.length; i++) {
 				playBtn[i].setOnClickListener(clickListener);
 			}
 		}
 	}
-
+	
 	private void createIssueDialog() {
-		LinearLayout layoutMain = (LinearLayout) findViewById(R.id.jc_linear_check_all);
-		if (mIssueArray[mPlayIndex] != null
-				&& mIssueArray[mPlayIndex].size() > 0) {
+		LinearLayout layoutMain = (LinearLayout)findViewById(R.id.jc_linear_check_all);
+		if (mIssueArray[mPlayIndex] != null && mIssueArray[mPlayIndex].size() > 0) {
 			myBtns = new MyButton[mIssueArray[mPlayIndex].size()];
 			addLayout(layoutMain, myBtns);
 		} else {
 			myBtns = new MyButton[0];
 		}
 	}
-
+	
 	private void addLayout(LinearLayout layoutMain, MyButton[] myBtns) {
 		layoutMain.removeAllViews();
 		int length = mIssueArray[mPlayIndex].size();
@@ -196,17 +191,18 @@ public class FootBallMainActivity extends Activity {
 		}
 	}
 
-	private LinearLayout addLine(int lastNum, int line,
-			final MyButton[] myBtns, int lineNum) {
+	private LinearLayout addLine(int lastNum, int line, final MyButton[] myBtns,
+			int lineNum) {
 		LinearLayout layoutOne = new LinearLayout(mContext);
 		for (int j = 0; j < lastNum; j++) {
-
+			
 			final MyButton btn = new MyButton(mContext);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					(mScreenWidth - PublicMethod.getPxInt(40, mContext)) / 3,
+					(mScreenWidth-PublicMethod.getPxInt(40, mContext))/3, 
 					PublicMethod.getPxInt(42, mContext));
 			if (j == 0) {
-				params.setMargins(0, PublicMethod.getPxInt(10, mContext), 0, 0);
+				params.setMargins(0,
+						PublicMethod.getPxInt(10, mContext), 0, 0);
 			} else {
 				params.setMargins(PublicMethod.getPxInt(10, mContext),
 						PublicMethod.getPxInt(10, mContext), 0, 0);
@@ -219,15 +215,13 @@ public class FootBallMainActivity extends Activity {
 			btn.setTag(mIssueIndex);
 			btn.setLayoutParams(params);
 			myBtns[line * lineNum + j] = btn;
-			AdvanceBatchCode aBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex]
-					.get(line * lineNum + j);
+			AdvanceBatchCode aBatchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(line * lineNum + j);
 			String issue = aBatchCode.getBatchCode();
 			String state = aBatchCode.getState();
 			btn.setBtnText(issue);
 			if ("5".equals(state)) {
-				btn.initBg(new int[] { R.drawable.zc_wait_issue,
-						R.drawable.zc_wait_issue });
-				btn.setPaintColorArray(new int[] { Color.BLACK, Color.BLACK });
+				btn.initBg(new int[]{R.drawable.zc_wait_issue, R.drawable.zc_wait_issue});
+				btn.setPaintColorArray(new int[]{Color.BLACK, Color.BLACK});
 				btn.switchBg();
 			} else {
 				btn.initBg(mBgId);
@@ -242,43 +236,31 @@ public class FootBallMainActivity extends Activity {
 						}
 						btn.setOnClick(true);
 						btn.switchBg();
-						int which = (Integer) ((MyButton) v).getTag();
-						String selectIssue = ((AdvanceBatchCode) mIssueArray[mPlayIndex]
-								.get(which)).getBatchCode();
+						int which = (Integer)((MyButton)v).getTag();
+						String selectIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode();
 						getData(mLotnoArray[mPlayIndex], selectIssue);
 						setViewState();
 					}
 				});
 			}
-
+			
 			layoutOne.addView(btn);
 			mIssueIndex++;
 		}
 		return layoutOne;
 	}
-
-	/**
-	 * 网络连接提示框
-	 */
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case 0: {
-			progressdialog = new ProgressDialog(this);
-			progressdialog.setMessage("网络连接中...");
-			progressdialog.setIndeterminate(true);
-			return progressdialog;
-		}
-		}
-		return null;
-	}
-
+	
 	private void getZCAdvanceBatchCodeData(final String Lotno) {
+		if (progressdialog == null) {
+			progressdialog = new ProgressDialog(this);
+		}
 		progressdialog.show();
+		mDialogView = PublicMethod.getView(this);
+		progressdialog.getWindow().setContentView(mDialogView);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				advanceBatchCodeData = FootballInterface.getInstance()
-						.getAdvanceBatchCodeList(Lotno);
+				advanceBatchCodeData = FootballInterface.getInstance().getAdvanceBatchCodeList(Lotno);
 				try {
 					JSONObject advanceBatchCode = new JSONObject(
 							advanceBatchCodeData);
@@ -314,11 +296,10 @@ public class FootBallMainActivity extends Activity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				progressdialog.dismiss();
 			}
 		}).start();
 	}
-
+	
 	private String formatBatchCode(String batchCode) {
 		return "第" + batchCode + "期";
 	}
@@ -335,14 +316,14 @@ public class FootBallMainActivity extends Activity {
 			case R.id.layout_main_img_return:
 				createDialog();
 				break;
-
+				
 			case R.id.buy_zixuan_img_again:
 				if (mFootBallAdapters[mPlayIndex] != null) {
 					mFootBallAdapters[mPlayIndex].clearSelected();
 				}
 				setTeamNum(0);
 				break;
-
+				
 			case R.id.buy_footballlottery_img_touzhu:
 				beginTouZhu();
 				break;
@@ -350,7 +331,7 @@ public class FootBallMainActivity extends Activity {
 			case R.id.jc_play_select:
 				showPlayChangeDialog();
 				break;
-
+				
 			case R.id.layout_football_issue:
 				issueShowState();
 				break;
@@ -359,11 +340,11 @@ public class FootBallMainActivity extends Activity {
 			case R.id.jc_main_team_layout_layers_middle:
 				setViewState();
 				break;
-
+				
 			}
 		}
 	}
-
+	
 	private void issueShowState() {
 		if (issueSelectLayout.getVisibility() == View.GONE
 				|| issueSelectLayout.getVisibility() == View.INVISIBLE) {
@@ -385,24 +366,20 @@ public class FootBallMainActivity extends Activity {
 		public void onClick(View v) {
 			for (int i = 0; i < playBtn.length; i++) {
 				if (v.getId() == playBtn[i].getId()) {
-					playBtn[i]
-							.setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
-					playBtn[i].setTextColor(getResources().getColor(
-							R.color.white));
+					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+					playBtn[i].setTextColor(getResources().getColor(R.color.white));
 					titleView.setText(playBtn[i].getText());
 					mPlayIndex = i;
 					getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 					setViewState();
 				} else {
-					playBtn[i]
-							.setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
-					playBtn[i].setTextColor(getResources().getColor(
-							R.color.black));
+					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
+					playBtn[i].setTextColor(getResources().getColor(R.color.black));
 				}
 			}
 		}
 	}
-
+	
 	/**
 	 * 消息处理函数
 	 */
@@ -410,33 +387,40 @@ public class FootBallMainActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				progressdialog.dismiss();
+				dismissDialog();
 				Toast.makeText(getBaseContext(), "网络异常！", Toast.LENGTH_LONG)
 						.show();
 				break;
 			case 1:
 				initList();
+				dismissDialog();
 				break;
-
 			case 2:
-				progressdialog.dismiss();
 				getTeamInfo(0);
 				break;
-
 			case 3:
-				progressdialog.dismiss();
+				dismissDialog();
 				Toast.makeText(getBaseContext(), msg.obj + "",
 						Toast.LENGTH_SHORT).show();
 				break;
-
 			case 4:
-				progressdialog.dismiss();
+				dismissDialog();
 				FootballContantDialog.alertIssueNOFQueue(mContext);
-				break;
+				break;	
 			}
 		}
 	};
-
+	
+	private void dismissDialog() {
+		if (progressdialog.isShowing()) {
+			if(mDialogView != null) {
+				ImageView imageView = (ImageView)mDialogView.findViewById(R.id.imageView);
+				imageView.clearAnimation();
+			}
+			progressdialog.dismiss();
+		}
+	}
+	
 	/**
 	 * 初始化列表
 	 */
@@ -444,60 +428,49 @@ public class FootBallMainActivity extends Activity {
 		switch (mPlayIndex) {
 		case 0:
 			if (mFootBallAdapters[0] == null) {
-				mFootBallAdapters[0] = new FootBallSFAdapter(this,
-						mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[0] = new FootBallSFAdapter(this, mTeamInfoLists[mPlayIndex]);
 			}
 			break;
-
+			
 		case 1:
 			if (mFootBallAdapters[1] == null) {
-				mFootBallAdapters[1] = new FootBallRX9Adapter(this,
-						mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[1] = new FootBallRX9Adapter(this, mTeamInfoLists[mPlayIndex]);
 			}
 			break;
-
+			
 		case 2:
 			if (mFootBallAdapters[2] == null) {
-				mFootBallAdapters[2] = new FootBall6CBAdapter(this,
-						mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[2] = new FootBall6CBAdapter(this, mTeamInfoLists[mPlayIndex]);
 			}
 			break;
-
+			
 		case 3:
 			if (mFootBallAdapters[3] == null) {
-				mFootBallAdapters[3] = new FootBall4CJQAdapter(this,
-						mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[3] = new FootBall4CJQAdapter(this, mTeamInfoLists[mPlayIndex]);
 			}
-			break;
+			break;	
 		}
-
+		
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
-		if (progressdialog.isShowing()) {
-			progressdialog.dismiss();
-		}
 	}
-
+	
 	private void getTeamInfo(int which) {
-		AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex]
-				.get(which);
-		currentIssue = ((AdvanceBatchCode) mIssueArray[mPlayIndex].get(which))
-				.getBatchCode().trim();
+		AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(which);
+		currentIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode().trim();
 		layout_football_issue.setText(formatBatchCode(batchMsg.getBatchCode()));
 		layout_football_time.setText(batchMsg.getEndTime());
 		getData(mLotnoArray[mPlayIndex], currentIssue);
 	}
-
+	
 	/**
 	 * 获取对阵矩阵
 	 */
 	private void getData(final String lotno, final String batchCode) {
-		showDialog(DIALOG_KEY);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				String error_code = "00";
-				re = FootballInterface.getInstance()
-						.getZCData(lotno, batchCode);
+				re = FootballInterface.getInstance().getZCData(lotno, batchCode);
 				try {
 					obj = new JSONObject(re);
 					error_code = obj.getString("error_code");
@@ -526,47 +499,41 @@ public class FootBallMainActivity extends Activity {
 									noGamePrompt.setVisibility(View.GONE);
 								}
 							});
-
-							for (int i = 0; i < result.length(); i++) {
-								JSONObject json = result.getJSONObject(i);
-								TeamInfo team = new TeamInfo();
-								team.setTeamId(json.getString("teamId"));
-								team.setDate(json.getString("matchTime"));
-								team.setLeagueName(json.getString("leagueName"));
-								team.setHomeTeam(json.getString("homeTeam"));
-								team.setGuestTeam(json.getString("guestTeam"));
-								team.setHomeOdds(json
-										.getString("homeWinAverageOuPei"));
-								team.setVsOdds(json
-										.getString("standoffAverageOuPei"));
-								team.setGuestOdds(json
-										.getString("guestWinAverageOuPei"));
-								mTeamInfoLists[mPlayIndex].add(team);
-							}
-							if (error_code.equals("00")) {
-								Message msg = new Message();
-								msg.what = 0;
-								handler.sendMessage(msg);
-							} else if (error_code.equals("0000")) {
-								Message msg = new Message();
-								msg.what = 1;
-								handler.sendMessage(msg);
-							} else if (error_code.equals("200005")) {
-								Message msg = new Message();
-								msg.what = 4;
-								handler.sendMessage(msg);
-							}
+						for (int i = 0; i < result.length(); i++) {
+							JSONObject json = result.getJSONObject(i);
+							TeamInfo team = new TeamInfo();
+							team.setTeamId(json.getString("teamId"));
+							team.setDate(json.getString("matchTime"));
+							team.setLeagueName(json.getString("leagueName"));
+							team.setHomeTeam(json.getString("homeTeam"));
+							team.setGuestTeam(json.getString("guestTeam"));
+							team.setHomeOdds(json.getString("homeWinAverageOuPei"));
+							team.setVsOdds(json.getString("standoffAverageOuPei"));
+							team.setGuestOdds(json.getString("guestWinAverageOuPei"));
+							mTeamInfoLists[mPlayIndex].add(team);
 						}
-
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
+				if (error_code.equals("00")) {
+					Message msg = new Message();
+					msg.what = 0;
+					handler.sendMessage(msg);
+				} else if (error_code.equals("0000")) {
+					Message msg = new Message();
+					msg.what = 1;
+					handler.sendMessage(msg);
+				} else if (error_code.equals("200005")) {
+					Message msg = new Message();
+					msg.what = 4;
+					handler.sendMessage(msg);
+				}
 			}
 		}).start();
 	}
-
+	
 	public class AdvanceBatchCode {
 		private String BatchCode;
 		private String EndTime;
@@ -579,7 +546,7 @@ public class FootBallMainActivity extends Activity {
 		public void setState(String state) {
 			this.state = state;
 		}
-
+		
 		public String getBatchCode() {
 			return BatchCode;
 		}
@@ -596,7 +563,7 @@ public class FootBallMainActivity extends Activity {
 			EndTime = endTime;
 		}
 	}
-
+	
 	private void setViewState() {
 		mainPalySelectLayout.setVisibility(View.GONE);
 		issueSelectLayout.setVisibility(View.GONE);
@@ -604,7 +571,8 @@ public class FootBallMainActivity extends Activity {
 		middleLayersLayout.setVisibility(View.GONE);
 		upLayersLayout.setVisibility(View.GONE);
 	}
-
+	
+	
 	private void initBetPojo() {
 		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
 		sessionid = pre.getStringValue("sessionid");
@@ -622,7 +590,7 @@ public class FootBallMainActivity extends Activity {
 		betPojo.setAmount(mFootBallAdapters[mPlayIndex].getZhuShu() * 200 + "");
 		betPojo.setZhushu(mFootBallAdapters[mPlayIndex].getZhuShu() + "");
 	}
-
+	
 	public void beginTouZhu() {
 		if (mFootBallAdapters[mPlayIndex] == null) {
 			return;
@@ -636,8 +604,9 @@ public class FootBallMainActivity extends Activity {
 			startTouZhu.setClickable(true);
 		} else {
 			if (mFootBallAdapters[mPlayIndex].isTouZhu()) {
-				Toast.makeText(this, "请至少选择一注！", Toast.LENGTH_SHORT).show();
-			} else if (iZhuShu * 2 > 20000) {
+				Toast.makeText(this, "请至少选择一注！",
+						Toast.LENGTH_SHORT).show();
+			} else if (iZhuShu > 10000) {
 				DialogExcessive();
 			} else {
 				initBetPojo();
@@ -653,11 +622,11 @@ public class FootBallMainActivity extends Activity {
 		intent.putExtra("tpye", "zc");
 		intent.putExtra("zhuma", mFootBallAdapters[mPlayIndex].getZhuMa());
 		startActivity(intent);
-
-		/** 投注完是否需要清空 yejc */
-		// mFootBallAdapters[mPlayIndex].clearSelected();
+		
+		/**投注完是否需要清空 yejc*/
+//		mFootBallAdapters[mPlayIndex].clearSelected();
 	}
-
+	
 	/**
 	 * 单笔投注大于2万元时的对话框
 	 */
@@ -673,7 +642,7 @@ public class FootBallMainActivity extends Activity {
 				});
 		builder.show();
 	}
-
+	
 	/**
 	 * 提示信息
 	 */
@@ -683,8 +652,8 @@ public class FootBallMainActivity extends Activity {
 			if (toast == null) {
 				touzhuAlert.append("共").append(iZhuShu).append("注，共")
 						.append((iZhuShu * 2)).append("元");
-				toast = Toast.makeText(this, touzhuAlert.toString(),
-						Toast.LENGTH_SHORT);
+				toast = Toast.makeText(this,
+						touzhuAlert.toString(), Toast.LENGTH_SHORT);
 				toast.show();
 			} else {
 				touzhuAlert.append("共").append(iZhuShu).append("注，共")
@@ -694,11 +663,11 @@ public class FootBallMainActivity extends Activity {
 			}
 		}
 	}
-
+	
 	public void setTeamNum(int num) {
 		textTeamNum.setText("已选择了" + num + "场比赛");
 	}
-
+	
 	/**
 	 * 创建下拉列表
 	 */
@@ -730,8 +699,7 @@ public class FootBallMainActivity extends Activity {
 			public void onClick(View v) {
 				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
 				if (gameDialog == null) {
-					gameDialog = new BuyGameDialog(mContext,
-							mLotnoArray[mPlayIndex], gameHandler);
+					gameDialog = new BuyGameDialog(mContext, mLotnoArray[mPlayIndex], gameHandler);
 				}
 				gameDialog.showDialog();
 				popupwindow.dismiss();
@@ -746,8 +714,7 @@ public class FootBallMainActivity extends Activity {
 			public void onClick(View v) {
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
-				Intent intent = new Intent(FootBallMainActivity.this,
-						NoticeZCActivity.class);
+				Intent intent = new Intent(FootBallMainActivity.this, NoticeZCActivity.class);
 				intent.putExtra("position", mPlayIndex);
 				startActivity(intent);
 				popupwindow.dismiss();
@@ -780,6 +747,5 @@ public class FootBallMainActivity extends Activity {
 		LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
 		layoutParentLuck.setVisibility(View.GONE);
-
 	}
 }
