@@ -36,6 +36,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.JoinStartActivity;
+import com.ruyicai.activity.buy.zixuan.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
@@ -150,7 +151,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onClick(View v) {
 				/** modify by pengcx start 20130531 */
-				if (OrderDetails.isAlert) {
+				if (addview.getSize() != 0 && OrderDetails.isAlert) {
 					String lotno = betAndGift.getLotno();
 					if (lotno.equals(Constants.LOTNO_JQC)
 							|| lotno.equals(Constants.LOTNO_LCB)
@@ -158,7 +159,11 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 							|| lotno.equals(Constants.LOTNO_RX9)) {
 						finish();
 					} else {
-						alertExit(getString(R.string.buy_alert_exit_detail));
+						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+							alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+						} else {
+							alertExit(getString(R.string.buy_alert_exit_detail));
+						}
 					}
 				} else {
 					finish();
@@ -284,6 +289,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
+		
+		if (isclearaddview) {
+			if (addview != null) {
+				addview.clearInfo();
+				addview.updateTextNum();
+			}
+		}
 	}
 
 	/**
@@ -458,12 +470,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.d("RUYICAI", "onDestroy");
-		if (isclearaddview) {
-			if (addview != null) {
-				addview.clearInfo();
-				addview.updateTextNum();
-			}
-		}
+	
 	}
 
 	/**
@@ -481,6 +488,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -488,6 +496,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -542,7 +551,11 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		case 4:
 			if (OrderDetails.isAlert) {
 				if (addview != null && addview.getSize() != 0) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				} else {
 					finish();
 				}

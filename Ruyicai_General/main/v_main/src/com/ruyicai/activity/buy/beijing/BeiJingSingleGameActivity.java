@@ -47,6 +47,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -221,7 +222,7 @@ public class BeiJingSingleGameActivity extends Activity {
 		switch (playMethodType) {
 		case WINTIELOSS:
 			if (nowWinTieLossAgainstInformationList == null) {
-				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
+				showNoAgainstPrompt();
 			} else {
 				getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
 				if (winTieLossAdapter == null) {
@@ -240,7 +241,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			break;
 		case TOTALGOALS:
 			if (nowTotalGoalsAgainstInformationList == null) {
-				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
+				showNoAgainstPrompt();
 			} else {
 				getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
 				if (totalGoalsAdapter == null) {
@@ -259,7 +260,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			break;
 		case OVERALL:
 			if (nowOverAllagainstInformationList == null) {
-				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
+				showNoAgainstPrompt();
 			} else {
 				getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
 
@@ -279,7 +280,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			break;
 		case HALFTHEAUDIENCE:
 			if (nowHalfTheAudienceagainstInformationList == null) {
-				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
+				showNoAgainstPrompt();
 			} else {
 				getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
 
@@ -300,7 +301,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			break;
 		case UPDOWNSINGLEDOUBLE:
 			if (nowUpDownSigleDoubleagainstInformationList == null) {
-				Toast.makeText(this, "当前没有赛事信息", Toast.LENGTH_SHORT).show();
+				showNoAgainstPrompt();
 			} else {
 				getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
 
@@ -322,6 +323,21 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		selectNumTextView.setText("已经选择了" + selectedGameNum + "场比赛");
 
+	}
+
+	/**
+	 * 显示没有对阵提示
+	 */
+	private void showNoAgainstPrompt() {
+		againstLinearLayout.removeAllViews();
+		TextView textView = new TextView(context);
+		textView.setText("暂无比赛可以投注");
+		textView.setTextSize(18.0f);
+		LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT,
+				LayoutParams.MATCH_PARENT);
+		mLayoutParams.gravity = Gravity.CENTER;
+		againstLinearLayout.addView(textView, mLayoutParams);
 	}
 
 	/**

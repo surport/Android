@@ -38,6 +38,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
+import com.ruyicai.activity.buy.zixuan.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
@@ -193,7 +194,15 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addview.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+				}else{
+					finish();
+				}
 			}
 		});
 		ok.setOnClickListener(new OnClickListener() {
@@ -584,6 +593,13 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 		mSeekBarQishu.setProgress(iProgressQishu);
+		
+		if (isclearaddview) {
+			if (addview != null) {
+				addview.clearInfo();
+				addview.updateTextNum();
+			}
+		}
 	}
 
 	/**
@@ -797,13 +813,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		if (isclearaddview) {
-			if (addview != null) {
-				addview.clearInfo();
-				addview.updateTextNum();
-			}
-		}
-
 	}
 
 	@Override
@@ -905,6 +914,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -912,6 +922,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -933,8 +944,13 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			}
 			/** add by yejc 20130703 end */
 
-			if (addview.getSize() != 0) {
-				alertExit(getString(R.string.buy_alert_exit_detail));
+			if (addview.getSize() != 0 && OrderDetails.isAlert) {
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+				} else {
+					alertExit(getString(R.string.buy_alert_exit_detail));
+				}
+
 			} else {
 				finish();
 			}

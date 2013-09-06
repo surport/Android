@@ -31,6 +31,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +39,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
@@ -247,8 +249,18 @@ public abstract class JcMainView {
 							jsonArray = jsonObj.getJSONArray("result");
 						}
 						if (jsonArray.length() == 0 || jsonArray1.length() == 0) {
-							Toast.makeText(context, "暂无球赛可投注",
-									Toast.LENGTH_SHORT).show();
+							handler.post(new Runnable() {
+								@Override
+								public void run() {
+									dialog.dismiss();
+									layoutView.removeAllViews();
+									LayoutInflater layoutInflater = (LayoutInflater) context
+											.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+									View view = layoutInflater.inflate(
+											R.layout.no_game_prompt, null);
+									layoutView.addView(view);
+								}
+							});
 						} else {
 							handler.post(new Runnable() {
 								@Override

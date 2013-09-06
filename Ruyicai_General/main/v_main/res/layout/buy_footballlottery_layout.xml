@@ -12,15 +12,43 @@
         android:background="@color/white"
         android:paddingTop="85dip" >
 
-        <ListView
-            android:id="@id/buy_footballlottery_list"
+        <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="50dip"
-            android:background="@color/white"
-            android:divider="@color/zc_sfc_listview_item_bg"
-            android:dividerHeight="0dip" >
-        </ListView>
+            android:layout_height="fill_parent" >
+
+            <RelativeLayout
+                android:id="@+id/no_game_prompt"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:id="@+id/no_game_prompt_imageview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ray" />
+
+                <TextView
+                    android:id="@+id/no_game_prompt_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/no_game_prompt_imageview"
+                    android:layout_centerHorizontal="true"
+                    android:text="暂无球赛可以投注"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <ListView
+                android:id="@id/buy_footballlottery_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="50dip"
+                android:background="@color/white"
+                android:divider="@color/zc_sfc_listview_item_bg"
+                android:dividerHeight="0dip" >
+            </ListView>
+        </FrameLayout>
 
         <RelativeLayout
             android:id="@id/buy_zixuan_relativelayout"
