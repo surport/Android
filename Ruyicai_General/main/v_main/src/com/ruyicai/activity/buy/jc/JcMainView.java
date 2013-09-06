@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
@@ -18,7 +16,6 @@ import com.ruyicai.custom.checkbox.MyCheckBox;
 import com.ruyicai.net.newtransaction.QueryJcInfoInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -30,20 +27,14 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -54,9 +45,6 @@ public abstract class JcMainView {
 	protected Context context;
 	private View view;
 	private BetAndGiftPojo betAndGift;// 投注信息类
-	// private String[] spinnerStrs = { "2串1", "3串1", "4串1", "5串1", "6串1",
-	// "7串1",
-	// "8串1" };
 	protected List<Info> listInfo = new ArrayList<Info>();/* 过关列表适配器的数据源 */
 	protected List<Info> listInfo1 = new ArrayList<Info>();/* 单关列表适配器的数据源 */
 	private static JSONArray jsonArray = null;// 过关
@@ -232,7 +220,7 @@ public abstract class JcMainView {
 	private void infoNet() {
 		final ProgressDialog dialog = UserCenterDialog.onCreateDialog(context);
 		dialog.show();
-		View dialogView = PublicMethod.getView(context);
+		final View dialogView = PublicMethod.getView(context);
 		dialog.getWindow().setContentView(dialogView);
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
@@ -252,7 +240,12 @@ public abstract class JcMainView {
 						} else {
 							jsonArray = jsonObj.getJSONArray("result");
 						}
-						if (jsonArray.length() == 0 || jsonArray1.length() == 0) {
+						
+						if (isDanguan && jsonArray1.length() == 0) {
+							
+						} else if(jsonArray.length() == 0){
+							Toast.makeText(context, "暂无球赛可投注",
+									Toast.LENGTH_SHORT).show();
 							handler.post(new Runnable() {
 								@Override
 								public void run() {
@@ -270,6 +263,10 @@ public abstract class JcMainView {
 								@Override
 								public void run() {
 									initSubView();
+//									if(dialogView != null) {
+//										ImageView imageView = (ImageView)dialogView.findViewById(R.id.imageView);
+//										imageView.clearAnimation();
+//									}
 									dialog.cancel();
 								}
 							});
@@ -279,6 +276,10 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
+//								if(dialogView != null) {
+//									ImageView imageView = (ImageView)dialogView.findViewById(R.id.imageView);
+//									imageView.clearAnimation();
+//								}
 								dialog.cancel();
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
