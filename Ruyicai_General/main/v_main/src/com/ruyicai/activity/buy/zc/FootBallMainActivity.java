@@ -238,7 +238,11 @@ public class FootBallMainActivity extends Activity {
 						btn.setOnClick(true);
 						btn.switchBg();
 						int which = (Integer)((MyButton)v).getTag();
-						String selectIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode();
+						AdvanceBatchCode batchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(which);
+//						if (mFootBallAdapters[mPlayIndex] != null) {
+//							mFootBallAdapters[mPlayIndex].mIssueState = batchCode.getState();
+//						}
+						String selectIssue = batchCode.getBatchCode();
 						getData(mLotnoArray[mPlayIndex], selectIssue);
 						setViewState();
 					}
@@ -451,7 +455,8 @@ public class FootBallMainActivity extends Activity {
 			}
 			break;	
 		}
-		
+//		AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(0);
+//		mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 	}
 	
