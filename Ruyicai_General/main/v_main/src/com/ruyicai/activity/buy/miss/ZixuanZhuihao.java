@@ -34,7 +34,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -128,7 +128,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
 		textZhuma = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma);
 		textTitle = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
-		CodeInfo code = addviewmiss.getCodeList()
+		CodeInfoMiss code = addviewmiss.getCodeList()
 				.get(addviewmiss.getSize() - 1);
 		code.setTextCodeColor(textZhuma, code.getLotoNo(), code.getTouZhuType());
 		getNetIssue();

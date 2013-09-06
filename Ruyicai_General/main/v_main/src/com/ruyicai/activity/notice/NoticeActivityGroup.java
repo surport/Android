@@ -33,7 +33,7 @@ public class NoticeActivityGroup extends ActivityGroup {
 	public final static int ID_SUB_FUCAI3D_LISTVIEW = 3;// 福彩3D
 	public final static int ID_SUB_QILECAI_LISTVIEW = 4;// 七乐彩
 	public final static int ID_SUB_PAILIESAN_LISTVIEW = 5; // zlm 8.9 代码添加：排列三
-	public final static int ID_SUB_DLC_LISTVIEW = 6; // zlm 8.9 大乐透
+	public final static int ID_SUB_DLC_LISTVIEW = 6; // zlm 8.9 多乐彩
 	public final static int ID_SUB_SHISHICAI_LISTVIEW = 7; // zlm 8.9 时时彩
 	public final static int ID_SUB_SFC_LISTVIEW = 8; // zlm 8.9 胜负彩
 	public final static int ID_SUB_RXJ_LISTVIEW = 9; // zlm 8.9 任选九

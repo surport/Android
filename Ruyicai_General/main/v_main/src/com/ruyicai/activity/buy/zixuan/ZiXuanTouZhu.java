@@ -35,7 +35,9 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
+import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.miss.JoinStartActivity;
+import com.ruyicai.activity.buy.miss.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
@@ -106,7 +108,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 		// 期号
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		if (Constants.type.equals("hight") || Constants.type.equals("zc")) {
+		if (Constants.type.equals("hight") || Constants.type.equals("zc") && HghtOrderdeail.fromInt == 0) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
 			getNetIssue();
@@ -417,6 +419,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public void errorCode_0000() {
 		/** modify pengcx 20130604 start */
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		if(HghtOrderdeail.fromInt != 0){
+			intent.putExtra("from", HghtOrderdeail.fromInt);
+		}
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());

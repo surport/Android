@@ -9,7 +9,7 @@ import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.code.ssq.SsqZiZhiXuanCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.json.miss.MissConstant;
@@ -231,7 +231,7 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 		return ssqZhuShu;
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_SSQ);
 		codeInfo.setTouZhuType("zhixuan");
 	}

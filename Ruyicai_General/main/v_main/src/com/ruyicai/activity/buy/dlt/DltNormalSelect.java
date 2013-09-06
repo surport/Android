@@ -13,12 +13,11 @@ import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.code.dlt.DltNormalSelectCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.json.miss.DltMissJson;
 import com.ruyicai.json.miss.MissConstant;
-import com.ruyicai.json.miss.SsqMissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.AreaInfo;
@@ -231,7 +230,7 @@ public class DltNormalSelect extends ZixuanActivity {
 		betAndGift.setZhui(true);
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_DLT);
 		codeInfo.setTouZhuType("zhixuan");
 	}

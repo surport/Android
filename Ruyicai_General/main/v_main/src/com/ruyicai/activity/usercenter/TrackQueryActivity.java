@@ -43,7 +43,7 @@ import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.miss.OrderDetails;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.usercenter.detail.Trackdetail;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo;
@@ -718,7 +718,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 						intent = new Intent(TrackQueryActivity.this, HghtOrderdeail.class);
 					} else {
 						AddViewMiss addViewMiss = new AddViewMiss(TrackQueryActivity.this);
-						CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+						CodeInfoMiss codeInfo = addViewMiss.initCodeInfo(2, 1);
 						addViewMiss.addCodeInfo(codeInfo);
 						app.setAddviewmiss(addViewMiss);
 						intent = new Intent(TrackQueryActivity.this, OrderDetails.class);

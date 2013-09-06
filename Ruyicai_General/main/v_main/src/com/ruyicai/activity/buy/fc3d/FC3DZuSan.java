@@ -18,7 +18,7 @@ import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.code.fc3d.F3dZiHeZhiCode;
 import com.ruyicai.code.fc3d.Fc3dZiZuXuanCode;
@@ -533,7 +533,7 @@ public class FC3DZuSan extends ZixuanActivity implements
 		return null;
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_FC3D);
 		if (iCurrentButton == PublicConst.BUY_FC3D_ZU3_DAN) {
 			codeInfo.setTouZhuType("zu3_danshi");
