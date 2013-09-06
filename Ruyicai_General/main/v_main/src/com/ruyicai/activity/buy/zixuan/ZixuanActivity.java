@@ -595,14 +595,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		});
 	}
 
-	private void isCodeText(Button codeInfo) {
-		if (addView.getSize() > 1) {
-			codeInfo.setVisibility(Button.VISIBLE);
-		} else {
-			codeInfo.setVisibility(Button.GONE);
-		}
-	}
-
 	/**
 	 * 清空倍数和期数的进度条
 	 */
