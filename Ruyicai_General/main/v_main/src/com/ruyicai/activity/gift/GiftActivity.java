@@ -64,6 +64,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
+import com.ruyicai.activity.buy.zixuan.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -163,8 +164,8 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = Controller.getInstance(GiftActivity.this).toNetIssue(betAndGift
-						.getLotno());
+				final String issue = Controller.getInstance(GiftActivity.this)
+						.toNetIssue(betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
@@ -204,7 +205,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
 			initImageView();
-//			beishulayLayout.setVisibility(View.GONE);
+			// beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -260,7 +261,16 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addview.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+
+				} else {
+					finish();
+				}
 			}
 		});
 		language = (ImageButton) findViewById(R.id.gift_img_language);
@@ -327,9 +337,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			mSeekBarBeishu.setMax(ZC_MAX);
 		}
 
-		/**add by pengcx 20130722 start*/
+		/** add by pengcx 20130722 start */
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				if (s.length() > 1 && s.charAt(0) == '0') {
@@ -342,17 +352,17 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		/**add by pengcx 20130722 end*/
+		/** add by pengcx 20130722 end */
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
@@ -711,7 +721,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		if (Constants.type.equals("zc")) {
 			zhushu.setText(Integer.valueOf(betAndGift.getZhushu()) + "注     ");
 			jine.setText("金额：" + iProgressQishu
-					* Integer.valueOf(betAndGift.getZhushu())*2
+					* Integer.valueOf(betAndGift.getZhushu()) * 2
 					* iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addview.getAllZhu() + "注     ");
@@ -1050,11 +1060,11 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			lotno = PublicMethod.toLotno(betAndGift.getLotno());
 		} else {
 			betAndGift.setIsSellWays("");
-			
+
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
 			betAndGift.setZhushu(String.valueOf(zhuShu));
-//			betAndGift.setAmount(String.valueOf(amount));
+			// betAndGift.setAmount(String.valueOf(amount));
 		}
 		showDialog(0); // 显示网络提示框 2010/7/4
 		// 加入是否改变切入点判断 陈晨 8.11
@@ -1089,8 +1099,8 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		sessionId = pre.getStringValue("sessionid");
 		phonenum = pre.getStringValue("phonenum");
 		userno = pre.getStringValue("userno");
-		String alertStr = "您将要赠送" + checkedPersons.size() + "位朋友，赠送金额为"
-				+ zhu*2*iProgressBeishu * checkedPersons.size() + "元，" + "是否赠送？";
+		String alertStr = "您将要赠送" + checkedPersons.size() + "位朋友，赠送金额为" + zhu
+				* 2 * iProgressBeishu * checkedPersons.size() + "元，" + "是否赠送？";
 		String phone = editPhone.getText().toString();
 		if (isNum(phone)) {
 			touDialog("确认要赠送吗？", alertStr);
@@ -1163,13 +1173,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+	}
+
+	public void clearProgress() {
 		if (isclearaddview) {
 			if (addview != null) {
 				addview.clearInfo();
 				addview.updateTextNum();
 			}
 		}
-
 	}
 
 	public void errorCode_000000() {
@@ -1213,6 +1225,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -1220,6 +1233,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -1239,7 +1253,11 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 				dialogOk();
 			} else {
 				if (addview != null && addview.getSize() != 0) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				} else {
 					finish();
 				}
@@ -1274,14 +1292,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			
+
 			if (Constants.type.equals("zc")) {
-				int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+				int amount = Integer.valueOf(betAndGift.getAmount())
+						* iProgressBeishu;
 				allAtm = amount / 100;
 			} else {
 				allAtm = addview.getAllAmt() * iProgressBeishu;
 			}
-			
+
 			break;
 		default:
 			break;

@@ -51,7 +51,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -2986,10 +2988,12 @@ public class PublicMethod {
 	
 	public static View getView(Context context) {
 		View view = LayoutInflater.from(context)
-				.inflate(R.layout.progress_dialog_view_, null);
+				.inflate(R.layout.progress_dialog_view, null);
 		ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
-		imageView.startAnimation(AnimationUtils.loadAnimation(
-				context, R.anim.progress_dialog_window_anim));
+		Animation anim = AnimationUtils.loadAnimation(context, R.anim.progress_dialog_window_anim);  
+		LinearInterpolator lin = new LinearInterpolator();  
+		anim.setInterpolator(lin);  
+		imageView.startAnimation(anim);
 		
 		return view;
 	}

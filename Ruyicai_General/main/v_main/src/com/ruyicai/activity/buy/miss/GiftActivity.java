@@ -155,8 +155,8 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = Controller.getInstance(GiftActivity.this).toNetIssue(betAndGift
-						.getLotno());
+				final String issue = Controller.getInstance(GiftActivity.this)
+						.toNetIssue(betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
@@ -243,8 +243,13 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (OrderDetails.isAlert) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+
 				} else {
 					finish();
 				}
@@ -309,9 +314,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-		/**add by pengcx 20130722 start*/
+		/** add by pengcx 20130722 start */
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				if (s.length() > 1 && s.charAt(0) == '0') {
@@ -324,17 +329,17 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		/**add by pengcx 20130722 end*/
+		/** add by pengcx 20130722 end */
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
@@ -696,7 +701,8 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	public void getTouzhuAlert() {
 		if (type.equals("zc")) {
 			zhushu.setText(betAndGift.getZhushu() + "注     ");
-			jine.setText("金额：" + iProgressQishu
+			jine.setText("金额："
+					+ iProgressQishu
 					* (Integer.valueOf(CheckUtil.isNull(betAndGift.getAmount())) / 100)
 					* iProgressBeishu + "元");
 		} else {
@@ -1026,19 +1032,19 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setAmount("" + addviewmiss.getAllAmt() * iProgressBeishu
 				* 100);
 		betAndGift.setIsSellWays("1");
-		/**add by yejc 20130510 start*/
+		/** add by yejc 20130510 start */
 		if (isFromTrackQuery) {
 			betAndGift.setBet_code(betAndGift.getBet_code());
 		} else {
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		}
-		/**add by yejc 20130510 end*/
-		/**close by yejc 20130510 start*/
-//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-//				betAndGift.getAmt() * 100));
-		/**close by yejc 20130510 end*/
-		
+		/** add by yejc 20130510 end */
+		/** close by yejc 20130510 start */
+		// betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+		// betAndGift.getAmt() * 100));
+		/** close by yejc 20130510 end */
+
 		betAndGift.setBettype("gift");
 		betAndGift.setDescription("");
 		betAndGift.setTo_mobile_code(editPhone.getText().toString()
@@ -1138,15 +1144,14 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			adviceDialog();
 		} else {
 			Intent intent = new Intent(this, BettingSuccessActivity.class);
-			if(isSsq())
-			{
+			if (isSsq()) {
 				intent.putExtra("isssq", true);
 			}
-			
-			if(OrderDetails.fromInt != 0){
+
+			if (OrderDetails.fromInt != 0) {
 				intent.putExtra("from", OrderDetails.fromInt);
 			}
-			
+
 			intent.putExtra("page", BettingSuccessActivity.PRESENT);
 
 			intent.putExtra("lotno", betAndGift.getLotno());
@@ -1169,8 +1174,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		clearProgress();
-
 	}
 
 	public void errorCode_000000() {
@@ -1203,16 +1206,20 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			/**add by yejc 20130510 start*/
+			/** add by yejc 20130510 start */
 			if (isFromTrackQuery) {
 				break;
 			}
-			/**add by yejc 20130510 end*/
+			/** add by yejc 20130510 end */
 			if (isDialog) {
 				dialogOk();
 			} else {
 				if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				} else {
 					finish();
 				}
@@ -1315,6 +1322,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -1322,6 +1330,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});

@@ -20,7 +20,6 @@ import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,9 +38,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +75,6 @@ public class FootBallMainActivity extends Activity {
 	private Button[] playBtn = null;
 	private String[] mLotnoArray = {Constants.LOTNO_SFC, Constants.LOTNO_RX9, 
 			Constants.LOTNO_LCB, Constants.LOTNO_JQC};
-	private final int DIALOG_KEY = 0;
 	private ProgressDialog progressdialog;
 	private String advanceBatchCodeData;
 	private JSONObject obj;
@@ -90,6 +90,7 @@ public class FootBallMainActivity extends Activity {
 	private FootBallBaseAdapter[] mFootBallAdapters = new FootBallBaseAdapter[4];
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
 	private ArrayList[] mIssueArray = new ArrayList[4];
+	private View mDialogView;
 	
 
 	@Override
@@ -100,8 +101,8 @@ public class FootBallMainActivity extends Activity {
 		mPlayIndex = getIntent().getIntExtra("index", 0);
 		mScreenWidth = PublicMethod.getDisplayWidth(this);
 		mContext = this;
+		progressdialog = new ProgressDialog(this);
 		initView();
-		showDialog(DIALOG_KEY);
 		getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 	}
 
@@ -123,6 +124,7 @@ public class FootBallMainActivity extends Activity {
 		againButton = (ImageButton) findViewById(R.id.buy_zixuan_img_again);
 		startTouZhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		playIntroduce = (Button) findViewById(R.id.layout_main_img_return);
+		noGamePrompt = (RelativeLayout) findViewById(R.id.no_game_prompt);
 		playIntroduce.setOnClickListener(listener);
 		startTouZhu.setOnClickListener(listener);
 		playSelectBtnLayout.setOnClickListener(listener);
@@ -248,23 +250,13 @@ public class FootBallMainActivity extends Activity {
 		return layoutOne;
 	}
 	
-	/**
-	 * 网络连接提示框
-	 */
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case 0: {
-			progressdialog = new ProgressDialog(this);
-			progressdialog.setMessage("网络连接中...");
-			progressdialog.setIndeterminate(true);
-			return progressdialog;
-		}
-		}
-		return null;
-	}
-	
 	private void getZCAdvanceBatchCodeData(final String Lotno) {
+		if (progressdialog == null) {
+			progressdialog = new ProgressDialog(this);
+		}
 		progressdialog.show();
+		mDialogView = PublicMethod.getView(this);
+		progressdialog.getWindow().setContentView(mDialogView);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -304,12 +296,10 @@ public class FootBallMainActivity extends Activity {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				progressdialog.dismiss();
 			}
 		}).start();
 	}
 	
-
 	private String formatBatchCode(String batchCode) {
 		return "第" + batchCode + "期";
 	}
@@ -397,32 +387,39 @@ public class FootBallMainActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				progressdialog.dismiss();
+				dismissDialog();
 				Toast.makeText(getBaseContext(), "网络异常！", Toast.LENGTH_LONG)
 						.show();
 				break;
 			case 1:
 				initList();
+				dismissDialog();
 				break;
-			
 			case 2:
-				progressdialog.dismiss();
 				getTeamInfo(0);
 				break;
-				
 			case 3:
-				progressdialog.dismiss();
+				dismissDialog();
 				Toast.makeText(getBaseContext(), msg.obj + "",
 						Toast.LENGTH_SHORT).show();
 				break;
-				
 			case 4:
-				progressdialog.dismiss();
+				dismissDialog();
 				FootballContantDialog.alertIssueNOFQueue(mContext);
 				break;	
 			}
 		}
 	};
+	
+	private void dismissDialog() {
+		if (progressdialog.isShowing()) {
+			if(mDialogView != null) {
+				ImageView imageView = (ImageView)mDialogView.findViewById(R.id.imageView);
+				imageView.clearAnimation();
+			}
+			progressdialog.dismiss();
+		}
+	}
 	
 	/**
 	 * 初始化列表
@@ -455,9 +452,6 @@ public class FootBallMainActivity extends Activity {
 		}
 		
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
-		if (progressdialog.isShowing()) {
-			progressdialog.dismiss();
-		}
 	}
 	
 	private void getTeamInfo(int which) {
@@ -472,7 +466,6 @@ public class FootBallMainActivity extends Activity {
 	 * 获取对阵矩阵
 	 */
 	private void getData(final String lotno, final String batchCode) {
-		showDialog(DIALOG_KEY);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -487,6 +480,25 @@ public class FootBallMainActivity extends Activity {
 						}
 						mTeamInfoLists[mPlayIndex].clear();
 						JSONArray result = obj.getJSONArray("result");
+						if (result.length() == 0) {
+							handler.post(new Runnable() {
+
+								@Override
+								public void run() {
+									footBallList.setVisibility(View.GONE);
+									noGamePrompt.setVisibility(View.VISIBLE);
+								}
+							});
+
+						} else {
+							handler.post(new Runnable() {
+
+								@Override
+								public void run() {
+									footBallList.setVisibility(View.VISIBLE);
+									noGamePrompt.setVisibility(View.GONE);
+								}
+							});
 						for (int i = 0; i < result.length(); i++) {
 							JSONObject json = result.getJSONObject(i);
 							TeamInfo team = new TeamInfo();
@@ -594,7 +606,7 @@ public class FootBallMainActivity extends Activity {
 			if (mFootBallAdapters[mPlayIndex].isTouZhu()) {
 				Toast.makeText(this, "请至少选择一注！",
 						Toast.LENGTH_SHORT).show();
-			} else if (iZhuShu * 2 > 20000) {
+			} else if (iZhuShu > 10000) {
 				DialogExcessive();
 			} else {
 				initBetPojo();
@@ -735,6 +747,5 @@ public class FootBallMainActivity extends Activity {
 		LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
 		layoutParentLuck.setVisibility(View.GONE);
-
 	}
 }

@@ -132,8 +132,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 			@Override
 			public void run() {
-				final String issue = Controller.getInstance(JoinStartActivity.this).toNetIssue(betAndGift
-						.getLotno());
+				final String issue = Controller.getInstance(
+						JoinStartActivity.this).toNetIssue(
+						betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
@@ -188,8 +189,13 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (OrderDetails.isAlert) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+
 				} else {
 					finish();
 				}
@@ -437,15 +443,15 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		betAndGift.setAmount("" + addviewmiss.getAllAmt() * iProgressBeishu
 				* 100);
 		betAndGift.setIsSellWays("1");
-		
-		/**add by yejc 20130510 start*/
+
+		/** add by yejc 20130510 start */
 		if (isFromTrackQuery) {
 			betAndGift.setBet_code(betAndGift.getBet_code());
 		} else {
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		}
-		/**add by yejc 20130510 start*/
+		/** add by yejc 20130510 start */
 	}
 
 	/**
@@ -551,10 +557,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-
-		/**add by pengcx 20130722 start*/
+		/** add by pengcx 20130722 start */
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				if (s.length() > 1 && s.charAt(0) == '0') {
@@ -567,17 +572,17 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		/**add by pengcx 20130722 end*/
+		/** add by pengcx 20130722 end */
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
@@ -655,7 +660,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 						}
 						addviewmiss.setCodeAmt(betAndGift.getAmt());
 						getTouzhuAlert();
-						progressAtm(); //add by yejc 20130520
+						progressAtm(); // add by yejc 20130520
 					}
 				});
 	}
@@ -701,15 +706,14 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	@Override
 	public void errorCode_0000() {
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
-		if(isSsq())
-		{
+		if (isSsq()) {
 			intent.putExtra("isssq", true);
 		}
-		if(OrderDetails.fromInt != 0){
+		if (OrderDetails.fromInt != 0) {
 			intent.putExtra("from", OrderDetails.fromInt);
 		}
 		intent.putExtra("page", BettingSuccessActivity.COOPERATION);
-		
+
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
 		startActivity(intent);
@@ -728,8 +732,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		clearProgress();
-
 	}
 
 	public void showfenxdialog(String str) {
@@ -810,16 +812,17 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		case R.id.buy_zixuan_seek_beishu:
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
-			progressAtm(); //add by yejc 20130520
-			/**close by yejc 20130520 start*/
-//			allAtm = iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu;
-//			renText.setText("占总额"
-//					+ progress(isNull(buyEdit.getText().toString()), ""
-//							+ allAtm) + "%");// 总金额
-//			baoText.setText("占总额"
-//					+ progress(isNull(safeEdit.getText().toString()), ""
-//							+ allAtm) + "%");// 总金额
-			/**close by yejc 20130520 end*/
+			progressAtm(); // add by yejc 20130520
+			/** close by yejc 20130520 start */
+			// allAtm = iProgressQishu * addviewmiss.getAllAmt() *
+			// iProgressBeishu;
+			// renText.setText("占总额"
+			// + progress(isNull(buyEdit.getText().toString()), ""
+			// + allAtm) + "%");// 总金额
+			// baoText.setText("占总额"
+			// + progress(isNull(safeEdit.getText().toString()), ""
+			// + allAtm) + "%");// 总金额
+			/** close by yejc 20130520 end */
 			break;
 		default:
 			break;
@@ -878,6 +881,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -885,6 +889,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -899,13 +904,18 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			/**add by yejc 20130510 start*/
+			/** add by yejc 20130510 start */
 			if (isFromTrackQuery) {
 				break;
 			}
-			/**add by yejc 20130510 end*/
+			/** add by yejc 20130510 end */
 			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+				} else {
+					alertExit(getString(R.string.buy_alert_exit_detail));
+				}
+
 			} else {
 				finish();
 			}
@@ -913,22 +923,24 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		}
 		return false;
 	}
-	
-	/**add by yejc 20130520 start*/
+
+	/** add by yejc 20130520 start */
 	private void progressAtm() {
 		allAtm = iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu;
 		renText.setText("占总额"
-				+ progress(isNull(buyEdit.getText().toString()), ""
-						+ allAtm) + "%");// 总金额
+				+ progress(isNull(buyEdit.getText().toString()), "" + allAtm)
+				+ "%");// 总金额
 		baoText.setText("占总额"
-				+ progress(isNull(safeEdit.getText().toString()), ""
-						+ allAtm) + "%");// 总金额
+				+ progress(isNull(safeEdit.getText().toString()), "" + allAtm)
+				+ "%");// 总金额
 	}
-	/**add by yejc 20130520 end*/
-	
-	/**add by yejc 20130624 start*/
+
+	/** add by yejc 20130520 end */
+
+	/** add by yejc 20130624 start */
 	private class EditTextWatcher implements TextWatcher {
 		public EditText mEdit = null;
+
 		public EditTextWatcher(EditText et) {
 			mEdit = et;
 		}
@@ -959,6 +971,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 				int count) {
 		}
 	}
-	/**add by yejc 20130624 end*/
-	
+	/** add by yejc 20130624 end */
+
 }

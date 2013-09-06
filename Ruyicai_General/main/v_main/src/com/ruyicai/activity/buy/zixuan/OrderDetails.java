@@ -17,10 +17,12 @@ public class OrderDetails extends BuyActivityGroup {
 	private String[] topTitles = { "投注确认", "追号设置", "发起合买", "赠送彩票" };
 	private Class[] allId = { ZiXuanTouZhu.class, ZixuanZhuihao.class,
 			JoinStartActivity.class, GiftActivity.class };
+	public static int fromInt;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		fromInt = getIntent().getIntExtra("from", 0);
 		Intent intent = getIntent();
 		isAlert = intent.getBooleanExtra("isAlert", true);
 		Constants.type = "fc";

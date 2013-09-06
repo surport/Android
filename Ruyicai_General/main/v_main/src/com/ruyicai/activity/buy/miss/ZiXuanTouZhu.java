@@ -34,6 +34,7 @@ import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
@@ -78,7 +79,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift = app.getPojo();
 		addviewmiss = app.getAddviewmiss();
 		init();
-		
+
 		handler.setBetAndGift(betAndGift);
 	}
 
@@ -121,8 +122,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (OrderDetails.isAlert) {
-					alertExit(getString(R.string.buy_alert_exit_detail));
+				if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
+
 				} else {
 					finish();
 				}
@@ -163,8 +169,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				final String issue = Controller.getInstance(ZiXuanTouZhu.this).toNetIssue(betAndGift
-						.getLotno());
+				final String issue = Controller.getInstance(ZiXuanTouZhu.this)
+						.toNetIssue(betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
@@ -225,6 +231,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					* iProgressBeishu + "元");
 		}
 	}
+
 	/**
 	 * 投注方法
 	 */
@@ -255,7 +262,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		Controller.getInstance(ZiXuanTouZhu.this).doBettingAction(handler, betAndGift);
+		Controller.getInstance(ZiXuanTouZhu.this).doBettingAction(handler,
+				betAndGift);
 	}
 
 	/**
@@ -272,19 +280,19 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 		betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 		betAndGift.setBatchnum("" + iProgressQishu);// batchnum 追号期数 默认为1（不追号）
-		
-		/**add by yejc 20130510 start*/
+
+		/** add by yejc 20130510 start */
 		if (isFromTrackQuery) {
 			betAndGift.setBet_code(betAndGift.getBet_code());
 		} else {
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		}
-		/**add by yejc 20130510 end*/
-		/**close by yejc 20130510 start*/
-//		betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-//				betAndGift.getAmt() * 100));
-		/**close by yejc 20130510 end*/
+		/** add by yejc 20130510 end */
+		/** close by yejc 20130510 start */
+		// betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
+		// betAndGift.getAmt() * 100));
+		/** close by yejc 20130510 end */
 
 	}
 
@@ -302,10 +310,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-
-		/**add by pengcx 20130722 start*/
+		/** add by pengcx 20130722 start */
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				if (s.length() > 1 && s.charAt(0) == '0') {
@@ -318,17 +325,17 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		/**add by pengcx 20130722 end*/
+		/** add by pengcx 20130722 end */
 		mTextBeishu.setText("" + iProgressBeishu);
 
 		PublicMethod.setEditOnclick(mTextBeishu, mSeekBarBeishu, new Handler());
@@ -386,14 +393,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	public void errorCode_0000() {
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
-		if(isSsq())
-		{
+		if (isSsq()) {
 			intent.putExtra("isssq", true);
 		}
-		if(OrderDetails.fromInt != 0){
+		if (OrderDetails.fromInt != 0) {
 			intent.putExtra("from", OrderDetails.fromInt);
 		}
-		
+
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
@@ -411,10 +417,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	private boolean isclearaddview = true;
 
 	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		clearProgress();
-
 	}
 
 	@Override
@@ -489,13 +498,15 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 * @return
 	 */
 	public void alertExit(String string) {
-		Builder dialog = new AlertDialog.Builder(this).setTitle("温馨提示")
+		Builder dialog = new AlertDialog.Builder(this)
+				.setTitle("温馨提示")
 				.setMessage(string)
 				.setNeutralButton("是", new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = false;
+						clearProgress();
 						finish();
 					}
 				})
@@ -503,6 +514,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						isclearaddview = true;
+						clearProgress();
 						finish();
 					}
 				});
@@ -517,13 +529,18 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			/**add by yejc 20130510 start*/
+			/** add by yejc 20130510 start */
 			if (isFromTrackQuery) {
 				break;
 			}
-			/**add by yejc 20130510 end*/
+			/** add by yejc 20130510 end */
 			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
-				alertExit(getString(R.string.buy_alert_exit_detail));
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+				} else {
+					alertExit(getString(R.string.buy_alert_exit_detail));
+				}
+
 			} else {
 				finish();
 			}

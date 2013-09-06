@@ -595,8 +595,8 @@ public class NoticeBallActivity extends Activity {
 					}
 
 					if (twoSelectButtonSpinner.getSelectedItemPosition() == 3) {
-						twoHundreds.addAll(oneDecades);
-						oneDecades.clear();
+						twoHundreds.addAll(twoDecades);
+						twoDecades.clear();
 						PublicMethod.rankIntList(twoHundreds);
 					} else if (twoSelectButtonSpinner.getSelectedItemPosition() == 4) {
 						twoHundreds.addAll(twoDecades);
@@ -880,6 +880,10 @@ public class NoticeBallActivity extends Activity {
 		} else if (isOneRight == 3 || isTowRight == 3) {
 			Toast.makeText(this, "至少需要一个三位小球", Toast.LENGTH_SHORT).show();
 		}
+
+		if (isOneRight == 5 || isTowRight == 5) {
+			Toast.makeText(this, "请选择正确的投注号码", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	private int isBetLegitimacyFour(List<Integer> oneHundreds,
@@ -903,6 +907,11 @@ public class NoticeBallActivity extends Activity {
 			} else if (oneDecades.size() <= 0) {
 				legalState = 2;
 			}
+
+			if ((caculateBetNumFour(oneHundreds, oneDecades, oneUnits, i) == 0)
+					&& ((oneHundreds.size() + oneDecades.size()) != 0)) {
+				legalState = 5;
+			}
 		} else if (i == 2) {
 			if (oneHundreds.size() == 0 && oneDecades.size() == 0
 					&& oneUnits.size() == 0) {
@@ -916,6 +925,12 @@ public class NoticeBallActivity extends Activity {
 				legalState = 2;
 			} else if (oneUnits.size() <= 0) {
 				legalState = 3;
+			}
+
+			if ((caculateBetNumFour(oneHundreds, oneDecades, oneUnits, i) == 0)
+					&& ((oneHundreds.size() + oneDecades.size() + oneUnits
+							.size()) != 0)) {
+				legalState = 5;
 			}
 		} else if (i == 3) {
 			if (oneHundreds.size() == 0) {
@@ -1512,7 +1527,7 @@ public class NoticeBallActivity extends Activity {
 					intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 					intent.putExtra("isAlert", true);
 					startActivity(intent);
-				}else{
+				} else {
 					dialogExcessive(10000);
 				}
 
@@ -2522,5 +2537,56 @@ public class NoticeBallActivity extends Activity {
 
 	protected void onStop() {
 		super.onStop();
+		clearSelectedBall();
+	}
+	
+	private void clearSelectedBall() {
+		if (isLogin()) {
+			switch (NoticeActivityGroup.LOTNO) {
+			// 广东11-5
+			case NoticeActivityGroup.ID_SUB_GD115_LISTVIEW:
+				if (isBeforeThree) {
+					ballSelectedRedView.resetSelect();
+					
+				} else {
+					ballSelectedRedView.resetSelect();
+				}
+				ballSelectedRedView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_SHUANGSEQIU_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedBlueView.resetSelect();
+				ballSelectedRedView.invalidate();
+				ballSelectedBlueView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_FUCAI3D_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedRedView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_QILECAI_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedBlueView.resetSelect();
+				ballSelectedRedView.invalidate();
+				ballSelectedBlueView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_PAILIESAN_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				break;
+			case NoticeActivityGroup.ID_SUB_DLT_LISTVIEW:
+				ballSelectedRedView.resetSelect();
+				ballSelectedBlueView.resetSelect();
+				ballSelectedRedView.invalidate();
+				ballSelectedBlueView.invalidate();
+				break;
+			case NoticeActivityGroup.ID_SUB_DLC_LISTVIEW:
+				if (isBeforeThree) {
+					ballSelectedRedView.resetSelect();
+				} else {
+					ballSelectedRedView.resetSelect();
+				}
+				ballSelectedRedView.invalidate();
+				break;
+			}
+		}
 	}
 }
