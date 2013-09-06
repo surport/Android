@@ -91,6 +91,7 @@ public class FootBallMainActivity extends Activity {
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
 	private ArrayList[] mIssueArray = new ArrayList[4];
 	private View mDialogView;
+	private RelativeLayout noGamePrompt;
 	
 
 	@Override
@@ -499,6 +500,7 @@ public class FootBallMainActivity extends Activity {
 									noGamePrompt.setVisibility(View.GONE);
 								}
 							});
+						}
 						for (int i = 0; i < result.length(); i++) {
 							JSONObject json = result.getJSONObject(i);
 							TeamInfo team = new TeamInfo();
@@ -533,6 +535,7 @@ public class FootBallMainActivity extends Activity {
 			}
 		}).start();
 	}
+	
 	
 	public class AdvanceBatchCode {
 		private String BatchCode;
