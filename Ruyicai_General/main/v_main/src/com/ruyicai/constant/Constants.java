@@ -346,6 +346,7 @@ public class Constants {
 	public static final String BANK_RECHARGE_DISPLAY_STATE = "bank_recharge_display_state";
 	public static final String BANK_TRANSFER_DISPLAY_STATE = "bank_transfer_display_state";
 	public static final String PHONE_RECHARGE_CARD_DISPLAY_STATE = "phone_recharge_card_display_state";
+	public static final String EXCHANGE_DISPLAY_STATE = "exchange_display_state";
 	public static final String JC_TOUZHU_TEXT_COLOR = "#990000";
 	public static final String JC_TOUZHU_TITLE_TEXT_COLOR = "red";
 	/** add by yejc 20130527 start */

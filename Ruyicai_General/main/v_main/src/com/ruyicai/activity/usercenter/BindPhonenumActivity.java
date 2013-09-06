@@ -82,7 +82,7 @@ public class BindPhonenumActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				setResult(10000);
 				finish();
 			}
 		});

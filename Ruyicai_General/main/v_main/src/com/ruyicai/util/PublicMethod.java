@@ -51,6 +51,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -2981,5 +2982,15 @@ public class PublicMethod {
 		}
 		return (String.valueOf(hour) + ":" + String.valueOf(minute) + ":" + String
 				.valueOf(second));
+	}
+	
+	public static View getView(Context context) {
+		View view = LayoutInflater.from(context)
+				.inflate(R.layout.progress_dialog_view_, null);
+		ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
+		imageView.startAnimation(AnimationUtils.loadAnimation(
+				context, R.anim.progress_dialog_window_anim));
+		
+		return view;
 	}
 }

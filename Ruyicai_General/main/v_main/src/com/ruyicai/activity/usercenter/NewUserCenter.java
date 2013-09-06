@@ -49,7 +49,6 @@ import com.ruyicai.dialog.MyDialogListener;
 import com.ruyicai.net.newtransaction.AccountDetailQueryInterface;
 import com.ruyicai.net.newtransaction.BalanceQueryInterface;
 import com.ruyicai.net.newtransaction.BetQueryInterface;
-import com.ruyicai.net.newtransaction.FeedBackListInterface;
 import com.ruyicai.net.newtransaction.GiftQueryInterface;
 import com.ruyicai.net.newtransaction.QueryintegrationInterface;
 import com.ruyicai.net.newtransaction.SetupnicknameInterface;
@@ -74,13 +73,11 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	LogOutDialog logOutDialog;// 注销框
 	ProgressDialog dialog, progressDialog;
 	private Dialog nicknameDialog;
-	// private List<Map<String, Object>> list;/* 列表适配器的数据源 */
 	private static final String IICON = "IICON";
 	private final static String TITLE = "TITLE"; /* 标题 */
 	protected String phonenum, sessionid, userno, certid, mobileid, name,
 			email;
 	protected LinearLayout usecenerLinear;
-	// private final int DIALOG_BINDED = 1, DIALOG_BINDPHONE = 2;
 	protected Button returnButton;
 	protected TextView titleTextView;
 	private boolean isgetscroe = true;// 是否获取积分

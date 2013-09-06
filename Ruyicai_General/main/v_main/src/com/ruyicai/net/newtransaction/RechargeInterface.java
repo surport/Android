@@ -109,9 +109,7 @@ public class RechargeInterface {
 			jsonProtocol
 					.put(ProtocolManager.BANKNAME, chargePojo.getBankName());
 			/**add by yejc 20130527 start*/
-//			if (Constants.UMPAY_BANKID.equals(chargePojo.getBankId())) {
 			jsonProtocol.put(ProtocolManager.BANKID, chargePojo.getBankId());
-//			}
 			jsonProtocol.put(ProtocolManager.MOBILEID, chargePojo.getMobileId());
 			/**add by yejc 20130527 end*/
 			jsonProtocol.put(ProtocolManager.BANKACCOUNT,
@@ -124,6 +122,24 @@ public class RechargeInterface {
 		}
 
 		return re;
+	}
+	
+	public static String exChangeGold(String userno, String sessionid, String type, String code) {
+		String result = "";
+		JSONObject jsonProtocol = ProtocolManager.getInstance()
+				.getDefaultJsonProtocol();
+		try {
+			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
+			jsonProtocol.put(ProtocolManager.USERNO, userno);
+			jsonProtocol.put(ProtocolManager.SESSIONID, sessionid);
+			jsonProtocol.put(ProtocolManager.RECHARGETYPE, type);
+			jsonProtocol.put(ProtocolManager.COUPONCODE, code);
+			result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
