@@ -64,7 +64,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
@@ -192,7 +192,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			textZhuma.setText(betAndGift.getBet_code());
 		} else {
 			initImageView();
-			CodeInfo code = addviewmiss.getCodeList().get(
+			CodeInfoMiss code = addviewmiss.getCodeList().get(
 					addviewmiss.getSize() - 1);
 			code.setTextCodeColor(textZhuma, code.getLotoNo(),
 					code.getTouZhuType());

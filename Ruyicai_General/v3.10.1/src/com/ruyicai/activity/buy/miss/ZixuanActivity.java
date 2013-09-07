@@ -51,7 +51,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.activity.join.JoinStartActivity;
@@ -269,7 +269,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 
 	public void getCodeInfo(AddViewMiss addView) {
 		int zhuShu = getZhuShu();
-		CodeInfo codeInfo = addView.initCodeInfo(getAmt(zhuShu), zhuShu);
+		CodeInfoMiss codeInfo = addView.initCodeInfo(getAmt(zhuShu), zhuShu);
 		setLotoNoAndType(codeInfo);
 		String lotoNo = codeInfo.getLotoNo();
 		String touzhuType = codeInfo.getTouZhuType();
@@ -304,7 +304,7 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		addView.addCodeInfo(codeInfo);
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 
 	}
 

@@ -42,7 +42,7 @@ public class AddViewMiss {
 	/**
 	 * 
 	 */
-	private List<CodeInfo> codeList = new ArrayList<CodeInfo>();
+	private List<CodeInfoMiss> codeList = new ArrayList<CodeInfoMiss>();
 	private Context context;
 	private String title;
 	private AlertDialog dialog;
@@ -56,7 +56,6 @@ public class AddViewMiss {
 	ZixuanAndJiXuan zJActivity;
 	private boolean isZiXuan = true;
 	private String isJXcode = "";
-	private final int MAX_ZHU = 10000;// 最大金额不能超过2万
 
 	/**
 	 * 参数为幸运选号 的构造函数
@@ -261,7 +260,7 @@ public class AddViewMiss {
 	 * 每笔投注单注金额重新赋值
 	 */
 	public void setCodeAmt(int amt) {
-		for (CodeInfo codeInfo : codeList) {
+		for (CodeInfoMiss codeInfo : codeList) {
 			codeInfo.setAmt(amt * codeInfo.zhuShu);
 		}
 	}
@@ -272,7 +271,7 @@ public class AddViewMiss {
 	public String getTouzhuCode(int beishu, int amt) {
 		String code = "";
 		for (int i = 0; i < codeList.size(); i++) {
-			CodeInfo codeInfo = codeList.get(i);
+			CodeInfoMiss codeInfo = codeList.get(i);
 			code += codeInfo.getTouZhuCode(beishu, amt);
 			if (i != codeList.size() - 1) {
 				code += "!";
@@ -307,7 +306,7 @@ public class AddViewMiss {
 
 	public int getAllZhu() {
 		int allZhu = 0;
-		for (CodeInfo codeInfo : codeList) {
+		for (CodeInfoMiss codeInfo : codeList) {
 			allZhu += codeInfo.getZhuShu();
 		}
 		return allZhu;
@@ -315,7 +314,7 @@ public class AddViewMiss {
 
 	public long getAllAmt() {
 		long allAmt = 0;
-		for (CodeInfo codeInfo : codeList) {
+		for (CodeInfoMiss codeInfo : codeList) {
 			allAmt += codeInfo.getAmt();
 		}
 		return allAmt;
@@ -335,19 +334,19 @@ public class AddViewMiss {
 		return codeList.size();
 	}
 
-	public CodeInfo initCodeInfo(int amt, int zhuShu) {
-		return new CodeInfo(amt, zhuShu);
+	public CodeInfoMiss initCodeInfo(int amt, int zhuShu) {
+		return new CodeInfoMiss(amt, zhuShu);
 	}
 
-	public void addCodeInfo(CodeInfo codeInfo) {
+	public void addCodeInfo(CodeInfoMiss codeInfo) {
 		codeList.add(codeInfo);
 	}
 
-	public List<CodeInfo> getCodeList() {
+	public List<CodeInfoMiss> getCodeList() {
 		return codeList;
 	}
 
-	public void setCodeList(List<CodeInfo> codeList) {
+	public void setCodeList(List<CodeInfoMiss> codeList) {
 		this.codeList = codeList;
 	}
 
@@ -363,9 +362,9 @@ public class AddViewMiss {
 	class AddListAdapter extends BaseAdapter {
 		private boolean isDelet = true;
 		private LayoutInflater mInflater; // 扩充主列表布局
-		private List<CodeInfo> codeInfos = new ArrayList<CodeInfo>();
+		private List<CodeInfoMiss> codeInfos = new ArrayList<CodeInfoMiss>();
 
-		public AddListAdapter(Context context, List<CodeInfo> codeInfos,
+		public AddListAdapter(Context context, List<CodeInfoMiss> codeInfos,
 				boolean isDelet) {
 			mInflater = LayoutInflater.from(context);
 			this.codeInfos = codeInfos;
@@ -394,7 +393,7 @@ public class AddViewMiss {
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
 			// TODO Auto-generated method stub
-			CodeInfo codeInfo = codeInfos.get(position);
+			CodeInfoMiss codeInfo = codeInfos.get(position);
 			convertView = mInflater.inflate(R.layout.buy_add_dialog_list_item,
 					null);
 			TextView textNum = (TextView) convertView
@@ -431,7 +430,7 @@ public class AddViewMiss {
 
 	}
 
-	public class CodeInfo {
+	public class CodeInfoMiss {
 		private String touZhuCode;// 投注时的注码，传给后台的
 		List<String> codes = new ArrayList<String>();
 		List<Integer> colors = new ArrayList<Integer>();
@@ -456,7 +455,7 @@ public class AddViewMiss {
 			this.touZhuType = touZhuType;
 		}
 
-		public CodeInfo(int amt, int zhuShu) {
+		public CodeInfoMiss(int amt, int zhuShu) {
 			this.amt = amt;
 			this.zhuShu = zhuShu;
 		}

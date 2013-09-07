@@ -28,7 +28,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.miss.OrderDetails;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.ssq.SimulateSelectNumberView.Row;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.code.ssq.SsqZiZhiXuanCode;
@@ -358,7 +358,7 @@ public class SimulateSelectNumberActivity extends Activity implements
 			betAndGiftPojo.setIsSellWays("1");
 
 			AddViewMiss addViewMiss = new AddViewMiss(this);
-			CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+			CodeInfoMiss codeInfo = addViewMiss.initCodeInfo(2, 1);
 			codeInfo.setTouZhuCode(SsqZiZhiXuanCode.simulateZhuma(
 					selectedRedBallList, selectedBlueBallList));
 			codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
@@ -376,7 +376,7 @@ public class SimulateSelectNumberActivity extends Activity implements
 		}
 	}
 
-	private CodeInfo setCodeInfoColor(CodeInfo codeInfo, List<Integer> redList,
+	private CodeInfoMiss setCodeInfoColor(CodeInfoMiss codeInfo, List<Integer> redList,
 			List<Integer> blueList) {
 		StringBuffer redString = new StringBuffer();
 		StringBuffer blueString = new StringBuffer();

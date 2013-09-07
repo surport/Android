@@ -2429,6 +2429,8 @@
 	<public type="string" name="buy_add_view_zhu_alert" id="0x7f0803d9" />
 	<public type="string" name="buy_alert_exit" id="0x7f08041c" />
 	<public type="string" name="buy_alert_exit_detail" id="0x7f08041d" />
+	<public type="string" name="buy_alert_exit_detail_other" id="0x7f0801c0" />
+
 	<public type="string" name="buy_group_window_game" id="0x7f080429" />
 	<public type="string" name="buy_group_window_hosity" id="0x7f08042a" />
 	<public type="string" name="buy_group_window_luck" id="0x7f08042d" />
