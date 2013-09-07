@@ -159,8 +159,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 							|| lotno.equals(Constants.LOTNO_RX9)) {
 						finish();
 					} else {
-						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-							alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+								|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+							alertExit(getString(R.string.buy_alert_exit_detail_other));
 						} else {
 							alertExit(getString(R.string.buy_alert_exit_detail));
 						}
@@ -554,8 +555,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		case 4:
 			if (OrderDetails.isAlert) {
 				if (addview != null && addview.getSize() != 0) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
 					} else {
 						alertExit(getString(R.string.buy_alert_exit_detail));
 					}

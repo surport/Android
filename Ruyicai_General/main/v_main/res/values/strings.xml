@@ -992,6 +992,7 @@
     <!-- 彩种退出提示 -->
     <string name="buy_alert_exit">退出该页面会清空购彩篮里的数据，是否退出？</string>
     <string name="buy_alert_exit_detail">退出该页面会清空购彩篮里的数据，是否将已选的号码保存在号码篮内？</string>
+    <string name="buy_alert_exit_detail_other">退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？</string>
 
     <!-- 客服电话 -->
     <string name="phone_kefu">400-665-1000</string>
