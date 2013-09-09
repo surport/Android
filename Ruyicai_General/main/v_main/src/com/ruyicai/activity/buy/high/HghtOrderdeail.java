@@ -26,7 +26,7 @@ public class HghtOrderdeail extends BuyActivityGroup {
 	private String[] topTitles3 = {"追号设置"};
 	private Class[] allId3 = {ZixuanZhuihao.class};
 	/**add by yejc 20130705 start*/
-
+	public static int fromInt;
 	private AddView addview;
 	private String lotnoString;
 
@@ -37,6 +37,7 @@ public class HghtOrderdeail extends BuyActivityGroup {
 		addview = app.getAddview();
 		lotnoString = app.getPojo().getLotno();
 		isIssue(false);
+		fromInt = getIntent().getIntExtra("from", 0);
 		/**add by yejc 20130705 start*/
 		if (isFromTrackQuery) {
 			init(titles3, topTitles3, allId3);

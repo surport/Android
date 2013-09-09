@@ -1051,14 +1051,12 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setBet_code(addView.getTouzhuCode(1,
 					betAndGiftPojo.getAmt() * 100));
 
-
 			ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 			app.setPojo(betAndGiftPojo);
 			app.setAddview(addView);
 			app.setHtextzhuma(addView.getsharezhuma());
 //			app.setHightball(hightballs);
 			app.setHzhushu(addView.getAllZhu());
-			
 		}
 	}
 

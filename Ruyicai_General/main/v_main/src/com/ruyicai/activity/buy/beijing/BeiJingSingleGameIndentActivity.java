@@ -370,10 +370,10 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 					BeiJingSingleGameIndentActivity.this
 							.startActivityForResult(intentSession, 0);
 				} else {
-					if (isOutMaxAmt()) {
+					if (bettingNum > 100000/*isOutMaxAmt()*/) {
 						alertInfo(
 								BeiJingSingleGameIndentActivity.this
-										.getString(R.string.jc_main_touzhu_alert_text_content),
+										.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
 								BeiJingSingleGameIndentActivity.this
 										.getString(R.string.jc_main_touzhu_alert_text_title));
 					} else {

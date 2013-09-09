@@ -1,6 +1,5 @@
 package com.ruyicai.activity.buy.zc;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.LinearLayout;
@@ -33,7 +32,6 @@ public abstract class FootballFourteen extends FootBallLotteryFather {
 	 * @param int aIdStart 小球Id起始数值
 	 * @return BallTable
 	 */
-	@SuppressLint("ResourceAsColor")
 	public BallTable makeBallTable(LinearLayout aParentView, int aLayoutId,
 			int[] aResId, int aIdStart, String text) {
 		BallTable iBallTable = new BallTable(aParentView, aLayoutId, aIdStart);

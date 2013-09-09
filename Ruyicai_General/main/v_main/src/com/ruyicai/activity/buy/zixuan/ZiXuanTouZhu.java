@@ -3,7 +3,6 @@ package com.ruyicai.activity.buy.zixuan;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -35,7 +34,7 @@ import android.widget.ToggleButton;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
-import com.ruyicai.activity.buy.miss.JoinStartActivity;
+import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.zixuan.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -107,7 +106,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 		// 期号
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		if (Constants.type.equals("hight") || Constants.type.equals("zc")) {
+		if ((Constants.type.equals("hight") || Constants.type.equals("zc")) && HghtOrderdeail.fromInt == 0) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
 			getNetIssue();
@@ -159,8 +158,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 							|| lotno.equals(Constants.LOTNO_RX9)) {
 						finish();
 					} else {
-						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-							alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+								|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+							alertExit(getString(R.string.buy_alert_exit_detail_other));
 						} else {
 							alertExit(getString(R.string.buy_alert_exit_detail));
 						}
@@ -252,7 +252,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu())/* * iProgressBeishu*/;
 			zhushu.setText(zhuShu + "注     ");
 			jine.setText(iProgressQishu
-					* (Integer.valueOf(betAndGift.getAmount()) / 100)
+					* zhuShu * 2
 					* iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addview.getAllZhu() + "注     ");
@@ -274,8 +274,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			betAndGift.setUserno(userno);
 			betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
-			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+			int amount = zhuShu *200 * iProgressBeishu;
 			betAndGift.setAmount(String.valueOf(amount));
 			betAndGift.setZhushu(String.valueOf(zhuShu));
 		}
@@ -429,6 +429,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public void errorCode_0000() {
 		/** modify pengcx 20130604 start */
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
+		if(HghtOrderdeail.fromInt != 0){
+			intent.putExtra("from", HghtOrderdeail.fromInt);
+		}
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
@@ -551,8 +554,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		case 4:
 			if (OrderDetails.isAlert) {
 				if (addview != null && addview.getSize() != 0) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
 					} else {
 						alertExit(getString(R.string.buy_alert_exit_detail));
 					}

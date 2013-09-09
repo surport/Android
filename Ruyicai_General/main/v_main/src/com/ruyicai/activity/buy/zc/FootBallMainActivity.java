@@ -90,7 +90,7 @@ public class FootBallMainActivity extends Activity {
 	private FootBallBaseAdapter[] mFootBallAdapters = new FootBallBaseAdapter[4];
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
 	private ArrayList[] mIssueArray = new ArrayList[4];
-	private View mDialogView;
+//	private View mDialogView;
 	private RelativeLayout noGamePrompt;
 	
 
@@ -238,7 +238,11 @@ public class FootBallMainActivity extends Activity {
 						btn.setOnClick(true);
 						btn.switchBg();
 						int which = (Integer)((MyButton)v).getTag();
-						String selectIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode();
+						AdvanceBatchCode batchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(which);
+//						if (mFootBallAdapters[mPlayIndex] != null) {
+//							mFootBallAdapters[mPlayIndex].mIssueState = batchCode.getState();
+//						}
+						String selectIssue = batchCode.getBatchCode();
 						getData(mLotnoArray[mPlayIndex], selectIssue);
 						setViewState();
 					}
@@ -256,8 +260,8 @@ public class FootBallMainActivity extends Activity {
 			progressdialog = new ProgressDialog(this);
 		}
 		progressdialog.show();
-		mDialogView = PublicMethod.getView(this);
-		progressdialog.getWindow().setContentView(mDialogView);
+		View dialogView = PublicMethod.getView(this);
+		progressdialog.getWindow().setContentView(dialogView);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -413,11 +417,7 @@ public class FootBallMainActivity extends Activity {
 	};
 	
 	private void dismissDialog() {
-		if (progressdialog.isShowing()) {
-			if(mDialogView != null) {
-				ImageView imageView = (ImageView)mDialogView.findViewById(R.id.imageView);
-				imageView.clearAnimation();
-			}
+		if (progressdialog != null && progressdialog.isShowing()) {
 			progressdialog.dismiss();
 		}
 	}
@@ -451,7 +451,8 @@ public class FootBallMainActivity extends Activity {
 			}
 			break;	
 		}
-		
+//		AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(0);
+//		mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 	}
 	

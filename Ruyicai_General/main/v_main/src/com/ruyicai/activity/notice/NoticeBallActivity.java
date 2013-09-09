@@ -1,7 +1,6 @@
 package com.ruyicai.activity.notice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -32,13 +31,14 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.miss.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
+import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.more.lotnoalarm.LotnoAlarmManager;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.code.Gdeleven.GdelevenCode;
 import com.ruyicai.code.dlc.DlcCode;
@@ -715,7 +715,7 @@ public class NoticeBallActivity extends Activity {
 			}
 
 			if (betNums1 <= 10000 && betNums2 <= 10000) {
-				Intent intent = new Intent(this, OrderDetails.class);
+				Intent intent = new Intent(this, HghtOrderdeail.class);
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 				intent.putExtra("isAlert", true);
 				startActivity(intent);
@@ -743,7 +743,7 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setPhonenum(phonenum);
 			betAndGiftPojo.setUserno(userno);
 			betAndGiftPojo.setBettype("bet");
-			betAndGiftPojo.setBet_code("");
+
 			betAndGiftPojo.setLotmulti("1");
 			betAndGiftPojo.setBatchnum("1");
 			betAndGiftPojo.setSellway("0");
@@ -756,21 +756,24 @@ public class NoticeBallActivity extends Activity {
 				betAndGiftPojo.setZhui(true);
 			}
 
-			if (addViewMiss == null) {
-				addViewMiss = new AddViewMiss(this);
+			if (addView == null) {
+				addView = new AddView(this);
 			}
 
-			CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+			CodeInfo codeInfo = addView.initCodeInfo(2, 1);
 			codeInfo.setTouZhuCode(code);
 			codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
 			codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
 			codeInfo = setCodeInfoColorFour(codeInfo, oneHundreds, oneDecades,
 					oneUnits);
-			addViewMiss.addCodeInfo(codeInfo);
-
+			addView.addCodeInfo(codeInfo);
+			betAndGiftPojo.setBet_code(addView.getTouzhuCode(1,
+					betAndGiftPojo.getAmt() * 100));
 			ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 			app.setPojo(betAndGiftPojo);
-			app.setAddviewmiss(addViewMiss);
+			app.setAddview(addView);
+			app.setHtextzhuma(addView.getsharezhuma());
+			app.setHzhushu(addView.getAllZhu());
 		}
 	}
 
@@ -996,7 +999,7 @@ public class NoticeBallActivity extends Activity {
 			}
 
 			if (betNums1 <= 10000 && betNums2 <= 10000) {
-				Intent intent = new Intent(this, OrderDetails.class);
+				Intent intent = new Intent(this, HghtOrderdeail.class);
 				intent.putExtra("from", BettingSuccessActivity.NOTICEBALL);
 				intent.putExtra("isAlert", true);
 				startActivity(intent);
@@ -1023,7 +1026,6 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setPhonenum(phonenum);
 			betAndGiftPojo.setUserno(userno);
 			betAndGiftPojo.setBettype("bet");
-			betAndGiftPojo.setBet_code("");
 			betAndGiftPojo.setLotmulti("1");
 			betAndGiftPojo.setBatchnum("1");
 			betAndGiftPojo.setSellway("0");
@@ -1032,20 +1034,25 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setAmount("" + betNums * 200);
 			betAndGiftPojo.setIsSellWays("1");
 
-			if (addViewMiss == null) {
-				addViewMiss = new AddViewMiss(this);
+
+			if (addView == null) {
+				addView = new AddView(this);
 			}
 
-			CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+			CodeInfo codeInfo = addView.initCodeInfo(2, 1);
 			codeInfo.setTouZhuCode(code);
 			codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
 			codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
 			codeInfo = setCodeInfoColorThree(codeInfo, redListTwo);
-			addViewMiss.addCodeInfo(codeInfo);
+			addView.addCodeInfo(codeInfo);
+			betAndGiftPojo.setBet_code(addView.getTouzhuCode(1,
+					betAndGiftPojo.getAmt() * 100));
 
 			ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 			app.setPojo(betAndGiftPojo);
-			app.setAddviewmiss(addViewMiss);
+			app.setAddview(addView);
+			app.setHtextzhuma(addView.getsharezhuma());
+			app.setHzhushu(addView.getAllZhu());
 		}
 	}
 
@@ -1236,7 +1243,7 @@ public class NoticeBallActivity extends Activity {
 					addViewMiss = new AddViewMiss(this);
 
 				}
-				CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+				CodeInfoMiss codeInfo = addViewMiss.initCodeInfo(2, 1);
 				codeInfo.setTouZhuCode(code);
 				codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
 				codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
@@ -1290,7 +1297,7 @@ public class NoticeBallActivity extends Activity {
 		return codeInfo;
 	}
 
-	private CodeInfo setCodeInfoColorOther(CodeInfo codeInfo,
+	private CodeInfoMiss setCodeInfoColorOther(CodeInfoMiss codeInfo,
 			List<Integer> oneHundreds, List<Integer> oneDecades,
 			List<Integer> oneUnits) {
 		StringBuffer hunderdsString = new StringBuffer();
@@ -1644,7 +1651,7 @@ public class NoticeBallActivity extends Activity {
 				if (addViewMiss == null) {
 					addViewMiss = new AddViewMiss(this);
 				}
-				CodeInfo codeInfo = addViewMiss.initCodeInfo(2, 1);
+				CodeInfoMiss codeInfo = addViewMiss.initCodeInfo(2, 1);
 				codeInfo.setTouZhuCode(code);
 				codeInfo.setZhuShu(Integer.valueOf(String.valueOf(betNums)));
 				codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
@@ -1673,7 +1680,7 @@ public class NoticeBallActivity extends Activity {
 		builder.show();
 	}
 
-	private CodeInfo setCodeInfoColor(CodeInfo codeInfo, List<Integer> redList,
+	private CodeInfoMiss setCodeInfoColor(CodeInfoMiss codeInfo, List<Integer> redList,
 			List<Integer> blueList) {
 		StringBuffer redString = new StringBuffer();
 		StringBuffer blueString = new StringBuffer();

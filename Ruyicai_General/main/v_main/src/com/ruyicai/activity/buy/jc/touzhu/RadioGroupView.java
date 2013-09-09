@@ -266,14 +266,27 @@ public class RadioGroupView {
 						if (isBeijing) {
 							((BeiJingSingleGameIndentActivity) context).bettingNum = getBeijingRadioZhu(buttonView
 									.getText().toString());
+							/**add by yejc 20130906 start*/
+							if (((BeiJingSingleGameIndentActivity) context).bettingNum > 100000) {
+								touzhuDialog.alertInfo(
+										context.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
+										context.getString(R.string.jc_main_touzhu_alert_text_title));
+								return;
+							}
+							/**add by yejc 20130906 end*/
 							setBeiJingRadioPrize(buttonView.getText()
 									.toString());
 							((BeiJingSingleGameIndentActivity) context)
 									.setBettingInformationShow();
-
 						} else {
 							touzhuDialog.zhuShu = getRadioZhu(buttonView
 									.getText().toString());
+							/**add by yejc 20130906 start*/
+							if (isTouzhu()) {
+								buttonView.setChecked(false);
+								return;
+							}
+							/**add by yejc 20130906 end*/
 							touzhuDialog.setAlertText();
 							setRadioPrize(buttonView.getText().toString());
 						}
@@ -321,7 +334,7 @@ public class RadioGroupView {
 		int danTeamNum = touzhuDialog.getIsDanNum();
 		int danNum = getDanNum(danTeamNum, false, false);
 		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.buy_jc_touzhu_group_duo, null);
 		int[] checkId = { R.id.checkBox1, R.id.checkBox2, R.id.checkBox3,
 				R.id.checkBox4, R.id.checkBox5, R.id.checkBox6, R.id.checkBox7 };
@@ -339,11 +352,22 @@ public class RadioGroupView {
 							public void onCheckedChanged(
 									CompoundButton buttonView, boolean isChecked) {
 								int checknum = buttonView.getId();
+								
 								if (isChecked) {
 									touzhuDialog.freedomMaxprize += touzhuDialog
 											.getFreedomMaxPrize(checknum + 2);
 									touzhuDialog.zhuShu += touzhuDialog
 											.getZhushu(buttonView.getId() + 2);
+									/**add by yejc 20130906 start*/
+									if (isTouzhu()) {
+										buttonView.setChecked(false);
+										touzhuDialog.freedomMaxprize -= touzhuDialog
+												.getFreedomMaxPrize(checknum + 2);
+										touzhuDialog.zhuShu -= touzhuDialog
+												.getZhushu(buttonView.getId() + 2);
+										return;
+									}
+									/**add by yejc 20130906 end*/
 								} else {
 									touzhuDialog.freedomMaxprize -= touzhuDialog
 											.getFreedomMaxPrize(checknum + 2);
@@ -407,6 +431,16 @@ public class RadioGroupView {
 								if (isChecked) {
 									((BeiJingSingleGameIndentActivity) context).bettingNum += ((BeiJingSingleGameIndentActivity) context)
 											.getBettingNum(buttonView.getId() + 1);
+									
+									/**add by yejc 20130906 start*/
+									if (isTouzhu()) {
+										buttonView.setChecked(false);
+										((BeiJingSingleGameIndentActivity) context).bettingNum -= ((BeiJingSingleGameIndentActivity) context)
+												.getBettingNum(buttonView.getId() + 1);
+										return;
+									}
+									/**add by yejc 20130906 end*/
+									
 									if (0 == buttonView.getId()) {
 										BeiJingSingleGameIndentActivity.freedomMaxprize += ((BeiJingSingleGameIndentActivity) context)
 												.computeDanGuanMaxPrize();
@@ -1431,4 +1465,16 @@ public class RadioGroupView {
 	private String getString(int id) {
 		return context.getString(id);
 	}
+	
+	/**add by yejc 20130906 start*/
+	private boolean isTouzhu() {
+		if (touzhuDialog.zhuShu > 100000) {
+			touzhuDialog.alertInfo(
+					context.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
+					context.getString(R.string.jc_main_touzhu_alert_text_title));
+			return true;
+		}
+		return false;
+	}
+	/**add by yejc 20130906 end*/
 }

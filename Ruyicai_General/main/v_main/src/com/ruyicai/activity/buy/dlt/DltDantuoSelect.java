@@ -20,7 +20,7 @@ import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.code.dlt.DltDantuoSelectCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.json.miss.DltMissJson;
@@ -35,7 +35,6 @@ public class DltDantuoSelect extends ZixuanActivity {
 	private int redBallResId[] = { R.drawable.grey, R.drawable.red };
 	private int blueBallResId[] = { R.drawable.grey, R.drawable.blue };
 
-	private ToggleButton zhuijiatouzhu;
 	private int singleLotteryValue = 2;
 
 	/**
@@ -100,26 +99,6 @@ public class DltDantuoSelect extends ZixuanActivity {
 		areaNums[3] = new AreaNum(12, 8, 2, 12, blueBallResId, 0, 1,
 				Color.BLUE, bluetuoTitle, true, false);
 		return areaNums;
-	}
-
-	private void initZhuiJia(View view) {
-		LinearLayout toggleLinear = (LinearLayout) view
-				.findViewById(R.id.buy_zixuan_linear_toggle);
-		toggleLinear.setVisibility(LinearLayout.VISIBLE);
-		zhuijiatouzhu = (ToggleButton) view.findViewById(R.id.dlt_zhuijia);
-		zhuijiatouzhu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-				if (isChecked) {
-					singleLotteryValue = 3;
-					betAndGift.setIssuper("0");
-				} else {
-					singleLotteryValue = 2;
-					betAndGift.setIssuper("");
-				}
-				changeTextSumMoney();
-			}
-		});
 	}
 
 	@Override
@@ -390,7 +369,7 @@ public class DltDantuoSelect extends ZixuanActivity {
 		}
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_DLT);
 		codeInfo.setTouZhuType("dantuo");
 	}
