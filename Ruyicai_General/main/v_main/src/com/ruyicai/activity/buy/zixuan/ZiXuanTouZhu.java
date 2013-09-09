@@ -107,7 +107,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 		// 期号
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		if (Constants.type.equals("hight") || Constants.type.equals("zc") && HghtOrderdeail.fromInt == 0) {
+		if ((Constants.type.equals("hight") || Constants.type.equals("zc")) && HghtOrderdeail.fromInt == 0) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
 			getNetIssue();
