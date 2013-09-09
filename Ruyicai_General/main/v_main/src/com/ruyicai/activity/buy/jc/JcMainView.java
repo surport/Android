@@ -263,10 +263,6 @@ public abstract class JcMainView {
 								@Override
 								public void run() {
 									initSubView();
-//									if(dialogView != null) {
-//										ImageView imageView = (ImageView)dialogView.findViewById(R.id.imageView);
-//										imageView.clearAnimation();
-//									}
 									dialog.cancel();
 								}
 							});
@@ -276,10 +272,6 @@ public abstract class JcMainView {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-//								if(dialogView != null) {
-//									ImageView imageView = (ImageView)dialogView.findViewById(R.id.imageView);
-//									imageView.clearAnimation();
-//								}
 								dialog.cancel();
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
