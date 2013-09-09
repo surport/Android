@@ -1951,7 +1951,7 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 				AddViewMiss addViewMiss = new AddViewMiss(this);
 
 				// 生成CodeInfo
-				com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo tempInfo;
+				com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss tempInfo;
 				for (int i = 0; i < receiveRandomNum.length; i++) {
 					tempInfo = addViewMiss.initCodeInfo(2, 1);
 					tempInfo.setTouZhuCode(GT.betCodeToString(type,
@@ -2037,7 +2037,7 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	 *            : 对象2
 	 */
 	public void setCodeInfoColor(
-			com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo codeInfo,
+			com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss codeInfo,
 			com.ruyicai.activity.buy.zixuan.AddView.CodeInfo codeInfo2,
 			int position) {
 

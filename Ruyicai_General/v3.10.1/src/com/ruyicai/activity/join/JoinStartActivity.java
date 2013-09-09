@@ -49,6 +49,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.zixuan.OrderDetails;
+import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -115,8 +116,8 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	LinearLayout beishulayLayout;
 	private AddView addview;
 	private Context context;
-	private int mAmount = 0;
-	private int mZhushu = 1;
+	private long mAmount = 0;
+	private long mZhushu = 1;
 	private final int ZC_MAX = 10000;
 
 	@Override
@@ -129,9 +130,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		betAndGift = app.getPojo();
 		addview = app.getAddview();
 		if (Constants.type.equals("zc")) {
-			allAtm = Integer.valueOf(betAndGift.getAmount()) / 100;
-//			mAmount = Integer.valueOf(betAndGift.getAmount());
-			mZhushu = Integer.valueOf(betAndGift.getZhushu());
+			allAtm = Long.valueOf(betAndGift.getAmount()) / 100;
+			// mAmount = Integer.valueOf(betAndGift.getAmount());
+			mZhushu = Long.valueOf(betAndGift.getZhushu());
 		} else {
 			allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
 
@@ -200,8 +201,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (addview.getSize() != 0 && OrderDetails.isAlert) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
 					} else {
 						alertExit(getString(R.string.buy_alert_exit_detail));
 					}
@@ -273,8 +275,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				final String issue = Controller.getInstance(JoinStartActivity.this).toNetIssue(betAndGift
-						.getLotno());
+				final String issue = Controller.getInstance(
+						JoinStartActivity.this).toNetIssue(
+						betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
@@ -927,8 +930,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		switch (keyCode) {
 		case 4:
 			if (addview != null && addview.getSize() != 0) {
-				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit(getString(R.string.buy_alert_exit_detail_other));
 				} else {
 					alertExit(getString(R.string.buy_alert_exit_detail));
 				}

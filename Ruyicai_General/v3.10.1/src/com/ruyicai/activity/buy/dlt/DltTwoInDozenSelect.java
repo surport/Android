@@ -13,7 +13,7 @@ import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.code.dlt.DltTwoInDozenCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.json.miss.DltMissJson;
@@ -165,7 +165,7 @@ public class DltTwoInDozenSelect extends ZixuanActivity {
 		return iZhuShu;
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_DLT);
 		codeInfo.setTouZhuType("12xuan2");
 	}

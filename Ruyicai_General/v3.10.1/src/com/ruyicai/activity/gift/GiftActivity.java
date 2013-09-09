@@ -64,6 +64,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
+import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.zixuan.OrderDetails;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
@@ -262,8 +263,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (addview.getSize() != 0 && OrderDetails.isAlert) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
 					} else {
 						alertExit(getString(R.string.buy_alert_exit_detail));
 					}
@@ -1253,8 +1255,9 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 				dialogOk();
 			} else {
 				if (addview != null && addview.getSize() != 0) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
 					} else {
 						alertExit(getString(R.string.buy_alert_exit_detail));
 					}

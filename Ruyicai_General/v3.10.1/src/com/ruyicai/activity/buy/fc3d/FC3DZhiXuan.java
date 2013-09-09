@@ -13,7 +13,7 @@ import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
-import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfo;
+import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.code.fc3d.F3dZiHeZhiCode;
 import com.ruyicai.code.fc3d.Fc3dZiZhiXuanCode;
@@ -391,7 +391,7 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 		return null;
 	}
 
-	void setLotoNoAndType(CodeInfo codeInfo) {
+	void setLotoNoAndType(CodeInfoMiss codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_FC3D);
 		codeInfo.setTouZhuType("zhixuan");
 	}
