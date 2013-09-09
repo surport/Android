@@ -45,6 +45,7 @@
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="50dip"
                 android:background="@color/white"
+                android:cacheColorHint="@android:color/transparent"
                 android:divider="@color/zc_sfc_listview_item_bg"
                 android:dividerHeight="0dip" >
             </ListView>

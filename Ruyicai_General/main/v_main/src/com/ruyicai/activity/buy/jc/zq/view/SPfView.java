@@ -269,7 +269,8 @@ public class SPfView extends JcMainView {
 				textOdds.setText(info.getLetV1Level());
 				guestOdds.setText(info.getLetV0Fail());
 			} else {
-				textVS.setText("0");
+//				textVS.setText("0");
+				textVS.setText("VS");
 				homeOdds.setText(info.getWin());
 				textOdds.setText(info.getLevel());
 				guestOdds.setText(info.getFail());
