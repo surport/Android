@@ -385,11 +385,10 @@ public class FootBallMainActivity extends Activity {
 					titleView.setText(playBtn[i].getText());
 					mPlayIndex = i;
 					if (mIssueArray[mPlayIndex] == null) {
-						if (isShowState[mPlayIndex]) {
-							setShowState();
-						} else {
+						if (!isShowState[mPlayIndex]) {
 							getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 						}
+						setShowState();
 					} else {
 						initList();
 					}
