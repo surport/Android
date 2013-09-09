@@ -145,9 +145,12 @@ public class NoticeActivityGroup extends ActivityGroup {
 		} else if (screenWith == 480) {
 			NoticeMainActivity.BALL_WIDTH = 46;
 			NoticeMainActivity.SCALE = 1;
-		} else if (screenWith > 480) {
+		} else if (screenWith > 480 && screenWith < 1080) {
 			NoticeMainActivity.BALL_WIDTH = screenWith / 480 * 46;
 			NoticeMainActivity.SCALE = (float) 1.5;
+		} else if (screenWith >= 1080) { //add by yejc 20130909
+			NoticeMainActivity.BALL_WIDTH = screenWith / 480 * 46;
+			NoticeMainActivity.SCALE = 2.0f;
 		}
 	}
 
