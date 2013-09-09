@@ -38,7 +38,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -90,8 +89,8 @@ public class FootBallMainActivity extends Activity {
 	private FootBallBaseAdapter[] mFootBallAdapters = new FootBallBaseAdapter[4];
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
 	private ArrayList[] mIssueArray = new ArrayList[4];
-//	private View mDialogView;
 	private RelativeLayout noGamePrompt;
+	private boolean[] isShowState = {false, false, false, false};
 	
 
 	@Override
@@ -271,9 +270,19 @@ public class FootBallMainActivity extends Activity {
 							advanceBatchCodeData);
 					String errorCode = advanceBatchCode.getString("error_code");
 					String message = advanceBatchCode.getString("message");
-					if (errorCode.equals("0000")) {
-						JSONArray batchCodeArray = advanceBatchCode
+					JSONArray batchCodeArray = null;
+					if (advanceBatchCode.has("result")) {
+						batchCodeArray = advanceBatchCode
 								.getJSONArray("result");
+					}
+					if (errorCode.equals("0047") || errorCode.equals("0000")) {
+						if (batchCodeArray == null || batchCodeArray.length() == 0) {
+							isShowState[mPlayIndex] = true;
+							handler.sendEmptyMessage(5);
+							return;
+						}
+					}
+					if (errorCode.equals("0000")) {
 						ArrayList<AdvanceBatchCode> bactchArray = new ArrayList<AdvanceBatchCode>();
 						bactchArray.clear();
 						for (int i = 0; i < batchCodeArray.length(); i++) {
@@ -375,7 +384,14 @@ public class FootBallMainActivity extends Activity {
 					playBtn[i].setTextColor(getResources().getColor(R.color.white));
 					titleView.setText(playBtn[i].getText());
 					mPlayIndex = i;
-					getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+					if (mIssueArray[mPlayIndex] == null) {
+						if (!isShowState[mPlayIndex]) {
+							getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+						}
+						setShowState();
+					} else {
+						initList();
+					}
 					setViewState();
 				} else {
 					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
@@ -411,7 +427,11 @@ public class FootBallMainActivity extends Activity {
 			case 4:
 				dismissDialog();
 				FootballContantDialog.alertIssueNOFQueue(mContext);
-				break;	
+				break;
+			case 5:
+				setShowState();
+				dismissDialog();
+				break;
 			}
 		}
 	};
@@ -477,31 +497,11 @@ public class FootBallMainActivity extends Activity {
 					obj = new JSONObject(re);
 					error_code = obj.getString("error_code");
 					if (error_code.equals("0000")) {
+						JSONArray result = obj.getJSONArray("result");
 						if (mTeamInfoLists[mPlayIndex] == null) {
 							mTeamInfoLists[mPlayIndex] = new ArrayList();
 						}
 						mTeamInfoLists[mPlayIndex].clear();
-						JSONArray result = obj.getJSONArray("result");
-						if (result.length() == 0) {
-							handler.post(new Runnable() {
-
-								@Override
-								public void run() {
-									footBallList.setVisibility(View.GONE);
-									noGamePrompt.setVisibility(View.VISIBLE);
-								}
-							});
-
-						} else {
-							handler.post(new Runnable() {
-
-								@Override
-								public void run() {
-									footBallList.setVisibility(View.VISIBLE);
-									noGamePrompt.setVisibility(View.GONE);
-								}
-							});
-						}
 						for (int i = 0; i < result.length(); i++) {
 							JSONObject json = result.getJSONObject(i);
 							TeamInfo team = new TeamInfo();
@@ -751,5 +751,15 @@ public class FootBallMainActivity extends Activity {
 		LinearLayout layoutParentLuck = (LinearLayout) popupView
 				.findViewById(R.id.buy_group_one_layout3);
 		layoutParentLuck.setVisibility(View.GONE);
+	}
+	
+	private void setShowState() {
+		if (isShowState[mPlayIndex]) {
+			footBallList.setVisibility(View.GONE);
+			noGamePrompt.setVisibility(View.VISIBLE);
+		} else {
+			footBallList.setVisibility(View.VISIBLE);
+			noGamePrompt.setVisibility(View.GONE);
+		}
 	}
 }
