@@ -2960,9 +2960,9 @@ public class PublicMethod {
 		}
 		
 		if (sumValue >= 10) {
-			iShowNumber += "    " + sumValue;
+			iShowNumber += "    和值" + sumValue;
 		}else{ 
-			iShowNumber += "      " + sumValue;
+			iShowNumber += "    和值" + sumValue;
 		}
 		
 		
