@@ -64,6 +64,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -331,13 +332,16 @@ public class BeiJingSingleGameActivity extends Activity {
 	 */
 	private void showNoAgainstPrompt() {
 		againstLinearLayout.removeAllViews();
+		ImageView imageView = new ImageView(context);
+		imageView.setImageResource(R.drawable.ray);
+		LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		mLayoutParams.gravity = Gravity.CENTER;
+		againstLinearLayout.addView(imageView, mLayoutParams);
 		TextView textView = new TextView(context);
 		textView.setText("暂无比赛可以投注");
 		textView.setTextSize(18.0f);
-		LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT,
-				LayoutParams.MATCH_PARENT);
-		mLayoutParams.gravity = Gravity.CENTER;
+
 		againstLinearLayout.addView(textView, mLayoutParams);
 	}
 
@@ -752,11 +756,11 @@ public class BeiJingSingleGameActivity extends Activity {
 		final ProgressDialog connectDialog = UserCenterDialog
 				.onCreateDialog(this);
 		connectDialog.show();
-		/**add by yejc 20130906 start*/
+		/** add by yejc 20130906 start */
 		final View dialogView = PublicMethod.getView(context);
 		connectDialog.getWindow().setContentView(dialogView);
-		/**add by yejc 20130906 end*/
-		
+		/** add by yejc 20130906 end */
+
 		new Thread(new Runnable() {
 
 			@Override
@@ -783,12 +787,13 @@ public class BeiJingSingleGameActivity extends Activity {
 					handler.sendMessage(message);
 				}
 				// 取消对话框
-				/**add by yejc 20130906 start*/
-				if(dialogView != null) {
-					ImageView imageView = (ImageView)dialogView.findViewById(R.id.imageView);
+				/** add by yejc 20130906 start */
+				if (dialogView != null) {
+					ImageView imageView = (ImageView) dialogView
+							.findViewById(R.id.imageView);
 					imageView.clearAnimation();
 				}
-				/**add by yejc 20130906 end*/
+				/** add by yejc 20130906 end */
 				connectDialog.dismiss();
 			}
 		}).start();
@@ -1256,8 +1261,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		upLayersLayout.setVisibility(View.VISIBLE);
 		middleLayersLayout.setVisibility(View.VISIBLE);
 		PublicMethod.setLayoutHeight(45, upLayersLayout, this);
-		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this, 
-        		R.anim.jc_top_menu_window_enter));
+		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
+				R.anim.jc_top_menu_window_enter));
 
 		initPlayMethodChangeDialogShow();
 	}
@@ -2438,6 +2443,7 @@ public class BeiJingSingleGameActivity extends Activity {
 			showSelectedTeam();
 		}
 	}
+
 	private void showSelectedTeam() {
 		if (nowSelectedEventsList != null) {
 			nowSelectedEventsList.clear();
