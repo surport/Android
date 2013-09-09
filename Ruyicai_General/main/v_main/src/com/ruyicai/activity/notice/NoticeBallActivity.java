@@ -743,7 +743,7 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setPhonenum(phonenum);
 			betAndGiftPojo.setUserno(userno);
 			betAndGiftPojo.setBettype("bet");
-			betAndGiftPojo.setBet_code("");
+
 			betAndGiftPojo.setLotmulti("1");
 			betAndGiftPojo.setBatchnum("1");
 			betAndGiftPojo.setSellway("0");
@@ -767,10 +767,13 @@ public class NoticeBallActivity extends Activity {
 			codeInfo = setCodeInfoColorFour(codeInfo, oneHundreds, oneDecades,
 					oneUnits);
 			addView.addCodeInfo(codeInfo);
-
+			betAndGiftPojo.setBet_code(addView.getTouzhuCode(1,
+					betAndGiftPojo.getAmt() * 100));
 			ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 			app.setPojo(betAndGiftPojo);
 			app.setAddview(addView);
+			app.setHtextzhuma(addView.getsharezhuma());
+			app.setHzhushu(addView.getAllZhu());
 		}
 	}
 
@@ -1023,7 +1026,6 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setPhonenum(phonenum);
 			betAndGiftPojo.setUserno(userno);
 			betAndGiftPojo.setBettype("bet");
-			betAndGiftPojo.setBet_code("");
 			betAndGiftPojo.setLotmulti("1");
 			betAndGiftPojo.setBatchnum("1");
 			betAndGiftPojo.setSellway("0");
@@ -1031,6 +1033,7 @@ public class NoticeBallActivity extends Activity {
 			betAndGiftPojo.setZhushu(String.valueOf(betNums));
 			betAndGiftPojo.setAmount("" + betNums * 200);
 			betAndGiftPojo.setIsSellWays("1");
+
 
 			if (addView == null) {
 				addView = new AddView(this);
@@ -1042,10 +1045,14 @@ public class NoticeBallActivity extends Activity {
 			codeInfo.setAmt(Integer.valueOf(String.valueOf(betNums * 2)));
 			codeInfo = setCodeInfoColorThree(codeInfo, redListTwo);
 			addView.addCodeInfo(codeInfo);
+			betAndGiftPojo.setBet_code(addView.getTouzhuCode(1,
+					betAndGiftPojo.getAmt() * 100));
 
 			ApplicationAddview app = (ApplicationAddview) getApplicationContext();
 			app.setPojo(betAndGiftPojo);
 			app.setAddview(addView);
+			app.setHtextzhuma(addView.getsharezhuma());
+			app.setHzhushu(addView.getAllZhu());
 		}
 	}
 

@@ -138,7 +138,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		if (isFromTrackQuery) {
 			getNetIssue();
 		} else {
-			if (Constants.type.equals("hight") || Constants.type.equals("zc") && HghtOrderdeail.fromInt == 0) {
+			if ((Constants.type.equals("hight") || Constants.type.equals("zc")) && HghtOrderdeail.fromInt == 0) {
 				issueText.setText("第" + betAndGift.getBatchcode() + "期");
 			} else {
 				getNetIssue();

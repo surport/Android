@@ -7,6 +7,8 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
@@ -27,9 +29,11 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -212,9 +216,31 @@ public abstract class JcMainView {
 		} else {
 			setValue(jsonArray);
 		}
-		initListView(getListView(), context, listWeeks);
+		if (isDanguan && jsonArray1.length() == 0) {
+			showNoGamePrompt();
+		} else if (jsonArray.length() == 0 && !isDanguan) {
+			showNoGamePrompt();
+		} else {
+			initListView(getListView(), context, listWeeks);
+			layoutView.removeAllViews();
+			layoutView.addView(getView());
+		}
+
+	}
+
+	private void showNoGamePrompt() {
 		layoutView.removeAllViews();
-		layoutView.addView(getView());
+		ImageView imageView = new ImageView(context);
+		imageView.setImageResource(R.drawable.ray);
+		LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		mLayoutParams.gravity = Gravity.CENTER;
+		layoutView.addView(imageView, mLayoutParams);
+		TextView textView = new TextView(context);
+		textView.setText("暂无比赛可以投注");
+		textView.setTextSize(18.0f);
+
+		layoutView.addView(textView, mLayoutParams);
 	}
 
 	private void infoNet() {
@@ -227,8 +253,8 @@ public abstract class JcMainView {
 
 			@Override
 			public void run() {
-				str = QueryJcInfoInterface.getInstance().queryJcInfo(jcType,
-						jcvaluetype);
+				 str = QueryJcInfoInterface.getInstance().queryJcInfo(jcType,
+				 jcvaluetype);
 				try {
 					JSONObject jsonObj = new JSONObject(str);
 					final String msg = jsonObj.getString("message");
@@ -240,24 +266,11 @@ public abstract class JcMainView {
 						} else {
 							jsonArray = jsonObj.getJSONArray("result");
 						}
-						
+
 						if (isDanguan && jsonArray1.length() == 0) {
-							
-						} else if(jsonArray.length() == 0){
-							Toast.makeText(context, "暂无球赛可投注",
-									Toast.LENGTH_SHORT).show();
-							handler.post(new Runnable() {
-								@Override
-								public void run() {
-									dialog.dismiss();
-									layoutView.removeAllViews();
-									LayoutInflater layoutInflater = (LayoutInflater) context
-											.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-									View view = layoutInflater.inflate(
-											R.layout.no_game_prompt, null);
-									layoutView.addView(view);
-								}
-							});
+							showNoGamePrompt(dialog);
+						} else if (jsonArray.length() == 0 && !isDanguan) {
+							showNoGamePrompt(dialog);
 						} else {
 							handler.post(new Runnable() {
 								@Override
@@ -281,6 +294,28 @@ public abstract class JcMainView {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			private void showNoGamePrompt(final ProgressDialog dialog) {
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						dialog.dismiss();
+						layoutView.removeAllViews();
+						ImageView imageView = new ImageView(context);
+						imageView.setImageResource(R.drawable.ray);
+						LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
+								LayoutParams.WRAP_CONTENT,
+								LayoutParams.WRAP_CONTENT);
+						mLayoutParams.gravity = Gravity.CENTER;
+						layoutView.addView(imageView, mLayoutParams);
+						TextView textView = new TextView(context);
+						textView.setText("暂无比赛可以投注");
+						textView.setTextSize(18.0f);
+
+						layoutView.addView(textView, mLayoutParams);
+					}
+				});
 			}
 		});
 		t.start();

@@ -3,7 +3,6 @@ package com.ruyicai.activity.buy.zixuan;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -107,7 +106,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 		// 期号
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		if (Constants.type.equals("hight") || Constants.type.equals("zc") && HghtOrderdeail.fromInt == 0) {
+		if ((Constants.type.equals("hight") || Constants.type.equals("zc")) && HghtOrderdeail.fromInt == 0) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
 			getNetIssue();
