@@ -80,7 +80,6 @@ public class BuyActivityGroup extends ActivityGroup {
 	private String batchCode = "";
 	/* Add by fansm 20130417 start */
 	protected TextView lastCodeTxt;
-	protected Button refreshBtn;
 	/* Add by fansm 20130417 end */
 
 	/** add by yejc 20130422 start */
@@ -161,13 +160,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		imgIcon = (Button) findViewById(R.id.layout_main_img_return);
 		imgIcon.setVisibility(View.VISIBLE);
 		/* Add by fansm 20130417 start */
-		refreshBtn = (Button) findViewById(R.id.refresh_code);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
-		refreshBtn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				setlastbatchcode(lotNo);
-			}
-		});
 		/* Add by fansm 20130417 end */
 		// 上期开奖号码
 		lastcode = (TextView) findViewById(R.id.last_batchcode_textlable_red);

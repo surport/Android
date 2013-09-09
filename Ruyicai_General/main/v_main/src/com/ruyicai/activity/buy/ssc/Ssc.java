@@ -45,7 +45,6 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		setlastbatchcode(Constants.LOTNO_SSC);
 		time = (TextView) findViewById(R.id.layout_main_text_timessc);
 		time.setVisibility(View.VISIBLE);
-		refreshBtn.setVisibility(View.VISIBLE);
 		init(titles, topTitles, allId);
 		mTabHost.setCurrentTab(2);
 		setIssue();

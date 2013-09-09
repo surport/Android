@@ -28,19 +28,6 @@
             </TextView>
 
             <Button
-                android:id="@id/refresh_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="45dip"
-                android:background="@drawable/refresh_last_code"
-                android:textColor="@color/white"
-                android:textSize="15dip"
-                android:visibility="invisible" >
-            </Button>
-
-            <Button
                 android:id="@id/layout_main_img_return"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

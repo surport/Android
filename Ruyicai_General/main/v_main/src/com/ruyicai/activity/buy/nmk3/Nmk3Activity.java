@@ -40,14 +40,6 @@ public class Nmk3Activity extends BuyActivityGroup {
 		setIssue();
 		// 获取上期开奖号码
 		setlastbatchcode(Constants.LOTNO_NMK3);
-		/**add by yejc 20130723 start*/
-		refreshBtn.setVisibility(View.VISIBLE);
-		refreshBtn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				setlastbatchcode(Constants.LOTNO_NMK3);
-			}
-		});
-		/**add by yejc 20130723 end*/
 		relativeLayout1.setVisibility(View.GONE);
 		betInfoTextView.setVisibility(View.VISIBLE);
 	}

@@ -106,7 +106,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	protected TextView lastcode;
 	/* Add by fansm 20130417 start */
 	private TextView lastCodeTxt;
-	private Button refreshBtn;
 	private String showMessage = "";
 	/* Add by fansm 20130417 end */
 	private RelativeLayout relativeLayout;
@@ -227,14 +226,8 @@ public class Dlc extends ZixuanAndJiXuan {
 		imgRetrun = (Button) findViewById(R.id.layout_main_img_return);
 		lastcode = (TextView) findViewById(R.id.last_batchcode_textlable_red);
 		/* Add by fansm 20130417 start */
-		refreshBtn = (Button) findViewById(R.id.refresh_code);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
-		refreshBtn.setVisibility(View.VISIBLE);
-		refreshBtn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				setlastbatchcode(lotno);
-			}
-		});
+	
 		/* Add by fansm 20130417 end */
 		titleOne.setText(getString(R.string.dlc));
 		imgRetrun.setVisibility(View.VISIBLE);
