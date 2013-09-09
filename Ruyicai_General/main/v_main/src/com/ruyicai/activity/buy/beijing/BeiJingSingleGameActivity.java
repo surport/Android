@@ -223,101 +223,80 @@ public class BeiJingSingleGameActivity extends Activity {
 
 		switch (playMethodType) {
 		case WINTIELOSS:
-			if (nowWinTieLossAgainstInformationList == null) {
-				showNoAgainstPrompt();
-			} else {
-				getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
-				if (winTieLossAdapter == null) {
-					winTieLossAdapter = new WinTieLossAdapter(
-							BeiJingSingleGameActivity.this,
-							nowWinTieLossAgainstInformationList);
-				}
+			getNowShowWinTieLossAgainstInformationWithSelectedEvent(isCleared);
+			if (winTieLossAdapter == null) {
+				winTieLossAdapter = new WinTieLossAdapter(
+						BeiJingSingleGameActivity.this,
+						nowWinTieLossAgainstInformationList);
+			}
 
-				if (isReset) {
-					againstListView.setAdapter(winTieLossAdapter);
-				} else {
-					winTieLossAdapter.notifyDataSetChanged();
-				}
+			if (isReset) {
+				againstListView.setAdapter(winTieLossAdapter);
+			} else {
+				winTieLossAdapter.notifyDataSetChanged();
 			}
 
 			break;
 		case TOTALGOALS:
-			if (nowTotalGoalsAgainstInformationList == null) {
-				showNoAgainstPrompt();
-			} else {
-				getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
-				if (totalGoalsAdapter == null) {
-					totalGoalsAdapter = new TotalGoalsAdapter(
-							BeiJingSingleGameActivity.this,
-							nowTotalGoalsAgainstInformationList);
-				}
+			getNowShowTotalGoalsAgainstInformationWithSelectedEvent(isCleared);
+			if (totalGoalsAdapter == null) {
+				totalGoalsAdapter = new TotalGoalsAdapter(
+						BeiJingSingleGameActivity.this,
+						nowTotalGoalsAgainstInformationList);
+			}
 
-				if (isReset) {
-					againstListView.setAdapter(totalGoalsAdapter);
-				} else {
-					totalGoalsAdapter.notifyDataSetChanged();
-				}
+			if (isReset) {
+				againstListView.setAdapter(totalGoalsAdapter);
+			} else {
+				totalGoalsAdapter.notifyDataSetChanged();
 			}
 
 			break;
 		case OVERALL:
-			if (nowOverAllagainstInformationList == null) {
-				showNoAgainstPrompt();
+			getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
+
+			if (overAllAdapter == null) {
+				overAllAdapter = new OverAllAdapter(
+						BeiJingSingleGameActivity.this,
+						nowOverAllagainstInformationList);
+			}
+
+			if (isReset) {
+				againstListView.setAdapter(overAllAdapter);
 			} else {
-				getNowShowOverAllAgainstInformationWithSelectedEvent(isCleared);
-
-				if (overAllAdapter == null) {
-					overAllAdapter = new OverAllAdapter(
-							BeiJingSingleGameActivity.this,
-							nowOverAllagainstInformationList);
-				}
-
-				if (isReset) {
-					againstListView.setAdapter(overAllAdapter);
-				} else {
-					overAllAdapter.notifyDataSetChanged();
-				}
+				overAllAdapter.notifyDataSetChanged();
 			}
 
 			break;
 		case HALFTHEAUDIENCE:
-			if (nowHalfTheAudienceagainstInformationList == null) {
-				showNoAgainstPrompt();
+			getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
+
+			if (halfTheAudienceAdapter == null) {
+				halfTheAudienceAdapter = new HalfTheAudienceAdapter(
+						BeiJingSingleGameActivity.this,
+						nowHalfTheAudienceagainstInformationList);
+			}
+
+			if (isReset) {
+				againstListView.setAdapter(halfTheAudienceAdapter);
 			} else {
-				getNowShowHalfTheAudienceAgainstInformationWithSelectedEvent(isCleared);
-
-				if (halfTheAudienceAdapter == null) {
-					halfTheAudienceAdapter = new HalfTheAudienceAdapter(
-							BeiJingSingleGameActivity.this,
-							nowHalfTheAudienceagainstInformationList);
-				}
-
-				if (isReset) {
-					againstListView.setAdapter(halfTheAudienceAdapter);
-				} else {
-					halfTheAudienceAdapter.notifyDataSetChanged();
-				}
-
+				halfTheAudienceAdapter.notifyDataSetChanged();
 			}
 
 			break;
 		case UPDOWNSINGLEDOUBLE:
-			if (nowUpDownSigleDoubleagainstInformationList == null) {
-				showNoAgainstPrompt();
+			getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
+
+			if (upDownSingleDoubleAdapter == null) {
+				upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
+						BeiJingSingleGameActivity.this,
+						nowUpDownSigleDoubleagainstInformationList);
+			}
+
+			if (isReset) {
+				againstListView.setAdapter(upDownSingleDoubleAdapter);
 			} else {
-				getNowShowUpDownSingleDoubleAgainstInformationWithSelectedEvent(isCleared);
-
-				if (upDownSingleDoubleAdapter == null) {
-					upDownSingleDoubleAdapter = new UpDownSingleDoubleAdapter(
-							BeiJingSingleGameActivity.this,
-							nowUpDownSigleDoubleagainstInformationList);
-				}
-
-				if (isReset) {
-					againstListView.setAdapter(upDownSingleDoubleAdapter);
-				} else {
-					upDownSingleDoubleAdapter.notifyDataSetChanged();
-				}
+				upDownSingleDoubleAdapter.notifyDataSetChanged();
 			}
 			break;
 		}
@@ -771,24 +750,18 @@ public class BeiJingSingleGameActivity extends Activity {
 						playMethodType.getLotnoString());
 
 				// 如果获取期号成功，则继续获取对阵信息
-				if (nowIssueString != null && !nowIssueString.equals("")) {
-					// 获取当前玩法的当前期对阵数据
-					Constants.currentLoto = nowIssueString;
-					String returnString = BeiJingSingleGameInterface
-							.getInstance().getAgainstInformations(
-									playMethodType.getLotnoString(),
-									nowIssueString);
+				// 获取当前玩法的当前期对阵数据
+				Constants.currentLoto = nowIssueString;
+				String returnString = BeiJingSingleGameInterface
+						.getInstance()
+						.getAgainstInformations(
+								playMethodType.getLotnoString(), nowIssueString);
 
-					analysisReturnJsonString(returnString);
-				} else {
-					messageString = "获取期号失败";
-					Message message = new Message();
-					message.what = FAILD;
-					handler.sendMessage(message);
-				}
+				analysisReturnJsonString(returnString);
+
 				// 取消对话框
 				connectDialog.dismiss();
-				
+
 			}
 		}).start();
 	}
@@ -807,16 +780,25 @@ public class BeiJingSingleGameActivity extends Activity {
 			messageString = returnJsonObject.getString("message");
 
 			Message message = new Message();
+
 			// 如果请求成功，解析对阵信息，然后发出获取并解析成功信息
-			if (errorCodeString.equals("0000")) {
-				analysisSuccessReturnInformations(returnJsonObject);
-				message.what = SUCCESS;
+			if (errorCodeString.equals("0000") || errorCodeString.equals("0047")) {
+				if (!analysisSuccessReturnInformations(returnJsonObject)){
+					handler.post(new Runnable() {
+
+						@Override
+						public void run() {
+							showNoAgainstPrompt();
+						}
+					});					
+				} else {
+					message.what = SUCCESS;
+				}
 			}
 			// 如果请求失败，不解析数据，发出失败消息
 			else {
 				message.what = FAILD;
 			}
-
 			handler.sendMessage(message);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -829,17 +811,26 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * @param returnJsonObject
 	 *            成功返回数据Json对象
 	 */
-	private void analysisSuccessReturnInformations(JSONObject returnJsonObject) {
+	private boolean analysisSuccessReturnInformations(
+			JSONObject returnJsonObject) {
 		try {
-			JSONArray againstJsonArray = returnJsonObject
-					.getJSONArray("result");
+			JSONArray againstJsonArray = null;
+			if (returnJsonObject.has("result")) {
+				againstJsonArray = returnJsonObject.getJSONArray("result");
+			}
+
+			if (againstJsonArray == null || againstJsonArray.length() == 0) {
+				return false;
+			}
 
 			analysisEventInformation(returnJsonObject);
 
 			analysisAgainstInformations(againstJsonArray);
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		return true;
 	}
 
 	/**

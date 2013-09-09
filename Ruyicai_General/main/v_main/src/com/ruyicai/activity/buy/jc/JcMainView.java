@@ -216,9 +216,9 @@ public abstract class JcMainView {
 		} else {
 			setValue(jsonArray);
 		}
-		if (isDanguan && jsonArray1.length() == 0) {
+		if (isDanguan && (jsonArray1 == null || (jsonArray1 != null && jsonArray1.length() == 0))) {
 			showNoGamePrompt();
-		} else if (jsonArray.length() == 0 && !isDanguan) {
+		} else if ((jsonArray == null || (jsonArray != null && jsonArray.length() == 0)) && !isDanguan) {
 			showNoGamePrompt();
 		} else {
 			initListView(getListView(), context, listWeeks);
@@ -253,12 +253,18 @@ public abstract class JcMainView {
 
 			@Override
 			public void run() {
-				 str = QueryJcInfoInterface.getInstance().queryJcInfo(jcType,
-				 jcvaluetype);
+				str = QueryJcInfoInterface.getInstance().queryJcInfo(jcType,
+						jcvaluetype);
 				try {
 					JSONObject jsonObj = new JSONObject(str);
 					final String msg = jsonObj.getString("message");
 					final String error = jsonObj.getString("error_code");
+					if (error.equals(ERROR_WIN) || error.equals("0047")) {
+						if (!isHasResult(jsonObj)) {
+							showNoGamePrompt(dialog);
+							return;
+						}
+					}
 					if (error.equals(ERROR_WIN)) {
 						listTeam = jsonObj.getString("leagues").split(";");
 						if (isDanguan) {
@@ -267,21 +273,15 @@ public abstract class JcMainView {
 							jsonArray = jsonObj.getJSONArray("result");
 						}
 
-						if (isDanguan && jsonArray1.length() == 0) {
-							showNoGamePrompt(dialog);
-						} else if (jsonArray.length() == 0 && !isDanguan) {
-							showNoGamePrompt(dialog);
-						} else {
-							handler.post(new Runnable() {
-								@Override
-								public void run() {
-									initSubView();
-									dialog.cancel();
-								}
-							});
-						}
+						handler.post(new Runnable() {
+							@Override
+							public void run() {
+								initSubView();
+								dialog.cancel();
+							}
+						});
 
-					} else {
+					}  else {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
@@ -320,7 +320,22 @@ public abstract class JcMainView {
 		});
 		t.start();
 	}
-
+    private boolean isHasResult(JSONObject jsonObject) {
+    	JSONArray jsonArrayTmp = null;
+    	if (jsonObject.has("result")) {
+    		try {
+				jsonArrayTmp = jsonObject
+						.getJSONArray("result");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (jsonArrayTmp == null || jsonArrayTmp.length() == 0) {
+			return false;
+		}
+		return true;
+    }
 	public void setValue(JSONArray jsonArray) {
 		try {
 			for (int i = 0; i < jsonArray.length(); i++) {
