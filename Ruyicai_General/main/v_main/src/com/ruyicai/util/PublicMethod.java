@@ -2921,6 +2921,28 @@ public class PublicMethod {
 		String[] fiveLeague = {"意甲", "英超", "西甲", "德甲", "法甲"};
 		for (int i = 0; i < fiveLeague.length; i++) {
 			if (league.contains(fiveLeague[i])) {
+				int index = league.indexOf(fiveLeague[i]);
+				if (!isChinese(league.substring(0, index))
+						&& !isChinese(league.substring(index+2, league.length()))) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**判断是否是中文*/
+	public static boolean isChinese(String str) {
+		char[] ch = str.toCharArray();
+		for (int i = 0; i < ch.length; i++) {
+			char c = ch[i];
+			Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
+			if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
+					|| ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
+					|| ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A
+					|| ub == Character.UnicodeBlock.GENERAL_PUNCTUATION
+					|| ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION
+					|| ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS) {
 				return true;
 			}
 		}

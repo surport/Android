@@ -2199,6 +2199,9 @@ public class BeiJingSingleGameActivity extends Activity {
 			case R.id.ok:
 				// 五大联赛
 				for (MyButton btn : eventSelectButtons) {
+					if(btn == null) {
+						return;
+					}
 					if (PublicMethod.isFiveLeague(btn.getBtnText())) {
 						btn.setOnClick(true);
 					} else {

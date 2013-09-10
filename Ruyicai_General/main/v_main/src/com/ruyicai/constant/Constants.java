@@ -27,11 +27,11 @@ public class Constants {
 	public static String TAG = "RUYICAI";
 	/* Add by fansm 20130412 end */
 
-	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
-	//public static final String SERVER_URL = "http://202.43.152.173:8099/jrtLot/";
+//	public static final String SERVER_URL = "http://www.ruyicai.com/jrtLot/";// jrtLot正式线
+	public static final String SERVER_URL = "http://202.43.152.173:8099/jrtLot/";
 
-	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-	//public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
+//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
 
 	/**
 	 * 彩种设置
@@ -48,7 +48,7 @@ public class Constants {
 	/**
 	 * 打新包需要修改
 	 */
-	public static String SOFTWARE_VERSION = "3.10.1";
+	public static String SOFTWARE_VERSION = "4.0.0";
 	public static String MERCHANT_PACKAGE = "com.palmdream.RuyicaiAndroid";// 商户包名
 	/**
 	 * 新浪分享修改
