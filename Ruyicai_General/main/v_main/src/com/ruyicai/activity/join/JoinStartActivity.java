@@ -200,16 +200,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (addview.getSize() != 0 && OrderDetails.isAlert) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
-							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit(getString(R.string.buy_alert_exit_detail_other));
-					} else {
-						alertExit(getString(R.string.buy_alert_exit_detail));
-					}
-
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit(getString(R.string.buy_alert_exit_detail_other));
 				} else {
-					finish();
+					alertExit(getString(R.string.buy_alert_exit_detail));
 				}
 			}
 		});

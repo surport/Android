@@ -189,7 +189,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
+				if (OrderDetails.isAlert) {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 					} else {
@@ -908,8 +908,8 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			if (isFromTrackQuery) {
 				break;
 			}
-			/** add by yejc 20130510 end */
-			if (addviewmiss.getSize() != 0 && OrderDetails.isAlert) {
+			/**add by yejc 20130510 end*/
+			if (OrderDetails.isAlert) {
 				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 				} else {

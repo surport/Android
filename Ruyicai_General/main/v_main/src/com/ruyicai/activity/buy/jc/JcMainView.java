@@ -891,10 +891,10 @@ public abstract class JcMainView {
 				R.id.lq_sfc_dialog_check050, R.id.lq_sfc_dialog_check051 };
 
 		/** add by yejc 20130704 start */
-		private int[] checkIdForZC = { R.id.lq_sfc_dialog_rangqiu1,
-				R.id.lq_sfc_dialog_rangqiu2, R.id.lq_sfc_dialog_rangqiu3,
-				R.id.lq_sfc_dialog_check01, R.id.lq_sfc_dialog_check02,
-				R.id.lq_sfc_dialog_check03, R.id.lq_sfc_dialog_check04,
+		private int[] checkIdForZC = { R.id.lq_sfc_dialog_check01, 
+				R.id.lq_sfc_dialog_check02, R.id.lq_sfc_dialog_check03, 
+				R.id.lq_sfc_dialog_rangqiu1, R.id.lq_sfc_dialog_rangqiu2, 
+				R.id.lq_sfc_dialog_rangqiu3, R.id.lq_sfc_dialog_check04,
 				R.id.lq_sfc_dialog_check05, R.id.lq_sfc_dialog_check06,
 				R.id.lq_sfc_dialog_check07, R.id.lq_sfc_dialog_check08,
 				R.id.lq_sfc_dialog_check09, R.id.lq_sfc_dialog_check010,
@@ -1282,9 +1282,9 @@ public abstract class JcMainView {
 					for (int i = 0; i < check.length; i++) {
 						if (check[i].getChecked()) {
 							if (isHunHe() && !isLq) {
-								if (check[i].getPosition() == 0
-										|| check[i].getPosition() == 1
-										|| check[i].getPosition() == 2) {
+								if (check[i].getPosition() == 3
+										|| check[i].getPosition() == 4
+										|| check[i].getPosition() == 5) {
 									btnStr += "让" + check[i].getChcekTitle()
 											+ "  ";
 								} else {

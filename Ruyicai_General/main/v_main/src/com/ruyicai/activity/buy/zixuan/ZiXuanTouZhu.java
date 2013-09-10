@@ -150,23 +150,20 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onClick(View v) {
 				/** modify by pengcx start 20130531 */
-				if (addview.getSize() != 0 && OrderDetails.isAlert) {
-					String lotno = betAndGift.getLotno();
-					if (lotno.equals(Constants.LOTNO_JQC)
-							|| lotno.equals(Constants.LOTNO_LCB)
-							|| lotno.equals(Constants.LOTNO_SFC)
-							|| lotno.equals(Constants.LOTNO_RX9)) {
-						finish();
-					} else {
-						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
-								|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
-							alertExit(getString(R.string.buy_alert_exit_detail_other));
-						} else {
-							alertExit(getString(R.string.buy_alert_exit_detail));
-						}
-					}
-				} else {
+
+				String lotno = betAndGift.getLotno();
+				if (lotno.equals(Constants.LOTNO_JQC)
+						|| lotno.equals(Constants.LOTNO_LCB)
+						|| lotno.equals(Constants.LOTNO_SFC)
+						|| lotno.equals(Constants.LOTNO_RX9)) {
 					finish();
+				} else {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				}
 				/** modify by pengcx end 20130531 */
 			}
@@ -552,21 +549,16 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			if (OrderDetails.isAlert) {
-				if (addview != null && addview.getSize() != 0) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
-							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit(getString(R.string.buy_alert_exit_detail_other));
-					} else {
-						alertExit(getString(R.string.buy_alert_exit_detail));
-					}
+			if (addview != null && addview.getSize() != 0) {
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit(getString(R.string.buy_alert_exit_detail_other));
 				} else {
-					finish();
+					alertExit(getString(R.string.buy_alert_exit_detail));
 				}
 			} else {
 				finish();
 			}
-
 			break;
 		}
 		return false;

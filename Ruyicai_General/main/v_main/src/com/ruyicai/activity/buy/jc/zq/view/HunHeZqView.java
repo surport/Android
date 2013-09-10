@@ -165,14 +165,14 @@ public class HunHeZqView extends JcMainView {
 						if (position >= 0 && position <= 2) { // 让球胜平负
 							first++;
 							if (first == 1) {
-								codeStr += "<br>让球胜平负：";
+								codeStr += "<br>胜平负：";
 							}
-							title = "让" + title;
 						} else if (position >= 3 && position <= 5) { // 胜平负
 							second++;
 							if (second == 1) {
-								codeStr += "<br>胜平负：";
+								codeStr += "<br>让球胜平负：";
 							}
+							title = "让" + title;
 						} else if (position >= 6 && position <= 14) { // 半全场
 							third++;
 							if (third == 1) {
