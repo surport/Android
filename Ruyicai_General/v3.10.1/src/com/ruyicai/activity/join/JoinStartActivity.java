@@ -154,7 +154,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
 		textZhuma = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma);
 		textTitle = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
-		
+
 		titleText = (TextView) findViewById(R.id.layout_join_text_title);
 		renText = (TextView) findViewById(R.id.layout_join_text_rengou);
 		baoText = (TextView) findViewById(R.id.layout_join_text_baodi);
@@ -162,7 +162,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		minEdit = (EditText) findViewById(R.id.layout_join_edit_gendan);
 		safeEdit = (EditText) findViewById(R.id.layout_join_edit_baodi);
 		descriptionEdit = (EditText) findViewById(R.id.layout_join_edit_description);
-		
+
 		if (Constants.type.equals("hight") || Constants.type.equals("zc")) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
@@ -173,7 +173,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
 			initImageView();
-//			beishulayLayout.setVisibility(View.GONE);
+			// beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -200,16 +200,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (addview.getSize() != 0 && OrderDetails.isAlert) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
-							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit(getString(R.string.buy_alert_exit_detail_other));
-					} else {
-						alertExit(getString(R.string.buy_alert_exit_detail));
-					}
-
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit(getString(R.string.buy_alert_exit_detail_other));
 				} else {
-					finish();
+					alertExit(getString(R.string.buy_alert_exit_detail));
 				}
 			}
 		});
@@ -296,10 +291,10 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-//			int zhuShu = Integer.valueOf(betAndGift.getZhushu()) * iProgressBeishu;
+			// int zhuShu = Integer.valueOf(betAndGift.getZhushu()) *
+			// iProgressBeishu;
 			zhushu.setText(mZhushu + "注     ");
-			jine.setText(iProgressQishu * mZhushu *
-					2 * iProgressBeishu + "元");
+			jine.setText(iProgressQishu * mZhushu * 2 * iProgressBeishu + "元");
 		} else {
 			zhushu.setText(addview.getAllZhu() + "注     ");
 			jine.setText(iProgressQishu * addview.getAllAmt() * iProgressBeishu
@@ -469,11 +464,12 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 					betAndGift.getAmt() * 100));
 		} else {
 			betAndGift.setIsSellWays("");
-			
+
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
-//			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+			// int amount = Integer.valueOf(betAndGift.getAmount()) *
+			// iProgressBeishu;
 			String zhuShu = String.valueOf(mZhushu);
-			String amount = String.valueOf(mZhushu *iProgressBeishu*200);
+			String amount = String.valueOf(mZhushu * iProgressBeishu * 200);
 			betAndGift.setAmount(amount);
 			betAndGift.setZhushu(zhuShu);
 		}
@@ -579,9 +575,9 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void initImageView() {
 		mTextBeishu = (EditText) findViewById(R.id.buy_zixuan_text_beishu);
-		/**add by pengcx 20130722 start*/
+		/** add by pengcx 20130722 start */
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				if (s.length() > 1 && s.charAt(0) == '0') {
@@ -594,17 +590,17 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		/**add by pengcx 20130722 end*/
+		/** add by pengcx 20130722 end */
 		mSeekBarBeishu = (SeekBar) findViewById(R.id.buy_zixuan_seek_beishu);
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
@@ -816,11 +812,13 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
 			if (Constants.type.equals("zc")) {
-				mAmount = /*Integer.valueOf(betAndGift.getZhushu()) * */mZhushu*200 * iProgressBeishu;
+				mAmount = /* Integer.valueOf(betAndGift.getZhushu()) * */mZhushu
+						* 200 * iProgressBeishu;
 				allAtm = mAmount / 100;
-//				allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
+				// allAtm = iProgressQishu * addview.getAllAmt() *
+				// iProgressBeishu;
 			} else {
-			   allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
+				allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
 			}
 			renText.setText("占总额"
 					+ progress(isNull(buyEdit.getText().toString()), ""
@@ -943,10 +941,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		}
 		return false;
 	}
-	
-	/**add by yejc 20130624 start*/
+
+	/** add by yejc 20130624 start */
 	private class EditTextWatcher implements TextWatcher {
 		public EditText mEdit = null;
+
 		public EditTextWatcher(EditText et) {
 			mEdit = et;
 		}
@@ -977,5 +976,5 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 				int count) {
 		}
 	}
-	/**add by yejc 20130624 end*/
+	/** add by yejc 20130624 end */
 }

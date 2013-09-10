@@ -99,14 +99,15 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		jine = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_jine);
 		// 注码标题
 		textTitle = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
-		
+
 		// 彩种名称
 		caizhong = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_caizhong);
 		caizhong.setText(PublicMethod.toLotno(betAndGift.getLotno()));
 
 		// 期号
 		issueText = (TextView) findViewById(R.id.alert_dialog_touzhu_textview_qihao);
-		if ((Constants.type.equals("hight") || Constants.type.equals("zc")) && HghtOrderdeail.fromInt == 0) {
+		if ((Constants.type.equals("hight") || Constants.type.equals("zc"))
+				&& HghtOrderdeail.fromInt == 0) {
 			issueText.setText("第" + betAndGift.getBatchcode() + "期");
 		} else {
 			getNetIssue();
@@ -118,7 +119,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
 			initImageView();
-//			beishulayLayout.setVisibility(View.GONE);
+			// beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -150,23 +151,20 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onClick(View v) {
 				/** modify by pengcx start 20130531 */
-				if (addview.getSize() != 0 && OrderDetails.isAlert) {
-					String lotno = betAndGift.getLotno();
-					if (lotno.equals(Constants.LOTNO_JQC)
-							|| lotno.equals(Constants.LOTNO_LCB)
-							|| lotno.equals(Constants.LOTNO_SFC)
-							|| lotno.equals(Constants.LOTNO_RX9)) {
-						finish();
-					} else {
-						if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
-								|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
-							alertExit(getString(R.string.buy_alert_exit_detail_other));
-						} else {
-							alertExit(getString(R.string.buy_alert_exit_detail));
-						}
-					}
-				} else {
+
+				String lotno = betAndGift.getLotno();
+				if (lotno.equals(Constants.LOTNO_JQC)
+						|| lotno.equals(Constants.LOTNO_LCB)
+						|| lotno.equals(Constants.LOTNO_SFC)
+						|| lotno.equals(Constants.LOTNO_RX9)) {
 					finish();
+				} else {
+					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+						alertExit(getString(R.string.buy_alert_exit_detail_other));
+					} else {
+						alertExit(getString(R.string.buy_alert_exit_detail));
+					}
 				}
 				/** modify by pengcx end 20130531 */
 			}
@@ -197,8 +195,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				final String issue = Controller.getInstance(ZiXuanTouZhu.this).toNetIssue(betAndGift
-						.getLotno());
+				final String issue = Controller.getInstance(ZiXuanTouZhu.this)
+						.toNetIssue(betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
@@ -249,7 +247,10 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			int zhuShu = Integer.valueOf(betAndGift.getZhushu())/* * iProgressBeishu*/;
+			int zhuShu = Integer.valueOf(betAndGift.getZhushu())/*
+																 * *
+																 * iProgressBeishu
+																 */;
 			zhushu.setText(zhuShu + "注     ");
 			jine.setText(iProgressQishu
 					* (Integer.valueOf(betAndGift.getAmount()) / 100)
@@ -274,7 +275,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			betAndGift.setUserno(userno);
 			betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
-			int amount = Integer.valueOf(betAndGift.getAmount()) * iProgressBeishu;
+			int amount = Integer.valueOf(betAndGift.getAmount())
+					* iProgressBeishu;
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
 			betAndGift.setAmount(String.valueOf(amount));
 			betAndGift.setZhushu(String.valueOf(zhuShu));
@@ -289,7 +291,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
-		
+
 		if (isclearaddview) {
 			if (addview != null) {
 				addview.clearInfo();
@@ -340,10 +342,9 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		mSeekBarBeishu.setOnSeekBarChangeListener(this);
 		mSeekBarBeishu.setProgress(iProgressBeishu);
 
-
-		/**add by pengcx 20130722 start*/
+		/** add by pengcx 20130722 start */
 		mTextBeishu.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				if (s.length() > 1 && s.charAt(0) == '0') {
@@ -356,17 +357,17 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		/**add by pengcx 20130722 end*/
+		/** add by pengcx 20130722 end */
 		mTextBeishu.setText("" + iProgressBeishu);
 		if (Constants.type.equals("hight")) {
 			mSeekBarBeishu.setMax(HIGHT_MAX);
@@ -428,16 +429,16 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void errorCode_0000() {
-		/**modify pengcx 20130604 start*/
+		/** modify pengcx 20130604 start */
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
-		if(HghtOrderdeail.fromInt != 0){
+		if (HghtOrderdeail.fromInt != 0) {
 			intent.putExtra("from", HghtOrderdeail.fromInt);
 		}
 		intent.putExtra("page", BettingSuccessActivity.BETTING);
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
 		startActivity(intent);
-		/**modify pengcx 20130604 end*/
+		/** modify pengcx 20130604 end */
 	}
 
 	@Override
@@ -474,7 +475,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.d("RUYICAI", "onDestroy");
-	
+
 	}
 
 	/**
@@ -553,16 +554,12 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			if (OrderDetails.isAlert) {
-				if (addview != null && addview.getSize() != 0) {
-					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
-							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
-						alertExit(getString(R.string.buy_alert_exit_detail_other));
-					} else {
-						alertExit(getString(R.string.buy_alert_exit_detail));
-					}
+			if (addview != null && addview.getSize() != 0) {
+				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
+						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
+					alertExit(getString(R.string.buy_alert_exit_detail_other));
 				} else {
-					finish();
+					alertExit(getString(R.string.buy_alert_exit_detail));
 				}
 			} else {
 				finish();
@@ -571,13 +568,14 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		}
 		return false;
 	}
-    
+
 	class ZiXunTouZhuHandler extends MyHandler {
 
 		public ZiXunTouZhuHandler(HandlerMsg msg) {
 			super(msg);
 			// TODO Auto-generated constructor stub
 		}
+
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if (controller != null) {
