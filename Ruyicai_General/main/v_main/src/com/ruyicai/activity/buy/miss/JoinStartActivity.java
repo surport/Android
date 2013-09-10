@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -50,7 +51,6 @@ import com.ruyicai.activity.buy.TouzhuBaseActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.join.JoinInfoActivity;
 import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
@@ -100,7 +100,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	TextView alertText;
 	TextView issueText;
 	Button codeInfo;
-	MyHandler handler = new MyHandler(this);// 自定义handler
+	JoinStartActivityHandler handler = new JoinStartActivityHandler(this);// 自定义handler
 	TextView textAlert;
 	TextView textZhuma;
 	TextView textTitle;
@@ -114,6 +114,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	public boolean isTouzhu = false;// 是否投注
 	public static String type = "";
 	private AddViewMiss addviewmiss;
+	private Controller controller = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -480,28 +481,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void joinNet() {
 		setPojo();
-		showDialog(0); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = JoinStartInterface.getInstance().joinStart(betAndGift);
-				try {
-					obj = new JSONObject(str);
-					message = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, message);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(JoinStartActivity.this).doBettingJoinAction(handler, betAndGift);
 	}
 
 	/**
@@ -972,5 +952,21 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		}
 	}
 	/** add by yejc 20130624 end */
+	class JoinStartActivityHandler extends MyHandler {
+
+		public JoinStartActivityHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			//super.handleMessage(msg);
+			if (controller != null) {
+				JSONObject obj = controller.getRtnJSONObject();
+				isNoIssue(handler, obj);
+			}
+
+		}
+	}
 
 }

@@ -13,6 +13,7 @@ import com.ruyicai.net.InternetUtils;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.FeedBackListInterface;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
+import com.ruyicai.net.newtransaction.JoinStartInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
@@ -106,7 +107,37 @@ public class Controller {
 		});
 		t.start();
    }
-   
+	/**
+	 * 投注action
+	 */
+  public void doBettingJoinAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
+	   if (dialog != null && dialog.isShowing()) return;
+	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
+	   dialog.show();
+	   
+		// 加入是否改变切入点判断 陈晨 8.11
+		Thread t = new Thread(new Runnable() {
+			String str = "00";
+
+			@Override
+			public void run() {
+				str = JoinStartInterface.getInstance().joinStart(betAndGift);
+				try {
+					JSONObject obj = new JSONObject(str);
+					final String msg = obj.getString("message");
+					final String error = obj.getString("error_code");
+					setRtnJSONObject(obj);
+					handler.handleMsg(error, msg);
+				} catch (JSONException e) {
+					e.printStackTrace();
+					// TODO Auto-generated method stub			
+				}
+				dialog.dismiss();
+				//dialog = null;
+			}
+		});
+		t.start();
+  }
 	/**
 	 * 获取期号
 	 * @param handler
