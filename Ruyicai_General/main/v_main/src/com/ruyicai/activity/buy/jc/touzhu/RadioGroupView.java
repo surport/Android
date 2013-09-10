@@ -11,7 +11,10 @@ import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
 import android.R.bool;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -268,9 +271,10 @@ public class RadioGroupView {
 									.getText().toString());
 							/**add by yejc 20130906 start*/
 							if (((BeiJingSingleGameIndentActivity) context).bettingNum > 100000) {
-								touzhuDialog.alertInfo(
-										context.getString(R.string.jc_main_touzhu_alert_text_content_zhushu),
-										context.getString(R.string.jc_main_touzhu_alert_text_title));
+								buttonView.setChecked(false);
+								((BeiJingSingleGameIndentActivity) context).bettingNum = 0;
+								createDialog(R.string.jc_main_touzhu_alert_text_content_zhushu,
+										R.string.jc_main_touzhu_alert_text_title);
 								return;
 							}
 							/**add by yejc 20130906 end*/
@@ -433,7 +437,9 @@ public class RadioGroupView {
 											.getBettingNum(buttonView.getId() + 1);
 									
 									/**add by yejc 20130906 start*/
-									if (isTouzhu()) {
+									if (((BeiJingSingleGameIndentActivity) context).bettingNum > 100000) {
+										createDialog(R.string.jc_main_touzhu_alert_text_content_zhushu,
+												R.string.jc_main_touzhu_alert_text_title);
 										buttonView.setChecked(false);
 										((BeiJingSingleGameIndentActivity) context).bettingNum -= ((BeiJingSingleGameIndentActivity) context)
 												.getBettingNum(buttonView.getId() + 1);
@@ -1475,6 +1481,16 @@ public class RadioGroupView {
 			return true;
 		}
 		return false;
+	}
+	private void createDialog(int contentId, int titleId) {
+		Builder dialog = new AlertDialog.Builder(context).setTitle(titleId)
+				.setMessage(contentId)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+					}
+				});
+		dialog.show();
 	}
 	/**add by yejc 20130906 end*/
 }
