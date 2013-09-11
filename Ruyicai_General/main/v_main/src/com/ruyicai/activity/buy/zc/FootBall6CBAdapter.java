@@ -8,6 +8,7 @@ import com.ruyicai.util.PublicMethod;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -70,42 +71,170 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 					.findViewById(R.id.jc_main_list_item_button);
 			holder.layout = (LinearLayout) convertView
 					.findViewById(R.id.jc_play_detail_layout);
+			holder.index = position;
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
+		Log.i("yejc", "===============position=="+position);
 		final ViewHolder copyHolder = holder;
-		if (position == 0) {
-			copyHolder.divider.setVisibility(View.VISIBLE);
-		} else {
-			copyHolder.divider.setVisibility(View.GONE);
-		}
-		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		String tiem = mTeamList.get(position).getTeamId() + "\n"
-				+PublicMethod.getEndTime(mTeamList.get(position).getDate()) + " (赛)";
-		copyHolder.gameDate.setText(tiem);
-		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
-		copyHolder.textVS.setText("VS");
-		copyHolder.guestTeam.setText(mTeamList.get(position).getGuestTeam());
-		copyHolder.btnDan.setVisibility(View.GONE);
-		final TeamInfo info = mTeamList.get(position);
-		copyHolder.btnBet.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				showLayout(copyHolder.layout, position, info, copyHolder.btnBet);
+//		if (holder.index == position) {
+			if (position == 0) {
+				holder.divider.setVisibility(View.VISIBLE);
+			} else {
+				holder.divider.setVisibility(View.GONE);
 			}
-		});
+			final TeamInfo info = mTeamList.get(position);
+			holder.gameName.setText(info.getLeagueName());
+			String tiem = info.getTeamId() + "\n"
+					+PublicMethod.getEndTime(info.getDate()) + " (赛)";
+			holder.gameDate.setText(tiem);
+			holder.homeTeam.setText(info.getHomeTeam());
+			holder.textVS.setText("VS");
+			holder.guestTeam.setText(info.getGuestTeam());
+			holder.btnDan.setVisibility(View.GONE);
+			
+			holder.btnBet.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if (copyHolder.layout.getChildCount() == 0) {
+						LinearLayout detailLayout = (LinearLayout) mInflater
+								.inflate(R.layout.buy_zc_lcb_layout, null);
+						LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+								(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+						if (position == 0) {
+							RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+									(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+							lParams.setMargins(0, PublicMethod.getPxInt(68.5f, mContext), 0, 0);
+							copyHolder.layout.setLayoutParams(lParams);
+						}
+						copyHolder.layout.addView(detailLayout, params);
+						Handler handler = new Handler(){
+							@Override
+							public void handleMessage(Message msg) {
+								super.handleMessage(msg);
+								String btnStr = "";
+								int likNum = 0;
+								if (info.check != null) {
+									for (int i = 0; i < info.check.length; i++) {
+										if (info.check[i].getChecked()) {
+											btnStr += info.check[i].getChcekTitle()
+													+ "  ";
+											if (isCheckIndex(info, 0, 2) && isCheckIndex(info, 3, 5)) {
+												likNum++;
+											}
+										}
+									}
+								}
+								info.onClickNum = likNum;
+								copyHolder.btnBet.setText(btnStr);
+								setTeamNum(mTeamList);
+							}
+						};
+						String odds[] = new String[6];
+						odds[0] = info.getHomeOdds();
+						odds[1] = info.getVsOdds();
+						odds[2] = info.getGuestOdds();
+						odds[3] = info.getHomeOdds();
+						odds[4] = info.getVsOdds();
+						odds[5] = info.getGuestOdds();
+						info.initView(titles, odds, detailLayout, handler,Constants.LOTNO_LCB, mIssueState);
+						copyHolder.layout.setVisibility(View.VISIBLE);
+					} else {
+						if (copyHolder.layout.getVisibility() == View.VISIBLE) {
+							copyHolder.layout.setVisibility(View.GONE);
+						} else {
+							copyHolder.layout.setVisibility(View.VISIBLE);
+						}
+					}
+				}
+			});
+//			holder.btnBet.setOnClickListener(new ButtonOnClickListener(holder.layout, position, info));
+			
+			holder.analysis.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					turnAnalysis(Constants.LOTNO_LCB, info.getTeamId());
+				}
+			});
+//		}
 		
-		copyHolder.analysis.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				turnAnalysis(Constants.LOTNO_LCB, mTeamList.get(position).getTeamId());
-			}
-		});
 		return convertView;
 	}
+	
+	
+	class ButtonOnClickListener implements View.OnClickListener{
+		
+		TeamInfo info;
+		int position = 0;
+		LinearLayout layout;
+		public ButtonOnClickListener(LinearLayout layout, int index, 
+				TeamInfo info) {
+			this.layout = layout;
+			this.position = index;
+			this.info = info;
+		}
+
+		@Override
+		public void onClick(View v) {
+			final Button btn = (Button)v;
+			LinearLayout detailLayout = (LinearLayout) mInflater
+					.inflate(R.layout.buy_zc_lcb_layout, null);
+			if (layout.getChildCount() == 0) {
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
+						(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+				if (position == 0) {
+					RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+							(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+					lParams.setMargins(0, PublicMethod.getPxInt(68.5f, mContext), 0, 0);
+					layout.setLayoutParams(lParams);
+				}
+				layout.addView(detailLayout, params);
+				Handler handler = new Handler(){
+					@Override
+					public void handleMessage(Message msg) {
+						super.handleMessage(msg);
+						String btnStr = "";
+						int likNum = 0;
+						if (info.check != null) {
+							for (int i = 0; i < info.check.length; i++) {
+								if (info.check[i].getChecked()) {
+									btnStr += info.check[i].getChcekTitle()
+											+ "  ";
+									if (isCheckIndex(info, 0, 2) && isCheckIndex(info, 3, 5)) {
+										likNum++;
+									}
+								}
+							}
+						}
+						info.onClickNum = likNum;
+						btn.setText(btnStr);
+						setTeamNum(mTeamList);
+					}
+				};
+				String odds[] = new String[6];
+				odds[0] = info.getHomeOdds();
+				odds[1] = info.getVsOdds();
+				odds[2] = info.getGuestOdds();
+				odds[3] = info.getHomeOdds();
+				odds[4] = info.getVsOdds();
+				odds[5] = info.getGuestOdds();
+				info.initView(titles, odds, detailLayout, handler, 
+						Constants.LOTNO_LCB, mIssueState);
+				layout.setVisibility(View.VISIBLE);
+			} else {
+				if (layout.getVisibility() == View.VISIBLE) {
+					layout.setVisibility(View.GONE);
+				} else {
+					layout.setVisibility(View.VISIBLE);
+				}
+			}
+//			showLayout(layout, position, info, (Button)v);
+		}
+	}
+	
 	
 	@Override
 	public int getZhuShu() {
@@ -228,6 +357,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 	
 	private void showLayout (LinearLayout layout, int index, 
 			final TeamInfo info, final Button btn) {
+		layout.removeAllViews();
 		LinearLayout detailLayout = (LinearLayout) mInflater
 				.inflate(R.layout.buy_zc_lcb_layout, null);
 		if (layout.getChildCount() == 0) {
@@ -269,7 +399,8 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 			odds[3] = info.getHomeOdds();
 			odds[4] = info.getVsOdds();
 			odds[5] = info.getGuestOdds();
-			info.initView(titles, odds, detailLayout, handler, true, Constants.LOTNO_LCB);
+			info.initView(titles, odds, detailLayout, handler, 
+					Constants.LOTNO_LCB, mIssueState);
 			layout.setVisibility(View.VISIBLE);
 		} else {
 			if (layout.getVisibility() == View.VISIBLE) {

@@ -16,17 +16,19 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/no_game_prompt"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:visibility="gone" >
 
                 <ImageView
                     android:id="@+id/no_game_prompt_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
                     android:src="@drawable/ray" />
 
                 <TextView
@@ -34,10 +36,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/no_game_prompt_imageview"
-                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
                     android:text="暂无球赛可以投注"
                     android:textSize="18sp" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <ListView
                 android:id="@id/buy_footballlottery_list"

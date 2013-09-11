@@ -170,6 +170,7 @@
         <activity
             android:name="com.ruyicai.activity.buy.zc.Footballorderdail"
             android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.buy.miss.ZixuanZhuihao"
@@ -257,6 +258,7 @@
         <activity
             android:name="com.ruyicai.activity.buy.zc.FootBallMainActivity"
             android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <!-- ssq -->
         <activity

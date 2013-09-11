@@ -196,7 +196,8 @@ public class FootBall4CJQAdapter extends FootBall6CBAdapter{
 					setTeamNum(mTeamList);
 				}
 			};
-			info.initView(titles, null, detailLayout, handler, false, Constants.LOTNO_JQC);
+			info.initView(titles, null, detailLayout, handler, 
+					 Constants.LOTNO_JQC, mIssueState);
 			layout.setVisibility(View.VISIBLE);
 		} else {
 			if (layout.getVisibility() == View.VISIBLE) {

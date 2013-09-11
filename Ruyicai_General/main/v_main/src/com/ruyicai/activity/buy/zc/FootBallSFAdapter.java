@@ -107,43 +107,46 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 		setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
 				copyHolder.textOdds, info.isLevel());
 		
-		copyHolder.homeLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				info.setWin(!info.isWin());
-				setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
-						copyHolder.homeOdds, info.isWin());
-				setClickNum(info.isWin(), info);
-			}
-		});
-
-		copyHolder.guestLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				info.setFail(!info.isFail());
-				setViewStyle(copyHolder.guestLayout, copyHolder.guestTeam,
-						copyHolder.guestOdds, info.isFail());
-				setClickNum(info.isFail(), info);
-			}
-		});
-
-		copyHolder.vsLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				info.setLevel(!info.isLevel());
-				setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
-						copyHolder.textOdds, info.isLevel());
-				setClickNum(info.isLevel(), info);
-			}
-		});
-		copyHolder.btnDan.setVisibility(View.GONE);
-		copyHolder.analysis.setOnClickListener(new View.OnClickListener() {
+		if (!"5".equals(mIssueState)) {
+			copyHolder.homeLayout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					info.setWin(!info.isWin());
+					setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
+							copyHolder.homeOdds, info.isWin());
+					setClickNum(info.isWin(), info);
+				}
+			});
 			
-			@Override
-			public void onClick(View v) {
-				turnAnalysis(Constants.LOTNO_SFC, mTeamList.get(position).getTeamId());
-			}
-		});
+			copyHolder.guestLayout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					info.setFail(!info.isFail());
+					setViewStyle(copyHolder.guestLayout, copyHolder.guestTeam,
+							copyHolder.guestOdds, info.isFail());
+					setClickNum(info.isFail(), info);
+				}
+			});
+
+			copyHolder.vsLayout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					info.setLevel(!info.isLevel());
+					setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
+							copyHolder.textOdds, info.isLevel());
+					setClickNum(info.isLevel(), info);
+				}
+			});
+			copyHolder.btnDan.setVisibility(View.GONE);
+			copyHolder.analysis.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					turnAnalysis(Constants.LOTNO_SFC, mTeamList.get(position).getTeamId());
+				}
+			});
+		}
+		
 		return convertView;
 	}
 	

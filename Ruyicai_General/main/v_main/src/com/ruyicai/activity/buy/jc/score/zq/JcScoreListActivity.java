@@ -285,22 +285,18 @@ public class JcScoreListActivity extends Activity {
 				info.setGuestHalfScore(json.getString("guestHalfScore"));
 				info.setRed(json.getString("red"));
 				info.setYellow(json.getString("yellow"));
+				info.setMatchStateMemo(json.getString("matchStateMemo"));
+				info.setState(json.getString("matchState"));
 				/**add by yejc 20130826 start*/
 				if(json.has("progressedTime")) {
 					info.setProgressedTime(json.getString("progressedTime"));
 				}
 				/**add by yejc 20130826 end*/
-//				try {
-//					int homeInt = Integer.parseInt(info.getHomeScore());
-//					int guestInt = Integer.parseInt(info.getGuestScore());
-//				} catch (Exception e) {
-//
-//				}
 				listInfo.add(info);
 			}
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		return listInfo;
 
@@ -433,17 +429,25 @@ public class JcScoreListActivity extends Activity {
 			holder.hTeam.setText(info.gethTeam());
 			/**add by yejc 20130807 start*/
 			if (tabIndex == 2) {
-				if ("jclq".equals(playType)) {
-					holder.state.setText(info.getMatchStateMemo()+" "+
-				    info.getRemainTime());
-					holder.state.setTextColor(Color.RED);
-				} else if ("jczq".equals(playType)){
-					holder.state.setText(info.getProgressedTime()+"'");
-					holder.state.setTextColor(Color.RED);
+				String state = info.getState();
+				if ("1".equals(state) || 
+						"3".equals(state) || "4".equals(state)) {
+					if ("jclq".equals(playType)) {
+						holder.state.setText(info.getMatchStateMemo()+" "+
+					    info.getRemainTime());
+						holder.state.setTextColor(Color.RED);
+					} else if ("jczq".equals(playType)){
+						holder.state.setText(info.getProgressedTime()+"'");
+						holder.state.setTextColor(Color.RED);
+					} else {
+						holder.state.setText(info.getState());
+						holder.state.setTextColor(setStateColor(info.getState()));
+					}
 				} else {
-					holder.state.setText(info.getState());
-					holder.state.setTextColor(setStateColor(info.getState()));
+					holder.state.setText(info.getMatchStateMemo());
+					holder.state.setTextColor(Color.RED);
 				}
+				
 				holder1.attentionLayout.setVisibility(View.GONE);
 				/**add by yejc 20130807 end*/
 			} else if(tabIndex == 3) {

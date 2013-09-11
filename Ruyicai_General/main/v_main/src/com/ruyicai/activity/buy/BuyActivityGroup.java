@@ -117,13 +117,25 @@ public class BuyActivityGroup extends ActivityGroup {
 				for (int i = 0; i < titles.length; i++) {
 					if (tabId.equals(titles[i])) {
 						title.setText(topTitles[i]);
+						updateAddMissViewNum();
 						return;
 					}
 				}
 			}
 		});
 	}
+	
+	private void updateAddMissViewNum() {
+		
+	}
 
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+		betInfoTextView.setText("请选择投注号码");
+	}
+	
 	public void getInfo() {
 		Intent intent = getIntent();
 		int position = intent.getIntExtra("position", 0);
