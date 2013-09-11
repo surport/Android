@@ -6,8 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="85dip"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:paddingTop="85dip" >
 
         <RelativeLayout
             android:id="@id/RelativeLayout01"
@@ -19,6 +19,7 @@
                 android:id="@id/buy_lq_mian_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical" >
             </LinearLayout>
 
@@ -68,12 +69,13 @@
         android:visibility="gone" />
 
     <!-- 赛事选择下拉框 -->
+
     <LinearLayout
         android:id="@+id/jc_main_team_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="85dip"
         android:orientation="vertical"
+        android:paddingTop="85dip"
         android:visibility="gone" >
 
         <include layout="@layout/jc_main_team_dialog" />
@@ -82,9 +84,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="85dip"
-        android:paddingTop="45dip"
         android:background="@drawable/jc_team_select_button_bg"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical"
+        android:paddingTop="45dip" >
 
         <LinearLayout
             android:id="@+id/buy_lq_main_layout_team"
@@ -93,7 +95,8 @@
             android:layout_weight="1"
             android:gravity="center" >
 
-            <Button android:id="@id/buy_lq_main_btn_team"
+            <Button
+                android:id="@id/buy_lq_main_btn_team"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"
@@ -110,23 +113,23 @@
                 android:layout_marginLeft="2dip"
                 android:src="@drawable/jc_game_select" />
         </LinearLayout>
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_weight="1"
             android:gravity="center" >
 
-        <Button
-            android:id="@id/buy_lq_main_btn_score"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="@string/jc_main_score"
-            android:textColor="@color/black"
-            android:textSize="18sp" >
-        </Button>
+            <Button
+                android:id="@id/buy_lq_main_btn_score"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="@string/jc_main_score"
+                android:textColor="@color/black"
+                android:textSize="18sp" >
+            </Button>
         </LinearLayout>
     </LinearLayout>
 
@@ -138,14 +141,17 @@
         android:visibility="gone" />
 
     <!-- 竞彩篮球，足球玩法切换下拉框 -->
+
     <include layout="@layout/buy_lq_main_type_dialog" />
-    
+
     <!-- 北单玩法切换下拉框 -->
-    <include layout="@layout/beijingsinglegame_playmethodchange_dialog"/>
+
+    <include layout="@layout/beijingsinglegame_playmethodchange_dialog" />
 
     <!-- 标题栏 -->
-    <include layout="@layout/jc_main_title_bar"/>
-    
+
+    <include layout="@layout/jc_main_title_bar" />
+
     <LinearLayout
         android:id="@+id/jc_main_team_layout_layers_up"
         android:layout_width="match_parent"
