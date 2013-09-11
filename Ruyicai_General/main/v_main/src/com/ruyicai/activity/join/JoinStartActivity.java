@@ -503,30 +503,10 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void joinNet() {
 		setPojo();
-		showDialog(0); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = JoinStartInterface.getInstance().joinStart(betAndGift);
-				try {
-					obj = new JSONObject(str);
-					message = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, message);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
-		
-		
+		controller = Controller.getInstance(JoinStartActivity.this);
+		if (controller != null) {
+			controller.doBettingJoinAction(handler, betAndGift);
+		}
 	}
 
 	/**
@@ -968,7 +948,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		}
 
 		public void handleMessage(Message msg) {
-			//super.handleMessage(msg);
+			super.handleMessage(msg);
 			if (controller != null) {
 				JSONObject obj = controller.getRtnJSONObject();
 				isNoIssue(handler, obj);

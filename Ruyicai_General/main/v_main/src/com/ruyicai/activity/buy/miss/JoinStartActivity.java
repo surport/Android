@@ -963,7 +963,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		}
 
 		public void handleMessage(Message msg) {
-			//super.handleMessage(msg);
+			super.handleMessage(msg);
 			if (controller != null) {
 				JSONObject obj = controller.getRtnJSONObject();
 				isNoIssue(handler, obj);
