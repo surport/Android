@@ -79,7 +79,8 @@ public class Controller {
 	/**
 	 * 投注action
 	 */
-   public void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
+   public synchronized  void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
+
 	   if (dialog != null && dialog.isShowing()) return;
 	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
 	   dialog.show();
@@ -110,7 +111,7 @@ public class Controller {
 	/**
 	 * 投注action
 	 */
-  public void doBettingJoinAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
+  public synchronized void doBettingJoinAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
 	   if (dialog != null && dialog.isShowing()) return;
 	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
 	   dialog.show();
