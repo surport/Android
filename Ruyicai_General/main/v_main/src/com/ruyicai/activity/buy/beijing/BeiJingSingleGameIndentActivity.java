@@ -6,19 +6,16 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.JoinStartActivityjc;
 import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
 import com.ruyicai.activity.buy.jc.touzhu.RadioGroupView;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.usercenter.UserCenterDialog;
+
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
@@ -27,7 +24,7 @@ import com.ruyicai.util.RWSharedPreferences;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,7 +32,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -99,8 +95,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	/** 当前选择的场次集合 */
 	private List<String> bettingInfoList;
 	private List<String> bettingDanList;
-	/** 最大投注金额 */
-	private final int MAXAMT = 20000;
+
 	/** 投注信息类 */
 	public BetAndGiftPojo betAndGift = new BetAndGiftPojo();
 
@@ -436,29 +431,7 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 	}
 
 	public void Betting() {
-		final ProgressDialog progressDialog = UserCenterDialog
-				.onCreateDialog(this);
-		progressDialog.show();
-
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				progressDialog.dismiss();
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-
-		});
-		t.start();
+		Controller.getInstance(BeiJingSingleGameIndentActivity.this).doBettingAction(handler, betAndGift);
 	}
 
 	public void alertInfo(String string, String title) {
@@ -738,16 +711,6 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 
 	private int getBettingMutile() {
 		return mutipleSeekBar.getProgress();
-	}
-
-	private boolean isOutMaxAmt() {
-		long bettingAccount = getBettingAccount();
-		if (bettingAccount > MAXAMT || bettingAccount < 0) {
-			return true;
-		} else {
-			return false;
-		}
-
 	}
 
 	class BeiJingSingleGameIndentOnSeekBarChangeListener implements

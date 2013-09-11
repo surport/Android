@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -64,7 +65,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	TextView alertText;
 	TextView issueText;
 	Button codeInfo;
-	MyHandler handler = new MyHandler(this);// 自定义handler
+	ZiXuanZhuihaoActivityHandler handler = new ZiXuanZhuihaoActivityHandler(this);// 自定义handler
 	TextView textAlert;
 	TextView textZhuma;
 	TextView textTitle;
@@ -83,6 +84,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	public ArrayList<Checktouinfo> subscribeInfocheck = new ArrayList<Checktouinfo>();
 	Checktouinfo checkinfo[];
 	private AddViewMiss addviewmiss;
+	private Controller controller = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -842,29 +844,10 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	public void touzhuIssue(String issue) {
 		betAndGift.setBatchcode(issue);
-		progressdialog = UserCenterDialog.onCreateDialog(this);
-		progressdialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+        controller = Controller.getInstance(ZixuanZhuihao.this);
+		if (controller != null) {
+			controller.doBettingAction(handler, betAndGift);
+		}
 	}
 
 	/**
@@ -923,5 +906,21 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			break;
 		}
 		return false;
+	}
+	class ZiXuanZhuihaoActivityHandler extends MyHandler {
+
+		public ZiXuanZhuihaoActivityHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if (controller != null) {
+				JSONObject obj = controller.getRtnJSONObject();
+				isNoIssue(handler, obj);
+			}
+
+		}
 	}
 }

@@ -54,7 +54,9 @@ import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
@@ -1853,29 +1855,7 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	 * 
 	 */
 	public void luckNet(final BetAndGiftPojo betAndGift) {
-		showDialog(PROGRESS_WANGLUOLIANJIE); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		Controller.getInstance(LuckChoose2.this).doBettingAction(handler, betAndGift);
 	}
 
 	/**

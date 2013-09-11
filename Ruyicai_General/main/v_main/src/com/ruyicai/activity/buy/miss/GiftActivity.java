@@ -27,6 +27,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.Contacts.People;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -114,7 +115,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	public final static String INFO = "INFO"; /* 信息 */
 	List<Map<String, Object>> list;/* 列表适配器的数据源 */
 
-	MyHandler handler = new MyHandler(this);// 自定义handler
+	GiftActivityHandler handler = new GiftActivityHandler(this);// 自定义handler
 	Handler handlerTwo = new Handler();
 	private Vector<Person> persons = new Vector<Person>();// 所有联系人
 	private Vector<Person> checkedPersons = new Vector<Person>();// 选中联系人
@@ -133,6 +134,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	private int endMax = 8;
 	public static String type = "";
 	private AddViewMiss addviewmiss;
+	private Controller controller = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -1050,28 +1052,11 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift.setTo_mobile_code(editPhone.getText().toString()
 				.replace("，", ","));
 		betAndGift.setAdvice(editLanguage.getText().toString());
-		showDialog(0); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					obj = new JSONObject(str);
-					message = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, message);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+		
+        controller = Controller.getInstance(GiftActivity.this);
+		if (controller != null) {
+			controller.doBettingAction(handler, betAndGift);
+		}
 	}
 
 	/**
@@ -1283,28 +1268,10 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	public void touzhuIssue(String issue) {
 		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
-		showDialog(0); // 显示网络提示框 2010/7/4
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					obj = new JSONObject(str);
-					message = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, message);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+        controller = Controller.getInstance(GiftActivity.this);
+		if (controller != null) {
+			controller.doBettingAction(handler, betAndGift);
+		}
 	}
 
 	/**
@@ -1337,5 +1304,19 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		dialog.show();
 
 	}
+	class GiftActivityHandler extends MyHandler {
 
+		public GiftActivityHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			if (controller != null) {
+				isNoIssue(handler, controller.getRtnJSONObject());
+			}
+
+		}
+	}
 }

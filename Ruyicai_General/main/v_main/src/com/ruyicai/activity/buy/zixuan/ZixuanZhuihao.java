@@ -876,29 +876,10 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	public void touzhuIssue(String issue) {
 		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);// 设置新的投注期号
-		progressdialog = UserCenterDialog.onCreateDialog(this);
-		progressdialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
-
-			@Override
-			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-				try {
-					JSONObject obj = new JSONObject(str);
-					String msg = obj.getString("message");
-					String error = obj.getString("error_code");
-					handler.handleMsg(error, msg);
-					isNoIssue(handler, obj);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				progressdialog.dismiss();
-			}
-
-		});
-		t.start();
+	    controller = Controller.getInstance(context);
+	    if (controller != null) {
+	    	controller.doBettingAction(handler, betAndGift);
+	    }
 	}
 
 	/**
