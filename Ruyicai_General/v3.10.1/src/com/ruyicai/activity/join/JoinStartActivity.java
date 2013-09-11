@@ -866,7 +866,10 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	public void touzhuIssue(String issue) {
 		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
-		Controller.getInstance(JoinStartActivity.this).doBettingJoinAction(handler, betAndGift);
+		controller = Controller.getInstance(JoinStartActivity.this);
+		if (controller != null) {
+			controller.doBettingJoinAction(handler, betAndGift);
+		}
 	}
 
 	/**
