@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.custom.checkbox.MyCheckBox;
 
 /**
@@ -133,12 +134,12 @@ public class TeamInfo {
 	}
 	
 	public void initView(String titles[], String odds[], LinearLayout layout, 
-			Handler handler, boolean flag, String lotno) {
+			Handler handler, String lotno, String state) {
 		check = new MyCheckBox[titles.length];
 		for (int i = 0; i < check.length; i++) {
 			check[i] = (MyCheckBox) layout.findViewById(viewIds[i]);
 			check[i].setVisibility(CheckBox.VISIBLE);
-			if (flag) {
+			if (Constants.LOTNO_LCB.equals(lotno)) {
 				check[i].setCheckText("" + odds[i]);
 			} else {
 				check[i].setHorizontal(true);
@@ -146,8 +147,13 @@ public class TeamInfo {
 			
 			check[i].setPosition(i);
 			check[i].setCheckTitle(titles[i]);
-			check[i].setHandler(handler);
 			check[i].setLotno(lotno);
+			if ("5".equals(state)) {
+				check[i].setClickable(false);
+			} else {
+				check[i].setClickable(true);
+				check[i].setHandler(handler);
+			}
 		}
 	}
 }

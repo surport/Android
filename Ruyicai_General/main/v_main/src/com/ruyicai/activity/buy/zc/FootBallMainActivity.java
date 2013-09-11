@@ -83,6 +83,7 @@ public class FootBallMainActivity extends Activity {
 	private int[] mBgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
 	private int[] mPaintColor= {Color.BLACK, Color.WHITE};
 	private int mIssueIndex = 0;
+	private int[] mIssueIndexArray = {0,0,0,0};
 	private int mPlayIndex = 0;
 	private ImageButton startTouZhu;
 	
@@ -91,8 +92,9 @@ public class FootBallMainActivity extends Activity {
 	private ArrayList[] mIssueArray = new ArrayList[4];
 	private RelativeLayout noGamePrompt;
 	private boolean[] isShowState = {false, false, false, false};
+	private int[] mStringId = {R.string.zc_14sf_play, R.string.zc_rx9_play, 
+			R.string.zc_6cb_play, R.string.zc_4jq_play};
 	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -105,6 +107,31 @@ public class FootBallMainActivity extends Activity {
 		initView();
 		getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		mPlayIndex = intent.getIntExtra("index", 0);
+		for (int i = 0; i < playBtn.length; i++) {
+			if (mPlayIndex == i) {
+				playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+				playBtn[i].setTextColor(getResources().getColor(R.color.white));
+				titleView.setText(mStringId[i]);
+				if (mIssueArray[mPlayIndex] == null) {
+					if (!isShowState[mPlayIndex]) {
+						getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+					}
+					setShowState();
+				} else {
+					initList();
+				}
+				setViewState();
+			} else {
+				playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
+				playBtn[i].setTextColor(getResources().getColor(R.color.black));
+			}
+		}
+	}
 
 	private void initView() {
 		ZcViewClickListener listener = new ZcViewClickListener();
@@ -115,7 +142,7 @@ public class FootBallMainActivity extends Activity {
 		mainPalySelectLayout = (LinearLayout) findViewById(R.id.zc_play_change_layout);
 		issueSelectLayout = (LinearLayout) findViewById(R.id.jc_main_team_select);
 		titleView = (TextView) findViewById(R.id.layout_main_text_title);
-		titleView.setText(R.string.zc_14sf_play);
+		titleView.setText(mStringId[mPlayIndex]);
 		layout_football_issue = (Button) findViewById(R.id.layout_football_issue);
 		layout_football_time = (TextView) findViewById(R.id.layout_football_time);
 		footBallList = (ListView) findViewById(R.id.buy_footballlottery_list);
@@ -207,7 +234,7 @@ public class FootBallMainActivity extends Activity {
 				params.setMargins(PublicMethod.getPxInt(10, mContext),
 						PublicMethod.getPxInt(10, mContext), 0, 0);
 			}
-			if (mIssueIndex == 0) {
+			if (mIssueIndexArray[mPlayIndex] == mIssueIndex) {
 				btn.setOnClick(true);
 			} else {
 				btn.setOnClick(false);
@@ -218,35 +245,38 @@ public class FootBallMainActivity extends Activity {
 			AdvanceBatchCode aBatchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(line * lineNum + j);
 			String issue = aBatchCode.getBatchCode();
 			String state = aBatchCode.getState();
-			btn.setBtnText(issue);
+			
 			if ("5".equals(state)) {
-				btn.initBg(new int[]{R.drawable.zc_wait_issue, R.drawable.zc_wait_issue});
-				btn.setPaintColorArray(new int[]{Color.BLACK, Color.BLACK});
-				btn.switchBg();
+				String waitIssue = getResources().getString(R.string.football_wait_issue);
+				btn.setBtnText(issue+waitIssue);
 			} else {
-				btn.initBg(mBgId);
-				btn.setPaintColorArray(mPaintColor);
-				btn.switchBg();
-				btn.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						for (int i = 0; i < myBtns.length; i++) {
-							myBtns[i].setOnClick(false);
-							myBtns[i].switchBg();
-						}
-						btn.setOnClick(true);
-						btn.switchBg();
-						int which = (Integer)((MyButton)v).getTag();
-						AdvanceBatchCode batchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(which);
-//						if (mFootBallAdapters[mPlayIndex] != null) {
-//							mFootBallAdapters[mPlayIndex].mIssueState = batchCode.getState();
-//						}
-						String selectIssue = batchCode.getBatchCode();
-						getData(mLotnoArray[mPlayIndex], selectIssue);
-						setViewState();
-					}
-				});
+				btn.setBtnText(issue);
 			}
+			btn.initBg(mBgId);
+			btn.setPaintColorArray(mPaintColor);
+			btn.switchBg();
+			btn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					for (int i = 0; i < myBtns.length; i++) {
+						myBtns[i].setOnClick(false);
+						myBtns[i].switchBg();
+					}
+					btn.setOnClick(true);
+					btn.switchBg();
+					int which = (Integer)((MyButton)v).getTag();
+					mIssueIndexArray[mPlayIndex] = which;
+					if (mIssueArray[mPlayIndex] == null) {
+						return;
+					}
+					AdvanceBatchCode batchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(which);
+					setIssue(which);
+					String selectIssue = batchCode.getBatchCode();
+					showDialog();
+					getData(mLotnoArray[mPlayIndex], selectIssue);
+					setViewState();
+				}
+			});
 			
 			layoutOne.addView(btn);
 			mIssueIndex++;
@@ -255,12 +285,7 @@ public class FootBallMainActivity extends Activity {
 	}
 	
 	private void getZCAdvanceBatchCodeData(final String Lotno) {
-		if (progressdialog == null) {
-			progressdialog = new ProgressDialog(this);
-		}
-		progressdialog.show();
-		View dialogView = PublicMethod.getView(this);
-		progressdialog.getWindow().setContentView(dialogView);
+		showDialog();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -276,8 +301,8 @@ public class FootBallMainActivity extends Activity {
 								.getJSONArray("result");
 					}
 					if (errorCode.equals("0047") || errorCode.equals("0000")) {
+						isShowState[mPlayIndex] = true;
 						if (batchCodeArray == null || batchCodeArray.length() == 0) {
-							isShowState[mPlayIndex] = true;
 							handler.sendEmptyMessage(5);
 							return;
 						}
@@ -382,7 +407,7 @@ public class FootBallMainActivity extends Activity {
 				if (v.getId() == playBtn[i].getId()) {
 					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
 					playBtn[i].setTextColor(getResources().getColor(R.color.white));
-					titleView.setText(playBtn[i].getText());
+					titleView.setText(mStringId[i]);
 					mPlayIndex = i;
 					if (mIssueArray[mPlayIndex] == null) {
 						if (!isShowState[mPlayIndex]) {
@@ -390,6 +415,7 @@ public class FootBallMainActivity extends Activity {
 						}
 						setShowState();
 					} else {
+						setIssue(mIssueIndexArray[mPlayIndex]);
 						initList();
 					}
 					setViewState();
@@ -436,6 +462,15 @@ public class FootBallMainActivity extends Activity {
 		}
 	};
 	
+	private void showDialog() {
+		if (progressdialog == null) {
+			progressdialog = new ProgressDialog(this);
+		}
+		progressdialog.show();
+		View dialogView = PublicMethod.getView(this);
+		progressdialog.getWindow().setContentView(dialogView);
+	}
+	
 	private void dismissDialog() {
 		if (progressdialog != null && progressdialog.isShowing()) {
 			progressdialog.dismiss();
@@ -471,17 +506,24 @@ public class FootBallMainActivity extends Activity {
 			}
 			break;	
 		}
-//		AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(0);
-//		mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
+		AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex]
+				.get(mIssueIndexArray[mPlayIndex]);
+		mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 	}
 	
-	private void getTeamInfo(int which) {
-		AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(which);
-		currentIssue = ((AdvanceBatchCode)mIssueArray[mPlayIndex].get(which)).getBatchCode().trim();
-		layout_football_issue.setText(formatBatchCode(batchMsg.getBatchCode()));
-		layout_football_time.setText(batchMsg.getEndTime());
+	private void getTeamInfo(int index) {
+		setIssue(index);
 		getData(mLotnoArray[mPlayIndex], currentIssue);
+	}
+	
+	private void setIssue(int index) {
+		if (mIssueArray[mPlayIndex] != null) {
+			AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(index);
+			currentIssue = batchMsg.getBatchCode().trim();
+			layout_football_issue.setText(formatBatchCode(currentIssue));
+			layout_football_time.setText(batchMsg.getEndTime());
+		}
 	}
 	
 	/**
@@ -607,7 +649,8 @@ public class FootBallMainActivity extends Activity {
 			startActivityForResult(intentSession, 0);
 			startTouZhu.setClickable(true);
 		} else {
-			if (mFootBallAdapters[mPlayIndex].isTouZhu()) {
+			if (mFootBallAdapters[mPlayIndex].isTouZhu()
+					&& !"".equals(mFootBallAdapters[mPlayIndex].mIssueState)) {
 				Toast.makeText(this, "请至少选择一注！",
 						Toast.LENGTH_SHORT).show();
 			} else if (iZhuShu > 10000) {
@@ -637,7 +680,7 @@ public class FootBallMainActivity extends Activity {
 	protected void DialogExcessive() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("投注失败");
-		builder.setMessage("单笔投注不能大于2万元");
+		builder.setMessage("单笔投注不能大于10000注");
 		builder.setPositiveButton(R.string.ok,
 				new DialogInterface.OnClickListener() {
 					@Override

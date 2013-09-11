@@ -401,9 +401,9 @@ public class SfView extends JcMainView {
 	private void setOddsColor(TextView tv) {
 		String text = tv.getText().toString();
 		if (text != null && text.length() != 0) {
-			if ("-".equals(text.subSequence(0, 1))) {
+			if ("-".equals(text.substring(0, 1))) {
 				tv.setTextColor(red);
-			} else if ("+".equals(text.subSequence(0, 1))) {
+			} else if ("+".equals(text.substring(0, 1))) {
 				tv.setTextColor(green);
 			} else {
 				tv.setTextColor(oddsColor);

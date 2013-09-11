@@ -929,7 +929,7 @@
     <string name="jc_main_score">即时比分</string>
     <string name="jc_main_touzhu_alert_text_content">单笔投注金额不能大于2万</string>
     <string name="jc_main_touzhu_alert_text_content_new">单笔投注金额不能大于20万</string>
-    <string name="jc_main_touzhu_alert_text_content_zhushu">单笔投注不能大于10万注</string>
+    <string name="jc_main_touzhu_alert_text_content_zhushu">单笔投注不能大于100000注</string>
     <string name="jc_main_touzhu_alert_text_title">温馨提示</string>
     <string name="jc_main_touzhu_alert_btn_ziyou">自由过关</string>
     <string name="jc_main_touzhu_alert_btn_duochuan">多串过关</string>

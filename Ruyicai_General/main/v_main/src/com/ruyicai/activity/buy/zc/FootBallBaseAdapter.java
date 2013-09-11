@@ -25,7 +25,7 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 	protected int black = 0;
 	protected int oddsColor = 0;
 	public static final String LOTNO_ZC = "LOTNO_ZC";
-//	public String mIssueState = "";
+	public String mIssueState = "";
 	
 	public FootBallBaseAdapter(Context context) {
 		super();
@@ -107,5 +107,6 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 		LinearLayout vsLayout;
 		LinearLayout guestLayout;
 		LinearLayout layout;
+		int index = -1;
 	}
 }

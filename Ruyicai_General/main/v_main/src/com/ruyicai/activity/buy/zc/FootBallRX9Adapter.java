@@ -111,76 +111,78 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 			copyHolder.btnDan.setBackgroundResource(android.R.color.transparent);
 			copyHolder.btnDan.setTextColor(black);
 		}
-		
-		copyHolder.homeLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				info.setWin(!info.isWin());
-				setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
-						copyHolder.homeOdds, info.isWin());
-				setClickNum(info.isWin(), info);
-				setDanState();
-				isNoDan(info, copyHolder.btnDan);
-			}
-		});
+		if (!"5".equals(mIssueState)) {
+			copyHolder.homeLayout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					info.setWin(!info.isWin());
+					setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
+							copyHolder.homeOdds, info.isWin());
+					setClickNum(info.isWin(), info);
+					setDanState();
+					isNoDan(info, copyHolder.btnDan);
+				}
+			});
 
-		copyHolder.guestLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				info.setFail(!info.isFail());
-				setViewStyle(copyHolder.guestLayout, copyHolder.guestTeam,
-						copyHolder.guestOdds, info.isFail());
-				setClickNum(info.isFail(), info);
-				setDanState();
-				isNoDan(info, copyHolder.btnDan);
-			}
-		});
+			copyHolder.guestLayout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					info.setFail(!info.isFail());
+					setViewStyle(copyHolder.guestLayout, copyHolder.guestTeam,
+							copyHolder.guestOdds, info.isFail());
+					setClickNum(info.isFail(), info);
+					setDanState();
+					isNoDan(info, copyHolder.btnDan);
+				}
+			});
 
-		copyHolder.vsLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				info.setLevel(!info.isLevel());
-				setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
-						copyHolder.textOdds, info.isLevel());
-				setClickNum(info.isLevel(), info);
-				setDanState();
-				isNoDan(info, copyHolder.btnDan);
-			}
-		});
-		copyHolder.btnDan.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if (isMultipleBets()) {
-					if (mTeamList.get(position).isSelected()
-							&& getDanNums() < 8) {
-						info.setDan(!info.isDan());
-						if (info.isDan()) {
-							copyHolder.btnDan.setBackgroundResource(R.drawable.jc_btn_b);
-							copyHolder.btnDan.setTextColor(white);
-							if (mContext instanceof FootBallMainActivity) {
-								FootBallMainActivity activity = (FootBallMainActivity)mContext;
-								activity.changeTextSumMoney(getZhuShu());
+			copyHolder.vsLayout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					info.setLevel(!info.isLevel());
+					setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
+							copyHolder.textOdds, info.isLevel());
+					setClickNum(info.isLevel(), info);
+					setDanState();
+					isNoDan(info, copyHolder.btnDan);
+				}
+			});
+			copyHolder.btnDan.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					if (isMultipleBets()) {
+						if (mTeamList.get(position).isSelected()
+								&& getDanNums() < 8) {
+							info.setDan(!info.isDan());
+							if (info.isDan()) {
+								copyHolder.btnDan.setBackgroundResource(R.drawable.jc_btn_b);
+								copyHolder.btnDan.setTextColor(white);
+								if (mContext instanceof FootBallMainActivity) {
+									FootBallMainActivity activity = (FootBallMainActivity)mContext;
+									activity.changeTextSumMoney(getZhuShu());
+								}
+							} else {
+								copyHolder.btnDan.setBackgroundResource(android.R.color.transparent);
+								copyHolder.btnDan.setTextColor(black);
 							}
-						} else {
+						} else if (getDanNums() == 8 && info.isDan()) {
+							info.setDan(false);
 							copyHolder.btnDan.setBackgroundResource(android.R.color.transparent);
 							copyHolder.btnDan.setTextColor(black);
+						} else {
+							Toast.makeText(mContext, "最多只能设8个胆",
+									Toast.LENGTH_SHORT).show();
 						}
-					} else if (getDanNums() == 8 && info.isDan()) {
-						info.setDan(false);
-						copyHolder.btnDan.setBackgroundResource(android.R.color.transparent);
-						copyHolder.btnDan.setTextColor(black);
 					} else {
-						Toast.makeText(mContext, "最多只能设8个胆",
+						Toast.makeText(mContext, "您不是复式投注，无法设胆",
 								Toast.LENGTH_SHORT).show();
 					}
-				} else {
-					Toast.makeText(mContext, "您不是复式投注，无法设胆",
-							Toast.LENGTH_SHORT).show();
+					
 				}
-				
-			}
-		});
+			});
+		}
+		
 		copyHolder.analysis.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
