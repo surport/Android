@@ -135,6 +135,12 @@ public class Dlc extends ZixuanAndJiXuan {
 		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		betInfo.setText("请选择投注号码");
+	}
 
 	/**
 	 * 中奖提示
