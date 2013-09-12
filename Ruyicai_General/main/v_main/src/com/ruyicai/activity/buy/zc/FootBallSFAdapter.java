@@ -42,6 +42,7 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
+		final TeamInfo info = mTeamList.get(position);
 		ViewHolder holder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(
@@ -85,18 +86,17 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 		} else {
 			copyHolder.divider.setVisibility(View.GONE);
 		}
-		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		String tiem = mTeamList.get(position).getTeamId() + "\n"+
-				PublicMethod.getEndTime(mTeamList.get(position).getDate()) 
+		copyHolder.gameName.setText(info.getLeagueName());
+		String tiem = info.getTeamId() + "\n"+
+				PublicMethod.getEndTime(info.getDate()) 
 				+ " (赛)";
 		copyHolder.gameDate.setText(tiem);
-		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
-		copyHolder.homeOdds.setText(mTeamList.get(position).getHomeOdds());
+		copyHolder.homeTeam.setText(info.getHomeTeam());
+		copyHolder.homeOdds.setText(info.getHomeOdds());
 		copyHolder.textVS.setText("VS");
-		copyHolder.textOdds.setText(mTeamList.get(position).getVsOdds());
-		copyHolder.guestTeam.setText(mTeamList.get(position).getGuestTeam());
-		copyHolder.guestOdds.setText(mTeamList.get(position).getGuestOdds());
-		final TeamInfo info = mTeamList.get(position);
+		copyHolder.textOdds.setText(info.getVsOdds());
+		copyHolder.guestTeam.setText(info.getGuestTeam());
+		copyHolder.guestOdds.setText(info.getGuestOdds());
 		
 		setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
 				copyHolder.homeOdds, info.isWin());
@@ -114,7 +114,8 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 					info.setWin(!info.isWin());
 					setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
 							copyHolder.homeOdds, info.isWin());
-					setClickNum(info.isWin(), info);
+					int teamNum = getTeamNum(mTeamList);
+					setClickNum(info.isWin(), info, teamNum);
 				}
 			});
 			
@@ -124,7 +125,8 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 					info.setFail(!info.isFail());
 					setViewStyle(copyHolder.guestLayout, copyHolder.guestTeam,
 							copyHolder.guestOdds, info.isFail());
-					setClickNum(info.isFail(), info);
+					int teamNum = getTeamNum(mTeamList);
+					setClickNum(info.isFail(), info, teamNum);
 				}
 			});
 
@@ -134,29 +136,30 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 					info.setLevel(!info.isLevel());
 					setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
 							copyHolder.textOdds, info.isLevel());
-					setClickNum(info.isLevel(), info);
-				}
-			});
-			copyHolder.btnDan.setVisibility(View.GONE);
-			copyHolder.analysis.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					turnAnalysis(Constants.LOTNO_SFC, mTeamList.get(position).getTeamId());
+					int teamNum = getTeamNum(mTeamList);
+					setClickNum(info.isLevel(), info, teamNum);
 				}
 			});
 		}
+		copyHolder.btnDan.setVisibility(View.GONE);
+		copyHolder.analysis.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				turnAnalysis(Constants.LOTNO_SFC, mTeamList.get(position).getTeamId());
+			}
+		});
 		
 		return convertView;
 	}
 	
-	protected void setClickNum(boolean flag, TeamInfo info) {
+	protected void setClickNum(boolean flag, TeamInfo info, int count) {
 		if (flag) {
 			info.onClickNum++;
 		} else {
 			info.onClickNum--;
 		}
-		setTeamNum(mTeamList);
+		setTeamNum(count);
 	}
 	
 	@Override
@@ -224,7 +227,7 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 		int teamNum = 0;
 		for (int i = 0; i < list.size(); i++) {
 			TeamInfo info = list.get(i);
-			if (getClickNum(info) > 0) {
+			if (info.isSelected()) {
 				teamNum++;
 			}
 		}
