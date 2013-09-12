@@ -25,6 +25,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class Controller {
     private static final String TAG = "Controller";
@@ -32,7 +33,6 @@ public class Controller {
     private Context mContext;
     private JSONObject jsonObj;
     protected ProgressDialog dialog;
-    
     protected Controller(Context _context) {
         mContext = _context;
     }
@@ -79,20 +79,17 @@ public class Controller {
 	/**
 	 * 投注action
 	 */
-   public synchronized  void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
-
-	   if (dialog != null && dialog.isShowing()) return;
+   public void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
+	   if (dialog != null) return;
 	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
 	   dialog.show();
-	   
 		// 加入是否改变切入点判断 陈晨 8.11
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
-
 			@Override
 			public void run() {
-				str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
 				try {
+					str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
 					JSONObject obj = new JSONObject(str);
 					final String msg = obj.getString("message");
 					final String error = obj.getString("error_code");
@@ -101,9 +98,10 @@ public class Controller {
 				} catch (JSONException e) {
 					e.printStackTrace();
 					// TODO Auto-generated method stub			
+				} finally {
+					dialog.dismiss();
+					dialog = null;
 				}
-				dialog.dismiss();
-				//dialog = null;
 			}
 		});
 		t.start();
@@ -111,8 +109,8 @@ public class Controller {
 	/**
 	 * 投注action
 	 */
-  public synchronized void doBettingJoinAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
-	   if (dialog != null && dialog.isShowing()) return;
+  public void doBettingJoinAction(final MyHandler handler,final BetAndGiftPojo betAndGift) { 
+	   if (dialog != null) return;
 	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
 	   dialog.show();
 	   
@@ -122,8 +120,8 @@ public class Controller {
 
 			@Override
 			public void run() {
-				str = JoinStartInterface.getInstance().joinStart(betAndGift);
 				try {
+					str = JoinStartInterface.getInstance().joinStart(betAndGift);
 					JSONObject obj = new JSONObject(str);
 					final String msg = obj.getString("message");
 					final String error = obj.getString("error_code");
@@ -132,9 +130,10 @@ public class Controller {
 				} catch (JSONException e) {
 					e.printStackTrace();
 					// TODO Auto-generated method stub			
+				} finally {
+					dialog.dismiss();
+					dialog = null;
 				}
-				dialog.dismiss();
-				//dialog = null;
 			}
 		});
 		t.start();

@@ -38,14 +38,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.miss.GiftActivity;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.JoinStartInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 
@@ -84,6 +82,7 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	String message;
 	JSONObject obj;
 	MyHandler handler = new MyHandler(this);// 自定义handler
+	private Controller controller = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -355,7 +354,8 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	 */
 	public void joinNet() {
 		setPojo();
-		Controller.getInstance(JoinStartActivityjc.this).doBettingJoinAction(handler, betAndGift);
+		controller = Controller.getInstance(JoinStartActivityjc.this);
+		controller.doBettingJoinAction(handler, betAndGift);
 	}
 
 	/**
@@ -423,7 +423,14 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	@Override
 	public void errorCode_0000() {
 		// TODO Auto-generated method stub
-		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+		if (controller != null) {
+			try {
+				Toast.makeText(this, controller.getRtnJSONObject().getString("message"), Toast.LENGTH_SHORT).show();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		/**modify by pengcx 20130605 start*/
 		Intent intent = new Intent(this, BettingSuccessActivity.class);
 		intent.putExtra("page", BettingSuccessActivity.COOPERATION);
