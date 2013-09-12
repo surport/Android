@@ -672,6 +672,7 @@ public class UserLogin extends Activity implements TextWatcher {
 						setJpushAlias(userno);
 
 						b = true;
+						PublicConst.isthirdlogin = false;
 						Message msg = new Message();
 						msg.what = 10;
 						handler.sendMessage(msg);
