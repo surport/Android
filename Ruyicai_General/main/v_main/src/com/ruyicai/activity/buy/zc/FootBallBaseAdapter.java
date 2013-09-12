@@ -71,11 +71,11 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 		return "";
 	}
 	
-	protected void setTeamNum(List<TeamInfo> list) {
+	protected void setTeamNum(int count) {
 		if (mContext instanceof FootBallMainActivity) {
 			FootBallMainActivity activity = (FootBallMainActivity)mContext;
 			activity.changeTextSumMoney(getZhuShu());
-			activity.setTeamNum(getTeamNum(list));
+			activity.setTeamNum(count);
 		}
 	}
 	

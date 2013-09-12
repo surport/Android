@@ -193,7 +193,8 @@ public class FootBall4CJQAdapter extends FootBall6CBAdapter{
 					}
 					info.onClickNum = likNum;
 					btn.setText(btnStr);
-					setTeamNum(mTeamList);
+					int teamNum = getTeamNum(mTeamList);
+					setTeamNum(teamNum/*mTeamList*/);
 				}
 			};
 			info.initView(titles, null, detailLayout, handler, 

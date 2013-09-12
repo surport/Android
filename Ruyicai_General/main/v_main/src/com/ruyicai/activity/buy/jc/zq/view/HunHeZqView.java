@@ -81,14 +81,13 @@ public class HunHeZqView extends JcMainView {
 	}
 
 	private void initTitles(final Info info) {
-		info.vStrs[0] = info.getLetV3Win();
-		info.vStrs[1] = info.getLetV1Level();
-		info.vStrs[2] = info.getLetV0Fail();
-
-		info.vStrs[3] = info.getWin();
-		info.vStrs[4] = info.getLevel();
-		info.vStrs[5] = info.getFail();
-
+		info.vStrs[0] = info.getWin();
+		info.vStrs[1] = info.getLevel();
+		info.vStrs[2] = info.getFail();
+		
+		info.vStrs[3] = info.getLetV3Win();
+		info.vStrs[4] = info.getLetV1Level();
+		info.vStrs[5] = info.getLetV0Fail();
 	}
 
 	/**
@@ -162,12 +161,12 @@ public class HunHeZqView extends JcMainView {
 						/**add by yejc 20130730 start*/
 						int position = info.check[j].getPosition(); 
 						String title = info.check[j].getChcekTitle();
-						if (position >= 0 && position <= 2) { // 让球胜平负
+						if (position >= 0 && position <= 2) { // 胜平负
 							first++;
 							if (first == 1) {
 								codeStr += "<br>胜平负：";
 							}
-						} else if (position >= 3 && position <= 5) { // 胜平负
+						} else if (position >= 3 && position <= 5) { // 让球胜平负
 							second++;
 							if (second == 1) {
 								codeStr += "<br>让球胜平负：";

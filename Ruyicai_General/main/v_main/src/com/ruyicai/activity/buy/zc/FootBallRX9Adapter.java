@@ -40,6 +40,7 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
+		final TeamInfo info = mTeamList.get(position);
 		ViewHolder holder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(
@@ -83,17 +84,16 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 		} else {
 			copyHolder.divider.setVisibility(View.GONE);
 		}
-		copyHolder.gameName.setText(mTeamList.get(position).getLeagueName());
-		String tiem = mTeamList.get(position).getTeamId() + "\n"
-				+ PublicMethod.getEndTime(mTeamList.get(position).getDate()) + " (赛)";
+		copyHolder.gameName.setText(info.getLeagueName());
+		String tiem = info.getTeamId() + "\n"
+				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
 		copyHolder.gameDate.setText(tiem);
-		copyHolder.homeTeam.setText(mTeamList.get(position).getHomeTeam());
-		copyHolder.homeOdds.setText(mTeamList.get(position).getHomeOdds());
+		copyHolder.homeTeam.setText(info.getHomeTeam());
+		copyHolder.homeOdds.setText(info.getHomeOdds());
 		copyHolder.textVS.setText("VS");
-		copyHolder.textOdds.setText(mTeamList.get(position).getVsOdds());
-		copyHolder.guestTeam.setText(mTeamList.get(position).getGuestTeam());
-		copyHolder.guestOdds.setText(mTeamList.get(position).getGuestOdds());
-		final TeamInfo info = mTeamList.get(position);
+		copyHolder.textOdds.setText(info.getVsOdds());
+		copyHolder.guestTeam.setText(info.getGuestTeam());
+		copyHolder.guestOdds.setText(info.getGuestOdds());
 		
 		setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
 				copyHolder.homeOdds, info.isWin());
@@ -118,9 +118,9 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 					info.setWin(!info.isWin());
 					setViewStyle(copyHolder.homeLayout, copyHolder.homeTeam,
 							copyHolder.homeOdds, info.isWin());
-					setClickNum(info.isWin(), info);
-					setDanState();
-					isNoDan(info, copyHolder.btnDan);
+					int teamNum = getTeamNum(mTeamList);
+					setClickNum(info.isWin(), info, teamNum);
+					setDanState(info, copyHolder.btnDan, teamNum);
 				}
 			});
 
@@ -130,9 +130,9 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 					info.setFail(!info.isFail());
 					setViewStyle(copyHolder.guestLayout, copyHolder.guestTeam,
 							copyHolder.guestOdds, info.isFail());
-					setClickNum(info.isFail(), info);
-					setDanState();
-					isNoDan(info, copyHolder.btnDan);
+					int teamNum = getTeamNum(mTeamList);
+					setClickNum(info.isFail(), info, teamNum);
+					setDanState(info, copyHolder.btnDan, teamNum);
 				}
 			});
 
@@ -142,18 +142,17 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 					info.setLevel(!info.isLevel());
 					setViewStyle(copyHolder.vsLayout, copyHolder.textVS,
 							copyHolder.textOdds, info.isLevel());
-					setClickNum(info.isLevel(), info);
-					setDanState();
-					isNoDan(info, copyHolder.btnDan);
+					int teamNum = getTeamNum(mTeamList);
+					setClickNum(info.isLevel(), info, teamNum);
+					setDanState(info, copyHolder.btnDan, teamNum);
 				}
 			});
 			copyHolder.btnDan.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					if (isMultipleBets()) {
-						if (mTeamList.get(position).isSelected()
-								&& getDanNums() < 8) {
+					if (getTeamNum(mTeamList) > 9) {
+						if (info.isSelected() && getDanNums() < 8) {
 							info.setDan(!info.isDan());
 							if (info.isDan()) {
 								copyHolder.btnDan.setBackgroundResource(R.drawable.jc_btn_b);
@@ -187,7 +186,7 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				turnAnalysis(Constants.LOTNO_RX9, mTeamList.get(position).getTeamId());
+				turnAnalysis(Constants.LOTNO_RX9, info.getTeamId());
 			}
 		});
 		return convertView;
@@ -200,30 +199,42 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 		notifyDataSetChanged();
 	}
 	
-	private void isNoDan(TeamInfo info, Button btnDan) {
-		if (info.onClickNum == 0 && info.isDan()) {
-			info.setDan(false);
-			btnDan.setBackgroundResource(android.R.color.transparent);
-			btnDan.setTextColor(black);
+	private void setDanState(TeamInfo info, Button btnDan, int count) {
+		if (info.onClickNum == 0) {
+			if (count > 9) {
+				if (info.isDan()) {
+					info.setDan(false);
+					btnDan.setBackgroundResource(android.R.color.transparent);
+					btnDan.setTextColor(black);
+				}
+			} else {
+				for (int i = 0; i < mTeamList.size(); i++) {
+					TeamInfo inInfo = mTeamList.get(i);
+					if (inInfo.isDan()) {
+						inInfo.setDan(false);
+					}
+				}
+				notifyDataSetChanged();
+			}
 		}
 	}
 	
-	private boolean isMultipleBets() {
-		int rawNum = 0;
-		for (int i = 0; i < mTeamList.size(); i++) {
-			TeamInfo info = mTeamList.get(i);
-			if (info.isSelected()) {
-				rawNum++;
-			}
-		}
-
-		// 如果选中场数大于9则为复式，否则为单式
-		if (rawNum > 9) {
-			return true;
-		}
-
-		return false;
-	}
+//	private boolean isMultipleBets() {
+//		int rawNum = 0;
+//		for (int i = 0; i < mTeamList.size(); i++) {
+//			TeamInfo info = mTeamList.get(i);
+//			if (info.isSelected()) {
+//				rawNum++;
+//			}
+//		}
+//
+//		// 如果选中场数大于9则为复式，否则为单式
+//		if (rawNum > 9) {
+//			return true;
+//		}
+//
+//		return false;
+//	}
 	
 	/**
 	 * 获取选取胆球数目
@@ -239,8 +250,6 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 		}
 		return count;
 	}
-	
-	
 	
 	/**
 	 * 计算任选九胆投投注注数
@@ -507,18 +516,6 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 			return true;
 		} else {
 			return false;
-		}
-	}
-	
-	private void setDanState() {
-		if (!isMultipleBets()) {
-			for (int i = 0; i < mTeamList.size(); i++) {
-				TeamInfo info = mTeamList.get(i);
-				if (info.isDan()) {
-					info.setDan(false);
-				}
-			}
-			notifyDataSetChanged();
 		}
 	}
 	

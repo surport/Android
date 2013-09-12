@@ -41,7 +41,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,7 +89,7 @@ public class FootBallMainActivity extends Activity {
 	private FootBallBaseAdapter[] mFootBallAdapters = new FootBallBaseAdapter[4];
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
 	private ArrayList[] mIssueArray = new ArrayList[4];
-	private RelativeLayout noGamePrompt;
+	private LinearLayout noGamePrompt;
 	private boolean[] isShowState = {false, false, false, false};
 	private int[] mStringId = {R.string.zc_14sf_play, R.string.zc_rx9_play, 
 			R.string.zc_6cb_play, R.string.zc_4jq_play};
@@ -112,6 +111,9 @@ public class FootBallMainActivity extends Activity {
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		mPlayIndex = intent.getIntExtra("index", 0);
+		if (playBtn == null) {
+			return;
+		}
 		for (int i = 0; i < playBtn.length; i++) {
 			if (mPlayIndex == i) {
 				playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
@@ -151,7 +153,7 @@ public class FootBallMainActivity extends Activity {
 		againButton = (ImageButton) findViewById(R.id.buy_zixuan_img_again);
 		startTouZhu = (ImageButton) findViewById(R.id.buy_footballlottery_img_touzhu);
 		playIntroduce = (Button) findViewById(R.id.layout_main_img_return);
-		noGamePrompt = (RelativeLayout) findViewById(R.id.no_game_prompt);
+		noGamePrompt = (LinearLayout) findViewById(R.id.no_game_prompt);
 		playIntroduce.setOnClickListener(listener);
 		startTouZhu.setOnClickListener(listener);
 		playSelectBtnLayout.setOnClickListener(listener);
@@ -161,6 +163,7 @@ public class FootBallMainActivity extends Activity {
 		issueSelectLayout.setOnClickListener(listener);
 		layout_football_issue.setOnClickListener(listener);
 		againButton.setOnClickListener(listener);
+		initPlayBtn();
 	}
 	
 	private void showPlayChangeDialog() {
@@ -170,18 +173,19 @@ public class FootBallMainActivity extends Activity {
 		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
 				R.anim.jc_top_menu_window_enter));
 		PublicMethod.setLayoutHeight(45, upLayersLayout, this);
-		if (playBtn == null) {
-			playBtn = new Button[4];
-			playBtn[0] = (Button) findViewById(R.id.zc_play_change_button_14sfc);
-			playBtn[1] = (Button) findViewById(R.id.zc_play_change_button_rx9);
-			playBtn[2] = (Button) findViewById(R.id.zc_play_change_button_6cb);
-			playBtn[3] = (Button) findViewById(R.id.zc_play_change_button_4jq);
-			playBtn[mPlayIndex].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
-			playBtn[mPlayIndex].setTextColor(getResources().getColor(R.color.white));
-			PlayChangeBtnClickListener clickListener = new PlayChangeBtnClickListener();
-			for (int i = 0; i < playBtn.length; i++) {
-				playBtn[i].setOnClickListener(clickListener);
-			}
+	}
+	
+	private void initPlayBtn() {
+		playBtn = new Button[4];
+		playBtn[0] = (Button) findViewById(R.id.zc_play_change_button_14sfc);
+		playBtn[1] = (Button) findViewById(R.id.zc_play_change_button_rx9);
+		playBtn[2] = (Button) findViewById(R.id.zc_play_change_button_6cb);
+		playBtn[3] = (Button) findViewById(R.id.zc_play_change_button_4jq);
+		playBtn[mPlayIndex].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+		playBtn[mPlayIndex].setTextColor(getResources().getColor(R.color.white));
+		PlayChangeBtnClickListener clickListener = new PlayChangeBtnClickListener();
+		for (int i = 0; i < playBtn.length; i++) {
+			playBtn[i].setOnClickListener(clickListener);
 		}
 	}
 	
@@ -284,6 +288,10 @@ public class FootBallMainActivity extends Activity {
 		return layoutOne;
 	}
 	
+	/**
+	 * 获取期号
+	 * @param Lotno
+	 */
 	private void getZCAdvanceBatchCodeData(final String Lotno) {
 		showDialog();
 		new Thread(new Runnable() {
@@ -407,7 +415,6 @@ public class FootBallMainActivity extends Activity {
 				if (v.getId() == playBtn[i].getId()) {
 					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
 					playBtn[i].setTextColor(getResources().getColor(R.color.white));
-					titleView.setText(mStringId[i]);
 					mPlayIndex = i;
 					if (mIssueArray[mPlayIndex] == null) {
 						if (!isShowState[mPlayIndex]) {
@@ -510,11 +517,24 @@ public class FootBallMainActivity extends Activity {
 				.get(mIssueIndexArray[mPlayIndex]);
 		mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
+		titleView.setText(mStringId[mPlayIndex]);
 	}
 	
 	private void getTeamInfo(int index) {
-		setIssue(index);
-		getData(mLotnoArray[mPlayIndex], currentIssue);
+		if (mIssueArray[mPlayIndex] == null) {
+			return;
+		}
+		for (int i = 0; i < mIssueArray[mPlayIndex].size(); i++) {
+			AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(i);
+			if (!"5".equals(batchMsg.getState())) {
+				currentIssue = batchMsg.getBatchCode().trim();
+				layout_football_issue.setText(formatBatchCode(currentIssue));
+				layout_football_time.setText(batchMsg.getEndTime());
+				mIssueIndexArray[mPlayIndex] = i;
+				getData(mLotnoArray[mPlayIndex], currentIssue);
+				return;
+			}
+		}
 	}
 	
 	private void setIssue(int index) {
@@ -527,7 +547,7 @@ public class FootBallMainActivity extends Activity {
 	}
 	
 	/**
-	 * 获取对阵矩阵
+	 * 获取对阵数据
 	 */
 	private void getData(final String lotno, final String batchCode) {
 		new Thread(new Runnable() {
@@ -618,7 +638,6 @@ public class FootBallMainActivity extends Activity {
 		upLayersLayout.setVisibility(View.GONE);
 	}
 	
-	
 	private void initBetPojo() {
 		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
 		sessionid = pre.getStringValue("sessionid");
@@ -650,7 +669,7 @@ public class FootBallMainActivity extends Activity {
 			startTouZhu.setClickable(true);
 		} else {
 			if (mFootBallAdapters[mPlayIndex].isTouZhu()
-					&& !"".equals(mFootBallAdapters[mPlayIndex].mIssueState)) {
+					&& !"5".equals(mFootBallAdapters[mPlayIndex].mIssueState)) {
 				Toast.makeText(this, "请至少选择一注！",
 						Toast.LENGTH_SHORT).show();
 			} else if (iZhuShu > 10000) {

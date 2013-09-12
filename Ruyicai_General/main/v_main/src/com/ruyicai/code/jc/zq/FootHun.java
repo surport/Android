@@ -96,8 +96,8 @@ public class FootHun {
 		for (int i = 0; i < listInfo.size(); i++) {
 			Info info = (Info) listInfo.get(i);
 			if (info.onclikNum > 0) {
-				code += getPlayCode(info, Constants.LOTNO_JCZQ_RQSPF, 0, 2);// 胜平负
-				code += getPlayCode(info, Constants.LOTNO_JCZQ, 3, 5);// 胜平负
+				code += getPlayCode(info, Constants.LOTNO_JCZQ, 0, 2);// 胜平负
+				code += getPlayCode(info, Constants.LOTNO_JCZQ_RQSPF, 3, 5);// 让球胜平负
 				code += getPlayCode(info, Constants.LOTNO_JCZQ_BQC, 6, 14);// 半全场
 				code += getPlayCode(info, Constants.LOTNO_JCZQ_ZQJ, 15, 22);// 总进球
 				code += getPlayCode(info, Constants.LOTNO_JCZQ_BF, 23, 53);// 比分
@@ -200,12 +200,12 @@ public class FootHun {
 				odds[2] = odd;
 			}
 		} else if (3 <= index && index <= 5) {// 胜平负
-			if (odds[3] < odd) {
-				odds[3] = odd;
-			}
-		} else if (0 <= index && index <= 2) {// 胜平负
 			if (odds[4] < odd) {
 				odds[4] = odd;
+			}
+		} else if (0 <= index && index <= 2) {// 胜平负
+			if (odds[3] < odd) {
+				odds[3] = odd;
 			}
 		}
 	}
