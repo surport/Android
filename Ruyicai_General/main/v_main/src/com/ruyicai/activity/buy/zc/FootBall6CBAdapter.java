@@ -8,7 +8,6 @@ import com.ruyicai.util.PublicMethod;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -76,9 +75,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		Log.i("yejc", "===============position=="+position);
 		final ViewHolder copyHolder = holder;
-//		if (holder.index == position) {
 			if (position == 0) {
 				holder.divider.setVisibility(View.VISIBLE);
 			} else {
@@ -98,59 +95,9 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 				
 				@Override
 				public void onClick(View v) {
-					if (copyHolder.layout.getChildCount() == 0) {
-						LinearLayout detailLayout = (LinearLayout) mInflater
-								.inflate(R.layout.buy_zc_lcb_layout, null);
-						LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-								(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-						if (position == 0) {
-							RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
-									(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-							lParams.setMargins(0, PublicMethod.getPxInt(68.5f, mContext), 0, 0);
-							copyHolder.layout.setLayoutParams(lParams);
-						}
-						copyHolder.layout.addView(detailLayout, params);
-						Handler handler = new Handler(){
-							@Override
-							public void handleMessage(Message msg) {
-								super.handleMessage(msg);
-								String btnStr = "";
-								int likNum = 0;
-								if (info.check != null) {
-									for (int i = 0; i < info.check.length; i++) {
-										if (info.check[i].getChecked()) {
-											btnStr += info.check[i].getChcekTitle()
-													+ "  ";
-											if (isCheckIndex(info, 0, 2) && isCheckIndex(info, 3, 5)) {
-												likNum++;
-											}
-										}
-									}
-								}
-								info.onClickNum = likNum;
-								copyHolder.btnBet.setText(btnStr);
-								setTeamNum(mTeamList);
-							}
-						};
-						String odds[] = new String[6];
-						odds[0] = info.getHomeOdds();
-						odds[1] = info.getVsOdds();
-						odds[2] = info.getGuestOdds();
-						odds[3] = info.getHomeOdds();
-						odds[4] = info.getVsOdds();
-						odds[5] = info.getGuestOdds();
-						info.initView(titles, odds, detailLayout, handler,Constants.LOTNO_LCB, mIssueState);
-						copyHolder.layout.setVisibility(View.VISIBLE);
-					} else {
-						if (copyHolder.layout.getVisibility() == View.VISIBLE) {
-							copyHolder.layout.setVisibility(View.GONE);
-						} else {
-							copyHolder.layout.setVisibility(View.VISIBLE);
-						}
-					}
+					showLayout(copyHolder.layout, position, info, copyHolder.btnBet);
 				}
 			});
-//			holder.btnBet.setOnClickListener(new ButtonOnClickListener(holder.layout, position, info));
 			
 			holder.analysis.setOnClickListener(new View.OnClickListener() {
 				
@@ -159,80 +106,8 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 					turnAnalysis(Constants.LOTNO_LCB, info.getTeamId());
 				}
 			});
-//		}
 		
 		return convertView;
-	}
-	
-	
-	class ButtonOnClickListener implements View.OnClickListener{
-		
-		TeamInfo info;
-		int position = 0;
-		LinearLayout layout;
-		public ButtonOnClickListener(LinearLayout layout, int index, 
-				TeamInfo info) {
-			this.layout = layout;
-			this.position = index;
-			this.info = info;
-		}
-
-		@Override
-		public void onClick(View v) {
-			final Button btn = (Button)v;
-			LinearLayout detailLayout = (LinearLayout) mInflater
-					.inflate(R.layout.buy_zc_lcb_layout, null);
-			if (layout.getChildCount() == 0) {
-				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-						(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-				if (position == 0) {
-					RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
-							(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-					lParams.setMargins(0, PublicMethod.getPxInt(68.5f, mContext), 0, 0);
-					layout.setLayoutParams(lParams);
-				}
-				layout.addView(detailLayout, params);
-				Handler handler = new Handler(){
-					@Override
-					public void handleMessage(Message msg) {
-						super.handleMessage(msg);
-						String btnStr = "";
-						int likNum = 0;
-						if (info.check != null) {
-							for (int i = 0; i < info.check.length; i++) {
-								if (info.check[i].getChecked()) {
-									btnStr += info.check[i].getChcekTitle()
-											+ "  ";
-									if (isCheckIndex(info, 0, 2) && isCheckIndex(info, 3, 5)) {
-										likNum++;
-									}
-								}
-							}
-						}
-						info.onClickNum = likNum;
-						btn.setText(btnStr);
-						setTeamNum(mTeamList);
-					}
-				};
-				String odds[] = new String[6];
-				odds[0] = info.getHomeOdds();
-				odds[1] = info.getVsOdds();
-				odds[2] = info.getGuestOdds();
-				odds[3] = info.getHomeOdds();
-				odds[4] = info.getVsOdds();
-				odds[5] = info.getGuestOdds();
-				info.initView(titles, odds, detailLayout, handler, 
-						Constants.LOTNO_LCB, mIssueState);
-				layout.setVisibility(View.VISIBLE);
-			} else {
-				if (layout.getVisibility() == View.VISIBLE) {
-					layout.setVisibility(View.GONE);
-				} else {
-					layout.setVisibility(View.VISIBLE);
-				}
-			}
-//			showLayout(layout, position, info, (Button)v);
-		}
 	}
 	
 	
@@ -389,7 +264,8 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 					}
 					info.onClickNum = likNum;
 					btn.setText(btnStr);
-					setTeamNum(mTeamList);
+					int teamNum = getTeamNum(mTeamList);
+					setTeamNum(teamNum/*mTeamList*/);
 				}
 			};
 			String odds[] = new String[6];
