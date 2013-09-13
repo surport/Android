@@ -15,19 +15,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class FootBall6CBAdapter extends FootBallBaseAdapter{
-	
-	private String titles[] = {"胜", "平", "负", "胜", "平", "负"};
-	
+public class FootBall6CBAdapter extends FootBallBaseAdapter {
+
+	private String titles[] = { "胜", "平", "负", "胜", "平", "负" };
+
 	public FootBall6CBAdapter(Context context) {
 		super(context);
 	}
-	
+
 	public FootBall6CBAdapter(Context context, List<TeamInfo> list) {
 		super(context);
 		this.mTeamList = list;
 	}
-	
+
 	@Override
 	public int getCount() {
 		return mTeamList.size();
@@ -46,71 +46,90 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
-		if (convertView == null) {
-			convertView = mInflater.inflate(
-					R.layout.buy_jc_main_listview_item_others, null);
-			holder = new ViewHolder();
-			holder.divider = (View) convertView
-					.findViewById(R.id.jc_main_divider_up);
-			holder.gameName = (TextView) convertView
-					.findViewById(R.id.game_name);
-			holder.gameDate = (TextView) convertView
-					.findViewById(R.id.game_date);
-			holder.homeTeam = (TextView) convertView
-					.findViewById(R.id.home_team_name);
-			holder.textVS = (TextView) convertView
-					.findViewById(R.id.game_vs);
-			holder.guestTeam = (TextView) convertView
-					.findViewById(R.id.guest_team_name);
-			holder.analysis = (TextView) convertView
-					.findViewById(R.id.game_analysis);
-			holder.btnDan = (Button) convertView
-					.findViewById(R.id.game_dan);
-			holder.btnBet =  (Button) convertView
-					.findViewById(R.id.jc_main_list_item_button);
-			holder.layout = (LinearLayout) convertView
-					.findViewById(R.id.jc_play_detail_layout);
-			holder.index = position;
-			convertView.setTag(holder);
+
+		convertView = mInflater.inflate(
+				R.layout.buy_jc_main_listview_item_others, null);
+		View divider = (View) convertView.findViewById(R.id.jc_main_divider_up);
+		TextView gameName = (TextView) convertView.findViewById(R.id.game_name);
+		TextView gameDate = (TextView) convertView.findViewById(R.id.game_date);
+		TextView homeTeam = (TextView) convertView
+				.findViewById(R.id.home_team_name);
+		TextView textVS = (TextView) convertView.findViewById(R.id.game_vs);
+		TextView guestTeam = (TextView) convertView
+				.findViewById(R.id.guest_team_name);
+		TextView analysis = (TextView) convertView
+				.findViewById(R.id.game_analysis);
+		Button btnDan = (Button) convertView.findViewById(R.id.game_dan);
+		final Button btnBet = (Button) convertView
+				.findViewById(R.id.jc_main_list_item_button);
+		final LinearLayout layout = (LinearLayout) convertView
+				.findViewById(R.id.jc_play_detail_layout);
+
+		if (position == 0) {
+			divider.setVisibility(View.VISIBLE);
 		} else {
-			holder = (ViewHolder) convertView.getTag();
+			divider.setVisibility(View.GONE);
 		}
-		final ViewHolder copyHolder = holder;
-			if (position == 0) {
-				holder.divider.setVisibility(View.VISIBLE);
-			} else {
-				holder.divider.setVisibility(View.GONE);
+		gameName.setText(mTeamList.get(position).getLeagueName());
+		String tiem = mTeamList.get(position).getTeamId() + "\n"
+				+ PublicMethod.getEndTime(mTeamList.get(position).getDate())
+				+ " (赛)";
+		gameDate.setText(tiem);
+		homeTeam.setText(mTeamList.get(position).getHomeTeam());
+		textVS.setText("VS");
+		guestTeam.setText(mTeamList.get(position).getGuestTeam());
+		btnDan.setVisibility(View.GONE);
+		final TeamInfo info = mTeamList.get(position);
+
+		// 每次滑动判断是否打开，如果打开则显示
+		if (info.buttonIsOpen) {
+			showLayout(layout, position, info, btnBet);
+		}
+		Handler handler = new Handler();
+		// 每次滑动更新投注显示
+		handler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				String btnStr = "";
+				int likNum = 0;
+				if (info.check != null) {
+					for (int i = 0; i < info.check.length; i++) {
+						if (info.check[i].getChecked()) {
+							btnStr += info.check[i].getChcekTitle() + "  ";
+							if (isCheckIndex(info, 0, 2)
+									&& isCheckIndex(info, 3, 5)) {
+								likNum++;
+							}
+						}
+					}
+				}
+				info.onClickNum = likNum;
+				btnBet.setText(btnStr);
+				int teamNum = getTeamNum(mTeamList);
+				setTeamNum(teamNum/* mTeamList */);
 			}
-			final TeamInfo info = mTeamList.get(position);
-			holder.gameName.setText(info.getLeagueName());
-			String tiem = info.getTeamId() + "\n"
-					+PublicMethod.getEndTime(info.getDate()) + " (赛)";
-			holder.gameDate.setText(tiem);
-			holder.homeTeam.setText(info.getHomeTeam());
-			holder.textVS.setText("VS");
-			holder.guestTeam.setText(info.getGuestTeam());
-			holder.btnDan.setVisibility(View.GONE);
-			
-			holder.btnBet.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					showLayout(copyHolder.layout, position, info, copyHolder.btnBet);
-				}
-			});
-			
-			holder.analysis.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					turnAnalysis(Constants.LOTNO_LCB, info.getTeamId());
-				}
-			});
-		
+		});
+		btnBet.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				info.buttonIsOpen = !info.buttonIsOpen;
+				showLayout(layout, position, info, btnBet);
+			}
+		});
+
+		analysis.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				turnAnalysis(Constants.LOTNO_LCB, mTeamList.get(position)
+						.getTeamId());
+			}
+		});
 		return convertView;
 	}
-	
-	
+
 	@Override
 	public int getZhuShu() {
 		int value = 1;
@@ -118,13 +137,14 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 			int likNum = 0;
 			TeamInfo info = mTeamList.get(i);
 			if (info.check != null) {
-				likNum = getLineSelectedNum(info, 0, 2) * getLineSelectedNum(info, 3, 5);
+				likNum = getLineSelectedNum(info, 0, 2)
+						* getLineSelectedNum(info, 3, 5);
 			}
 			value *= likNum;
 		}
 		return value;
 	}
-	
+
 	public void clearSelected() {
 		for (int i = 0; i < mTeamList.size(); i++) {
 			TeamInfo info = mTeamList.get(i);
@@ -139,7 +159,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 		}
 		notifyDataSetChanged();
 	}
-	
+
 	@Override
 	public String getZhuMa() {
 		StringBuffer zhuMaStr = new StringBuffer();
@@ -154,7 +174,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 		result = result.substring(0, result.length() - 1);
 		return result;
 	}
-	
+
 	protected int getLineSelectedNum(TeamInfo info, int start, int end) {
 		int clickNum = 0;
 		for (int i = start; i <= end; i++) {
@@ -164,7 +184,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 		}
 		return clickNum;
 	}
-	
+
 	private String getSelectedName(TeamInfo info, int start, int end) {
 		StringBuffer stringBuf = new StringBuffer();
 		for (int i = 0; i < info.check.length; i++) {
@@ -175,12 +195,12 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 					case 3:
 						stringBuf.append("3");
 						break;
-						
+
 					case 1:
 					case 4:
 						stringBuf.append("1");
 						break;
-						
+
 					case 2:
 					case 5:
 						stringBuf.append("0");
@@ -203,7 +223,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 		}
 		return false;
 	}
-	
+
 	protected boolean isCheckIndex(TeamInfo info, int start, int end) {
 		boolean isIndex = false;
 		if (info.check != null) {
@@ -229,23 +249,27 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 		}
 		return teamNum;
 	}
-	
-	private void showLayout (LinearLayout layout, int index, 
+
+	private void showLayout(LinearLayout layout, int index,
 			final TeamInfo info, final Button btn) {
-		layout.removeAllViews();
-		LinearLayout detailLayout = (LinearLayout) mInflater
-				.inflate(R.layout.buy_zc_lcb_layout, null);
+		// 如果为空，即重新添加列表项的时候，则添加
 		if (layout.getChildCount() == 0) {
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams
-					(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			LinearLayout detailLayout = (LinearLayout) mInflater.inflate(
+					R.layout.buy_zc_lcb_layout, null);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+					LinearLayout.LayoutParams.FILL_PARENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT);
 			if (index == 0) {
-				RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
-						(RelativeLayout.LayoutParams.FILL_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-				lParams.setMargins(0, PublicMethod.getPxInt(68.5f, mContext), 0, 0);
+				RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
+						RelativeLayout.LayoutParams.FILL_PARENT,
+						RelativeLayout.LayoutParams.WRAP_CONTENT);
+				lParams.setMargins(0, PublicMethod.getPxInt(68.5f, mContext),
+						0, 0);
 				layout.setLayoutParams(lParams);
 			}
 			layout.addView(detailLayout, params);
-			Handler handler = new Handler(){
+
+			Handler handler = new Handler() {
 				@Override
 				public void handleMessage(Message msg) {
 					super.handleMessage(msg);
@@ -254,9 +278,9 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 					if (info.check != null) {
 						for (int i = 0; i < info.check.length; i++) {
 							if (info.check[i].getChecked()) {
-								btnStr += info.check[i].getChcekTitle()
-										+ "  ";
-								if (isCheckIndex(info, 0, 2) && isCheckIndex(info, 3, 5)) {
+								btnStr += info.check[i].getChcekTitle() + "  ";
+								if (isCheckIndex(info, 0, 2)
+										&& isCheckIndex(info, 3, 5)) {
 									likNum++;
 								}
 							}
@@ -265,7 +289,7 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 					info.onClickNum = likNum;
 					btn.setText(btnStr);
 					int teamNum = getTeamNum(mTeamList);
-					setTeamNum(teamNum/*mTeamList*/);
+					setTeamNum(teamNum/* mTeamList */);
 				}
 			};
 			String odds[] = new String[6];
@@ -275,10 +299,11 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 			odds[3] = info.getHomeOdds();
 			odds[4] = info.getVsOdds();
 			odds[5] = info.getGuestOdds();
-			info.initView(titles, odds, detailLayout, handler, 
+			info.initView(titles, odds, detailLayout, handler,
 					Constants.LOTNO_LCB, mIssueState);
 			layout.setVisibility(View.VISIBLE);
 		} else {
+			// 如果没有重新添加列表项
 			if (layout.getVisibility() == View.VISIBLE) {
 				layout.setVisibility(View.GONE);
 			} else {
@@ -286,5 +311,4 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter{
 			}
 		}
 	}
-	
 }

@@ -52,6 +52,10 @@ public class MyCheckBox extends CheckBox {
 	public void setHorizontal(boolean isHorizontal) {
 		this.isHorizontal = isHorizontal;
 	}
+	
+	public boolean getHorizontal(){
+		return this.isHorizontal;
+	}
 
 	public int getPosition() {
 		return position;
@@ -68,6 +72,10 @@ public class MyCheckBox extends CheckBox {
 	/**add by yejc 20130816 start*/
 	public void setHandler(Handler handler) {
 		this.handler = handler;
+	}
+	
+	public Handler getHandler(){
+		return this.handler;
 	}
 	
 	
@@ -114,6 +122,10 @@ public class MyCheckBox extends CheckBox {
 
 	public void setCheckText(String text) {
 		this.text = text;
+	}
+	
+	public String getCheckText(){
+		return this.text;
 	}
 
 	public void setCheckTitle(String title) {
