@@ -216,6 +216,8 @@ public abstract class JcMainView {
 		} else {
 			setValue(jsonArray);
 		}
+		boolean isFirst = true;
+		boolean isSecond = true;
 		if (isDanguan && (jsonArray1 == null || (jsonArray1 != null && jsonArray1.length() == 0))) {
 			showNoGamePrompt();
 		} else if ((jsonArray == null || (jsonArray != null && jsonArray.length() == 0)) && !isDanguan) {
@@ -229,18 +231,12 @@ public abstract class JcMainView {
 	}
 
 	private void showNoGamePrompt() {
+		View view = LayoutInflater.from(context).inflate(R.layout.buy_jc_no_game_layout, null);
 		layoutView.removeAllViews();
-		ImageView imageView = new ImageView(context);
-		imageView.setImageResource(R.drawable.ray);
-		LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		mLayoutParams.gravity = Gravity.CENTER;
-		layoutView.addView(imageView, mLayoutParams);
-		TextView textView = new TextView(context);
-		textView.setText("暂无比赛可以投注");
-		textView.setTextSize(18.0f);
-
-		layoutView.addView(textView, mLayoutParams);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.FILL_PARENT, 
+				LinearLayout.LayoutParams.FILL_PARENT);
+		layoutView.addView(view, params);
 	}
 
 	private void infoNet() {
@@ -261,7 +257,13 @@ public abstract class JcMainView {
 					final String error = jsonObj.getString("error_code");
 					if (error.equals(ERROR_WIN) || error.equals("0047")) {
 						if (!isHasResult(jsonObj)) {
-							showNoGamePrompt(dialog);
+							handler.post(new Runnable() {
+								@Override
+								public void run() {
+									dialog.dismiss();
+									showNoGamePrompt();
+								}
+							});
 							return;
 						}
 					}
@@ -294,28 +296,6 @@ public abstract class JcMainView {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-
-			private void showNoGamePrompt(final ProgressDialog dialog) {
-				handler.post(new Runnable() {
-					@Override
-					public void run() {
-						dialog.dismiss();
-						layoutView.removeAllViews();
-						ImageView imageView = new ImageView(context);
-						imageView.setImageResource(R.drawable.ray);
-						LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
-								LayoutParams.WRAP_CONTENT,
-								LayoutParams.WRAP_CONTENT);
-						mLayoutParams.gravity = Gravity.CENTER;
-						layoutView.addView(imageView, mLayoutParams);
-						TextView textView = new TextView(context);
-						textView.setText("暂无比赛可以投注");
-						textView.setTextSize(18.0f);
-
-						layoutView.addView(textView, mLayoutParams);
-					}
-				});
 			}
 		});
 		t.start();

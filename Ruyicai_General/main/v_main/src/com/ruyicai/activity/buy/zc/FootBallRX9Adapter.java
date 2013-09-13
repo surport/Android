@@ -6,7 +6,6 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.zc.pojo.TeamInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class FootBallRX9Adapter extends FootBallSFAdapter{
-	
 	public FootBallRX9Adapter(Context context, List<TeamInfo> list) {
 		super(context);
 		this.mTeamList = list;
@@ -219,23 +217,6 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 		}
 	}
 	
-//	private boolean isMultipleBets() {
-//		int rawNum = 0;
-//		for (int i = 0; i < mTeamList.size(); i++) {
-//			TeamInfo info = mTeamList.get(i);
-//			if (info.isSelected()) {
-//				rawNum++;
-//			}
-//		}
-//
-//		// 如果选中场数大于9则为复式，否则为单式
-//		if (rawNum > 9) {
-//			return true;
-//		}
-//
-//		return false;
-//	}
-	
 	/**
 	 * 获取选取胆球数目
 	 * 
@@ -249,6 +230,18 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 			}
 		}
 		return count;
+	}
+	
+	@Override
+	protected int getTeamNum(List<TeamInfo> list) {
+		int teamNum = 0;
+		for (int i = 0; i < list.size(); i++) {
+			TeamInfo info = list.get(i);
+			if (info.isSelected()) {
+				teamNum++;
+			}
+		}
+		return teamNum;
 	}
 	
 	/**
@@ -266,11 +259,10 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 			TeamInfo info = mTeamList.get(i);
 			if (info.isDan()) {
 				danGamesList.add(info.onClickNum);
-			} else {
+			} else if (info.isSelected()) {
 				notDanGamesList.add(info.onClickNum);
 			}
 		}
-
 		if (danGamesList.size() + notDanGamesList.size() < 9) {
 			return 0;
 		} else {
@@ -279,7 +271,6 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 					getGamesZhuHe(listToInts(notDanGamesList),
 							9 - danGamesList.size()));
 		}
-
 		return betNums;
 	}
 
