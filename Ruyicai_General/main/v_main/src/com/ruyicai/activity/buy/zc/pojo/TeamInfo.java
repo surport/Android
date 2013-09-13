@@ -136,7 +136,7 @@ public class TeamInfo {
 	public void initView(String titles[], String odds[], LinearLayout layout, 
 			Handler handler, String lotno, String state) {
 		check = new MyCheckBox[titles.length];
-		for (int i = 0; i < check.length; i++) {
+		for (int  i = 0; i < check.length; i++) {
 			check[i] = (MyCheckBox) layout.findViewById(viewIds[i]);
 			check[i].setVisibility(CheckBox.VISIBLE);
 			if (Constants.LOTNO_LCB.equals(lotno)) {
