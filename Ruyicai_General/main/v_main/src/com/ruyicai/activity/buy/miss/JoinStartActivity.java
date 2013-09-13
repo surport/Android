@@ -189,7 +189,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (OrderDetails.isAlert) {
+				if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE) {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 					} else {
@@ -795,16 +795,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			iProgressBeishu = iProgress;
 			mTextBeishu.setText("" + iProgressBeishu);
 			progressAtm(); // add by yejc 20130520
-			/** close by yejc 20130520 start */
-			// allAtm = iProgressQishu * addviewmiss.getAllAmt() *
-			// iProgressBeishu;
-			// renText.setText("占总额"
-			// + progress(isNull(buyEdit.getText().toString()), ""
-			// + allAtm) + "%");// 总金额
-			// baoText.setText("占总额"
-			// + progress(isNull(safeEdit.getText().toString()), ""
-			// + allAtm) + "%");// 总金额
-			/** close by yejc 20130520 end */
 			break;
 		default:
 			break;
@@ -873,7 +863,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 				break;
 			}
 			/**add by yejc 20130510 end*/
-			if (OrderDetails.isAlert) {
+			if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE) {
 				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 				} else {

@@ -1944,6 +1944,7 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 				app.setAddviewmiss(addViewMiss);
 				Intent intent = new Intent(LuckChoose2.this,
 						com.ruyicai.activity.buy.miss.OrderDetails.class);
+				intent.putExtra("from", Constants.SEND_FROM_SIMULATE);
 				startActivity(intent);
 				break;
 
