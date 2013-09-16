@@ -28,7 +28,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -118,7 +117,7 @@ public class FootBallMainActivity extends Activity {
 		super.onNewIntent(intent);
 		mPlayIndex = intent.getIntExtra("index", 0);
 		if (playBtn == null) {
-			return;
+			initPlayBtn();
 		}
 		for (int i = 0; i < playBtn.length; i++) {
 			if (mPlayIndex == i) {
@@ -269,6 +268,7 @@ public class FootBallMainActivity extends Activity {
 						handler.sendMessage(msg);
 					}
 				} catch (JSONException e) {
+					dismissDialog();
 					e.printStackTrace();
 				}
 			}
@@ -542,17 +542,21 @@ public class FootBallMainActivity extends Activity {
 		if (mIssueArray[mPlayIndex] == null) {
 			return;
 		}
+		int tempIndex = 0;
 		for (int i = 0; i < mIssueArray[mPlayIndex].size(); i++) {
 			AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(i);
 			if (!"5".equals(batchMsg.getState())) {
-				currentIssue = batchMsg.getBatchCode().trim();
-				layout_football_issue.setText(formatBatchCode(currentIssue));
-				layout_football_time.setText(batchMsg.getEndTime());
-				mIssueIndexArray[mPlayIndex] = i;
-				getData(mLotnoArray[mPlayIndex], currentIssue);
+				tempIndex = i;
 				return;
 			}
 		}
+		
+		AdvanceBatchCode batchObj = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(tempIndex);
+		currentIssue = batchObj.getBatchCode().trim();
+		layout_football_issue.setText(formatBatchCode(currentIssue));
+		layout_football_time.setText(batchObj.getEndTime());
+		mIssueIndexArray[mPlayIndex] = tempIndex;
+		getData(mLotnoArray[mPlayIndex], currentIssue);
 	}
 	
 	private void setIssue(int index) {

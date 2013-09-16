@@ -216,8 +216,6 @@ public abstract class JcMainView {
 		} else {
 			setValue(jsonArray);
 		}
-		boolean isFirst = true;
-		boolean isSecond = true;
 		if (isDanguan && (jsonArray1 == null || (jsonArray1 != null && jsonArray1.length() == 0))) {
 			showNoGamePrompt();
 		} else if ((jsonArray == null || (jsonArray != null && jsonArray.length() == 0)) && !isDanguan) {
