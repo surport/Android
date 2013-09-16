@@ -350,5 +350,7 @@ public class Constants {
 	public static final String LOTNO = "Lotno";
 	public static final String PAGENUM = "10";// 每页显示的条数
 	public static final String ISSUE = "Issue";
+	
+	public static final int SEND_FROM_SIMULATE = 40;
 
 }

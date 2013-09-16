@@ -245,7 +245,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if (OrderDetails.isAlert) {
+				if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE) {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 					} else {
@@ -712,11 +712,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			jine.setText("金额：" + iProgressQishu * addviewmiss.getAllAmt()
 					* iProgressBeishu + "元");
 		}
-		// return "注数："
-		// + addviewmiss.getAllZhu() + "注     "
-		// + "金额：" +
-		// + iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu
-		// + "元";
 	}
 
 	/**
@@ -1199,7 +1194,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			if (isDialog) {
 				dialogOk();
 			} else {
-				if (OrderDetails.isAlert) {
+				if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE) {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 					} else {

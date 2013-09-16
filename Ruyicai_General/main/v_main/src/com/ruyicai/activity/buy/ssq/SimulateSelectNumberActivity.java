@@ -372,6 +372,7 @@ public class SimulateSelectNumberActivity extends Activity implements
 			app.setAddviewmiss(addViewMiss);
 			Intent intent = new Intent(SimulateSelectNumberActivity.this,
 					OrderDetails.class);
+			intent.putExtra("from", Constants.SEND_FROM_SIMULATE);
 			startActivity(intent);
 		}
 	}
