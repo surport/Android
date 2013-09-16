@@ -2291,8 +2291,14 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 			String batchCode = latestLotteryList.get(position).getBatchCode();
 			StringBuffer batchCodeString = new StringBuffer();
-			batchCodeString.append("第").append(batchCode.substring(0, 8))
-					.append("-").append(batchCode.substring(8)).append("期");
+			if (lotno == Constants.LOTNO_eleven) {
+				batchCodeString.append("第").append(batchCode.substring(0, 8))
+						.append("期");
+			} else {
+				batchCodeString.append("第").append(batchCode.substring(0, 8))
+						.append("-").append(batchCode.substring(8)).append("期");
+			}
+
 			holder.issue.setText(batchCodeString);
 
 			String winCodeString = null;
