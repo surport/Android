@@ -310,18 +310,12 @@ public class BeiJingSingleGameActivity extends Activity {
 	 * 显示没有对阵提示
 	 */
 	private void showNoAgainstPrompt() {
+		View view = LayoutInflater.from(context).inflate(R.layout.buy_jc_no_game_layout, null);
 		againstLinearLayout.removeAllViews();
-		ImageView imageView = new ImageView(context);
-		imageView.setImageResource(R.drawable.ray);
-		LinearLayout.LayoutParams mLayoutParams = new LinearLayout.LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		mLayoutParams.gravity = Gravity.CENTER;
-		againstLinearLayout.addView(imageView, mLayoutParams);
-		TextView textView = new TextView(context);
-		textView.setText("暂无比赛可以投注");
-		textView.setTextSize(18.0f);
-
-		againstLinearLayout.addView(textView, mLayoutParams);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.FILL_PARENT, 
+				LinearLayout.LayoutParams.FILL_PARENT);
+		againstLinearLayout.addView(view, params);
 	}
 
 	/**

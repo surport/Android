@@ -23,6 +23,9 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 	
 	@Override
 	public int getCount() {
+		if (mTeamList == null) {
+			return 0;
+		}
 		return mTeamList.size();
 	}
 
