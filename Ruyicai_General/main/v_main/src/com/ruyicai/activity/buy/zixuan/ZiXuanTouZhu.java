@@ -271,7 +271,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			betAndGift.setUserno(userno);
 			betAndGift.setBettype("bet");// 投注为bet,赠彩为gift
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
-			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+			long zhuShu = Long.valueOf(betAndGift.getZhushu());
 			long amount = zhuShu *200 * iProgressBeishu;
 			betAndGift.setAmount(String.valueOf(amount));
 			betAndGift.setZhushu(String.valueOf(zhuShu));

@@ -30,6 +30,9 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter {
 
 	@Override
 	public int getCount() {
+		if (mTeamList == null) {
+			return 0;
+		}
 		return mTeamList.size();
 	}
 

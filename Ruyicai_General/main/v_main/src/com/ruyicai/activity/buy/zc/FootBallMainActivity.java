@@ -28,6 +28,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -236,12 +237,12 @@ public class FootBallMainActivity extends Activity {
 								.getJSONArray("result");
 					}
 					if (errorCode.equals("0047") || errorCode.equals("0000")) {
-						isShowState[mPlayIndex] = true;
 						if (batchCodeArray == null || batchCodeArray.length() == 0) {
 							handler.sendEmptyMessage(5);
 							return;
 						}
 					}
+					Message msg = handler.obtainMessage();
 					if (errorCode.equals("0000")) {
 						ArrayList<AdvanceBatchCode> bactchArray = new ArrayList<AdvanceBatchCode>();
 						bactchArray.clear();
@@ -257,16 +258,13 @@ public class FootBallMainActivity extends Activity {
 							bactchArray.add(aa);
 							mIssueArray[mPlayIndex] = bactchArray;
 						}
-						Message msg = handler.obtainMessage();
 						msg.what = 2;
 						msg.obj = message;
-						handler.sendMessage(msg);
 					} else {
-						Message msg = handler.obtainMessage();
 						msg.what = 3;
 						msg.obj = message;
-						handler.sendMessage(msg);
 					}
+					handler.sendMessage(msg);
 				} catch (JSONException e) {
 					dismissDialog();
 					e.printStackTrace();
@@ -489,6 +487,7 @@ public class FootBallMainActivity extends Activity {
 			progressdialog = new ProgressDialog(this);
 		}
 		progressdialog.show();
+		progressdialog.setCancelable(false);
 		View dialogView = PublicMethod.getView(this);
 		progressdialog.getWindow().setContentView(dialogView);
 	}
@@ -536,18 +535,19 @@ public class FootBallMainActivity extends Activity {
 		}
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 		titleView.setText(mStringId[mPlayIndex]);
+		isShowState[mPlayIndex] = true;
 	}
 	
 	private void getTeamInfo(int index) {
 		if (mIssueArray[mPlayIndex] == null) {
-			return;
+			getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 		}
 		int tempIndex = 0;
 		for (int i = 0; i < mIssueArray[mPlayIndex].size(); i++) {
 			AdvanceBatchCode batchMsg = (AdvanceBatchCode) mIssueArray[mPlayIndex].get(i);
 			if (!"5".equals(batchMsg.getState())) {
 				tempIndex = i;
-				return;
+				break;
 			}
 		}
 		
@@ -602,20 +602,18 @@ public class FootBallMainActivity extends Activity {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-
-				if (error_code.equals("00")) {
+				} finally {
 					Message msg = new Message();
-					msg.what = 0;
-					handler.sendMessage(msg);
-				} else if (error_code.equals("0000")) {
-					Message msg = new Message();
-					msg.what = 1;
-					handler.sendMessage(msg);
-				} else if (error_code.equals("200005")) {
-					Message msg = new Message();
-					msg.what = 4;
-					handler.sendMessage(msg);
+					if (error_code.equals("0000")) {
+						msg.what = 1;
+						handler.sendMessage(msg);
+					} else if (error_code.equals("200005")) {
+						msg.what = 4;
+						handler.sendMessage(msg);
+					} else {
+						msg.what = 0;
+						handler.sendMessage(msg);
+					}
 				}
 			}
 		}).start();

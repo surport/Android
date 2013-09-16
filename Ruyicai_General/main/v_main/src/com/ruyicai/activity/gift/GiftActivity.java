@@ -147,7 +147,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		betAndGift = app.getPojo();
 		addview = app.getAddview();
 		if (Constants.type.equals("zc")) {
-			allAtm = Integer.valueOf(betAndGift.getAmount()) / 100;
+			allAtm = Long.valueOf(betAndGift.getAmount()) / 100;
 			zhumaStr = betAndGift.getBet_code();
 			zhu = Integer.valueOf(betAndGift.getZhushu());
 		} else {
