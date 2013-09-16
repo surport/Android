@@ -28,6 +28,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,6 +54,7 @@ public class FootBallMainActivity extends Activity {
 	private Toast toast;
 	private TextView textTeamNum;
 	private PopupWindow popupwindow;
+	/**玩法介绍对话框*/
 	private BuyGameDialog gameDialog;
 	private Handler gameHandler = new Handler(); 
 	/** 标题 */
@@ -70,7 +72,9 @@ public class FootBallMainActivity extends Activity {
 	/** 下拉弹出的赛事选择布局 */
 	private LinearLayout issueSelectLayout;
 	private int mScreenWidth;
+	/**玩法切换按钮*/
 	private Button[] playBtn = null;
+	/**彩种编号数组*/
 	private String[] mLotnoArray = {Constants.LOTNO_SFC, Constants.LOTNO_RX9, 
 			Constants.LOTNO_LCB, Constants.LOTNO_JQC};
 	private ProgressDialog progressdialog;
@@ -85,9 +89,11 @@ public class FootBallMainActivity extends Activity {
 	private int[] mIssueIndexArray = {0,0,0,0};
 	private int mPlayIndex = 0;
 	private ImageButton startTouZhu;
-	
+	/**玩法适配器数组*/
 	private FootBallBaseAdapter[] mFootBallAdapters = new FootBallBaseAdapter[4];
+	/**存放不同玩法的对阵数据*/
 	private ArrayList[] mTeamInfoLists = new ArrayList[4];
+	/**存放不同玩法的期号*/
 	private ArrayList[] mIssueArray = new ArrayList[4];
 	private LinearLayout noGamePrompt;
 	private boolean[] isShowState = {false, false, false, false};
@@ -166,15 +172,6 @@ public class FootBallMainActivity extends Activity {
 		initPlayBtn();
 	}
 	
-	private void showPlayChangeDialog() {
-		mainPalySelectLayout.setVisibility(View.VISIBLE);
-		upLayersLayout.setVisibility(View.VISIBLE);
-		middleLayersLayout.setVisibility(View.VISIBLE);
-		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
-				R.anim.jc_top_menu_window_enter));
-		PublicMethod.setLayoutHeight(45, upLayersLayout, this);
-	}
-	
 	private void initPlayBtn() {
 		playBtn = new Button[4];
 		playBtn[0] = (Button) findViewById(R.id.zc_play_change_button_14sfc);
@@ -189,6 +186,110 @@ public class FootBallMainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * 玩法切换监听
+	 */
+	private class PlayChangeBtnClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			for (int i = 0; i < playBtn.length; i++) {
+				if (v.getId() == playBtn[i].getId()) {
+					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
+					playBtn[i].setTextColor(getResources().getColor(R.color.white));
+					mPlayIndex = i;
+					if (mIssueArray[mPlayIndex] == null) {
+						if (!isShowState[mPlayIndex]) {
+							getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+						}
+						setShowState();
+					} else {
+						setIssue(mIssueIndexArray[mPlayIndex]);
+						initList();
+					}
+					setViewState();
+				} else {
+					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
+					playBtn[i].setTextColor(getResources().getColor(R.color.black));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 获取期号
+	 * @param Lotno
+	 */
+	private void getZCAdvanceBatchCodeData(final String Lotno) {
+		showDialog();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				advanceBatchCodeData = FootballInterface.getInstance().getAdvanceBatchCodeList(Lotno);
+				try {
+					JSONObject advanceBatchCode = new JSONObject(
+							advanceBatchCodeData);
+					String errorCode = advanceBatchCode.getString("error_code");
+					String message = advanceBatchCode.getString("message");
+					JSONArray batchCodeArray = null;
+					if (advanceBatchCode.has("result")) {
+						batchCodeArray = advanceBatchCode
+								.getJSONArray("result");
+					}
+					if (errorCode.equals("0047") || errorCode.equals("0000")) {
+						isShowState[mPlayIndex] = true;
+						if (batchCodeArray == null || batchCodeArray.length() == 0) {
+							handler.sendEmptyMessage(5);
+							return;
+						}
+					}
+					if (errorCode.equals("0000")) {
+						ArrayList<AdvanceBatchCode> bactchArray = new ArrayList<AdvanceBatchCode>();
+						bactchArray.clear();
+						for (int i = 0; i < batchCodeArray.length(); i++) {
+							JSONObject item = batchCodeArray.getJSONObject(i);
+							AdvanceBatchCode aa = new AdvanceBatchCode();
+							aa.setBatchCode(item.getString("batchCode"));
+							aa.setEndTime(formatEndtime(item
+									.getString("endTime")));
+							if (item.has("state")) {
+								aa.setState(item.getString("state"));
+							}
+							bactchArray.add(aa);
+							mIssueArray[mPlayIndex] = bactchArray;
+						}
+						Message msg = handler.obtainMessage();
+						msg.what = 2;
+						msg.obj = message;
+						handler.sendMessage(msg);
+					} else {
+						Message msg = handler.obtainMessage();
+						msg.what = 3;
+						msg.obj = message;
+						handler.sendMessage(msg);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	
+	/**
+	 * 下拉玩法切换对话框
+	 */
+	private void showPlayChangeDialog() {
+		mainPalySelectLayout.setVisibility(View.VISIBLE);
+		upLayersLayout.setVisibility(View.VISIBLE);
+		middleLayersLayout.setVisibility(View.VISIBLE);
+		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
+				R.anim.jc_top_menu_window_enter));
+		PublicMethod.setLayoutHeight(45, upLayersLayout, this);
+	}
+	
+	/**
+	 * 下拉期号选择对话框
+	 */
 	private void createIssueDialog() {
 		LinearLayout layoutMain = (LinearLayout)findViewById(R.id.jc_linear_check_all);
 		if (mIssueArray[mPlayIndex] != null && mIssueArray[mPlayIndex].size() > 0) {
@@ -288,65 +389,6 @@ public class FootBallMainActivity extends Activity {
 		return layoutOne;
 	}
 	
-	/**
-	 * 获取期号
-	 * @param Lotno
-	 */
-	private void getZCAdvanceBatchCodeData(final String Lotno) {
-		showDialog();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				advanceBatchCodeData = FootballInterface.getInstance().getAdvanceBatchCodeList(Lotno);
-				try {
-					JSONObject advanceBatchCode = new JSONObject(
-							advanceBatchCodeData);
-					String errorCode = advanceBatchCode.getString("error_code");
-					String message = advanceBatchCode.getString("message");
-					JSONArray batchCodeArray = null;
-					if (advanceBatchCode.has("result")) {
-						batchCodeArray = advanceBatchCode
-								.getJSONArray("result");
-					}
-					if (errorCode.equals("0047") || errorCode.equals("0000")) {
-						isShowState[mPlayIndex] = true;
-						if (batchCodeArray == null || batchCodeArray.length() == 0) {
-							handler.sendEmptyMessage(5);
-							return;
-						}
-					}
-					if (errorCode.equals("0000")) {
-						ArrayList<AdvanceBatchCode> bactchArray = new ArrayList<AdvanceBatchCode>();
-						bactchArray.clear();
-						for (int i = 0; i < batchCodeArray.length(); i++) {
-							JSONObject item = batchCodeArray.getJSONObject(i);
-							AdvanceBatchCode aa = new AdvanceBatchCode();
-							aa.setBatchCode(item.getString("batchCode"));
-							aa.setEndTime(formatEndtime(item
-									.getString("endTime")));
-							if (item.has("state")) {
-								aa.setState(item.getString("state"));
-							}
-							bactchArray.add(aa);
-							mIssueArray[mPlayIndex] = bactchArray;
-						}
-						Message msg = handler.obtainMessage();
-						msg.what = 2;
-						msg.obj = message;
-						handler.sendMessage(msg);
-					} else {
-						Message msg = handler.obtainMessage();
-						msg.what = 3;
-						msg.obj = message;
-						handler.sendMessage(msg);
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
-	
 	private String formatBatchCode(String batchCode) {
 		return "第" + batchCode + "期";
 	}
@@ -407,33 +449,6 @@ public class FootBallMainActivity extends Activity {
 		}
 	}
 
-	private class PlayChangeBtnClickListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			for (int i = 0; i < playBtn.length; i++) {
-				if (v.getId() == playBtn[i].getId()) {
-					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
-					playBtn[i].setTextColor(getResources().getColor(R.color.white));
-					mPlayIndex = i;
-					if (mIssueArray[mPlayIndex] == null) {
-						if (!isShowState[mPlayIndex]) {
-							getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
-						}
-						setShowState();
-					} else {
-						setIssue(mIssueIndexArray[mPlayIndex]);
-						initList();
-					}
-					setViewState();
-				} else {
-					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_normal);
-					playBtn[i].setTextColor(getResources().getColor(R.color.black));
-				}
-			}
-		}
-	}
-	
 	/**
 	 * 消息处理函数
 	 */
@@ -513,9 +528,12 @@ public class FootBallMainActivity extends Activity {
 			}
 			break;	
 		}
-		AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex]
-				.get(mIssueIndexArray[mPlayIndex]);
-		mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
+		
+		if (mIssueArray[mPlayIndex] != null) {
+			AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex]
+					.get(mIssueIndexArray[mPlayIndex]);
+			mFootBallAdapters[mPlayIndex].mIssueState = adBatchCode.getState().trim();
+		}
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 		titleView.setText(mStringId[mPlayIndex]);
 	}

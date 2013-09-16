@@ -124,7 +124,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (OrderDetails.isAlert) {
+				if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE) {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 					} else {
@@ -290,12 +290,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		}
-		/** add by yejc 20130510 end */
-		/** close by yejc 20130510 start */
-		// betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-		// betAndGift.getAmt() * 100));
-		/** close by yejc 20130510 end */
-
 	}
 
 	/**
@@ -517,7 +511,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 				break;
 			}
 			/**add by yejc 20130510 end*/
-			if (OrderDetails.isAlert) {
+			if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE ) {
 				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 					alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
 				} else {
