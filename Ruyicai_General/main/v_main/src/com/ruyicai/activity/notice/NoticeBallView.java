@@ -527,7 +527,7 @@ public class NoticeBallView extends View {
 		bitBlackBall = getBitmapFromRes(R.drawable.notice_ball_black, WITH,
 				WITH);
 		downSelectButton = getBitmapFromRes(R.drawable.down_select_button,
-				(int)(SECOND_WITH /1.7), WITH);
+				(int) (SECOND_WITH / 1.7), WITH);
 		bitNmk3Ico = getBitmapFromRes(R.drawable.nmk3_jiaoico,
 				(int) (WITH / 1.8), (int) (WITH / 1.8));
 	}
@@ -876,23 +876,24 @@ public class NoticeBallView extends View {
 				String hundredPartStr = "";
 				String decadePartStr = "";
 				String unitPartStr = "";
-//				for (int i = 0; i < ballsChcekOne.size(); i++) {
-//					if (((iGameType.equals("gd11-5") || iGameType
-//							.equals("11-5")) && isBeforeThree)) {
-//						int method = ((NoticeBallActivity) context).oneSelectButtonSpinner
-//								.getSelectedItemPosition();
-//						int part = ballsChcekOne.get(i).getPart();
-//						if (method == 0) {
-//							if (part == 1 || part == 2) {
-//								ballsChcekOne.remove(ballsChcekOne.get(i));
-//							}
-//						} else if (method == 1 || method == 3) {
-//							if (part == 2) {
-//								ballsChcekOne.remove(ballsChcekOne.get(i));
-//							}
-//						}
-//					}
-//				}
+				// for (int i = 0; i < ballsChcekOne.size(); i++) {
+				// if (((iGameType.equals("gd11-5") || iGameType
+				// .equals("11-5")) && isBeforeThree)) {
+				// int method = ((NoticeBallActivity)
+				// context).oneSelectButtonSpinner
+				// .getSelectedItemPosition();
+				// int part = ballsChcekOne.get(i).getPart();
+				// if (method == 0) {
+				// if (part == 1 || part == 2) {
+				// ballsChcekOne.remove(ballsChcekOne.get(i));
+				// }
+				// } else if (method == 1 || method == 3) {
+				// if (part == 2) {
+				// ballsChcekOne.remove(ballsChcekOne.get(i));
+				// }
+				// }
+				// }
+				// }
 
 				for (int i = 0; i < ballsChcekOne.size(); i++) {
 					if (((iGameType.equals("gd11-5") || iGameType
@@ -972,23 +973,24 @@ public class NoticeBallView extends View {
 				String decadePartStr = "";
 				String unitPartStr = "";
 
-//				for (int i = 0; i < ballsChcekTwo.size(); i++) {
-//					if (((iGameType.equals("gd11-5") || iGameType
-//							.equals("11-5")) && isBeforeThree)) {
-//						int method = ((NoticeBallActivity) context).twoSelectButtonSpinner
-//								.getSelectedItemPosition();
-//						int part = ballsChcekTwo.get(i).getPart();
-//						if (method == 0) {
-//							if (part == 1 || part == 2) {
-//								ballsChcekTwo.remove(ballsChcekTwo.get(i));
-//							}
-//						} else if (method == 1 || method == 3) {
-//							if (part == 2) {
-//								ballsChcekTwo.remove(ballsChcekTwo.get(i));
-//							}
-//						}
-//					}
-//				}
+				// for (int i = 0; i < ballsChcekTwo.size(); i++) {
+				// if (((iGameType.equals("gd11-5") || iGameType
+				// .equals("11-5")) && isBeforeThree)) {
+				// int method = ((NoticeBallActivity)
+				// context).twoSelectButtonSpinner
+				// .getSelectedItemPosition();
+				// int part = ballsChcekTwo.get(i).getPart();
+				// if (method == 0) {
+				// if (part == 1 || part == 2) {
+				// ballsChcekTwo.remove(ballsChcekTwo.get(i));
+				// }
+				// } else if (method == 1 || method == 3) {
+				// if (part == 2) {
+				// ballsChcekTwo.remove(ballsChcekTwo.get(i));
+				// }
+				// }
+				// }
+				// }
 
 				for (int i = 0; i < ballsChcekTwo.size(); i++) {
 
@@ -1491,13 +1493,14 @@ public class NoticeBallView extends View {
 							canvas.drawText(selectText, FIRST_WITH
 									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
-								if(selectButtonList.size() < 2){
-									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 20, i * WITH,
-											SECOND_WITH / 2, WITH, i + 1, "3");
+								if (selectButtonList.size() < 2) {
+									BallPosition ball = new BallPosition(
+											FIRST_WITH - SECOND_WITH - 20, i
+													* WITH, SECOND_WITH / 2,
+											WITH, i + 1, "3");
 									selectButtonList.add(ball);
 								}
-							
+
 							}
 						} else if (i == 2) {
 							switch (((NoticeBallActivity) context).twoSelectButtonSpinner
@@ -1525,15 +1528,16 @@ public class NoticeBallView extends View {
 							canvas.drawText(selectText, FIRST_WITH
 									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
-								if(selectButtonList.size() < 2){
-									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 20, i * WITH,
-											SECOND_WITH / 2, WITH, i + 1, "3");
+								if (selectButtonList.size() < 2) {
+									BallPosition ball = new BallPosition(
+											FIRST_WITH - SECOND_WITH - 20, i
+													* WITH, SECOND_WITH / 2,
+											WITH, i + 1, "3");
 									selectButtonList.add(ball);
 								}
 							}
 						}
-					
+
 					}
 				} else {
 					// 绘制背景图片
@@ -1586,13 +1590,14 @@ public class NoticeBallView extends View {
 							canvas.drawText(selectText, FIRST_WITH
 									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
-								if(selectButtonList.size() < 2){
-									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 20, i * WITH,
-											SECOND_WITH / 2, WITH, i, "5");
+								if (selectButtonList.size() < 2) {
+									BallPosition ball = new BallPosition(
+											FIRST_WITH - SECOND_WITH - 20, i
+													* WITH, SECOND_WITH / 2,
+											WITH, i, "5");
 									selectButtonList.add(ball);
 								}
-							
+
 							}
 
 						} else if (i == 1) {
@@ -1625,13 +1630,14 @@ public class NoticeBallView extends View {
 							canvas.drawText(selectText, FIRST_WITH
 									- SECOND_WITH - 15, i * WITH + height, p);
 							if (isFirstDraw) {
-								if(selectButtonList.size() < 2){
-									BallPosition ball = new BallPosition(FIRST_WITH
-											- SECOND_WITH - 20, i * WITH,
-											SECOND_WITH / 2, WITH, i, "5");
+								if (selectButtonList.size() < 2) {
+									BallPosition ball = new BallPosition(
+											FIRST_WITH - SECOND_WITH - 20, i
+													* WITH, SECOND_WITH / 2,
+											WITH, i, "5");
 									selectButtonList.add(ball);
 								}
-						
+
 							}
 						}
 					}
@@ -2082,8 +2088,8 @@ public class NoticeBallView extends View {
 									.equals("11-5")) && isBeforeThree)) {
 								canvas.drawText(PublicMethod.isTen(balls[m]),
 										(FIRST_WITH + j * WITH + with)
-												+ (row * WITH * m), WITH
-												+ i * WITH + height, p);
+												+ (row * WITH * m), WITH + i
+												* WITH + height, p);
 							} else {
 								canvas.drawText("" + balls[m], (FIRST_WITH + j
 										* WITH + with)
@@ -2127,8 +2133,8 @@ public class NoticeBallView extends View {
 		}
 		/** modify by pengcx 20130812 end */
 	}
-	
-	public void resetSelect(){
+
+	public void resetSelect() {
 		ballsChcekOne.clear();
 		ballsChcekTwo.clear();
 	}

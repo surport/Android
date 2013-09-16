@@ -2545,6 +2545,13 @@ public class NoticeBallActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 		clearSelectedBall();
+		
+		textRedCodeOne.setText("请点击选号一小球选取号码");
+		textBlueCodeOne.setText("");
+		textRedCodeTwo.setText("请点击选号二小球选取号码");
+		textBlueCodeTwo.setText("");
+		textThreeCodeOne.setText("");
+		textThreeCodeTwo.setText("");
 	}
 
 	private void clearSelectedBall() {
