@@ -19,6 +19,10 @@ public class FootBall4CJQAdapter extends FootBall6CBAdapter {
 
 	private String titles[] = { "0", "1", "2", "3+", "0", "1", "2", "3+" };
 
+	public FootBall4CJQAdapter(Context context) {
+		super(context);
+	}
+	
 	public FootBall4CJQAdapter(Context context, List<TeamInfo> list) {
 		super(context);
 		this.mTeamList = list;

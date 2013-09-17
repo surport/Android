@@ -78,9 +78,6 @@ public class FootBallMainActivity extends Activity {
 	private String[] mLotnoArray = {Constants.LOTNO_SFC, Constants.LOTNO_RX9, 
 			Constants.LOTNO_LCB, Constants.LOTNO_JQC};
 	private ProgressDialog progressdialog;
-	private String advanceBatchCodeData;
-	private JSONObject obj;
-	private String re;
 	private Context mContext;
 	private MyButton[] myBtns;
 	private int[] mBgId= {R.drawable.jc_main_team_select_normal, R.drawable.jc_main_team_select_click};
@@ -125,11 +122,12 @@ public class FootBallMainActivity extends Activity {
 				playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
 				playBtn[i].setTextColor(getResources().getColor(R.color.white));
 				titleView.setText(mStringId[i]);
-				if (mIssueArray[mPlayIndex] == null) {
-					if (!isShowState[mPlayIndex]) {
+				if (!isShowState[mPlayIndex]) {
+					if (mIssueArray[mPlayIndex] == null) {
 						getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+					} else {
+						getTeamInfo(0);
 					}
-					setShowState();
 				} else {
 					initList();
 				}
@@ -198,11 +196,12 @@ public class FootBallMainActivity extends Activity {
 					playBtn[i].setBackgroundResource(R.drawable.beijing_playmethodbutton_click);
 					playBtn[i].setTextColor(getResources().getColor(R.color.white));
 					mPlayIndex = i;
-					if (mIssueArray[mPlayIndex] == null) {
-						if (!isShowState[mPlayIndex]) {
+					if (!isShowState[mPlayIndex]) {
+						if (mIssueArray[mPlayIndex] == null) {
 							getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+						} else {
+							getTeamInfo(0);
 						}
-						setShowState();
 					} else {
 						setIssue(mIssueIndexArray[mPlayIndex]);
 						initList();
@@ -225,12 +224,14 @@ public class FootBallMainActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				advanceBatchCodeData = FootballInterface.getInstance().getAdvanceBatchCodeList(Lotno);
+				String advanceBatchCodeData = FootballInterface.getInstance().getAdvanceBatchCodeList(Lotno);
+				String errorCode = "";
+				String message = "";
 				try {
 					JSONObject advanceBatchCode = new JSONObject(
 							advanceBatchCodeData);
-					String errorCode = advanceBatchCode.getString("error_code");
-					String message = advanceBatchCode.getString("message");
+					errorCode = advanceBatchCode.getString("error_code");
+					message = advanceBatchCode.getString("message");
 					JSONArray batchCodeArray = null;
 					if (advanceBatchCode.has("result")) {
 						batchCodeArray = advanceBatchCode
@@ -259,14 +260,13 @@ public class FootBallMainActivity extends Activity {
 							mIssueArray[mPlayIndex] = bactchArray;
 						}
 						msg.what = 2;
-						msg.obj = message;
 					} else {
 						msg.what = 3;
 						msg.obj = message;
 					}
 					handler.sendMessage(msg);
 				} catch (JSONException e) {
-					dismissDialog();
+					handler.sendEmptyMessage(0);
 					e.printStackTrace();
 				}
 			}
@@ -370,6 +370,7 @@ public class FootBallMainActivity extends Activity {
 					int which = (Integer)((MyButton)v).getTag();
 					mIssueIndexArray[mPlayIndex] = which;
 					if (mIssueArray[mPlayIndex] == null) {
+						getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
 						return;
 					}
 					AdvanceBatchCode batchCode = (AdvanceBatchCode)mIssueArray[mPlayIndex].get(which);
@@ -454,19 +455,24 @@ public class FootBallMainActivity extends Activity {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
+				initList();
 				dismissDialog();
-				Toast.makeText(getBaseContext(), "网络异常！", Toast.LENGTH_LONG)
+				setIssue(mIssueIndexArray[mPlayIndex]);
+				Toast.makeText(getBaseContext(), "数据解析异常！", Toast.LENGTH_LONG)
 						.show();
 				break;
 			case 1:
 				initList();
+				isShowState[mPlayIndex] = true;
 				dismissDialog();
 				break;
 			case 2:
 				getTeamInfo(0);
 				break;
 			case 3:
+				initList();
 				dismissDialog();
+				setIssue(mIssueIndexArray[mPlayIndex]);
 				Toast.makeText(getBaseContext(), msg.obj + "",
 						Toast.LENGTH_SHORT).show();
 				break;
@@ -475,7 +481,7 @@ public class FootBallMainActivity extends Activity {
 				FootballContantDialog.alertIssueNOFQueue(mContext);
 				break;
 			case 5:
-				setShowState();
+				setMainLayoutState();
 				dismissDialog();
 				break;
 			}
@@ -505,29 +511,29 @@ public class FootBallMainActivity extends Activity {
 		switch (mPlayIndex) {
 		case 0:
 			if (mFootBallAdapters[0] == null) {
-				mFootBallAdapters[0] = new FootBallSFAdapter(this, mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[0] = new FootBallSFAdapter(this);
 			}
 			break;
 			
 		case 1:
 			if (mFootBallAdapters[1] == null) {
-				mFootBallAdapters[1] = new FootBallRX9Adapter(this, mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[1] = new FootBallRX9Adapter(this);
 			}
 			break;
 			
 		case 2:
 			if (mFootBallAdapters[2] == null) {
-				mFootBallAdapters[2] = new FootBall6CBAdapter(this, mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[2] = new FootBall6CBAdapter(this);
 			}
 			break;
 			
 		case 3:
 			if (mFootBallAdapters[3] == null) {
-				mFootBallAdapters[3] = new FootBall4CJQAdapter(this, mTeamInfoLists[mPlayIndex]);
+				mFootBallAdapters[3] = new FootBall4CJQAdapter(this);
 			}
 			break;	
 		}
-		
+		mFootBallAdapters[mPlayIndex].setList(mTeamInfoLists[mPlayIndex]);
 		if (mIssueArray[mPlayIndex] != null) {
 			AdvanceBatchCode adBatchCode = (AdvanceBatchCode) mIssueArray[mPlayIndex]
 					.get(mIssueIndexArray[mPlayIndex]);
@@ -535,12 +541,12 @@ public class FootBallMainActivity extends Activity {
 		}
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 		titleView.setText(mStringId[mPlayIndex]);
-		isShowState[mPlayIndex] = true;
 	}
 	
 	private void getTeamInfo(int index) {
 		if (mIssueArray[mPlayIndex] == null) {
 			getZCAdvanceBatchCodeData(mLotnoArray[mPlayIndex]);
+			return;
 		}
 		int tempIndex = 0;
 		for (int i = 0; i < mIssueArray[mPlayIndex].size(); i++) {
@@ -565,6 +571,9 @@ public class FootBallMainActivity extends Activity {
 			currentIssue = batchMsg.getBatchCode().trim();
 			layout_football_issue.setText(formatBatchCode(currentIssue));
 			layout_football_time.setText(batchMsg.getEndTime());
+		} else {
+			layout_football_issue.setText("");
+			layout_football_time.setText("");
 		}
 	}
 	
@@ -576,12 +585,19 @@ public class FootBallMainActivity extends Activity {
 			@Override
 			public void run() {
 				String error_code = "00";
-				re = FootballInterface.getInstance().getZCData(lotno, batchCode);
+				String message = "";
+				String re = FootballInterface.getInstance().getZCData(lotno, batchCode);
 				try {
-					obj = new JSONObject(re);
+					JSONObject obj = new JSONObject(re);
 					error_code = obj.getString("error_code");
+					message = obj.getString("message");
+					Message msg = handler.obtainMessage();
 					if (error_code.equals("0000")) {
 						JSONArray result = obj.getJSONArray("result");
+						if(result == null || result.length() == 0) {
+							handler.sendEmptyMessage(5);
+							return;
+						}
 						if (mTeamInfoLists[mPlayIndex] == null) {
 							mTeamInfoLists[mPlayIndex] = new ArrayList();
 						}
@@ -599,21 +615,17 @@ public class FootBallMainActivity extends Activity {
 							team.setGuestOdds(json.getString("guestWinAverageOuPei"));
 							mTeamInfoLists[mPlayIndex].add(team);
 						}
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					Message msg = new Message();
-					if (error_code.equals("0000")) {
 						msg.what = 1;
-						handler.sendMessage(msg);
-					} else if (error_code.equals("200005")) {
+					} else if (error_code.equals("200005")){
 						msg.what = 4;
-						handler.sendMessage(msg);
 					} else {
-						msg.what = 0;
-						handler.sendMessage(msg);
+						msg.what = 3;
+						msg.obj = message;
 					}
+					handler.sendMessage(msg);
+				} catch (Exception e) {
+					handler.sendEmptyMessage(0);
+					e.printStackTrace();
 				}
 			}
 		}).start();
@@ -835,13 +847,8 @@ public class FootBallMainActivity extends Activity {
 		layoutParentLuck.setVisibility(View.GONE);
 	}
 	
-	private void setShowState() {
-		if (isShowState[mPlayIndex]) {
-			footBallList.setVisibility(View.GONE);
-			noGamePrompt.setVisibility(View.VISIBLE);
-		} else {
-			footBallList.setVisibility(View.VISIBLE);
-			noGamePrompt.setVisibility(View.GONE);
-		}
+	private void setMainLayoutState() {
+		footBallList.setVisibility(View.GONE);
+		noGamePrompt.setVisibility(View.VISIBLE);
 	}
 }

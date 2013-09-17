@@ -35,6 +35,10 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 		initColor();
 	}
 	
+	public void setList(List<TeamInfo> list) {
+		this.mTeamList = list;
+	}
+	
 	protected abstract int getZhuShu();
 	protected abstract void clearSelected();
 	protected abstract String getZhuMa();

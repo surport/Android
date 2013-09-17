@@ -16,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class FootBallRX9Adapter extends FootBallSFAdapter{
+	
+	public FootBallRX9Adapter(Context context) {
+		super(context);
+	}
+	
 	public FootBallRX9Adapter(Context context, List<TeamInfo> list) {
 		super(context);
 		this.mTeamList = list;
