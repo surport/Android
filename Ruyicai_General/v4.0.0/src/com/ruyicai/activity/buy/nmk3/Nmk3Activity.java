@@ -38,8 +38,7 @@ public class Nmk3Activity extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		// 获取彩种的期号和上期的开奖号码等信息
 		setIssue();
-		// 获取上期开奖号码
-		setlastbatchcode(Constants.LOTNO_NMK3);
+		refreshBtn.setVisibility(View.VISIBLE);
 		relativeLayout1.setVisibility(View.GONE);
 		betInfoTextView.setVisibility(View.VISIBLE);
 	}

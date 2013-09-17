@@ -411,7 +411,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		initLatestLotteryList();
 	}
 
-	private void initLatestLotteryList() {
+	public void initLatestLotteryList() {
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 
