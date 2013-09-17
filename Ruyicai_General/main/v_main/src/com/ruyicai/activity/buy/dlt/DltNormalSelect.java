@@ -14,6 +14,7 @@ import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
+import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.code.dlt.DltNormalSelectCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.json.miss.DltMissJson;
@@ -41,6 +42,7 @@ public class DltNormalSelect extends ZixuanActivity {
 	DltNormalSelectCode dltNormalcode = new DltNormalSelectCode();
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddViewMiss(((Dlt)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		setCode(dltNormalcode);
 		setIsTen(true);

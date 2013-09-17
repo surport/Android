@@ -14,6 +14,7 @@ import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
+import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.code.fc3d.F3dZiHeZhiCode;
 import com.ruyicai.code.fc3d.Fc3dZiZuXuanCode;
@@ -54,6 +55,7 @@ public class FC3DZuLiu extends ZixuanActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setAddViewMiss(((Fc3d) getParent()).addView);
 		super.onCreate(savedInstanceState);
 		init();
 	}

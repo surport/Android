@@ -19,6 +19,7 @@ import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZixuanActivity;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
+import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.code.fc3d.F3dZiHeZhiCode;
 import com.ruyicai.code.fc3d.Fc3dZiZuXuanCode;
@@ -49,6 +50,7 @@ public class FC3DZuSan extends ZixuanActivity implements
 	BallTable twoBallTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddViewMiss(((Fc3d)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		topLinear = (LinearLayout) findViewById(R.id.buy_zixuan_linear_top);
 		topLinear.setVisibility(LinearLayout.VISIBLE);

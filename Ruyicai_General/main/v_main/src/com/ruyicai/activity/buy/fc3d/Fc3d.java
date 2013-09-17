@@ -6,6 +6,7 @@ package com.ruyicai.activity.buy.fc3d;
 import android.os.Bundle;
 
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.constant.Constants;
 import com.umeng.analytics.MobclickAgent;
 
@@ -22,6 +23,8 @@ public class Fc3d extends BuyActivityGroup {
 	private Class[] allId = { FC3DZhiXuan.class, FC3DZuSan.class,
 			FC3DZuLiu.class };
 
+	public AddViewMiss addView = new AddViewMiss(this);
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setLotno(Constants.LOTNO_FC3D);
@@ -30,6 +33,10 @@ public class Fc3d extends BuyActivityGroup {
 		setlastbatchcode(Constants.LOTNO_FC3D);
 		MobclickAgent.onEvent(this, "fucai3d"); // BY贺思明 点击首页的“福彩3D”图标
 		MobclickAgent.onEvent(this, "fucaigoucaijiemian");// BY贺思明 福彩购彩页面
+	}
+	
+	private void updateAddMissViewNum() {
+		addView.updateTextNum();
 	}
 
 	public boolean getIsLuck() {
