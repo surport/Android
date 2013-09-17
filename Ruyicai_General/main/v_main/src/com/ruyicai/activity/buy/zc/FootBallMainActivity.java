@@ -47,7 +47,6 @@ import android.widget.Toast;
 
 public class FootBallMainActivity extends Activity {
 	public String currentIssue;
-	private String sessionid, phonenum, userno;
 	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
 	private Button layout_football_issue;
 	private TextView layout_football_time;
@@ -129,6 +128,7 @@ public class FootBallMainActivity extends Activity {
 						getTeamInfo(0);
 					}
 				} else {
+					setIssue(mIssueIndexArray[mPlayIndex]);
 					initList();
 				}
 				setViewState();
@@ -672,9 +672,9 @@ public class FootBallMainActivity extends Activity {
 	
 	private void initBetPojo() {
 		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
-		sessionid = pre.getStringValue("sessionid");
-		phonenum = pre.getStringValue("phonenum");
-		userno = pre.getStringValue("userno");
+		String sessionid = pre.getStringValue("sessionid");
+		String phonenum = pre.getStringValue("phonenum");
+		String userno = pre.getStringValue("userno");
 		betPojo.setPhonenum(phonenum);
 		betPojo.setSessionid(sessionid);
 		betPojo.setUserno(userno);
@@ -694,7 +694,7 @@ public class FootBallMainActivity extends Activity {
 		}
 		int iZhuShu = mFootBallAdapters[mPlayIndex].getZhuShu();// 注数是注数*倍数的结果
 		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
-		sessionid = pre.getStringValue("sessionid");
+		String sessionid = pre.getStringValue("sessionid");
 		if (sessionid == null || sessionid.equals("")) {
 			Intent intentSession = new Intent(this, UserLogin.class);
 			startActivityForResult(intentSession, 0);
@@ -745,20 +745,16 @@ public class FootBallMainActivity extends Activity {
 	 * 提示信息
 	 */
 	public void changeTextSumMoney(int iZhuShu) {
-		StringBuffer touzhuAlert = new StringBuffer();
 		if (iZhuShu != 0) {
+			StringBuffer touzhuAlert = new StringBuffer();
 			if (toast == null) {
-				touzhuAlert.append("共").append(iZhuShu).append("注，共")
-						.append((iZhuShu * 2)).append("元");
-				toast = Toast.makeText(this,
-						touzhuAlert.toString(), Toast.LENGTH_SHORT);
-				toast.show();
-			} else {
-				touzhuAlert.append("共").append(iZhuShu).append("注，共")
-						.append((iZhuShu * 2)).append("元");
-				toast.setText(touzhuAlert.toString());
-				toast.show();
+				toast = Toast.makeText(this, touzhuAlert.toString(),
+						Toast.LENGTH_SHORT);
 			}
+			touzhuAlert.append("共").append(iZhuShu).append("注，共")
+					.append((iZhuShu * 2)).append("元");
+			toast.setText(touzhuAlert.toString());
+			toast.show();
 		}
 	}
 	
