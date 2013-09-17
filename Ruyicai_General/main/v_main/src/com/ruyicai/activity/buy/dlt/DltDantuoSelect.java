@@ -48,6 +48,7 @@ public class DltDantuoSelect extends ZixuanActivity {
 	DltDantuoSelectCode dltDantuocode = new DltDantuoSelectCode();
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddViewMiss(((Dlt)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		setCode(dltDantuocode);
 		setIsTen(true);

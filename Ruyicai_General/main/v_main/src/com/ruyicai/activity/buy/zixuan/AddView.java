@@ -59,6 +59,35 @@ public class AddView {
 	private String isJXcode = "";
 	private final int MAX_ZHU = 10000;// 最大金额不能超过2万
 
+	
+	public void setZiXuan(boolean isZiXuan) {
+		this.isZiXuan = isZiXuan;
+	}
+
+	public ZixuanActivity getzXActivity() {
+		return zXActivity;
+	}
+
+	public void setzXActivity(ZixuanActivity zXActivity) {
+		this.zXActivity = zXActivity;
+	}
+
+	public DanshiJiXuan getjXActivity() {
+		return jXActivity;
+	}
+
+	public void setjXActivity(DanshiJiXuan jXActivity) {
+		this.jXActivity = jXActivity;
+	}
+
+	public ZixuanAndJiXuan getzJActivity() {
+		return zJActivity;
+	}
+
+	public void setzJActivity(ZixuanAndJiXuan zJActivity) {
+		this.zJActivity = zJActivity;
+	}
+
 	/**
 	 * 参数为幸运选号 的构造函数
 	 * 
@@ -98,6 +127,8 @@ public class AddView {
 		updateTextNum();
 
 	}
+	
+	
 
 	/**
 	 * 刷新号码篮个数
@@ -106,6 +137,22 @@ public class AddView {
 		if (textNum != null) {
 			textNum.setText("" + codeList.size());
 		}
+	}
+	
+	public Context getContext() {
+		return context;
+	}
+
+	public void setContext(Context context) {
+		this.context = context;
+	}
+
+	public TextView getTextNum() {
+		return textNum;
+	}
+
+	public void setTextNum(TextView textNum) {
+		this.textNum = textNum;
 	}
 
 	/**

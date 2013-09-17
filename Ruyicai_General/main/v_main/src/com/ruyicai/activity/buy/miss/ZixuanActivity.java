@@ -120,10 +120,15 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	protected int ALL_ZHU = 99;
 	private final static String ERROR_WIN = "0000";
 	private final int UP = 30;
+	private TextView textNum;
 
 	protected ViewPager viewPagerContainer;
 	// 缓存需要左右滑动的视图群的列表容器
 	public List<GalleryViewItem> itemViewArray = new ArrayList<GalleryViewItem>();
+
+	protected void setAddViewMiss(AddViewMiss addView) {
+		this.addView = addView;
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -187,12 +192,16 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		editZhuma = (EditText) findViewById(R.id.buy_zixuan_edit_zhuma);
 		mTextSumMoney.setText(getResources().getString(
 				R.string.please_choose_number));
-		final TextView textNum = (TextView) findViewById(R.id.buy_zixuan_add_text_num);
+		textNum = (TextView) findViewById(R.id.buy_zixuan_add_text_num);
 		Button add_dialog = (Button) findViewById(R.id.buy_zixuan_img_add_delet);
-		//ApplicationAddview app = (ApplicationAddview) getApplicationContext();
-		//AddViewMiss  app.getAddview();
-		//addView = app.getAddviewmiss();
-		addView = new AddViewMiss(textNum, this);
+		// ApplicationAddview app = (ApplicationAddview)
+		// getApplicationContext();
+		// AddViewMiss app.getAddview();
+		// addView = app.getAddviewmiss();
+//		addView = new AddViewMiss(textNum, this);
+		addView.setTextNum(textNum);
+		addView.setzXActivity(this);
+		addView.updateTextNum();
 		add_dialog.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -32,6 +32,7 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 	BallTable blueBallTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddViewMiss(((Ssq)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");

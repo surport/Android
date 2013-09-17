@@ -49,6 +49,7 @@ public class AddViewMiss {
 	private View view;
 	private ListView listView;
 	private TextView textNum;
+	private List<TextView> textNums;
 	private AddListAdapter listAdapter;
 	private TextView infoText;
 	ZixuanActivity zXActivity;
@@ -65,9 +66,34 @@ public class AddViewMiss {
 	public AddViewMiss(LuckChoose2 luckChoose2) {
 		this.context = luckChoose2.getContext();
 	}
-    
+
 	public AddViewMiss(Context context) {
 		this.context = context;
+		textNums = new ArrayList<TextView>();
+	}
+
+	public TextView getTextNum() {
+		return textNum;
+	}
+
+	public void setTextNum(TextView textNum) {
+		textNums.add(textNum);
+	}
+
+	public ZixuanActivity getzXActivity() {
+		return zXActivity;
+	}
+
+	public void setzXActivity(ZixuanActivity zXActivity) {
+		this.zXActivity = zXActivity;
+	}
+
+	public ZixuanAndJiXuan getzJActivity() {
+		return zJActivity;
+	}
+
+	public void setzJActivity(ZixuanAndJiXuan zJActivity) {
+		this.zJActivity = zJActivity;
 	}
 
 	public AddViewMiss(TextView textNum, ZixuanActivity zixuan) {
@@ -102,8 +128,11 @@ public class AddViewMiss {
 	 * 刷新号码篮个数
 	 */
 	public void updateTextNum() {
-		if (textNum != null) {
-			textNum.setText("" + codeList.size());
+		if (textNums.size() != 0) {
+			for (int i = 0; i < textNums.size(); i++) {
+				((TextView) textNums.get(i)).setText("" + codeList.size());
+			}
+
 		}
 	}
 
