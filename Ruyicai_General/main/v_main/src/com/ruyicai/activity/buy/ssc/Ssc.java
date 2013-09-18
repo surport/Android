@@ -16,6 +16,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.HighFrequencyNoticeHistroyActivity;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
+import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -33,6 +34,7 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 			SscThreeStar.class, SscFiveStar.class, SscBigSmall.class };
 	private MyHandler handler = new MyHandler(this);
 	private boolean isRun = true;// 线程是否运行变量
+	public AddView addView = new AddView(context);
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,6 +47,7 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		setlastbatchcode(Constants.LOTNO_SSC);
 		time = (TextView) findViewById(R.id.layout_main_text_timessc);
 		time.setVisibility(View.VISIBLE);
+		refreshBtn.setVisibility(View.VISIBLE);
 		init(titles, topTitles, allId);
 		mTabHost.setCurrentTab(2);
 		setIssue();
@@ -52,6 +55,10 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 		relativeLayout1.setVisibility(View.GONE);
 		betInfoTextView.setVisibility(View.VISIBLE);
+	}
+	
+	private void updateAddMissViewNum() {
+		addView.updateTextNum();
 	}
 
 	public void turnHosity() {

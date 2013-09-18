@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.miss.AddViewMiss;
+import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.util.PublicMethod;
@@ -22,12 +24,14 @@ public class Nmk3Activity extends BuyActivityGroup {
 	private int lesstime = 0;
 	public static String batchCode;
 	private String[] titles = { "和值", "三同号", "二同号", "不同号", "三连号" };
-	/**modify by pengcx 20130517 start*/
+	/** modify by pengcx 20130517 start */
 	private String[] topTitles = { "快三", "快三", "快三", "快三", "快三", "快三" };
-	/**modify by pengcx 20130517 end*/
+	/** modify by pengcx 20130517 end */
 	private Class[] allId = { Nmk3HeZhiActivity.class,
 			Nmk3ThreeSameActivty.class, Nmk3TwoSameActivty.class,
 			Nmk3DiffActivity.class, Nmk3ThreeLinkActivity.class };
+
+	public AddView addView = new AddView(this);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,13 @@ public class Nmk3Activity extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		// 获取彩种的期号和上期的开奖号码等信息
 		setIssue();
-		// 获取上期开奖号码
-		setlastbatchcode(Constants.LOTNO_NMK3);
+		refreshBtn.setVisibility(View.VISIBLE);
 		relativeLayout1.setVisibility(View.GONE);
 		betInfoTextView.setVisibility(View.VISIBLE);
+	}
+
+	private void updateAddMissViewNum() {
+		addView.updateTextNum();
 	}
 
 	/**
