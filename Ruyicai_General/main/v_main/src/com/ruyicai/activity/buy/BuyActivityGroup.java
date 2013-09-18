@@ -174,11 +174,17 @@ public class BuyActivityGroup extends ActivityGroup {
 		imgIcon.setVisibility(View.VISIBLE);
 		/* Add by fansm 20130417 start */
 		refreshBtn = (Button) findViewById(R.id.refresh_code);
+		refreshBtn.setVisibility(View.VISIBLE);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
 		refreshBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				((com.ruyicai.activity.buy.high.ZixuanAndJiXuan) getCurrentActivity())
-						.initLatestLotteryList();
+				if (getCurrentActivity() instanceof com.ruyicai.activity.buy.high.ZixuanAndJiXuan) {
+					((com.ruyicai.activity.buy.high.ZixuanAndJiXuan) getCurrentActivity())
+							.initLatestLotteryList();
+				} else {
+					setlastbatchcode(lotNo);
+				}
+
 			}
 		});
 		/* Add by fansm 20130417 end */

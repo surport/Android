@@ -36,6 +36,7 @@ import com.ruyicai.activity.usercenter.WinPrizeActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.net.newtransaction.BetQueryInterface;
+import com.ruyicai.net.newtransaction.GiftQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -106,26 +107,31 @@ public class BettingSuccessActivity extends Activity {
 
 	final Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
+			dialog.dismiss();
 			switch (msg.what) {
 			case 1:
-				dialog.dismiss();
+
 				Toast.makeText(BettingSuccessActivity.this, (String) msg.obj,
 						Toast.LENGTH_LONG).show();
 				break;
 			case 2:
-				dialog.dismiss();
 				Intent intent = new Intent(BettingSuccessActivity.this,
 						WinPrizeActivity.class);
 				intent.putExtra("winjson", (String) msg.obj);
 				startActivity(intent);
 				break;
 			case 4:
-				dialog.dismiss();
 				Intent intentbet = new Intent(BettingSuccessActivity.this,
 						BetQueryActivity.class);
 				intentbet.putExtra("betjson", (String) msg.obj);
 				startActivity(intentbet);
 				break;
+
+			case 5:
+				Intent intentgift = new Intent(BettingSuccessActivity.this,
+						GiftQueryActivity.class);
+				intentgift.putExtra("giftjson", (String) msg.obj);
+				startActivity(intentgift);
 			}
 		}
 	};
@@ -279,6 +285,44 @@ public class BettingSuccessActivity extends Activity {
 					Intent intent = new Intent(BettingSuccessActivity.this,
 							JoinCheckActivity.class);
 					startActivity(intent);
+				} else if (pageInt == PRESENT) {
+					showDialog(0);
+					new Thread(new Runnable() {
+						public void run() {
+							String userno = shellRW
+									.getStringValue(ShellRWConstants.USERNO);
+							String sessionid = shellRW
+									.getStringValue(ShellRWConstants.SESSIONID);
+							String phonenum = shellRW
+									.getStringValue(ShellRWConstants.PHONENUM);
+							BetAndWinAndTrackAndGiftQueryPojo giftQueryPojo = new BetAndWinAndTrackAndGiftQueryPojo();
+							giftQueryPojo.setUserno(userno);
+							giftQueryPojo.setSessionid(sessionid);
+							giftQueryPojo.setPhonenum(phonenum);
+							giftQueryPojo.setPageindex("1");
+							giftQueryPojo.setMaxresult("10");
+							giftQueryPojo.setType("gift");
+
+							Message msg = new Message();
+							String jsonString = GiftQueryInterface
+									.getInstance().giftQuery(giftQueryPojo);
+							try {
+								JSONObject aa = new JSONObject(jsonString);
+								String errcode = aa.getString("error_code");
+								String message = aa.getString("message");
+								if (errcode.equals("0047")) {
+									msg.what = 1;
+									msg.obj = message;
+									handler.sendMessage(msg);
+								} else if (errcode.equals("0000")) {
+									msg.what = 5;
+									msg.obj = jsonString;
+									handler.sendMessage(msg);
+								}
+							} catch (Exception e) {
+							}
+						}
+					}).start();
 				} else {
 					showDialog(0);
 					new Thread(new Runnable() {

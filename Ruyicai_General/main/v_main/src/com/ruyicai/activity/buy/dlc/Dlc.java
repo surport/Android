@@ -239,7 +239,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		refreshBtn.setVisibility(View.VISIBLE);
 		refreshBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-//				setlastbatchcode(lotno);
+				initLatestLotteryList();
 			}
 		});
 		/* Add by fansm 20130417 end */
