@@ -36,6 +36,9 @@ public class TenActivity extends Dlc {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
+		}
 		setLotnoX(Constants.LOTNO_ten);
 		setTitleOne(getString(R.string.tenTitle));
 		highttype = "DLC";

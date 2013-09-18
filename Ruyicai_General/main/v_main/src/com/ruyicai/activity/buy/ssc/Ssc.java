@@ -173,6 +173,9 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 
 	protected void onResume() {
 		super.onResume();
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		}
 		ZixuanAndJiXuan.lotnoStr = Constants.LOTNO_SSC;
 	}
 
