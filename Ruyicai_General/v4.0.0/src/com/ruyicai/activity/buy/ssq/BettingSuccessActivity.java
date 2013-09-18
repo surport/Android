@@ -281,7 +281,7 @@ public class BettingSuccessActivity extends Activity {
 				startActivity(intent2);
 				break;
 			case R.id.ssq_bettingsuccess_betdetail:
-				if (pageInt == COOPERATION) {
+				if (pageInt == COOPERATION || fromInt == JOINCOOPERATION) {
 					Intent intent = new Intent(BettingSuccessActivity.this,
 							JoinCheckActivity.class);
 					startActivity(intent);
