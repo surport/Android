@@ -11,6 +11,7 @@ import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
+import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
@@ -27,6 +28,7 @@ public class SscOneStar extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setAddView(((Ssc)getParent()).addView);
 		lotno = Constants.LOTNO_SSC;
 		super.onCreate(savedInstanceState);
 		if (Constants.isDebug) {

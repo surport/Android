@@ -47,6 +47,7 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setAddView(((PL3) getParent()).addView);
 		super.onCreate(savedInstanceState);
 		MAX_ZHU = 600;
 		ALL_ZHU = 99;

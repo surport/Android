@@ -42,6 +42,7 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 	BallTable twoBallTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((PL3)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		MAX_ZHU = 600;
 		ALL_ZHU = 99;

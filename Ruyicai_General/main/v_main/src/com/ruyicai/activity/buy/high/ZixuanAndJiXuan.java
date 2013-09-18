@@ -57,6 +57,7 @@ import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.dlc.Dlc;
+import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
@@ -163,6 +164,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	float startY;
 	protected LinearLayout childtypes;
 	protected View layoutMain;
+
+	protected void setAddView(AddView addView) {
+		this.addView = addView;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -411,7 +416,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		initLatestLotteryList();
 	}
 
-	private void initLatestLotteryList() {
+	public void initLatestLotteryList() {
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 
@@ -548,7 +553,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				.findViewById(R.id.buy_zixuan_img_add_delet);
 		final TextView textNum = (TextView) zhixuanview
 				.findViewById(R.id.buy_zixuan_add_text_num);
-		addView = new AddView(textNum, this, false);
+//		addView = new AddView(textNum, this, false);
+		addView.setTextNum(textNum);
+		addView.setzJActivity(this);
+		addView.setContext(this.getContext());
+		addView.setZiXuan(false);
+		addView.updateTextNum();
 		add_dialog.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

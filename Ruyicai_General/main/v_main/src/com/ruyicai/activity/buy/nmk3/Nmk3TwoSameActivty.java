@@ -24,6 +24,7 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((Nmk3Activity) getParent()).addView);
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "复选", "单选" };

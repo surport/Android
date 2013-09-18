@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
-import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
@@ -27,6 +26,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((Nmk3Activity) getParent()).addView);
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "直选" };

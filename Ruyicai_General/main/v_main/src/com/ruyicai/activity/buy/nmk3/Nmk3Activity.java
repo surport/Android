@@ -18,6 +18,7 @@ import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 
 public class Nmk3Activity extends BuyActivityGroup {
@@ -30,6 +31,7 @@ public class Nmk3Activity extends BuyActivityGroup {
 	private Class[] allId = { Nmk3HeZhiActivity.class,
 			Nmk3ThreeSameActivty.class, Nmk3TwoSameActivty.class,
 			Nmk3DiffActivity.class, Nmk3ThreeLinkActivity.class };
+	private boolean isFirst = true;
 
 	public AddView addView = new AddView(this);
 
@@ -144,4 +146,29 @@ public class Nmk3Activity extends BuyActivityGroup {
 			return false;
 		}
 	}
+	
+	/**add by yejc 20130918 start*/
+	protected void onResume() {
+		super.onResume();
+		if (Constants.isDebug) {
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		}
+		JSONObject obj = PublicMethod.getIssueJSONObject(Constants.LOTNO_SSC);
+		setIssueJSONObject(obj);
+	}
+	
+	
+	protected void setIssueJSONObject(JSONObject obj) {
+		if (obj != null && !isFirst) {
+			try {
+				lesstime = Integer.valueOf(CheckUtil.isNull(obj
+						.getString("time_remaining")));
+				batchCode = obj.getString("batchcode");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		isFirst = false;
+    }
+	/**add by yejc 20130918 end*/
 }

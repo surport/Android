@@ -111,6 +111,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	/* Add by fansm 20130417 end */
 	private RelativeLayout relativeLayout;
 	private TextView betInfo;
+	private boolean isFirst = true;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -1357,10 +1358,25 @@ public class Dlc extends ZixuanAndJiXuan {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		if (Constants.isDebug)
+			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
+		JSONObject obj = PublicMethod.getIssueJSONObject(lotno);
+		setIssueJSONObject(obj);
 		setLotno();
-
 	}
-
+    protected void setIssueJSONObject(JSONObject obj) {
+		if (obj != null && !isFirst) {
+			try {
+				lesstime = Integer.valueOf(CheckUtil.isNull(obj
+						.getString("time_remaining")));
+				batchCode = obj.getString("batchcode");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}
+		isFirst = false;
+    }
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();

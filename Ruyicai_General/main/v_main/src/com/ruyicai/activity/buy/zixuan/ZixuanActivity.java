@@ -109,6 +109,10 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	protected int MAX_ZHU = 10000;
 	protected int ALL_ZHU = 99;
 
+	public void setAddView(AddView addView) {
+		this.addView = addView;
+	}
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -167,7 +171,11 @@ public abstract class ZixuanActivity extends BaseActivity implements
 				R.string.please_choose_number));
 		final TextView textNum = (TextView) findViewById(R.id.buy_zixuan_add_text_num);
 		Button add_dialog = (Button) findViewById(R.id.buy_zixuan_img_add_delet);
-		addView = new AddView(textNum, this);
+//		addView = new AddView(textNum, this);
+		addView.setTextNum(textNum);
+		addView.setContext(this.getContext());
+		addView.setzXActivity(this);
+		addView.updateTextNum();
 		add_dialog.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -615,7 +623,8 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	 * 投注联网
 	 */
 	public void touZhuNet() {
-		Controller.getInstance(this.getContext()).doBettingAction(handler, betAndGift);
+		Controller.getInstance(this.getContext()).doBettingAction(handler,
+				betAndGift);
 	}
 
 	/**
@@ -633,7 +642,8 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		betAndGift.setBet_code(addView.getTouzhuCode(iProgressBeishu,
 				betAndGift.getAmt() * 100));
 		lotno = PublicMethod.toLotno(betAndGift.getLotno());
-		betAndGift.setBatchcode(Controller.getInstance(ZixuanActivity.this).toNetIssue(betAndGift.getLotno()));// 期号
+		betAndGift.setBatchcode(Controller.getInstance(ZixuanActivity.this)
+				.toNetIssue(betAndGift.getLotno()));// 期号
 	}
 
 	/**
@@ -852,8 +862,8 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		}
 		return false;
 	}
-	
-	public void showBetInfo(String text){
-		
+
+	public void showBetInfo(String text) {
+
 	}
 }

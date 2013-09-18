@@ -68,6 +68,7 @@ public class BuyActivityGroup extends ActivityGroup {
 	protected TextView topTitle;
 	protected PopupWindow popupwindow;
 	protected TextView lastcode;
+	protected Button refreshBtn;
 	protected Context context;
 	private BuyGameDialog gameDialog;
 	private Handler gameHandler = new Handler();
@@ -124,9 +125,9 @@ public class BuyActivityGroup extends ActivityGroup {
 			}
 		});
 	}
-	
+
 	private void updateAddMissViewNum() {
-		
+
 	}
 
 	@Override
@@ -135,7 +136,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		super.onRestart();
 		betInfoTextView.setText("请选择投注号码");
 	}
-	
+
 	public void getInfo() {
 		Intent intent = getIntent();
 		int position = intent.getIntExtra("position", 0);
@@ -172,7 +173,14 @@ public class BuyActivityGroup extends ActivityGroup {
 		imgIcon = (Button) findViewById(R.id.layout_main_img_return);
 		imgIcon.setVisibility(View.VISIBLE);
 		/* Add by fansm 20130417 start */
+		refreshBtn = (Button) findViewById(R.id.refresh_code);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
+		refreshBtn.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				((com.ruyicai.activity.buy.high.ZixuanAndJiXuan) getCurrentActivity())
+						.initLatestLotteryList();
+			}
+		});
 		/* Add by fansm 20130417 end */
 		// 上期开奖号码
 		lastcode = (TextView) findViewById(R.id.last_batchcode_textlable_red);

@@ -50,6 +50,7 @@ public class AddView {
 	private View view;
 	private ListView listView;
 	private TextView textNum;
+	private List<TextView> textNums;
 	private AddListAdapter listAdapter;
 	private TextView infoText;
 	ZixuanActivity zXActivity;
@@ -59,7 +60,6 @@ public class AddView {
 	private String isJXcode = "";
 	private final int MAX_ZHU = 10000;// 最大金额不能超过2万
 
-	
 	public void setZiXuan(boolean isZiXuan) {
 		this.isZiXuan = isZiXuan;
 	}
@@ -96,9 +96,10 @@ public class AddView {
 	public AddView(LuckChoose2 luckChoose2) {
 		this.context = luckChoose2.getContext();
 	}
-	
+
 	public AddView(Context context) {
 		this.context = context;
+		textNums = new ArrayList<TextView>();
 	}
 
 	public AddView(TextView textNum, ZixuanActivity zixuan) {
@@ -127,18 +128,18 @@ public class AddView {
 		updateTextNum();
 
 	}
-	
-	
 
 	/**
 	 * 刷新号码篮个数
 	 */
 	public void updateTextNum() {
-		if (textNum != null) {
-			textNum.setText("" + codeList.size());
+		if (textNums.size() != 0) {
+			for (int i = 0; i < textNums.size(); i++) {
+				((TextView) textNums.get(i)).setText("" + codeList.size());
+			}
 		}
 	}
-	
+
 	public Context getContext() {
 		return context;
 	}
@@ -152,7 +153,7 @@ public class AddView {
 	}
 
 	public void setTextNum(TextView textNum) {
-		this.textNum = textNum;
+		textNums.add(textNum);
 	}
 
 	/**

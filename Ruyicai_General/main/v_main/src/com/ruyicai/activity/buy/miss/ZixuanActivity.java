@@ -194,11 +194,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 				R.string.please_choose_number));
 		textNum = (TextView) findViewById(R.id.buy_zixuan_add_text_num);
 		Button add_dialog = (Button) findViewById(R.id.buy_zixuan_img_add_delet);
-		// ApplicationAddview app = (ApplicationAddview)
-		// getApplicationContext();
-		// AddViewMiss app.getAddview();
-		// addView = app.getAddviewmiss();
-//		addView = new AddViewMiss(textNum, this);
 		addView.setTextNum(textNum);
 		addView.setzXActivity(this);
 		addView.updateTextNum();

@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
@@ -44,6 +45,7 @@ public class PL3ZhiXuan extends ZixuanActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setAddView(((PL3)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		MAX_ZHU = 600;
 		ALL_ZHU = 99;

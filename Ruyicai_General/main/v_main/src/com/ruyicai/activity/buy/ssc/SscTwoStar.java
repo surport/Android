@@ -36,6 +36,7 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
+		setAddView(((Ssc)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
