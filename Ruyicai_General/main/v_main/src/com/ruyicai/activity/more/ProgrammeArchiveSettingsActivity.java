@@ -139,7 +139,7 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 				break;
 				
 			case 3:
-				Toast.makeText(context, "ÉèÖÃÊ§°ÜÇë²é¿´ÍøÂçÁ¬½Ó×´Ì¬£¡", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "è®¾ç½®å¤±è´¥è¯·æŸ¥çœ‹ç½‘ç»œè¿æ¥çŠ¶æ€ï¼", Toast.LENGTH_LONG).show();
 				break;
 			default:
 				break;
