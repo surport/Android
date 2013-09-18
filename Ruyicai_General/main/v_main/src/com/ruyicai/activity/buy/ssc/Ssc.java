@@ -20,6 +20,7 @@ import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
+import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
@@ -33,6 +34,7 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 			SscThreeStar.class, SscFiveStar.class, SscBigSmall.class };
 	private MyHandler handler = new MyHandler(this);
 	private boolean isRun = true;// 线程是否运行变量
+	private boolean isFirst = true;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -177,7 +179,26 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
 		}
 		ZixuanAndJiXuan.lotnoStr = Constants.LOTNO_SSC;
+		/**add by yejc 20130918 start*/
+		JSONObject obj = PublicMethod.getIssueJSONObject(Constants.LOTNO_SSC);
+		setIssueJSONObject(obj);
+		/**add by yejc 20130918 end*/
 	}
+	
+	/**add by yejc 20130918 start*/
+	protected void setIssueJSONObject(JSONObject obj) {
+		if (obj != null && !isFirst) {
+			try {
+				lesstime = Integer.valueOf(CheckUtil.isNull(obj
+						.getString("time_remaining")));
+				batchCode = obj.getString("batchcode");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		isFirst = false;
+    }
+	/**add by yejc 20130918 end*/
 
 	protected void onPause() {
 		super.onPause();
