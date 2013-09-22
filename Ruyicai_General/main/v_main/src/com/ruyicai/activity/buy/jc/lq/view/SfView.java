@@ -262,6 +262,9 @@ public class SfView extends JcMainView {
 				guestOdds.setText(info.getWin());
 				homeOdds.setText(info.getFail());
 				textVS.setBackgroundResource(android.R.color.transparent);
+				textVS.setLayoutParams(new LinearLayout.LayoutParams(
+						LinearLayout.LayoutParams.FILL_PARENT,
+						LinearLayout.LayoutParams.FILL_PARENT));
 				textOdds.setVisibility(View.GONE);
 			}
 			/**add by yejc 20130416 end*/

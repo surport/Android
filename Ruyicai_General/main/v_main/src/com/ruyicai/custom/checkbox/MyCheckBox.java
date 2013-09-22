@@ -31,7 +31,7 @@ public class MyCheckBox extends CheckBox {
 	private boolean isHorizontal = false;// 标题和赔率是否是横向
 	/**add by yejc 20130816 start */
 	private Handler handler = null; 
-	private int oddsPaintColorArray[] = {Color.GRAY, Color.GRAY};
+	private int oddsPaintColorArray[] = {Color.BLACK, Color.BLACK};
 	private int textPaintColorArray[] = {Color.BLACK, Color.BLACK};
 	private String lotno = "";
 	/**add by yejc 20130816 start */
@@ -109,7 +109,6 @@ public class MyCheckBox extends CheckBox {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isCheck) {
-				// TODO Auto-generated method stub
 				isChecked = isCheck;
 				/**add by yejc 20130816 start*/
 				if (handler != null) {
@@ -140,7 +139,7 @@ public class MyCheckBox extends CheckBox {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		mPaint.setTypeface(null);
-		mPaint.setFakeBoldText(true);
+//		mPaint.setFakeBoldText(true);
 		if (isChecked) {
 			mPaint.setColor(textPaintColorArray[1]);
 		} else {
@@ -150,9 +149,7 @@ public class MyCheckBox extends CheckBox {
 		float width = getWidth();// 组建的宽度
 		int titleSize = 13;
 		int contentSize = 13;// 赔率大小
-//		int titleX = 20;// 标题x坐标
 		int titleY = 18;// 标题y坐标
-//		int contentX = 20;// 标题x坐标
 		int contentY = 42;// 标题y坐标
 
 		if (isHorizontal) {
@@ -205,7 +202,6 @@ public class MyCheckBox extends CheckBox {
 		}
 		
 		// 赔率
-		mPaint.setFakeBoldText(false);
 		mPaint.setTextSize(PublicMethod.getPxInt(contentSize, context));
 		if (isChecked) {
 			mPaint.setColor(oddsPaintColorArray[1]);
