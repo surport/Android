@@ -328,8 +328,10 @@ public class PublicMethod {
 		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
 				+ " = " + methodName);
 	}
+
 	/**
 	 * 获得栈activity
+	 * 
 	 * @param context
 	 */
 	public static void getActivityFromStack(Activity context) {
@@ -341,7 +343,8 @@ public class PublicMethod {
 		if (runningTaskInfos != null) {
 			for (int i = 0; i < runningTaskInfos.size(); i++) {
 				Log.d(Constants.TAG,
-						(runningTaskInfos.get(i).topActivity).toString() + " TaskId=" + context.getTaskId());
+						(runningTaskInfos.get(i).topActivity).toString()
+								+ " TaskId=" + context.getTaskId());
 			}
 		}
 	}
@@ -498,7 +501,6 @@ public class PublicMethod {
 		dialog.show();
 
 	}
-
 
 	// /**
 	// * 打开网址
@@ -1842,7 +1844,7 @@ public class PublicMethod {
 				title = "北京单场上下单双";
 			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
 				title = "北京单场";
-			}else {
+			} else {
 				title = "所有彩种";
 			}
 		}
@@ -1971,8 +1973,6 @@ public class PublicMethod {
 		return closeTicketKeyName;
 	}
 
-
-
 	/**
 	 * 转换成分
 	 * 
@@ -2050,6 +2050,16 @@ public class PublicMethod {
 		String timeStr = "";
 		if (time < 10) {
 			timeStr += "0" + time;
+		} else {
+			timeStr += time;
+		}
+		return timeStr;
+	}
+
+	public static String isTenSpace(int time) {
+		String timeStr = "";
+		if (time < 10) {
+			timeStr += "  " + time;
 		} else {
 			timeStr += time;
 		}
@@ -2511,13 +2521,15 @@ public class PublicMethod {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				dip, context.getResources().getDisplayMetrics());
 	}
-	
+
 	/**
 	 * 设置listview 高度
+	 * 
 	 * @param listView
 	 * @param dip
 	 */
-	public static void setListViewHeightBasedOnChildren(ListView listView, int dip, Context context) {
+	public static void setListViewHeightBasedOnChildren(ListView listView,
+			int dip, Context context) {
 		ListAdapter listAdapter; // 取得listview绑定的适配器
 		if (listView.getAdapter() == null) {
 			return;
@@ -2824,15 +2836,18 @@ public class PublicMethod {
 		}
 		return message;
 	}
+
 	/**
 	 * 获得资源文件
+	 * 
 	 * @param mContext
 	 * @param id
 	 * @return
 	 */
-    public static String getResourcesMes(Context mContext,int id) {
-    	return mContext.getResources().getString(id);
-    }
+	public static String getResourcesMes(Context mContext, int id) {
+		return mContext.getResources().getString(id);
+	}
+
 	/**
 	 * 显示消息
 	 * 
@@ -2842,7 +2857,7 @@ public class PublicMethod {
 	public static void showMessage(final Context mContext, String message) {
 		Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 	}
-	
+
 	public static String getEndTime(String date) {
 		int index = date.indexOf(":");
 		date = date.substring(index - 2, index + 3);
@@ -2862,76 +2877,85 @@ public class PublicMethod {
 
 		return matcher.matches();
 	}
+
 	/** add by pengcx 20130604 end */
-	
-	/**add by yejc 20130718 start*/
+
+	/** add by yejc 20130718 start */
 	public static void setTextViewContent(Activity activity) {
-		TextView textView = (TextView)activity.findViewById(R.id.account_recharge_user_number);
-		String userName = new RWSharedPreferences(activity, "addInfo").getStringValue(ShellRWConstants.USERNAME);
+		TextView textView = (TextView) activity
+				.findViewById(R.id.account_recharge_user_number);
+		String userName = new RWSharedPreferences(activity, "addInfo")
+				.getStringValue(ShellRWConstants.USERNAME);
 		textView.setText(userName);
 	}
-	/**add by yejc 20130718 end*/
-	
+
+	/** add by yejc 20130718 end */
+
 	public static double[] ListToArray(List list) {
 		double[] array = new double[list.size()];
-		
+
 		for (int i = 0; i < list.size(); i++) {
 			array[i] = (Double) list.get(i);
 		}
-		
+
 		return array;
 	}
-	
+
 	/**
 	 * 判断充值金额是否满足条件
+	 * 
 	 * @param editText
 	 * @param context
 	 * @return
 	 */
 	public static boolean isRecharge(String amount, Context context) {
 		if ("".equals(amount.trim())) {
-			Toast.makeText(context, "请输入充值金额！",Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, "请输入充值金额！", Toast.LENGTH_SHORT).show();
 			return true;
-		} else if("0".equals(amount.trim())) {
-			Toast.makeText(context, "充值金额不能为0！",Toast.LENGTH_SHORT).show();
+		} else if ("0".equals(amount.trim())) {
+			Toast.makeText(context, "充值金额不能为0！", Toast.LENGTH_SHORT).show();
 			return true;
-		}  else {
+		} else {
 			return false;
 		}
 	}
-	
-	/**add by yejc 20130818 start*/
+
+	/** add by yejc 20130818 start */
 	/**
 	 * 格式化文本内容到html格式
+	 * 
 	 * @param text
 	 * @param colorValue
 	 * @return
 	 */
 	public static String stringToHtml(String text, String colorValue) {
-		String html = "<font color="+colorValue+">"+text+"<//font>";
+		String html = "<font color=" + colorValue + ">" + text + "<//font>";
 		return html;
 	}
-	
-	public static String stringToHtml(String text, String colorValue, String fontSize) {
-		String html = "<font size="+fontSize+" color="+colorValue+">"+text+"<//font>";
+
+	public static String stringToHtml(String text, String colorValue,
+			String fontSize) {
+		String html = "<font size=" + fontSize + " color=" + colorValue + ">"
+				+ text + "<//font>";
 		return html;
 	}
-	
+
 	public static boolean isFiveLeague(String league) {
-		String[] fiveLeague = {"意甲", "英超", "西甲", "德甲", "法甲"};
+		String[] fiveLeague = { "意甲", "英超", "西甲", "德甲", "法甲" };
 		for (int i = 0; i < fiveLeague.length; i++) {
 			if (league.contains(fiveLeague[i])) {
 				int index = league.indexOf(fiveLeague[i]);
 				if (!isChinese(league.substring(0, index))
-						&& !isChinese(league.substring(index+2, league.length()))) {
+						&& !isChinese(league.substring(index + 2,
+								league.length()))) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-	
-	/**判断是否是中文*/
+
+	/** 判断是否是中文 */
 	public static boolean isChinese(String str) {
 		char[] ch = str.toCharArray();
 		for (int i = 0; i < ch.length; i++) {
@@ -2948,16 +2972,17 @@ public class PublicMethod {
 		}
 		return false;
 	}
-	/**add by yejc 20130818 end*/
-	
-	public static void setLayoutHeight(int dip, LinearLayout layout, Context context) {
+
+	/** add by yejc 20130818 end */
+
+	public static void setLayoutHeight(int dip, LinearLayout layout,
+			Context context) {
 		ViewGroup.LayoutParams params = layout.getLayoutParams();
 		params.height = getPxInt(dip, context);
 		layout.setLayoutParams(params);
 	}
 
-
-	/**add by pengcx 20130808 start*/
+	/** add by pengcx 20130808 start */
 	/**
 	 * 格式化内蒙快三开奖号码
 	 * 
@@ -2970,7 +2995,7 @@ public class PublicMethod {
 	public static String formatNMK3Num(String iNumbers, int num) {
 		String iShowNumber = "";
 		int sumValue = 0;
-		
+
 		int length = iNumbers.length() / num;
 		for (int i = 0; i < length; i++) {
 			String chileNumber = iNumbers.substring(i * num + 1, i * num + num);
@@ -2980,17 +3005,17 @@ public class PublicMethod {
 				iShowNumber += ",";
 			}
 		}
-		
+
 		if (sumValue >= 10) {
 			iShowNumber += "    和值" + sumValue;
-		}else{ 
-			iShowNumber += "    和值" + sumValue;
+		} else {
+			iShowNumber += "    和值" + PublicMethod.isTenSpace(sumValue);
 		}
-		
-		
+
 		return iShowNumber;
 	}
-	/**add by pengcx 20130808 end*/
+
+	/** add by pengcx 20130808 end */
 	public static String formatLongToTimeStr(Long l) {
 		int hour = 0;
 		int minute = 0;
@@ -3007,19 +3032,20 @@ public class PublicMethod {
 		return (String.valueOf(hour) + ":" + String.valueOf(minute) + ":" + String
 				.valueOf(second));
 	}
-	
+
 	public static View getView(Context context) {
-		View view = LayoutInflater.from(context)
-				.inflate(R.layout.progress_dialog_view, null);
-		ImageView imageView = (ImageView)view.findViewById(R.id.imageView);
-		Animation anim = AnimationUtils.loadAnimation(context, R.anim.progress_dialog_window_anim);  
-		LinearInterpolator lin = new LinearInterpolator();  
-		anim.setInterpolator(lin);  
+		View view = LayoutInflater.from(context).inflate(
+				R.layout.progress_dialog_view, null);
+		ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
+		Animation anim = AnimationUtils.loadAnimation(context,
+				R.anim.progress_dialog_window_anim);
+		LinearInterpolator lin = new LinearInterpolator();
+		anim.setInterpolator(lin);
 		imageView.startAnimation(anim);
-		
+
 		return view;
 	}
-	
+
 	public static JSONObject getIssueJSONObject(String lotno) {
 		String re = "";
 		re = GetLotNohighFrequency.getInstance().getInfo(lotno);
