@@ -16,7 +16,6 @@ import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
-import com.unionpay.upomp.lthj.util.PluginHelper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -211,6 +210,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 		// 注：此处的action是：商户的action
 		mbundle.putString("action_cmd", CMD_PAY_PLUGIN);
 
-		PluginHelper.LaunchPlugin(this, mbundle);
+		//PluginHelper.LaunchPlugin(this, mbundle);
 	}
 }

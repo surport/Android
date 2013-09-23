@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 用戶中心页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/usercenter_titile_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <!-- 滑動內容布局 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/usercenter_titile_bar"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- 登陆提示区域 -->
+
+            <RelativeLayout
+                android:id="@+id/usercenter_relativelayout_loginarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/usercenter_loginarea_background"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/usercenter_textview_loginprompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/usercenter_textview_loginprompt"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+                <!-- 登录按钮 -->
+
+                <Button
+                    android:id="@+id/usercenter_button_login"
+                    android:layout_width="80dip"
+                    android:layout_height="35dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/usercenter_textview_loginprompt"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dip"
+                    android:background="@drawable/login_button_selector"
+                    android:text="@string/usercenter_button_login"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white" />
+                <!-- 注册按钮 -->
+
+                <Button
+                    android:id="@+id/usercenter_button_register"
+                    android:layout_width="80dip"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/usercenter_textview_loginprompt"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dip"
+                    android:background="@drawable/login_button_selector"
+                    android:text="@string/usercenter_button_register"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+
+            <!-- 账户资金列表 -->
+
+            <TextView
+                android:id="@+id/usercenter_textview_accountcapticalheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usercenter_relativelayout_loginarea"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:text="@string/usercenter_listviewhead_accountcapital"
+                android:textColor="#4c566c"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/usercenter_listview_accountcapital"
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
+                android:layout_below="@id/usercenter_textview_accountcapticalheader"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/usercenter_loginarea_background"
+                android:divider="#bcbcbc"
+                android:dividerHeight="0.5dip"
+                android:scrollbars="none" >
+            </ListView>
+            <!-- 我的彩票列表 -->
+
+            <TextView
+                android:id="@+id/usercenter_textview_mylotteryheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usercenter_listview_accountcapital"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:text="@string/usercenter_listviewhead_mylottery"
+                android:textColor="#4c566c"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/usercenter_listview_mylottery"
+                android:layout_width="match_parent"
+                android:layout_height="202dp"
+                android:layout_below="@id/usercenter_textview_mylotteryheader"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/usercenter_loginarea_background"
+                android:cacheColorHint="#00000000"
+                android:divider="#bcbcbc"
+                android:dividerHeight="0.5dip"
+                android:scrollbars="none" >
+            </ListView>
+
+            <!-- 我的彩票列表 -->
+
+            <TextView
+                android:id="@+id/usercenter_textview_accountsetheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/usercenter_listview_mylottery"
+                android:cacheColorHint="#00000000"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:text="@string/usercenter_listviewhead_accountset"
+                android:textColor="#4c566c"
+                android:textSize="20sp" />
+
+            <ListView
+                android:id="@+id/usercenter_listview_accountset"
+                android:layout_width="match_parent"
+                android:layout_height="161dp"
+                android:layout_below="@id/usercenter_textview_accountsetheader"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/usercenter_loginarea_background"
+                android:cacheColorHint="#00000000"
+                android:divider="#bcbcbc"
+                android:dividerHeight="0.5dip"
+                android:scrollbars="none" >
+            </ListView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

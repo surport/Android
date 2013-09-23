@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 江西11选5下拉列表字符数组 -->
+    <string-array name="jiangxi11select5_spinners_items">
+        <item>任选二</item>
+        <item>任选三</item>
+        <item>任选四</item>
+        <item>任选五</item>
+        <item>任选六</item>
+        <item>任选七</item>
+        <item>任选八</item>
+        <item>前一直选</item>
+        <item>前二直选</item>
+        <item>前三直选</item>
+        <item>前二组选</item>
+        <item>前二组选</item>
+    </string-array>
+
+</resources>

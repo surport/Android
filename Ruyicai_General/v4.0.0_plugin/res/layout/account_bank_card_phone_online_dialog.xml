@@ -36,7 +36,7 @@
                 android:layout_marginRight="5dip">
 
                 <EditText
-                        android:id="@id/bank_card_phone_recharge_value"
+                        android:id="@+id/bank_card_phone_recharge_value"
                         android:layout_width="match_parent"
                         android:layout_height="40dip"
                         android:layout_weight="1"
@@ -72,7 +72,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@id/bank_card_phone_bankid"
+                        android:id="@+id/bank_card_phone_bankid"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:autoText="false"
@@ -105,7 +105,7 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@id/bank_card_phone_phone_num"
+                        android:id="@+id/bank_card_phone_phone_num"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:autoText="false"

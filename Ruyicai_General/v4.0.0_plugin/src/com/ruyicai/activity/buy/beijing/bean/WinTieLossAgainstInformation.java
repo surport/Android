@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.unionpay.upomp.lthj.plugin.model.RetrievePassword;
 
 /**
  * 北京单场胜平负对阵信息类：存储了对阵信息和赛事投注选择的信息

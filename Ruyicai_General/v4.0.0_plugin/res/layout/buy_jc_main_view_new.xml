@@ -5,11 +5,11 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/RelativeLayout01"
+        android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
         <ListView
-            android:id="@id/buy_jc_main_listview"
+            android:id="@+id/buy_jc_main_listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginBottom="50sp"

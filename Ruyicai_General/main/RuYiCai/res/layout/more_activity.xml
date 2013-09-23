@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 更多页面布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/more_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!-- 更多列表 -->
+
+    <ListView
+        android:id="@+id/more_listview_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/more_title_bar"
+        android:background="@color/white"
+        android:cacheColorHint="#00000000"
+        android:divider="#bcbcbc"
+        android:dividerHeight="0.5dip"
+        android:scrollbars="none" />
+
+</RelativeLayout>

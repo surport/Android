@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 标题列表选项布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp" >
+
+    <!-- 头部图片 -->
+
+    <ImageView
+        android:id="@+id/iconlistviewitem_imageview_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"/>
+
+    <!-- 中间文字 -->
+
+    <TextView
+        android:id="@+id/iconlistviewitem_textview_text"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iconlistviewitem_imageview_icon"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- 尾部详情图片 -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/listviewitem_imageview_detail" />
+
+</RelativeLayout>

@@ -5,7 +5,7 @@
   android:layout_width="wrap_content"
   android:layout_height="wrap_content">
 	<EditText 
-		android:id="@id/clln_xingming_edit_dialog_id"
+		android:id="@+id/clln_xingming_edit_dialog_id"
 		android:inputType="textPersonName"
 		android:maxLength="10"
 		android:layout_width="fill_parent" 

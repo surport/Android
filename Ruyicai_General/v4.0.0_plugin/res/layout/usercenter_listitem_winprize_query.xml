@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 中奖查询列表子选项布局 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/usercenter_winprize_item"
+    android:id="@+id/usercenter_winprize_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FFFFFF"
@@ -21,7 +21,7 @@
         <!-- 彩种名称 -->
 
         <TextView
-            android:id="@id/usercenter_winprize_lotteryname"
+            android:id="@+id/usercenter_winprize_lotteryname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <LinearLayout android:id="@id/usercenter_winprize_linear"
+                <LinearLayout android:id="@+id/usercenter_winprize_linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
@@ -47,7 +47,7 @@
                     <!-- 期号 -->
 
                     <TextView
-                        android:id="@id/usercenter_winprize_prizeqihao"
+                        android:id="@+id/usercenter_winprize_prizeqihao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
@@ -59,7 +59,7 @@
                     <!-- 兑奖标识：未开奖 -->
 
                     <TextView
-                        android:id="@id/usercenter_winprize_prizemoney"
+                        android:id="@+id/usercenter_winprize_prizemoney"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="top"
@@ -69,7 +69,7 @@
                 <!-- 认购 -->
 
                 <TextView
-                    android:id="@id/usercenter_winprize_paymoney"
+                    android:id="@+id/usercenter_winprize_paymoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -79,7 +79,7 @@
                 <!-- 认购时间 -->
 
                 <TextView
-                    android:id="@id/usercenter_winprize_ordertime"
+                    android:id="@+id/usercenter_winprize_ordertime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -89,7 +89,7 @@
                 <!-- 预计奖金 -->
 
                 <TextView
-                    android:id="@id/usercenter_winprize_predictmoney"
+                    android:id="@+id/usercenter_winprize_predictmoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -106,17 +106,17 @@
                 android:gravity="right|bottom" >
 
                 <Button
-                    android:id="@id/usercenter_winprize_buyagain"
+                    android:id="@+id/usercenter_winprize_buyagain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/usercenter_selector_buyagain" />
 
                 <Button
-                    android:id="@id/usercenter_winprize_querydetail"
+                    android:id="@+id/usercenter_winprize_querydetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/usercenter_winprize_buyagain"
+                    android:layout_below="@+id/usercenter_winprize_buyagain"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/usercenter_selector_lookdetails" />

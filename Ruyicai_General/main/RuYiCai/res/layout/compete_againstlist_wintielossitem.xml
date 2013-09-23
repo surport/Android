@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩对阵列表表项视图 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:orientation="vertical" >
+
+        <!-- 联赛名称 -->
+
+        <Button
+            android:id="@+id/league_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/compete_selectitem_textview_background"
+            android:gravity="center"
+            android:text="日联赛"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <!-- 比赛时间 -->
+
+        <Button
+            android:id="@+id/game_time"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_below="@id/league_name"
+            android:layout_weight="1.0"
+            android:background="#EEEEEE"
+            android:gravity="center"
+            android:text="周三 002 17:55 (截)"
+            android:textColor="#737373"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="6.0" >
+
+        <!-- 主队按钮 -->
+
+        <com.ruyicai.android.controller.compontent.button.CompeteSelectButton
+            android:id="@+id/competeSelectButton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="1.5dp"
+            android:layout_weight="2.0" />
+
+        <!-- vs按钮 -->
+
+        <com.ruyicai.android.controller.compontent.button.CompeteSelectButton
+            android:id="@+id/competeSelectButton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1.5dp"
+            android:layout_marginRight="1.5dp"
+            android:layout_weight="1.0" />
+
+        <!-- 客队按钮 -->
+
+        <com.ruyicai.android.controller.compontent.button.CompeteSelectButton
+            android:id="@+id/competeSelectButton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1.5dp"
+            android:layout_weight="2.0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical" >
+
+        <!-- 析按钮 -->
+
+        <Button
+            android:id="@+id/analyse_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/compete_selectitem_analyse_background"
+            android:text="析" />
+        <!-- 胆按钮 -->
+
+        <CheckBox
+            android:id="@+id/dan_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/compete_selectitem_couragebutton_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="胆"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

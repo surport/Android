@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://www.ruyicai.com/res/custom"
+    android:layout_width="300dip"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jc_bf_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@id/main_buy_title"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@id/layout_main_text_title"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="@color/jc_main_play_title_color"
+            android:textSize="18sp" >
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dip"
+            android:layout_below="@id/layout_main_text_title"
+            android:layout_marginLeft="50dip"
+            android:layout_marginRight="50dip"
+            android:background="@color/zc_sfc_divider" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_buy_title"
+        android:paddingBottom="65dip"
+        android:paddingTop="5dip"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@id/linearLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dip"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="5dip" >
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@id/lq_sfc_dialog_check01"
+                        android:layout_width="93dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_spf_left_selector"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@id/lq_sfc_dialog_check02"
+                        android:layout_width="94dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_spf_center_selector"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@id/lq_sfc_dialog_check03"
+                        android:layout_width="93dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_spf_right_selector"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title03" />
+                </LinearLayout>
+
+                <!-- add by yejc 20130702 start -->
+
+                <LinearLayout
+                    android:id="@id/linearLayout_rangqiu"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="5dip" >
+
+                    <TextView
+                        android:id="@id/lq_rqspf_dialog_textview"
+                        android:layout_width="55dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_rqspf_left_bg"
+                        android:gravity="center"
+                        android:textColor="@color/jc_hun_title_color" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@id/lq_sfc_dialog_rangqiu1"
+                        android:layout_width="75dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_rqspf_center_selector"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@id/lq_sfc_dialog_rangqiu2"
+                        android:layout_width="75dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_rqspf_center_selector"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                    <com.ruyicai.custom.checkbox.MyCheckBox
+                        android:id="@id/lq_sfc_dialog_rangqiu3"
+                        android:layout_width="75dip"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/jc_zq_hun_rqspf_right_selector"
+                        android:button="@null"
+                        custom:check_title="@string/jclq_sfc_dialog_title03" />
+                </LinearLayout>
+                <!-- add by yejc 20130702 end -->
+
+                <LinearLayout
+                    android:id="@id/linearLayout2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check04"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_left_top_selector"
+                            android:button="@null"
+                            custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check05"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_center_selector"
+                            android:button="@null"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check06"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_center_selector"
+                            android:button="@null"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check07"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_center_selector"
+                            android:button="@null"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check08"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_right_top_selector"
+                            android:button="@null"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check09"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_left_bottom_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check010"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check011"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check012"
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <View
+                            android:layout_width="56dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bqc_right_bottom_selector"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@id/linearLayout3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dip" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dip"
+                        android:gravity="center_horizontal" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check013"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_left_top_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check014"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check015"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check016"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_right_top_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dip"
+                        android:gravity="center_horizontal" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check017"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_left_bottom_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check018"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check019"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title02" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check020"
+                            android:layout_width="70dip"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/jc_zq_hun_jqs_right_bottom_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@id/linearLayout4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="5dip" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check021"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_left_top_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check022"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check023"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check024"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check025"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check026"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check027"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_right_top_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check028"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check029"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check030"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check031"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check032"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check033"
+                            android:layout_width="80dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check034"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check035"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check036"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check037"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check038"
+                            android:layout_width="120dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check039"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check040"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check041"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check042"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check043"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check044"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check045"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check046"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_left_bottom_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check047"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check048"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check049"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check050"
+                            android:layout_width="40dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_center_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+
+                        <com.ruyicai.custom.checkbox.MyCheckBox
+                            android:id="@id/lq_sfc_dialog_check051"
+                            android:layout_width="80dip"
+                            android:layout_height="50dip"
+                            android:background="@drawable/jc_zq_hun_bf_right_bottom_selector"
+                            android:button="@null"
+                            android:visibility="gone"
+                            custom:check_title="@string/jclq_sfc_dialog_title03" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="10dip" >
+
+        <Button
+            android:id="@id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:text="确 定"
+            android:textColor="@color/white"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@id/canel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:text="取 消"
+            android:textColor="@color/white"
+            android:textSize="18sp" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

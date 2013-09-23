@@ -10,20 +10,20 @@
         android:paddingTop="85dip" >
 
         <RelativeLayout
-            android:id="@id/RelativeLayout01"
+            android:id="@+id/RelativeLayout01"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white" >
 
             <LinearLayout
-                android:id="@id/buy_lq_mian_layout"
+                android:id="@+id/buy_lq_mian_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@id/buy_zixuan_relativelayout"
+                android:id="@+id/buy_zixuan_relativelayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
                 android:layout_alignParentBottom="true"
@@ -32,7 +32,7 @@
                 android:paddingRight="10dip" >
 
                 <ImageButton
-                    android:id="@id/buy_zixuan_img_again"
+                    android:id="@+id/buy_zixuan_img_again"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -42,14 +42,14 @@
                 </ImageButton>
 
                 <TextView
-                    android:id="@id/buy_jc_main_text_team_num"
+                    android:id="@+id/buy_jc_main_text_team_num"
                     style="@style/textSize16"
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="90dip"
                     android:text="" />
 
                 <ImageButton
-                    android:id="@id/buy_zixuan_img_touzhu"
+                    android:id="@+id/buy_zixuan_img_touzhu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -95,7 +95,7 @@
             android:gravity="center" >
 
             <Button
-                android:id="@id/buy_lq_main_btn_team"
+                android:id="@+id/buy_lq_main_btn_team"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"
@@ -120,7 +120,7 @@
             android:gravity="center" >
 
             <Button
-                android:id="@id/buy_lq_main_btn_score"
+                android:id="@+id/buy_lq_main_btn_score"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"

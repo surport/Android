@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 登陆页面单选按钮选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/checkbox_click" android:state_pressed="true"/>
+    <item android:drawable="@drawable/checkbox_normal" android:state_pressed="false"/>
+
+</selector>

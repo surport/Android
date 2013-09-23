@@ -2,7 +2,7 @@
 <!-- 图标列表项 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/ruyihelper_icon_linerlayout"
+    android:id="@+id/ruyihelper_icon_linerlayout"
     android:layout_width="fill_parent"
     android:layout_height="50dp"
     android:background="@drawable/list_bg"
@@ -11,7 +11,7 @@
     android:padding="5dp" >
 
     <TextView
-        android:id="@id/ruyihelper_icon_text"
+        android:id="@+id/ruyihelper_icon_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dip"
@@ -21,7 +21,7 @@
     </TextView>
 
     <ImageView
-        android:id="@id/ruyihelper_iicon"
+        android:id="@+id/ruyihelper_iicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -29,15 +29,15 @@
         android:paddingRight="10dip" />
 
     <LinearLayout
-        android:id="@id/linearLayout1"
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/ruyihelper_icon_text"
+        android:layout_toRightOf="@+id/ruyihelper_icon_text"
         android:layout_marginLeft="20dp"
         android:orientation="vertical" >
 
         <TextView
-            android:id="@id/ruyihelper_icon_layout_text1"
+            android:id="@+id/ruyihelper_icon_layout_text1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dip"
@@ -46,7 +46,7 @@
         </TextView>
 
         <TextView
-            android:id="@id/ruyihelper_icon_layout_text2"
+            android:id="@+id/ruyihelper_icon_layout_text2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dip"

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 蓝色选号小球图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:state_checked="true" android:drawable="@drawable/selectnumberball_blue_background" android:state_enabled="true"/>
+    <item android:state_checked="false" android:drawable="@drawable/selectnumberball_grey_background" android:state_enabled="true"/>
+
+</selector>

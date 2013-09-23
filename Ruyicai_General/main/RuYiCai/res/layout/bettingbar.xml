@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 投注栏布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 已选号码栏 -->
+
+    <TextView
+        android:id="@+id/bettingbar_textview_selectednumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bettingbar_textview_selected"
+        android:gravity="center_vertical"
+        android:text="@string/bettingbar_textview_selected"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bettingbar_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <!-- 号码篮按钮 -->
+
+        <Button
+            android:id="@+id/bettingbar_button_numberbasket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bettingbar_button_numberbasket" />
+        <!-- 清除选号按钮 -->
+
+        <Button
+            android:id="@+id/bettingbar_button_clearselectednumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bettingbar_button_clearselectednumber" />
+        <!-- 加入号码篮按钮 -->
+
+        <Button
+            android:id="@+id/bettingbar_button_addtonumberbasket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bettingbar_addtonumberbasket_selector" />
+        <!-- 投注按钮 -->
+
+        <Button
+            android:id="@+id/bettingbar_button_betting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/bettingbar_betting_selector"
+            android:text="@string/bettingbar_button_touzhu"
+            android:textColor="@color/red"
+            android:textSize="18dip" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 随机选择按钮布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <!-- 选择号码个数按钮 -->
+
+    <Button
+        android:id="@+id/randombutton_button_selectnum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/randombutton_selectnum_selector"/>
+    <!-- 随机选号按钮 -->
+
+    <Button
+        android:id="@+id/randombutton_button_randomselect"
+        android:layout_width="70dp"
+        android:layout_height="29dp"
+        android:background="@drawable/randombutton_randomselect_selector"
+        android:text="@string/randombutton_button_randomselectnumber"/>"
+
+</LinearLayout>

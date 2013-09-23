@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩栏布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dip"
+    android:background="@drawable/competebar_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+
+    <!-- 玩法切换 -->
+
+    <Button
+        android:id="@+id/competebar_button_playmethodchange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1.0"
+        android:background="@drawable/competebar_button_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="玩法切换"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 赛事选择 -->
+
+    <Button
+        android:id="@+id/competebar_button_eventchange"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1.0"
+        android:background="@drawable/competebar_button_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:text="赛事选择"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 即时比分 -->
+
+    <Button
+        android:id="@+id/competebar_button_realtimescore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:background="@drawable/competebar_button_otherselector"
+        android:gravity="center"
+        android:text="即时比分"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+</LinearLayout>

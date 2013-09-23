@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 标题栏布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/promptdialog_title_background" >
+
+    <!-- 标题 -->
+
+    <TextView
+        android:id="@+id/titlebar_textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+    <!-- 登录注册按钮 -->
+
+    <Button
+        android:id="@+id/titlebar_button_loginorregister"
+        android:layout_width="70dip"
+        android:layout_height="30dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/titlebar_loginorregisterbutton_selector"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="gone" />
+    <!-- 展开按钮 -->
+
+    <Button
+        android:id="@+id/titlebar_button_dropdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/titlebar_spreadbutton_background"
+        android:visibility="gone" />
+
+</RelativeLayout>

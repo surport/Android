@@ -5,12 +5,12 @@
     android:background="@color/white"
     android:orientation="vertical" >
     <RelativeLayout
-        android:id="@id/RelativeLayout01"
+        android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <ScrollView
-            android:id="@id/ScrollView01"
+            android:id="@+id/ScrollView01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dip" >
@@ -21,7 +21,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
-                    android:id="@id/LinearLayout08"
+                    android:id="@+id/LinearLayout08"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -29,19 +29,19 @@
                     
                     <!--start change by yejc 20130322 -->
                     <TextView
-                        android:id="@id/withdraw_drawbalance"
+                        android:id="@+id/withdraw_drawbalance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black" />
                     <!-- end -->
 
                     <LinearLayout
-                        android:id="@id/LinearLayout_one"
+                        android:id="@+id/LinearLayout_one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@id/get_money_name_text"
+                            android:id="@+id/get_money_name_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/get_money_name"
@@ -50,7 +50,7 @@
                         </TextView>
 
                         <EditText
-                            android:id="@id/get_money_name_edit"
+                            android:id="@+id/get_money_name_edit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:singleLine="true"
@@ -60,12 +60,12 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/LinearLayout_two"
+                        android:id="@+id/LinearLayout_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@id/TextView03"
+                            android:id="@+id/TextView03"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="15px"
@@ -75,7 +75,7 @@
                         </TextView>
 
                         <Spinner
-                            android:id="@id/get_money_bank_spinner"
+                            android:id="@+id/get_money_bank_spinner"
                             android:layout_width="200dip"
                             android:layout_height="wrap_content"
                             android:drawSelectorOnTop="true"
@@ -86,12 +86,12 @@
 
                     <LinearLayout
                         android:visibility="gone"
-                        android:id="@id/LinearLayout_third"
+                        android:id="@+id/LinearLayout_third"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@id/TextView04"
+                            android:id="@+id/TextView04"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/get_money_bank_start"
@@ -100,7 +100,7 @@
                         </TextView>
 
                         <EditText
-                            android:id="@id/get_money_bank_start_edit"
+                            android:id="@+id/get_money_bank_start_edit"
                             android:layout_width="200dip"
                             android:layout_height="wrap_content"
                             android:hint="如：北京市海淀区"
@@ -110,12 +110,12 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/LinearLayout_four"
+                        android:id="@+id/LinearLayout_four"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@id/get_money_bank_num_text"
+                            android:id="@+id/get_money_bank_num_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/get_money_bank_num"
@@ -124,7 +124,7 @@
                         </TextView>
 
                         <EditText
-                            android:id="@id/get_money_bank_num_edit"
+                            android:id="@+id/get_money_bank_num_edit"
                             android:layout_width="200dip"
                             android:layout_height="wrap_content"
                             android:autoText="false"
@@ -142,12 +142,12 @@
                     <!--TextView move to up 20130322-->
 
                     <LinearLayout
-                        android:id="@id/LinearLayout_six"
+                        android:id="@+id/LinearLayout_six"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@id/get_money_money_text"
+                            android:id="@+id/get_money_money_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/get_money_money"
@@ -156,7 +156,7 @@
                         </TextView>
 
                         <EditText
-                            android:id="@id/get_money_money_edit"
+                            android:id="@+id/get_money_money_edit"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:hint="单位(元)"
@@ -167,12 +167,12 @@
                         </EditText>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@id/LinearLayout_six"
+                        android:id="@+id/LinearLayout_six"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@id/get_money_password_text"
+                            android:id="@+id/get_money_password_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="用户密码:"
@@ -182,20 +182,20 @@
 
                         <EditText
                             android:hint="@string/user_login_password"
-                            android:id="@id/get_money_password_edit"
+                            android:id="@+id/get_money_password_edit"
                             android:layout_width="200dp"
                             android:layout_height="wrap_content"
                             android:width="180dip" android:password="true">
                         </EditText>
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@id/LinearLayout07"
+                        android:id="@+id/LinearLayout07"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="5px" >
 
                         <TextView
-                            android:id="@id/TextView07"
+                            android:id="@+id/TextView07"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:autoLink="phone"
@@ -208,7 +208,7 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@id/LinearLayout01"
+            android:id="@+id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="60dip"
             android:layout_alignParentBottom="true"
@@ -216,7 +216,7 @@
             android:gravity="center_horizontal" >
 
             <Button
-                android:id="@id/get_money_img_submit"
+                android:id="@+id/get_money_img_submit"
                 android:layout_width="100sp"
                 android:layout_height="40sp"
                 android:layout_gravity="center_vertical"
@@ -225,7 +225,7 @@
             </Button>
 
             <Button
-                android:id="@id/get_money_img_back"
+                android:id="@+id/get_money_img_back"
                 android:layout_width="100sp"
                 android:layout_height="40sp"
                 android:layout_gravity="center_vertical"

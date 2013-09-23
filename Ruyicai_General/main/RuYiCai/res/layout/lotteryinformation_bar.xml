@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 彩种开奖信息布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white" >
+
+    <!-- 上期开奖号码 -->
+
+    <TextView
+        android:id="@+id/lotteryinformationbar_textview_lastissuenumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="10dip"
+        android:text="上期开奖号码：01,02,13,14,12"
+        android:textColor="@color/black"
+        android:textSize="14dip" />
+    <!-- 开奖期号 -->
+
+    <TextView
+        android:id="@+id/lotteryinformationbar_textview_issuenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/lotteryinformationbar_textview_lastissuenumbers"
+        android:paddingLeft="10dip"
+        android:text="第20081243期"
+        android:textColor="@color/black"
+        android:textSize="14dip" />
+    <!-- 截止时间 -->
+
+    <TextView
+        android:id="@+id/lotteryinformationbar_textview_deadtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/lotteryinformationbar_textview_lastissuenumbers"
+        android:paddingRight="10dip"
+        android:text="截止时间：12:23:12"
+        android:textColor="@color/black"
+        android:textSize="14dip" />
+
+</RelativeLayout>

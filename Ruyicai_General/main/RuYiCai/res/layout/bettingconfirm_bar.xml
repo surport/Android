@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 投注确认栏布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="@drawable/bettingconfirmbar_background" >
+
+    <!-- 确定按钮 -->
+
+    <Button
+        android:id="@+id/bettingconfirmbar_button_confirm"
+        android:layout_width="120dip"
+        android:layout_height="40sp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18sp"
+        android:background="@drawable/login_button_selector"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+    <!-- 取消按钮 -->
+
+    <Button
+        android:id="@+id/bettingconfirmbar_btton_cancle"
+        android:layout_width="120dip"
+        android:layout_height="40sp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="18sp"
+        android:background="@drawable/login_button_selector"
+        android:text="取消"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+</RelativeLayout>

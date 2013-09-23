@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 投注信息页面布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- 彩种 -->
+
+    <TextView
+        android:id="@+id/bettinginformation_textview_lotterytype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="彩种：双色球"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 期号 -->
+
+    <TextView
+        android:id="@+id/bettinginformation_textview_issuenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_textview_lotterytype"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="期号：第201345期"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 注数 -->
+
+    <TextView
+        android:id="@+id/bettinginformation_textview_notenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_textview_issuenumber"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="注码：共有1笔投注"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- 注码 -->
+
+    <TextView
+        android:id="@+id/bettinginformation_textview_notecode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_textview_notenum"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="01,02,03,04,05,06|31"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 倍数 -->
+
+    <LinearLayout
+        android:id="@+id/bettinginformation_linearlayout_multiple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_textview_notecode"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/doubleballbetting_textview_multiple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="倍数："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <com.ruyicai.android.controller.compontent.slideseekbar.SlideSeekBar
+            android:id="@+id/doubleballbetting_slideseekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <!-- 是否追加 -->
+
+    <CheckBox
+        android:id="@+id/bettinginformation_checkbox_append"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_linearlayout_multiple"
+        android:layout_marginLeft="10dp"
+        android:button="@drawable/superlotto_checkbox_appendselector"
+        android:text="追加投注"
+        android:textColor="@color/red"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <!-- 注数 -->
+
+    <TextView
+        android:id="@+id/bettinginformation_textview_stakenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_checkbox_append"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="注数：1注"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 金额 -->
+
+    <TextView
+        android:id="@+id/bettinginformation_textview_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bettinginformation_textview_stakenum"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="金额：2元"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- 投注确认栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.BettingConfirmBar
+        android:id="@+id/doubleballbetting_bettingconfirmbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

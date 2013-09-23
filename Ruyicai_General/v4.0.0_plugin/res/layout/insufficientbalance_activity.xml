@@ -8,7 +8,7 @@
     <!-- 标题栏 -->
 
     <RelativeLayout
-        android:id="@id/insufficient_balance_title"
+        android:id="@+id/insufficient_balance_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
@@ -26,7 +26,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/insufficient_balance_title"
+        android:layout_below="@+id/insufficient_balance_title"
         android:layout_margin="20dp"
         android:orientation="vertical" >
 
@@ -45,7 +45,7 @@
                 android:text="@string/ssq_bettingsuccess_lotnotype" />
 
             <TextView
-                android:id="@id/insufficient_balance_lottype"
+                android:id="@+id/insufficient_balance_lottype"
                 style="@style/touzhuTextstyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -66,7 +66,7 @@
                 android:text="@string/ssq_bettingsuccess_money" />
 
             <TextView
-                android:id="@id/insufficient_balance_amt"
+                android:id="@+id/insufficient_balance_amt"
                 style="@style/touzhuTextstyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -83,7 +83,7 @@
             android:textSize="15sp"/>
     </LinearLayout>
     
-    <Button android:id="@id/free_get_gold_button"
+    <Button android:id="@+id/free_get_gold_button"
         android:layout_width="match_parent"
         android:layout_height="40dip"
         android:textColor="@color/white"
@@ -110,7 +110,7 @@
             <!-- 直接支付按钮 -->
 
             <Button
-                android:id="@id/insufficient_balance_button_directpay"
+                android:id="@+id/insufficient_balance_button_directpay"
                 android:layout_width="120dip"
                 android:layout_height="40sp"
                 android:layout_alignParentLeft="true"
@@ -123,7 +123,7 @@
             <!-- 去充值按钮 -->
 
             <Button
-                android:id="@id/insufficient_balance_button_recharge"
+                android:id="@+id/insufficient_balance_button_recharge"
                 android:layout_width="120dip"
                 android:layout_height="40sp"
                 android:layout_alignParentRight="true"

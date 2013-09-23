@@ -37,7 +37,7 @@
                 android:orientation="vertical" >
 
                 <EditText
-                    android:id="@id/bank_card_phone_recharge_value"
+                    android:id="@+id/bank_card_phone_recharge_value"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_weight="1"
@@ -75,7 +75,7 @@
                         android:textColor="@color/black" />
 
                     <Spinner
-                        android:id="@id/Spinner01"
+                        android:id="@+id/Spinner01"
                         android:layout_width="170dip"
                         android:layout_height="wrap_content"
                         android:entries="@array/brank_card_phone_type" >
@@ -89,7 +89,7 @@
                     android:background="@color/zc_sfc_divider" />
 
                 <EditText
-                    android:id="@id/bank_card_phone_bankid"
+                    android:id="@+id/bank_card_phone_bankid"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
@@ -110,7 +110,7 @@
                     android:background="@color/zc_sfc_divider" />
 
                 <EditText
-                    android:id="@id/bank_card_phone_phone_name"
+                    android:id="@+id/bank_card_phone_phone_name"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
@@ -130,7 +130,7 @@
                     android:background="@color/zc_sfc_divider" />
 
                 <EditText
-                    android:id="@id/bank_card_phone_phone_idcard"
+                    android:id="@+id/bank_card_phone_phone_idcard"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
@@ -150,7 +150,7 @@
                     android:background="@color/zc_sfc_divider" />
 
                 <EditText
-                    android:id="@id/bank_card_phone_phone_home"
+                    android:id="@+id/bank_card_phone_phone_home"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
@@ -170,7 +170,7 @@
                     android:background="@color/zc_sfc_divider" />
 
                 <EditText
-                    android:id="@id/bank_card_phone_phone_province"
+                    android:id="@+id/bank_card_phone_phone_province"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
@@ -190,7 +190,7 @@
                     android:background="@color/zc_sfc_divider" />
 
                 <EditText
-                    android:id="@id/bank_card_phone_phone_num"
+                    android:id="@+id/bank_card_phone_phone_num"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginBottom="8dip"

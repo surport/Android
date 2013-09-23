@@ -22,14 +22,14 @@
             android:orientation="horizontal" >
 
             <LinearLayout
-                android:id="@id/linearLayout1"
+                android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="14"
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@id/game_name"
+                    android:id="@+id/game_name"
                     android:layout_width="match_parent"
                     android:layout_height="33dip"
                     android:background="@drawable/jc_game_name_bg"
@@ -37,7 +37,7 @@
                     android:textColor="@android:color/black" />
 
                 <TextView
-                    android:id="@id/game_date"
+                    android:id="@+id/game_date"
                     android:layout_width="match_parent"
                     android:layout_height="42dip"
                     android:background="@color/jc_main_background_color"
@@ -52,7 +52,7 @@
                 android:background="@color/zc_sfc_divider" />
 
             <LinearLayout
-                android:id="@id/linearLayout2"
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -60,14 +60,14 @@
                 android:padding="3dip" >
 
                 <LinearLayout
-                    android:id="@id/home_layout"
+                    android:id="@+id/home_layout"
                     android:layout_width="match_parent"
                     android:layout_height="38dip"
                     android:orientation="horizontal"
                     android:paddingTop="2dip" >
 
                     <TextView
-                        android:id="@id/home_team_name"
+                        android:id="@+id/home_team_name"
                         android:layout_width="match_parent"
                         android:layout_height="36dip"
                         android:layout_weight="3"
@@ -75,7 +75,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@id/game_vs"
+                        android:id="@+id/game_vs"
                         android:layout_width="match_parent"
                         android:layout_height="36dip"
                         android:layout_marginLeft="3dip"
@@ -85,7 +85,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
-                        android:id="@id/guest_team_name"
+                        android:id="@+id/guest_team_name"
                         android:layout_width="match_parent"
                         android:layout_height="36dip"
                         android:layout_marginLeft="3dip"
@@ -95,7 +95,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@id/jc_main_list_item_button"
+                    android:id="@+id/jc_main_list_item_button"
                     android:layout_width="match_parent"
                     android:layout_height="24dip"
                     android:layout_marginTop="2dip"
@@ -112,7 +112,7 @@
                 android:background="@color/zc_sfc_divider" />
 
             <LinearLayout
-                android:id="@id/linearLayout3"
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
@@ -121,7 +121,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@id/game_analysis"
+                    android:id="@+id/game_analysis"
                     android:layout_width="match_parent"
                     android:layout_height="33dip"
                     android:background="@drawable/jc_team_analysis_selector"
@@ -135,7 +135,7 @@
                     android:padding="3dip" >
 
                     <Button
-                        android:id="@id/game_dan"
+                        android:id="@+id/game_dan"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"

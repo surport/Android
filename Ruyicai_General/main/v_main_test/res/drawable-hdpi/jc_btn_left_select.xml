@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- Enabled states -->
+
+	<item android:state_pressed="true" android:drawable="@drawable/jc_alert_left_radio_b" />
+	<item android:state_pressed="false" android:drawable="@drawable/jc_alert_left_radio" />
+</selector>
+
+
+

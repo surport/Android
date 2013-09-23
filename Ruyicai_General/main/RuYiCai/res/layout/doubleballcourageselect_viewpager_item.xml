@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 双色球胆拖页面选号区域滑动页面布局 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- 胆码区 -->
+
+        <com.ruyicai.android.controller.compontent.panel.SelectNumberPanel
+            android:id="@+id/doubleballcourageselect_selectnumberpanel_courage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp" />
+
+        <!-- 拖码区 -->
+
+        <com.ruyicai.android.controller.compontent.panel.SelectNumberPanel
+            android:id="@+id/doubleballcourageselect_selectnumberpanel_drag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp" />
+        <!-- 蓝球区 -->
+
+        <com.ruyicai.android.controller.compontent.panel.SelectNumberPanel
+            android:id="@+id/doubleballsourageselect_selectnumberpanel_blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+
+</ScrollView>

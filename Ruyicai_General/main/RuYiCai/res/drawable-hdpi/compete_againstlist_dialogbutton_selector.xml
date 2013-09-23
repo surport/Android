@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩对阵列表对话框按钮图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/compete_againstlist_dialogbutton_click" android:state_pressed="true"/>
+    <item android:drawable="@drawable/compete_againstlist_dialogbutton_normal" android:state_pressed="false"/>
+
+</selector>

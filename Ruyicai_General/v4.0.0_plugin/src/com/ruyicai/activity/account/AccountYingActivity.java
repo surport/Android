@@ -47,7 +47,7 @@ import com.ruyicai.net.newtransaction.recharge.AlipaySecurePayInterface;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.unionpay.upomp.lthj.util.PluginHelper;
+//import com.unionpay.upomp.lthj.util.PluginHelper;
 
 /**
  * 银行充值
@@ -443,7 +443,7 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		// 注：此处的action是：商户的action
 		mbundle.putString("action_cmd", CMD_PAY_PLUGIN);
 
-		PluginHelper.LaunchPlugin(this, mbundle);
+		//PluginHelper.LaunchPlugin(this, mbundle);
 	}
 
 	// 支付宝充值网络获取

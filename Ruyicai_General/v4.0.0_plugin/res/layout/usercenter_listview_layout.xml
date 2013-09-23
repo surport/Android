@@ -23,7 +23,7 @@
             android:paddingRight="5dp" >
 
             <ListView
-                android:id="@id/usercenter_listview_queryinfo"
+                android:id="@+id/usercenter_listview_queryinfo"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_horizontal"
@@ -33,7 +33,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@id/layout_account"
+            android:id="@+id/layout_account"
             android:layout_width="fill_parent"
             android:layout_height="30dip"
             android:layout_alignParentBottom="true"
@@ -43,7 +43,7 @@
             android:visibility="gone" >
 
             <LinearLayout
-                android:id="@id/layout_account"
+                android:id="@+id/layout_account"
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
                 android:background="@drawable/litt" >
@@ -58,14 +58,14 @@
                 android:paddingLeft="10dip" >
 
                 <TextView
-                    android:id="@id/layout_text_name"
+                    android:id="@+id/layout_text_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@id/layout_text_amt"
+                    android:id="@+id/layout_text_amt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"

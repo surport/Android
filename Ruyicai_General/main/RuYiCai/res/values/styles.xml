@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 对话框标题字体样式 -->
+    <style name="DialogTitleText">
+        <item name="android:textSize">20dip</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- 对话框内容字体标识 -->
+    <style name="DialogContentText">
+        <item name="android:textSize">18dip</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 开奖公告列表表项布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- 彩种图标 -->
+
+    <ImageView
+        android:id="@+id/lotterynoticelistviewitem_imageview_lotteyico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/lotterynotice_imageview_constantly" />
+
+    <!-- 彩种名称 -->
+
+    <TextView
+        android:id="@+id/lotterynoticelistviewitem_textview_lotteryname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/lotterynoticelistviewitem_imageview_lotteyico"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/lotterynoticelistviewitem_imageview_lotteyico"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_horizontal"
+        android:text="时时彩"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+    <!-- 开奖日期 -->
+
+    <TextView
+        android:id="@+id/lotterynoticelistviewitem_textview_noticedate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp"
+        android:layout_toRightOf="@id/lotterynoticelistviewitem_imageview_lotteyico"
+        android:text="开奖日期：2012-2-5" />
+    <!-- 开奖期号 -->
+
+    <TextView
+        android:id="@+id/lotterynoticelistviewitem_textview_noticeissue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="7dp"
+        android:text="第100342期" />
+
+    <!-- 开奖号码 -->
+
+    <LinearLayout
+        android:id="@+id/lotterynoticelistviewitem_linearlayout_lotterynumbers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+</RelativeLayout>

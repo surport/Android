@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 日常用语按钮图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/doubleballpresent_imagebutton_everydaywordsclick" android:state_pressed="true"/>
+    <item android:drawable="@drawable/doubleballpresent_imagebutton_everydaywordsnormal" android:state_pressed="false"/>
+
+</selector>

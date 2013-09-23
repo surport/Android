@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用启动页面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 显示企业Logo -->
+
+    <ImageView
+        android:id="@+id/splash_imageview_logo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/splash_imageview_logodes"
+        android:src="@drawable/splash_imageview_logo" />
+
+</LinearLayout>

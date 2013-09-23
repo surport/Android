@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 随机下拉菜单按钮图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/randomdropdownmenu_button_normal" android:state_selected="false"/>
+    <item android:drawable="@drawable/randomdropdownmenu_button_click" android:state_selected="true"/>
+
+</selector>

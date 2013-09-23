@@ -212,7 +212,7 @@ public class AccountListActivity extends Activity {
 				Intent intent = new Intent(context, LakalaActivity.class);
 				startActivity(intent);
 			}
-		} else if ("银联卡充值(推荐使用)".equals(textString)) {// 银联支付
+		} /**else if ("银联卡充值(推荐使用)".equals(textString)) {// 银联支付
 			if (isLogin()) {
 				Intent intent = new Intent(context, YinPayActivity.class);
 				startActivity(intent);
@@ -224,7 +224,7 @@ public class AccountListActivity extends Activity {
 						AccountYingActivity.class);
 				startActivity(alipay_secure);
 			}
-		} else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
+		} */else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
 			Intent intent = new Intent(context, Accoutmovecash.class);
 			startActivity(intent);
 			/**add by yejc 20130505 start*/
@@ -269,33 +269,33 @@ public class AccountListActivity extends Activity {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 		Map<String, Object> map;
 		
-		//彩金码兑换彩金
-		if (shellRW.getBooleanValue(Constants.EXCHANGE_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.account_exchange_gold));
-			map.put(PICTURE, R.drawable.account_exchange_gold_icon);
-			map.put(ISHANDINGFREE,
-					getString(R.string.account_exchange_gold_description));
-			list.add(map);
-		}
+//		//彩金码兑换彩金
+//		if (shellRW.getBooleanValue(Constants.EXCHANGE_DISPLAY_STATE, false)) {
+//			map = new HashMap<String, Object>();
+//			map.put(TITLE, getString(R.string.account_exchange_gold));
+//			map.put(PICTURE, R.drawable.account_exchange_gold_icon);
+//			map.put(ISHANDINGFREE,
+//					getString(R.string.account_exchange_gold_description));
+//			list.add(map);
+//		}
 		
-		// 免费获取礼金
-		if (shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.get_free_gold_title));
-			map.put(PICTURE, R.drawable.limei_free_gold_android);
-			map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
-			list.add(map);
-		}
+//		// 免费获取礼金
+//		if (shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false)) {
+//			map = new HashMap<String, Object>();
+//			map.put(TITLE, getString(R.string.get_free_gold_title));
+//			map.put(PICTURE, R.drawable.limei_free_gold_android);
+//			map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
+//			list.add(map);
+//		}
 				
-		// 银联支付
-		if (shellRW.getBooleanValue(Constants.YINLIAN_CARD_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
-			map.put(PICTURE, R.drawable.recharge_bank);
-			map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
-			list.add(map);
-		}
+//		// 银联支付
+//		if (shellRW.getBooleanValue(Constants.YINLIAN_CARD_DISPLAY_STATE, false)) {
+//			map = new HashMap<String, Object>();
+//			map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
+//			map.put(PICTURE, R.drawable.recharge_bank);
+//			map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
+//			list.add(map);
+//		}
 		
 		// 支付宝安全支付
 		if (shellRW.getBooleanValue(Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE, false)) {
@@ -352,14 +352,14 @@ public class AccountListActivity extends Activity {
 			list.add(map);
 		}
 		
-		// 银行支付
-		if (shellRW.getBooleanValue(Constants.BANK_RECHARGE_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.account_chongzhi));
-			map.put(PICTURE, R.drawable.account_chongzhi);
-			map.put(ISHANDINGFREE, getString(R.string.account_chongzhi_alert));
-			list.add(map);
-		}
+//		// 银行支付
+//		if (shellRW.getBooleanValue(Constants.BANK_RECHARGE_DISPLAY_STATE, false)) {
+//			map = new HashMap<String, Object>();
+//			map.put(TITLE, getString(R.string.account_chongzhi));
+//			map.put(PICTURE, R.drawable.account_chongzhi);
+//			map.put(ISHANDINGFREE, getString(R.string.account_chongzhi_alert));
+//			list.add(map);
+//		}
 
 		// 银行转账
 		map = new HashMap<String, Object>();

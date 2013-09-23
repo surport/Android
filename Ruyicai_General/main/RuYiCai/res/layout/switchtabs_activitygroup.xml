@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选项卡切换导航页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/switchtabs_activitygroup_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!-- 开奖信息栏：默认的情况下是隐藏的 -->
+
+    <com.ruyicai.android.controller.compontent.bar.LotteryInformationBar
+        android:id="@+id/switchtabs_activitygroup_lotteryinfomationbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switchtabs_activitygroup_titlebar"
+        android:visibility="gone" />
+
+    <!-- 投注栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.BetBar
+        android:id="@+id/switchtabs_activitygroup_betbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <!-- 自选和胆拖选项卡 -->
+
+    <TabHost
+        android:id="@+id/switchtabs_activitygroup_tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/switchtabs_activitygroup_betbar"
+        android:layout_below="@id/switchtabs_activitygroup_lotteryinfomationbar"
+        android:background="@color/white" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- tab控件 -->
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" >
+            </TabWidget>
+            <!-- tab内容布局 -->
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@android:id/tabs" >
+            </FrameLayout>
+        </RelativeLayout>
+    </TabHost>
+
+</RelativeLayout>

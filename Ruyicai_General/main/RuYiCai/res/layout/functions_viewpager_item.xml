@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/functions_imageview_viewpageitem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/functions_imageview_viewpageitemdes" >
+    </ImageView>
+
+    <ImageButton
+        android:id="@+id/functions_imagebutton_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="370dp"
+        android:background="@drawable/functions_imagebutton_start"
+        android:clickable="false"
+        android:contentDescription="@string/functions_imagebutton_startdes"
+        android:visibility="invisible" />
+
+</FrameLayout>

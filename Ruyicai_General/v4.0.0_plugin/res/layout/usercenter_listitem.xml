@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 用户中心列表子项布局 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/usercenter_item_linerlayout"
+    android:id="@+id/usercenter_item_linerlayout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
 
@@ -10,7 +10,7 @@
         android:layout_height="40dip" >
 
         <ImageView
-            android:id="@id/usercenter_item_lefticon"
+            android:id="@+id/usercenter_item_lefticon"
             android:layout_width="25dip"
             android:layout_height="25dip"
             android:layout_alignParentLeft="true"
@@ -18,11 +18,11 @@
             android:layout_marginLeft="10dip" />
 
         <TextView
-            android:id="@id/usercenter_item_text"
+            android:id="@+id/usercenter_item_text"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginLeft="20dip"
-            android:layout_toRightOf="@id/usercenter_item_lefticon"
+            android:layout_toRightOf="@+id/usercenter_item_lefticon"
             android:gravity="center_vertical"
             android:text="余额查询"
             android:textColor="@color/black"
@@ -31,11 +31,11 @@
         </TextView>
 
         <TextView
-            android:id="@id/tv_quan"
+            android:id="@+id/tv_quan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/usercenter_item_righticon"
+            android:layout_toLeftOf="@+id/usercenter_item_righticon"
             android:background="@drawable/quan"
             android:textColor="@android:color/white"
             android:textSize="11sp"
@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@id/usercenter_item_righticon"
+            android:id="@+id/usercenter_item_righticon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

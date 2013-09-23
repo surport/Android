@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩足球单关图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/compete_singlebutton_click" android:state_checked="true"/>
+    <item android:drawable="@drawable/compete_singlebutton_normal" android:state_checked="false"/>
+
+</selector>

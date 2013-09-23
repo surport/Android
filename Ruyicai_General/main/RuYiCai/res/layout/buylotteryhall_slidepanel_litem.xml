@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 购彩大厅彩种展示页面彩种展示选项 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- 彩种图片展示 -->
+
+    <FrameLayout
+        android:id="@+id/buylotteryhall_lotteryrevalitem_framelayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center" >
+
+        <!-- 彩种图标 -->
+
+        <ImageView
+            android:id="@+id/buylotteryhall_lotteryrevalitem_lotteryico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!-- 今日开奖图标或暂停销售图标 -->
+
+        <ImageView
+            android:id="@+id/buylotteryhall_lotteryrevalitem_noworsalestop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <!-- 加奖图标 -->
+
+        <ImageView
+            android:id="@+id/buylotteryhall_lotteryrevalitem_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+    </FrameLayout>
+    <!-- 彩种名称 -->
+
+    <TextView
+        android:id="@+id/buylotteryhall_lotteryrevalitem_lotteryname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buylotteryhall_lotteryrevalitem_framelayout"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black" />
+
+</RelativeLayout>

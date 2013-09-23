@@ -6,7 +6,7 @@
     android:padding="2dip">
 
     <ImageView
-        android:id="@id/join_check_listView_item_jump"
+        android:id="@+id/join_check_listView_item_jump"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@id/join_check_item_text_icon"
+                android:id="@+id/join_check_item_text_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -34,7 +34,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@id/join_check_item_text_result"
+                android:id="@+id/join_check_item_text_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@id/join_check_item_text_id"
+                android:id="@+id/join_check_item_text_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -56,7 +56,7 @@
             <!-- 奖金 -->
 
             <TextView
-                android:id="@id/join_check_item_text_prizeamt"
+                android:id="@+id/join_check_item_text_prizeamt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@id/join_check_item_text_time"
+                android:id="@+id/join_check_item_text_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -82,7 +82,7 @@
                 android:layout_weight="4" >
 
                 <TextView
-                    android:id="@id/rengoutype"
+                    android:id="@+id/rengoutype"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="认购金额："
@@ -90,7 +90,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@id/join_check_item_text_amt"
+                    android:id="@+id/join_check_item_text_amt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -99,14 +99,14 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@id/join_follow"
+            android:id="@+id/join_follow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingRight="20dp"
             android:visibility="gone" >
 
             <Button
-                android:id="@id/usercenter_buyagain"
+                android:id="@+id/usercenter_buyagain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -114,7 +114,7 @@
                 android:background="@drawable/follow_channle" />
 
             <Button
-                android:id="@id/usercenter_querydetail"
+                android:id="@+id/usercenter_querydetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"

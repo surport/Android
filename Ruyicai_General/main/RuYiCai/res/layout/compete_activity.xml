@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩选号页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/compete_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+    <!-- 竞彩栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.CompeteBar
+        android:id="@+id/compete_competebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/compete_titlebar" />
+
+    <!-- 对阵列表 -->
+
+    <ExpandableListView
+        android:id="@+id/compete_againstlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/compete_competebar"
+        android:layout_marginBottom="55dp"
+        android:cacheColorHint="#00000000"
+        android:childDivider="@color/grey"
+        android:groupIndicator="@null" />
+
+    <!-- 投注栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.CompeteBetBar
+        android:id="@+id/compete_betbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

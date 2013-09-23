@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@id/accountTitle_text"
+        android:id="@+id/accountTitle_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
@@ -37,7 +37,7 @@
                 android:orientation="vertical" >
 
             <EditText
-                android:id="@id/alipay_secure_recharge_value"
+                android:id="@+id/alipay_secure_recharge_value"
                 android:layout_width="match_parent"
                 android:layout_height="40dip"
                 android:gravity="center_vertical"
@@ -50,7 +50,7 @@
             
 
             <LinearLayout
-                android:id="@id/umpay_phone_linear"
+                android:id="@+id/umpay_phone_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -58,13 +58,13 @@
                 android:visibility="gone" >
 
                 <RadioGroup
-                    android:id="@id/umpay_recharge_radiogroup"
+                    android:id="@+id/umpay_recharge_radiogroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
                     <RadioButton
-                        android:id="@id/umpay_phone_three"
+                        android:id="@+id/umpay_phone_three"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -74,7 +74,7 @@
                         android:textColor="@android:color/black" />
 
                     <RadioButton
-                        android:id="@id/umpay_phone_thirty"
+                        android:id="@+id/umpay_phone_thirty"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

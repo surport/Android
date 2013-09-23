@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 滑动拖动条布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <!-- 减少按钮 -->
+
+    <ImageButton
+        android:id="@+id/slideseekbar_imagebutton_reduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:src="@drawable/slideseekbar_reducebutton_selector" />
+    <!-- 拖动条 -->
+
+    <SeekBar
+        android:id="@+id/slideseekbar_seekbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="130dip"
+        android:layout_height="wrap_content"
+        android:max="200"
+        android:maxHeight="6dip"
+        android:minHeight="6dip"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
+        android:progress="1"
+        android:progressDrawable="@drawable/slideseekbar_progressdrawable"
+        android:thumb="@drawable/slideseekbar_thumb" />
+
+    <!-- 增加按钮 -->
+
+    <ImageButton
+        android:id="@+id/slideseekbar_imagebutton_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:src="@drawable/slideseekbar_addbutton_selector" />
+    <!-- 值文本框 -->
+
+    <EditText
+        android:id="@+id/slideseekbar_edittext_value"
+        android:layout_width="60dip"
+        android:layout_height="40dip"
+        android:layout_marginTop="2dip"
+        android:numeric="integer"
+        android:singleLine="true" >
+    </EditText>
+
+</LinearLayout>

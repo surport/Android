@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩投注栏重选按钮图片背景选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/competebetbar_reselectbutton_click" android:state_pressed="true"/>
+    <item android:drawable="@drawable/competebetbar_reselectbutton_normal" android:state_pressed="false"/>
+
+</selector>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 合买信息页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+        <!-- 彩种 -->
+
+    <TextView
+        android:id="@+id/doubleballunion_textview_lotterytype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="彩种：双色球"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 期号 -->
+
+    <TextView
+        android:id="@+id/doubleballunion_textview_issuenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doubleballunion_textview_lotterytype"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="期号：第201345期"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 注码 -->
+
+    <TextView
+        android:id="@+id/doubleballunion_textview_notecode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doubleballunion_textview_issuenumber"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="注码：共有1笔投注"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 倍数 -->
+
+    <TextView
+        android:id="@+id/doubleballunion_textview_multiple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doubleballunion_textview_notecode"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="倍数："
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 注数 -->
+
+    <TextView
+        android:id="@+id/doubleballunion_textview_stakenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doubleballunion_textview_multiple"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="注数：1注"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 金额 -->
+
+    <TextView
+        android:id="@+id/doubleballunion_textview_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/doubleballunion_textview_stakenum"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="金额：2元"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <!-- 投注确认栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.BettingConfirmBar
+        android:id="@+id/doubleballunion_bettingconfirmbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

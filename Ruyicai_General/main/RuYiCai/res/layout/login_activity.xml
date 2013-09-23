@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 登陆页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/login_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <!-- 滑动登陆布局 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/login_title_bar"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- 用户名文本框 -->
+
+            <TextView
+                android:id="@+id/login_textview_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/login_textview_username"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+            <!-- 用户名输入框 -->
+
+            <EditText
+                android:id="@+id/login_edittext_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/login_textview_username"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/login_textview_username"
+                android:singleLine="true" />
+
+            <!-- 密码文本框 -->
+
+            <TextView
+                android:id="@+id/login_textview_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_textview_username"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/login_textview_password"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black" />
+            <!-- 密码输入框 -->
+
+            <EditText
+                android:id="@+id/login_edittext_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/login_textview_password"
+                android:layout_below="@id/login_edittext_username"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/login_textview_password"
+                android:password="true"
+                android:singleLine="true" />
+
+            <LinearLayout
+                android:id="@+id/login_checkbox_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_edittext_password"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <!-- 记住密码单选框 -->
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:button="@drawable/checkbox_selector"
+                    android:text="@string/login_checkbox_autologin"
+                    android:textColor="@color/black" />
+
+                <!-- 自动登录单选框 -->
+
+                <CheckBox
+                    android:id="@+id/login_checkbox_autologin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/checkbox_selector"
+                    android:text="@string/login_checkbox_rememberpassword"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <!-- 登录按钮 -->
+
+            <Button
+                android:id="@+id/login_button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_checkbox_group"
+                android:layout_margin="10dp"
+                android:layout_weight="1.0"
+                android:background="@drawable/login_button_selector"
+                android:text="@string/login_button_logintext"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/white" />
+
+            <!-- 新用户注册等列表：背景图片的别名使用会失去拉伸的效果，如何处理？ -->
+
+            <ListView
+                android:id="@+id/login_listview_newuserregister"
+                android:layout_width="match_parent"
+                android:layout_height="121dp"
+                android:layout_below="@id/login_button_login"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/usercenter_loginarea_background"
+                android:divider="#bcbcbc"
+                android:scrollbars="none"
+                android:dividerHeight="0.5dip" >
+            </ListView>
+
+            <!-- 微博登陆列表 -->
+
+            <ListView
+                android:id="@+id/login_listview_microbloglogin"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@id/login_listview_newuserregister"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/usercenter_loginarea_background"
+                android:divider="#bcbcbc"
+                android:scrollbars="none"
+                android:dividerHeight="0.5dip" >
+            </ListView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

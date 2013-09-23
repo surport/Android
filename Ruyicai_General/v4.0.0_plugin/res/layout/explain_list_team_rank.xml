@@ -11,7 +11,7 @@
         android:padding="5dip" >
 
         <TextView
-            android:id="@id/explain_list_item_text_one"
+            android:id="@+id/explain_list_item_text_one"
             android:layout_width="35dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -20,7 +20,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_two"
+            android:id="@+id/explain_list_item_text_two"
             android:layout_width="80dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -29,7 +29,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_team"
+            android:id="@+id/explain_list_item_text_team"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -38,7 +38,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_three"
+            android:id="@+id/explain_list_item_text_three"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -47,7 +47,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_four"
+            android:id="@+id/explain_list_item_text_four"
             android:layout_width="30dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -56,7 +56,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_five"
+            android:id="@+id/explain_list_item_text_five"
             android:layout_width="35dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -65,7 +65,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_six"
+            android:id="@+id/explain_list_item_text_six"
             android:layout_width="35dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"
@@ -74,7 +74,7 @@
             android:textSize="15dip" />
 
         <TextView
-            android:id="@id/explain_list_item_text_seven"
+            android:id="@+id/explain_list_item_text_seven"
             android:layout_width="35dip"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center_horizontal"

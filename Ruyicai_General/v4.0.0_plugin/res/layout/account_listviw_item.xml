@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 图标列表项 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/account_recharge_listview_linerlayout"
+    android:id="@+id/account_recharge_listview_linerlayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
@@ -14,7 +14,7 @@
         android:padding="10dip" >
 
         <ImageView
-            android:id="@id/account_recharge_type"
+            android:id="@+id/account_recharge_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,15 +25,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
-            android:layout_toRightOf="@id/account_recharge_type"
+            android:layout_toRightOf="@+id/account_recharge_type"
             android:orientation="vertical"
             android:paddingRight="15dip" >
 
             <TextView
-                android:id="@id/account_recharge_listview_text"
+                android:id="@+id/account_recharge_listview_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/account_recharge_type"
+                android:layout_toRightOf="@+id/account_recharge_type"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -41,7 +41,7 @@
             </TextView>
 
             <TextView
-                android:id="@id/ishandingfree"
+                android:id="@+id/ishandingfree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="dfsssssssssssssssssssssss"
@@ -50,7 +50,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@id/account_recharge_iicon"
+            android:id="@+id/account_recharge_iicon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -59,7 +59,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@id/linearLayout1"
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"

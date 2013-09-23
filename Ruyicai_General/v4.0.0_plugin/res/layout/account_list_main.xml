@@ -6,14 +6,14 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
         android:visibility="gone" >
 
         <TextView
-            android:id="@id/layout_main_text_title"
+            android:id="@+id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
         </TextView>
 
         <Button
-            android:id="@id/layout_main_img_return"
+            android:id="@+id/layout_main_img_return"
             android:layout_width="80dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -51,7 +51,7 @@
             android:src="@drawable/ie" />
 
         <TextView
-            android:id="@id/account_list_main_text"
+            android:id="@+id/account_list_main_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="5dip"
@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@id/account_rechange_listview"
+        android:id="@+id/account_rechange_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/white"

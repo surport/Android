@@ -6,19 +6,19 @@
     android:padding="6dip" >
 
     <LinearLayout
-        android:id="@id/LinearLayout01"
+        android:id="@+id/LinearLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/jc_bg1"
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@id/LinearLayout01"
+            android:id="@+id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@id/jc_main_list_item_text_time"
+                android:id="@+id/jc_main_list_item_text_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
@@ -29,7 +29,7 @@
             </TextView>
 
             <Button
-                android:id="@id/buy_jc_main_list_item_btn_xi"
+                android:id="@+id/buy_jc_main_list_item_btn_xi"
                 android:layout_width="35dip"
                 android:layout_height="35dip"
                 android:layout_alignParentRight="true"
@@ -43,7 +43,7 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@id/LinearLayout01"
+            android:id="@+id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
@@ -51,14 +51,14 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@id/LinearLayout01"
+                android:id="@+id/LinearLayout01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/jc_bgtop"
                 android:paddingTop="5sp" >
 
                 <TextView
-                    android:id="@id/jc_main_list_item_text_team"
+                    android:id="@+id/jc_main_list_item_text_team"
                     android:layout_width="70sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -68,13 +68,13 @@
                 </TextView>
 
                 <LinearLayout
-                    android:id="@id/LinearLayout01"
+                    android:id="@+id/LinearLayout01"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical" >
 
                     <TextView
-                        android:id="@id/jc_main_list_item_text_team_name1"
+                        android:id="@+id/jc_main_list_item_text_team_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -84,7 +84,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@id/jc_main_list_item_text_vs"
+                    android:id="@+id/jc_main_list_item_text_vs"
                     android:layout_width="20sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical"
@@ -94,7 +94,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@id/jc_main_list_item_text_team_name2"
+                    android:id="@+id/jc_main_list_item_text_team_name2"
                     android:layout_width="100sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal|center_vertical"
@@ -105,21 +105,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@id/LinearLayout01"
+                android:id="@+id/LinearLayout01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/jc_bgbottom"
                 android:paddingTop="3sp" >
 
                 <LinearLayout
-                    android:id="@id/LinearLayout01"
+                    android:id="@+id/LinearLayout01"
                     android:layout_width="70sp"
                     android:layout_height="45dip"
                     android:gravity="center_horizontal|center_vertical"
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@id/TextView01"
+                        android:id="@+id/TextView01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="截至时间"
@@ -129,7 +129,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/jc_main_list_item_text_time_end"
+                        android:id="@+id/jc_main_list_item_text_time_end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="4dip"
@@ -140,21 +140,21 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/lq_sf_layout_bottom1"
+                    android:id="@+id/lq_sf_layout_bottom1"
                     android:layout_width="225sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:paddingTop="3sp" >
 
                     <Button
-                        android:id="@id/jc_main_list_item_button1"
+                        android:id="@+id/jc_main_list_item_button1"
                         android:layout_width="65sp"
                         android:layout_height="34sp"
                         android:background="@drawable/jc_btn_select" >
                     </Button>
 
                     <TextView
-                        android:id="@id/jc_main_list_item_text_team_score"
+                        android:id="@+id/jc_main_list_item_text_team_score"
                         android:layout_width="40dip"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -164,14 +164,14 @@
                     </TextView>
 
                     <Button
-                        android:id="@id/jc_main_list_item_button3"
+                        android:id="@+id/jc_main_list_item_button3"
                         android:layout_width="65sp"
                         android:layout_height="34sp"
                         android:background="@drawable/jc_btn_select" >
                     </Button>
 
                     <Button
-                        android:id="@id/jc_main_list_item_button_dan"
+                        android:id="@+id/jc_main_list_item_button_dan"
                         android:layout_width="28sp"
                         android:layout_height="34sp"
                         android:layout_marginLeft="10sp"
@@ -181,7 +181,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/lq_sf_layout_bottom2"
+                    android:id="@+id/lq_sf_layout_bottom2"
                     android:layout_width="225sp"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -189,7 +189,7 @@
                     android:visibility="gone" >
 
                     <Button
-                        android:id="@id/jc_main_list_item_button"
+                        android:id="@+id/jc_main_list_item_button"
                         android:layout_width="180sp"
                         android:layout_height="30dip"
                         android:background="@drawable/jc_list_select"
@@ -199,7 +199,7 @@
                     </Button>
 
                     <Button
-                        android:id="@id/jc_main_list_item_button_dan"
+                        android:id="@+id/jc_main_list_item_button_dan"
                         android:layout_width="28sp"
                         android:layout_height="30sp"
                         android:layout_marginLeft="5sp"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主页面导航tabHost标签内的布局 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- 标签的背景 -->
+
+    <ImageView
+        android:id="@+id/home_tabbar_item_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_tabbaritem_selector" />
+
+    <!-- 标签的图标 -->
+
+    <ImageView
+        android:id="@+id/home_tabbar_item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

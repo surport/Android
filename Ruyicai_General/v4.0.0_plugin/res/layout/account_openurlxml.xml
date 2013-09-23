@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/layout_main_text_title"
+            android:id="@+id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -24,7 +24,7 @@
         </TextView>
 
         <Button
-            android:id="@id/layout_main_img_return"
+            android:id="@+id/layout_main_img_return"
             android:layout_width="80dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -38,7 +38,7 @@
     </RelativeLayout>
 
     <WebView
-        android:id="@id/account_webView"
+        android:id="@+id/account_webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </WebView>

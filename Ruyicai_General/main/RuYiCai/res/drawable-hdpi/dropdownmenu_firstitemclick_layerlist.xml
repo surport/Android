@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- popupwindow第一个选项层叠背景位图 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/dropdownmenu_firstitem_background" />
+    </item>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/dropdownmenu_clickitem_background" />
+    </item>
+
+</layer-list>

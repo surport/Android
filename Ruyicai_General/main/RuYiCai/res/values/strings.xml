@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 应用名称 -->
+    <string name="app_name">RuYiCai</string>
+
+    <!-- 软件更新对话框 -->
+    <string name="updatedialog_title_prompt">温馨提示</string>
+    <string name="updatedialog_message_softwareupdate">现在存在新的版本，是否更新？</string>
+    <string name="updatedialog_button_positive">是</string>
+    <string name="updatedialog_button_negative">否</string>
+
+    <!-- 未连接网络对话框 -->
+    <string name="nointenetdialog_title_warm">@string/updatedialog_title_prompt</string>
+    <string name="nointenetdialog_message_intenetnotconnted">您的手机未连接网络，是否进行设置？</string>
+    <string name="nointenetdialog_button_set">设置</string>
+    <string name="nointenetdialog_button_enter">进入</string>
+    <string name="nointenetdialog_button_cancle">取消</string>
+
+    <!-- 离开应用程序对话框 -->
+    <string name="exitapplicationdialog_title_prompt">确定要离开</string>
+    <string name="exitapplicationdialog_message_exit">你确定要离开如意彩客户端？</string>
+    <string name="exitapplicationdialog_button_positive">确定</string>
+    <string name="exitapplicationdialog_button_negative">@string/nointenetdialog_button_cancle</string>
+
+    <!-- 下拉菜单 -->
+    <string name="popupwindow_textview_playmethodintroduce">玩法介绍</string>
+    <string name="popupwindow_textview_historyrunlottery">历史开奖</string>
+    <string name="popupwindow_textview_runlotterytrend">开奖走势</string>
+    <string name="popupwindow_textview_betquery">投注查询</string>
+    <string name="popupwindow_textview_luckselectnumber">幸运选号</string>
+    <string name="popupwindow_textview_simulateselectnumber">模拟选号</string>
+
+    <!-- 选项卡 -->
+    <string name="tabhost_textview_selfselect">自选</string>
+    <string name="tabhost_textview_courageselect">胆拖</string>
+    <string name="tabhost_textview_betting">投注</string>
+    <string name="tabhost_textview_append">追号</string>
+    <string name="tabhost_textview_union">合买</string>
+    <string name="tabhost_textview_present">赠送</string>
+    <string name="tabhost_textview_12xuan2">12选2</string>
+    <string name="tabhost_textview_group3">组三</string>
+    <string name="tabhost_textview_group6">组六</string>
+    <string name="tabhost_textview_randomselect">机选</string>
+    <string name="tabhost_textview_onestar">一星</string>
+    <string name="tabhost_textview_twostar">二星</string>
+    <string name="tabhost_textview_threestar">三星</string>
+    <string name="tabhost_textview_fivestar">五星</string>
+    <string name="tabhost_textview_bigsmall">大小</string>
+
+    <!-- 下拉选项 -->
+    <string name="spinner_item_optionaltwo">任选二</string>
+    <string name="spinner_item_optionalthree">任选三</string>
+    <string name="spinner_item_optionalfour">任选四</string>
+    <string name="spinner_item_optionalfive">任选五</string>
+    <string name="spinner_item_optionalsix">任选六</string>
+    <string name="spinner_item_optionalseven">任选七</string>
+    <string name="spinner_item_optionaleight">任选八</string>
+    <string name="spinner_item_beforoneselfselect">前一直选</string>
+    <string name="spinner_item_befortwoselfselect">前二直选</string>
+    <string name="spinner_item_beforthreeselfselect">前三直选</string>
+    <string name="spinner_item_beforonesgroupselect">前一组选</string>
+    <string name="spinner_item_befortwogroupselect">前二组选</string>
+    <string name="spinner_item_beforthreegroupselect">前三组选</string>
+    <string name="spinner_item_selectonenumbetting">选一数投</string>
+    <string name="spinner_item_selectoneredbetting">选一红投</string>
+    <string name="spinner_item_selecttwolinkdirectly">选二连直</string>
+    <string name="spinner_item_selectthreebefordirectly">选三前直</string>
+    <string name="spinner_item_selecttwolinkgroup">选二连组</string>
+    <string name="spinner_item_selectthreebeforgroup">选三前组</string>
+
+    <!-- 单选按钮组 -->
+    <string name="radiogroup_text_normalselfselect">普通直选</string>
+    <string name="radiogroup_text_sumselfselect">直选和值</string>
+    <string name="radiogroup_text_singleselect">单选</string>
+    <string name="radiogroup_text_mutileselect">复式</string>
+    <string name="radiogroup_text_sum">和值</string>
+    <string name="radiogroup_text_arrangesix">组六</string>
+    <string name="radiogroup_text_arrangesixsum">组六和值</string>
+    <string name="radiogroup_text_selfselect">@string/tabhost_textview_selfselect</string>
+    <string name="radiogroup_text_courageselect">@string/tabhost_textview_courageselect</string>
+    <string name="radiogroup_text_groupselect">组选</string>
+    <string name="radiogroup_text_fivestarselfselect">五星直选</string>
+    <string name="radiogroup_text_fivestarallselect">五星通选</string>
+
+    <!-- 投注栏 -->
+    <string name="bettingbar_button_touzhu">投注</string>
+    <string name="bettingbar_textview_selected">已选：</string>
+    <!-- 随机选号按钮 -->
+    <string name="randombutton_button_randomselectnumber">机选号码</string>
+    <string name="randombutton_button_unit">个</string>
+
+    <!-- 启动页面 -->
+    <string name="splash_imageview_logodes">如意彩欢迎您！</string>
+
+    <!-- 新功能页面 -->
+    <string name="functions_imageview_viewpageitemdes">应用新功能展示图片</string>
+    <string name="functions_imagebutton_startdes">应用新功能完毕</string>
+
+    <!-- 主页面 -->
+
+
+    <!-- 购彩大厅 -->
+    <string name="buylotteryhall_titlebar_text">购彩大厅</string>
+    <string name="buylotteryhall_titlebar_buttontext">登陆注册</string>
+    <string name="buylotteryhall_bottombarbutton_text1">彩票资讯</string>
+    <string name="buylotteryhall_bottombarbutton_text2">活动中心</string>
+    <string name="buylotteryhall_bottombarbutton_text3">幸运选号</string>
+
+    <!-- 开奖公告 -->
+    <string name="lotterynotice_titlebar_text">开奖公告</string>
+    <string name="lotterynotice_titlebar_buttontext">订阅</string>
+
+    <!-- 账户充值 -->
+    <string name="accountrecharge_titlebar_text">账户充值</string>
+    <string name="accountrecharge_titlebar_buttontext">@string/buylotteryhall_titlebar_buttontext</string>
+    <string name="accountrecharge_prompt_text">登录”如意彩“（www.ruyicai.com）用网银网上充值免手续费，支持更多银行</string>
+    <string name="accountrecharge_listitem_alipaysecurity">支付宝安全支付（免手续费）</string>
+    <string name="accountrecharge_listitem_alipaysecuritydescription">安全便捷，免输入密码，支持银行卡充值</string>
+    <string name="accountrecharge_listitem_alipay">支付宝充值（免手续费）</string>
+    <string name="accountrecharge_listitem_alipaydescription">支持借记卡和信用卡充值，免开通网银</string>
+    <string name="accountrecharge_listitem_unionpay">银联充值（免手续费）</string>
+    <string name="accountrecharge_listitem_unionpaydescription">支持借记卡和信用卡充值，免开通网银</string>
+    <string name="accountrecharge_listitem_unionpayvoice">银联语音充值（免手续费）</string>
+    <string name="accountrecharge_listitem_unionpayvoicedescription">使用银联DNA手机支付，支持各大银行</string>
+    <string name="accountrecharge_listitem_lacarra">拉卡拉支付</string>
+    <string name="accountrecharge_listitem_lacarradescription">支持所有银联卡，免开通网银，无限额</string>
+    <string name="accountrecharge_listitem_phonerechargecard">手机充值卡充值</string>
+    <string name="accountrecharge_listitem_phonerechargecarddescription">支持移动、联通、电话费充值卡</string>
+    <string name="accountrecharge_listitem_bankrecharge">银行充值（推荐）</string>
+    <string name="accountrecharge_listitem_bankrechargedescription">根据您的银行卡选择合适的充值方式</string>
+    <string name="accountrecharee_listitem_banktransfer">银行转账</string>
+    <string name="accountrecharge_listitem_banktransferdescription">通过银行的柜台、ATM或者网上银行转账</string>
+    <!-- 用户中心 -->
+    <string name="usercenter_titlebar_text">用户中心</string>
+    <string name="usercenter_textview_loginprompt">您还未登陆，登陆后可以查到更多的信息。如果您还未注册，请先注册。</string>
+    <string name="usercenter_button_login">@string/login_button_logintext</string>
+    <string name="usercenter_button_register">注册</string>
+    <string name="usercenter_listviewhead_accountcapital">账户资金：</string>
+    <string name="usercenter_listviewitem_accountrecharge">账户充值</string>
+    <string name="usercenter_listviewitem_accountwithdraw">账户提现</string>
+    <string name="usercenter_listviewitem_accountdetail">账户明细</string>
+    <string name="usercenter_listviewitem_capticaldetail">资金详情</string>
+    <string name="usercenter_listviewitem_myintegral">我的积分</string>
+    <string name="usercenter_listviewhead_mylottery">我的彩票：</string>
+    <string name="usercenter_listviewitem_winquery">中奖查询</string>
+    <string name="usercenter_listviewitem_betrecord">投注记录</string>
+    <string name="usercenter_listviewitem_addonquery">追加查询</string>
+    <string name="usercenter_listviewitem_presentquery">赠送查询</string>
+    <string name="usercenter_listviewitem_mychipped">我的合买</string>
+    <string name="usercenter_listviewhead_accountset">账户设置：</string>
+    <string name="usercenter_listviewitem_modifypassword">密码修改</string>
+    <string name="usercenter_listviewitem_identitycardbind">身份证绑定</string>
+    <string name="usercenter_listviewitem_phonenumberbind">手机号绑定</string>
+    <string name="usercenter_listviewitem_onlinemessage">在线留言</string>
+
+    <!-- 更多 -->
+    <string name="more_titlebar_text">更多</string>
+    <string name="more_titlebar_buttontext">@string/buylotteryhall_titlebar_buttontext</string>
+    <string name="more_listitem_customerhotline">客服热线</string>
+    <string name="more_listitem_helpercenter">帮助中心</string>
+    <string name="more_listitem_checkupdate">检测更新</string>
+    <string name="more_listitem_freshmanguide">新手指南</string>
+    <string name="more_listitem_share">分享</string>
+    <string name="more_listitem_ifeedback">我要反馈</string>
+    <string name="more_listitem_aboutwe">关于我们</string>
+    <string name="more_listitem_settting">设置</string>
+    <string name="more_listitem_aboutsoftware">关于软件</string>
+    <!-- 用户登录 -->
+    <string name="login_title_text">用户登录</string>
+    <string name="login_textview_username">用户名：</string>
+    <string name="login_textview_password">密    码：</string>
+    <string name="login_checkbox_autologin">自动登陆</string>
+    <string name="login_checkbox_rememberpassword">记住密码</string>
+    <string name="login_button_logintext">登录</string>
+    <string name="login_listviewitem_newuserregister">新用户注册</string>
+    <string name="login_listviewitem_reterivepassword">找回账户密码</string>
+    <string name="login_listviewitem_customerhotline"></string>
+    <string name="login_listviewitem_sinamicroblog">用新浪微博账号登录</string>
+    <string name="login_listviewitem_qqaccountlogin">用QQ账号登录</string>
+
+    <!-- 用户注册 -->
+    <string name="register_title_text">用户注册</string>
+    <string name="register_textview_username">用  户  名：</string>
+    <string name="register_textview_password">密        码：</string>
+    <string name="register_textview_comfirmpassword">确认密码：</string>
+    <string name="register_edittext_usernamehit">请输入您的手机号</string>
+    <string name="register_edittext_passwordhit">6-16个字符，数字组成</string>
+    <string name="register_edittext_confirmpasswordhit">重新输入密码</string>
+    <string name="register_checkbox_identifycardbind">我要绑定身份证</string>
+    <string name="register_checkbox_inputreferrer">我要输入推荐人</string>
+    <string name="register_checkbox_agreeprotocol">同意《用户服务协议》</string>
+    <string name="register_button_register">@string/usercenter_button_register</string>
+    <string name="register_textview_registerprompt">手机号码、真实姓名和身份证号码是彩票兑奖的重要依据，为保障您的合法权益，建议您注册时绑定身份证信息！</string>
+
+    <!-- 投注信息 -->
+    <string name="bettinginformation_title_betting">投注确认</string>
+    <string name="bettinginformation_title_append">追号设置</string>
+    <string name="bettinginformation_title_union">发起合买</string>
+    <string name="bettinginformation_title_present">赠送彩票</string>
+
+    <!-- 江西11选5 -->
+    <string name="jiangxi11xuan5_textview_selfselect_optionaltwopalymethod">至少选择2个号码投注，命中任意2位即中奖！奖金：6元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionaltwopalymethod">至少选择1个胆码和2个拖码投注，胆码加拖码≥3个，投注号码与开奖号码前两位一致，位置不限即中奖！奖金：6元</string>
+    <string name="jiangxi11xuan5_textview_selfselect_optionalthreepalymethod">至少选择3个号码投注，命中任意3位即中奖！奖金：19元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionalthreepalymethod">胆码可选1-2个，拖码至少选择2个，胆码加拖码≥4个，命中开奖号码的任意三个即中奖！奖金：19元</string>
+    <string name="jiangxi11xuan5_textview_selfselect_optionalfourpalymethod">至少选择4个号码投注，命中任意4位即中奖！奖金：78元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionalfourpalymethod">胆码可选1-3个，拖码至少选择2个，胆码加拖码≥5个，命中开奖号码的任意五个即中奖！奖金：78元</string>
+    <string name="jiangxi11xuan5_textview_selfselect_optionalfivepalymethod">至少选择5个号码投注，全部命中即中奖！奖金：540元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionalfivepalymethod">胆码可选1-4个，拖码至少选择2个，胆码加拖码≥6个，全部命中开奖号码即中奖！奖金：540元</string>
+    <string name="jiangxi11xuan5_textview_selfselect_optionalsixpalymethod">至少选择6个号码投注，选号中任意5位与开奖号码一致即中奖！奖金：90元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionalsixpalymethod">胆码可选1-5个，拖码至少选择2个，胆码加拖码≥7个，选号中任意5位与开奖号码一致即中奖！奖金：90元</string>
+    <string name="jiangxi11xuan5_textview_selfselect_optionalsevenpalymethod">至少选择7个号码投注，选号中任意5位与开奖号码一致即中奖！奖金：26元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionalsevenpalymethod">胆码可选1-6个，拖码至少选择2个，胆码加拖码≥8个，选号中任意5位与开奖号码一致即中奖！奖金：9元</string>
+    <string name="jiangxi11xuan5_textview_selfselect_optionaleightpalymethod">至少选择8个号码投注，选号中任意5位与开奖号码一致即中奖！奖金：26元</string>
+    <string name="jiangxi11xuan5_textview_courageselect_optionaleightpalymethod">胆码可选1-7个，拖码至少选择2个，胆码加拖码≥9个，选号中任意5位与开奖号码一致即中奖！奖金：9元</string>
+
+    <!-- 时时彩 -->
+    <string name="constantly_textview_onestarplaymethod">至少选择1个号码球投注，命中开奖号码的个位即中奖！奖金：10元</string>
+    <string name="constantly_textview_twostar_selfselectplaymethod">个、十位各选1个号码投注，按位置分别命中开奖号码的个、十位即中奖！奖金：100元</string>
+    <string name="constantly_textview_twostar_groupselectplaymethod">选择2个或多个号码投注，命中开奖号码的个、十位号码即中奖（开出对子号不逢中奖）！奖金：50元</string>
+    <string name="constantly_textview_twostar_sumplaymethod">至少选择一个号码投注，命中开奖号码后面两位数字相加之和即中奖！奖金：100/50元</string>
+    <string name="constantly_textview_threestarplaymethod">个、十、百位各选1个或多个号码投注，按位置分别命中开奖号码的个、十、百位即中奖！奖金：1000元</string>
+    <string name="constantly_textview_fivestar_selfselectplaymethod">各位各选1个或多个号码投注，按位置全部命中即中奖！奖金：100000元</string>
+    <string name="constantly_textview_fivestar_allselectplaymethod">每位选中1个或多个号码，按顺序全部猜中，猜中后前三或后三、前二或后二都可中奖！奖金：2000/200/20元</string>
+    <string name="constantly_textview_bigsmallplaymethod">各位各选中1个号码投注，所选选中的号码与开奖的个位号码性质按位置相符即中奖！奖金：4元</string>
+
+    <!-- 广东快乐十分 -->
+    <string name="guangdonghappyvery_textview_selectonenumbettingplaymethod">至少选择1个号码投注，命中开奖在号码第一位即中奖！奖金：25元</string>
+    <string name="guangdonghappyvery_textview_selectoneredbettingplaymethod">19，20为红号，从这两个号码任选一个投注，开奖号码第一位是红号即中奖！奖金：5元</string>
+    <string name="guangdonghappyvery_textview_optionaltwo_selfselectplaymethod">至少选择2个号码投注，命中开奖号码的任意两位即中奖！奖金：8元</string>
+    <string name="guangdonghappyvery_textview_optionaltwo_courageselectplaymethod">至少选择1个胆码和2个拖码投注，胆码加拖码23个，命中开奖号码的任选两位即中奖！奖金：8元</string>
+    <string name="guangdonghappyvery_textview_optionalthree_selfselectplaymethod">至少选择3个号码投注，命中开奖号码的任意三位即中奖！奖金：24元</string>
+    <string name="guangdonghappyvery_textview_optionalthree_courageselectplaymethod">胆码可选1-2个，拖码至少选择2个，胆码加拖码≥4个，命中开奖号码的任意三个即中奖！奖金：24元</string>
+    <string name="guangdonghappyvery_textview_optionalfour_selfselectplaymethod">至少选择4个号码投注，命中开奖号码的任意四位即中奖！奖金：80元</string>
+    <string name="guagndonghappyvery_textview_optionalfour_courageplaymethod">胆码可选1-3个，拖码至少选择2个，胆码加拖码≥5个，命中开奖号码的任意四位即中奖！奖金：80元</string>
+    <string name="guangdonghappyvery_textview_optionalfive_selfselectplaymethod">至少选择5个号码投注，命中开奖号码的任意五位即中奖！奖金：320元</string>
+    <string name="guangdonghappyvery_textview_optionalfive_courageslectplaymethod">胆码可选1-4个，拖码至少选择2个，胆码加拖码≥6个，命中开奖号码的任意五位即中奖！奖金：320元</string>
+    <string name="guangdonghappyvery_textview_selecttwolinkdirectlyplaymethod">每位各选1个或多个号码投注，命中开奖号码的连续两位数字、顺序相同即中奖！奖金：62元</string>
+    <string name="guangdonghappyvery_textview_selectthreebeforlinkplaymethod">每位各选1个或多个号码投注，命中开奖号码的前三位数字、顺序即中奖！奖金：8000元</string>
+    <string name="guangdonghappyvery_textview_selecttwolinkgroupplaymethod">每位各选1个或多个号码投注，命中开奖号码的连续两位数字（顺序不限）即中奖！奖金：31元</string>
+    <string name="guangdonghappyvery_textview_selectthreebeforgroupplaymethod">每位各选1位或多个号码投注，命中开奖号码的前三位数字（顺序不限）即中奖！奖金：1300元</string>
+
+    <!-- 11运夺金 -->
+    <string name="elevenluckgold_textview_optionaltwo_selfselectplaymethod">至少选择2个号码投注，命中任意2位即中奖！奖金：6元</string>
+    <string name="elevenluckgold_textview_optionaltwo_courageselectplaymethod">至少选择1个胆码和2个拖码投注，胆码加拖码≥3个，投注号码与开奖号码前两位一致，位置不限即开奖！奖金：6元</string>
+    <string name="elevenluckgold_textview_optionalthree_selfselectplaymethod">至少选择3个号码投注，命中任意3位即中奖！奖金：19元</string>
+    <string name="elevenluckgold_textview_optionalthree_courageselectplaymethod">胆码可选1-2个，拖码至少选择2个，胆码加拖码≥4个，命中开奖号码的任意3位即中奖！奖金：19元</string>
+    <string name="elevenluckgold_textview_optionalfour_selfselectplaymethod">至少选择4个号码投注，命中任意4位即中奖！奖金：78元</string>
+    <string name="elevenluckgold_textview_optionalfour_courageplaymethod">胆码可选1-3个，拖码至少选择2个，胆码加拖码≥5个，命中开奖号码的任意4位即中奖！奖金：78元</string>
+    <string name="elevenluckgold_textview_optionalfive_selfselectplaymethod">至少选择5个号码投注，命中全部即中奖！奖金：540元</string>
+    <string name="elevenluckgold_textview_optionalfive_courageslectplaymethod">胆码可选1-4个，拖码至少选择2个，胆码加拖码≥6个，全部命中即中奖！奖金：540元</string>
+    <string name="elevenluckgold_textview_optionalsix_selfselectplaymethod">至少选择6个号码投注，选号中任意5位于开奖号码一致即中奖！奖金：90元</string>
+    <string name="elevenluckgold_textview_optionalsix_courageslectplaymethod">胆码可选1-5个，拖码至少选择2个，胆码加拖码≥7个，选号中任意5位于开奖号码一致即中奖！奖金：90元</string>
+    <string name="elevenluckgold_textview_optionalseven_selfselectplaymethod">至少选择7个号码投注，选号中任意5位于开奖号码一致即中奖！奖金：26元</string>
+    <string name="elevenluckgold_textview_optionalseven_courageslectplaymethod">胆码可选1-6个，拖码至少选择2个，胆码加拖码≥8个，选号中任意5位于开奖号码一致即中奖！奖金：26元</string>
+    <string name="elevenluckgold_textview_optionaleightplaymethod">至少选择8个号码投注，选号中任意5位于开奖号码一致即中奖！奖金：9元</string>
+
+    <!-- 竞彩足球 -->
+    <string name="competefootball_playmethodchange_title">玩法切换</string>
+</resources>

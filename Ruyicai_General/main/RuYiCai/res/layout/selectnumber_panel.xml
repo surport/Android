@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选号面板页面布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical" >
+
+        <!-- 标题 -->
+
+        <TextView
+            android:id="@+id/selectnumberpanel_textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="红球区：" />
+
+        <!-- 随机选号按钮 -->
+
+        <com.ruyicai.android.controller.compontent.selectnumber.RandomSelectNumberButton
+            android:id="@+id/selectnumberpanel_selectnumberbutton_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <!-- 选号小球网格布局 -->
+
+    <com.ruyicai.android.controller.compontent.selectnumber.SelectNumberBallGridView
+        android:id="@+id/selectnumberpanel_gridview_numberball"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/selectnumberpanel_randomselectnumberbutton_random"
+        android:layout_marginTop="91dp"
+        android:numColumns="3" />
+
+</LinearLayout>

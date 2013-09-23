@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩胆按钮图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/compete_selectitem_couragebutton_click" android:state_checked="true"/>
+    <item android:drawable="@drawable/compete_selectitem_couragebutton_normal" android:state_checked="false"/>
+
+</selector>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 标题下拉列表布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 玩法介绍 -->
+
+    <Button
+        android:id="@+id/popupwindow_button_playmethodintroduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdownmenu_firstitem_selector"
+        android:drawableLeft="@drawable/dropdownmenu_imageview_playmethodintroduce"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/popupwindow_textview_playmethodintroduce"
+        android:textColor="@color/white"
+        android:textSize="17dip" />
+
+    <!-- 历史开奖 -->
+
+    <Button
+        android:id="@+id/popupwindow_button_historyrunlotter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdownmenu_otheritem_selector"
+        android:drawableLeft="@drawable/dropdownmenu_imageview_historyrunlottery"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/popupwindow_textview_historyrunlottery"
+        android:textColor="@color/white"
+        android:textSize="17dip" />
+
+    <!-- 开奖走势 -->
+
+    <Button
+        android:id="@+id/popupwindow_button_runlotterytrend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdownmenu_otheritem_selector"
+        android:drawableLeft="@drawable/dropdownmenu_imageview_runlotterytrend"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/popupwindow_textview_runlotterytrend"
+        android:textColor="@color/white"
+        android:textSize="17dip" />
+
+    <!-- 投注查询 -->
+
+    <Button
+        android:id="@+id/popupwindow_button_betquery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdownmenu_otheritem_selector"
+        android:drawableLeft="@drawable/dropdownmenu_imageview_betquery"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/popupwindow_textview_betquery"
+        android:textColor="@color/white"
+        android:textSize="17dip" />
+
+    <!-- 幸运选号 -->
+
+    <Button
+        android:id="@+id/popupwindow_button_luckselectnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdownmenu_otheritem_selector"
+        android:drawableLeft="@drawable/dropdownmenu_imageview_luckselectnumber"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/popupwindow_textview_luckselectnumber"
+        android:textColor="@color/white"
+        android:textSize="17dip" />
+
+    <!-- 模拟选号 -->
+
+    <Button
+        android:id="@+id/popupwindow_button_simulateselectnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dropdownmenu_otheritem_selector"
+        android:drawableLeft="@drawable/dropdownmenu_imageview_simulateselectnumber"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="@string/popupwindow_textview_simulateselectnumber"
+        android:textColor="@color/white"
+        android:textSize="17dip" />
+
+</LinearLayout>

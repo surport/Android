@@ -7,14 +7,14 @@
     >
 
     <LinearLayout
-        android:id="@id/linearLayout"
+        android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" 
         android:gravity="center_horizontal|clip_vertical" >
 
         <TextView
-            android:id="@id/alert_dialog_touzhu_text_title"
+            android:id="@+id/alert_dialog_touzhu_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="7dip"
@@ -25,22 +25,22 @@
     </LinearLayout>
 
     <ListView
-        android:id="@id/noticehistroylist"
+        android:id="@+id/noticehistroylist"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/linearLayout"
+        android:layout_below="@+id/linearLayout"
         android:background="@drawable/bg" android:paddingBottom="80dip">
     </ListView>
 
     <RelativeLayout
-        android:id="@id/buttonlayout"
+        android:id="@+id/buttonlayout"
         android:layout_width="fill_parent"
         android:layout_height="70sp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/buy_bot_bg" >
 
         <Button
-            android:id="@id/alert_dialog_touzhu_button_cancel"
+            android:id="@+id/alert_dialog_touzhu_button_cancel"
             android:layout_width="120dip"
             android:layout_height="40sp"
             android:layout_alignParentLeft="true"
@@ -53,7 +53,7 @@
         </Button>
 
         <Button
-            android:id="@id/alert_dialog_touzhu_button_ok"
+            android:id="@+id/alert_dialog_touzhu_button_ok"
             android:layout_width="120dip"
             android:layout_height="40sp"
             android:layout_alignParentRight="true"

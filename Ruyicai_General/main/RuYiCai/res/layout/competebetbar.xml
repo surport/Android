@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩投注栏 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bettingbar_background" >
+
+    <!-- 重选按钮 -->
+
+    <Button
+        android:id="@+id/competebetbar_reselect_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/competebetbar_reselectbutton_selector" />
+    <!-- 选择场次文本 -->
+
+    <TextView
+        android:id="@+id/competebar_selectednum_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="你选择了7场比赛"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+    <!-- 立即投注按钮 -->
+
+    <Button
+        android:id="@+id/competebetbar_recentlybet_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/competebetbar_recentlybetbutton_selector" />
+
+</RelativeLayout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 注册页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/register_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- 用户名文本框 -->
+
+    <TextView
+        android:id="@+id/register_textview_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_title_bar"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/register_textview_username"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black" />
+    <!-- 用户名输入框 -->
+
+    <EditText
+        android:id="@+id/register_edittext_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/register_textview_username"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/register_textview_username"
+        android:hint="@string/register_edittext_usernamehit"
+        android:singleLine="true" />
+
+    <!-- 密码文本框 -->
+
+    <TextView
+        android:id="@+id/register_textview_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_textview_username"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/register_textview_password"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black" />
+    <!-- 密码输入框 -->
+
+    <EditText
+        android:id="@+id/register_edittext_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/register_textview_password"
+        android:layout_below="@id/register_edittext_username"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/register_textview_password"
+        android:hint="@string/register_edittext_passwordhit"
+        android:password="true"
+        android:singleLine="true" />
+
+    <!-- 确认密码文本框 -->
+
+    <TextView
+        android:id="@+id/register_textview_confirmpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_textview_password"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/register_textview_comfirmpassword"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/black" />
+    <!-- 确认密码输入框 -->
+
+    <EditText
+        android:id="@+id/register_edittext_confirmpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/register_textview_confirmpassword"
+        android:layout_below="@id/register_edittext_password"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/register_textview_confirmpassword"
+        android:hint="@string/register_edittext_confirmpasswordhit"
+        android:password="true"
+        android:singleLine="true" />
+    <!-- 绑定身份证单选按钮 -->
+
+    <CheckBox
+        android:id="@+id/register_checkbox_indentifycardbind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/register_edittext_confirmpassword"
+        android:layout_below="@id/register_textview_confirmpassword"
+        android:layout_marginTop="20dp"
+        android:button="@drawable/checkbox_selector"
+        android:text="@string/register_checkbox_identifycardbind"
+        android:textColor="@color/black" />
+    <!-- 输入推荐人单选按钮 -->
+
+    <CheckBox
+        android:id="@+id/register_checkbox_inputreferrer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/register_checkbox_indentifycardbind"
+        android:layout_below="@id/register_checkbox_indentifycardbind"
+        android:layout_marginTop="5dp"
+        android:button="@drawable/checkbox_selector"
+        android:text="@string/register_checkbox_inputreferrer"
+        android:textColor="@color/black" />
+
+    <!-- 同意用户服务协议单选按钮 -->
+
+    <CheckBox
+        android:id="@+id/register_checkbox_agreeprotocol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/register_checkbox_inputreferrer"
+        android:layout_below="@id/register_checkbox_inputreferrer"
+        android:layout_marginTop="5dp"
+        android:button="@drawable/checkbox_selector"
+        android:text="@string/register_checkbox_agreeprotocol"
+        android:textColor="@color/black" />
+
+    <!-- 注册按钮 -->
+
+    <Button
+        android:id="@+id/register_button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_checkbox_agreeprotocol"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_button_selector"
+        android:text="@string/register_button_register"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white" />
+    <!-- 注册提示语 -->
+
+    <TextView
+        android:id="@+id/register_textview_registerprompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_button_register"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingTop="15dp"
+        android:text="@string/register_textview_registerprompt"
+        android:textColor="@color/red"
+        android:textSize="16sp" />
+
+</RelativeLayout>

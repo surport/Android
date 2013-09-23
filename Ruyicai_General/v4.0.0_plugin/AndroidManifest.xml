@@ -565,11 +565,13 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 
         <activity
             android:name="com.ruyicai.activity.account.AccountYingActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+         -->
         <activity
             android:name="com.ruyicai.activity.account.LakalaActivity"
             android:configChanges="keyboardHidden|orientation"

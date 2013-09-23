@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选号小球布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <!-- 选号小球 -->
+
+    <FrameLayout
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:gravity="center" >
+
+        <!-- 小球背景颜色 -->
+
+        <CheckBox
+            android:id="@+id/selectnumberball_checkbox_selectball"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:button="@null" />
+        <!-- 小球号码 -->
+
+        <TextView
+            android:id="@+id/selectnumberball_textview_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <!-- 遗漏值 -->
+
+    <TextView
+        android:id="@+id/selectnumberball_textview_lossvalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

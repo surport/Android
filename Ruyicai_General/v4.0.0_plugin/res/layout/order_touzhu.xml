@@ -5,10 +5,10 @@
     android:orientation="vertical" >
 
     <ScrollView
-        android:id="@id/ScrollView01"
+        android:id="@+id/ScrollView01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/linearLayout"
+        android:layout_below="@+id/linearLayout"
         android:background="#ffffff"
         android:paddingBottom="70sp" >
 
@@ -26,7 +26,7 @@
                 android:paddingTop="10dip" >
 
                 <LinearLayout
-                    android:id="@id/alert_dialog_touzhu_linear_qihao_beishu"
+                    android:id="@+id/alert_dialog_touzhu_linear_qihao_beishu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
@@ -41,7 +41,7 @@
                         <!-- 彩种名称 -->
 
                         <TextView
-                            android:id="@id/alert_dialog_touzhu_textview_caizhong"
+                            android:id="@+id/alert_dialog_touzhu_textview_caizhong"
                             style="@style/touzhuTextstyle" >
                         </TextView>
                     </LinearLayout>
@@ -56,13 +56,13 @@
                         <!-- 期号 -->
 
                         <TextView
-                            android:id="@id/alert_dialog_touzhu_textview_qihao"
+                            android:id="@+id/alert_dialog_touzhu_textview_qihao"
                             style="@style/touzhuTextstyle" >
                         </TextView>
                     </LinearLayout>
 
                     <TextView
-                        android:id="@id/alert_dialog_touzhu_text_zhuma_title"
+                        android:id="@+id/alert_dialog_touzhu_text_zhuma_title"
                         style="@style/touzhuTextstyle"
                         android:paddingTop="10dip"
                         android:text="@string/zhuma" />
@@ -76,12 +76,12 @@
                         <!-- 注码 -->
 
                         <TextView
-                            android:id="@id/alert_dialog_touzhu_text_zhuma"
+                            android:id="@+id/alert_dialog_touzhu_text_zhuma"
                             style="@style/touzhuTextstyle"
                             android:layout_width="230dip" />
 
                         <Button
-                            android:id="@id/alert_dialog_touzhu_btn_look_code"
+                            android:id="@+id/alert_dialog_touzhu_btn_look_code"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -94,7 +94,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/beishulayout"
+                        android:id="@+id/beishulayout"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -102,19 +102,19 @@
                         android:paddingTop="10dip" >
 
                         <TextView
-                            android:id="@id/buy_zixuan_text_beishu_title"
+                            android:id="@+id/buy_zixuan_text_beishu_title"
                             style="@style/touzhuTextstyle"
                             android:text="@string/meiqibeishu" />
 
                         <ImageButton
-                            android:id="@id/buy_zixuan_img_subtract_beishu"
+                            android:id="@+id/buy_zixuan_img_subtract_beishu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#00000000"
                             android:src="@drawable/subtractselecter" />
 
                         <SeekBar
-                            android:id="@id/buy_zixuan_seek_beishu"
+                            android:id="@+id/buy_zixuan_seek_beishu"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="130dip"
                             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                             android:visibility="gone" />
 
                         <EditText
-                            android:id="@id/buy_zixuan_text_beishu"
+                            android:id="@+id/buy_zixuan_text_beishu"
                             android:layout_width="75dip"
                             android:layout_height="40dip"
                             android:layout_marginTop="2dip"
@@ -139,10 +139,10 @@
                         </EditText>
 
                         <ImageButton
-                            android:id="@id/buy_zixuan_img_add_beishu"
+                            android:id="@+id/buy_zixuan_img_add_beishu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/buy_zixuan_linear_progress"
+                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
                             android:background="#00000000"
                             android:src="@drawable/addselecter" />
 
@@ -154,7 +154,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/buy_zixuan_linear_toggle"
+                        android:id="@+id/buy_zixuan_linear_toggle"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -162,7 +162,7 @@
                         android:visibility="gone" >
 
                         <ToggleButton
-                            android:id="@id/dlt_zhuijia"
+                            android:id="@+id/dlt_zhuijia"
                             android:layout_width="20sp"
                             android:layout_height="20sp"
                             android:background="@drawable/dlt_zhuijia_toggle_button"
@@ -190,7 +190,7 @@
                         android:text="注数：" />
 					<!-- 注数 -->
                     <TextView
-                        android:id="@id/alert_dialog_touzhu_textview_zhushu"
+                        android:id="@+id/alert_dialog_touzhu_textview_zhushu"
                         style="@style/touzhuTextstyle" >
                     </TextView>
                 </LinearLayout>
@@ -204,7 +204,7 @@
                         android:text="金额：" />
 					<!-- 金额 -->
                     <TextView
-                        android:id="@id/alert_dialog_touzhu_textview_jine"
+                        android:id="@+id/alert_dialog_touzhu_textview_jine"
                         style="@style/touzhuTextstyle" >
                     </TextView>
                 </LinearLayout>
@@ -217,7 +217,7 @@
                 android:padding="10dip" >
 
                 <CheckBox
-                    android:id="@id/checkboxzhuihao"
+                    android:id="@+id/checkboxzhuihao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="收益率追号"
@@ -225,7 +225,7 @@
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@id/alert_dialog_touzhu_text_alert"
+                    android:id="@+id/alert_dialog_touzhu_text_alert"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dip"
@@ -244,7 +244,7 @@
         android:background="@drawable/buy_bot_bg" >
 
         <Button
-            android:id="@id/alert_dialog_touzhu_button_cancel"
+            android:id="@+id/alert_dialog_touzhu_button_cancel"
             android:layout_width="120dip"
             android:layout_height="40sp"
             android:layout_alignParentLeft="true"
@@ -257,7 +257,7 @@
         </Button>
 
         <Button
-            android:id="@id/alert_dialog_touzhu_button_ok"
+            android:id="@+id/alert_dialog_touzhu_button_ok"
             android:layout_width="120dip"
             android:layout_height="40sp"
             android:layout_alignParentRight="true"

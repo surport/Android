@@ -27,7 +27,7 @@ import android.widget.Toast;
 public class AdWallActivity extends Activity {
 	public static  String adUnitID = "9c697272e78036382b35056bdf53904b";//这里是广告墙的广告位id
 	private LinearLayout layout = null;
-	private ImmobView lmView = null;
+	//private ImmobView lmView = null;
 	private ProgressDialog progressdialog;
 	RWSharedPreferences shellRW = null;
 	@Override

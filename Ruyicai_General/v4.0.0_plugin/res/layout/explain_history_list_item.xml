@@ -16,7 +16,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@id/explain_history_one_1"
+                android:id="@+id/explain_history_one_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
@@ -25,7 +25,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_one_2"
+                android:id="@+id/explain_history_one_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
@@ -40,7 +40,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@id/explain_history_two_1"
+                android:id="@+id/explain_history_two_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -49,7 +49,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_two_2"
+                android:id="@+id/explain_history_two_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -58,7 +58,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_two_3"
+                android:id="@+id/explain_history_two_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -73,7 +73,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@id/explain_history_three_1"
+                android:id="@+id/explain_history_three_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -82,7 +82,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_three_2"
+                android:id="@+id/explain_history_three_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -91,7 +91,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_three_3"
+                android:id="@+id/explain_history_three_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -106,7 +106,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@id/explain_history_four_1"
+                android:id="@+id/explain_history_four_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -115,7 +115,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_four_3"
+                android:id="@+id/explain_history_four_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -124,7 +124,7 @@
                 android:textSize="15dip" />
 
             <TextView
-                android:id="@id/explain_history_four_2"
+                android:id="@+id/explain_history_four_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"

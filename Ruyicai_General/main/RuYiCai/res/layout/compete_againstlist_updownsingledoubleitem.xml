@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩对阵列表表项视图 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:orientation="vertical" >
+
+        <!-- 联赛名称 -->
+
+        <Button
+            android:id="@+id/league_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/compete_selectitem_textview_background"
+            android:gravity="center"
+            android:text="日联赛"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <!-- 比赛时间 -->
+
+        <Button
+            android:id="@+id/game_time"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_below="@id/league_name"
+            android:layout_weight="1.0"
+            android:background="#EEEEEE"
+            android:gravity="center"
+            android:text="周三 002 17:55 (截)"
+            android:textColor="#737373"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:layout_weight="6.0"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <!-- 主队名称 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="鹿岛鹿角"
+                android:textColor="@color/black" />
+            <!-- vs -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="vs"
+                android:textColor="@color/black" />
+            <!-- 客队名称 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:text="圣保罗"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <!-- 上单 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/compete_againstlist_textview_selector"
+                android:gravity="center"
+                android:text="上单" />
+            <!-- 上双 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/compete_againstlist_textview_selector"
+                android:gravity="center"
+                android:text="上双" />
+            <!-- 下单 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/compete_againstlist_textview_selector"
+                android:gravity="center"
+                android:text="下单" />
+            <!-- 下双 -->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@drawable/compete_againstlist_textview_selector"
+                android:gravity="center"
+                android:text="下双" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical" >
+
+        <!-- 析按钮 -->
+
+        <Button
+            android:id="@+id/analyse_button"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/compete_selectitem_analyse_background"
+            android:text="析" />
+        <!-- 胆按钮 -->
+
+        <CheckBox
+            android:id="@+id/dan_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/compete_selectitem_couragebutton_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="胆"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/layout_main_text_title"
+            android:id="@+id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
     </RelativeLayout>
 
     <TabHost
-        android:id="@id/tab_host"
+        android:id="@+id/tab_host"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -47,14 +47,14 @@
                 android:background="@color/white" >
 
                 <LinearLayout
-                    android:id="@id/informationlist1"
+                    android:id="@+id/informationlist1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@color/white"
                     android:orientation="vertical" >
 
                     <ListView
-                        android:id="@id/infolist1"
+                        android:id="@+id/infolist1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:cacheColorHint="#00000000"
@@ -64,14 +64,14 @@
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@id/informationlist2"
+                    android:id="@+id/informationlist2"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@color/white"
                     android:orientation="vertical" >
 
                     <ListView
-                        android:id="@id/infolist2"
+                        android:id="@+id/infolist2"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:cacheColorHint="#00000000"
@@ -81,14 +81,14 @@
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@id/informationlist3"
+                    android:id="@+id/informationlist3"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@color/white"
                     android:orientation="vertical" >
 
                     <ListView
-                        android:id="@id/infolist3"
+                        android:id="@+id/infolist3"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:cacheColorHint="#00000000"
@@ -98,14 +98,14 @@
 
                 <LinearLayout
                     xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@id/informationlist4"
+                    android:id="@+id/informationlist4"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@color/white"
                     android:orientation="vertical" >
 
                     <ListView
-                        android:id="@id/infolist4"
+                        android:id="@+id/infolist4"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:cacheColorHint="#00000000"

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竞彩选择按钮布局 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 球队按钮 -->
+
+    <CheckBox
+        android:id="@+id/compete_selectbutton_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/compete_selectitem_button_selector"
+        android:button="@null"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:text="美国"
+        android:textColor="@color/black"
+        android:textSize="13sp" />
+
+    <!-- 赔率 -->
+
+    <TextView
+        android:id="@+id/compete_selectbutton_sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:paddingBottom="8dp"
+        android:text="2.23"
+        android:textColor="#737373"
+        android:textSize="13sp" />
+
+</FrameLayout>

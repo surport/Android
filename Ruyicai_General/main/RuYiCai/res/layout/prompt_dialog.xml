@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 提示对话框：标题，内容容器，确定、取消和其它按钮布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 标题 -->
+
+    <TextView
+        android:id="@+id/promptdialog_textview_title"
+        style="@style/DialogTitleText"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@drawable/promptdialog_title_background"
+        android:gravity="center" />
+
+    <!-- 内容容器 -->
+
+    <LinearLayout
+        android:id="@+id/promptdialog_linearlayout_container"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp" >
+    </LinearLayout>
+
+    <!-- 按钮容器 -->
+
+    <LinearLayout
+        android:id="@+id/promptdialog_linearlayout_buttons"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:background="@drawable/promptdialog_bottom_background"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <!-- 确定按钮 -->
+
+        <Button
+            android:id="@+id/promptdialog_button_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/promptdialog_button_selector"
+            android:textSize="16sp" />
+        <!-- 其它按钮 -->
+
+        <Button
+            android:id="@+id/promptdialog_button_other"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/promptdialog_button_selector"
+            android:textSize="16sp" />
+
+        <!-- 取消按钮 -->
+
+        <Button
+            android:id="@+id/promptdialog_button_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/promptdialog_button_selector"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

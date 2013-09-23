@@ -7,13 +7,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/join_detail_text_title"
+            android:id="@+id/join_detail_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
         </TextView>
 
         <Button
-            android:id="@id/join_detail_img_return"
+            android:id="@+id/join_detail_img_return"
             android:layout_width="100dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -39,7 +39,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@id/RelativeLayout01"
+        android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -50,16 +50,16 @@
             android:paddingBottom="80dip" >
 
             <LinearLayout
-                android:id="@id/LinearLayout02"
+                android:id="@+id/LinearLayout02"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/LinearLayout01"
+                android:layout_above="@+id/LinearLayout01"
                 android:orientation="vertical"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip" >
 
                 <Button
-                    android:id="@id/fangan"
+                    android:id="@+id/fangan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -70,7 +70,7 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:id="@id/fanganxiangqing"
+                    android:id="@+id/fanganxiangqing"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
@@ -78,7 +78,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@id/track_detail_text_lotno"
+                        android:id="@+id/track_detail_text_lotno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -87,7 +87,7 @@
                         android:textSize="13dip" >
                     </TextView>
                      <TextView
-                        android:id="@id/track_detail_text_id"
+                        android:id="@+id/track_detail_text_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -97,7 +97,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/track_detail_text_qishu"
+                        android:id="@+id/track_detail_text_qishu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -107,7 +107,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/track_detail_text_qishu_yi"
+                        android:id="@+id/track_detail_text_qishu_yi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -116,7 +116,7 @@
                         android:textSize="13dip" />
 
                     <TextView
-                        android:id="@id/track_detail_text_qishu_che"
+                        android:id="@+id/track_detail_text_qishu_che"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -124,7 +124,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@id/track_detail_text_qishu_startno"
+                        android:id="@+id/track_detail_text_qishu_startno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -146,7 +146,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/track_detail_text_atm_zong"
+                            android:id="@+id/track_detail_text_atm_zong"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -170,7 +170,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/track_detail_text_atm_yi"
+                            android:id="@+id/track_detail_text_atm_yi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -181,7 +181,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@id/track_detail_text_starttime"
+                        android:id="@+id/track_detail_text_starttime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -191,7 +191,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/track_detail_iswinafter"
+                        android:id="@+id/track_detail_iswinafter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -206,7 +206,7 @@
                         android:paddingBottom="10dip" >
 
                         <TextView
-                            android:id="@id/track_detail_text_state"
+                            android:id="@+id/track_detail_text_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="当前状态："
@@ -216,7 +216,7 @@
                         </TextView>
 
                         <Button
-                            android:id="@id/trackquery_cancle"
+                            android:id="@+id/trackquery_cancle"
                             android:layout_width="wrap_content"
                             android:layout_height="25dip"
                             android:paddingLeft="80dip"
@@ -231,7 +231,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@id/leirong"
+                    android:id="@+id/leirong"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -242,7 +242,7 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:id="@id/fanganleirong"
+                    android:id="@+id/fanganleirong"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
@@ -250,7 +250,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@id/track_detail_text_content"
+                        android:id="@+id/track_detail_text_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -261,7 +261,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@id/canyu"
+                    android:id="@+id/canyu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -272,7 +272,7 @@
                     android:textSize="18sp" />
 
                 <ListView
-                    android:id="@id/canyurenyuan"
+                    android:id="@+id/canyurenyuan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -285,16 +285,16 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@id/LinearLayout0000"
+            android:id="@+id/LinearLayout0000"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/LinearLayout0111"
+            android:layout_above="@+id/LinearLayout0111"
             android:paddingBottom="50dip"
             android:paddingLeft="10dip" >
         </LinearLayout>
 
         <LinearLayout
-            android:id="@id/LinearLayout0111"
+            android:id="@+id/LinearLayout0111"
             android:layout_width="fill_parent"
             android:layout_height="70dip"
             android:layout_alignParentBottom="true"
@@ -302,7 +302,7 @@
             android:gravity="center_horizontal" >
 
             <Button
-                android:id="@id/track_detail_img_cannle"
+                android:id="@+id/track_detail_img_cannle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

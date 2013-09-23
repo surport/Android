@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 随机按钮随机选号按钮图片选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/randombutton_randomselect_normal" android:state_pressed="false"/>
+    <item android:drawable="@drawable/randombutton_randomselect_click" android:state_pressed="true"/>
+
+</selector>

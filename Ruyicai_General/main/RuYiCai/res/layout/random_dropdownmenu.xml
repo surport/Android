@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 随机按钮下拉菜单布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- 指引图标 -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:background="@drawable/randomdropdownmenu_title_background" />
+
+    <!-- 随机按钮下拉菜单布局 -->
+
+    <GridView
+        android:id="@+id/randomdropdownmenu_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/randomdropdownmenu_content_background"
+        android:columnWidth="27dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" >
+    </GridView>
+
+</LinearLayout>

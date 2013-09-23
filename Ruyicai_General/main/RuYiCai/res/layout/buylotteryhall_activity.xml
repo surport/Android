@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 购彩大厅页面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/buylotteryhall_background"
+    android:orientation="vertical" >
+
+    <!-- 标题栏 -->
+
+    <com.ruyicai.android.controller.compontent.bar.TitleBar
+        android:id="@+id/buylotteryhall_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+    <!-- 滑动通知栏 -->
+
+    <TextView
+        android:id="@+id/buylotteryhall_slidenotice_textview"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/buylotteryhall_title_bar"
+        android:background="@drawable/buylotteryhall_scrollnotice_background"
+        android:gravity="center"
+        android:text="恭喜您中了大奖了！！！"
+        android:textColor="@color/buylotteryhall_scrollnotice_textcolor"
+        android:textSize="15sp" />
+    <!-- 中部滑动面板 -->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/buyloteryhall_slidepanel_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buylotteryhall_slidenotice_textview"
+        android:layout_marginBottom="85dp" />
+    <!-- 底部按钮栏 -->
+
+    <LinearLayout
+        android:id="@+id/buylotteryhall_bottombar_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/buylotteryhall_bottombar_background"
+        android:orientation="horizontal"
+        android:paddingBottom="7dip"
+        android:paddingTop="5dip" >
+
+        <Button
+            android:id="@+id/buylotteryhall_buttombar_button_lotteryinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_weight="1"
+            android:tag="0"
+            android:text="@string/buylotteryhall_bottombarbutton_text1" />
+
+        <Button
+            android:id="@+id/buylotteryhall_buttombar_button_actioncenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dip"
+            android:layout_weight="1"
+            android:tag="1"
+            android:text="@string/buylotteryhall_bottombarbutton_text2" />
+
+        <Button
+            android:id="@+id/buylotteryhall_buttombar_button_lucklypick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dip"
+            android:layout_weight="1"
+            android:tag="2"
+            android:text="@string/buylotteryhall_bottombarbutton_text3" />
+    </LinearLayout>
+    <!-- 页面指示器控件 -->
+
+    <com.ruyicai.android.controller.compontent.pagerindicator.BuyLotteryHallPageIndicator
+        android:id="@+id/buylotteryhall_pageindicator_linearlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/buylotteryhall_bottombar_linearlayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal" />
+
+</RelativeLayout>
