@@ -767,42 +767,10 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
 
-        <!-- 免费获取礼金 -->
-        <activity
-            android:name="com.ruyicai.activity.account.GetFreeGoldActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <!-- 彩金码兑换彩金 -->
-        <activity
-            android:name="com.ruyicai.activity.account.ExchangeGoldActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait" />
-        
-        <activity
-            android:name="com.ruyicai.activity.account.AdWallActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.more.ProgrammeArchiveSettingsActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <activity android:name="cn.immob.sdk.util.LMActionHandler" >
-        </activity>
-        <activity android:name="cn.immob.sdk.BrowserActivity" >
-        </activity>
-        <!-- 这个后台服务必须要填写，否则无法正常请求广告 -->
-        <service android:name="cn.immob.sdk.net.DownloadService" >
-        </service>
-        <!-- 这个是选填的，如果广告类型为积分墙的话，不填写这个广播则无法正常返还积分 -->
-        <receiver android:name="cn.immob.sdk.brocastreceiver.AppChangeBrocastreceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
 
         <!-- menu -->
         <activity

@@ -242,20 +242,6 @@ public class AccountListActivity extends Activity {
 						UmPayPhoneActivity.class);
 				startActivity(alipay_secure);
 			}
-		} else if (getString(R.string.get_free_gold_title)
-				.equals(textString)) { 
-			if (isLogin()) {
-				Intent alipay_secure = new Intent(context,
-						GetFreeGoldActivity.class);
-				startActivity(alipay_secure);
-			}
-		} else if (getString(R.string.account_exchange_gold)
-				.equals(textString)) { 
-			if (isLogin()) {
-				Intent alipay_secure = new Intent(context,
-						ExchangeGoldActivity.class);
-				startActivity(alipay_secure);
-			}
 		}
 		/**add by yejc 20130505 end*/
 	}
@@ -268,25 +254,6 @@ public class AccountListActivity extends Activity {
 	private List<Map<String, Object>> setContentForMainList() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 		Map<String, Object> map;
-		
-//		//彩金码兑换彩金
-//		if (shellRW.getBooleanValue(Constants.EXCHANGE_DISPLAY_STATE, false)) {
-//			map = new HashMap<String, Object>();
-//			map.put(TITLE, getString(R.string.account_exchange_gold));
-//			map.put(PICTURE, R.drawable.account_exchange_gold_icon);
-//			map.put(ISHANDINGFREE,
-//					getString(R.string.account_exchange_gold_description));
-//			list.add(map);
-//		}
-		
-//		// 免费获取礼金
-//		if (shellRW.getBooleanValue(Constants.ADWALL_DISPLAY_STATE, false)) {
-//			map = new HashMap<String, Object>();
-//			map.put(TITLE, getString(R.string.get_free_gold_title));
-//			map.put(PICTURE, R.drawable.limei_free_gold_android);
-//			map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
-//			list.add(map);
-//		}
 				
 //		// 银联支付
 //		if (shellRW.getBooleanValue(Constants.YINLIAN_CARD_DISPLAY_STATE, false)) {
@@ -441,13 +408,6 @@ public class AccountListActivity extends Activity {
 				alertStr1 = getString(R.string.recommend_the_use_of);
 			} else if (str1.equals(getString(R.string.account_chongzhi))) {
 				alertStr1 = getString(R.string.account_chongzhi_good);
-			}
-			
-			if (str1.equals(getString(R.string.get_free_gold_title))
-					|| str1.equals(getString(R.string.account_exchange_gold))) {
-				holder.layout.setBackgroundResource(R.drawable.get_free_gold_background);
-			} else {
-				holder.layout.setBackgroundColor(getResources().getColor(R.color.white));
 			}
 			if (!alertStr1.equals("")) {
 				builder1.append(alertStr1);
