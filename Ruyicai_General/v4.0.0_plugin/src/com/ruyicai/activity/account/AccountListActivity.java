@@ -201,13 +201,13 @@ public class AccountListActivity extends Activity {
 						AlipaySecurePayDialog.class);
 				startActivity(alipay_secure);
 			}
-		} else if ((getString(R.string.bank_cards_recharge) + getString(R.string.freeHanding))
+		} /*else if ((getString(R.string.bank_cards_recharge) + getString(R.string.freeHanding))
 				.equals(textString)) {// 银联语音支付
 			if (isLogin()) {
 				Intent intent = new Intent(context, YinDNAPayActivity.class);
 				startActivity(intent);
 			}
-		} else if ((getString(R.string.la_ka_la_recharge)).equals(textString)) {// 拉卡拉支付
+		}*/ else if ((getString(R.string.la_ka_la_recharge)).equals(textString)) {// 拉卡拉支付
 			if (isLogin()) {
 				Intent intent = new Intent(context, LakalaActivity.class);
 				startActivity(intent);
@@ -291,13 +291,13 @@ public class AccountListActivity extends Activity {
 			list.add(map);
 		}
 		// 银联语音支付
-		if (shellRW.getBooleanValue(Constants.YINLIAN_SOUND_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.bank_cards_recharge));
-			map.put(PICTURE, R.drawable.recharge_phone);
-			map.put(ISHANDINGFREE, getString(R.string.account_card_alert));
-			list.add(map);
-		}
+//		if (shellRW.getBooleanValue(Constants.YINLIAN_SOUND_DISPLAY_STATE, false)) {
+//			map = new HashMap<String, Object>();
+//			map.put(TITLE, getString(R.string.bank_cards_recharge));
+//			map.put(PICTURE, R.drawable.recharge_phone);
+//			map.put(ISHANDINGFREE, getString(R.string.account_card_alert));
+//			list.add(map);
+//		}
 		
 		/**add by yejc 20130505 start*/
 		//联动优势充值
