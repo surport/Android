@@ -32,7 +32,6 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.OrderPrizeDiaog;
 import com.ruyicai.activity.home.HomeActivity;
-import com.ruyicai.activity.introduce.PhotoActivity;
 import com.ruyicai.activity.more.lotnoalarm.LotnoAlarmSetActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
@@ -350,12 +349,12 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 				Toast.makeText(this, "当前已经是最新版本！", Toast.LENGTH_SHORT).show();
 			}
 		}
-		/* 新手指南 */
-		if (getString(R.string.menu_introduce).equals(str)) {
-			Intent intent4 = new Intent(MoreActivity.this, PhotoActivity.class);
-			intent4.putExtra("isHelp", true);
-			startActivity(intent4);
-		}
+//		/* 新手指南 */
+//		if (getString(R.string.menu_introduce).equals(str)) {
+//			Intent intent4 = new Intent(MoreActivity.this, PhotoActivity.class);
+//			intent4.putExtra("isHelp", true);
+//			startActivity(intent4);
+//		}
 		/* 客服 */
 		if (getString(R.string.phone_kefu_title).equals(str)) {
 			CallServicePhoneConfirm.phoneKefu(this);
@@ -543,8 +542,7 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 		String[] titles = { getString(R.string.phone_kefu_title),
 				getString(R.string.menu_help),
-				getString(R.string.menu_checkupdate),
-				getString(R.string.menu_introduce), getString(R.string.share),
+				getString(R.string.menu_checkupdate),getString(R.string.share),
 				getString(R.string.menu_feedback),
 				getString(R.string.menu_about), getString(R.string.settings),
 				getString(R.string.ruyihelper_about) };

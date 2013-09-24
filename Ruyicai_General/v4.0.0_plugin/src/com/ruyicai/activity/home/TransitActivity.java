@@ -1,6 +1,5 @@
 package com.ruyicai.activity.home;
 
-import com.ruyicai.activity.introduce.PhotoActivity;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
@@ -22,17 +21,16 @@ public class TransitActivity extends Activity {
 		// 读取本地渠道号
 		shellRW = new RWSharedPreferences(this, "addInfo");
 		boolean isFirst = shellRW.getBooleanValue("isFirst");
-		if (isFirst) {
+//		if (isFirst) {
 			Intent in = new Intent(TransitActivity.this, MainGroup.class);
 			startActivity(in);
 			TransitActivity.this.finish();
-		} else {
-			shellRW.putBooleanValue("isFirst", true);
-			Intent in = new Intent(TransitActivity.this, PhotoActivity.class);
-			startActivity(in);
-			TransitActivity.this.finish();
-		}
-
+//		} else {
+//			shellRW.putBooleanValue("isFirst", true);
+//			Intent in = new Intent(TransitActivity.this, PhotoActivity.class);
+//			startActivity(in);
+//			TransitActivity.this.finish();
+//		}
 	}
 
 	@Override

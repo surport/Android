@@ -47,7 +47,6 @@ import cn.jpush.android.api.JPushInterface;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.CheckWireless;
-import com.ruyicai.activity.introduce.PhotoActivity;
 import com.ruyicai.constant.AgentNumConstants;
 import com.ruyicai.constant.ChannelConstants;
 import com.ruyicai.constant.Constants;
@@ -270,16 +269,16 @@ public class HomeActivity extends Activity {
 		// 读取本地渠道号
 		shellRW = new RWSharedPreferences(this, "addInfo");
 		boolean isFirst = shellRW.getBooleanValue("isFirst");
-		if (isFirst) {
+//		if (isFirst) {
 			Intent in = new Intent(HomeActivity.this, MainGroup.class);
 			startActivity(in);
 			HomeActivity.this.finish();
-		} else {
-			shellRW.putBooleanValue("isFirst", true);
-			Intent in = new Intent(HomeActivity.this, PhotoActivity.class);
-			startActivity(in);
-			HomeActivity.this.finish();
-		}
+//		} else {
+//			shellRW.putBooleanValue("isFirst", true);
+//			Intent in = new Intent(HomeActivity.this, PhotoActivity.class);
+//			startActivity(in);
+//			HomeActivity.this.finish();
+//		}
 	}
 
 	@Override
