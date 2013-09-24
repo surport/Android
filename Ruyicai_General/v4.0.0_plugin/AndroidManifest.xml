@@ -566,11 +566,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.ruyicai.activity.account.LakalaActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.ruyicai.activity.account.DirectPayActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
@@ -726,10 +721,6 @@
         <!-- 充值 -->
         <activity
             android:name="com.ruyicai.activity.account.AlipaySecureActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.account.PhoneCardRechargeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <!-- 联动优势充值 -->

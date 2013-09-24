@@ -183,13 +183,7 @@ public class AccountListActivity extends Activity {
 	 */
 	private void onClickList() {
 		Log.v("textString", textString);
-		if ("手机充值卡充值".equals(textString)) {
-			if (isLogin()) {
-				Intent intent = new Intent(context,
-						PhoneCardRechargeActivity.class);
-				startActivity(intent);
-			}
-		} else if ("支付宝充值(免手续费)".equals(textString)) {
+		if ("支付宝充值(免手续费)".equals(textString)) {
 			if (isLogin()) {
 				Intent intent = new Intent(context, AlipaySecureActivity.class);
 				startActivity(intent);
@@ -200,11 +194,6 @@ public class AccountListActivity extends Activity {
 				Intent alipay_secure = new Intent(context,
 						AlipaySecurePayDialog.class);
 				startActivity(alipay_secure);
-			}
-		} else if ((getString(R.string.la_ka_la_recharge)).equals(textString)) {// 拉卡拉支付
-			if (isLogin()) {
-				Intent intent = new Intent(context, LakalaActivity.class);
-				startActivity(intent);
 			}
 		} else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
 			Intent intent = new Intent(context, Accoutmovecash.class);
@@ -258,31 +247,12 @@ public class AccountListActivity extends Activity {
 			list.add(map);
 		}
 		/**add by yejc 20130505 end*/
-		
-		// 拉卡拉充值
-		if (shellRW.getBooleanValue(Constants.LAKALA_PAYMENT_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.la_ka_la_recharge));
-			map.put(PICTURE, R.drawable.lakala_icon);
-			map.put(ISHANDINGFREE, getString(R.string.la_ka_la_alert));
-			list.add(map);
-		}
-
 		// 银行转账
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.atm_recharge));
 		map.put(PICTURE, R.drawable.recharge_atm);
 		map.put(ISHANDINGFREE, getString(R.string.account_zhuanzhang_alert));
 		list.add(map);
-				
-		// 手机充值卡充值
-		if (shellRW.getBooleanValue(Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.phone_cards_recharge));
-			map.put(PICTURE, R.drawable.recharge_phonebank);
-			map.put(ISHANDINGFREE, getString(R.string.account_phone_alert));
-			list.add(map);
-		}
 		return list;
 	}
 

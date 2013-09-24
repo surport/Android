@@ -223,36 +223,24 @@
     <string name="register_return">返回</string>
     <!-- 冯琴冲 ：UI 8 账户充值 -->
     <string name="directly_payment">直接支付</string>
-    <string name="phone_cards_recharge">手机充值卡充值</string>
     <string name="atm_recharge">银行转账</string>
     <string name="account_chongzhi">银行充值</string>
     <string name="umpay_recharge">信用卡充值</string>
-    <string name="umpay_phone_recharge">"话费充值"</string>
     <string name="account_chongzhi_good">"(推荐)"</string>
     <string name="freeHanding">"(免手续费)"</string>
     <string name="yin_bank_cards_recharge">银联卡充值</string>
-    <string name="recommend_the_use_of">"(推荐使用)"</string>
-    <string name="phone_bank_cards_recharge">手机银行充值</string>
     <string name="zhfb_cards_recharge">支付宝充值</string>
     <string name="zhfb_cards_secure_recharge">支付宝安全支付</string>
     <string name="bank_cards_recharge">银联语音支付</string>
-    <string name="la_ka_la_recharge">拉卡拉支付</string>
-    <string name="toast_install_lakala">请安装拉卡拉</string>
     <string name="transactionOK">交易成功</string>
     <string name="transactionErr">交易失败</string>
     <string name="isInstall">是否安装手机拉卡拉客户端？</string>
     <string name="confim">确定</string>
     <string name="chargecancel">取消</string>
-    <string name="game_cards_recharge">游戏点卡充值</string>
-    <string name="other_recharge">其它充值</string>
     <string name="computer_rechargeinfo1">登录”如意彩“(</string>
     <string name="computer_rechargeinfo2">)用网银网上充值免手续费,支持更多银行。</string>
     <string name="computer_address"> www.ruyicai.com</string>
     <string name="phone_card_please_entrCardInfo">请输入充值卡信息：</string>
-    <string name="phone_card_enter_CInfo">充值卡序列号：</string>
-    <string name="phone_card_CPassword">充值卡密码：</string>
-    <string name="phone_card_CValue">请输入充值卡面值：</string>
-    <string name="phone_card_select_recharge_card_value">选择一个充值卡面值</string>
     <string name="phone_bank_select_bank">请选择银行：</string>
     <string name="phone_bank_select_dialog_bank">选择银行：</string>
     <string name="phone_bank_select_stye_dialog_bank">卡类型：</string>
@@ -885,11 +873,9 @@
     <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
     <string name="account_umplay_alert">"支持大多数信用卡充值。"</string>
     <string name="account_umplay_phone_alert">"支持移动手机话费充值。"</string>
-    <string name="account_phone_alert">支持移动、联通、电信话费充值卡。</string>
     <string name="account_zfb_alert">支持借记卡和信用卡充值，免开通网银。</string>
     <string name="account_zfb_secure">安全便捷，免输入密码，支持银行卡充值。</string>
     <string name="account_card_alert">使用银联DNA手机支付，支持各大银行。</string>
-    <string name="la_ka_la_alert">支持所有银联卡，免开通网银，无限额。</string>
     <string name="account_zhuanzhang_alert">通过银行柜台、ATM或者网上银行转账。</string>
     <string name="account_chongzhi_alert">根据您的银行卡选择适合的充值方式</string>
     <string name="chargetransactionOK">交易成功</string>
@@ -1210,8 +1196,6 @@
     <string name="account_yin_dna_pay_card_number">"请输入银行卡号，不支持信用卡"</string>
     <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string>
     <string name="umpay_huafubao_confirm_install">"为保证您的交易安全，需要您安装话付宝支付服务，才能进行付款。\n\n点击确定，立即安装。"</string>
-    <string name="account_phone_card_password">"请输入充值卡密码"</string>
-    <string name="account_phone_card_number">"请输入充值卡序号"</string>
     <string name="account_withdraw_detail_type">提现到支付宝</string>
     
     <!-- 下拉刷新 -->
