@@ -145,7 +145,7 @@ public class Nmk3Activity extends BuyActivityGroup {
 		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
 		}
-		JSONObject obj = PublicMethod.getIssueJSONObject(Constants.LOTNO_SSC);
+		JSONObject obj = PublicMethod.getIssueJSONObject(Constants.LOTNO_NMK3);
 		setIssueJSONObject(obj);
 	}
 	
