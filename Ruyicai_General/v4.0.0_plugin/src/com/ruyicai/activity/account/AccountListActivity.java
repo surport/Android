@@ -201,30 +201,12 @@ public class AccountListActivity extends Activity {
 						AlipaySecurePayDialog.class);
 				startActivity(alipay_secure);
 			}
-		} /*else if ((getString(R.string.bank_cards_recharge) + getString(R.string.freeHanding))
-				.equals(textString)) {// 银联语音支付
-			if (isLogin()) {
-				Intent intent = new Intent(context, YinDNAPayActivity.class);
-				startActivity(intent);
-			}
-		}*/ else if ((getString(R.string.la_ka_la_recharge)).equals(textString)) {// 拉卡拉支付
+		} else if ((getString(R.string.la_ka_la_recharge)).equals(textString)) {// 拉卡拉支付
 			if (isLogin()) {
 				Intent intent = new Intent(context, LakalaActivity.class);
 				startActivity(intent);
 			}
-		} /**else if ("银联卡充值(推荐使用)".equals(textString)) {// 银联支付
-			if (isLogin()) {
-				Intent intent = new Intent(context, YinPayActivity.class);
-				startActivity(intent);
-			}
-		} else if ((getString(R.string.account_chongzhi) + "(推荐)")
-				.equals(textString)) {// 银行充值
-			if (isLogin()) {
-				Intent alipay_secure = new Intent(context,
-						AccountYingActivity.class);
-				startActivity(alipay_secure);
-			}
-		} */else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
+		} else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
 			Intent intent = new Intent(context, Accoutmovecash.class);
 			startActivity(intent);
 			/**add by yejc 20130505 start*/
@@ -254,15 +236,6 @@ public class AccountListActivity extends Activity {
 	private List<Map<String, Object>> setContentForMainList() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 		Map<String, Object> map;
-				
-//		// 银联支付
-//		if (shellRW.getBooleanValue(Constants.YINLIAN_CARD_DISPLAY_STATE, false)) {
-//			map = new HashMap<String, Object>();
-//			map.put(TITLE, getString(R.string.yin_bank_cards_recharge));
-//			map.put(PICTURE, R.drawable.recharge_bank);
-//			map.put(ISHANDINGFREE, getString(R.string.account_yinlian_alert));
-//			list.add(map);
-//		}
 		
 		// 支付宝安全支付
 		if (shellRW.getBooleanValue(Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE, false)) {
@@ -290,14 +263,6 @@ public class AccountListActivity extends Activity {
 					getString(R.string.account_umplay_phone_alert));
 			list.add(map);
 		}
-		// 银联语音支付
-//		if (shellRW.getBooleanValue(Constants.YINLIAN_SOUND_DISPLAY_STATE, false)) {
-//			map = new HashMap<String, Object>();
-//			map.put(TITLE, getString(R.string.bank_cards_recharge));
-//			map.put(PICTURE, R.drawable.recharge_phone);
-//			map.put(ISHANDINGFREE, getString(R.string.account_card_alert));
-//			list.add(map);
-//		}
 		
 		/**add by yejc 20130505 start*/
 		//联动优势充值
@@ -318,15 +283,6 @@ public class AccountListActivity extends Activity {
 			map.put(ISHANDINGFREE, getString(R.string.la_ka_la_alert));
 			list.add(map);
 		}
-		
-//		// 银行支付
-//		if (shellRW.getBooleanValue(Constants.BANK_RECHARGE_DISPLAY_STATE, false)) {
-//			map = new HashMap<String, Object>();
-//			map.put(TITLE, getString(R.string.account_chongzhi));
-//			map.put(PICTURE, R.drawable.account_chongzhi);
-//			map.put(ISHANDINGFREE, getString(R.string.account_chongzhi_alert));
-//			list.add(map);
-//		}
 
 		// 银行转账
 		map = new HashMap<String, Object>();
@@ -401,14 +357,9 @@ public class AccountListActivity extends Activity {
 			
 			if (str1.equals(getString(R.string.zhfb_cards_recharge)) 
 					|| str1.equals(getString(R.string.zhfb_cards_secure_recharge))
-					|| str1.equals(getString(R.string.bank_cards_recharge))
 					|| str1.equals(getString(R.string.umpay_recharge))) {
 				alertStr1 = getString(R.string.freeHanding);
-			} else if (str1.equals(getString(R.string.yin_bank_cards_recharge))){
-				alertStr1 = getString(R.string.recommend_the_use_of);
-			} else if (str1.equals(getString(R.string.account_chongzhi))) {
-				alertStr1 = getString(R.string.account_chongzhi_good);
-			}
+			} 
 			if (!alertStr1.equals("")) {
 				builder1.append(alertStr1);
 				builder1.setSpan(new ForegroundColorSpan(Color.RED),
