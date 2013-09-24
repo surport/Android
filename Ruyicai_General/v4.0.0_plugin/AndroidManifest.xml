@@ -723,15 +723,6 @@
             android:name="com.ruyicai.activity.account.AlipaySecureActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <!-- 联动优势充值 -->
-        <activity
-            android:name="com.ruyicai.activity.account.UmPayActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.umpay.creditcard.android.UmpayActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name="com.ruyicai.activity.usercenter.detail.WithdrawDetailActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -819,53 +810,6 @@
         <!-- alipay_secure -->
         <activity
             android:name="com.alipay.android.secure.AlipaySecurePayDialog"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- zhifu -->
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.SplashActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="com.unionpay.upomp.lthj.android.plugin.init.test" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.IndexActivityGroup"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="com.unionpay.upomp.lthj.android.plugin.index.test" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.HomeActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.PayActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.AccountActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.BankCardInfoActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.SupportCardActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.UserProtocolActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.unionpay.upomp.lthj.plugin.ui.AboutActivity"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 分享 -->

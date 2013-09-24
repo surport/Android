@@ -198,16 +198,7 @@ public class AccountListActivity extends Activity {
 		} else if (getString(R.string.atm_recharge).equals(textString)) {// 银行转账
 			Intent intent = new Intent(context, Accoutmovecash.class);
 			startActivity(intent);
-			/**add by yejc 20130505 start*/
-		} else if ((getString(R.string.umpay_recharge) + getString(R.string.freeHanding))
-				.equals(textString)) { 
-			if (isLogin()) {
-				Intent alipay_secure = new Intent(context,
-						UmPayActivity.class);
-				startActivity(alipay_secure);
-			}
-		}
-		/**add by yejc 20130505 end*/
+		} 
 	}
 
 	/**
@@ -237,16 +228,6 @@ public class AccountListActivity extends Activity {
 			list.add(map);
 		}
 		
-		/**add by yejc 20130505 start*/
-		//联动优势充值
-		if (shellRW.getBooleanValue(Constants.UMPAY_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.umpay_recharge));
-			map.put(PICTURE, R.drawable.recharge_umpay);
-			map.put(ISHANDINGFREE, getString(R.string.account_umplay_alert));
-			list.add(map);
-		}
-		/**add by yejc 20130505 end*/
 		// 银行转账
 		map = new HashMap<String, Object>();
 		map.put(TITLE, getString(R.string.atm_recharge));
@@ -310,8 +291,7 @@ public class AccountListActivity extends Activity {
 			String alertStr1 = "";
 			
 			if (str1.equals(getString(R.string.zhfb_cards_recharge)) 
-					|| str1.equals(getString(R.string.zhfb_cards_secure_recharge))
-					|| str1.equals(getString(R.string.umpay_recharge))) {
+					|| str1.equals(getString(R.string.zhfb_cards_secure_recharge))) {
 				alertStr1 = getString(R.string.freeHanding);
 			} 
 			if (!alertStr1.equals("")) {

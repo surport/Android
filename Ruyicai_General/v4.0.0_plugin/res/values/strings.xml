@@ -225,8 +225,6 @@
     <string name="directly_payment">直接支付</string>
     <string name="atm_recharge">银行转账</string>
     <string name="account_chongzhi">银行充值</string>
-    <string name="umpay_recharge">信用卡充值</string>
-    <string name="account_chongzhi_good">"(推荐)"</string>
     <string name="freeHanding">"(免手续费)"</string>
     <string name="yin_bank_cards_recharge">银联卡充值</string>
     <string name="zhfb_cards_recharge">支付宝充值</string>
