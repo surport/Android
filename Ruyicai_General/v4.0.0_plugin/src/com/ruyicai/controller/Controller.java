@@ -334,13 +334,10 @@ public class Controller {
 //		map.put("ch0010", Constants.LAKALA_PAYMENT_DISPLAY_STATE); //拉卡拉充值
 //		map.put("ch0011", Constants.UMPAY_DISPLAY_STATE);  //联动优势
 //		map.put("ch0012", Constants.UMPAY_PHONE_DISPLAY_STATE);  //联动优势话费充值
-		final String rechargeType[] = {"ch0001","ch0002","ch0005","ch0006","ch0007",
-				"ch0008","ch0010","ch0011","ch0012","ch0013","ch0014"};
-		final String rechargeTitle[] = {Constants.YINLIAN_SOUND_DISPLAY_STATE,Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE,
-				Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE,Constants.YINLIAN_CARD_DISPLAY_STATE,
-				Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE,Constants.BANK_RECHARGE_DISPLAY_STATE,
-				Constants.LAKALA_PAYMENT_DISPLAY_STATE,Constants.UMPAY_DISPLAY_STATE,
-				Constants.UMPAY_PHONE_DISPLAY_STATE,Constants.ADWALL_DISPLAY_STATE, Constants.EXCHANGE_DISPLAY_STATE};
+		final String rechargeType[] = {"ch0005","ch0007"};
+		final String rechargeTitle[] = {
+				Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE,
+				Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE};
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

@@ -869,11 +869,8 @@
     <string name="log_out_toast_no_login">您还没有登录，请先登录！</string>
     <!-- 账户充值 -->
     <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
-    <string name="account_umplay_alert">"支持大多数信用卡充值。"</string>
-    <string name="account_umplay_phone_alert">"支持移动手机话费充值。"</string>
     <string name="account_zfb_alert">支持借记卡和信用卡充值，免开通网银。</string>
     <string name="account_zfb_secure">安全便捷，免输入密码，支持银行卡充值。</string>
-    <string name="account_card_alert">使用银联DNA手机支付，支持各大银行。</string>
     <string name="account_zhuanzhang_alert">通过银行柜台、ATM或者网上银行转账。</string>
     <string name="account_chongzhi_alert">根据您的银行卡选择适合的充值方式</string>
     <string name="chargetransactionOK">交易成功</string>
