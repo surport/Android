@@ -746,12 +746,6 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
 
-        <!-- 联动优势话费充值 -->
-        <activity
-            android:name="com.ruyicai.activity.account.UmPayPhoneActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name="com.ruyicai.activity.more.ProgrammeArchiveSettingsActivity"
             android:configChanges="keyboardHidden|orientation"
