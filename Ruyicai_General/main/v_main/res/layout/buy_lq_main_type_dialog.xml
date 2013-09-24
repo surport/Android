@@ -23,37 +23,47 @@
                 android:layout_width="100dip"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:paddingTop="10dip"
                 android:orientation="vertical" >
 
                 <TextView
                     android:id="@id/buy_lq_main_dialog_type1"
                     style="@style/style_jc_dialog_text"
-                    android:paddingTop="25dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:text="@string/jclq_dialog_sf_guoguan_title" />
                 
                  <TextView
                     android:id="@id/buy_lq_main_dialog_new_type1"
                     style="@style/style_jc_dialog_text"
-                    android:paddingTop="25dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:text="@string/jczq_dialog_rqspf_guoguan_title" 
                     android:visibility="gone"/>
 
                 <TextView
                     android:id="@id/buy_lq_main_dialog_type2"
                     style="@style/style_jc_dialog_text"
-                    android:paddingTop="25dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:text="@string/jclq_dialog_rf_guoguan_title" />
 
                 <TextView
                     android:id="@id/buy_lq_main_dialog_type3"
                     style="@style/style_jc_dialog_text"
-                    android:paddingTop="24dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:text="@string/jclq_dialog_sfc_guoguan_title" />
 
                 <TextView
                     android:id="@id/buy_lq_main_dialog_type4"
                     style="@style/style_jc_dialog_text"
-                    android:paddingTop="24dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center_vertical"
                     android:text="@string/jclq_dialog_dxf_guoguan_title" />
             </LinearLayout>
 
@@ -161,7 +171,8 @@
                 <TextView
                     android:id="@id/buy_lq_main_dialog_type1"
                     style="@style/style_jc_dialog_text"
-                    android:paddingTop="15dip"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center_vertical"
                     android:text="@string/jclq_dialog_hunhe_title" />
             </LinearLayout>
 

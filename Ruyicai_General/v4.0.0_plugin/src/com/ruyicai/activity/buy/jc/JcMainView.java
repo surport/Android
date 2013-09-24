@@ -1017,17 +1017,6 @@ public abstract class JcMainView {
 					} else if (Constants.LOTNO_JCLQ_SFC.equals(getLotno())) {
 						viewType = mFactory.inflate(
 								R.layout.buy_jc_lq_sfc_layout, null);
-					} else {
-						viewType = mFactory.inflate(R.layout.buy_lq_sfc_dialog,
-								null);
-						LinearLayout layout1 = (LinearLayout) viewType
-								.findViewById(R.id.jc_check_dialog_layout2);
-						LinearLayout layout2 = (LinearLayout) viewType
-								.findViewById(R.id.jc_check_dialog_layout3);
-						if (isVisable) {
-							layout1.setVisibility(LinearLayout.VISIBLE);
-							layout2.setVisibility(LinearLayout.VISIBLE);
-						}
 					}
 				}
 

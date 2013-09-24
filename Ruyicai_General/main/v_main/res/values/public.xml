@@ -2622,7 +2622,6 @@
 	<public type="string" name="gaopincai_prize_title_net" id="0x7f08037a" />
 	<public type="string" name="gdeleven" id="0x7f080377" />
 	<public type="string" name="gengduo" id="0x7f0800db" />
-	<public type="string" name="get_free_gold_content" id="0x7f0804ce" />
 	<public type="string" name="get_free_gold_network_error" id="0x7f0804d5" />
 	<public type="string" name="get_free_gold_summary" id="0x7f0804d2" />
 	<public type="string" name="get_free_gold_title" id="0x7f0804d1" />
@@ -3216,7 +3215,6 @@
 	<public type="string" name="twentyfive" id="0x7f08048d" />
 	<public type="string" name="twentyfive_prompt" id="0x7f080495" />
 	<public type="string" name="twoin12" id="0x7f0800df" />
-	<public type="string" name="umpay_phone_content" id="0x7f0804cd" />
 	<public type="string" name="umpay_phone_recharge" id="0x7f080179" />
 	<public type="string" name="umpay_phone_text_moneny" id="0x7f0804cc" />
 	<public type="string" name="umpay_phone_text_moneny_thirty" id="0x7f0804c9" />

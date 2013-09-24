@@ -565,13 +565,6 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 
-        <activity
-            android:name="com.ruyicai.activity.account.AccountYingActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" >
-        </activity>
-         -->
         <activity
             android:name="com.ruyicai.activity.account.LakalaActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -733,14 +726,6 @@
         <!-- 充值 -->
         <activity
             android:name="com.ruyicai.activity.account.AlipaySecureActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.account.YinPayActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.account.YinDNAPayActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
