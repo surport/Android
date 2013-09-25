@@ -15,7 +15,6 @@ import android.webkit.WebViewClient;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 public class AccountDialog extends Activity {
 
@@ -107,13 +106,11 @@ public class AccountDialog extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

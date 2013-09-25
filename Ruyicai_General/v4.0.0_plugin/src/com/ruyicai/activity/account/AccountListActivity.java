@@ -12,7 +12,6 @@ import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -69,7 +68,6 @@ public class AccountListActivity extends Activity {
 		setTopText();
 		setTopState();
 		initListView();
-		MobclickAgent.onEvent(this, "zhanghuchongzhi"); // BY贺思明 点击主导航上的“账户充值”。
 		/**add by yejc 20130419 start*/
 		if(Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getName(), "onCreate");
@@ -79,13 +77,11 @@ public class AccountListActivity extends Activity {
 
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-23
 		Constants.MEMUTYPE = 0;
 	}
 
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-23
 	}
 
 	/**

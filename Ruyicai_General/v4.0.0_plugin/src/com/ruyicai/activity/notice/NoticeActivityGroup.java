@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 开奖子列表
@@ -104,7 +103,6 @@ public class NoticeActivityGroup extends ActivityGroup {
 	protected void onResume() {
 		super.onResume();
 		getInfo();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	public void getInfo() {

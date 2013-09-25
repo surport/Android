@@ -71,7 +71,6 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 合买详情
@@ -1885,14 +1884,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	// add by yejc 20130410

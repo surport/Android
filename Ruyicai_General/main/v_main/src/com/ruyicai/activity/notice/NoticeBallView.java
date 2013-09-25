@@ -496,7 +496,7 @@ public class NoticeBallView extends View {
 		} else if (Constants.SCREEN_WIDTH == 480) {
 			return;
 		} else if (Constants.SCREEN_WIDTH == 540) {
-			FIRST_WITH = PublicMethod.getPxInt(280, context);
+			FIRST_WITH = PublicMethod.getPxInt(330, context);
 		} else {
 			return;
 		}
@@ -876,24 +876,6 @@ public class NoticeBallView extends View {
 				String hundredPartStr = "";
 				String decadePartStr = "";
 				String unitPartStr = "";
-				// for (int i = 0; i < ballsChcekOne.size(); i++) {
-				// if (((iGameType.equals("gd11-5") || iGameType
-				// .equals("11-5")) && isBeforeThree)) {
-				// int method = ((NoticeBallActivity)
-				// context).oneSelectButtonSpinner
-				// .getSelectedItemPosition();
-				// int part = ballsChcekOne.get(i).getPart();
-				// if (method == 0) {
-				// if (part == 1 || part == 2) {
-				// ballsChcekOne.remove(ballsChcekOne.get(i));
-				// }
-				// } else if (method == 1 || method == 3) {
-				// if (part == 2) {
-				// ballsChcekOne.remove(ballsChcekOne.get(i));
-				// }
-				// }
-				// }
-				// }
 
 				for (int i = 0; i < ballsChcekOne.size(); i++) {
 					if (((iGameType.equals("gd11-5") || iGameType
@@ -972,25 +954,6 @@ public class NoticeBallView extends View {
 				String hundredPartStr = "";
 				String decadePartStr = "";
 				String unitPartStr = "";
-
-				// for (int i = 0; i < ballsChcekTwo.size(); i++) {
-				// if (((iGameType.equals("gd11-5") || iGameType
-				// .equals("11-5")) && isBeforeThree)) {
-				// int method = ((NoticeBallActivity)
-				// context).twoSelectButtonSpinner
-				// .getSelectedItemPosition();
-				// int part = ballsChcekTwo.get(i).getPart();
-				// if (method == 0) {
-				// if (part == 1 || part == 2) {
-				// ballsChcekTwo.remove(ballsChcekTwo.get(i));
-				// }
-				// } else if (method == 1 || method == 3) {
-				// if (part == 2) {
-				// ballsChcekTwo.remove(ballsChcekTwo.get(i));
-				// }
-				// }
-				// }
-				// }
 
 				for (int i = 0; i < ballsChcekTwo.size(); i++) {
 

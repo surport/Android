@@ -17,7 +17,6 @@ import com.ruyicai.activity.buy.jc.lq.view.SfcView;
 import com.ruyicai.activity.buy.jc.score.lq.JcLqScoreActivity;
 import com.ruyicai.activity.notice.NoticeJclActivity;
 import com.ruyicai.constant.Constants;
-import com.umeng.analytics.MobclickAgent;
 
 public class LqMainActivity extends JcMainActivity {
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class LqMainActivity extends JcMainActivity {
 		createView(SF, isDanguan);
 		setScoreBtn();
 		isTeamBtn();
-		MobclickAgent.onEvent(this, "jingcailanqiu"); // BY贺思明 点击首页的“竞彩篮球”图标
 	}
 
 	/**

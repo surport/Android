@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.buy.zixuan.OrderDetails;
@@ -100,6 +101,10 @@ public class DanshiJiXuan extends Activity implements
 	boolean isTen = true;
 	public AddView addView;
 	private final int All_ZHU = 99;
+	
+	protected void setAddView(AddView addView) {
+		this.addView = addView;
+	}
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -165,7 +170,12 @@ public class DanshiJiXuan extends Activity implements
 		});
 		final TextView textNum = (TextView) findViewById(R.id.buy_zixuan_add_text_num);
 		Button add_dialog = (Button) findViewById(R.id.buy_zixuan_img_add_delet);
-		addView = new AddView(textNum, this, false);
+//		addView = new AddView(textNum, this, false);
+		addView.setTextNum(textNum);
+		addView.setContext(this.getContext());
+		addView.setjXActivity(this);
+		addView.setZiXuan(false);
+		addView.updateTextNum();
 		add_dialog.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

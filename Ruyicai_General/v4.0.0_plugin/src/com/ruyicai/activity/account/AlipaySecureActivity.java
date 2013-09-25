@@ -7,9 +7,17 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+=======
+import android.graphics.LinearGradient;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.text.Html;
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -43,6 +51,11 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 	public ProgressDialog progressdialog;
 	Button secureOk, secureCancel;
 	EditText accountnum;
+<<<<<<< HEAD
+=======
+	private ProgressDialog mProgress = null;
+	private boolean isOnClick = true;
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 //	private TextView alipay_content = null;
 	private WebView alipay_content = null;
 	private boolean isWebView = false;// 浏览器打开支付宝

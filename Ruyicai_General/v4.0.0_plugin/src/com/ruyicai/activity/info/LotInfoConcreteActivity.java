@@ -51,7 +51,6 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
-import com.umeng.analytics.MobclickAgent;
 
 public class LotInfoConcreteActivity extends Activity implements
 		OnSeekBarChangeListener, HandlerMsg {
@@ -709,14 +708,12 @@ public class LotInfoConcreteActivity extends Activity implements
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	@Override

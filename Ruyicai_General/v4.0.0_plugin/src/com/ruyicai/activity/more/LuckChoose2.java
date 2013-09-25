@@ -65,7 +65,6 @@ import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.GT;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 public class LuckChoose2 extends Activity implements HandlerMsg {
 
@@ -130,7 +129,6 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 		panView.getWidth();
 
 		panView.updateView();
-		MobclickAgent.onEvent(this, "xingyunxuanhao");// BY点击首页的“幸运选号”。BY贺思明
 	}
 
 	/**
@@ -2743,13 +2741,11 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

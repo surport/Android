@@ -21,7 +21,6 @@ import com.ruyicai.jixuan.GdelevenRxBalls;
 import com.ruyicai.json.miss.DlcMissJson;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.SscZMissJson;
-import com.umeng.analytics.MobclickAgent;
 
 public class GdEleven extends Dlc {
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,6 @@ public class GdEleven extends Dlc {
 				createDialog(NoticeActivityGroup.ID_SUB_GD115_LISTVIEW);
 			}
 		});
-		MobclickAgent.onEvent(this, "guangdong11xuan5"); // BY贺思明
-															// 点击首页的“广东11选5”图标
-		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 	}
 
 	public void updatePage() {

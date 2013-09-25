@@ -56,7 +56,6 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 更多界面
@@ -115,7 +114,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		// initView();
 		showMoreListView();
 		// appc=(ApplicationContext)getApplication();
-		MobclickAgent.onEvent(this, "gengduo"); // BY贺思明 点击主导航上的“更多”。
 
 	}
 
@@ -809,7 +807,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
@@ -818,6 +815,5 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 				+ "你也试试吧，彩票随身投，大奖时时有！中奖了记的要请客啊！下载地址:http://wap.ruyicai.com/w/client/download.jspx";
 		Constants.source = "3";
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

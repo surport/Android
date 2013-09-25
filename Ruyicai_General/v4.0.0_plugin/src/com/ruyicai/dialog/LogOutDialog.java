@@ -4,7 +4,6 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -67,7 +66,6 @@ public class LogOutDialog extends BaseDialog {
 			shellRW.putStringValue("userno", "");
 			shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, false);
 			shellRW.putStringValue(ShellRWConstants.RANDOMNUMBER, "");
-			MobclickAgent.onEvent(activity, "zhuxiao"); // 在用户中心点击“注销”按钮的:
 			Toast.makeText(activity,
 					activity.getString(R.string.log_out_toast_msg),
 					Toast.LENGTH_SHORT).show();

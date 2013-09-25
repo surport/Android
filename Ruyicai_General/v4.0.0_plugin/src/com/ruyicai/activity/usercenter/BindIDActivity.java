@@ -22,7 +22,6 @@ import com.ruyicai.dialog.MessageDialog;
 import com.ruyicai.net.newtransaction.BindIDInterface;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 绑定身份证
@@ -181,12 +180,10 @@ public class BindIDActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

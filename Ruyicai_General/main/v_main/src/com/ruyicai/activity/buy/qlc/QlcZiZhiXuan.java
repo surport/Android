@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.qxc.QXC;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -31,6 +32,7 @@ public class QlcZiZhiXuan extends ZixuanActivity {
 	BallTable ballTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((Qlc)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		setCode(qlcCode);
 		setIsTen(true);

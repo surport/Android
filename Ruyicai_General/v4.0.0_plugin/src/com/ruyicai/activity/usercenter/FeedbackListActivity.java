@@ -62,7 +62,6 @@ import com.ruyicai.pojo.SystemInfoBean;
 import com.ruyicai.util.ProtocolManager;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 用户反馈
@@ -1277,7 +1276,6 @@ public class FeedbackListActivity extends Activity {
 		/**add by yejc 20130419 start*/
 		unregisterReceiver(selectTextBroadCast);
 		 /**add by yejc 20130419 end*/
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
@@ -1288,7 +1286,6 @@ public class FeedbackListActivity extends Activity {
 		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
         registerReceiver(selectTextBroadCast, filter);
         /**add by yejc 20130419 end*/
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	

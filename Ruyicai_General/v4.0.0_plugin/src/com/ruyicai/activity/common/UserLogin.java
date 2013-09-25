@@ -72,7 +72,6 @@ import com.third.share.Utility;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.share.WeiboParameters;
-import com.umeng.analytics.MobclickAgent;
 
 public class UserLogin extends Activity implements TextWatcher {
 	public static final String SUCCESS = "loginsuccess";
@@ -197,7 +196,6 @@ public class UserLogin extends Activity implements TextWatcher {
 				break;
 			case 10:
 				progressDialog.dismiss();
-				MobclickAgent.onEvent(UserLogin.this, "dengluchenggong");// BY贺思明
 																			// 登陆成功
 				Toast.makeText(getBaseContext(), message, Toast.LENGTH_LONG)
 						.show();
@@ -338,7 +336,6 @@ public class UserLogin extends Activity implements TextWatcher {
 		}
 		// 获取应用的包名
 		packageName = getPackageName();
-		MobclickAgent.onEvent(UserLogin.this, "dengluzhuce");// BY贺思明
 																// 2012-6-29,修改于2012-11-19在首页点击“登录注册”
 	}
 
@@ -478,7 +475,6 @@ public class UserLogin extends Activity implements TextWatcher {
 
 			@Override
 			public void onClick(View v) {
-				MobclickAgent.onEvent(UserLogin.this, "denglu");// BY贺思明 点击登录按钮
 				beginLogin();
 			}
 		});
@@ -1121,7 +1117,6 @@ public class UserLogin extends Activity implements TextWatcher {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-23
 		if (getinfo() == null) {
 			SharedPreferences prefs = getPreferences(0);
 			String restoredText = prefs.getString("phoneNumText", null);
@@ -1216,7 +1211,6 @@ public class UserLogin extends Activity implements TextWatcher {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-23
 		if (getinfo() == null) {
 			if (!on) {
 				SharedPreferences.Editor editor = getPreferences(0).edit();

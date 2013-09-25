@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -33,6 +34,7 @@ public class QXCZhiXuan extends ZixuanActivity {
 	BallTable seventhlineBallTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((QXC)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		setCode(qxcCode);
 		initViewItem();

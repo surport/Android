@@ -31,7 +31,6 @@ import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 public class HighFrequencyNoticeHistroyActivity extends Activity {
 	public final static String LOTTERYTYPE = "LOTTERYTYPE";
@@ -308,13 +307,11 @@ public class HighFrequencyNoticeHistroyActivity extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

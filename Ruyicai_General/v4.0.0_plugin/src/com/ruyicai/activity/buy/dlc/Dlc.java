@@ -61,11 +61,18 @@ import com.ruyicai.json.miss.SscZMissJson;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.pojo.AreaNum;
+<<<<<<< HEAD
+=======
+import com.ruyicai.pojo.BallTable;
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+<<<<<<< HEAD
 import com.umeng.analytics.MobclickAgent;
+=======
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 
 /**
  * 
@@ -84,7 +91,13 @@ public class Dlc extends ZixuanAndJiXuan {
 	public int num = 1;// 当前单式机选个数
 	protected int max = 6;// 选区最大小球数
 	protected Spinner typeSpinner;
+<<<<<<< HEAD
 
+=======
+	private BallTable oneBallTable;
+	private BallTable twoBallTable;
+	private BallTable thirdBallTable;
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 	public boolean isJiXuan = false;
 	protected boolean is11_5DanTuo = false;
 	protected TextView titleOne;// 大标题
@@ -93,6 +106,10 @@ public class Dlc extends ZixuanAndJiXuan {
 	protected Button imgRetrun;// 返回购彩大厅按钮
 	public static String batchCode;// 期号
 	private int lesstime;// 剩余时间
+<<<<<<< HEAD
+=======
+	private Handler handler = new Handler();
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 	public String lotno;
 	private boolean isRun = true;
 	private PopupWindow popupwindow;
@@ -130,8 +147,11 @@ public class Dlc extends ZixuanAndJiXuan {
 		setlastbatchcode(lotno);
 		relativeLayout.setVisibility(View.GONE);
 		betInfo.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
 		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
+=======
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 	}
 
 	@Override
@@ -1178,6 +1198,10 @@ public class Dlc extends ZixuanAndJiXuan {
 	 * @return
 	 */
 	public String getZxAlertZhuma() {
+<<<<<<< HEAD
+=======
+		int iZhuShu = getZhuShu();
+>>>>>>> c83d53904d712a9b97cdc4d397dc23ffc4d71f92
 		String zhuma = "";
 		if (is11_5DanTuo) {
 			int[] dan = areaNums[0].table.getHighlightBallNOs();

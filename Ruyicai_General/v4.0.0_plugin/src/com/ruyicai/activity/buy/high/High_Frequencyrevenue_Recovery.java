@@ -50,7 +50,6 @@ import com.ruyicai.pojo.ShouyiPojo;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /* 高频彩收益追号
  * **/
@@ -732,14 +731,12 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 	
 	class HighFrequencyHandler extends MyHandler {

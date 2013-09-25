@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.net.newtransaction.usercenter.AutoGetScoresRules;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 public class ScroesRules {
 	Context scroesContext;
@@ -28,8 +27,6 @@ public class ScroesRules {
 				"loading........");
 		progressDialog.show();
 		initScoreDialog();
-		MobclickAgent.onEvent(scroesContext, "shuoming"); // BY贺思明
-															// 在用户中心主页点击上面的积分后面的“说明”。
 	}
 
 	private void initScoreDialog() {

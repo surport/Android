@@ -36,6 +36,7 @@ public class QlcZiDanTuo extends ZixuanActivity {
 	BallTable tuoBallTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((Qlc)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		setCode(qlcCode);
 		setIsTen(true);

@@ -99,7 +99,6 @@ import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.MyHandler;
 /*Add by fansm 20130412 end*/
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 共用方法类
@@ -565,7 +564,6 @@ public class PublicMethod {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflate.inflate(R.layout.touzhu_succe, null);
 		final AlertDialog dialog = new AlertDialog.Builder(activity).create();
-		MobclickAgent.onEvent(activity, "goucaichenggong");// BY贺思明 购买彩票成功的提示
 		ImageView image = (ImageView) view.findViewById(R.id.touzhu_succe_img);
 		Button ok = (Button) view.findViewById(R.id.touzhu_succe_button_sure);
 		Button share = (Button) view
