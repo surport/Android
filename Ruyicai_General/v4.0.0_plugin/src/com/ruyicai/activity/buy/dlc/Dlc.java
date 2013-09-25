@@ -61,7 +61,6 @@ import com.ruyicai.json.miss.SscZMissJson;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.pojo.AreaNum;
-import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
@@ -85,9 +84,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	public int num = 1;// 当前单式机选个数
 	protected int max = 6;// 选区最大小球数
 	protected Spinner typeSpinner;
-	private BallTable oneBallTable;
-	private BallTable twoBallTable;
-	private BallTable thirdBallTable;
+
 	public boolean isJiXuan = false;
 	protected boolean is11_5DanTuo = false;
 	protected TextView titleOne;// 大标题
@@ -96,7 +93,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	protected Button imgRetrun;// 返回购彩大厅按钮
 	public static String batchCode;// 期号
 	private int lesstime;// 剩余时间
-	private Handler handler = new Handler();
 	public String lotno;
 	private boolean isRun = true;
 	private PopupWindow popupwindow;
@@ -1182,7 +1178,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	 * @return
 	 */
 	public String getZxAlertZhuma() {
-		int iZhuShu = getZhuShu();
 		String zhuma = "";
 		if (is11_5DanTuo) {
 			int[] dan = areaNums[0].table.getHighlightBallNOs();
