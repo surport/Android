@@ -31,8 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
-import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.activity.usercenter.ContentListView;
 import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.constant.Constants;
@@ -44,7 +42,6 @@ import com.ruyicai.util.RWSharedPreferences;
 
 public class Betdetail extends Activity {
 
-	// AlertDialog dialog = new AlertDialog.Builder(this).create();
 	BetQueryInfo info;
 	private ContentListView contentListView = new ContentListView(this);
 	public Context context;
@@ -92,14 +89,11 @@ public class Betdetail extends Activity {
 		final String lotName = (String) info.getLotName();
 		final String betNum = (String) info.getBetNum();
 		final String lotMulti = (String) info.getLotMulti();
-		final String prizemoney = (String) info.getPrizeAmt();
 		final String ordertime = (String) info.getOrdertime();
-		final String betcode = (String) info.getBetCode();
 		final String prize_State = (String) info.getPrizeState();
 		final String win_code = (String) info.getWin_code();
 		final String orderId = (String) info.getOrderId();
 		final String stateMo = (String) info.getStateMemo();
-		final String betcodehtml = (String) info.getBetCodeHtml();
 		/**add by pengcx 20130609 start*/
 		final String expectprize = (String)info.getExpectPrizeAmt();
 		/**add by pengcx 20130609 end*/
@@ -310,7 +304,6 @@ public class Betdetail extends Activity {
 		label.setText("请输入购买倍数(最高10000倍)");
 		submit.setText("确定");
 		final String lotno = (String) info.getLotNo();
-		final String prizeqihao = (String) info.getBatchCode();
 		final String amount = (String) info.getAmount();
 		final String lotName = (String) info.getLotName();
 		final String betcode = (String) info.getBetCodeHtml();
@@ -528,7 +521,6 @@ public class Betdetail extends Activity {
 				try {
 					JSONObject obj = new JSONObject(str);
 					final String message = obj.getString("message");
-					String error = obj.getString("error_code");
 					handler.post(new Runnable() {
 						@Override
 						public void run() {
