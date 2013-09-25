@@ -14,6 +14,7 @@ public class PL5ZiJX extends DanshiJiXuan implements BuyImplement {
 	public PL5JXBalls zhixuanBalls = new PL5JXBalls();
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((PL5)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		createZhiXuan();
 	}

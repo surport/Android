@@ -2056,6 +2056,16 @@ public class PublicMethod {
 		return timeStr;
 	}
 
+	public static String isTenSpace(int time) {
+		String timeStr = "";
+		if (time < 10) {
+			timeStr += "  " + time;
+		} else {
+			timeStr += time;
+		}
+		return timeStr;
+	}
+
 	/**
 	 * 创建战绩效果
 	 * 
@@ -2984,7 +2994,7 @@ public class PublicMethod {
 		if (sumValue >= 10) {
 			iShowNumber += "    和值" + sumValue;
 		}else{ 
-			iShowNumber += "    和值" + sumValue;
+			iShowNumber += "    和值" + PublicMethod.isTenSpace(sumValue);
 		}
 		
 		

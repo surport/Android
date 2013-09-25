@@ -28,7 +28,7 @@ public class Constants {
 	/* Add by fansm 20130412 end */
 
 	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-	//public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
+//	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
 
 	/**
 	 * 彩种设置

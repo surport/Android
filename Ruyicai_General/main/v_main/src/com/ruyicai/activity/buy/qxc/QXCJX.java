@@ -14,6 +14,7 @@ public class QXCJX extends DanshiJiXuan implements BuyImplement {
 	public QXCJXBalls jixuanBalls = new QXCJXBalls();
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((QXC)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		createZhiXuan();
 	}

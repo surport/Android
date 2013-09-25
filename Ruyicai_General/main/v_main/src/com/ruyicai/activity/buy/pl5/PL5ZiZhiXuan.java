@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.qxc.QXC;
 import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
@@ -32,6 +33,7 @@ public class PL5ZiZhiXuan extends ZixuanActivity {
 	BallTable geBallTable;
 
 	public void onCreate(Bundle savedInstanceState) {
+		setAddView(((PL5)getParent()).addView);
 		super.onCreate(savedInstanceState);
 		setCode(pl5Code);
 		initViewItem();
