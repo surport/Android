@@ -1,6 +1,5 @@
 package com.ruyicai.json.miss;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;

@@ -14,7 +14,6 @@ import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
 import com.ruyicai.code.pl3.PL3ZiHeZhiCode;
 import com.ruyicai.code.pl3.PL3ZiZhiXuanCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.AreaInfo;

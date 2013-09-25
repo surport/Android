@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.InternetUtils;
-import com.ruyicai.net.newtransaction.pojo.RechargePojo;
 import com.ruyicai.util.ProtocolManager;
 
 /**

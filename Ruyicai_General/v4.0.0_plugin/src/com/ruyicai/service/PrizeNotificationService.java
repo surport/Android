@@ -22,15 +22,11 @@ package com.ruyicai.service;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -39,9 +35,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.util.Log;
 import android.widget.RemoteViews;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.home.HomeActivity;
 import com.ruyicai.constant.Constants;

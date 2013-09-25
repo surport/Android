@@ -5,20 +5,16 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.custom.jc.button.MyButton;
 import com.ruyicai.json.miss.MissJson;
-import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicMethod;
 
 /**

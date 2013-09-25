@@ -6,22 +6,16 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.handler.HandlerMsg;
-import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.ChangePasswordInterface;
 import com.ruyicai.util.RWSharedPreferences;
 

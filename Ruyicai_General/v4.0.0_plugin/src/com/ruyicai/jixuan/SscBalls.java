@@ -1,9 +1,6 @@
 package com.ruyicai.jixuan;
 
 import java.util.Vector;
-
-import android.util.Log;
-
 import com.ruyicai.util.PublicMethod;
 
 public class SscBalls extends Balls {

@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 /**
  * 最新开奖页面
  *

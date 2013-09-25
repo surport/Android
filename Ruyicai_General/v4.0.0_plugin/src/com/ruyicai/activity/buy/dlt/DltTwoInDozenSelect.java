@@ -3,11 +3,6 @@ package com.ruyicai.activity.buy.dlt;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
-import android.widget.ToggleButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;

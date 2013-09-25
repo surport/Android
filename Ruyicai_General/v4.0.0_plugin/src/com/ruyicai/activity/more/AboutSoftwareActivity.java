@@ -1,13 +1,10 @@
 package com.ruyicai.activity.more;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -17,7 +14,6 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.net.newtransaction.AboutInfoInterface;
-import com.ruyicai.net.newtransaction.HelpCenterItemInterface;
 
 /**
  * 关于软件

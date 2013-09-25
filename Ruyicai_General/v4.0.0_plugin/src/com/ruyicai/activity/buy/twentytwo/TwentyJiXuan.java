@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.interfaces.BuyImplement;
-import com.ruyicai.jixuan.SsqDSBalls;
 import com.ruyicai.jixuan.TwentyBalls;
 import com.ruyicai.pojo.AreaNum;
 

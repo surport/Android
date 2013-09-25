@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.OrderPrizeDiaog;
-import com.ruyicai.activity.more.MoreActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.dialog.LogOutDialog;
 import com.ruyicai.handler.HandlerMsg;

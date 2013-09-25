@@ -6,9 +6,7 @@ import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.BindEmailInterface;
-import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;

@@ -24,8 +24,6 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
-import com.ruyicai.activity.buy.ssq.SimulateSelectNumberActivity;
-import com.ruyicai.activity.buy.ssq.SimulateSelectNumberView;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.more.LuckChoose2;
 import com.ruyicai.constant.Constants;

@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,6 @@ import android.widget.TextView;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.zq.BaseListActivity;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
-import com.ruyicai.activity.buy.jc.explain.zq.AsiaActivity.JcInfoAdapter;
-import com.ruyicai.activity.buy.jc.explain.zq.BaseListActivity.ExplainInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 

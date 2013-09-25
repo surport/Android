@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.widget.LinearLayout;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -14,7 +13,6 @@ import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.code.pl5.PL5ZiZhiXuanCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.AreaInfo;

@@ -1,9 +1,6 @@
 package com.ruyicai.code.dlt;
 
 import java.util.List;
-
-import android.util.Log;
-
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;
 

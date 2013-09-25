@@ -2,10 +2,7 @@ package com.ruyicai.net;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.ruyicai.activity.join.JoinDingActivity.CustomizeInfo;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.net.newtransaction.CustomizeInterface;
 import com.ruyicai.util.ProtocolManager;
 
 public class CustomizeInfoInterface {

@@ -7,8 +7,6 @@ import java.util.List;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 
-import android.util.Log;
-
 /**
  * 竞彩算奖的排列组合类
  * 

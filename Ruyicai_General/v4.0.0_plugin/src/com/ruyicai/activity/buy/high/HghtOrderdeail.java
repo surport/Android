@@ -10,8 +10,6 @@ import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.ZiXuanTouZhu;
 import com.ruyicai.activity.buy.zixuan.ZixuanZhuihao;
-import com.ruyicai.constant.Constants;
-import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 
 public class HghtOrderdeail extends BuyActivityGroup {
 	private String[] titles = { "投注", "追号", "收益追号" };

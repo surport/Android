@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.os.Environment;
-import android.util.Log;
 
 /**
  * 下载开机图片

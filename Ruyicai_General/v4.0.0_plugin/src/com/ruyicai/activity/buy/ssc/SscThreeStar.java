@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView.BufferType;
 

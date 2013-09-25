@@ -4,12 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.widget.Toast;
 
-import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.gift.GiftActivity;
-import com.ruyicai.constant.Constants;
-import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RuyicaiActivityManager;
 
 /**
  * 专家荐号框

@@ -1,6 +1,5 @@
 package com.ruyicai.code.ten;
 
-import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;
 

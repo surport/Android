@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Vector;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;

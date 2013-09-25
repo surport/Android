@@ -7,14 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
-
-import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.explain.zq.ExplainListActivity;
-import com.ruyicai.activity.buy.jc.explain.zq.ExplainListActivity.ExplainInfo;
-import com.ruyicai.activity.buy.jc.explain.zq.ExplainListActivity.ViewHolder;
 
 public class LqExplainListActivity extends ExplainListActivity {
 

@@ -1,7 +1,6 @@
 package com.ruyicai.dialog;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.util.RWSharedPreferences;
 
