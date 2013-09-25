@@ -1361,7 +1361,8 @@ public class Dlc extends ZixuanAndJiXuan {
 		setIssueJSONObject(obj);
 		setLotno();
 	}
-    protected void setIssueJSONObject(JSONObject obj) {
+
+	protected void setIssueJSONObject(JSONObject obj) {
 		if (obj != null && !isFirst) {
 			try {
 				lesstime = Integer.valueOf(CheckUtil.isNull(obj
@@ -1370,10 +1371,11 @@ public class Dlc extends ZixuanAndJiXuan {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		}
 		isFirst = false;
-    }
+	}
+
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();

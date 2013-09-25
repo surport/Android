@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -24,8 +20,6 @@ import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,14 +27,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -48,18 +39,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.high.HghtOrderdeail;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.gift.GiftActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.GT;
@@ -681,39 +669,15 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 			R.drawable.join_fc3d, R.drawable.join_qlc, R.drawable.join_pl3,
 			R.drawable.join_dlt }; // zlm 8.9 添加排列三、超级大乐透图标
 	private static final String[] textContent = { "星座", "生肖", "姓名", "生日" };
-	private static final Integer[] imageId = { R.drawable.xingzuo,
-			R.drawable.shengxiao, R.drawable.xingming, R.drawable.shengri };
-	private static final Integer[] mShengxiaoIcon = {// 显示的图片数组
-	R.drawable.shengxiao_1_mouse, R.drawable.shengxiao_2_bull,
-			R.drawable.shengxiao, R.drawable.shengxiao_4_rabbit,
-			R.drawable.shengxiao_5_dragon, R.drawable.shengxiao_6_snake,
-			R.drawable.shengxiao_7_horse, R.drawable.shengxiao_8_sheep,
-			R.drawable.shengxiao_9_monkey, R.drawable.shengxiao_10_chicken,
-			R.drawable.shengxiao_11_dog, R.drawable.shengxiao_12_pig, };
-	private static final Integer[] mXingzuoIcon = {
-			R.drawable.xingzuo_shuiping, R.drawable.xingzuo_shuangyu,
-			R.drawable.xingzuo_baiyang, R.drawable.xingzuo_jinniu,
-			R.drawable.xingzuo_shuangzi, R.drawable.xingzuo_juxie,
-			R.drawable.xingzuo_shizi, R.drawable.xingzuo_chunv,
-			R.drawable.xingzuo_tianping, R.drawable.xingzuo_tianxie,
-			R.drawable.xingzuo_sheshou, R.drawable.xingzuo_mojie };
-	private static final String[] xingzuoName = { "水瓶座", "双鱼座", "白羊座", "金牛座",
-			"双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "魔蝎座" };
-	private static final String[] shengxiaoName = { "鼠", "牛", "虎", "兔", "龙",
-			"蛇", "马", "羊", "猴", "鸡", "狗", "猪" };
 	private String type01, type02, type03, type04, type05, type06, type07,
 			type08; // 彩票种类
-	private String[] gridText = new String[12];
-	private Integer[] gridImage = new Integer[12];
 	private PopupWindow popupwindow;
 	private int iScreenWidth;
-	private EditText editTextXingming;
 	public final static int ID_CLLN_XINGMING_DIALOG_LISTVIEW = 106;
 	public final static int ID_CLLN_SHOWBALLMONRY = 117;
 	public final static int ID_CLLN_SHOW_ZHIFU_DIALOG = 118;
 	public final static int ID_CLLN_SHOW_TRADE_SUCCESS = 119;
 	private int[][] receiveRandomNum;
-	private View view;
 	TextView agreeAndpayTitleView; // 幸运选号中确认页面的标题 周黎鸣 代码修改：7.3添加的代码
 	LinearLayout agreePayBallLayout01; // 周黎鸣 代码修改：7.3添加的代码
 	LinearLayout agreePayBallLayout02;
@@ -738,392 +702,10 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	SeekBar mSeekBarQishu;// 期数
 	LinearLayout[] layoutAll;
 	AlertDialog.Builder builderXingming; // 姓名的对话框
-	// ReturnPage returnPage;
 	MyHandler handler;// 自定义handler
 	private ProgressDialog progressdialog;
 	public BetAndGiftPojo betAndGift = new BetAndGiftPojo();// 投注信息类
 	boolean isWindow = false;
-
-	/**
-	 * 幸运选号的主列表
-	 */
-	public View showView() {
-		LayoutInflater inflate = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-		view = (LinearLayout) inflate.inflate(R.layout.ruyihelper_listview,
-				null);
-		ListView listview = (ListView) view
-				.findViewById(R.id.ruyihelper_listview_ruyihelper_id);
-		TextView text = (TextView) view.findViewById(R.id.ruyipackage_title);
-		text.setText(getResources().getString(R.string.xingyunxuanhao));
-		Button tvreturn = (Button) view
-				.findViewById(R.id.ruyizhushou_btn_return);
-		tvreturn.setBackgroundResource(R.drawable.returnselecter);
-		tvreturn.setOnClickListener(new TextView.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (popupwindow != null) {
-					popupwindow.dismiss();
-				}
-				finish();
-			}
-		});
-		ChooseLuckLotteryNum_EfficientAdapter adapter = new ChooseLuckLotteryNum_EfficientAdapter(
-				this);
-		listview.setAdapter(adapter);
-		listview.setDividerHeight(0);
-		return view;
-	}
-
-	/**
-	 * 幸运选号的适配器
-	 */
-	public class ChooseLuckLotteryNum_EfficientAdapter extends BaseAdapter {
-
-		protected LayoutInflater mInflater; // 扩充主列表布局
-		Context context;
-		int id;
-
-		public ChooseLuckLotteryNum_EfficientAdapter(Context context) {
-			mInflater = LayoutInflater.from(context);
-			this.context = context;
-		}
-
-		@Override
-		public int getCount() {
-			return chooseLuckLotteryNum_title.length;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		// 设置主列表布局中的详细内容
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder holder;
-
-			// 与布局中的信息关联起来
-			if (convertView == null) {
-				convertView = mInflater.inflate(
-						R.layout.choose_luck_lottery_num_listview_layout_two,
-						null);
-				holder = new ViewHolder();
-				holder.icon = (ImageView) convertView
-						.findViewById(R.id.choose_luck_lottery_num_icon_id);
-				holder.icon.setImageResource(mIcon[position]);
-				holder.chooseLuckLotteryNum_zhonglei_View = (TextView) convertView
-						.findViewById(R.id.choose_luck_lottery_num_zhonglei);
-				holder.chooseLuckLotteryNum_zhonglei_View
-						.setText(chooseLuckLotteryNum_title[position]);
-
-				// 设置按钮
-				holder.iButtonGroupLayout = (LinearLayout) convertView
-						.findViewById(R.id.choose_luck_num_listview_layout_button_group);
-				holder.iButtonGroupLayout.setId(position);
-
-				int i;
-				for (i = 0; i < 4; i++) {
-					LinearLayout iImageButton = new LinearLayout(context);
-					iImageButton.setOrientation(LinearLayout.VERTICAL);
-					iImageButton.setPadding(5, 0, 0, 0);
-					ImageView iImage = new ImageView(context);
-					iImage.setImageResource(imageId[i]);
-					iImageButton.addView(iImage);
-
-					TextView iText = new TextView(context);
-					iText.setText(textContent[i]);
-					iText.setGravity(Gravity.CENTER);
-					iText.setTextColor(Color.BLACK);
-					iImageButton.addView(iText);
-
-					iImageButton.setId(i + 4 * position + 100);
-					if (i == 0) {
-						iImageButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View arg0) {
-								// TODO Auto-generated method stub
-								showGridView(arg0, mXingzuoIcon, xingzuoName);
-							}
-						});
-					} else if (i == 1) {
-						iImageButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View arg0) {
-								// TODO Auto-generated method stub
-								showGridView(arg0, mShengxiaoIcon,
-										shengxiaoName);
-							}
-						});
-					} else if (i == 2) {
-						iImageButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View arg0) {
-								// TODO Auto-generated method stub
-								showXingMingGialog(arg0);
-							}
-						});
-					} else if (i == 3) {
-						iImageButton.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View arg0) {
-								// TODO Auto-generated method stub
-								// id = arg0.getId() - LAYOUT_INDEX;
-								showShengRiDialog(arg0);
-							}
-						});
-					}
-
-					holder.iButtonGroupLayout.addView(iImageButton);
-				}
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-
-			return convertView;
-		}
-
-		class ViewHolder {
-			ImageView icon;
-			TextView chooseLuckLotteryNum_zhonglei_View;
-			LinearLayout iButtonGroupLayout;
-		}
-
-	}
-
-	/**
-	 * 网格显示---显示星座和生肖
-	 * 
-	 * @param v
-	 *            视图
-	 * @param gridIcon
-	 *            星座/生肖的图片
-	 * @param gridIconName
-	 *            星座/生肖的名称
-	 */
-	protected void showGridView(View v, Integer[] gridIcon,
-			String[] gridIconName) {
-		isWindow = true;
-		gameClassify(v); // 彩票种类分类
-		gridImage = gridIcon;
-		gridText = gridIconName;
-		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View popupView = (LinearLayout) inflate.inflate(
-				R.layout.choose_luck_lottery_num_main_grid, null);
-		popupwindow = new PopupWindow(popupView, LayoutParams.FILL_PARENT,
-				LayoutParams.WRAP_CONTENT, false);
-		GridView gridview = (GridView) popupView
-				.findViewById(R.id.chooose_luck_lottery_num_gridview_id);
-		// 周黎鸣7.3代码修改：将“返回”Button换成ImageButton
-		Button button = (Button) popupView
-				.findViewById(R.id.chooose_luck_lottery_num_return);
-		button.setBackgroundResource(R.drawable.returnselecter);
-		button.setOnClickListener(new Button.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				popupwindow.dismiss();
-			}
-
-		});
-
-		ChooseLuckLotteryNum_GridAdapter gridAdapter = new ChooseLuckLotteryNum_GridAdapter(
-				this);
-		gridview.setAdapter(gridAdapter);
-		popupwindow.showAtLocation(
-				view.findViewById(R.id.ruyihelper_listview_ruyihelper_id),
-				Gravity.CENTER, 0, 0);
-	}
-
-	/**
-	 * GridView适配器
-	 */
-	public class ChooseLuckLotteryNum_GridAdapter extends BaseAdapter {
-
-		protected LayoutInflater mInflater; // 扩充主列表布局
-		Context context;
-
-		public ChooseLuckLotteryNum_GridAdapter(Context context) {
-			mInflater = LayoutInflater.from(context);
-			this.context = context;
-		}
-
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return mXingzuoIcon.length;
-		}
-
-		@Override
-		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			ViewHolder holder;
-			if (convertView == null) {
-				convertView = mInflater.inflate(
-						R.layout.choose_luck_lottery_num_main_grid_specific,
-						null);
-				holder = new ViewHolder();
-				// 设置按钮
-				holder.iButtonGroupLayout = (LinearLayout) convertView
-						.findViewById(R.id.choose_luck_num_gridview_layout_button_group);
-
-				LinearLayout iImageButton = new LinearLayout(context);
-				iImageButton.setOrientation(LinearLayout.VERTICAL);
-
-				ImageView iImage = new ImageView(context);
-				iImage.setImageResource(gridImage[position]);
-				iImageButton.addView(iImage);
-
-				TextView iText = new TextView(context);
-				iText.setText(gridText[position]);
-				iText.setGravity(Gravity.CENTER);
-				iText.setTextColor(Color.BLACK);
-				iImageButton.addView(iText);
-
-				iImageButton.setId(position);
-				iImageButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View arg0) {
-						// TODO Auto-generated method stub
-						// popupwindow.dismiss();
-						showXingYunXuanHaoListView(ID_CLLN_SHOWBALLMONRY,
-								type02);
-					}
-				});
-
-				holder.iButtonGroupLayout.addView(iImageButton);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			return convertView;
-		}
-
-		class ViewHolder {
-			LinearLayout iButtonGroupLayout;
-		}
-	}
-
-	/**
-	 * 姓名选号
-	 * 
-	 * @param v
-	 *            视图
-	 */
-	protected void showXingMingGialog(View v) {
-		gameClassify(v); // 彩票种类分类
-
-		LayoutInflater inflater = LayoutInflater.from(this);
-		View textView = inflater.inflate(
-				R.layout.choose_luck_lottery_num_xingming_dialog_layout, null);
-		editTextXingming = (EditText) textView
-				.findViewById(R.id.clln_xingming_edit_dialog_id);
-		builderXingming = new AlertDialog.Builder(this);
-		builderXingming.setCancelable(true);
-		builderXingming.setTitle(R.string.qingshuruxingming);
-		builderXingming.setView(textView);
-
-		builderXingming.setPositiveButton(R.string.ok,
-				new DialogInterface.OnClickListener() {
-
-					public void onClick(DialogInterface dialog, int which) {
-						if (editTextXingming.length() == 0) {
-							showAttentionImportNameDialog(type02);
-						} else {
-							showXingYunXuanHaoListView(ID_CLLN_SHOWBALLMONRY,
-									type02);
-						}
-					}
-
-				});
-		builderXingming.setNegativeButton(R.string.str_return,
-				new DialogInterface.OnClickListener() {
-
-					public void onClick(DialogInterface dialog, int which) {
-						// 返回
-					}
-
-				});
-		builderXingming.show();
-	}
-
-	/**
-	 * 提示用户输入姓名的对话框
-	 */
-	protected void showAttentionImportNameDialog(String aGameType) {
-		type07 = aGameType;
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setCancelable(true);
-		builder.setTitle("您输入的信息有误，内容不能为空，请重新输入姓名！");
-
-		builder.setPositiveButton(R.string.ok,
-				new DialogInterface.OnClickListener() {
-
-					public void onClick(DialogInterface dialog, int which) {
-						showXingYunXuanHaoListView(
-								ID_CLLN_XINGMING_DIALOG_LISTVIEW, type07);
-					}
-
-				});
-
-		builder.show();
-	}
-
-	/**
-	 * 生日选号
-	 * 
-	 * @param v
-	 *            视图
-	 */
-	protected void showShengRiDialog(View v) {
-		gameClassify(v); // 彩票种类分类
-
-		LayoutInflater inflater = LayoutInflater.from(this);
-		View textView = inflater.inflate(
-				R.layout.choose_luck_num_shengri_date_picker, null);
-		DatePicker dp = (DatePicker) textView
-				.findViewById(R.id.choose_luck_num_date_picker_id);
-		Calendar calendar = Calendar.getInstance();
-		int calYear = calendar.get(Calendar.YEAR);
-		int calMonth = calendar.get(Calendar.MONTH);
-		int calDay = calendar.get(Calendar.DAY_OF_MONTH);
-		dp.init(calYear, calMonth, calDay, null);
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setCancelable(true);
-		builder.setTitle(R.string.qingshurushengri);
-		builder.setView(textView);
-		builder.setPositiveButton(R.string.ok,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						showXingYunXuanHaoListView(ID_CLLN_SHOWBALLMONRY,
-								type02);
-					}
-				});
-		builder.setNegativeButton(R.string.str_return,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-					}
-				});
-		builder.show();
-	}
 
 	/**
 	 * 幸运选号列表选择
