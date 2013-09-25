@@ -183,7 +183,6 @@
 	<public type="drawable" name="chongzhi_b" id="0x7f020068" />
 	<public type="drawable" name="click" id="0x7f020069" />
 	<public type="drawable" name="cp1" id="0x7f02006a" />
-	<public type="drawable" name="cridbind" id="0x7f02006b" />
 	<public type="drawable" name="crididbind" id="0x7f02006c" />
 	<public type="drawable" name="crididbindno" id="0x7f02006d" />
 	<public type="drawable" name="crown" id="0x7f02006e" />
@@ -220,7 +219,6 @@
 	<public type="drawable" name="frame_rectangle_user" id="0x7f02008d" />
 	<public type="drawable" name="frame_rectangle_user_d" id="0x7f02008e" />
 	<public type="drawable" name="free_get_gold_selector" id="0x7f02008f" />
-	<public type="drawable" name="game_name_bj" id="0x7f020090" />
 	<public type="drawable" name="gd_eleven" id="0x7f020091" />
 	<public type="drawable" name="get_free_gold_background" id="0x7f020092" />
 	<public type="drawable" name="get_free_gold_click" id="0x7f020093" />
@@ -316,7 +314,6 @@
 	<public type="drawable" name="jc_touzhu" id="0x7f0200ef" />
 	<public type="drawable" name="jc_touzhu_b" id="0x7f0200f0" />
 	<public type="drawable" name="jc_touzhu_select" id="0x7f0200f1" />
-	<public type="drawable" name="zc_wait_issue" id="0x7f0200f2" />
 	<public type="drawable" name="zc_team_select_bg" id="0x7f0200f3" />
 	<public type="drawable" name="jc_zq_hun_spf__right_bg" id="0x7f0200f4" />
 	<public type="drawable" name="jc_zq_hun_spf_left_bg" id="0x7f0200f5" />
@@ -496,7 +493,6 @@
 	<public type="drawable" name="recharge_alipay_safe" id="0x7f0201a3" />
 	<public type="drawable" name="recharge_atm" id="0x7f0201a4" />
 	<public type="drawable" name="recharge_bank" id="0x7f0201a5" />
-	<public type="drawable" name="recharge_game" id="0x7f0201a6" />
 	<public type="drawable" name="recharge_phone" id="0x7f0201a7" />
 	<public type="drawable" name="recharge_phone_umpay" id="0x7f0201a8" />
 	<public type="drawable" name="recharge_phonebank" id="0x7f0201a9" />
@@ -557,7 +553,6 @@
 	<public type="drawable" name="tab_buy_bg_b" id="0x7f0201e0" />
 	<public type="drawable" name="tab_buy_selector" id="0x7f0201e1" />
 	<public type="drawable" name="team_name_bj" id="0x7f0201e2" />
-	<public type="drawable" name="team_name_bj_top" id="0x7f0201e3" />
 	<public type="drawable" name="team_name_bj_top_yellow" id="0x7f0201e4" />
 	<public type="drawable" name="team_name_bj_yellow" id="0x7f0201e5" />
 	<public type="drawable" name="ten_icon" id="0x7f0201e6" />
@@ -681,9 +676,6 @@
 	<public type="drawable" name="zhoangjiangchaxun" id="0x7f02029c" />
 	<public type="drawable" name="zhuihaochaxun" id="0x7f02029d" />
 	<public type="drawable" name="zijinxiangqing" id="0x7f02029e" />
-	<public type="drawable" name="zu_button" id="0x7f02029f" />
-	<public type="drawable" name="zu_button_b" id="0x7f0202a0" />
-	<public type="drawable" name="zu_select" id="0x7f0202a1" />
 	<public type="drawable" name="zx_list_bg_gray" id="0x7f0202a2" />
 	<public type="drawable" name="zx_list_bg_white" id="0x7f0202a3" />
 	<public type="id" name="HorizontalScrollView01" id="0x7f0704d1" />
