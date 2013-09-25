@@ -46,7 +46,6 @@ import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 开奖公告
@@ -131,7 +130,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 		setContentView(R.layout.notice_prizes_main);
 		setScale();
 		ispushfresh = false;
-		MobclickAgent.onEvent(this, "kaijianggonggao"); // BY贺思明 点击主导航上的“开奖公告”。
 	}
 
 	/**
@@ -576,13 +574,11 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		if (isnoticefresh) {
 			noticeNet();
 		} else {
@@ -694,8 +690,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 				}
 				// 点击双色球跳转到双色球子列表中
 				if (name.equals("双色球")) {
-					MobclickAgent.onEvent(NoticeMainActivity.this,
-							"kaijiangshuangseqiu"); // BY贺思明 点击“双色球”图标及开奖号区域。
 					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_SHUANGSEQIU_LISTVIEW;
 					Intent intent = new Intent(NoticeMainActivity.this,
 							NoticeActivityGroup.class);

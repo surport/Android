@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONObject;
-import com.umeng.analytics.MobclickAgent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,7 +18,6 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		noticeAllNet(true);
-		MobclickAgent.onEvent(NoticeRedBallActivity.this, "kaijiangzoushi"); // BY贺思明
 																				// 最新开奖页点击“开奖走势”tab切换。
 	}
 
