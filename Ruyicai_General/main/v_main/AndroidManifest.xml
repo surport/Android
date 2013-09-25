@@ -364,10 +364,6 @@
             android:name="com.ruyicai.activity.buy.pl3.PL3ZuLiu"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.buy.pl3.PL3JiXuan"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
         <!-- dlc -->
         <activity
             android:name="com.ruyicai.activity.buy.dlc.Dlc"
