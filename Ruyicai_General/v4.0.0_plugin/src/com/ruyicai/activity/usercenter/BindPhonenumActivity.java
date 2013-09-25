@@ -16,9 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.net.newtransaction.BindIDInterface;
 import com.ruyicai.net.newtransaction.BindPhoneInterface;
 import com.ruyicai.util.RWSharedPreferences;
 

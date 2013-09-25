@@ -1,7 +1,6 @@
 package com.ruyicai.activity.buy.jc.score.beijing;
 
 import android.os.Bundle;
-import com.ruyicai.activity.buy.jc.score.lq.TrackLqActivity;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
 
 public class BeijingScoreActivity extends JcScoreActivity {

@@ -2,15 +2,14 @@ package com.ruyicai.activity.account;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.LinearGradient;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -44,7 +43,8 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 	public ProgressDialog progressdialog;
 	Button secureOk, secureCancel;
 	EditText accountnum;
-
+	private ProgressDialog mProgress = null;
+	private boolean isOnClick = true;
 //	private TextView alipay_content = null;
 	private WebView alipay_content = null;
 	private boolean isWebView = false;// 浏览器打开支付宝

@@ -3,8 +3,6 @@
  */
 package com.ruyicai.code.fc3d;
 
-import com.ruyicai.activity.buy.fc3d.FC3DZuLiu;
-import com.ruyicai.activity.buy.fc3d.FC3DZuSan;
 import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;

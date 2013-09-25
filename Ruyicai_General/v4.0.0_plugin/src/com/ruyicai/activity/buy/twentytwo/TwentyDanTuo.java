@@ -13,7 +13,6 @@ import com.ruyicai.activity.buy.zixuan.ZixuanActivity;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.code.twenty.TwentyDanTuoCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.AreaInfo;

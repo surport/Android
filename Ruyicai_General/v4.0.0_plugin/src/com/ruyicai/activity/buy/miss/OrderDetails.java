@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
-import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.constant.Constants;
 
 public class OrderDetails extends BuyActivityGroup {

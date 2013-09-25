@@ -3,7 +3,6 @@
  */
 package com.ruyicai.code.fc3d;
 
-import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;

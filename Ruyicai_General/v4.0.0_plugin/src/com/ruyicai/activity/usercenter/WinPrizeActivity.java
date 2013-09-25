@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -35,11 +33,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.usercenter.detail.Betdetail;
 import com.ruyicai.activity.usercenter.detail.Windetail;
-import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.activity.usercenter.info.WinPrizeQueryInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.BetDetailsInterface;

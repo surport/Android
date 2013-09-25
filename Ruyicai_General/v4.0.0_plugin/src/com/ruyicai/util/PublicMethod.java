@@ -18,25 +18,18 @@ import java.util.zip.Inflater;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.R.integer;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.sax.StartElementListener;
 import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -88,16 +81,12 @@ import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.buy.zc.FootBallMainActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
-import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
 /*Add by fansm 20130412 start*/
 /*add debug switch*/
-import com.ruyicai.constant.Constants;
-import com.ruyicai.handler.MyHandler;
 /*Add by fansm 20130412 end*/
 
 /**

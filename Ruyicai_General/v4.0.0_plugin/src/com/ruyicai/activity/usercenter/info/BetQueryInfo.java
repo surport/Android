@@ -2,7 +2,6 @@ package com.ruyicai.activity.usercenter.info;
 
 import java.io.Serializable;
 
-import org.json.JSONObject;
 
 public class BetQueryInfo implements Serializable {
 	/**

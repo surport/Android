@@ -18,7 +18,6 @@ import com.ruyicai.activity.buy.zixuan.BuyViewItem;
 import com.ruyicai.code.fc3d.F3dZiHeZhiCode;
 import com.ruyicai.code.fc3d.Fc3dZiZuXuanCode;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.interfaces.BuyImplement;
 import com.ruyicai.json.miss.Fc3dMissJson;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.pojo.AreaNum;

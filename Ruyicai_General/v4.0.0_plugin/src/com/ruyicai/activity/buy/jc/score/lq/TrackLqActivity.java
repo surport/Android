@@ -1,22 +1,12 @@
 package com.ruyicai.activity.buy.jc.score.lq;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
-import android.util.Log;
-
-import com.ruyicai.activity.buy.jc.score.zq.JcScoreListActivity.ScoreInfo;
-import com.ruyicai.activity.buy.jc.score.zq.JcScoreInfoActivity;
 import com.ruyicai.activity.buy.jc.score.zq.TrackActivity;
-import com.ruyicai.constant.ShellRWConstants;
 
 public class TrackLqActivity extends TrackActivity {
 

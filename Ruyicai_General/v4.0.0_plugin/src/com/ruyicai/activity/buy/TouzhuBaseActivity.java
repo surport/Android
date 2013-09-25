@@ -4,10 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.BaseActivity.BallSensor;
 import com.ruyicai.activity.usercenter.TrackQueryActivity;
-import com.ruyicai.constant.Constants;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;

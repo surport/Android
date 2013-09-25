@@ -29,10 +29,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.score.lq.JcLqScoreActivity;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;

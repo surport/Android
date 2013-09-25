@@ -42,7 +42,6 @@ import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
-import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.ShouyiDataInterface;
 import com.ruyicai.net.newtransaction.getRecoveryBatchCode;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;

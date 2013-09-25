@@ -2,9 +2,6 @@ package com.ruyicai.activity.buy.jc.explain.lq;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.util.Log;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;

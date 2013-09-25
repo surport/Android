@@ -3,7 +3,6 @@
  */
 package com.ruyicai.code.pl3;
 
-import com.ruyicai.activity.buy.pl3.PL3;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicConst;

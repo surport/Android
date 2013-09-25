@@ -2,9 +2,6 @@ package com.ruyicai.util;
 
 import java.util.Random;
 
-import android.R.integer;
-import android.util.Log;
-
 public class RandomMessage {
 
 	/**

@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.View;
@@ -13,14 +12,11 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.qlc.Qlc;
-import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.notice.PrizeBallLinearLayout;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.net.newtransaction.NoticePrizeDetailInterface;
 import com.ruyicai.util.PublicMethod;
 
 public class QLCDetailView extends LotnoDetailView {

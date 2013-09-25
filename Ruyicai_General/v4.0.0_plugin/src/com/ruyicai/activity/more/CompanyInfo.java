@@ -5,23 +5,16 @@ package com.ruyicai.activity.more;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.interfaces.ReturnPage;
 
 /**
  * 公司简介

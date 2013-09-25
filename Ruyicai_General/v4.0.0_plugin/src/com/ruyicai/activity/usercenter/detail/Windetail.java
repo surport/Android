@@ -2,22 +2,17 @@ package com.ruyicai.activity.usercenter.detail;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.ContentListView;
 import com.ruyicai.activity.usercenter.info.WinPrizeQueryInfo;

@@ -1,12 +1,7 @@
 package com.ruyicai.activity.buy.dlt;
 
 import android.os.Bundle;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.ToggleButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-
-import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jixuan.DanshiJiXuan;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.interfaces.BuyImplement;

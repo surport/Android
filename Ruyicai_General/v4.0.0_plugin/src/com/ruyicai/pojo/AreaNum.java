@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
-import com.ruyicai.util.PublicMethod;
 
 /**
  * 选区类

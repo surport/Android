@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.ssq.Ssq;
 import com.ruyicai.activity.buy.twentytwo.TwentyTwo;
 import com.ruyicai.activity.notice.PrizeBallLinearLayout;
 import com.ruyicai.constant.Constants;

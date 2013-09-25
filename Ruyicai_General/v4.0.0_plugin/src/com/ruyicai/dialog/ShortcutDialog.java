@@ -2,18 +2,9 @@ package com.ruyicai.dialog;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.home.HomeActivity;
-import com.ruyicai.util.PublicConst;
-import com.ruyicai.util.RuyicaiActivityManager;
-
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Intent.ShortcutIconResource;
-import android.view.View;
 
 /**
  * 创建快捷方式

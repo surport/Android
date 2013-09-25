@@ -5,7 +5,6 @@ import com.ruyicai.util.RWSharedPreferences;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 public class TransitActivity extends Activity {
 	private RWSharedPreferences shellRW;

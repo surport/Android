@@ -1,7 +1,5 @@
 package com.ruyicai.code.ssc;
 
-import android.util.Log;
-
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.pojo.AreaNum;
 

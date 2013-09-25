@@ -6,16 +6,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.activity.buy.jc.explain.lq.JcLqExplainActivity;
-import com.ruyicai.activity.buy.jc.lq.view.SfView.JcInfoAdapter;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 

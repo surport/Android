@@ -1,19 +1,12 @@
 package com.ruyicai.activity.buy.ssc;
 
-import java.util.List;
-
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.RadioGroup;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView.BufferType;
 
 import com.palmdream.RuyicaiAndroid.R;

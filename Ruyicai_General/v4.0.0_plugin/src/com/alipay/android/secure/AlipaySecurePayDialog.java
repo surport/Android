@@ -253,4 +253,3 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		}
 	}
 }
-

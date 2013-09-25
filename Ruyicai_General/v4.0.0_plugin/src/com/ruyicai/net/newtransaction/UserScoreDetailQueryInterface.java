@@ -2,12 +2,8 @@ package com.ruyicai.net.newtransaction;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.util.Log;
-
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.InternetUtils;
-import com.ruyicai.net.newtransaction.pojo.AccountDetailQueryPojo;
 import com.ruyicai.net.newtransaction.pojo.UserScroeDetailQueryPojo;
 import com.ruyicai.util.ProtocolManager;
 
