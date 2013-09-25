@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 排列五
@@ -23,7 +22,5 @@ public class PL5 extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		setIssue(Constants.LOTNO_PL5);
 		setlastbatchcode(Constants.LOTNO_PL5);
-		MobclickAgent.onEvent(this, "pailie5"); // BY贺思明 点击首页的“排列五”图标
-		MobclickAgent.onEvent(this, "ticaigoucaijiemian ");// BY贺思明 体彩购彩页
 	}
 }

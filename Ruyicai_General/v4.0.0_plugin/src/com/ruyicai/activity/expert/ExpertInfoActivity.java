@@ -33,7 +33,6 @@ import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.json.expert.ExpertInfoJson;
 import com.ruyicai.net.newtransaction.ExpertInfoInterface;
-import com.umeng.analytics.MobclickAgent;
 
 public class ExpertInfoActivity extends Activity implements HandlerMsg {
 	public final static String KEY = "key";
@@ -57,7 +56,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		getIntentInfo();
 		setType();
 		isInfoNet();
@@ -301,6 +299,5 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 }

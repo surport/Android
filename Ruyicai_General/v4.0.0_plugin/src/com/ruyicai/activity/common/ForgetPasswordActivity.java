@@ -9,7 +9,6 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.ForgetPasswordInterface;
 import com.ruyicai.util.CallServicePhoneConfirm;
-import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -183,13 +182,11 @@ public class ForgetPasswordActivity extends Activity implements HandlerMsg {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

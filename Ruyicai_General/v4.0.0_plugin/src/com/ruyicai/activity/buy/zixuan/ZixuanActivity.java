@@ -59,7 +59,6 @@ import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 自选购彩父类
@@ -763,13 +762,11 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 		if (!toLogin) {
 			again();
 		}

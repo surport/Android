@@ -33,7 +33,6 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.interfaces.ReturnPage;
 import com.ruyicai.net.newtransaction.FeedbackInterface;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 
@@ -125,10 +124,6 @@ public class FeedBack extends Activity {
 									handler.post(new Runnable() {
 										public void run() {
 											progressdialog.dismiss();
-											MobclickAgent
-													.onEvent(FeedBack.this,
-															"wodeliuyan"); // BY贺思明
-																			// 在我的留言里点击“提交反馈”。
 											Toast.makeText(
 													FeedBack.this,
 													getString(R.string.feedbacksuccess),
@@ -211,14 +206,12 @@ public class FeedBack extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 }

@@ -19,7 +19,6 @@ import com.ruyicai.jixuan.ElevenBalls;
 import com.ruyicai.json.miss.DlcMissJson;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.SscZMissJson;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 11运夺金
@@ -43,8 +42,6 @@ public class Eleven extends Dlc {
 			}
 		});
 		setTitleOne(getString(R.string.eleven));
-		MobclickAgent.onEvent(this, "11yunduojin"); // BY贺思明 点击首页的“11运夺金”图标
-		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 
 	}
 

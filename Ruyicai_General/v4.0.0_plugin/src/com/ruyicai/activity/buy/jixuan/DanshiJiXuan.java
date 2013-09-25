@@ -52,7 +52,6 @@ import com.ruyicai.jixuan.Balls;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.SensorActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 单式机选父类
@@ -653,7 +652,6 @@ public class DanshiJiXuan extends Activity implements
 
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		if (!toLogin) {
 			againView();
 		} else {
@@ -663,7 +661,6 @@ public class DanshiJiXuan extends Activity implements
 
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 		if (!toLogin) {
 			sensor.stopAction();
 		}

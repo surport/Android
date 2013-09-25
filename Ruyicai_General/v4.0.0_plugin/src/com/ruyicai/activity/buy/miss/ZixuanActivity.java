@@ -70,7 +70,6 @@ import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 自选购彩父类
@@ -241,8 +240,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 			@Override
 			public void onClick(View v) {
 				beginTouZhu();
-				MobclickAgent.onEvent(ZixuanActivity.this, "touzhu");// BY贺思明
-																		// 点击投注按钮
 			}
 		});
 

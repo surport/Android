@@ -66,7 +66,6 @@ import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 
@@ -134,8 +133,6 @@ public class Dlc extends ZixuanAndJiXuan {
 		setlastbatchcode(lotno);
 		relativeLayout.setVisibility(View.GONE);
 		betInfo.setVisibility(View.VISIBLE);
-		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
-		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 	}
 
 	@Override

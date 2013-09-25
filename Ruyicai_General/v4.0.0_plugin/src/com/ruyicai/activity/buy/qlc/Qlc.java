@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 七乐彩
@@ -27,8 +26,6 @@ public class Qlc extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		setIssue(Constants.LOTNO_QLC);
 		setlastbatchcode(Constants.LOTNO_QLC);
-		MobclickAgent.onEvent(this, "qilecai"); // BY贺思明 点击首页的“七乐彩”图标
-		MobclickAgent.onEvent(this, "fucaigoucaijiemian");// BY贺思明 福彩购彩页面
 	}
 
 }

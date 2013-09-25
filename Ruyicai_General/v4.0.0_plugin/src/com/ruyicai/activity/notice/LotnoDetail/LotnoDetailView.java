@@ -36,7 +36,6 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 
@@ -124,8 +123,6 @@ public abstract class LotnoDetailView {
 
 			@Override
 			public void onClick(View v) {
-				MobclickAgent.onEvent(context, "renren");// BY贺思明
-															// 最新开奖页点击“分享至人人网”。
 				tenoauth();
 			}
 		});
@@ -133,8 +130,6 @@ public abstract class LotnoDetailView {
 
 			@Override
 			public void onClick(View v) {
-				MobclickAgent.onEvent(context, "xinlang");// BY贺思明
-															// 最新开奖页点击“分享至新浪微博”。
 				oauthOrShare();
 
 			}
@@ -148,8 +143,6 @@ public abstract class LotnoDetailView {
 			@Override
 			public void onClick(View v) {
 				if (issharemove) {
-					MobclickAgent.onEvent(context, "fenxiang");// BY贺思明
-																// 最新开奖页点击“分享”展开按钮。
 					TranslateAnimation anim = new TranslateAnimation(
 							Animation.RELATIVE_TO_SELF, 0.0f,
 							Animation.RELATIVE_TO_SELF, 0.83f,

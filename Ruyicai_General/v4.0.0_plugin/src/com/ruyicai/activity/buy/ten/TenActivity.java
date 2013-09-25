@@ -25,7 +25,6 @@ import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 public class TenActivity extends Dlc {
 	protected String tenType[] = { "S1", "H1", "R2", "R3", "R4", "R5", "Q2",
@@ -48,9 +47,6 @@ public class TenActivity extends Dlc {
 				createDialog(NoticeActivityGroup.ID_SUB_GD10_LISTVIEW);
 			}
 		});
-		MobclickAgent.onEvent(this, "guangdongkuaileshifen"); // BY贺思明
-																// 点击首页的“广东快乐十分”图标
-		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 
 	}
 

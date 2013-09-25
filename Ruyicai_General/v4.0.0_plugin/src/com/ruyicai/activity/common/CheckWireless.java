@@ -8,7 +8,6 @@
 
 package com.ruyicai.activity.common;
 
-import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.content.Context;
@@ -80,13 +79,11 @@ public class CheckWireless extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

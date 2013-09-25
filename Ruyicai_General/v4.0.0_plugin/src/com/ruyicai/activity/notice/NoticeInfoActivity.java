@@ -50,7 +50,6 @@ import com.tencent.weibo.oauthv1.OAuthV1;
 import com.tencent.weibo.oauthv1.OAuthV1Client;
 import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
 import com.third.tencent.TencentShareActivity;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 开奖号码页面
@@ -98,7 +97,6 @@ public class NoticeInfoActivity extends Activity {
 		shellRW = new RWSharedPreferences(this, "addInfo");
 		getInfo();
 		noticeAllNet();
-		MobclickAgent.onEvent(this, "kaijianghaoma"); // BY贺思明 最新开奖页点击“开奖号码”切换。
 	}
 
 	public void getInfo() {

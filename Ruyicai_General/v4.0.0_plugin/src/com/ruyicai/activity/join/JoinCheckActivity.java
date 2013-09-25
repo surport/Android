@@ -51,7 +51,6 @@ import com.ruyicai.net.newtransaction.QueryJoinCheckInterface;
 import com.ruyicai.net.newtransaction.QueryJoinFollowInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 合买查询
@@ -1258,7 +1257,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
@@ -1272,6 +1270,5 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			isrefresh = false;
 		}
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

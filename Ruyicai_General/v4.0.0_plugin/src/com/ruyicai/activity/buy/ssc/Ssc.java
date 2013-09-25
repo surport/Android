@@ -22,7 +22,6 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 public class Ssc extends BuyActivityGroup implements HandlerMsg {
 
@@ -50,8 +49,6 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		init(titles, topTitles, allId);
 		mTabHost.setCurrentTab(2);
 		setIssue();
-		MobclickAgent.onEvent(this, "shishicai"); // BY贺思明 点击首页的“时时彩”图标
-		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 		relativeLayout1.setVisibility(View.GONE);
 		betInfoTextView.setVisibility(View.VISIBLE);
 	}

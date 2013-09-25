@@ -55,7 +55,6 @@ import com.ruyicai.net.newtransaction.usercenter.NotReadCountInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.ruyicai.util.RuyicaiActivityManager;
-import com.umeng.analytics.MobclickAgent;
 
 public class MainGroup extends ActivityGroup implements MyDialogListener {
 
@@ -166,8 +165,6 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 						@Override
 						public void onClick(View v) {
 							orderPrizeDialog.orderPrizeDialog().show();
-							MobclickAgent.onEvent(MainGroup.this, "dingyue");// BY贺思明
-							// 点击“订阅”按钮
 						}
 					});
 					break;
@@ -597,13 +594,11 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		}
 		
 		/*Add by fansm 20130416 end*/
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		initTop();
 	}
 
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	protected void onStop() {

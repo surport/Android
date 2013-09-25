@@ -2,7 +2,6 @@ package com.ruyicai.activity.expert;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
-import com.umeng.analytics.MobclickAgent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ public class ExpertActivity extends BuyActivityGroup {
 		super.onCreate(savedInstanceState);
 		isIssue(false);
 		initExpertView();
-		MobclickAgent.onEvent(this, "zhuanjiajianhao"); // BY贺思明 点击首页的“专家荐号”图标
 	}
 
 	public void initExpertView() {

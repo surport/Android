@@ -15,7 +15,6 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
 
 public class Ssq extends BuyActivityGroup {
 
@@ -36,8 +35,6 @@ public class Ssq extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		setIssue(Constants.LOTNO_SSQ);
 		setlastbatchcode(Constants.LOTNO_SSQ);
-		MobclickAgent.onEvent(this, "shuangseqiu"); // BY贺思明 点击首页的“双色球”图标
-		MobclickAgent.onEvent(this, "fucaigoucaijiemian");// BY贺思明 福彩购彩页面
 	}
 
 	public boolean getIsLuck() {

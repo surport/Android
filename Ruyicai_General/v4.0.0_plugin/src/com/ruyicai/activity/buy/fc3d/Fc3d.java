@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 福彩3d
@@ -28,8 +27,6 @@ public class Fc3d extends BuyActivityGroup {
 		init(titles, topTitles, allId);
 		setIssue(Constants.LOTNO_FC3D);
 		setlastbatchcode(Constants.LOTNO_FC3D);
-		MobclickAgent.onEvent(this, "fucai3d"); // BY贺思明 点击首页的“福彩3D”图标
-		MobclickAgent.onEvent(this, "fucaigoucaijiemian");// BY贺思明 福彩购彩页面
 	}
 
 	public boolean getIsLuck() {

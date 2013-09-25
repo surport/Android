@@ -62,7 +62,6 @@ import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 用户中心
@@ -121,7 +120,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		initsroreshow();
 		initPojo();
 		initFuctionLayout();
-		MobclickAgent.onEvent(this, "yonghuzhongxin"); // BY贺思明 点击主导航上的“用户中心”。
 
 	}
 
@@ -1092,7 +1090,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		initPojo();
 		initReturn();
 		if (sessionid != null && !sessionid.equals("")) {
@@ -1122,7 +1119,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 		PublicMethod.myOutLog("onPause", "onPause");
 	}
 

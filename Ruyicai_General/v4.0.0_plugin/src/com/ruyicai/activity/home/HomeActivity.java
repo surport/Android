@@ -61,7 +61,6 @@ import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 应用程序启动页面
@@ -145,9 +144,6 @@ public class HomeActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);// 全屏显示
 		setContentView(R.layout.home_activity);
-		MobclickAgent.onError(this);// 在总入口添加错误报告提交BY贺思明 2012-6-28
-		MobclickAgent.openActivityDurationTrack(true);// 统计在线时长BY贺思明 2012-6-28
-		MobclickAgent.onEvent(this, "jihuo");// BY贺思明 打开客户端
 		shellRW = new RWSharedPreferences(this,
 				ShellRWConstants.SHAREPREFERENCESNAME);
 		setPackageName();
@@ -595,12 +591,10 @@ public class HomeActivity extends Activity {
 		    PublicMethod.getActivityFromStack(this);
 		}
 		/*Add by fansm 20130702 end*/
-		MobclickAgent.onResume(this);// BY贺思明 2012-6-28
 	}
 
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this); // BY贺思明 2012-6-28
 	}
 
 	/**

@@ -44,9 +44,6 @@ import com.ruyicai.net.newtransaction.HelpCenterInterface;
 import com.ruyicai.net.newtransaction.NewInfoGetNewsContentInterface;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.common.Log;
-import com.umeng.common.net.l;
 
 /**
  * 
@@ -319,13 +316,11 @@ public class HelpTitles extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

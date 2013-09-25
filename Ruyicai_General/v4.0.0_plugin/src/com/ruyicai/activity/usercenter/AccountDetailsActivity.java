@@ -34,7 +34,6 @@ import com.ruyicai.net.newtransaction.AccountDetailQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.AccountDetailQueryPojo;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 账户明细
@@ -868,13 +867,11 @@ public class AccountDetailsActivity extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

@@ -48,7 +48,6 @@ import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.QueryJoinInfoInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 合买大厅
@@ -102,7 +101,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		init();
 		buttonOnclik();
 		joinInfokNet(orderBy, orderDir);
-		MobclickAgent.onEvent(this, "hemaidating"); // BY贺思明 点击首页的“合买大厅”图标
 	}
 
 	public void initViewInfos() {
@@ -929,7 +927,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		if (isRefresh) {
 			viewInfos[topIndex][lottypeIndex].newPage = 0;
 			viewInfos[topIndex][lottypeIndex].allPage = 0;
@@ -941,7 +938,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	AlertDialog selecetDialog() {

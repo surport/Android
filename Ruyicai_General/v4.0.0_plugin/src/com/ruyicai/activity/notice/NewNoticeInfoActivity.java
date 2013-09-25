@@ -21,7 +21,6 @@ import com.tencent.weibo.oauthv1.OAuthV1;
 import com.tencent.weibo.oauthv1.OAuthV1Client;
 import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
 import com.third.tencent.TencentShareActivity;
-import com.umeng.analytics.MobclickAgent;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -717,14 +716,12 @@ public class NewNoticeInfoActivity extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	@Override

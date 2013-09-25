@@ -35,7 +35,6 @@ import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.NoticeJcInfo;
-import com.umeng.analytics.MobclickAgent;
 
 public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private String msg;
@@ -390,12 +389,10 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 }

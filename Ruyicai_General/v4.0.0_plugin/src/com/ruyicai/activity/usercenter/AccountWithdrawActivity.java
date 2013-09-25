@@ -63,7 +63,6 @@ import com.ruyicai.net.newtransaction.pojo.ChangeWithdrawPojo;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 账户提现
@@ -1526,13 +1525,11 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 	
 	// add by yejc 20130322

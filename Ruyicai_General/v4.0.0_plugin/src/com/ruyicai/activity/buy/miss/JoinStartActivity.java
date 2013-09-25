@@ -60,7 +60,6 @@ import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 发起合买
@@ -775,13 +774,11 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		betAndGift.setIssuper("");
 		betAndGift.setAmt(2);
 		addviewmiss.setCodeAmt(betAndGift.getAmt());
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
 	@Override

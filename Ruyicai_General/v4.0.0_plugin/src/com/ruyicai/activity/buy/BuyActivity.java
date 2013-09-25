@@ -83,7 +83,6 @@ import com.ruyicai.net.newtransaction.TopNewsInformationInterface;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * 购彩大厅界面
@@ -202,7 +201,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		// initGallery();
 		initImgView();
 		isShortcut();	
-		MobclickAgent.onEvent(this, "goucaidating"); // BY贺思明 点击主导航上的“购彩大厅”。
 	}
 	/**
 	 * 设置计算屏幕上放置彩种个数
@@ -424,7 +422,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		    PublicMethod.getActivityFromStack(this);
 		}
 		/*Add by fansm 20130702 end*/
-		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 		Constants.MEMUTYPE = 0;
 		initScreenConfiger();
 		initLights();
@@ -433,7 +430,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	}
 
 	protected void onPause() {
-		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 		super.onPause();
 	}
 
