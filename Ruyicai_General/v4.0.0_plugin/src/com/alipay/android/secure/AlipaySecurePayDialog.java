@@ -17,7 +17,6 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.constant.Constants;
