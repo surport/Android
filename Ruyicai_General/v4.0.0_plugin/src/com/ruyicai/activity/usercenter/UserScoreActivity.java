@@ -67,7 +67,6 @@ public class UserScoreActivity extends Activity {
 	int scroePgaeIndex = 0;
 	View tabSpecLinearView;// 子列表的ListView
 	ListView tabSpecListView;// 子列表的ListView
-	// List<Vector> scroelist = new ArrayList<Vector>();
 	EditText scroeEdit;
 	TextView sroremoney;
 	ScroeQueryAdapter adapter;
@@ -102,8 +101,6 @@ public class UserScoreActivity extends Activity {
 				getusermessage();
 				break;
 			case 3:
-				// Toast.makeText(UserScoreActivity.this, (String) msg.obj,
-				// Toast.LENGTH_LONG).show();
 				nowscore.setText(myscore);
 			}
 		}
@@ -111,7 +108,6 @@ public class UserScoreActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.userscoredetail);

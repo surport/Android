@@ -620,11 +620,6 @@
     <string name="reselect_num">重新选号 </string>
     <string name="buyFive"> 买满五注</string>
     <string name="game_introduction">玩法介绍 </string>
-    <!-- 完善信息对话框 -->
-    <string name="perfect_message_name">身份证 </string>
-    <string name="perfect_message_title">完善信息 </string>
-    <string name="et_perfect_message_name">请输入身份证 </string>
-    <string name="perfect_message_point">：身份证是您的唯一标识，请填写真实有效的身份证号，以便您中奖后能够进行领奖提现。谢谢！</string>
 
     <!-- 修改信息对话框 -->
     <string name="change_message_title">修改信息 </string>
@@ -1185,9 +1180,9 @@
     <string name="usercenter_feedback_bet">去投注</string>
     <string name="account_warning_text">"提醒"</string>
     <string name="account_yin_dna_pay_recharge_value">"请输入充值金额(整数)"</string>
-    <string name="account_yin_dna_pay_recharge_value_two">"请输入充值金额，最少20元"</string>
+    <!-- <string name="account_yin_dna_pay_recharge_value_two">"请输入充值金额，最少20元"</string>
     <string name="account_yin_dna_pay_card_number">"请输入银行卡号，不支持信用卡"</string>
-    <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string>
+    <string name="account_yin_dna_pay_phone_number">"请输入手机号码，须与开卡时银行预留手机号一致"</string> -->
     <string name="umpay_huafubao_confirm_install">"为保证您的交易安全，需要您安装话付宝支付服务，才能进行付款。\n\n点击确定，立即安装。"</string>
     <string name="account_withdraw_detail_type">提现到支付宝</string>
     
