@@ -2,10 +2,8 @@ package com.ruyicai.activity.notice;
 
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -37,13 +35,11 @@ import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
 import com.ruyicai.activity.common.PullRefreshListView;
 import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.net.newtransaction.NoticeWinInterface;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RWSharedPreferences;
 
 /**
  * 开奖公告
@@ -89,18 +85,17 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 			R.drawable.join_pl3, R.drawable.join_pl5, R.drawable.join_qxc,
 			R.drawable.twenty, R.drawable.join_ssc, R.drawable.join_11x5,
 			R.drawable.join_11ydj, R.drawable.join_gd11x5, R.drawable.join_sfc,
-			R.drawable.join_rx9, R.drawable.join_6cb, R.drawable.join_jqc,
 			R.drawable.join_jcz, R.drawable.join_jcl, R.drawable.notice_ten,
 			R.drawable.nmk3, R.drawable.beijingsinglegame_lotterynotice }; // zlm
 	// 8.9
 	// 添加排列三、超级大乐透图标
 	private static final String[] titles = { "双色球", "福彩3D", "七乐彩", "大乐透",
 			"排列三", "排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "广东11选5",
-			"足彩胜负", "任选九", "六场半", "进球彩", "竞彩足球", "竞彩篮球", "广东快乐十分", "快三", "北京单场" };
+			"足彩胜负", "竞彩足球", "竞彩篮球", "广东快乐十分", "快三", "北京单场" };
 	// 新加获取时时彩信息
 	public static final String iGameName[] = { "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "gd-11-5",
-			"sfc", "rxj", "lcb", "jqc", "jcz", "jcl", "gd-10", "nmk3",
+			"sfc","jcz", "jcl", "gd-10", "nmk3",
 			"beijingsinglegame" }; // 8.9
 	public static boolean isFirstNotice = true;
 	public boolean isnoticefresh = true;
@@ -570,11 +565,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 	}
 
 	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 		if (isnoticefresh) {
@@ -825,8 +815,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 		// 设置主列表布局中的详细内容
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			RWSharedPreferences shellRW = new RWSharedPreferences(
-					NoticeMainActivity.this, ShellRWConstants.CAIZHONGSETTING);
 			String iGameType = (String) mList.get(position).get(mIndex[0]);
 
 			String Codetry = "";
@@ -1253,14 +1241,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 
 			} else if (iGameType.equals("gd-10")) {
 				int deletW = 4;
-				// if (PublicMethod.getDisplayWidth(context) == 240) {
-				// holder.name.setTextSize(PublicMethod.getPxInt(15, context));
-				// } else if(PublicMethod.getDisplayWidth(context) == 1080){
-				// holder.name.setTextSize(PublicMethod.getPxInt(4.7f,
-				// context));
-				// }else{
-				// holder.name.setTextSize(PublicMethod.getPxInt(7, context));
-				// }
 				/** add by pengcx 20130802 start */
 				int width = PublicMethod.getDisplayWidth(context);
 				float scale = 480.0f / width;
@@ -1373,7 +1353,7 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 			}
 
 			// 北京单场
-			else if (iGameType.equals(iGameName[20])) {
+			else if (iGameType.equals(iGameName[17])) {
 				holder.rLayout.setVisibility(RelativeLayout.GONE);
 				holder.lookBtn.setVisibility(Button.VISIBLE);
 				holder.lookBtn
@@ -1390,15 +1370,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 					}
 				});
 				holder.scoreBtn.setVisibility(View.GONE);
-				// holder.scoreBtn.setBackgroundResource(R.drawable.join_info_btn_selecter);
-				// holder.scoreBtn.setOnClickListener(new OnClickListener() {
-				// @Override
-				// public void onClick(View v) {
-				// isnoticefresh = false;
-				// Intent intent = new Intent(context, JcScoreActivity.class);
-				// context.startActivity(intent);
-				// }
-				// });
 			}
 
 			return convertView;

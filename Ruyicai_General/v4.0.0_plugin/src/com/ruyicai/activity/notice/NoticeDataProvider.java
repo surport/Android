@@ -212,7 +212,7 @@ public class NoticeDataProvider {
 			try {
 				// 添加：广东快乐十分
 				map = new HashMap<String, Object>();
-				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[18]);
+				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[15]);
 				map.put(WINNINGNUM, Constants.gd10Json.get("winCode"));
 				map.put(DATE, Constants.gd10Json.getString("openTime"));
 				map.put(ISSUE, Constants.gd10Json.get("batchCode"));
@@ -226,7 +226,7 @@ public class NoticeDataProvider {
 				.equals(Constants.CAIZHONG_OPEN)) {
 			try {
 				map = new HashMap<String, Object>();
-				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[19]);
+				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[16]);
 				map.put(WINNINGNUM, Constants.nmk3Json.get("winCode"));
 				map.put(DATE, Constants.nmk3Json.getString("openTime"));
 				map.put(ISSUE, Constants.nmk3Json.get("batchCode"));
@@ -256,7 +256,7 @@ public class NoticeDataProvider {
 				.equals(Constants.CAIZHONG_OPEN)) {
 			try {
 				map = new HashMap<String, Object>();
-				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[16]);
+				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[13]);
 				list.add(map);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -267,7 +267,7 @@ public class NoticeDataProvider {
 				.equals(Constants.CAIZHONG_OPEN)) {
 			try {
 				map = new HashMap<String, Object>();
-				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[17]);
+				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[14]);
 				list.add(map);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -275,11 +275,11 @@ public class NoticeDataProvider {
 		}
 		
 		/**add by yejc 20130506 start*/
-		if (shellRW.getStringValue(NoticeMainActivity.iGameName[20]).toString()
+		if (shellRW.getStringValue(NoticeMainActivity.iGameName[17]).toString()
 				.equals(Constants.CAIZHONG_OPEN)) {
 			try {
 				map = new HashMap<String, Object>();
-				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[20]);
+				map.put(LOTTERYTYPE, NoticeMainActivity.iGameName[17]);
 				list.add(map);
 			} catch (Exception e) {
 				e.printStackTrace();
