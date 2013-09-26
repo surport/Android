@@ -52,11 +52,7 @@ public class SsqZiDanTuo extends ZixuanActivity {
 		zixuan = this;
 		setCode(ssqCode);
 		setIsTen(true);
-		// initViewItem();
 		initGallery();
-		// LinearLayout thirdLinear =
-		// (LinearLayout)findViewById(R.id.buy_zixuan_linear_third);
-		// thirdLinear.setVisibility(LinearLayout.VISIBLE);
 		redBallTable = itemViewArray.get(0).areaNums[0].table;
 		redTuoBallTable = itemViewArray.get(0).areaNums[1].table;
 		blueBallTable = itemViewArray.get(0).areaNums[2].table;
@@ -93,8 +89,6 @@ public class SsqZiDanTuo extends ZixuanActivity {
 		NumViewItem numView = new NumViewItem(this, initArea());
 		itemViewArray.add(buyView);
 		itemViewArray.add(numView);
-		// mGallery.setViews(buyView.createView(),buyView.height,numView.createView(),numView.height);
-		// mGallery.setAreaWith(100);
 	}
 
 	/**

@@ -24,11 +24,9 @@ import com.ruyicai.handler.MyHandler;
  */
 public class BalanceQueryActivity extends Activity {
 
-	private TextView balanceInfo, remind;
+	private TextView balanceInfo;
 	String jsonobject;
 	private Button cancleLook;
-	private String re;
-	private JSONObject obj;
 	MyHandler handler;// 自定义handler
 	String deposit_amount = "";
 	String Valid_amount = "";

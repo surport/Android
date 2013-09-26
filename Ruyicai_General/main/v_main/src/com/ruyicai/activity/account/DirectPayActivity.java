@@ -70,7 +70,6 @@ public class DirectPayActivity extends Activity implements HandlerMsg {
 	private String url;
 	private boolean isInstall = true;
 	private boolean isAlipaySecure = false;
-	private int flag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

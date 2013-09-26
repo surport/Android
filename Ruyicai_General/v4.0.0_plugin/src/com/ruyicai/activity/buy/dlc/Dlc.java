@@ -84,9 +84,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	public int num = 1;// 当前单式机选个数
 	protected int max = 6;// 选区最大小球数
 	protected Spinner typeSpinner;
-	private BallTable oneBallTable;
-	private BallTable twoBallTable;
-	private BallTable thirdBallTable;
 	public boolean isJiXuan = false;
 	protected boolean is11_5DanTuo = false;
 	protected TextView titleOne;// 大标题
@@ -637,10 +634,6 @@ public class Dlc extends ZixuanAndJiXuan {
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
 						setIssue(lotno);
-						/* Add by fansm 20130416 start */
-						/* refresh last code */
-						// setlastbatchcode(lotno);
-						/* Add by fansm 20130416 end */
 					}
 
 				})
@@ -884,52 +877,7 @@ public class Dlc extends ZixuanAndJiXuan {
 									R.string.ssq_toast_tuoma_title));
 						}
 					}
-				}
-				// else
-				// if(state.equals("Q2")){
-				// if(i==0){
-				// int isHighLight =
-				// areaNums[0].table.changeBallState(areaNums[0].chosenBallSum,
-				// nBallId);
-				// if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT) {
-				// areaNums[1].table.clearOnBallHighlight(nBallId);
-				// }
-				// }else{
-				// int isHighLight =
-				// areaNums[1].table.changeBallState(areaNums[1].chosenBallSum,
-				// nBallId);
-				// if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT) {
-				// areaNums[0].table.clearOnBallHighlight(nBallId);
-				// }
-				// }
-				// }else if(state.equals("Q3")){
-				// if(i==0){
-				// int isHighLight =
-				// areaNums[0].table.changeBallState(areaNums[0].chosenBallSum,
-				// nBallId);
-				// if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT) {
-				// areaNums[1].table.clearOnBallHighlight(nBallId);
-				// areaNums[2].table.clearOnBallHighlight(nBallId);
-				// }
-				// }else if(i==1){
-				// int isHighLight =
-				// areaNums[1].table.changeBallState(areaNums[1].chosenBallSum,
-				// nBallId);
-				// if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT) {
-				// areaNums[0].table.clearOnBallHighlight(nBallId);
-				// areaNums[2].table.clearOnBallHighlight(nBallId);
-				// }
-				// }else{
-				// int isHighLight =
-				// areaNums[2].table.changeBallState(areaNums[2].chosenBallSum,
-				// nBallId);
-				// if (isHighLight == PublicConst.BALL_TO_HIGHLIGHT) {
-				// areaNums[0].table.clearOnBallHighlight(nBallId);
-				// areaNums[1].table.clearOnBallHighlight(nBallId);
-				// }
-				// }
-				// }
-				else {
+				} else {
 					areaNums[i].table.changeBallState(
 							areaNums[i].chosenBallSum, nBallId);
 				}

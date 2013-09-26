@@ -43,9 +43,6 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 	public ProgressDialog progressdialog;
 	Button secureOk, secureCancel;
 	EditText accountnum;
-	private ProgressDialog mProgress = null;
-	private boolean isOnClick = true;
-//	private TextView alipay_content = null;
 	private WebView alipay_content = null;
 	private boolean isWebView = false;// 浏览器打开支付宝
 	private String sessionId = "";

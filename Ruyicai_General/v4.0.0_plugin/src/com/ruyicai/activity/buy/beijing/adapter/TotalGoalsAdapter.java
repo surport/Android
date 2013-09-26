@@ -30,7 +30,6 @@ import android.widget.Toast;
  * 
  */
 public class TotalGoalsAdapter extends ParentAdapter {
-	private static final String TAG = "TotalGoalsAdapter";
 
 	/** 显示总进球数对阵信息集合 */
 	private List<List<TotalGoalsAgainstInformation>> totalGoalsAgainstInformationList;

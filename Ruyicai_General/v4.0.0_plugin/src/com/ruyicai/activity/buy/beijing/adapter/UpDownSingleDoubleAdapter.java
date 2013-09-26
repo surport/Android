@@ -28,7 +28,6 @@ import android.widget.Toast;
  * 
  */
 public class UpDownSingleDoubleAdapter extends ParentAdapter {
-	private static final String TAG = "UpDownSingleDoubleAdapter";
 	protected static final int MAX_DAN = 5;
 	public String selectButtonTitles[] = { "上单", "上双", "下单", "下双"};
 
@@ -161,8 +160,6 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 				.findViewById(R.id.home_team_name);
 		homeTeamTextView.setText(upDownSingleDoubleAgainstInformation
 				.getHomeTeam());
-		// VS
-		TextView vsTextView = (TextView) itemView.findViewById(R.id.game_vs);
 		// 客队
 		TextView guestTeamTextView = (TextView) itemView
 				.findViewById(R.id.guest_team_name);

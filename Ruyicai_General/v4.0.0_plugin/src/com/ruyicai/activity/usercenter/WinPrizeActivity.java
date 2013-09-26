@@ -51,7 +51,6 @@ import com.ruyicai.util.RWSharedPreferences;
  * 
  */
 public class WinPrizeActivity extends Activity {
-	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
 	private LinearLayout usecenerLinear;
 	private Button returnButton;
 	private TextView titleTextView;

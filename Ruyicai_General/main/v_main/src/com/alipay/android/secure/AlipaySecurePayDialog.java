@@ -39,7 +39,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	EditText accountnum;
 	private ProgressDialog mProgress = null;
 	private boolean isOnClick = true;
-//	private TextView alipay_content = null;
 	private WebView alipay_content = null;
 	private TextView accountTitleTextView = null;
 
@@ -73,8 +72,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-//							alipay_content.setText(Html.fromHtml(conten));
-//							alipay_content.loadData(conten, "text/html; charset=UTF-8", null);
 							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
@@ -146,9 +143,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 				} 
 				// TODO Auto-generated method stub
 				String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
-				// if(Constants.LOT_SERVER.equals("http://202.43.151.10:8080/lotserver/RuyicaiServlet")){
-				// rechargenum = "1";
-				// }
 				String alipaysecure = AlipaySecurePayInterface.getInstance()
 						.alipaySecurePay(rechargenum, userno, phonenum);
 				try {

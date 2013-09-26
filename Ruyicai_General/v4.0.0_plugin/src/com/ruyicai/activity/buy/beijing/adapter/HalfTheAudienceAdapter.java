@@ -29,7 +29,6 @@ import android.widget.Toast;
  * 
  */
 public class HalfTheAudienceAdapter extends ParentAdapter {
-	private static final String TAG = "HalfTheAudienceAdapter";
 	private static final int SELECT_BUTTON_NUM = 9;
 	protected static final int MAX_DAN = 5;
 

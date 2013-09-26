@@ -69,13 +69,7 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
-		// BuyViewItem buyView = new BuyViewItem(this,initArea());
-		// NumViewItem numView = new NumViewItem(this,initArea());
-		// itemViewArray.add(buyView);
-		// itemViewArray.add(numView);
-		// mGallery.setViews(buyView.createView(),buyView.height,numView.createView(),numView.height);
-		// mGallery.setAreaWith(100);
+
 	}
 
 	/**

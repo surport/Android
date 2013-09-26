@@ -78,8 +78,6 @@ public class MobileSecurePayHelper {
 						retrieveApkFromNet(mContext, newApkdlUrl, cachePath);
 
 					// send the result back to caller.
-//					Message msg = new Message();
-//					msg.what = AlixId.RQF_INSTALL_CHECK;
 					msg.obj = cachePath;
 					mHandler.sendMessage(msg);
 				}
@@ -96,8 +94,6 @@ public class MobileSecurePayHelper {
 		tDialog.setIcon(R.drawable.info);
 		tDialog.setTitle(context.getResources().getString(
 				R.string.confirm_install_hint));
-//		tDialog.setMessage(context.getResources().getString(
-//				R.string.confirm_install));
 		tDialog.setMessage(resId);
 
 		tDialog.setPositiveButton(R.string.Ensure,

@@ -30,7 +30,6 @@ import android.widget.Toast;
  *
  */
 public class OverAllAdapter extends ParentAdapter {
-	private static final String TAG = "OverAllAdapter";
 	private static final int SELECT_BUTTON_NUM = 25;
 	protected static final int MAX_DAN = 2;
 	/* Modify by pengcx 20130617 start */
@@ -195,10 +194,6 @@ public class OverAllAdapter extends ParentAdapter {
 		final TextView homeTeamTextView = (TextView) itemView
 				.findViewById(R.id.home_team_name);
 		homeTeamTextView.setText(overAllAgainstInformation.getHomeTeam());
-
-		// vs文本
-		final TextView vsTextView = (TextView) itemView
-				.findViewById(R.id.game_vs);
 
 		// 客队
 		final TextView guestTeamTextView = (TextView) itemView

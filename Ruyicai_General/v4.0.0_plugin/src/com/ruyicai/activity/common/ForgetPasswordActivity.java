@@ -84,15 +84,6 @@ public class ForgetPasswordActivity extends Activity implements HandlerMsg {
 	 */
 	private void initAlertPhone() {
 		TextView alertText = (TextView) findViewById(R.id.register_free_info_view);
-		// SpannableStringBuilder builder = new SpannableStringBuilder();
-		// String alertStr =
-		// getString(R.string.forget_password_hint).toString();
-		// String alertPhone = getString(R.string.phone_kefu).toString();
-		// builder.append(alertStr);
-		// builder.setSpan(new URLSpan("tel:"+alertPhone ),28,
-		// (28+alertPhone.length()),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		// alertText.setText(builder);
-		// alertText.setMovementMethod(LinkMovementMethod.getInstance());
 
 		alertText.setOnClickListener(new View.OnClickListener() {
 

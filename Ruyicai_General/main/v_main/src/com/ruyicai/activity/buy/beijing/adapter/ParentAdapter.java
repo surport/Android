@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 
-import android.view.LayoutInflater;
 import android.widget.BaseAdapter;
 
 public abstract class ParentAdapter extends BaseAdapter {
