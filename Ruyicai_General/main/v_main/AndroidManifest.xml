@@ -89,26 +89,6 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.ruyicai.activity.more.LotteryGame"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.GongNZY"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.CaiPSY"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.TeSGN"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.ChangJWT"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.ruyicai.activity.more.AboutSoftwareActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />

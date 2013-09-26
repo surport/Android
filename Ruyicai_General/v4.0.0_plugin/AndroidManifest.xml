@@ -18,21 +18,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
 
-        <!-- 添加友盟渠道号 -->
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="ChannelName" />
-        <!-- 添加友盟SDK APPKEY -->
-        <!-- 添加友盟渠道号 -->
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="ChannelName" />
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="4febc88a5270156e2600007c" >
-        </meta-data>
         <!-- home -->
-        <!-- <uses-library android:name="android-support-v4"/> -->
         <activity
             android:name="com.ruyicai.activity.home.HomeActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -86,26 +72,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.more.ActionActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.LotteryGame"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.GongNZY"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.CaiPSY"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.TeSGN"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.ChangJWT"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity
@@ -752,10 +718,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.ruyicai.activity.more.HelpCenterItemActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.ruyicai.activity.more.LuckChoose"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <activity

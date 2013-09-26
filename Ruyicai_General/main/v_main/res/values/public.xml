@@ -2212,7 +2212,6 @@
 	<public type="layout" name="ruyicai_share" id="0x7f0300bb" />
 	<public type="layout" name="ruyihelper_listview" id="0x7f0300bc" />
 	<public type="layout" name="ruyihelper_listview_icon_item" id="0x7f0300bd" />
-	<public type="layout" name="ruyihelper_xitongshezhi" id="0x7f0300be" />
 	<public type="layout" name="share_mblog_view" id="0x7f0300bf" />
 	<public type="layout" name="simulate_selectnumber" id="0x7f0300c0" />
 	<public type="layout" name="sscbuyview" id="0x7f0300c1" />
@@ -3297,9 +3296,6 @@
 	<public type="string" name="xingyunxuanhao" id="0x7f0800d3" />
 	<public type="string" name="xingzuo" id="0x7f080296" />
 	<public type="string" name="xitongshezhi" id="0x7f0800d1" />
-	<public type="string" name="xitongshezhi_check_off" id="0x7f080360" />
-	<public type="string" name="xitongshezhi_check_on" id="0x7f08035f" />
-	<public type="string" name="xitongshezhi_title" id="0x7f08035e" />
 	<public type="string" name="xuanhaoqu" id="0x7f08032f" />
 	<public type="string" name="xyxh_chaojidaletou" id="0x7f0802a5" />
 	<public type="string" name="xyxh_fucai3d" id="0x7f0802a2" />

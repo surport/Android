@@ -773,9 +773,7 @@
     <string name="feedbacknull">信息不能为空</string>
     <string name="feedbackless">回复内容不能少于5个字</string>
     <string name="feedbacconnection">请输入您的手机号</string>
-    <!-- 系统设置 -->
-    <string name="xitongshezhi_title">机选震感反馈:</string>
-    <string name="xitongshezhi_check_on">开启</string>
+    
     <string name="xitongshezhi_check_off">关闭</string>
     <!-- 充值提醒 -->
     <string name="goucai_Account_dialog_msg">尊敬的用户您的账户余额不能支付本次购买，请充值</string>
