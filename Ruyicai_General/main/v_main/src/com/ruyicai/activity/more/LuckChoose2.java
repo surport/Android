@@ -1091,42 +1091,42 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 		mTextMoney.setText(iTempString);
 	}
 
-	public void drawSuccess(int aChangeTo, View view) {
-		isDrawing = true;
-
-		layoutAll = new LinearLayout[5];
-		layoutAll[0] = (LinearLayout) view
-				.findViewById(R.id.choose_luck_num_ball_linearlayout_01);
-		layoutAll[1] = (LinearLayout) view
-				.findViewById(R.id.choose_luck_num_ball_linearlayout_02);
-		layoutAll[2] = (LinearLayout) view
-				.findViewById(R.id.choose_luck_num_ball_linearlayout_03);
-		layoutAll[3] = (LinearLayout) view
-				.findViewById(R.id.choose_luck_num_ball_linearlayout_04);
-		layoutAll[4] = (LinearLayout) view
-				.findViewById(R.id.choose_luck_num_ball_linearlayout_05);
-		int i;
-		countLinearLayout = 0;
-		for (i = 0; i < 5; i++) {
-			if (layoutAll[i] != null && layoutAll[i].getChildCount() > 0) {
-				countLinearLayout = countLinearLayout + 1; // zlm 7.14
-				// 代码修改：修改形式
-			}
-		}
-
-		if (countLinearLayout < aChangeTo) {
-			for (i = countLinearLayout; i < aChangeTo; i++) {
-				// showAllBallLayout(type05 , layoutAll[i]);
-				receiveRandomNum[i] = showAllBallLayout(type05, layoutAll[i]);
-				layoutAll[i].invalidate();
-			}
-		} else {// if(countLinearLayout > iProgressJizhu)
-			for (i = aChangeTo; i < countLinearLayout; i++) {
-				layoutAll[i].removeAllViewsInLayout();
-				layoutAll[i].invalidate();
-			}
-		}
-	}
+//	public void drawSuccess(int aChangeTo, View view) {
+//		isDrawing = true;
+//
+//		layoutAll = new LinearLayout[5];
+//		layoutAll[0] = (LinearLayout) view
+//				.findViewById(R.id.choose_luck_num_ball_linearlayout_01);
+//		layoutAll[1] = (LinearLayout) view
+//				.findViewById(R.id.choose_luck_num_ball_linearlayout_02);
+//		layoutAll[2] = (LinearLayout) view
+//				.findViewById(R.id.choose_luck_num_ball_linearlayout_03);
+//		layoutAll[3] = (LinearLayout) view
+//				.findViewById(R.id.choose_luck_num_ball_linearlayout_04);
+//		layoutAll[4] = (LinearLayout) view
+//				.findViewById(R.id.choose_luck_num_ball_linearlayout_05);
+//		int i;
+//		countLinearLayout = 0;
+//		for (i = 0; i < 5; i++) {
+//			if (layoutAll[i] != null && layoutAll[i].getChildCount() > 0) {
+//				countLinearLayout = countLinearLayout + 1; // zlm 7.14
+//				// 代码修改：修改形式
+//			}
+//		}
+//
+//		if (countLinearLayout < aChangeTo) {
+//			for (i = countLinearLayout; i < aChangeTo; i++) {
+//				// showAllBallLayout(type05 , layoutAll[i]);
+//				receiveRandomNum[i] = showAllBallLayout(type05, layoutAll[i]);
+//				layoutAll[i].invalidate();
+//			}
+//		} else {// if(countLinearLayout > iProgressJizhu)
+//			for (i = aChangeTo; i < countLinearLayout; i++) {
+//				layoutAll[i].removeAllViewsInLayout();
+//				layoutAll[i].invalidate();
+//			}
+//		}
+//	}
 
 	/**
 	 * 幸运选号中所有小球的布局 zlm 7.13 代码修改：添加代码
@@ -1134,167 +1134,167 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	 * @param aGameType
 	 * @param layout
 	 */
-	public int[] showAllBallLayout(String aGameType, LinearLayout layout) {
-		// zlm 7.16 代码修改：添加小球是否可画的判断
-		isDrawing = false;
-		int[] numRandomGroup = new int[7];
-		if (aGameType.equalsIgnoreCase("ssq")) {
-			OneBallView showBallView;
-			int[] group01 = new int[7];
-			int[] group02 = new int[6];
-			int[] group03 = new int[6];
-			int[] group = new int[7];
-
-			group01 = getBallNum(aGameType, 7);
-
-			for (int i = 0; i < 6; i++) {
-				group02[i] = group01[i];
-			}
-
-			group03 = sort(group02);
-
-			for (int i = 0; i < 6; i++) {
-				group[i] = group03[i];
-			}
-
-			group[6] = group01[6];
-			numRandomGroup = group;
-			for (int i = 0; i < 6; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aRedColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-			}
-			showBallView = new OneBallView(this, 1);
-			showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-					+ numRandomGroup[6], aBlueColorResId);
-			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.WRAP_CONTENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT);
-			layout.addView(showBallView, lp);
-			// ballLayoutGroup.addView(layout01, lp);
-		} else if (aGameType.equalsIgnoreCase("fc3d")) {
-			OneBallView showBallView;
-			int[] group = new int[3];
-			int[] group01 = new int[7];
-			group01 = getBallNum(aGameType, 3);
-			for (int i = 0; i < 3; i++) {
-				group[i] = group01[i];
-			}
-			// int[] randomNumGroup ;
-			numRandomGroup = group;
-			for (int i = 0; i < 3; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aRedColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-				// PublicMethod.myOutput("----------------showBall");
-			}
-		} else if (aGameType.equalsIgnoreCase("qlc")) {
-			OneBallView showBallView;
-			numRandomGroup = sort(getBallNum(aGameType, 7));
-			for (int i = 0; i < 7; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aRedColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-			}
-		} else if (aGameType.equalsIgnoreCase("pl3")) { // zlm 排列三
-			OneBallView showBallView;
-			int[] group = new int[3];
-			int[] group01 = new int[7];
-			group01 = getBallNum(aGameType, 3);
-			for (int i = 0; i < 3; i++) {
-				group[i] = group01[i];
-			}
-			numRandomGroup = group;
-			for (int i = 0; i < 3; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aRedColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-			}
-		} else if (aGameType.equalsIgnoreCase("cjdlt")) { // zlm 超级大乐透
-			OneBallView showBallView;
-			int[] group01 = new int[7];
-			int[] group02 = new int[5];
-			int[] group03 = new int[5];
-			int[] group04 = new int[2];
-			int[] group05 = new int[2];
-			int[] group = new int[7];
-
-			group01 = getBallNum(aGameType, 7);
-
-			for (int i = 0; i < 5; i++) {
-				group02[i] = group01[i];
-			}
-
-			group03 = sort(group02);
-
-			for (int i = 0; i < 5; i++) {
-				group[i] = group03[i];
-			}
-
-			group04[0] = group01[5];
-			group04[1] = group01[6];
-
-			group05 = sort(group04);
-
-			group[5] = group05[0];
-			group[6] = group05[1];
-			numRandomGroup = group;
-
-			for (int i = 0; i < 5; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aRedColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-			}
-			for (int i = 5; i < 7; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aBlueColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-			}
-
-			// 江西11运夺金, 11去夺金, 时时彩
-		} else if (aGameType.equals(Constants.LOTNO_11_5)
-				|| aGameType.equalsIgnoreCase(Constants.LOTNO_eleven)
-				|| aGameType.equals(Constants.LOTNO_GD_11_5)
-				|| aGameType.equals(Constants.LOTNO_SSC)) {
-			numRandomGroup = getBallNum(aGameType, ballRandomNumber);
-			OneBallView showBallView;
-			for (int i = 0; i < ballRandomNumber; i++) {
-				showBallView = new OneBallView(this, 1);
-				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
-						+ numRandomGroup[i], aRedColorResId);
-				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-						LinearLayout.LayoutParams.WRAP_CONTENT,
-						LinearLayout.LayoutParams.WRAP_CONTENT);
-				layout.addView(showBallView, lp);
-			}
-
-		}
-		return numRandomGroup;
-	}
+//	public int[] showAllBallLayout(String aGameType, LinearLayout layout) {
+//		// zlm 7.16 代码修改：添加小球是否可画的判断
+//		isDrawing = false;
+//		int[] numRandomGroup = new int[7];
+//		if (aGameType.equalsIgnoreCase("ssq")) {
+//			OneBallView showBallView;
+//			int[] group01 = new int[7];
+//			int[] group02 = new int[6];
+//			int[] group03 = new int[6];
+//			int[] group = new int[7];
+//
+//			group01 = getBallNum(aGameType, 7);
+//
+//			for (int i = 0; i < 6; i++) {
+//				group02[i] = group01[i];
+//			}
+//
+//			group03 = sort(group02);
+//
+//			for (int i = 0; i < 6; i++) {
+//				group[i] = group03[i];
+//			}
+//
+//			group[6] = group01[6];
+//			numRandomGroup = group;
+//			for (int i = 0; i < 6; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aRedColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//			}
+//			showBallView = new OneBallView(this, 1);
+//			showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//					+ numRandomGroup[6], aBlueColorResId);
+//			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//					LinearLayout.LayoutParams.WRAP_CONTENT,
+//					LinearLayout.LayoutParams.WRAP_CONTENT);
+//			layout.addView(showBallView, lp);
+//			// ballLayoutGroup.addView(layout01, lp);
+//		} else if (aGameType.equalsIgnoreCase("fc3d")) {
+//			OneBallView showBallView;
+//			int[] group = new int[3];
+//			int[] group01 = new int[7];
+//			group01 = getBallNum(aGameType, 3);
+//			for (int i = 0; i < 3; i++) {
+//				group[i] = group01[i];
+//			}
+//			// int[] randomNumGroup ;
+//			numRandomGroup = group;
+//			for (int i = 0; i < 3; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aRedColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//				// PublicMethod.myOutput("----------------showBall");
+//			}
+//		} else if (aGameType.equalsIgnoreCase("qlc")) {
+//			OneBallView showBallView;
+//			numRandomGroup = sort(getBallNum(aGameType, 7));
+//			for (int i = 0; i < 7; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aRedColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//			}
+//		} else if (aGameType.equalsIgnoreCase("pl3")) { // zlm 排列三
+//			OneBallView showBallView;
+//			int[] group = new int[3];
+//			int[] group01 = new int[7];
+//			group01 = getBallNum(aGameType, 3);
+//			for (int i = 0; i < 3; i++) {
+//				group[i] = group01[i];
+//			}
+//			numRandomGroup = group;
+//			for (int i = 0; i < 3; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aRedColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//			}
+//		} else if (aGameType.equalsIgnoreCase("cjdlt")) { // zlm 超级大乐透
+//			OneBallView showBallView;
+//			int[] group01 = new int[7];
+//			int[] group02 = new int[5];
+//			int[] group03 = new int[5];
+//			int[] group04 = new int[2];
+//			int[] group05 = new int[2];
+//			int[] group = new int[7];
+//
+//			group01 = getBallNum(aGameType, 7);
+//
+//			for (int i = 0; i < 5; i++) {
+//				group02[i] = group01[i];
+//			}
+//
+//			group03 = sort(group02);
+//
+//			for (int i = 0; i < 5; i++) {
+//				group[i] = group03[i];
+//			}
+//
+//			group04[0] = group01[5];
+//			group04[1] = group01[6];
+//
+//			group05 = sort(group04);
+//
+//			group[5] = group05[0];
+//			group[6] = group05[1];
+//			numRandomGroup = group;
+//
+//			for (int i = 0; i < 5; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aRedColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//			}
+//			for (int i = 5; i < 7; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aBlueColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//			}
+//
+//			// 江西11运夺金, 11去夺金, 时时彩
+//		} else if (aGameType.equals(Constants.LOTNO_11_5)
+//				|| aGameType.equalsIgnoreCase(Constants.LOTNO_eleven)
+//				|| aGameType.equals(Constants.LOTNO_GD_11_5)
+//				|| aGameType.equals(Constants.LOTNO_SSC)) {
+//			numRandomGroup = getBallNum(aGameType, ballRandomNumber);
+//			OneBallView showBallView;
+//			for (int i = 0; i < ballRandomNumber; i++) {
+//				showBallView = new OneBallView(this, 1);
+//				showBallView.initBall(BALL_WIDTH, BALL_WIDTH, ""
+//						+ numRandomGroup[i], aRedColorResId);
+//				LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//						LinearLayout.LayoutParams.WRAP_CONTENT,
+//						LinearLayout.LayoutParams.WRAP_CONTENT);
+//				layout.addView(showBallView, lp);
+//			}
+//
+//		}
+//		return numRandomGroup;
+//	}
 
 	/**
 	 * 获取小球的随机数/
