@@ -205,7 +205,6 @@
 	<public type="drawable" name="down" id="0x7f02007f" />
 	<public type="drawable" name="down_b" id="0x7f020080" />
 	<public type="drawable" name="emailbind" id="0x7f020081" />
-	<public type="drawable" name="fenxi" id="0x7f020082" />
 	<public type="drawable" name="fenxiangbg" id="0x7f020083" />
 	<public type="drawable" name="follow_channle" id="0x7f020084" />
 	<public type="drawable" name="followagain" id="0x7f020085" />
@@ -319,7 +318,6 @@
 	<public type="drawable" name="jixuan_list_bg" id="0x7f0200f8" />
 	<public type="drawable" name="join_11x5" id="0x7f0200f9" />
 	<public type="drawable" name="join_11ydj" id="0x7f0200fa" />
-	<public type="drawable" name="join_6cb" id="0x7f0200fb" />
 	<public type="drawable" name="join_check_down" id="0x7f0200fc" />
 	<public type="drawable" name="join_check_down_b" id="0x7f0200fd" />
 	<public type="drawable" name="join_check_down_selector" id="0x7f0200fe" />
@@ -353,13 +351,11 @@
 	<public type="drawable" name="join_info_top" id="0x7f02011a" />
 	<public type="drawable" name="join_jcl" id="0x7f02011b" />
 	<public type="drawable" name="join_jcz" id="0x7f02011c" />
-	<public type="drawable" name="join_jqc" id="0x7f02011d" />
 	<public type="drawable" name="join_listview_item_selector" id="0x7f02011e" />
 	<public type="drawable" name="join_pl3" id="0x7f02011f" />
 	<public type="drawable" name="join_pl5" id="0x7f020120" />
 	<public type="drawable" name="join_qlc" id="0x7f020121" />
 	<public type="drawable" name="join_qxc" id="0x7f020122" />
-	<public type="drawable" name="join_rx9" id="0x7f020123" />
 	<public type="drawable" name="join_selector" id="0x7f020124" />
 	<public type="drawable" name="join_sfc" id="0x7f020125" />
 	<public type="drawable" name="join_ssc" id="0x7f020126" />
@@ -2087,8 +2083,6 @@
 	<public type="layout" name="buy_danshi_jixuan_activity" id="0x7f03002f" />
 	<public type="layout" name="buy_danshi_jixuan_activity_new" id="0x7f030030" />
 	<public type="layout" name="buy_dlc_main" id="0x7f030031" />
-	<public type="layout" name="buy_football_sforchosenine_listitem" id="0x7f030032" />
-	<public type="layout" name="buy_football_sixhalf_listitem" id="0x7f030033" />
 	<public type="layout" name="buy_footballlottery_layout" id="0x7f030034" />
 	<public type="layout" name="buy_gridview_item" id="0x7f030035" />
 	<public type="layout" name="buy_group_game_dialog" id="0x7f030036" />
@@ -2126,7 +2120,6 @@
 	<public type="layout" name="caizhong_setting_list_item" id="0x7f030056" />
 	<public type="layout" name="choose_luck_lottery_num_agree_and_pay_dialog" id="0x7f030057" />
 	<public type="layout" name="choose_luck_lottery_num_main_grid_specific" id="0x7f03005a" />
-	<public type="layout" name="choose_luck_num_trade_showball" id="0x7f03005d" />
 	<public type="layout" name="company_info" id="0x7f03005e" />
 	<public type="layout" name="custom_notification" id="0x7f03005f" />
 	<public type="layout" name="dialog_advice" id="0x7f030060" />
@@ -2139,7 +2132,6 @@
 	<public type="layout" name="explain_list_team_rank" id="0x7f030067" />
 	<public type="layout" name="explain_term10_list_item" id="0x7f030068" />
 	<public type="layout" name="explain_term5_list_item" id="0x7f030069" />
-	<public type="layout" name="football_anaylese" id="0x7f03006a" />
 	<public type="layout" name="forget_password" id="0x7f03006b" />
 	<public type="layout" name="get_money_listitem" id="0x7f03006c" />
 	<public type="layout" name="get_money_state" id="0x7f03006d" />
@@ -2154,20 +2146,17 @@
 	<public type="layout" name="high_frequencyrevenue_recovery_list" id="0x7f030076" />
 	<public type="layout" name="high_frequencyrevenue_recovery_main" id="0x7f030077" />
 	<public type="layout" name="home_activity" id="0x7f030078" />
-	<public type="layout" name="infolist" id="0x7f030079" />
 	<public type="layout" name="information" id="0x7f03007a" />
 	<public type="layout" name="informationconcrete" id="0x7f03007b" />
 	<public type="layout" name="informationitem" id="0x7f03007c" />
 	<public type="layout" name="informationthrowintodialog" id="0x7f03007d" />
 	<public type="layout" name="insufficientbalance_activity" id="0x7f03007e" />
-	<public type="layout" name="introduce" id="0x7f03007f" />
 	<public type="layout" name="introduce_photo" id="0x7f030080" />
 	<public type="layout" name="jc_asia_list_item" id="0x7f030081" />
 	<public type="layout" name="jc_europe_list_item" id="0x7f030082" />
 	<public type="layout" name="jc_lq_score_2view" id="0x7f030083" />
 	<public type="layout" name="jc_lq_score_4view" id="0x7f030084" />
 	<public type="layout" name="jc_main_team_dialog" id="0x7f030085" />
-	<public type="layout" name="jc_recommend_list_items" id="0x7f030086" />
 	<public type="layout" name="jc_score_info" id="0x7f030087" />
 	<public type="layout" name="jc_score_info_item" id="0x7f030088" />
 	<public type="layout" name="jc_score_list" id="0x7f030089" />

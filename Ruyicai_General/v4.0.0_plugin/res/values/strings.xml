@@ -1208,14 +1208,4 @@
     <string name="zc_6cb_play_text_win">"胜"</string>
     <string name="zc_6cb_play_text_level">"平"</string>
     <string name="zc_6cb_play_text_fail">"负"</string>
-    
-    <!-- 彩金码 -->
-    <string name="account_exchange_gold_start">立刻兑换彩金码</string>
-    <string name="account_exchange_gold_hint">请输入彩金兑换码</string>
-    <string name="account_exchange_gold_description">输入获得的彩金码，就能免费获取相应的彩金</string>
-    <string name="account_exchange_warn">温馨提示</string>
-    <string name="account_exchange_warn_description">彩金码兑换彩金需先绑定手机号</string>
-    <string name="account_exchange_gold_success">恭喜你，彩金码兑换成功已兑换彩金%1$s元</string>
-    <string name="account_exchange_gold_fail">请输入正确彩金码才能兑换彩金</string>
-    
 </resources>
