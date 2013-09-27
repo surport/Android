@@ -37,7 +37,6 @@ public class getRecoveryBatchCode {
 
 		JSONObject jsonProtocol = ProtocolManager.getInstance()
 				.getDefaultJsonProtocol();
-		// Log.v("getDefaultJsonProtocol",jsonProtocol+"");
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, COMMAND);
 			jsonProtocol.put(ProtocolManager.TYPE, "afterIssue");

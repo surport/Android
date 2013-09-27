@@ -39,7 +39,9 @@ import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.net.newtransaction.NoticeWinInterface;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
+import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RuyicaiActivityManager;
 
 /**
  * 开奖公告
@@ -625,7 +627,10 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 				setContentView(R.layout.notice_prizes_main);
 				showListView(ID_MAINLISTVIEW);
 			} else {
-				ExitDialogFactory.createExitDialog(this);
+				RuyicaiActivityManager.getInstance().exit();
+				PublicConst.islogin = false;
+				PublicConst.isthirdlogin = false;
+//				ExitDialogFactory.createExitDialog(this);
 			}
 			break;
 		}

@@ -34,7 +34,6 @@ import android.os.Message;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -322,7 +321,6 @@ public class DirectPayActivity extends Activity implements HandlerMsg {
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			String strRet = (String) msg.obj;
-			Log.e("strRet==", strRet);
 			switch (msg.what) {
 			case AlixId.RQF_PAY: {
 				closeProgress();

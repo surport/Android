@@ -2,8 +2,6 @@ package com.ruyicai.net.newtransaction;
 
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.InternetUtils;
 import com.ruyicai.util.ProtocolManager;
@@ -79,7 +77,6 @@ public class SoftwareUpdateInterface {
 				// 有统计信息
 				jsonProtocol.put(ProtocolManager.GAME_STATINFO, statInfo);
 			}
-			Log.e("HomeActivity=======", "=========" + jsonProtocol.toString());
 			reValue = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 		} catch (Exception e) {

@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -300,7 +299,6 @@ public class AddView {
 				String code = codeInfo.getCodes().get(j);
 				String lotoNO = codeInfo.getLotoNo();
 				String touzhuType = codeInfo.getTouZhuType();
-				Log.v("code", code);
 				zhuma.append(code);
 				if (j != codeList.get(i).getCodes().size() - 1) {
 					if (lotoNO == null || touzhuType == null) {

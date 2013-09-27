@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -249,7 +248,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 	 */
 
 	public void createinformationdialog() {
-		Log.e("betcode", betAndGift.getBet_code());
 		LayoutInflater inflater = (LayoutInflater) this
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
 		information = new AlertDialog.Builder(this).create();

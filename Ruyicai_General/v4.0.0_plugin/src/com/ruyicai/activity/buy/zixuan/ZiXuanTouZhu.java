@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -464,7 +463,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Log.d("RUYICAI", "onDestroy");
 	
 	}
 

@@ -39,7 +39,6 @@ public class NewInformationInterface {
 			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
 			jsonProtocol.put(ProtocolManager.NEWSTYPE, "title");
 
-			// Log.e("jsonProtocol-======", jsonProtocol.toString());
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 

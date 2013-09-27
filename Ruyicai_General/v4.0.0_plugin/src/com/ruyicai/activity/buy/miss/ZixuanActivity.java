@@ -27,7 +27,6 @@ import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -265,7 +264,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 		setLotoNoAndType(codeInfo);
 		String lotoNo = codeInfo.getLotoNo();
 		String touzhuType = codeInfo.getTouZhuType();
-		// Log.v("lotno", lotoNo+"3d");
 		AreaNum[] areaNums = itemViewArray.get(0).areaNums;
 		codeInfo.setTouZhuCode(code.zhuma(areaNums, iProgressBeishu, 0));
 		boolean isFirst = true;
@@ -906,7 +904,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		int iBallId = v.getId();
-		Log.e("iBallId", "" + iBallId);
 		isBallTable(iBallId);
 		showEditText();
 		changeTextSumMoney();
@@ -952,7 +949,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 			String resultString = "";
 			for (int i = 0; i < results.size(); i++) {
 				resultString = results.get(i);
-				Log.e("resultString", "" + resultString);
 				String str[] = resultString.split(" ");
 				for (int j = 0; j < str.length; j++) {
 					try {
@@ -988,13 +984,11 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		// Log.e("onResume===","onResume");
 	}
 
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		// Log.e("onPause===","onPause");
 		if (!toLogin) {
 			again();
 		}
@@ -1003,14 +997,12 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		// Log.e("onStop===","onStop");
 	}
 
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		// Log.e("onDestroy===","onDestroy");
 	}
 
 	public void errorCode_0000() {

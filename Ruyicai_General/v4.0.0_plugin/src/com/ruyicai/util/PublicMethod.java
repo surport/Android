@@ -37,7 +37,6 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -300,7 +299,7 @@ public class PublicMethod {
 	}
 
 	public static void myOutLog(String tag, String msg) {
-		Log.e(tag, msg);
+//		Log.e(tag, msg);
 	}
 
 	/* Modify by fansm 20130412 start */
@@ -313,8 +312,8 @@ public class PublicMethod {
 	 */
 	public static void outLog(String className, String methodName) {
 		// Log.e(tag, msg);
-		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
-				+ " = " + methodName);
+//		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
+//				+ " = " + methodName);
 	}
 
 	/**
@@ -330,9 +329,9 @@ public class PublicMethod {
 
 		if (runningTaskInfos != null) {
 			for (int i = 0; i < runningTaskInfos.size(); i++) {
-				Log.d(Constants.TAG,
-						(runningTaskInfos.get(i).topActivity).toString()
-								+ " TaskId=" + context.getTaskId());
+//				Log.d(Constants.TAG,
+//						(runningTaskInfos.get(i).topActivity).toString()
+//								+ " TaskId=" + context.getTaskId());
 			}
 		}
 	}
@@ -345,8 +344,8 @@ public class PublicMethod {
 	 */
 	public static void outLog(String className, String methodName, String msg) {
 		// Log.e(tag, msg);
-		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
-				+ " = " + methodName + "; " + "MSG = " + msg);
+//		Log.d(Constants.TAG, CLASSNAME + " = " + className + "; " + METHODNAME
+//				+ " = " + methodName + "; " + "MSG = " + msg);
 	}
 
 	/* Modify by fansm 20130412 end */

@@ -62,6 +62,7 @@ import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+import com.ruyicai.util.RuyicaiActivityManager;
 
 /**
  * 用户中心
@@ -1083,7 +1084,10 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		ExitDialogFactory.createExitDialog(this);
+//		ExitDialogFactory.createExitDialog(this);
+		RuyicaiActivityManager.getInstance().exit();
+		PublicConst.islogin = false;
+		PublicConst.isthirdlogin = false;
 		return false;
 	}
 

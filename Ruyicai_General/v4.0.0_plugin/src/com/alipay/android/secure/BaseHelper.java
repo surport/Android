@@ -53,7 +53,6 @@ public class BaseHelper {
 	}
 
 	public static void log(String tag, String info) {
-		// Log.d(tag, info);
 	}
 
 	public static void chmod(String permission, String path) {

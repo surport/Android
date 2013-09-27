@@ -170,7 +170,6 @@ public class BallTable {
 		for (i = 0; i < iSum; i++) {
 			if (getOneBallStatue(i) == 1) {
 				iBallNOs[iCurrent] = i + 1;
-				// Log.v("iBallNOs", iBallNOs[iCurrent]+"");
 				iCurrent++;
 			}
 		}

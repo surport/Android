@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -71,7 +70,6 @@ public class WeiboDialog extends Dialog {
 		mWebView.setHorizontalScrollBarEnabled(false);
 		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.setWebViewClient(new WeiboDialog.WeiboWebViewClient());
-		Log.e("mulr", mUrl + "----");
 		mWebView.loadUrl(mUrl);
 		mWebView.setLayoutParams(FILL);
 		mWebView.setVisibility(View.INVISIBLE);

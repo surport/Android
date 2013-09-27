@@ -322,7 +322,6 @@ public class OneBallView extends ImageView {
 			matrix = new Matrix();
 			matrix.postScale(sw, sh);
 			if (sw != 1 && sh != 1) {
-				// Log.v("bitmap", "bitmap");
 				bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
 						matrix, true);
 				Constants.blue = bitmap;

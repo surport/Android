@@ -364,7 +364,6 @@ public class LotInfoConcreteActivity extends Activity implements
 			final String view_code;
 			if (str.startsWith("{")) {
 				try {
-					// Log.v("strconten", str);
 					JSONObject obj = new JSONObject(str);
 					lotno = obj.getString("lotno");
 					if (lotno.equals("T01006") || lotno.equals("T01005")
@@ -382,7 +381,6 @@ public class LotInfoConcreteActivity extends Activity implements
 								@Override
 								public void onClick(View v) {
 									// TODO Auto-generated method stub
-									// Log.v("do", "onclick");
 									LayoutInflater inflater = (LayoutInflater) LotInfoConcreteActivity.this
 											.getSystemService(LAYOUT_INFLATER_SERVICE);
 									View view = inflater

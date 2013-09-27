@@ -6,8 +6,6 @@ package com.ruyicai.net.newtransaction;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.InternetUtils;
 import com.ruyicai.util.ProtocolManager;
@@ -58,7 +56,6 @@ public class QueryJoinInfoInterface {
 			jsonProtocol.put(ProtocolManager.ORDERDIR, orderDir);
 			jsonProtocol.put(ProtocolManager.BATCHCODE, batchcode);
 			jsonProtocol.put(ProtocolManager.STATE, "");
-			Log.v("bet", jsonProtocol.toString());
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

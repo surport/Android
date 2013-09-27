@@ -50,6 +50,7 @@ import com.ruyicai.dialog.UpdateDialog;
 import com.ruyicai.net.newtransaction.BalanceQueryInterface;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.net.newtransaction.usercenter.NotReadCountInterface;
+import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.ruyicai.util.RuyicaiActivityManager;
@@ -70,7 +71,7 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 	private TextView ruyicaiLogo;
 	private TextView usernameText;
 	private TextView yuetext;
-	public TextView shouyeTitle;
+	public Button returnButton;
 	private LinearLayout usermessage; // 用户名和账户余额信息Linear
 	private String username;
 	private ImageButton login;
@@ -119,7 +120,16 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		shellRW = new RWSharedPreferences(MainGroup.this, "addInfo");
 		orderPrizeDialog = new OrderPrizeDiaog(shellRW, MainGroup.this);// 开奖订阅
 		isAutoLogin = shellRW.getBooleanValue(ShellRWConstants.AUTO_LOGIN);
-		shouyeTitle = (TextView) findViewById(R.id.ruyicai_icon_text);
+		returnButton = (Button) findViewById(R.id.ruyicai_icon_text);
+		returnButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				RuyicaiActivityManager.getInstance().exit();
+				PublicConst.islogin = false;
+				PublicConst.isthirdlogin = false;
+			}
+		});
 		ruyicaiLogo = (TextView) findViewById(R.id.ruyicai_beauty_logo);
 		ruyicaiLogo.setVisibility(View.GONE);
 		login = (ImageButton) findViewById(R.id.mainpage_chongzhi);
@@ -143,15 +153,13 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 				case 0:
 					isnotice = false;
 					usermessage.setVisibility(View.VISIBLE);
-					shouyeTitle.setVisibility(View.VISIBLE);
-					shouyeTitle.setText(R.string.goucaidating);
+					returnButton.setVisibility(View.VISIBLE);
 					dingyue.setVisibility(View.GONE);
 					isShowLoginButton();
 					break;
 				case 1:
 					isnotice = true;
-					shouyeTitle.setVisibility(View.VISIBLE);
-					shouyeTitle.setText(R.string.kaijiangxinxi);
+					returnButton.setVisibility(View.VISIBLE);
 					NoticeMainActivity.isFirstNotice = true;
 					ruyicaiLogo.setVisibility(View.GONE);
 					login.setVisibility(View.INVISIBLE);
@@ -172,14 +180,12 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 					dingyue.setVisibility(View.GONE);
 					usermessage.setVisibility(View.VISIBLE);
 					ruyicaiLogo.setVisibility(View.GONE);
-					shouyeTitle.setVisibility(View.VISIBLE);
-					shouyeTitle.setText(R.string.zhanghuchongzhi1);
+					returnButton.setVisibility(View.VISIBLE);
 					break;
 				case 3:
 					isnotice = false;
 					ruyicaiLogo.setVisibility(View.GONE);
-					shouyeTitle.setVisibility(View.VISIBLE);
-					shouyeTitle.setText(R.string.yonghuzhongxin);
+					returnButton.setVisibility(View.VISIBLE);
 					login.setVisibility(View.INVISIBLE);
 					usermessage.setVisibility(View.INVISIBLE);
 					if (Constants.hasLogin) {
@@ -202,8 +208,7 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 					dingyue.setVisibility(View.GONE);
 					usermessage.setVisibility(View.VISIBLE);
 					ruyicaiLogo.setVisibility(View.GONE);
-					shouyeTitle.setVisibility(View.VISIBLE);
-					shouyeTitle.setText(R.string.more);
+					returnButton.setVisibility(View.VISIBLE);
 					break;
 				}
 			}

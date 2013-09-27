@@ -13,7 +13,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -110,7 +109,6 @@ public class NoticeHistroy extends Activity {
 		} else {
 			BALL_WIDTH = PublicMethod.getPxInt(30, this);
 			SCALE = (float) 1.5;
-			Log.e("width", "" + BALL_WIDTH);
 		}
 	}
 
