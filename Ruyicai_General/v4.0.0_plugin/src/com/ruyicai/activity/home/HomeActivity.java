@@ -36,7 +36,7 @@ import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
+//import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
@@ -171,8 +171,8 @@ public class HomeActivity extends Activity {
 				.getWidth();
 		Constants.SCREEN_HEIGHT = getWindowManager().getDefaultDisplay()
 				.getHeight();
-		Log.e("width", "" + Constants.SCREEN_WIDTH + "     SCREEN_HEIGHT    "
-				+ Constants.SCREEN_HEIGHT);
+//		Log.e("width", "" + Constants.SCREEN_WIDTH + "     SCREEN_HEIGHT    "
+//				+ Constants.SCREEN_HEIGHT);
 		if (Constants.SCREEN_WIDTH == 240) {
 			Constants.PADDING = 18;
 		} else if (Constants.SCREEN_WIDTH == 320) {
@@ -445,7 +445,7 @@ public class HomeActivity extends Activity {
 	private void setJpushAlias(String userno) {
 		LinkedHashSet<String> tags = new LinkedHashSet<String>();
 		tags.add(ChannelConstants.COOP_ID);
-		Log.i("Jpush", "我设置了用户别名：" + userno + "|" + tags.toString());
+//		Log.i("Jpush", "我设置了用户别名：" + userno + "|" + tags.toString());
 		JPushInterface.setAliasAndTags(HomeActivity.this, userno, tags);
 	}
 
@@ -496,7 +496,7 @@ public class HomeActivity extends Activity {
 		if (moblie != null && moblie.equals("null")) {
 			Constants.PHONE_SIM = moblie;
 		}
-		Log.e("moblie", "" + moblie);
+//		Log.e("moblie", "" + moblie);
 
 	}
 
