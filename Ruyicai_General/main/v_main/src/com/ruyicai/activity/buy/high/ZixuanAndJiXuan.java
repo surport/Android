@@ -164,7 +164,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	float startY;
 	protected LinearLayout childtypes;
 	protected View layoutMain;
-
 	protected void setAddView(AddView addView) {
 		this.addView = addView;
 	}
@@ -553,7 +552,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				.findViewById(R.id.buy_zixuan_img_add_delet);
 		final TextView textNum = (TextView) zhixuanview
 				.findViewById(R.id.buy_zixuan_add_text_num);
-//		addView = new AddView(textNum, this, false);
 		addView.setTextNum(textNum);
 		addView.setzJActivity(this);
 		addView.setContext(this.getContext());
