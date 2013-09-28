@@ -5,7 +5,7 @@
     android:background="@drawable/buy_bg" >
 
     <LinearLayout
-        android:id="@+id/notice_layout"
+        android:id="@id/notice_layout"
         android:layout_width="fill_parent"
         android:layout_height="30dip"
         android:background="@drawable/gundongbg"
@@ -19,13 +19,13 @@
             android:layout_gravity="center_vertical"/>
 
         <ViewFlipper
-            android:id="@+id/notice_other_flipper"
+            android:id="@id/notice_other_flipper"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:flipInterval="3000" >
 
             <TextView
-                android:id="@+id/notice_other_title"
+                android:id="@id/notice_other_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -36,24 +36,24 @@
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+        android:id="@id/viewpager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/notice_layout"
+        android:layout_below="@id/notice_layout"
         android:layout_gravity="center" >
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
-        android:id="@+id/buy_activity_light_layout"
+        android:id="@id/buy_activity_light_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/layout4_top"
+        android:layout_above="@id/layout4_top"
         android:gravity="center_horizontal"
         android:paddingBottom="10sp" >
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout4_top"
+        android:id="@id/layout4_top"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -65,7 +65,7 @@
         android:paddingTop="5dip" >
 
         <Button
-            android:id="@+id/mainpage_usercenter"
+            android:id="@id/mainpage_usercenter"
             style="@style/HomeThreeBtn"
             android:layout_marginTop="3dip"
             android:text="@string/lottery_info" >
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/mainpage_help"
+                android:id="@id/mainpage_help"
                 style="@style/HomeThreeBtn"
                 android:layout_marginLeft="6sp"
                 android:layout_marginTop="3dip"
@@ -84,7 +84,7 @@
             </Button>
 
             <TextView
-                android:id="@+id/tv_warming"
+                android:id="@id/tv_warming"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="75dip"
@@ -97,7 +97,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/mainpage_luck_sign"
+            android:id="@id/mainpage_luck_sign"
             style="@style/HomeThreeBtn"
             android:layout_marginTop="3dip"
             android:text="@string/luckey_choose" >

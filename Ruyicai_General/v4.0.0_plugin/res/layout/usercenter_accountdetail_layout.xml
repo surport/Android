@@ -6,19 +6,19 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@+id/usercenter_mainlayou_text_title"
+            android:id="@id/usercenter_mainlayou_text_title"
             style="@style/UserTitleTextLeft"
             android:text="@string/usercenter_accountDetails" >
         </TextView>
 
         <Button
-            android:id="@+id/usercenter_accountdetail_img_return"
+            android:id="@id/usercenter_accountdetail_img_return"
             android:layout_width="wrap_content"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -35,7 +35,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/usercenter_accountdetail_showbalancetext"
+        android:id="@id/usercenter_accountdetail_showbalancetext"
         android:layout_width="fill_parent"
         android:layout_height="3dp"
         android:background="#ffffff"
@@ -47,7 +47,7 @@
         android:src="@drawable/litt" />
 
     <TabHost
-        android:id="@+id/usercenter_tab_host"
+        android:id="@id/usercenter_tab_host"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -71,27 +71,27 @@
                 android:background="@color/white" >
 
                 <LinearLayout
-                    android:id="@+id/usercenterAccountdetailContent_all"
+                    android:id="@id/usercenterAccountdetailContent_all"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:id="@+id/usercenterAccountdetailContent_cz"
+                    android:id="@id/usercenterAccountdetailContent_cz"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:id="@+id/usercenterAccountdetailContent_zf"
+                    android:id="@id/usercenterAccountdetailContent_zf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:id="@+id/usercenterAccountdetailContent_pj"
+                    android:id="@id/usercenterAccountdetailContent_pj"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:id="@+id/usercenterAccountdetailContent_tx"
+                    android:id="@id/usercenterAccountdetailContent_tx"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" />
             </FrameLayout>

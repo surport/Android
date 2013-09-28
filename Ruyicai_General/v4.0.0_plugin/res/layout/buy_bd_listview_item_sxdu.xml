@@ -11,7 +11,7 @@
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:id="@+id/upsingle"
+            android:id="@id/upsingle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -27,7 +27,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/upsingle_textview"
+                android:id="@id/upsingle_textview"
                 android:layout_width="fill_parent"
                 android:layout_height="25dip"
                 android:gravity="center"
@@ -41,7 +41,7 @@
             android:background="@android:color/transparent" />
 
         <LinearLayout
-            android:id="@+id/updouble"
+            android:id="@id/updouble"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -57,7 +57,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/updouble_textview"
+                android:id="@id/updouble_textview"
                 android:layout_width="fill_parent"
                 android:layout_height="25dip"
                 android:gravity="center"
@@ -71,7 +71,7 @@
             android:background="@android:color/transparent" />
 
         <LinearLayout
-            android:id="@+id/downsingle"
+            android:id="@id/downsingle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -87,7 +87,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/downsingle_textview"
+                android:id="@id/downsingle_textview"
                 android:layout_width="fill_parent"
                 android:layout_height="25dip"
                 android:gravity="center"
@@ -101,7 +101,7 @@
             android:background="@android:color/transparent" />
 
         <LinearLayout
-            android:id="@+id/downdouble"
+            android:id="@id/downdouble"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
@@ -117,7 +117,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/downdouble_textview"
+                android:id="@id/downdouble_textview"
                 android:layout_width="fill_parent"
                 android:layout_height="25dip"
                 android:gravity="center"

@@ -18,7 +18,7 @@
             android:src="@drawable/account_recharge_userico" />
 
         <TextView
-            android:id="@+id/account_recharge_user_number"
+            android:id="@id/account_recharge_user_number"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dip"

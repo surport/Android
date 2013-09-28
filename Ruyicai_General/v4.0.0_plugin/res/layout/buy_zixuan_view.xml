@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <ScrollView
-        android:id="@+id/buy_zixuan_scroll"
+        android:id="@id/buy_zixuan_scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fadeScrollbars="false"
@@ -17,7 +17,7 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_one"
+                android:id="@id/buy_zixuan_linear_one"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
@@ -29,7 +29,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_one"
+                        android:id="@id/buy_zixuan_text_one"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -39,18 +39,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_one"
+                        android:id="@id/buy_zixuan_btn_num_one"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_one"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_one"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_one"
+                        android:id="@id/buy_zixuan_btn_one"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -62,17 +62,17 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_one"
+                    android:id="@id/buy_zixuan_table_one"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_two"
+                android:id="@id/buy_zixuan_linear_two"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/buy_zixuan_linear_one"
+                android:layout_below="@id/buy_zixuan_linear_one"
                 android:orientation="vertical"
                 android:visibility="gone" >
 
@@ -83,7 +83,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_two"
+                        android:id="@id/buy_zixuan_text_two"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -94,18 +94,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_two"
+                        android:id="@id/buy_zixuan_btn_num_two"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_two"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_two"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_two"
+                        android:id="@id/buy_zixuan_btn_two"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -117,17 +117,17 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_two"
+                    android:id="@id/buy_zixuan_table_two"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_third"
+                android:id="@id/buy_zixuan_linear_third"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/buy_zixuan_linear_two"
+                android:layout_below="@id/buy_zixuan_linear_two"
                 android:orientation="vertical"
                 android:visibility="gone" >
 
@@ -138,7 +138,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_third"
+                        android:id="@id/buy_zixuan_text_third"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -149,18 +149,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_third"
+                        android:id="@id/buy_zixuan_btn_num_third"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_third"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_third"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_third"
+                        android:id="@id/buy_zixuan_btn_third"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -172,17 +172,17 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_third"
+                    android:id="@id/buy_zixuan_table_third"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_four"
+                android:id="@id/buy_zixuan_linear_four"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/buy_zixuan_linear_third"
+                android:layout_below="@id/buy_zixuan_linear_third"
                 android:orientation="vertical"
                 android:visibility="gone" >
 
@@ -193,7 +193,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_four"
+                        android:id="@id/buy_zixuan_text_four"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -204,18 +204,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_four"
+                        android:id="@id/buy_zixuan_btn_num_four"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_four"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_four"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_four"
+                        android:id="@id/buy_zixuan_btn_four"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -227,17 +227,17 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_four"
+                    android:id="@id/buy_zixuan_table_four"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_five"
+                android:id="@id/buy_zixuan_linear_five"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/buy_zixuan_linear_four"
+                android:layout_below="@id/buy_zixuan_linear_four"
                 android:orientation="vertical"
                 android:visibility="gone" >
 
@@ -248,7 +248,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_five"
+                        android:id="@id/buy_zixuan_text_five"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -259,18 +259,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_five"
+                        android:id="@id/buy_zixuan_btn_num_five"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_five"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_five"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_five"
+                        android:id="@id/buy_zixuan_btn_five"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -282,17 +282,17 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_five"
+                    android:id="@id/buy_zixuan_table_five"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_six"
+                android:id="@id/buy_zixuan_linear_six"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/buy_zixuan_linear_five"
+                android:layout_below="@id/buy_zixuan_linear_five"
                 android:orientation="vertical"
                 android:visibility="gone" >
 
@@ -303,7 +303,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_six"
+                        android:id="@id/buy_zixuan_text_six"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -314,18 +314,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_six"
+                        android:id="@id/buy_zixuan_btn_num_six"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_six"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_six"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_six"
+                        android:id="@id/buy_zixuan_btn_six"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -337,17 +337,17 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_six"
+                    android:id="@id/buy_zixuan_table_six"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_seven"
+                android:id="@id/buy_zixuan_linear_seven"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/buy_zixuan_linear_six"
+                android:layout_below="@id/buy_zixuan_linear_six"
                 android:orientation="vertical"
                 android:visibility="gone" >
 
@@ -358,7 +358,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/buy_zixuan_text_seven"
+                        android:id="@id/buy_zixuan_text_seven"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -368,18 +368,18 @@
                     </TextView>
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_num_seven"
+                        android:id="@id/buy_zixuan_btn_num_seven"
                         android:layout_width="wrap_content"
                         android:layout_height="30dip"
                         android:layout_centerVertical="true"
-                        android:layout_toLeftOf="@+id/buy_zixuan_btn_seven"
+                        android:layout_toLeftOf="@id/buy_zixuan_btn_seven"
                         android:background="@drawable/buy_jx_btn_num_selector"
                         android:text=""
                         android:textSize="16dip"
                         android:visibility="gone" />
 
                     <Button
-                        android:id="@+id/buy_zixuan_btn_seven"
+                        android:id="@id/buy_zixuan_btn_seven"
                         android:layout_width="85dip"
                         android:layout_height="30dip"
                         android:layout_alignParentRight="true"
@@ -391,23 +391,23 @@
                 </RelativeLayout>
 
                 <TableLayout
-                    android:id="@+id/buy_zixuan_table_seven"
+                    android:id="@id/buy_zixuan_table_seven"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="6dip" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/buy_zixuan_linear_toggle"
+                android:id="@id/buy_zixuan_linear_toggle"
                 android:layout_width="fill_parent"
                 android:layout_height="60sp"
-                android:layout_below="@+id/buy_zixuan_linear_four"
+                android:layout_below="@id/buy_zixuan_linear_four"
                 android:gravity="right"
                 android:orientation="horizontal"
                 android:visibility="gone" >
 
                 <ToggleButton
-                    android:id="@+id/dlt_zhuijia"
+                    android:id="@id/dlt_zhuijia"
                     android:layout_width="20sp"
                     android:layout_height="20sp"
                     android:background="@drawable/dlt_zhuijia_toggle_button"

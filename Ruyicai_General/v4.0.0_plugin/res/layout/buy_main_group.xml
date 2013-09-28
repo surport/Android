@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@+id/layout_main_text_title"
+            android:id="@id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -24,7 +24,7 @@
         </TextView>
 
         <Button
-            android:id="@+id/refresh_code"
+            android:id="@id/refresh_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -38,7 +38,7 @@
         <!-- 下拉列表按钮 -->
 
         <Button
-            android:id="@+id/layout_main_img_return"
+            android:id="@id/layout_main_img_return"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -54,13 +54,13 @@
     <!-- 上期开奖号码布局 -->
 
     <RelativeLayout
-        android:id="@+id/last_batchcode"
+        android:id="@id/last_batchcode"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/last_batchcode_textlable"
+            android:id="@id/last_batchcode_textlable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -71,17 +71,17 @@
         </TextView>
 
         <TextView
-            android:id="@+id/last_batchcode_textlable_red"
+            android:id="@id/last_batchcode_textlable_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/last_batchcode_textlable"
+            android:layout_toRightOf="@id/last_batchcode_textlable"
             android:text=""
             android:textColor="@color/black"
             android:textSize="14dip" >
         </TextView>
 
         <TextView
-            android:id="@+id/last_batchcode_textlable_bule"
+            android:id="@id/last_batchcode_textlable_bule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -95,7 +95,7 @@
     <!-- 显示投注信息 -->
 
     <TextView
-        android:id="@+id/bet_info"
+        android:id="@id/bet_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dip"
@@ -106,13 +106,13 @@
     </TextView>
 
     <RelativeLayout
-        android:id="@+id/main_buy_relat_issue"
+        android:id="@id/main_buy_relat_issue"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/layout_main_text_issue"
+            android:id="@id/layout_main_text_issue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -123,7 +123,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/layout_main_text_time"
+            android:id="@id/layout_main_text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -134,7 +134,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/layout_main_text_timessc"
+            android:id="@id/layout_main_text_timessc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -153,7 +153,7 @@
     </LinearLayout>
 
     <TabHost
-        android:id="@+id/tab_host"
+        android:id="@id/tab_host"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 

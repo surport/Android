@@ -9,7 +9,7 @@
     <!-- 期号 -->
 
     <TextView
-        android:id="@+id/latestlottery_textview_issue"
+        android:id="@id/latestlottery_textview_issue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -18,7 +18,7 @@
     <!-- 开奖号码 -->
 
     <TextView
-        android:id="@+id/latestlottery_textview_winningnumbers"
+        android:id="@id/latestlottery_textview_winningnumbers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

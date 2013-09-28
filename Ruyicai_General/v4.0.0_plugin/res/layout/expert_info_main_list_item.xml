@@ -7,7 +7,7 @@
     android:padding="5dip" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout01"
+        android:id="@id/LinearLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/list_luck_bg"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/expert_info_main_list_item_title"
+                android:id="@id/expert_info_main_list_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -28,7 +28,7 @@
                 android:textSize="20dip" />
 
             <Button
-                android:id="@+id/expert_info_main_list_item_btn"
+                android:id="@id/expert_info_main_list_item_btn"
                 android:layout_width="90dip"
                 android:layout_height="35dip"
                 android:layout_alignParentRight="true"
@@ -37,14 +37,14 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/expert_info_main_list_item_code"
+            android:id="@id/expert_info_main_list_item_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/red"
             android:textSize="16dip" />
 
         <TextView
-            android:id="@+id/expert_info_main_list_item_content"
+            android:id="@id/expert_info_main_list_item_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:lineSpacingExtra="3dip" />
     </LinearLayout>

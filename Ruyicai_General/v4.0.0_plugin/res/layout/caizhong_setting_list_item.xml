@@ -6,13 +6,13 @@
     android:background="#FFF" >
 
     <RelativeLayout
-        android:id="@+id/tableRow_sharetosina"
+        android:id="@id/tableRow_sharetosina"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="5dp" >
 
         <TextView
-            android:id="@+id/caizhong_TextView"
+            android:id="@id/caizhong_TextView"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -23,7 +23,7 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/caizhong_set_checkbox"
+            android:id="@id/caizhong_set_checkbox"
             android:layout_width="90dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"

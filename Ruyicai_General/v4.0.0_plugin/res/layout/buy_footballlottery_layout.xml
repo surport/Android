@@ -17,7 +17,7 @@
             android:layout_height="fill_parent" >
 
             <LinearLayout
-                android:id="@+id/no_game_prompt"
+                android:id="@id/no_game_prompt"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -25,24 +25,24 @@
                 android:visibility="gone" >
 
                 <ImageView
-                    android:id="@+id/no_game_prompt_imageview"
+                    android:id="@id/no_game_prompt_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ray" />
 
                 <TextView
-                    android:id="@+id/no_game_prompt_textview"
+                    android:id="@id/no_game_prompt_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/no_game_prompt_imageview"
+                    android:layout_below="@id/no_game_prompt_imageview"
                     android:gravity="center"
                     android:text="暂无球赛可以投注"
                     android:textSize="18sp" />
             </LinearLayout>
 
             <ListView
-                android:id="@+id/buy_footballlottery_list"
+                android:id="@id/buy_footballlottery_list"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="50dip"
@@ -54,7 +54,7 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/buy_zixuan_relativelayout"
+            android:id="@id/buy_zixuan_relativelayout"
             android:layout_width="fill_parent"
             android:layout_height="50dip"
             android:layout_alignParentBottom="true"
@@ -63,7 +63,7 @@
             android:paddingRight="10dip" >
 
             <ImageButton
-                android:id="@+id/buy_zixuan_img_again"
+                android:id="@id/buy_zixuan_img_again"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -73,14 +73,14 @@
             </ImageButton>
 
             <TextView
-                android:id="@+id/buy_jc_main_text_team_num"
+                android:id="@id/buy_jc_main_text_team_num"
                 style="@style/textSize16"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="90dip"
                 android:text="" />
 
             <ImageButton
-                android:id="@+id/buy_footballlottery_img_touzhu"
+                android:id="@id/buy_footballlottery_img_touzhu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -91,7 +91,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/jc_main_team_layout_layers_down"
+        android:id="@id/jc_main_team_layout_layers_down"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -100,7 +100,7 @@
     <!-- 赛事选择下拉框 -->
 
     <LinearLayout
-        android:id="@+id/jc_main_team_select"
+        android:id="@id/jc_main_team_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -108,7 +108,7 @@
         android:visibility="gone" >
 
         <LinearLayout
-            android:id="@+id/jc_linear_check_all"
+            android:id="@id/jc_linear_check_all"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/zc_team_select_bg"
@@ -127,14 +127,14 @@
         android:paddingTop="45dip" >
 
         <LinearLayout
-            android:id="@+id/buy_lq_main_layout_team"
+            android:id="@id/buy_lq_main_layout_team"
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:layout_weight="3"
             android:gravity="center" >
 
             <Button
-                android:id="@+id/layout_football_issue"
+                android:id="@id/layout_football_issue"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -152,7 +152,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/layout_football_time"
+            android:id="@id/layout_football_time"
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:layout_alignParentRight="true"
@@ -163,7 +163,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/jc_main_team_layout_layers_middle"
+        android:id="@id/jc_main_team_layout_layers_middle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -178,7 +178,7 @@
     <include layout="@layout/jc_main_title_bar" />
 
     <LinearLayout
-        android:id="@+id/jc_main_team_layout_layers_up"
+        android:id="@id/jc_main_team_layout_layers_up"
         android:layout_width="match_parent"
         android:layout_height="85dip"
         android:layout_gravity="top"

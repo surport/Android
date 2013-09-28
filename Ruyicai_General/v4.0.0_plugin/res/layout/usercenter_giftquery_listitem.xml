@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/usercenter_trackquery_item"
+    android:id="@id/usercenter_trackquery_item"
     android:layout_width="fill_parent"
     android:layout_height="100dp"
     android:background="#FFFFFF"
@@ -22,7 +22,7 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/usercenter_giftquery_leftone"
+                android:id="@id/usercenter_giftquery_leftone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -32,7 +32,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/usercenter_giftquery_leftone_recive"
+                android:id="@id/usercenter_giftquery_leftone_recive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -58,7 +58,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/usercenter_giftquery_lefttwo"
+                    android:id="@id/usercenter_giftquery_lefttwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -74,7 +74,7 @@
                 android:orientation="horizontal" >
 
                 <TextView
-                    android:id="@+id/usercenter_giftquery_leftthree"
+                    android:id="@id/usercenter_giftquery_leftthree"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="bottom"
@@ -99,7 +99,7 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/usercenter_giftquery_amount"
+                android:id="@id/usercenter_giftquery_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|center"
@@ -108,7 +108,7 @@
                 android:textSize="13sp" />
         </LinearLayout>
         <Button
-            android:id="@+id/usercenter_giftquery_recive_state"
+            android:id="@id/usercenter_giftquery_recive_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
@@ -116,7 +116,7 @@
             android:visibility="gone"
             android:background="@drawable/usercenter_selector_recive_state" />
         <Button
-            android:id="@+id/usercenter_giftquery_lookdetail"
+            android:id="@id/usercenter_giftquery_lookdetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"

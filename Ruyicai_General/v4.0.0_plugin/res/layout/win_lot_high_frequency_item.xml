@@ -6,13 +6,13 @@
     android:paddingTop="5dp" >
 
     <RelativeLayout
-        android:id="@+id/notice_pirzes_single_specific_noticedateandissue_linearlayout"
+        android:id="@id/notice_pirzes_single_specific_noticedateandissue_linearlayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true" >
 
         <TextView
-            android:id="@+id/notice_prizes_single_specific_noticedDate_id"
+            android:id="@id/notice_prizes_single_specific_noticedDate_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -22,7 +22,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/notice_prizes_single_specific_issue_id"
+            android:id="@id/notice_prizes_single_specific_issue_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -34,7 +34,7 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/notice_prizes_single_specific_img"
+        android:id="@id/notice_prizes_single_specific_img"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"

@@ -26,7 +26,7 @@
                 android:orientation="horizontal" >
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check01"
+                    android:id="@id/lq_sfc_dialog_check01"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -42,7 +42,7 @@
                     android:background="@android:color/transparent" />
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check02"
+                    android:id="@id/lq_sfc_dialog_check02"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -58,57 +58,7 @@
                     android:background="@android:color/transparent" />
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check03"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/jc_lq_sfc_win_selector"
-                    android:button="@null"
-                    android:gravity="center_horizontal"
-                    android:textSize="12sp"
-                    custom:check_title="@string/jclq_sfc_dialog_title01" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal" >
-
-                <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check04"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/jc_lq_sfc_win_selector"
-                    android:button="@null"
-                    android:gravity="center_horizontal"
-                    android:textSize="12sp"
-                    custom:check_title="@string/jclq_sfc_dialog_title01" />
-
-                <View
-                    android:layout_width="10dip"
-                    android:layout_height="1dip"
-                    android:background="@android:color/transparent" />
-
-                <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check05"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/jc_lq_sfc_win_selector"
-                    android:button="@null"
-                    android:gravity="center_horizontal"
-                    android:textSize="12sp"
-                    custom:check_title="@string/jclq_sfc_dialog_title01" />
-
-                <View
-                    android:layout_width="10dip"
-                    android:layout_height="1dip"
-                    android:background="@android:color/transparent" />
-
-                <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check06"
+                    android:id="@id/lq_sfc_dialog_check03"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -126,7 +76,57 @@
                 android:orientation="horizontal" >
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check07"
+                    android:id="@id/lq_sfc_dialog_check04"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/jc_lq_sfc_win_selector"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="1dip"
+                    android:background="@android:color/transparent" />
+
+                <com.ruyicai.custom.checkbox.MyCheckBox
+                    android:id="@id/lq_sfc_dialog_check05"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/jc_lq_sfc_win_selector"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    custom:check_title="@string/jclq_sfc_dialog_title01" />
+
+                <View
+                    android:layout_width="10dip"
+                    android:layout_height="1dip"
+                    android:background="@android:color/transparent" />
+
+                <com.ruyicai.custom.checkbox.MyCheckBox
+                    android:id="@id/lq_sfc_dialog_check06"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/jc_lq_sfc_win_selector"
+                    android:button="@null"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    custom:check_title="@string/jclq_sfc_dialog_title01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal" >
+
+                <com.ruyicai.custom.checkbox.MyCheckBox
+                    android:id="@id/lq_sfc_dialog_check07"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -142,7 +142,7 @@
                     android:background="@android:color/transparent" />
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check08"
+                    android:id="@id/lq_sfc_dialog_check08"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -158,7 +158,7 @@
                     android:background="@android:color/transparent" />
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check09"
+                    android:id="@id/lq_sfc_dialog_check09"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -176,7 +176,7 @@
                 android:orientation="horizontal" >
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check010"
+                    android:id="@id/lq_sfc_dialog_check010"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -192,7 +192,7 @@
                     android:background="@android:color/transparent" />
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check011"
+                    android:id="@id/lq_sfc_dialog_check011"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -208,7 +208,7 @@
                     android:background="@android:color/transparent" />
 
                 <com.ruyicai.custom.checkbox.MyCheckBox
-                    android:id="@+id/lq_sfc_dialog_check012"
+                    android:id="@id/lq_sfc_dialog_check012"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -227,7 +227,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/layout_main_text_title"
+            android:id="@id/layout_main_text_title"
             android:layout_width="match_parent"
             android:layout_height="45dip"
             android:gravity="center"
@@ -243,7 +243,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/buy_lq_mian_layout"
+        android:id="@id/buy_lq_mian_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -251,7 +251,7 @@
         android:padding="10dip" >
 
         <Button
-            android:id="@+id/ok"
+            android:id="@id/ok"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"
@@ -267,7 +267,7 @@
             android:background="@android:color/transparent" />
 
         <Button
-            android:id="@+id/canel"
+            android:id="@id/canel"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"

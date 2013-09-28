@@ -7,7 +7,7 @@
     android:padding="10dp" >
 
     <ImageView
-        android:id="@+id/informationitemlable"
+        android:id="@id/informationitemlable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -21,13 +21,13 @@
         android:layout_marginLeft="5dip">
 
         <TextView
-            android:id="@+id/feedback_time"
+            android:id="@id/feedback_time"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/feededmessage"
+            android:id="@id/feededmessage"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black" />
@@ -62,7 +62,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/servicer_reply"
+                    android:id="@id/servicer_reply"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#0055FF"

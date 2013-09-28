@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/LinearLayout01"
+        android:id="@id/LinearLayout01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -14,7 +14,7 @@
         android:paddingTop="10dip" >
 
         <TextView
-            android:id="@+id/TextView01"
+            android:id="@id/TextView01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/zhixuan_jixuan_title"
@@ -23,7 +23,7 @@
         </TextView>
 
         <Spinner
-            android:id="@+id/buy_danshi_jixuan_spinner"
+            android:id="@id/buy_danshi_jixuan_spinner"
             android:layout_width="70dip"
             android:layout_height="40dip"
             android:layout_gravity="center_vertical"
@@ -33,12 +33,12 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout01"
+        android:id="@id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <ScrollView
-            android:id="@+id/ScrollView01"
+            android:id="@id/ScrollView01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="70dip" >
@@ -52,7 +52,7 @@
                 android:paddingTop="10dip" >
 
                 <LinearLayout
-                    android:id="@+id/buy_danshi_jixuan_linear_zhuma"
+                    android:id="@id/buy_danshi_jixuan_linear_zhuma"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -61,7 +61,7 @@
             </LinearLayout>
         </ScrollView>
 <RelativeLayout
-            android:id="@+id/buy_zixuan_relativelayout"
+            android:id="@id/buy_zixuan_relativelayout"
             android:layout_width="fill_parent"
             android:layout_height="50dip"
             android:layout_alignParentBottom="true"
@@ -70,21 +70,21 @@
             android:paddingRight="10dip" >
 
             <RelativeLayout
-                android:id="@+id/buy_zixuan_relativelayout2"
+                android:id="@id/buy_zixuan_relativelayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true" >
 
                 <Button
-                    android:id="@+id/buy_zixuan_img_add_delet"
+                    android:id="@id/buy_zixuan_img_add_delet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/selecet_add" >
                 </Button>
 
                 <TextView
-                    android:id="@+id/buy_zixuan_add_text_num"
+                    android:id="@id/buy_zixuan_add_text_num"
                     android:layout_width="40dip"
                     android:layout_height="wrap_content"
                     android:gravity="right"
@@ -95,18 +95,18 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/buy_zixuan_img_add"
+                android:id="@id/buy_zixuan_img_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dip"
-                android:layout_toRightOf="@+id/buy_zixuan_relativelayout2"
+                android:layout_toRightOf="@id/buy_zixuan_relativelayout2"
                 android:background="@drawable/selecet_buy_add" >
             </Button>
 
             <Button
-                android:id="@+id/buy_danshi_jixuan_img_touzhu"
+                android:id="@id/buy_danshi_jixuan_img_touzhu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

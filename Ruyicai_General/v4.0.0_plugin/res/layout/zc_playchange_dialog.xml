@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/zc_play_change_layout"
+    android:id="@id/zc_play_change_layout"
     android:layout_width="300dip"
     android:layout_height="145dip"
     android:layout_gravity="center_horizontal"
@@ -17,7 +17,7 @@
         android:paddingTop="20dip" >
 
         <Button
-            android:id="@+id/zc_play_change_button_14sfc"
+            android:id="@id/zc_play_change_button_14sfc"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -26,7 +26,7 @@
             android:text="@string/zc_14sf_play" />
 
         <Button
-            android:id="@+id/zc_play_change_button_rx9"
+            android:id="@id/zc_play_change_button_rx9"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -42,7 +42,7 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/zc_play_change_button_6cb"
+            android:id="@id/zc_play_change_button_6cb"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
@@ -51,7 +51,7 @@
             android:text="@string/zc_6cb_play" />
 
         <Button
-            android:id="@+id/zc_play_change_button_4jq"
+            android:id="@id/zc_play_change_button_4jq"
             android:layout_width="90dip"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
