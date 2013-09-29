@@ -251,8 +251,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 					.findViewById(R.id.jc_main_list_item_text_team_name2);
 			holder.letPoint = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_vs);
-			holder.timeEnd = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_time_end);
 			holder.result = (TextView) convertView
 					.findViewById(R.id.jc_main_list_item_text_jieguo);
 			holder.score = (TextView) convertView
