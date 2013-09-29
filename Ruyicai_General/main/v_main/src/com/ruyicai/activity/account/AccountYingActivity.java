@@ -1,5 +1,9 @@
 package com.ruyicai.activity.account;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +12,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,7 +34,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -40,6 +46,8 @@ import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.handler.HandlerMsg;
+import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.AccountRechargeInterface;
 import com.ruyicai.net.newtransaction.RechargeInterface;
 import com.ruyicai.net.newtransaction.pojo.RechargePojo;
@@ -47,7 +55,8 @@ import com.ruyicai.net.newtransaction.recharge.AlipaySecurePayInterface;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.unionpay.upomp.lthj.util.PluginHelper;
+import com.unionpay.UPPayAssistEx;
+import com.unionpay.uppay.PayActivity;
 
 /**
  * 银行充值
@@ -55,7 +64,7 @@ import com.unionpay.upomp.lthj.util.PluginHelper;
  * @author Administrator
  * 
  */
-public class AccountYingActivity extends Activity implements OnClickListener {
+public class AccountYingActivity extends Activity implements OnClickListener,HandlerMsg {
 	Button secureOk;
 	EditText accountnum;
 	public ProgressDialog progressdialog;
@@ -67,6 +76,18 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 	private final String TYPE = "08";
 	private List allcountries = null;
 	private ArrayAdapter<String> adapter;
+	private MyHandler handler = new MyHandler(this);
+	private String tn = null;
+    /*****************************************************************
+     * mMode参数解释：
+     *      "00" - 启动银联正式环境
+     *      "01" - 连接银联测试环境
+     *****************************************************************/
+    private String mMode = "01";
+    /**
+     * 该地址为获取TN的地址，具体请根据业务需求做相应改动
+     */
+    private static final String TN_URL_01 = "http://222.66.233.198:8080/sim/gettn";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -431,26 +452,50 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 	/**
 	 * 银联充值跳转到插件
 	 */
-	public void turnYinView(String info) {
+	public void turnYinView() {
 		// 向插件提交3要素报文
 		// *********************************************************************************//
 
-		byte[] to_upomp = info.getBytes();
-
-		Bundle mbundle = new Bundle();
-		// to_upomp为商户提交的XML
-		mbundle.putByteArray("xml", to_upomp);
-		// 注：此处的action是：商户的action
-		mbundle.putString("action_cmd", CMD_PAY_PLUGIN);
-
-		PluginHelper.LaunchPlugin(this, mbundle);
+//		byte[] to_upomp = info.getBytes();
+//
+//		Bundle mbundle = new Bundle();
+//		// to_upomp为商户提交的XML
+//		mbundle.putByteArray("xml", to_upomp);
+//		// 注：此处的action是：商户的action
+//		mbundle.putString("action_cmd", CMD_PAY_PLUGIN);
+//
+//		PluginHelper.LaunchPlugin(this, mbundle);
+		if (tn == null || tn.length() == 0) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("错误提示");
+			builder.setMessage("网络连接失败,请重试!");
+			builder.setNegativeButton("确定",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					});
+			builder.create().show();
+		} else {
+			//tn = (String) msg.obj;
+			/*************************************************
+			 * 
+			 * 步骤2：通过银联工具类启动支付插件
+			 * 
+			 ************************************************/
+			// mMode参数解释：
+			// 0 - 启动银联正式环境info
+			// 1 - 连接银联测试环境
+			UPPayAssistEx.startPayByJAR(AccountYingActivity.this, PayActivity.class,
+					null, null, tn, mMode);
+		}
 	}
 
 	// 支付宝充值网络获取
 	// 改为线程 2010/7/9陈晨
 	private void actoinYin(String amt) {
 		RechargePojo rechargepojo = new RechargePojo();
-		;
 		rechargepojo.setAmount(amt);
 		rechargepojo.setRechargetype("06");
 		rechargepojo.setCardtype(YINTYPE);
@@ -465,40 +510,62 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		final String userno = pre.getStringValue(ShellRWConstants.USERNO);
 		mProgress = UserCenterDialog.onCreateDialog(AccountYingActivity.this);
 		mProgress.show();
-		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					rechargepojo.setSessionid(sessionId);
-					rechargepojo.setUserno(userno);
-					String re = RechargeInterface.getInstance().recharge(
-							rechargepojo);
+//				try {
+//					rechargepojo.setSessionid(sessionId);
+//					rechargepojo.setUserno(userno);
+//					String re = RechargeInterface.getInstance().recharge(
+//							rechargepojo);
+//
+//					JSONObject obj = new JSONObject(re);
+//					String error_code = obj.getString("error_code");
+//					final String message = obj.getString("message");
+//					closeProgress();
+//					if (error_code.equals("0000")) {
+//						final String xml = obj.getString("value");
+//						handler.post(new Runnable() {
+//							@Override
+//							public void run() {
+//								turnYinView(xml);
+//							}
+//						});
+//					} else {
+//						handler.post(new Runnable() {
+//							@Override
+//							public void run() {
+//								Toast.makeText(AccountYingActivity.this,
+//										message, Toast.LENGTH_SHORT);
+//							}
+//						});
+//					}
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
+		        InputStream is;
+		        try {
 
-					JSONObject obj = new JSONObject(re);
-					String error_code = obj.getString("error_code");
-					final String message = obj.getString("message");
-					closeProgress();
-					if (error_code.equals("0000")) {
-						final String xml = obj.getString("value");
-						handler.post(new Runnable() {
-							@Override
-							public void run() {
-								turnYinView(xml);
-							}
-						});
-					} else {
-						handler.post(new Runnable() {
-							@Override
-							public void run() {
-								Toast.makeText(AccountYingActivity.this,
-										message, Toast.LENGTH_SHORT);
-							}
-						});
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+		            String url = TN_URL_01;
+
+		            URL myURL = new URL(url);
+		            URLConnection ucon = myURL.openConnection();
+		            ucon.setConnectTimeout(120000);
+		            is = ucon.getInputStream();
+		            int i = -1;
+		            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		            while ((i = is.read()) != -1) {
+		                baos.write(i);
+		            }
+
+		            tn = baos.toString();
+		            is.close();
+		            baos.close();
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		        handler.handleMsg("0000", tn);
+		        mProgress.dismiss();
 			}
 		}).start();
 
@@ -564,5 +631,60 @@ public class AccountYingActivity extends Activity implements OnClickListener {
 		public AccountType() {
 
 		}
+	}
+
+	@Override
+	public void errorCode_0000() {
+		// TODO Auto-generated method stub
+		turnYinView();
+	}
+
+	@Override
+	public void errorCode_000000() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+		return this;
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		/*************************************************
+		 * 
+		 * 步骤3：处理银联手机支付控件返回的支付结果
+		 * 
+		 ************************************************/
+		if (data == null) {
+			return;
+		}
+
+		String msg = "";
+		/*
+		 * 支付控件返回字符串:success、fail、cancel 分别代表支付成功，支付失败，支付取消
+		 */
+		String str = data.getExtras().getString("pay_result");
+		if (str.equalsIgnoreCase("success")) {
+			msg = "支付成功！";
+		} else if (str.equalsIgnoreCase("fail")) {
+			msg = "支付失败！";
+		} else if (str.equalsIgnoreCase("cancel")) {
+			msg = "用户取消了支付";
+		}
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("支付结果通知");
+		builder.setMessage(msg);
+		builder.setInverseBackgroundForced(true);
+		// builder.setCustomTitle();
+		builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		builder.create().show();
 	}
 }
