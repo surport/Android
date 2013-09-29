@@ -38,7 +38,7 @@
                 android:background="@drawable/free_get_glod_bottom" >
 
                 <EditText
-                    android:id="@id/zfb_recharge_value"
+                    android:id="@+id/zfb_recharge_value"
                     android:layout_width="match_parent"
                     android:layout_height="40dip"
                     android:layout_marginLeft="5dip"
@@ -73,7 +73,7 @@
                     android:textColor="@color/black" />
 
                 <Spinner
-                    android:id="@id/account_spinner_bank"
+                    android:id="@+id/account_spinner_bank"
                     android:layout_width="170dip"
                     android:layout_height="wrap_content" >
                 </Spinner>
@@ -101,7 +101,7 @@
                     android:textColor="@color/black" />
 
                 <Spinner
-                    android:id="@id/account_spinner_bank_stye"
+                    android:id="@+id/account_spinner_bank_stye"
                     android:layout_width="170dip"
                     android:layout_height="wrap_content" >
                 </Spinner>

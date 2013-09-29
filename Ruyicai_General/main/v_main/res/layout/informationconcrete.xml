@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/join_hall_text_title"
+            android:id="@+id/join_hall_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -24,7 +24,7 @@
         </TextView>
 
         <Button
-            android:id="@id/join_hall_img_return"
+            android:id="@+id/join_hall_img_return"
             android:layout_width="90dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -37,7 +37,7 @@
         </Button>
     </RelativeLayout>
    <RelativeLayout
-        android:id="@id/RelativeLayout01"
+        android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
     <ScrollView
@@ -50,7 +50,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@id/informationtitle"
+                android:id="@+id/informationtitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -59,7 +59,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@id/informationtime"
+                android:id="@+id/informationtime"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -75,7 +75,7 @@
                 android:layout_margin="10dip" >
             </LinearLayout>
             <TextView
-                android:id="@id/webview"
+                android:id="@+id/webview"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" 
                 android:lineSpacingMultiplier="1.3"
@@ -83,7 +83,7 @@
         </LinearLayout>
     </ScrollView>
      <LinearLayout
-            android:id="@id/LinearLayout0000"
+            android:id="@+id/LinearLayout0000"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dip"
@@ -91,7 +91,7 @@
             android:paddingBottom="40dip"
              >
          <LinearLayout
-            android:id="@id/LinearLayout10"
+            android:id="@+id/LinearLayout10"
             android:layout_width="320dip"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -100,7 +100,7 @@
              >
              <ImageButton
                 android:layout_marginLeft="60dip"
-                android:id="@id/join_detail_img_buy2"
+                android:id="@+id/join_detail_img_buy2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -108,7 +108,7 @@
                 android:src="@drawable/renrenfenxiang" >
             </ImageButton>
              <ImageButton
-                android:id="@id/join_detail_img_buy3"
+                android:id="@+id/join_detail_img_buy3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

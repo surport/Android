@@ -6,24 +6,24 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@id/buyagain_title"
+        android:id="@+id/buyagain_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
         android:gravity="center_horizontal|clip_vertical" >
 
         <TextView
-            android:id="@id/alert_dialog_touzhu_text_title"
+            android:id="@+id/alert_dialog_touzhu_text_title"
             style="@style/UserTitleText"
             android:text="@string/usercenter_buyAgain" >
         </TextView>
     </LinearLayout>
 
     <ScrollView
-        android:id="@id/ScrollView01"
+        android:id="@+id/ScrollView01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buyagain_title"
+        android:layout_below="@+id/buyagain_title"
         android:paddingBottom="60dp" >
 
         <LinearLayout
@@ -35,7 +35,7 @@
             android:paddingTop="10sp" >
 
             <TextView
-                android:id="@id/buyagain_touzhu_lotname"
+                android:id="@+id/buyagain_touzhu_lotname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="彩票种类："
@@ -44,7 +44,7 @@
             </TextView>
 
             <TextView
-                android:id="@id/buyagain_touzhu_qihao"
+                android:id="@+id/buyagain_touzhu_qihao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dip"
@@ -54,7 +54,7 @@
             </TextView>
 
             <TextView
-                android:id="@id/buyagain_touzhu_jine"
+                android:id="@+id/buyagain_touzhu_jine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dip"
@@ -64,7 +64,7 @@
             </TextView>
 
             <TextView
-                android:id="@id/buyagain_touzhu_beishu"
+                android:id="@+id/buyagain_touzhu_beishu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dip"
@@ -74,7 +74,7 @@
             </TextView>
 
             <TextView
-                android:id="@id/buyagain_touzhu_zhuma"
+                android:id="@+id/buyagain_touzhu_zhuma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dip"
@@ -92,7 +92,7 @@
         android:background="@drawable/buy_bot_bg" >
 
         <Button
-            android:id="@id/buyagain_touzhu_button_cancel"
+            android:id="@+id/buyagain_touzhu_button_cancel"
             android:layout_width="120dip"
             android:layout_height="40sp"
             android:layout_alignParentLeft="true"
@@ -104,7 +104,7 @@
         </Button>
 
         <Button
-            android:id="@id/buyagain_touzhu_button_ok"
+            android:id="@+id/buyagain_touzhu_button_ok"
             android:layout_width="120dip"
             android:layout_height="40sp"
             android:layout_alignParentRight="true"

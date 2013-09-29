@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@id/accountTitle_text"
+        android:id="@+id/accountTitle_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
@@ -43,7 +43,7 @@
                     android:layout_height="30dip" >
 
                     <TextView
-                        android:id="@id/current_gold_title"
+                        android:id="@+id/current_gold_title"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dip"
@@ -53,7 +53,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@id/current_gold"
+                        android:id="@+id/current_gold"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dip"

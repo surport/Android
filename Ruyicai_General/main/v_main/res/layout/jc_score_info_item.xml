@@ -22,7 +22,7 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@id/jc_score_info_item_img_left"
+                    android:id="@+id/jc_score_info_item_img_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -35,7 +35,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@id/jc_score_info_item_text_left"
+                android:id="@+id/jc_score_info_item_text_left"
                 android:layout_width="105dip"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|center_horizontal"
@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/jc_score_info_item_layout_time"
+        android:id="@+id/jc_score_info_item_layout_time"
         android:layout_width="50dip"
         android:layout_height="match_parent"
         android:background="@color/grey_more"
@@ -60,7 +60,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@id/jc_score_info_item_text_time"
+            android:id="@+id/jc_score_info_item_text_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -80,7 +80,7 @@
             android:gravity="center_vertical|center_horizontal" >
 
             <TextView
-                android:id="@id/jc_score_info_item_text_right"
+                android:id="@+id/jc_score_info_item_text_right"
                 android:layout_width="105dip"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|center_horizontal"
@@ -102,7 +102,7 @@
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@id/jc_score_info_item_img_right"
+                    android:id="@+id/jc_score_info_item_img_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

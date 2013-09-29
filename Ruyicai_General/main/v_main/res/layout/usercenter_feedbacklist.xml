@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" android:background="@color/white">
 
-    <ListView android:id="@id/usercenter_feedback_list"
+    <ListView android:id="@+id/usercenter_feedback_list"
         android:cacheColorHint="@color/transparent"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/main_buy_title" 
+        android:layout_below="@+id/main_buy_title" 
         android:divider="@drawable/litt"/>
 </RelativeLayout>

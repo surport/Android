@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@id/linearLayout1"
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
         <Button
-            android:id="@id/buy_jc_main_view_list_item_btn"
+            android:id="@+id/buy_jc_main_view_list_item_btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dip"
@@ -23,7 +23,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/buy_jc_main_view_list_item_linearLayout"
+        android:id="@+id/buy_jc_main_view_list_item_linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="@color/white"

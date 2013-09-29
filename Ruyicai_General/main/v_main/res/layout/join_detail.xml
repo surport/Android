@@ -7,13 +7,13 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/join_detail_text_title"
+            android:id="@+id/join_detail_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,7 +25,7 @@
         </TextView>
 
         <Button
-            android:id="@id/join_detail_img_return"
+            android:id="@+id/join_detail_img_return"
             android:layout_width="100dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -39,7 +39,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@id/RelativeLayout01"
+        android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -50,16 +50,16 @@
             android:paddingBottom="170dip" >
 
             <LinearLayout
-                android:id="@id/LinearLayout02"
+                android:id="@+id/LinearLayout02"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/LinearLayout01"
+                android:layout_above="@+id/LinearLayout01"
                 android:orientation="vertical"
                 android:paddingLeft="3dip"
                 android:paddingRight="3dip" >
 
                 <Button
-                    android:id="@id/faqi"
+                    android:id="@+id/faqi"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -70,7 +70,7 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:id="@id/faqixinxi"
+                    android:id="@+id/faqixinxi"
                     android:layout_width="fill_parent"
                     android:layout_height="100dip"
                     android:layout_marginBottom="5dip"
@@ -86,7 +86,7 @@
                         android:paddingTop="10dip" >
 
                         <TextView
-                            android:id="@id/join_detail_text_name"
+                            android:id="@+id/join_detail_text_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="发起人："
@@ -95,7 +95,7 @@
                         </TextView>
 
                         <Button
-                            android:id="@id/join_chedan"
+                            android:id="@+id/join_chedan"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dip"
@@ -114,7 +114,7 @@
                         android:paddingTop="10dip" >
 
                         <TextView
-                            android:id="@id/join_detail_text_record"
+                            android:id="@+id/join_detail_text_record"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -124,16 +124,16 @@
                         </TextView>
 
                         <LinearLayout
-                            android:id="@id/join_detail_linear_record"
+                            android:id="@+id/join_detail_linear_record"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_gravity="center_vertical"
-                            android:layout_toRightOf="@id/join_detail_text_record" >
+                            android:layout_toRightOf="@+id/join_detail_text_record" >
                         </LinearLayout>
 
                         <Button
-                            android:id="@id/join_dingzhi"
+                            android:id="@+id/join_dingzhi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -145,7 +145,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@id/fangan"
+                    android:id="@+id/fangan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -156,7 +156,7 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:id="@id/fanganxiangqing"
+                    android:id="@+id/fanganxiangqing"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
@@ -165,7 +165,7 @@
                     android:padding="5dip" >
 
                     <TextView
-                        android:id="@id/join_detail_text_num"
+                        android:id="@+id/join_detail_text_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -175,7 +175,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_text_lotno"
+                        android:id="@+id/join_detail_text_lotno"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -185,7 +185,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_text_time"
+                        android:id="@+id/join_detail_text_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -195,7 +195,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_text_beishu"
+                        android:id="@+id/join_detail_text_beishu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -205,7 +205,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_text_batchcode"
+                        android:id="@+id/join_detail_text_batchcode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -228,7 +228,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_atm"
+                            android:id="@+id/join_detail_text_atm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -239,7 +239,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@id/join_detail_text_zuidirengou"
+                        android:id="@+id/join_detail_text_zuidirengou"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -249,7 +249,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_tex_progress"
+                        android:id="@+id/join_detail_tex_progress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -272,7 +272,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_rengou_atm"
+                            android:id="@+id/join_detail_text_rengou_atm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -296,7 +296,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_baodi_atm"
+                            android:id="@+id/join_detail_text_baodi_atm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -306,7 +306,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@id/join_detail_text_state"
+                        android:id="@+id/join_detail_text_state"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -316,7 +316,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_text_faqirengou"
+                        android:id="@+id/join_detail_text_faqirengou"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -325,7 +325,7 @@
                         android:textSize="13dip" />
 
                     <TextView
-                        android:id="@id/join_detail_text_get"
+                        android:id="@+id/join_detail_text_get"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -348,7 +348,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_shengyu_atm"
+                            android:id="@+id/join_detail_text_shengyu_atm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="10dip"
@@ -359,7 +359,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@id/join_detail_text_person"
+                        android:id="@+id/join_detail_text_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -369,7 +369,7 @@
                     </TextView>
 
                     <TextView
-                        android:id="@id/join_detail_text_describe"
+                        android:id="@+id/join_detail_text_describe"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip"
@@ -380,7 +380,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@id/leirong"
+                    android:id="@+id/leirong"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -391,7 +391,7 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:id="@id/fanganleirong"
+                    android:id="@+id/fanganleirong"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
@@ -405,13 +405,13 @@
                         android:orientation="vertical" >
 
                         <LinearLayout
-                            android:id="@id/join_detail_layout_context"
+                            android:id="@+id/join_detail_layout_context"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical" >
 
                             <TextView
-                                android:id="@id/join_detail_text_context"
+                                android:id="@+id/join_detail_text_context"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:text=""
@@ -423,7 +423,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@id/rengou"
+                    android:id="@+id/rengou"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -435,7 +435,7 @@
                     android:visibility="gone" />
 
                 <Button
-                    android:id="@id/canyu"
+                    android:id="@+id/canyu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
@@ -446,7 +446,7 @@
                     android:textSize="18sp" />
 
                 <ListView
-                    android:id="@id/canyurenyuan"
+                    android:id="@+id/canyurenyuan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -468,7 +468,7 @@
                 </ImageButton>
 
                 <CheckBox
-                    android:id="@id/jion_info_check"
+                    android:id="@+id/jion_info_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="10dip"
@@ -479,15 +479,15 @@
         </ScrollView>
 
         <LinearLayout
-            android:id="@id/LinearLayout0000"
+            android:id="@+id/LinearLayout0000"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/LinearLayout0111"
+            android:layout_above="@+id/LinearLayout0111"
             android:paddingBottom="50dip"
             android:paddingLeft="10dip" >
 
             <LinearLayout
-                android:id="@id/LinearLayout10"
+                android:id="@+id/LinearLayout10"
                 android:layout_width="320dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="265dip"
@@ -495,7 +495,7 @@
                 android:orientation="horizontal" >
 
                 <ImageButton
-                    android:id="@id/join_detail_img_buy2"
+                    android:id="@+id/join_detail_img_buy2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -505,7 +505,7 @@
                 </ImageButton>
 
                 <ImageButton
-                    android:id="@id/join_detail_img_buy3"
+                    android:id="@+id/join_detail_img_buy3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -516,7 +516,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@id/LinearLayout0111"
+            android:id="@+id/LinearLayout0111"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -525,20 +525,20 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@id/rengoushezhi"
+                android:id="@+id/rengoushezhi"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="5dip" >
 
                 <LinearLayout
-                    android:id="@id/LinearLayout03"
+                    android:id="@+id/LinearLayout03"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@id/join_detail_text_rengou_amt"
+                        android:id="@+id/join_detail_text_rengou_amt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="可认购金额："
@@ -547,7 +547,7 @@
                     </TextView>
 
                     <LinearLayout
-                        android:id="@id/LinearLayout03"
+                        android:id="@+id/LinearLayout03"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip" >
@@ -561,7 +561,7 @@
                         </TextView>
 
                         <EditText
-                            android:id="@id/join_detail_edit_rengou"
+                            android:id="@+id/join_detail_edit_rengou"
                             android:layout_width="80sp"
                             android:layout_height="40sp"
                             android:numeric="integer"
@@ -569,7 +569,7 @@
                         </EditText>
 
                         <TextView
-                            android:id="@id/TextView01"
+                            android:id="@+id/TextView01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="元"
@@ -578,7 +578,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_rengou_progress"
+                            android:id="@+id/join_detail_text_rengou_progress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dip"
@@ -589,7 +589,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_rengou_min_amt"
+                            android:id="@+id/join_detail_text_rengou_min_amt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dip"
@@ -600,14 +600,14 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@id/LinearLayout03"
+                        android:id="@+id/LinearLayout03"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:visibility="gone" >
 
                         <TextView
-                            android:id="@id/join_detail_text_rengou_sheng"
+                            android:id="@+id/join_detail_text_rengou_sheng"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
@@ -616,7 +616,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_rengou_min"
+                            android:id="@+id/join_detail_text_rengou_min"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="10sp"
@@ -628,19 +628,19 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/LinearLayout03"
+                    android:id="@+id/LinearLayout03"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
                     <LinearLayout
-                        android:id="@id/LinearLayout03"
+                        android:id="@+id/LinearLayout03"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dip" >
 
                         <TextView
-                            android:id="@id/TextView01"
+                            android:id="@+id/TextView01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="我要保底："
@@ -649,7 +649,7 @@
                         </TextView>
 
                         <EditText
-                            android:id="@id/join_detail_edit_baodi"
+                            android:id="@+id/join_detail_edit_baodi"
                             android:layout_width="80sp"
                             android:layout_height="40sp"
                             android:numeric="integer"
@@ -657,7 +657,7 @@
                         </EditText>
 
                         <TextView
-                            android:id="@id/TextView01"
+                            android:id="@+id/TextView01"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="元"
@@ -666,7 +666,7 @@
                         </TextView>
 
                         <TextView
-                            android:id="@id/join_detail_text_baodi_progress"
+                            android:id="@+id/join_detail_text_baodi_progress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingLeft="20dip"
@@ -679,7 +679,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@id/join_detail_text_baodi_sheng"
+                    android:id="@+id/join_detail_text_baodi_sheng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -691,7 +691,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@id/join_detail_img_buy"
+                android:id="@+id/join_detail_img_buy"
                 android:layout_width="wrap_content"
                 android:layout_height="30dip"
                 android:layout_gravity="center_vertical|center_horizontal"

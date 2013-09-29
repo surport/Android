@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@id/expert_main_listview"
+        android:id="@+id/expert_main_listview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:dividerHeight="0dip"

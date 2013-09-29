@@ -10,7 +10,7 @@
         android:src="@drawable/progress_dialog_icon_inside" 
         android:layout_gravity="center"/>
 
-    <ImageView android:id="@id/imageView"
+    <ImageView android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/progress_dialog_icon_outside"

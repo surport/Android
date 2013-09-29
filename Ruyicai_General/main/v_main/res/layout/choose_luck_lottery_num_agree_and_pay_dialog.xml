@@ -5,62 +5,62 @@
 	<LinearLayout android:orientation="vertical"
 		android:layout_width="fill_parent" android:layout_height="wrap_content">
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_title"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_title"
 			android:gravity="center" android:layout_width="fill_parent"
 			android:layout_height="wrap_content" />
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text01"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text01"
 			android:layout_width="fill_parent" android:layout_height="wrap_content" />
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text02"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text02"
 			android:text="@string/zhuma" android:layout_width="fill_parent"
 			android:layout_height="wrap_content" />
 
 		<LinearLayout
-			android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout01"
+			android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout01"
 			android:orientation="horizontal" android:layout_marginRight="20dip"
 			android:layout_marginTop="6dip" android:layout_marginBottom="6dip"
 			android:layout_width="260dip" android:layout_height="wrap_content" />
 
 		<LinearLayout
-			android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout02"
+			android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout02"
 			android:orientation="horizontal" android:layout_marginRight="20dip"
 			android:layout_marginTop="6dip" android:layout_marginBottom="6dip"
 			android:layout_width="260dip" android:layout_height="wrap_content" />
 
 		<LinearLayout
-			android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout03"
+			android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout03"
 			android:orientation="horizontal" android:layout_marginRight="20dip"
 			android:layout_marginTop="6dip" android:layout_marginBottom="6dip"
 			android:layout_width="260dip" android:layout_height="wrap_content" />
 
 		<LinearLayout
-			android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout04"
+			android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout04"
 			android:orientation="horizontal" android:layout_marginRight="20dip"
 			android:layout_marginTop="6dip" android:layout_marginBottom="6dip"
 			android:layout_width="260dip" android:layout_height="wrap_content" />
 
 		<LinearLayout
-			android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout05"
+			android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_linearlayout05"
 			android:orientation="horizontal" android:layout_marginRight="10dip"
 			android:layout_marginTop="6dip" android:layout_marginBottom="6dip"
 			android:layout_width="260dip" android:layout_height="wrap_content" />
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text03"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text03"
 			android:layout_width="fill_parent" android:layout_height="wrap_content" />
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text04"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text04"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
 		</TextView>
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text05"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text05"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
 		</TextView>
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text06"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text06"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
 		</TextView>
 
-		<TextView android:id="@id/choose_luck_lottery_num_agree_and_pay_dialog_text07"
+		<TextView android:id="@+id/choose_luck_lottery_num_agree_and_pay_dialog_text07"
 			android:layout_width="fill_parent" android:layout_height="wrap_content">
 		</TextView>
 

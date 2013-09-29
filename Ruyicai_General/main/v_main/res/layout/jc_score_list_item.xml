@@ -12,7 +12,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@id/jc_europe_list_item_text_company"
+            android:id="@+id/jc_europe_list_item_text_company"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -73,7 +73,7 @@
             android:orientation="vertical" >
             
             <TextView
-                    android:id="@id/jc_europe_list_item_text_center_win"
+                    android:id="@+id/jc_europe_list_item_text_center_win"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -88,7 +88,7 @@
                 android:background="@color/zc_sfc_divider" />
             
             <TextView
-                    android:id="@id/jc_europe_list_item_text_right_win"
+                    android:id="@+id/jc_europe_list_item_text_right_win"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -113,7 +113,7 @@
             android:orientation="vertical" >
             
               <TextView
-                    android:id="@id/jc_europe_list_item_text_center_leve"
+                    android:id="@+id/jc_europe_list_item_text_center_leve"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -128,7 +128,7 @@
                 android:background="@color/zc_sfc_divider" />
               
               <TextView
-                    android:id="@id/jc_europe_list_item_text_right_leve"
+                    android:id="@+id/jc_europe_list_item_text_right_leve"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -153,7 +153,7 @@
             android:orientation="vertical" >
               
             <TextView
-                    android:id="@id/jc_europe_list_item_text_center_fail"
+                    android:id="@+id/jc_europe_list_item_text_center_fail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -168,7 +168,7 @@
                 android:background="@color/zc_sfc_divider" />
             
             <TextView
-                    android:id="@id/jc_europe_list_item_text_right_fail"
+                    android:id="@+id/jc_europe_list_item_text_right_fail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"

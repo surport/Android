@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@id/buy_jc_recommend_main_listview"
+        android:id="@+id/buy_jc_recommend_main_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/list_bg_white"

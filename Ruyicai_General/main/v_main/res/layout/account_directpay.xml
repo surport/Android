@@ -6,14 +6,14 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/directpay_relativelayout_title"
+        android:id="@+id/directpay_relativelayout_title"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:background="@drawable/shouye_top"
         android:gravity="center_vertical" >
 
         <TextView
-            android:id="@id/directpay_textview_title"
+            android:id="@+id/directpay_textview_title"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center_vertical"
@@ -24,7 +24,7 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@id/directpay_listview_paymethod"
+        android:id="@+id/directpay_listview_paymethod"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/white"

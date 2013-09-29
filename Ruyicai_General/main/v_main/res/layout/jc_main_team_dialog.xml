@@ -22,7 +22,7 @@
                 android:layout_height="40dip" >
 
                 <Button
-                    android:id="@id/all_check"
+                    android:id="@+id/all_check"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -34,7 +34,7 @@
                 </Button>
 
                 <Button
-                    android:id="@id/clear_check"
+                    android:id="@+id/clear_check"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dip"
@@ -47,7 +47,7 @@
                 </Button>
 
                 <Button
-                    android:id="@id/ok"
+                    android:id="@+id/ok"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dip"
@@ -61,7 +61,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@id/jc_linear_check_all"
+                android:id="@+id/jc_linear_check_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"

@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@id/buy_zixuan_linear_top"
+        android:id="@+id/buy_zixuan_linear_top"
         android:layout_width="fill_parent"
         android:layout_height="45dip"
         android:layout_marginLeft="10dip"
@@ -16,7 +16,7 @@
         android:visibility="gone" >
 
         <LinearLayout
-            android:id="@id/buy_zixuan_linear_top_one"
+            android:id="@+id/buy_zixuan_linear_top_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -24,14 +24,14 @@
             android:visibility="gone" >
 
             <Button
-                android:id="@id/buy_zixuan_button_zu3"
+                android:id="@+id/buy_zixuan_button_zu3"
                 android:layout_width="60dip"
                 android:layout_height="wrap_content"
                 android:text="" >
             </Button>
 
             <Button
-                android:id="@id/buy_zixuan_button_zu6"
+                android:id="@+id/buy_zixuan_button_zu6"
                 android:layout_width="60dip"
                 android:layout_height="wrap_content"
                 android:text="" >
@@ -39,14 +39,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@id/buy_zixuan_linear_top_two"
+            android:id="@+id/buy_zixuan_linear_top_two"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:visibility="gone" >
 
             <RadioGroup
-                android:id="@id/buy_zixuan_radiogroup_top"
+                android:id="@+id/buy_zixuan_radiogroup_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -55,45 +55,45 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/sscchildtype"
+        android:id="@+id/sscchildtype"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:visibility="gone" >
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/buyview"
+        android:id="@+id/buyview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <RelativeLayout
-            android:id="@id/RelativeLayout01"
+            android:id="@+id/RelativeLayout01"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
             <android.support.v4.view.ViewPager
-                android:id="@id/buy_zixuan_viewpager"
+                android:id="@+id/buy_zixuan_viewpager"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center" android:paddingBottom="80dip">
             </android.support.v4.view.ViewPager>
 
             <LinearLayout
-                android:id="@id/buy_activity_layout_view"
+                android:id="@+id/buy_activity_layout_view"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
             </LinearLayout>
 
             <LinearLayout
-                android:id="@id/buy_activity_bottom_layout"
+                android:id="@+id/buy_activity_bottom_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/buy_zixuan_relativelayout"
+                android:layout_above="@+id/buy_zixuan_relativelayout"
                 android:background="@drawable/buy_zhuma_bg"
                 android:gravity="center_vertical" >
 
                 <TextView
-                    android:id="@id/buy_zixuan_text_sum_money"
+                    android:id="@+id/buy_zixuan_text_sum_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
@@ -103,7 +103,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@id/buy_zixuan_text_title_shu"
+                    android:id="@+id/buy_zixuan_text_title_shu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" | "
@@ -113,7 +113,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@id/buy_zixuan_text_title"
+                    android:id="@+id/buy_zixuan_text_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="已选:"
@@ -122,7 +122,7 @@
                 </TextView>
 
                 <EditText
-                    android:id="@id/buy_zixuan_edit_zhuma"
+                    android:id="@+id/buy_zixuan_edit_zhuma"
                     android:layout_width="wrap_content"
                     android:layout_height="27dip"
                     android:background="@null"
@@ -137,7 +137,7 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@id/buy_zixuan_relativelayout"
+                android:id="@+id/buy_zixuan_relativelayout"
                 android:layout_width="fill_parent"
                 android:layout_height="50dip"
                 android:layout_alignParentBottom="true"
@@ -146,21 +146,21 @@
                 android:paddingRight="10dip" >
 
                 <RelativeLayout
-                    android:id="@id/buy_zixuan_relativelayout2"
+                    android:id="@+id/buy_zixuan_relativelayout2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true" >
 
                     <Button
-                        android:id="@id/buy_zixuan_img_add_delet"
+                        android:id="@+id/buy_zixuan_img_add_delet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/selecet_add" >
                     </Button>
 
                     <TextView
-                        android:id="@id/buy_zixuan_add_text_num"
+                        android:id="@+id/buy_zixuan_add_text_num"
                         android:layout_width="40dip"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -170,28 +170,28 @@
                         android:textSize="13dip" />
                 </RelativeLayout>
                 <Button
-                    android:id="@id/buy_zixuan_img_delele"
+                    android:id="@+id/buy_zixuan_img_delele"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dip"
-                    android:layout_toRightOf="@id/buy_zixuan_relativelayout2"
+                    android:layout_toRightOf="@+id/buy_zixuan_relativelayout2"
                     android:background="@drawable/delete" >
                 </Button>
                 <Button
-                    android:id="@id/buy_zixuan_img_add"
+                    android:id="@+id/buy_zixuan_img_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dip"
-                    android:layout_toRightOf="@id/buy_zixuan_img_delele"
+                    android:layout_toRightOf="@+id/buy_zixuan_img_delele"
                     android:background="@drawable/selecet_buy_add" >
                 </Button>
 
                 <Button
-                    android:id="@id/buy_zixuan_img_touzhu"
+                    android:id="@+id/buy_zixuan_img_touzhu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"

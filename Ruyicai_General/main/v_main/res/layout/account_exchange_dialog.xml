@@ -16,7 +16,7 @@
         android:textSize="20dip" />
 
     <TextView
-        android:id="@id/zfb_text_title"
+        android:id="@+id/zfb_text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -27,7 +27,7 @@
         android:textSize="18dip" />
 
     <LinearLayout
-        android:id="@id/LinearLayout01"
+        android:id="@+id/LinearLayout01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -35,7 +35,7 @@
         android:padding="10dip" >
 
         <Button
-            android:id="@id/canel"
+            android:id="@+id/canel"
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:layout_weight="1"
@@ -51,7 +51,7 @@
             android:background="@android:color/transparent" />
 
         <Button
-            android:id="@id/ok"
+            android:id="@+id/ok"
             android:layout_width="match_parent"
             android:layout_height="40dip"
             android:layout_weight="1"
@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@id/button_ok"
+        android:id="@+id/button_ok"
         android:layout_width="100dip"
         android:layout_height="40dip"
         android:layout_gravity="center_horizontal"

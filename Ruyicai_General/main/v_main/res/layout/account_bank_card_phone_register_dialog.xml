@@ -19,7 +19,7 @@
 					android:layout_width="wrap_content" android:layout_marginLeft="20dip"
 					android:layout_marginRight="20dip" android:text="@string/bank_card_phone_user_name"
 					android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
-				<EditText android:id="@id/bank_card_phone_user_name"
+				<EditText android:id="@+id/bank_card_phone_user_name"
 					android:layout_height="wrap_content" android:layout_width="fill_parent"
 					android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
 					android:scrollHorizontally="true" android:autoText="false"
@@ -31,7 +31,7 @@
 				android:layout_marginRight="20dip" android:text="@string/bank_card_phone_user_idnum"
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
 
-			<EditText android:id="@id/bank_card_phone_user_idnum"
+			<EditText android:id="@+id/bank_card_phone_user_idnum"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
 				android:scrollHorizontally="true" android:autoText="false"
@@ -42,7 +42,7 @@
 				android:layout_width="wrap_content" android:layout_marginLeft="20dip"
 				android:layout_marginRight="20dip" android:text="@string/bank_card_phone_open_bank"
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
-			<EditText android:id="@id/bank_card_phone_open_bank"
+			<EditText android:id="@+id/bank_card_phone_open_bank"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
 				android:scrollHorizontally="true" android:autoText="false"
@@ -55,7 +55,7 @@
 				android:layout_marginRight="20dip"
 				android:text="@string/bank_card_phone_open_bankuser_address"
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
-			<EditText android:id="@id/bank_card_phone_open_bankuser_address"
+			<EditText android:id="@+id/bank_card_phone_open_bankuser_address"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
 				android:scrollHorizontally="true" android:autoText="false"
@@ -67,7 +67,7 @@
 				android:layout_width="wrap_content" android:layout_marginLeft="20dip"
 				android:layout_marginRight="20dip" android:text="@string/bank_card_phone_bankid"
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
-			<EditText android:id="@id/bank_card_phone_bankid"
+			<EditText android:id="@+id/bank_card_phone_bankid"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
 				android:scrollHorizontally="true" android:autoText="false"
@@ -81,7 +81,7 @@
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
 			<LinearLayout android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:orientation="horizontal">
-				<EditText android:id="@id/bank_card_phone_recharge_value"
+				<EditText android:id="@+id/bank_card_phone_recharge_value"
 					android:layout_height="wrap_content" android:layout_width="fill_parent"
 					android:layout_marginLeft="20dip" android:scrollHorizontally="true"
 					android:autoText="false" android:capitalize="none"
@@ -98,7 +98,7 @@
 				android:layout_marginRight="20dip" android:text="@string/bank_card_phone_phoneNum"
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
 
-			<EditText android:id="@id/bank_card_phone_phone_num"
+			<EditText android:id="@+id/bank_card_phone_phone_num"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
 				android:layout_marginLeft="20dip" android:layout_marginRight="20dip"
 				android:scrollHorizontally="true" android:autoText="false"
@@ -106,7 +106,7 @@
 				android:numeric="integer" android:textAppearance="?android:attr/textAppearanceMedium" />
 			<TextView android:layout_height="wrap_content"
 				android:layout_width="wrap_content" android:layout_marginLeft="20dip"
-				android:layout_marginRight="20dip" android:id="@id/contentText"
+				android:layout_marginRight="20dip" android:id="@+id/contentText"
 				android:gravity="left" android:textAppearance="?android:attr/textAppearanceMedium" />
 		</LinearLayout>
 	</LinearLayout>

@@ -6,20 +6,20 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/usercenter_mainlayou_text_title"
+            android:id="@+id/usercenter_mainlayou_text_title"
             style="@style/UserTitleTextLeft"
             android:text="站内信" >
         </TextView>
     </RelativeLayout>
 
     <TextView
-        android:id="@id/informationtitle"
+        android:id="@+id/informationtitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -34,7 +34,7 @@
         android:background="@drawable/alert_litte" />
 
         <WebView
-            android:id="@id/letterview"
+            android:id="@+id/letterview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/white" />

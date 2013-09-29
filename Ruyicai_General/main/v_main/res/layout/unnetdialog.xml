@@ -12,7 +12,7 @@
 
         <TextView
             android:text="提示"
-            android:id="@id/zfb_text_title"
+            android:id="@+id/zfb_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -39,7 +39,7 @@
             android:textSize="18dip" />
     </LinearLayout>
     
-     <LinearLayout android:layout_below="@id/content"
+     <LinearLayout android:layout_below="@+id/content"
         android:layout_width="300dip"
         android:layout_height="wrap_content"
         android:background="@drawable/alert_bottom_bg"
@@ -48,7 +48,7 @@
         android:padding="10dip" >
 
       <Button
-          android:id="@id/ok"
+          android:id="@+id/ok"
           android:layout_width="100dip"
           android:layout_height="40dp"
           android:background="@drawable/join_info_btn_selecter"

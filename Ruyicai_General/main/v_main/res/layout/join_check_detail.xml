@@ -4,29 +4,29 @@
 	android:orientation="vertical" android:padding="20dp">
 	<LinearLayout android:layout_width="fill_parent" android:layout_alignParentTop="true"
 		android:layout_height="wrap_content" android:background="@drawable/shouye_top"
-		android:gravity="center_horizontal|clip_vertical" android:id="@id/join_check_top_linear">
-		<TextView android:text="合买详情" android:id="@id/alert_dialog_touzhu_text_title"
+		android:gravity="center_horizontal|clip_vertical" android:id="@+id/join_check_top_linear">
+		<TextView android:text="合买详情" android:id="@+id/alert_dialog_touzhu_text_title"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:textColor="@color/white" android:textSize="20dip"
 			android:paddingTop="7dip">
 		</TextView>
 	</LinearLayout>
-	<ScrollView android:id="@id/ScrollView01" android:paddingBottom="60dp" android:layout_below="@id/join_check_top_linear" 
+	<ScrollView android:id="@+id/ScrollView01" android:paddingBottom="60dp" android:layout_below="@+id/join_check_top_linear" 
 		android:layout_width="fill_parent" android:layout_height="fill_parent"
 		android:background="@color/white">
 		<LinearLayout android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:paddingLeft="15sp"
 			android:orientation="vertical">
-			<TextView android:text="彩        种：" android:id="@id/join_check_detail_text_lotno"
+			<TextView android:text="彩        种：" android:id="@+id/join_check_detail_text_lotno"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:textColor="@color/black" android:textSize="15sp"></TextView>
-			<TextView android:text="期        号：" android:id="@id/join_check_detail_text_betchcode"
+			<TextView android:text="期        号：" android:id="@+id/join_check_detail_text_betchcode"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:textColor="@color/black" android:textSize="15sp"></TextView>
-			<TextView android:text="参与时间：" android:id="@id/join_check_detail_text_time"
+			<TextView android:text="参与时间：" android:id="@+id/join_check_detail_text_time"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:textColor="@color/black" android:textSize="15sp"></TextView>
-			<TextView android:text="方案编号：" android:id="@id/join_check_detail_text_id"
+			<TextView android:text="方案编号：" android:id="@+id/join_check_detail_text_id"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:textColor="@color/black" android:textSize="15sp"></TextView>
 			<LinearLayout android:layout_width="fill_parent"
@@ -35,7 +35,7 @@
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
 				<TextView android:text=""
-					android:id="@id/join_check_detail_text_all_atm"
+					android:id="@+id/join_check_detail_text_all_atm"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/red" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -45,7 +45,7 @@
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
 				<TextView android:text=""
-					android:id="@id/join_check_detail_text_ren_atm"
+					android:id="@+id/join_check_detail_text_ren_atm"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/red" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -55,7 +55,7 @@
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
 				<TextView android:text=""
-					android:id="@id/join_check_detail_text_bao_atm"
+					android:id="@+id/join_check_detail_text_bao_atm"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/red" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -65,7 +65,7 @@
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
 				<TextView android:text=""
-					android:id="@id/join_check_detail_text_prize_atm"
+					android:id="@+id/join_check_detail_text_prize_atm"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/red" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -75,12 +75,12 @@
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
 				<TextView android:text=""
-					android:id="@id/join_check_detail_text_start_prize_atm"
+					android:id="@+id/join_check_detail_text_start_prize_atm"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/red" android:textSize="15sp"></TextView>
 			</LinearLayout>
 			<TextView android:text="进        度："
-				android:id="@id/join_check_detail_text_progress"
+				android:id="@+id/join_check_detail_text_progress"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:textColor="@color/black" android:textSize="15sp"></TextView>
 			<LinearLayout android:layout_width="fill_parent"
@@ -88,7 +88,7 @@
 				<TextView android:text="结        果：" android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
-				<TextView android:text="" android:id="@id/join_check_detail_text_result"
+				<TextView android:text="" android:id="@+id/join_check_detail_text_result"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/red" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -97,7 +97,7 @@
 				<TextView android:text="倍        数：" android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
-				<TextView android:text="" android:id="@id/join_check_detail_text_beishu"
+				<TextView android:text="" android:id="@+id/join_check_detail_text_beishu"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/black" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -106,7 +106,7 @@
 				<TextView android:text="方案内容：" android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
-				<TextView android:text="" android:id="@id/join_check_detail_text_zhuma"
+				<TextView android:text="" android:id="@+id/join_check_detail_text_zhuma"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/black" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -115,7 +115,7 @@
 				<TextView android:text="开奖号码：" android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:textColor="@color/black"
 					android:textSize="15sp"></TextView>
-				<TextView android:text="" android:id="@id/join_check_detail_text_kaijiang"
+				<TextView android:text="" android:id="@+id/join_check_detail_text_kaijiang"
 					android:layout_width="wrap_content" android:layout_height="wrap_content"
 					android:textColor="@color/black" android:textSize="15sp"></TextView>
 			</LinearLayout>
@@ -124,7 +124,7 @@
 	<LinearLayout android:layout_width="fill_parent" android:layout_alignParentBottom="true"
 		android:layout_height="60dip" android:background="@drawable/buy_bot_bg"
 		android:gravity="center_horizontal">
-		<Button android:id="@id/join_check_detail_cancel"
+		<Button android:id="@+id/join_check_detail_cancel"
 			android:text="关  闭" android:layout_width="80sp"
 			android:layout_height="40sp" android:layout_gravity="center_vertical"
 			android:background="@drawable/join_info_btn_selecter"

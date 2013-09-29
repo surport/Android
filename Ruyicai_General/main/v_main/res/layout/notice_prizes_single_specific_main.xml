@@ -7,7 +7,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/notice_prizes_single_specific_main_relative01"
+        android:id="@+id/notice_prizes_single_specific_main_relative01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
@@ -17,7 +17,7 @@
         android:visibility="gone" >
 
         <TextView
-            android:id="@id/notice_prizes_single_specific_title_id"
+            android:id="@+id/notice_prizes_single_specific_title_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -30,7 +30,7 @@
         <!-- 周黎鸣7.3将Button换成ImageButton -->
 
         <Button
-            android:id="@id/notice_prizes_single_specific_main_returnID"
+            android:id="@+id/notice_prizes_single_specific_main_returnID"
             android:layout_width="96dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -45,11 +45,11 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/notice_prizes_single_specific_main_relative01"
+        android:layout_below="@+id/notice_prizes_single_specific_main_relative01"
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@id/notice_beijing_single_item_play"
+            android:id="@+id/notice_beijing_single_item_play"
             android:layout_width="fill_parent"
             android:layout_height="50dip"
             android:background="@drawable/buy_bot_bg"
@@ -58,7 +58,7 @@
             android:visibility="gone" >
 
             <Button
-                android:id="@id/buy_lq_main_btn_type"
+                android:id="@+id/buy_lq_main_btn_type"
                 android:layout_width="110dip"
                 android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
@@ -71,7 +71,7 @@
             </Button>
 
             <Button
-                android:id="@id/notice_beijing_single_main_batch_code"
+                android:id="@+id/notice_beijing_single_main_batch_code"
                 android:layout_width="110dip"
                 android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
@@ -84,7 +84,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@id/notice_prizes_single_specific_listview"
+            android:id="@+id/notice_prizes_single_specific_listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@drawable/list_bg_white"

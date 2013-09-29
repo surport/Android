@@ -14,7 +14,7 @@
         android:gravity="center_vertical|center_horizontal" >
 
         <LinearLayout
-            android:id="@id/buy_group_layout1"
+            android:id="@+id/buy_group_layout1"
             android:layout_width="140dip"
             android:layout_height="30dip"
             android:layout_marginTop="5dip"
@@ -36,14 +36,14 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout android:id="@id/beijing_single_mani_history"
+    <LinearLayout android:id="@+id/beijing_single_mani_history"
         android:layout_width="wrap_content"
         android:layout_height="38dip"
         android:background="@drawable/buy_group_top_dw2"
         android:gravity="center_vertical|center_horizontal" >
 
         <LinearLayout
-            android:id="@id/buy_group_layout2"
+            android:id="@+id/buy_group_layout2"
             android:layout_width="140dip"
             android:layout_height="30dip"
             android:gravity="center_vertical"
@@ -65,7 +65,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/buy_group_one_layout6"
+        android:id="@+id/buy_group_one_layout6"
         android:layout_width="wrap_content"
         android:layout_height="38dip"
         android:background="@drawable/buy_group_top_dw2"
@@ -73,7 +73,7 @@
         android:visibility="gone" >
 
         <LinearLayout
-            android:id="@id/buy_group_layout6"
+            android:id="@+id/buy_group_layout6"
             android:layout_width="140dip"
             android:layout_height="30dip"
             android:gravity="center_vertical"
@@ -95,14 +95,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/buy_group_one_layout4"
+        android:id="@+id/buy_group_one_layout4"
         android:layout_width="wrap_content"
         android:layout_height="38dip"
         android:background="@drawable/buy_group_top_dw2"
         android:gravity="center_vertical|center_horizontal" >
 
         <LinearLayout
-            android:id="@id/buy_group_layout4"
+            android:id="@+id/buy_group_layout4"
             android:layout_width="140dip"
             android:layout_height="30dip"
             android:gravity="center_vertical"
@@ -124,14 +124,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/buy_group_one_layout3"
+        android:id="@+id/buy_group_one_layout3"
         android:layout_width="wrap_content"
         android:layout_height="38dip"
         android:background="@drawable/buy_group_top_dw2"
         android:gravity="center_vertical|center_horizontal" >
 
         <LinearLayout
-            android:id="@id/buy_group_layout3"
+            android:id="@+id/buy_group_layout3"
             android:layout_width="140dip"
             android:layout_height="30dip"
             android:gravity="center_vertical"
@@ -154,7 +154,7 @@
     <!-- 双色球添加模拟选号选项 -->
 
     <LinearLayout
-        android:id="@id/buy_group_one_layout5"
+        android:id="@+id/buy_group_one_layout5"
         android:layout_width="wrap_content"
         android:layout_height="38dip"
         android:background="@drawable/buy_group_top_dw2"
@@ -162,7 +162,7 @@
         android:visibility="gone" >
 
         <LinearLayout
-            android:id="@id/buy_group_layout5"
+            android:id="@+id/buy_group_layout5"
             android:layout_width="140dip"
             android:layout_height="30dip"
             android:gravity="center_vertical"

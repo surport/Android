@@ -6,20 +6,20 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/main_buy_title"
+        android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
 
         <TextView
-            android:id="@id/usercenter_mainlayou_text_title"
+            android:id="@+id/usercenter_mainlayou_text_title"
             style="@style/UserTitleTextLeft"
             android:text="@string/usercenter_mymessage" >
         </TextView>
 
         <!-- edit button -->
         <Button
-            android:id="@id/my_message_edit_button"
+            android:id="@+id/my_message_edit_button"
             android:layout_width="60dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -37,7 +37,7 @@
         android:src="@drawable/litt" />
 
     <TabHost
-        android:id="@id/usercenter_tab_host"
+        android:id="@+id/usercenter_tab_host"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -62,24 +62,24 @@
                 android:paddingBottom="50dp" >
                 
                 <LinearLayout
-                    android:id="@id/system_info"
+                    android:id="@+id/system_info"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
 
                 <LinearLayout
-                    android:id="@id/message"
+                    android:id="@+id/message"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
 
                 <LinearLayout
-                    android:id="@id/latter"
+                    android:id="@+id/latter"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" />
             </FrameLayout>
 
             <!--latter delete layout -->
             <LinearLayout
-                android:id="@id/usercenter_feedback_latter_edit_layout"
+                android:id="@+id/usercenter_feedback_latter_edit_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
@@ -90,7 +90,7 @@
                 android:visibility="gone" >
 
                 <Button
-                    android:id="@id/my_latter_select_all_button"
+                    android:id="@+id/my_latter_select_all_button"
                     android:layout_width="match_parent"
                     android:layout_height="30dip"
                     android:layout_centerVertical="true"
@@ -105,7 +105,7 @@
                     android:layout_height="30dip" />
 
                 <Button
-                    android:id="@id/my_latter_read_msg_button"
+                    android:id="@+id/my_latter_read_msg_button"
                     android:layout_width="match_parent"
                     android:layout_height="30dip"
                     android:layout_centerVertical="true"
@@ -120,7 +120,7 @@
                     android:layout_height="30dip" />
 
                 <Button
-                    android:id="@id/my_latter_delete_msg_button"
+                    android:id="@+id/my_latter_delete_msg_button"
                     android:layout_width="match_parent"
                     android:layout_height="30dip"
                     android:layout_centerVertical="true"
@@ -132,7 +132,7 @@
             </LinearLayout>
             <!-- message delete layout-->
             <LinearLayout
-                android:id="@id/usercenter_feedback_message_edit_layout"
+                android:id="@+id/usercenter_feedback_message_edit_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
@@ -143,7 +143,7 @@
                 android:visibility="gone" >
 
                 <Button
-                    android:id="@id/my_message_select_all_button"
+                    android:id="@+id/my_message_select_all_button"
                     android:layout_width="match_parent"
                     android:layout_height="30dip"
                     android:layout_centerVertical="true"
@@ -158,7 +158,7 @@
                     android:layout_height="30dip" />
 
                 <Button
-                    android:id="@id/my_message_delete_msg_button"
+                    android:id="@+id/my_message_delete_msg_button"
                     android:layout_width="match_parent"
                     android:layout_height="30dip"
                     android:layout_centerVertical="true"
@@ -172,7 +172,7 @@
             
 
             <LinearLayout
-                android:id="@id/usercenter_feedback_submitbtn_layout"
+                android:id="@+id/usercenter_feedback_submitbtn_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
@@ -180,7 +180,7 @@
                 android:gravity="center" >
 
                 <Button
-                    android:id="@id/usercenter_feedback_submitbtn"
+                    android:id="@+id/usercenter_feedback_submitbtn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/join_info_btn_selecter"

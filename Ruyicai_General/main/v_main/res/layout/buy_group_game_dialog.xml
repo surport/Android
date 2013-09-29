@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@id/linearLayout1"
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginBottom="20dip"
@@ -17,13 +17,13 @@
         android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@id/linearLayout1"
+            android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="50dip"
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@id/buy_group_game_title"
+                android:id="@+id/buy_group_game_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -33,7 +33,7 @@
             <!-- 关闭按钮 -->
 
             <Button
-                android:id="@id/buy_group_game_btn_cancel"
+                android:id="@+id/buy_group_game_btn_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -41,19 +41,19 @@
         </RelativeLayout>
 
         <ScrollView
-            android:id="@id/scrollView1"
+            android:id="@+id/scrollView1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 "
 
             <LinearLayout
-                android:id="@id/linearLayout1"
+                android:id="@+id/linearLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:padding="5dip" >
 
                 <TextView
-                    android:id="@id/buy_group_game_content"
+                    android:id="@+id/buy_group_game_content"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:lineSpacingExtra="5dip"

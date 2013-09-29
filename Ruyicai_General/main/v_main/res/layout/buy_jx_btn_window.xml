@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@id/linearLayout2"
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
@@ -15,7 +15,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@id/buy_jx_btn_layout"
+        android:id="@+id/buy_jx_btn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/buy_jx_btn_window_bg"

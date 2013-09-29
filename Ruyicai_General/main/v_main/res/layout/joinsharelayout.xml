@@ -6,7 +6,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@id/ruyihelper_listview_relative"
+        android:id="@+id/ruyihelper_listview_relative"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top"
@@ -14,7 +14,7 @@
         android:paddingLeft="10sp" >
 
         <Button
-            android:id="@id/ruyizhushou_btn_return"
+            android:id="@+id/ruyizhushou_btn_return"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -25,7 +25,7 @@
             android:visibility="invisible" />
 
         <TextView
-            android:id="@id/ruyipackage_title"
+            android:id="@+id/ruyipackage_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -39,19 +39,19 @@
 
     <TableLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@id/tableLayout1"
+        android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="#FFF" >
 
         <RelativeLayout
-            android:id="@id/tableRow_sharetosina"
+            android:id="@+id/tableRow_sharetosina"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp" >
 
             <ImageView
-                android:id="@id/img_sina"
+                android:id="@+id/img_sina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -63,7 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/img_sina"
+                android:layout_toRightOf="@+id/img_sina"
                 android:gravity="left|center_vertical"
                 android:text="@string/sharetosinaweibo"
                 android:textColor="#000"
@@ -85,14 +85,14 @@
             android:src="@drawable/litt" />
 
         <RelativeLayout
-            android:id="@id/tableRow_sharetotecent"
+            android:id="@+id/tableRow_sharetotecent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:visibility="gone" >
 
             <ImageView
-                android:id="@id/img_sina"
+                android:id="@+id/img_sina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -104,7 +104,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/img_sina"
+                android:layout_toRightOf="@+id/img_sina"
                 android:gravity="left|center_vertical"
                 android:text="@string/sharetotencentweibo"
                 android:textColor="#000"
@@ -126,13 +126,13 @@
             android:src="@drawable/litt" />
 
         <RelativeLayout
-            android:id="@id/tableRow_sharetorenren"
+            android:id="@+id/tableRow_sharetorenren"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp" >
 
             <ImageView
-                android:id="@id/img_sina"
+                android:id="@+id/img_sina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -144,7 +144,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/img_sina"
+                android:layout_toRightOf="@+id/img_sina"
                 android:gravity="left|center_vertical"
                 android:text="@string/sharetorenren"
                 android:textColor="#000"
@@ -166,13 +166,13 @@
             android:src="@drawable/litt" />
 
         <RelativeLayout
-            android:id="@id/tableRow_sharetomsg"
+            android:id="@+id/tableRow_sharetomsg"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp" >
 
             <ImageView
-                android:id="@id/img_sina"
+                android:id="@+id/img_sina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -184,7 +184,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/img_sina"
+                android:layout_toRightOf="@+id/img_sina"
                 android:gravity="left|center_vertical"
                 android:text="@string/sharetosms"
                 android:textColor="#000"

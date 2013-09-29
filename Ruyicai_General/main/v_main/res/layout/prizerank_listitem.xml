@@ -7,7 +7,7 @@
 	<!-- 中奖排行排名id -->
     <TextView android:layout_centerVertical="true" 
         android:layout_alignParentLeft="true"
-        android:id="@id/prizeRank_id"
+        android:id="@+id/prizeRank_id"
         android:layout_width="26dp"
         android:layout_height="26dp"
         android:textSize="17.5sp" android:gravity="center"
@@ -15,15 +15,15 @@
       />
 	<!-- 中奖排行中奖用户姓名 -->
     <TextView  android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/prizeRank_id"
-        android:id="@id/prizeRank_name" android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/prizeRank_id"
+        android:id="@+id/prizeRank_name" android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#724341"
          />
 	<!-- 中奖排行中奖金额 -->
     <TextView android:layout_centerVertical="true"
-        android:id="@id/prizeRank_number"
+        android:id="@+id/prizeRank_number"
         android:layout_width="100dp"
         android:gravity="right"
         android:layout_height="wrap_content"

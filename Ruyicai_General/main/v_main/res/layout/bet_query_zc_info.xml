@@ -15,11 +15,11 @@
             style="@style/style_jc_layoutt_little"
             android:layout_width="match_parent"
             android:layout_height="2dip"
-            android:layout_below="@id/bet_query_jc_info_layout" >
+            android:layout_below="@+id/bet_query_jc_info_layout" >
         </LinearLayout>
 
         <LinearLayout
-            android:id="@id/bet_query_jc_info_layout"
+            android:id="@+id/bet_query_jc_info_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -30,7 +30,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@id/bet_query_text_num"
+                android:id="@+id/bet_query_text_num"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@id/bet_query_text_team"
+                android:id="@+id/bet_query_text_team"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -62,7 +62,7 @@
 
 
             <TextView
-                android:id="@id/bet_query_text_check"
+                android:id="@+id/bet_query_text_check"
                 android:layout_width="85dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -82,7 +82,7 @@
             style="@style/style_jc_layoutt_little"
             android:layout_width="match_parent"
             android:layout_height="2dip"
-            android:layout_below="@id/bet_query_jc_info_layout" >
+            android:layout_below="@+id/bet_query_jc_info_layout" >
         </LinearLayout>
     </LinearLayout>
 
