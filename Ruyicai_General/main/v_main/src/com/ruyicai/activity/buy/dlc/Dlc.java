@@ -110,7 +110,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	private RelativeLayout relativeLayout;
 	private TextView betInfo;
 	private boolean isFirst = true;
-	
 	public AddView addView = new AddView(this);
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -138,6 +137,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
 	}
+
 	
 	private void updateAddMissViewNum() {
 		addView.updateTextNum();

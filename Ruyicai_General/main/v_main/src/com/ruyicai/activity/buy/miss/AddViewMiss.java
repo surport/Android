@@ -88,10 +88,6 @@ public class AddViewMiss {
 		this.zXActivity = zXActivity;
 	}
 
-	public ZixuanAndJiXuan getzJActivity() {
-		return zJActivity;
-	}
-
 	public void setzJActivity(ZixuanAndJiXuan zJActivity) {
 		this.zJActivity = zJActivity;
 	}

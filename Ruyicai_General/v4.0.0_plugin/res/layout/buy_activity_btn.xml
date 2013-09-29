@@ -11,7 +11,7 @@
         android:orientation="vertical" >
 
         <TabHost
-            android:id="@+id/buyactivity_tab_host"
+            android:id="@id/buyactivity_tab_host"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:visibility="gone" >
@@ -22,7 +22,7 @@
                 android:background="@null" >
 
                 <RelativeLayout
-                    android:id="@+id/tabLinear"
+                    android:id="@id/tabLinear"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -52,18 +52,18 @@
                     android:id="@android:id/tabcontent"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tabLinear" >
+                    android:layout_below="@id/tabLinear" >
 
                     <ListView
-                        android:id="@+id/prizeRank_week"
+                        android:id="@id/prizeRank_week"
                         style="@style/PrizeRankList" />
 
                     <ListView
-                        android:id="@+id/prizeRank_month"
+                        android:id="@id/prizeRank_month"
                         style="@style/PrizeRankList" />
 
                     <ListView
-                        android:id="@+id/prizeRank_total"
+                        android:id="@id/prizeRank_total"
                         style="@style/PrizeRankList" />
                 </FrameLayout>
             </RelativeLayout>

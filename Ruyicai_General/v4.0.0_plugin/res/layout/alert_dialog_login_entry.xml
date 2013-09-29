@@ -21,7 +21,7 @@
             android:paddingTop="5dp" >
 
             <Button
-                android:id="@+id/usercenter_btn_return"
+                android:id="@id/usercenter_btn_return"
                 android:layout_width="70sp"
                 android:layout_height="30sp"
                 android:layout_alignParentRight="true"
@@ -34,7 +34,7 @@
                 android:visibility="invisible" />
 
             <TextView
-                android:id="@+id/alert_login_title"
+                android:id="@id/alert_login_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -61,7 +61,7 @@
                 android:paddingBottom="3dip" >
 
                 <TextView
-                    android:id="@+id/phoneNum_view"
+                    android:id="@id/phoneNum_view"
                     android:layout_width="65dip"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
@@ -71,7 +71,7 @@
                     android:textColor="@color/black" />
 
                 <EditText
-                    android:id="@+id/phoneNum_edit"
+                    android:id="@id/phoneNum_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:capitalize="none"
@@ -92,7 +92,7 @@
                 android:paddingBottom="3dip" >
 
                 <TextView
-                    android:id="@+id/password_view"
+                    android:id="@id/password_view"
                     android:layout_width="65dip"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
@@ -101,7 +101,7 @@
                     android:textColor="@color/black" />
 
                 <EditText
-                    android:id="@+id/password_edit"
+                    android:id="@id/password_edit"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:autoText="false"
@@ -123,7 +123,7 @@
                 android:paddingLeft="35dip" >
 
                 <CheckBox
-                    android:id="@+id/auto_login_checkBox"
+                    android:id="@id/auto_login_checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -132,7 +132,7 @@
 
                 <!--
                 <CheckBox
-                    android:id="@+id/user_login_check_password"
+                    android:id="@id/user_login_check_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="使用明文密码"
@@ -141,7 +141,7 @@
                 -->
 
                 <CheckBox
-                    android:id="@+id/remember_password_checkBox"
+                    android:id="@id/remember_password_checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
@@ -158,7 +158,7 @@
             android:paddingTop="10sp" >
 
             <Button
-                android:id="@+id/login_button"
+                android:id="@id/login_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dip"
@@ -170,7 +170,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/doregister"
+            android:id="@id/doregister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -198,7 +198,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/findoutpassword"
+            android:id="@id/findoutpassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -225,7 +225,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/phoneofkefu"
+            android:id="@id/phoneofkefu"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -234,7 +234,7 @@
             >
 
             <TextView
-                android:id="@+id/kefulabe"
+                android:id="@id/kefulabe"
                 android:layout_width="120dip"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -247,7 +247,7 @@
                 android:layout_width="140dip"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/kefulabe"
+                android:layout_toRightOf="@id/kefulabe"
                 android:text="400-665-1000"
                 android:textColor="@color/red"
                 android:textSize="18sp" />
@@ -262,7 +262,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/logintosina"
+            android:id="@id/logintosina"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
@@ -271,7 +271,7 @@
             android:background="@drawable/usercentertop" >
 
             <ImageView
-                android:id="@+id/img_sina"
+                android:id="@id/img_sina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -285,7 +285,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/img_sina"
+                android:layout_toRightOf="@id/img_sina"
                 android:text="@string/loginwithsina"
                                 android:layout_centerVertical="true"
                 
@@ -303,14 +303,14 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/logintoqq"
+            android:id="@id/logintoqq"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
             android:background="@drawable/usercentermiddle" >
             <ImageView
-                android:id="@+id/img_sina"
+                android:id="@id/img_sina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -322,7 +322,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/img_sina"
+                android:layout_toRightOf="@id/img_sina"
                 android:layout_centerVertical="true"
                 android:text="@string/loginwithqq"
                 android:textColor="#000"
@@ -339,14 +339,14 @@
         </RelativeLayout>
         
         <RelativeLayout
-            android:id="@+id/loginto_zhifubao"
+            android:id="@id/loginto_zhifubao"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
             android:background="@drawable/usercenterbottom" >
             <ImageView
-                android:id="@+id/img_zhifubao"
+                android:id="@id/img_zhifubao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -358,7 +358,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_toRightOf="@+id/img_zhifubao"
+                android:layout_toRightOf="@id/img_zhifubao"
                 android:layout_centerVertical="true"
                 android:text="@string/loginwithzhifubao"
                 android:textColor="#000"

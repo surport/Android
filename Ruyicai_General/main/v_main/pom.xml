@@ -79,11 +79,6 @@
 
 		<dependency>
 			<groupId>com.ruyicai</groupId>
-			<artifactId>unionpay</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ruyicai</groupId>
 			<artifactId>huafubao</artifactId>
 			<version>1.0</version>
 		</dependency>
@@ -95,6 +90,16 @@
 		<dependency>
 			<groupId>com.ruyicai.mm</groupId>
 			<artifactId>mm</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ruyicai</groupId>
+			<artifactId>UPPayAssistEx</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ruyicai</groupId>
+			<artifactId>UPPayPluginEx</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>

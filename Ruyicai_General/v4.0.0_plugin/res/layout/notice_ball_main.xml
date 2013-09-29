@@ -8,7 +8,7 @@
     <!-- 显示选号栏 -->
 
     <RelativeLayout
-        android:id="@+id/notice_ball_relative_bottom"
+        android:id="@id/notice_ball_relative_bottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -16,7 +16,7 @@
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/notice_ball_text_code"
+            android:id="@id/notice_ball_text_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/notice_ball_text_code"
+            android:layout_toRightOf="@id/notice_ball_text_code"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -38,7 +38,7 @@
                 <!-- 选号红球 -->
 
                 <TextView
-                    android:id="@+id/notice_ball_red_text_code_one"
+                    android:id="@id/notice_ball_red_text_code_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -48,20 +48,20 @@
                 <!-- 选号蓝球 -->
 
                 <TextView
-                    android:id="@+id/notice_ball_blue_text_code_one"
+                    android:id="@id/notice_ball_blue_text_code_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/notice_ball_red_text_code"
+                    android:layout_toRightOf="@id/notice_ball_red_text_code"
                     android:textColor="@color/blue"
                     android:textSize="12dip" />
 
                 <TextView
-                    android:id="@+id/notice_ball_three_text_code_one"
+                    android:id="@id/notice_ball_three_text_code_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/notice_ball_red_text_code"
+                    android:layout_toRightOf="@id/notice_ball_red_text_code"
                     android:textColor="@color/blue"
                     android:textSize="12dip" />
             </LinearLayout>
@@ -74,31 +74,31 @@
                 <!-- 选号红球 -->
 
                 <TextView
-                    android:id="@+id/notice_ball_red_text_code_two"
+                    android:id="@id/notice_ball_red_text_code_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/notice_ball_text_code"
+                    android:layout_toRightOf="@id/notice_ball_text_code"
                     android:textColor="@color/red"
                     android:textSize="12dip" />
 
                 <!-- 选号蓝球 -->
 
                 <TextView
-                    android:id="@+id/notice_ball_blue_text_code_two"
+                    android:id="@id/notice_ball_blue_text_code_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/notice_ball_red_text_code"
+                    android:layout_toRightOf="@id/notice_ball_red_text_code"
                     android:textColor="@color/blue"
                     android:textSize="12dip" />
 
                 <TextView
-                    android:id="@+id/notice_ball_three_text_code_two"
+                    android:id="@id/notice_ball_three_text_code_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/notice_ball_red_text_code"
+                    android:layout_toRightOf="@id/notice_ball_red_text_code"
                     android:textColor="@color/blue"
                     android:textSize="12dip" />
             </LinearLayout>
@@ -107,7 +107,7 @@
         <!-- 选号投注按钮 -->
 
         <Button
-            android:id="@+id/notice_ball_btn_touzhu"
+            android:id="@id/notice_ball_btn_touzhu"
             android:layout_width="60dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -122,10 +122,10 @@
     <!-- 开奖走势页面滑动布局 -->
 
     <HorizontalScrollView
-        android:id="@+id/HorizontalScrollView01"
+        android:id="@id/HorizontalScrollView01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/notice_ball_relative_bottom" >
+        android:layout_above="@id/notice_ball_relative_bottom" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -134,7 +134,7 @@
             <!-- 底部选号栏 -->
 
             <LinearLayout
-                android:id="@+id/notice_ball_select_linear"
+                android:id="@id/notice_ball_select_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -142,13 +142,13 @@
             </LinearLayout>
 
             <ScrollView
-                android:id="@+id/ScrollView01"
+                android:id="@id/ScrollView01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/notice_ball_select_linear" >
+                android:layout_above="@id/notice_ball_select_linear" >
 
                 <LinearLayout
-                    android:id="@+id/notice_ball_main_linear"
+                    android:id="@id/notice_ball_main_linear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
@@ -160,14 +160,14 @@
     <!-- 玩法选择按钮 -->
 
     <Spinner
-        android:id="@+id/onedown_button_spinner"
+        android:id="@id/onedown_button_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible" >
     </Spinner>
 
     <Spinner
-        android:id="@+id/twodown_button_spinner"
+        android:id="@id/twodown_button_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible" >

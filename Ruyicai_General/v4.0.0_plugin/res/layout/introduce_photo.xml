@@ -4,17 +4,17 @@
     android:layout_height="fill_parent" >
 
     <RelativeLayout
-        android:id="@+id/relativeLayout1"
+        android:id="@id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
         <ImageView
-            android:id="@+id/imgview"
+            android:id="@id/imgview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
 
         <Button
-            android:id="@+id/introduce_img_btn"
+            android:id="@id/introduce_img_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

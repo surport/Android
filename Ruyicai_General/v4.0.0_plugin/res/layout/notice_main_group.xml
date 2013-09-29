@@ -7,7 +7,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/main_buy_title"
+        android:id="@id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shouye_top" >
@@ -15,7 +15,7 @@
         <!-- 标题文本 -->
 
         <TextView
-            android:id="@+id/layout_main_text_title"
+            android:id="@id/layout_main_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -28,7 +28,7 @@
 
         <!-- 升降序按钮 -->
         <Button
-            android:id="@+id/layout_main_img_return"
+            android:id="@id/layout_main_img_return"
             android:layout_width="70dip"
             android:layout_height="30dip"
             android:layout_alignParentRight="true"
@@ -49,7 +49,7 @@
     </LinearLayout>
 
     <TabHost
-        android:id="@+id/tab_host"
+        android:id="@id/tab_host"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 

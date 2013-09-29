@@ -26,14 +26,14 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:id="@+id/lotnoalarm_layout_time"
+                android:id="@id/lotnoalarm_layout_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:tag="9" >
 
                 <TextView
-                    android:id="@+id/lotnoalarm_textview_time"
+                    android:id="@id/lotnoalarm_textview_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -72,7 +72,7 @@
                     android:textColor="@color/black" />
 
                 <ToggleButton
-                    android:id="@+id/lotnoalarm_togglebutton_openvoice"
+                    android:id="@id/lotnoalarm_togglebutton_openvoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -123,7 +123,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_ssq"
+                        android:id="@id/lotno_alarm_togglebutton_ssq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -168,7 +168,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_dlt"
+                        android:id="@id/lotno_alarm_togglebutton_dlt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -213,7 +213,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_fc3d"
+                        android:id="@id/lotno_alarm_togglebutton_fc3d"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -225,7 +225,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/lotno_alarm_setting_ssq"
+                    android:id="@id/lotno_alarm_setting_ssq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -259,7 +259,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_qlc"
+                        android:id="@id/lotno_alarm_togglebutton_qlc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -271,7 +271,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/lotno_alarm_setting_ssq"
+                    android:id="@id/lotno_alarm_setting_ssq"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -305,7 +305,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_qxc"
+                        android:id="@id/lotno_alarm_togglebutton_qxc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -350,7 +350,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_pl3"
+                        android:id="@id/lotno_alarm_togglebutton_pl3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -395,7 +395,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_togglebutton_pl5"
+                        android:id="@id/lotno_alarm_togglebutton_pl5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -440,7 +440,7 @@
                         android:textColor="@color/black" />
 
                     <ToggleButton
-                        android:id="@+id/lotno_alarm_toggle_twentyfive"
+                        android:id="@id/lotno_alarm_toggle_twentyfive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

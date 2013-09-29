@@ -2,13 +2,13 @@
 <LinearLayout android:layout_width="fill_parent"
 	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content" android:background="#ffffff">
-	<RelativeLayout android:id="@+id/main_buy_title"
+	<RelativeLayout android:id="@id/main_buy_title"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:background="@drawable/shouye_top">
 		<TextView android:text="账户提现"
-			android:id="@+id/usercenter_mainlayou_text_title"
+			android:id="@id/usercenter_mainlayou_text_title"
 			style="@style/UserTitleTextLeft"></TextView>
-		<Button android:id="@+id/usercenter_accountdetail_img_return" android:background="@drawable/returnselecter"
+		<Button android:id="@id/usercenter_accountdetail_img_return" android:background="@drawable/returnselecter"
 			android:layout_width="wrap_content" android:layout_height="30dip"
 			android:layout_alignParentRight="true" android:layout_marginRight="10dip"
 			android:paddingLeft="10dip" android:paddingRight="10dip"
@@ -19,7 +19,7 @@
 	</RelativeLayout>
 	<ImageView android:src="@drawable/litt" android:layout_width="fill_parent"
 		android:layout_height="wrap_content" />
-	<TabHost android:id="@+id/usercenter_tab_host"
+	<TabHost android:id="@id/usercenter_tab_host"
 		android:layout_width="fill_parent" android:layout_height="fill_parent">
 		<RelativeLayout android:layout_width="fill_parent"
 			android:layout_height="fill_parent">
@@ -30,11 +30,11 @@
 				android:background="@color/white" android:layout_width="fill_parent"
 				android:layout_height="fill_parent" android:layout_below="@android:id/tabs"
 				android:layout_alignParentBottom="true">
-				<LinearLayout android:id="@+id/usercenterscroedetail"
+				<LinearLayout android:id="@id/usercenterscroedetail"
 					android:layout_width="fill_parent" android:layout_height="wrap_content" />
-			    <LinearLayout android:id="@+id/usercenterscroe_zfb"
+			    <LinearLayout android:id="@id/usercenterscroe_zfb"
 					android:layout_width="fill_parent" android:layout_height="wrap_content" />
-				<LinearLayout android:id="@+id/usercenterscroechange"
+				<LinearLayout android:id="@id/usercenterscroechange"
 					android:layout_width="fill_parent" android:layout_height="wrap_content" />
 			</FrameLayout>
 		</RelativeLayout>
