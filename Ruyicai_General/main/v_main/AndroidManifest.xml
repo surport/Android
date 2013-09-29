@@ -750,9 +750,8 @@
         <activity
             android:name="com.ruyicai.activity.account.ExchangeGoldActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait" />
-        
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.ruyicai.activity.account.AdWallActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -939,7 +938,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="tencent100305073" />
- <!-- 100380359 100381104 222222 -->
+                <!-- 100380359 100381104 222222 -->
             </intent-filter>
         </activity>
 
@@ -1058,6 +1057,22 @@
                 <category android:name="com.palmdream.RuyicaiAndroid" />
             </intent-filter>
         </activity>
+        <!-- 银联插件 -->
+        <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.UPPay" />
+        <activity
+            android:name="com.unionpay.uppay.PayActivityEx"
+            android:configChanges="orientation|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
 
         <service
             android:name="cn.jpush.android.service.DownloadService"
@@ -1095,14 +1110,14 @@
             android:enabled="true" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
- <!-- Required  用户注册SDK的intent -->
+                <!-- Required  用户注册SDK的intent -->
                 <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
- <!-- Required  用户接收SDK消息的intent -->
+                <!-- Required  用户接收SDK消息的intent -->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
- <!-- Required  用户接收SDK通知栏信息的intent -->
+                <!-- Required  用户接收SDK通知栏信息的intent -->
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
- <!-- Required  用户打开自定义通知栏的intent -->
+                <!-- Required  用户打开自定义通知栏的intent -->
                 <category android:name="com.palmdream.RuyicaiAndroid" />
             </intent-filter>
         </receiver>
@@ -1140,5 +1155,5 @@
     <uses-permission android:name="android.permission.WRITE_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 </manifest>
