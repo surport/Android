@@ -3,20 +3,17 @@ package com.ruyicai.activity.buy.jc.touzhu;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lthj.unipay.plugin.ca;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity;
-import com.ruyicai.activity.buy.jc.oddsprize.JCPrizePermutationandCombination;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
 
-import android.R.bool;
+
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -25,7 +22,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 /**
  * 投注选择项组类
