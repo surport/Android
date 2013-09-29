@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/informationitemlayout"
+    android:id="@id/informationitemlayout"
     android:layout_width="fill_parent"
     android:layout_height="40dip"
     android:background="@color/white"
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/canyumingcheng"
+        android:id="@id/canyumingcheng"
         android:layout_width="70dip"
         android:layout_height="40dip"
         android:layout_alignParentLeft="true"
@@ -17,10 +17,10 @@
     </TextView>
 
     <TextView
-        android:id="@+id/canyurchezi"
+        android:id="@id/canyurchezi"
         android:layout_width="wrap_content"
         android:layout_height="40dip"
-        android:layout_toRightOf="@+id/canyumingcheng"
+        android:layout_toRightOf="@id/canyumingcheng"
         android:gravity="center_vertical"
         android:paddingLeft="5dip"
         android:paddingRight="10dip"
@@ -31,10 +31,10 @@
     </TextView>
 
     <TextView
-        android:id="@+id/canyuriqi"
+        android:id="@id/canyuriqi"
         android:layout_width="wrap_content"
         android:layout_height="40dip"
-        android:layout_toRightOf="@+id/canyurchezi"
+        android:layout_toRightOf="@id/canyurchezi"
         android:gravity="center_vertical"
         android:paddingLeft="5dip"
         android:paddingRight="10dip"
@@ -43,7 +43,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/canyujine"
+        android:id="@id/canyujine"
         android:layout_width="wrap_content"
         android:layout_height="40dip"
         android:layout_alignParentRight="true"

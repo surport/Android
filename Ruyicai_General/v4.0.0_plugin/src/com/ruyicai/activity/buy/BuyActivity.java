@@ -83,6 +83,7 @@ import com.ruyicai.net.newtransaction.TopNewsInformationInterface;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+import com.ruyicai.util.RuyicaiActivityManager;
 
 /**
  * 购彩大厅界面
@@ -513,7 +514,10 @@ public class BuyActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
-			ExitDialogFactory.createExitDialog(this);
+//			ExitDialogFactory.createExitDialog(this);
+			RuyicaiActivityManager.getInstance().exit();
+			PublicConst.islogin = false;
+			PublicConst.isthirdlogin = false;
 			break;
 		}
 		return false;
@@ -1023,12 +1027,10 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 		@Override
 		public void startUpdate(ViewGroup container) {
-			// Log.d(TAG, "PagerAdapter:startUpdate");
 		}
 
 		@Override
 		public int getItemPosition(Object object) {
-			// Log.d(TAG, "PagerAdapter:getItemPosition");
 			return POSITION_NONE;
 		}
 

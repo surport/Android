@@ -14,7 +14,7 @@
         <!-- 号码篮标题 -->
 
         <TextView
-            android:id="@+id/zfb_text_title"
+            android:id="@id/zfb_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -30,7 +30,7 @@
         android:orientation="vertical" >
 
         <ListView
-            android:id="@+id/buy_add_dialog_list"
+            android:id="@id/buy_add_dialog_list"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@drawable/list_bg_white"
@@ -42,17 +42,17 @@
         </ListView>
 
         <LinearLayout
-            android:id="@+id/LinearLayout01"
+            android:id="@id/LinearLayout01"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/buy_zixuan_bottom_layout"
+            android:layout_above="@id/buy_zixuan_bottom_layout"
             android:background="@drawable/buy_zhuma_bg"
             android:gravity="center_vertical" >
 
             <!-- 号码注数和金额提示 -->
 
             <TextView
-                android:id="@+id/buy_add_dialog_text_info"
+                android:id="@id/buy_add_dialog_text_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dip"
@@ -61,7 +61,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/buy_zixuan_bottom_layout"
+            android:id="@id/buy_zixuan_bottom_layout"
             android:layout_width="300dip"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -73,7 +73,7 @@
             <!-- 继续选号按钮 -->
 
             <Button
-                android:id="@+id/ok"
+                android:id="@id/ok"
                 android:layout_width="130dip"
                 android:layout_height="40dp"
                 android:background="@drawable/join_info_btn_selecter"
@@ -86,7 +86,7 @@
             <!-- 立即投注按钮 -->
 
             <Button
-                android:id="@+id/canel"
+                android:id="@id/canel"
                 android:layout_width="130dip"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"

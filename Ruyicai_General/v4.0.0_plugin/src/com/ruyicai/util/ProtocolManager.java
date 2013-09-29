@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import com.ruyicai.constant.ChannelConstants;
 import com.ruyicai.constant.Constants;
 
-import android.util.Log;
 
 /**
  * @author haojie 协议管理类<br>
@@ -355,7 +354,7 @@ public class ProtocolManager {
 			defaultJsonObject.put(ISZIP, Constants.ISCOMPRESS);
 			return defaultJsonObject;
 		} catch (JSONException e) {
-			Log.e(TAG, "获取公共参数出错啦");
+			e.printStackTrace();
 		}
 		return defaultJsonObject;
 	}

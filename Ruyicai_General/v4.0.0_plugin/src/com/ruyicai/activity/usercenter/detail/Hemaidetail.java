@@ -1004,7 +1004,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		// Toast.LENGTH_SHORT).show();
 		// }
 		else {
-			Log.e("dddddddd===", "" + amount);
 			joinInNet();
 		}
 

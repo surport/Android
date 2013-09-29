@@ -24,7 +24,6 @@ import android.text.InputType;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -360,7 +359,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 		showDialog(0); // 显示网络提示框 2010/7/4
 		TianxianOrRecord = 1;
 		// 加入是否改变切入点判断 陈晨 8.11
-		Log.v("page", pageindex + "");
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
 
@@ -854,7 +852,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 					shellRW.putStringValue("bankno", String.valueOf(money_brank
 							.getSelectedItemPosition()));
 					shellRW.putStringValue("banktruename", nameStr);
-					Log.e("bankname", nameStr);
 					bankNoStr = bankNoStr.replaceAll(" ", ""); //add by yejc 20130826
 					shellRW.putStringValue("bankid", bankNoStr);
 					changeWithdPojo.setType("1");// 1:普通提现;2支付宝提现

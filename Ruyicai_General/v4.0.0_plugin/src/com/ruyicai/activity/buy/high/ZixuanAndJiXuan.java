@@ -24,7 +24,6 @@ import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -2057,8 +2056,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				getMissNet(missJson, sellWay, isZHMiss);
 			}
 		}
-		Log.e("missView.get(radioId).isMissNet", ""
-				+ missView.get(radioId).isMissNet);
 	}
 
 	/**

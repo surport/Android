@@ -8,7 +8,6 @@ import com.ruyicai.constant.Constants;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.BaseAdapter;
@@ -89,7 +88,6 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 		String event = lotno + "_" + getCurrentIssue()
 				+ "_" + teamId;
 		intent.putExtra("event", event);
-		Log.i("yejc", "======event="+event);
 		intent.putExtra(LOTNO_ZC, LOTNO_ZC);
 		mContext.startActivity(intent);
 	}

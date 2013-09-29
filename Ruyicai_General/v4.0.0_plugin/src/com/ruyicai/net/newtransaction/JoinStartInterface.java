@@ -63,7 +63,6 @@ public class JoinStartInterface {
 	 *         余额不足; error_code = 999999,message = 操作失败;
 	 */
 	public String joinStart(BetAndGiftPojo betPojo) {
-		// Log.v("betandgift","betandgift");
 		JSONObject jsonProtocol = ProtocolManager.getInstance()
 				.getDefaultJsonProtocol();
 		try {

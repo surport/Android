@@ -80,10 +80,6 @@ public class AddView {
 		this.jXActivity = jXActivity;
 	}
 
-	public ZixuanAndJiXuan getzJActivity() {
-		return zJActivity;
-	}
-
 	public void setzJActivity(ZixuanAndJiXuan zJActivity) {
 		this.zJActivity = zJActivity;
 	}

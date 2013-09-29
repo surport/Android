@@ -6,7 +6,7 @@
     android:scrollbars="vertical" >
 
     <RelativeLayout
-        android:id="@+id/notice_detail_title"
+        android:id="@id/notice_detail_title"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@drawable/shouye_top"
@@ -24,7 +24,7 @@
             android:typeface="serif" />
 
         <Button
-            android:id="@+id/notice_return_main"
+            android:id="@id/notice_return_main"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -39,7 +39,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/notice_detail_title" >
+        android:layout_below="@id/notice_detail_title" >
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -47,16 +47,16 @@
             android:scrollbars="vertical" >
 
             <LinearLayout
-                android:id="@+id/notice_detail_2"
+                android:id="@id/notice_detail_2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/notice_detail_title"
+                android:layout_below="@id/notice_detail_title"
                 android:layout_margin="5dp"
                 android:background="@drawable/usercenter_bg"
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/prizedetail_batchcode"
+                    android:id="@id/prizedetail_batchcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="双色球 第2012025期"
@@ -65,7 +65,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/prizedetail_prizeData"
+                    android:id="@id/prizedetail_prizeData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -74,14 +74,14 @@
                     android:textSize="15sp" />
 
                 <LinearLayout
-                    android:id="@+id/prizedetail_numball"
+                    android:id="@id/prizedetail_numball"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp" >
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/prizedetail_totalsellmoney"
+                    android:id="@id/prizedetail_totalsellmoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -90,7 +90,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/prizedetail_prizepoolmoney"
+                    android:id="@id/prizedetail_prizepoolmoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -100,10 +100,10 @@
             </LinearLayout>
 
             <TableLayout
-                android:id="@+id/notiece_tablelayout"
+                android:id="@id/notiece_tablelayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/notice_detail_2" >
+                android:layout_below="@id/notice_detail_2" >
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -141,15 +141,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename1"
+                            android:id="@id/prizedetail_prizename1"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum1"
+                            android:id="@id/prizedetail_prizenum1"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney1"
+                            android:id="@id/prizedetail_prizemoney1"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -161,15 +161,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename2"
+                            android:id="@id/prizedetail_prizename2"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum2"
+                            android:id="@id/prizedetail_prizenum2"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney2"
+                            android:id="@id/prizedetail_prizemoney2"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -181,15 +181,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename3"
+                            android:id="@id/prizedetail_prizename3"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum3"
+                            android:id="@id/prizedetail_prizenum3"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney3"
+                            android:id="@id/prizedetail_prizemoney3"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -201,15 +201,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename4"
+                            android:id="@id/prizedetail_prizename4"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum4"
+                            android:id="@id/prizedetail_prizenum4"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney4"
+                            android:id="@id/prizedetail_prizemoney4"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -221,15 +221,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename5"
+                            android:id="@id/prizedetail_prizename5"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum5"
+                            android:id="@id/prizedetail_prizenum5"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney5"
+                            android:id="@id/prizedetail_prizemoney5"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -241,15 +241,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename6"
+                            android:id="@id/prizedetail_prizename6"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum6"
+                            android:id="@id/prizedetail_prizenum6"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney6"
+                            android:id="@id/prizedetail_prizemoney6"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -262,15 +262,15 @@
                     <LinearLayout style="@style/prize_detail_linear_item" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename7"
+                            android:id="@id/prizedetail_prizename7"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum7"
+                            android:id="@id/prizedetail_prizenum7"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney7"
+                            android:id="@id/prizedetail_prizemoney7"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -280,19 +280,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear8"
+                        android:id="@id/notice_detail_linear8"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename8"
+                            android:id="@id/prizedetail_prizename8"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum8"
+                            android:id="@id/prizedetail_prizenum8"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney8"
+                            android:id="@id/prizedetail_prizemoney8"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -302,19 +302,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear9"
+                        android:id="@id/notice_detail_linear9"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename9"
+                            android:id="@id/prizedetail_prizename9"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum9"
+                            android:id="@id/prizedetail_prizenum9"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney9"
+                            android:id="@id/prizedetail_prizemoney9"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -324,19 +324,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear10"
+                        android:id="@id/notice_detail_linear10"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename10"
+                            android:id="@id/prizedetail_prizename10"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum10"
+                            android:id="@id/prizedetail_prizenum10"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney10"
+                            android:id="@id/prizedetail_prizemoney10"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -346,19 +346,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear11"
+                        android:id="@id/notice_detail_linear11"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename11"
+                            android:id="@id/prizedetail_prizename11"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum11"
+                            android:id="@id/prizedetail_prizenum11"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney11"
+                            android:id="@id/prizedetail_prizemoney11"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -368,19 +368,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear12"
+                        android:id="@id/notice_detail_linear12"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename12"
+                            android:id="@id/prizedetail_prizename12"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum12"
+                            android:id="@id/prizedetail_prizenum12"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney12"
+                            android:id="@id/prizedetail_prizemoney12"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -390,19 +390,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear13"
+                        android:id="@id/notice_detail_linear13"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename13"
+                            android:id="@id/prizedetail_prizename13"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum13"
+                            android:id="@id/prizedetail_prizenum13"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney13"
+                            android:id="@id/prizedetail_prizemoney13"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -412,19 +412,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear14"
+                        android:id="@id/notice_detail_linear14"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename14"
+                            android:id="@id/prizedetail_prizename14"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum14"
+                            android:id="@id/prizedetail_prizenum14"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney14"
+                            android:id="@id/prizedetail_prizemoney14"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -434,19 +434,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear15"
+                        android:id="@id/notice_detail_linear15"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename15"
+                            android:id="@id/prizedetail_prizename15"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum15"
+                            android:id="@id/prizedetail_prizenum15"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney15"
+                            android:id="@id/prizedetail_prizemoney15"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -456,19 +456,19 @@
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:id="@+id/notice_detail_linear16"
+                        android:id="@id/notice_detail_linear16"
                         style="@style/prize_detail_linear_item_after8" >
 
                         <TextView
-                            android:id="@+id/prizedetail_prizename16"
+                            android:id="@id/prizedetail_prizename16"
                             style="@style/prize_detail_textview_left" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizenum16"
+                            android:id="@id/prizedetail_prizenum16"
                             style="@style/prize_detail_textview_center" />
 
                         <TextView
-                            android:id="@+id/prizedetail_prizemoney16"
+                            android:id="@id/prizedetail_prizemoney16"
                             style="@style/prize_detail_textview_right" />
                     </LinearLayout>
                 </TableRow>
@@ -477,7 +477,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/notiece_tablelayout"
+                android:layout_below="@id/notiece_tablelayout"
                 android:gravity="center"
                 android:background="@drawable/noticebg" >
 
@@ -488,14 +488,14 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:gravity="center"
-                    android:id="@+id/tobet"
+                    android:id="@id/tobet"
                     android:background="@drawable/noticebutton"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/LinearLayout0000"
+        android:id="@id/LinearLayout0000"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -503,14 +503,14 @@
         android:paddingLeft="10dip" >
 
         <LinearLayout
-            android:id="@+id/LinearLayout10"
+            android:id="@id/LinearLayout10"
             android:layout_width="320dip"
             android:layout_height="wrap_content"
             android:background="@drawable/fenxiangbg"
             android:orientation="horizontal" >
 
             <ImageButton
-                android:id="@+id/join_detail_img_buy2"
+                android:id="@id/join_detail_img_buy2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -520,7 +520,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/join_detail_img_buy3"
+                android:id="@id/join_detail_img_buy3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

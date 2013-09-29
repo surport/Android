@@ -46,8 +46,10 @@ import com.ruyicai.interfaces.ReturnPage;
 import com.ruyicai.net.newtransaction.CancleAutoLoginInterface;
 import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
 import com.ruyicai.util.CallServicePhoneConfirm;
+import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+import com.ruyicai.util.RuyicaiActivityManager;
 import com.tencent.weibo.oauthv1.OAuthV1;
 import com.tencent.weibo.oauthv1.OAuthV1Client;
 import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
@@ -688,7 +690,10 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		switch (keyCode) {
 		case 4:
 			if (returnType == 0) {
-				ExitDialogFactory.createExitDialog(this);
+				RuyicaiActivityManager.getInstance().exit();
+				PublicConst.islogin = false;
+				PublicConst.isthirdlogin = false;
+//				ExitDialogFactory.createExitDialog(this);
 			} else {
 				showMoreListView();
 			}

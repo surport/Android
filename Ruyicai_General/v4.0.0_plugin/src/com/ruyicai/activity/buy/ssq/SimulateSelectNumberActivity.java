@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -206,7 +205,7 @@ public class SimulateSelectNumberActivity extends Activity implements
 				msg.arg2 = GET_PRIZEINFO_SUCCESS;
 			}
 		} catch (Exception e) {
-			Log.i(TAG, e.toString());
+			e.printStackTrace();
 		}
 	}
 
@@ -267,7 +266,7 @@ public class SimulateSelectNumberActivity extends Activity implements
 			}
 
 		} catch (JSONException e) {
-			Log.i(TAG, e.toString());
+			e.printStackTrace();
 		}
 	}
 

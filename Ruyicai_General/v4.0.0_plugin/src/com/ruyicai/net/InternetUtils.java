@@ -28,7 +28,6 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
-import android.util.Log;
 
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.Base64;
@@ -76,7 +75,6 @@ public class InternetUtils {
 	 * @return String 服务器相应字符串格式
 	 */
 	public static String GetMethodOpenHttpConnectJrt(String url) {
-		Log.e("url====", "" + url);
 		try {
 			HttpParams params = new BasicHttpParams();
 

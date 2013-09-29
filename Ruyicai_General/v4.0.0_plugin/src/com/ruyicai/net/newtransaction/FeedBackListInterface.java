@@ -46,7 +46,7 @@ public class FeedBackListInterface {
 			reValue = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 		} catch (Exception e) {
-			// Log.e(TAG, "softwareupeate error");
+			e.printStackTrace();
 		}
 		return reValue;
 

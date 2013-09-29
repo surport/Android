@@ -31,7 +31,6 @@ import android.os.Message;
 import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -708,7 +707,6 @@ public class UserLogin extends Activity implements TextWatcher {
 	private void setJpushAlias(String userno) {
 		LinkedHashSet<String> tags = new LinkedHashSet<String>();
 		tags.add(ChannelConstants.COOP_ID);
-		Log.i("Jpush", "我设置了用户别名：" + userno + "|" + tags.toString());
 		JPushInterface.setAliasAndTags(UserLogin.this, userno, tags);
 	}
 

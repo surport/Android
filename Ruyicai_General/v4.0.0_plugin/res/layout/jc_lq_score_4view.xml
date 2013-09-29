@@ -127,7 +127,7 @@
             android:layout_height="50dip" >
 
             <TextView
-                android:id="@+id/jc_lq_score_text_vteam"
+                android:id="@id/jc_lq_score_text_vteam"
                 android:layout_width="100dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -142,7 +142,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_v1"
+                android:id="@id/jc_lq_score_text_v1"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -158,7 +158,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_v2"
+                android:id="@id/jc_lq_score_text_v2"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -174,7 +174,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_v3"
+                android:id="@id/jc_lq_score_text_v3"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -190,7 +190,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_v4"
+                android:id="@id/jc_lq_score_text_v4"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -230,7 +230,7 @@
             android:layout_height="50dip" >
 
             <TextView
-                android:id="@+id/jc_lq_score_text_hteam"
+                android:id="@id/jc_lq_score_text_hteam"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -246,7 +246,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_h1"
+                android:id="@id/jc_lq_score_text_h1"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -262,7 +262,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_h2"
+                android:id="@id/jc_lq_score_text_h2"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -278,7 +278,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_h3"
+                android:id="@id/jc_lq_score_text_h3"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -294,7 +294,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/jc_lq_score_text_h4"
+                android:id="@id/jc_lq_score_text_h4"
                 android:layout_width="50dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

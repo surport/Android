@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -177,7 +176,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		public void handleMessage(Message msg) {
 			try {
 				String strRet = (String) msg.obj;
-				Log.e("strRet==", strRet);
 				switch (msg.what) {
 				case AlixId.RQF_PAY: {
 					//

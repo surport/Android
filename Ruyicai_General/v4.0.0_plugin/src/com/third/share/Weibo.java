@@ -26,7 +26,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.webkit.CookieSyncManager;
 
 /**
@@ -263,19 +262,16 @@ public class Weibo {
 				mAccessToken.setToken(values.getString(TOKEN));
 				mAccessToken.setExpiresIn(values.getString(EXPIRES));
 				if (isSessionValid()) {
-					// Log.d("Weibo-authorize",
 					// "Login Success! access_token=" + mAccessToken.getToken()
 					// + " expires="
 					// + mAccessToken.getExpiresIn());
 					mAuthDialogListener.onComplete(values);
 				} else {
-					// Log.d("Weibo-authorize",
 					// "Failed to receive access token");
 				}
 			}
 
 			public void onCancel() {
-				Log.d("Weibo-authorize", "Login canceled");
 				mAuthDialogListener.onCancel();
 			}
 		});

@@ -21,7 +21,6 @@ public class ForgetPasswordInterface {
 	}
 
 	public String forgetPasswordNet(String name, String phone) {
-		// Log.v("betandgift","betandgift");
 		JSONObject jsonProtocol = ProtocolManager.getInstance()
 				.getDefaultJsonProtocol();
 		try {

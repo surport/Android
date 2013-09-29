@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.ruyicai.activity.buy.jc.JcMainView.Info;
 import com.ruyicai.code.jc.JcType;
@@ -69,12 +68,9 @@ public class FootZJQ {
 					for (int j = 0; j < info.check.length; j++) {
 						if (info.check[j].isChecked()) {
 							aa[j] = Double.parseDouble((info.getVStrs())[j]);
-							Log.v("aa[" + j + "]", "" + aa[j]);
 						}
 					}
-					Log.v("aa.length", "" + aa.length);
 					double[] result = PublicMethod.getDoubleArrayNoZero(aa);
-					Log.e("result[0]", "" + result[0]);
 					oddsList.add(result);
 
 				} catch (NumberFormatException e) {

@@ -313,7 +313,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		} else {
 			betAndGift.setOneAmount("200");
 		}
-		// Log.v("sellway", betAndGift.getIsSellWays());
 		betAndGift.setSafeAmt(isNull(PublicMethod.toFen(isNull(safeEdit
 				.getText().toString()))));
 		betAndGift.setBuyAmt(isNull(PublicMethod.toFen(isNull(buyEdit.getText()

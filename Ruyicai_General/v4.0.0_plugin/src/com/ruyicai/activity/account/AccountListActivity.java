@@ -10,8 +10,11 @@ import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
+import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
+import com.ruyicai.util.RuyicaiActivityManager;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,7 +26,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -178,7 +180,6 @@ public class AccountListActivity extends Activity {
 	 * 列表响应事件
 	 */
 	private void onClickList() {
-		Log.v("textString", textString);
 		if ("支付宝充值(免手续费)".equals(textString)) {
 			if (isLogin()) {
 				Intent intent = new Intent(context, AlipaySecureActivity.class);
@@ -336,7 +337,10 @@ public class AccountListActivity extends Activity {
 			if (isonkey.equals("fasle")) {
 				this.finish();
 			} else {
-				ExitDialogFactory.createExitDialog(this);
+				RuyicaiActivityManager.getInstance().exit();
+				PublicConst.islogin = false;
+				PublicConst.isthirdlogin = false;
+//				ExitDialogFactory.createExitDialog(this);
 			}
 			break;
 		}

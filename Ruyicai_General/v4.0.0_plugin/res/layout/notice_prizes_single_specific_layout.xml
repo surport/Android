@@ -11,7 +11,7 @@
         android:orientation="vertical" >
 		<!-- 开机结果号码球 -->
         <LinearLayout
-            android:id="@+id/notice_pirzes_single_specific_ball_linearlayout"
+            android:id="@id/notice_pirzes_single_specific_ball_linearlayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
@@ -23,13 +23,13 @@
 
 		<!-- 开奖日期 -->
         <RelativeLayout
-            android:id="@+id/notice_pirzes_single_specific_finaldateandmoneysum_linearlayout"
+            android:id="@id/notice_pirzes_single_specific_finaldateandmoneysum_linearlayout"
             android:layout_width="wrap_content"
             android:layout_height="5dip"
-            android:layout_below="@+id/notice_pirzes_single_specific_ball_linearlayout" >
+            android:layout_below="@id/notice_pirzes_single_specific_ball_linearlayout" >
 
             <TextView
-                android:id="@+id/notice_prizes_single_specific_finalPrizesDate_id"
+                android:id="@id/notice_prizes_single_specific_finalPrizesDate_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -39,7 +39,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/notice_prizes_single_specific_totalSum_id"
+                android:id="@id/notice_prizes_single_specific_totalSum_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -50,14 +50,14 @@
 
         <!-- 期数 -->
         <RelativeLayout
-            android:id="@+id/notice_pirzes_single_specific_noticedateandissue_linearlayout"
+            android:id="@id/notice_pirzes_single_specific_noticedateandissue_linearlayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/notice_pirzes_single_specific_finaldateandmoneysum_linearlayout" 
-            android:layout_toLeftOf="@+id/notice_prizes_single_specific_img">
+            android:layout_below="@id/notice_pirzes_single_specific_finaldateandmoneysum_linearlayout" 
+            android:layout_toLeftOf="@id/notice_prizes_single_specific_img">
 
             <TextView
-                android:id="@+id/notice_prizes_single_specific_noticedDate_id"
+                android:id="@id/notice_prizes_single_specific_noticedDate_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -67,7 +67,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/notice_prizes_single_specific_issue_id"
+                android:id="@id/notice_prizes_single_specific_issue_id"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -78,7 +78,7 @@
 
         <!-- 详情图片按钮 -->
         <ImageView
-            android:id="@+id/notice_prizes_single_specific_img"
+            android:id="@id/notice_prizes_single_specific_img"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
