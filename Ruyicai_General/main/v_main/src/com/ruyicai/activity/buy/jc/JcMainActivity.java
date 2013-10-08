@@ -446,8 +446,8 @@ public class JcMainActivity extends Activity implements
 		viewType.setVisibility(View.VISIBLE);
 		teamLayersLayoutUp.setVisibility(View.VISIBLE);
 		PublicMethod.setLayoutHeight(45, teamLayersLayoutUp, context);
-		viewType.startAnimation(AnimationUtils.loadAnimation(this, 
-        		R.anim.jc_top_menu_window_enter));
+//		viewType.startAnimation(AnimationUtils.loadAnimation(this, 
+//        		R.anim.jc_top_menu_window_enter));
 		playLayersLayout.setVisibility(View.VISIBLE);
 		TextView text1 = (TextView) viewType
 				.findViewById(R.id.buy_lq_main_dialog_type1);
@@ -864,8 +864,8 @@ public class JcMainActivity extends Activity implements
 				teamLayersLayout.setVisibility(View.VISIBLE);
 				teamLayersLayoutUp.setVisibility(View.VISIBLE);
 				PublicMethod.setLayoutHeight(85, teamLayersLayoutUp, context);
-				teamSelectLayout.startAnimation(AnimationUtils.loadAnimation(
-						context, R.anim.jc_top_menu_window_enter));
+//				teamSelectLayout.startAnimation(AnimationUtils.loadAnimation(
+//						context, R.anim.jc_top_menu_window_enter));
 			} else {
 				showSelectedTeam();
 			}
