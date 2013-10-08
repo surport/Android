@@ -4,9 +4,11 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -15,13 +17,17 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.miss.AddViewMiss;
+import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
+import com.ruyicai.handler.HandlerMsg;
+import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 
-public class Nmk3Activity extends BuyActivityGroup {
+public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 	private int lesstime = 0;
 	public static String batchCode;
 	private String[] titles = { "和值", "三同号", "二同号", "不同号", "三连号" };
@@ -34,6 +40,8 @@ public class Nmk3Activity extends BuyActivityGroup {
 	private boolean isFirst = true;
 
 	public AddView addView = new AddView(this);
+	private Controller controller = null;
+	private Nmk3ActivityHandler handler = new Nmk3ActivityHandler(this);
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -153,8 +161,8 @@ public class Nmk3Activity extends BuyActivityGroup {
 		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
 		}
-		JSONObject obj = PublicMethod.getIssueJSONObject(Constants.LOTNO_NMK3);
-		setIssueJSONObject(obj);
+		controller = Controller.getInstance(Nmk3Activity.this);
+		controller.getIssueJSONObject(handler, Constants.LOTNO_NMK3);
 	}
 	
 	
@@ -171,4 +179,36 @@ public class Nmk3Activity extends BuyActivityGroup {
 		isFirst = false;
     }
 	/**add by yejc 20130918 end*/
+	class Nmk3ActivityHandler extends MyHandler {
+
+		public Nmk3ActivityHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			//super.handleMessage(msg);
+			if (controller != null) {
+				JSONObject obj = controller.getRtnJSONObject();
+				setIssueJSONObject(obj);
+			}
+		}
+	}
+	@Override
+	public void errorCode_0000() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void errorCode_000000() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Context getContext() {
+		// TODO Auto-generated method stub
+		return this;
+	}
 }

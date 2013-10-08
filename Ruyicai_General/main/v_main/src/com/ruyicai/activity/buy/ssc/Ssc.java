@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.ruyicai.activity.buy.HighFrequencyNoticeHistroyActivity;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
@@ -33,10 +35,11 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 	private int lesstime = 0;
 	private Class[] allId = { SscOneStar.class, SscTwoStar.class,
 			SscThreeStar.class, SscFiveStar.class, SscBigSmall.class };
-	private MyHandler handler = new MyHandler(this);
+	private SscHandler handler = new SscHandler(this);
 	private boolean isRun = true;// 线程是否运行变量
 	public AddView addView = new AddView(context);
 	private boolean isFirst = true;
+	private Controller controller = null;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -186,10 +189,8 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
 		}
 		ZixuanAndJiXuan.lotnoStr = Constants.LOTNO_SSC;
-		/**add by yejc 20130918 start*/
-		JSONObject obj = PublicMethod.getIssueJSONObject(Constants.LOTNO_SSC);
-		setIssueJSONObject(obj);
-		/**add by yejc 20130918 end*/
+		controller = Controller.getInstance(Ssc.this);
+		controller.getIssueJSONObject(handler, Constants.LOTNO_SSC);
 	}
 	
 	/**add by yejc 20130918 start*/
@@ -243,5 +244,21 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onDestroy()");
 		}
 		isRun = false;
+	}
+	/** add by yejc 20130624 end */
+	class SscHandler extends MyHandler {
+
+		public SscHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			//super.handleMessage(msg);
+			if (controller != null) {
+				JSONObject obj = controller.getRtnJSONObject();
+				setIssueJSONObject(obj);
+			}
+		}
 	}
 }
