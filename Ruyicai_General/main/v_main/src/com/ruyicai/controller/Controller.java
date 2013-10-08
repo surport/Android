@@ -28,27 +28,28 @@ import android.os.Message;
 import android.util.Log;
 
 public class Controller {
-    private static final String TAG = "Controller";
-    private static Controller sInstance;
-    private Context mContext;
-    private JSONObject jsonObj;
-    protected ProgressDialog dialog;
-    protected Controller(Context _context) {
-        mContext = _context;
-    }
+	private static final String TAG = "Controller";
+	private static Controller sInstance;
+	private Context mContext;
+	private JSONObject jsonObj;
+	protected ProgressDialog dialog;
 
-    /**
-     * Gets or creates the singleton instance of Controller.
-     */
-    public static Controller getInstance(Context _context) {
-        if (sInstance == null) {
-            sInstance = new Controller(_context);
-        } else {
-        	sInstance.mContext = _context;
-        }
-        return sInstance;
-    }
-    
+	protected Controller(Context _context) {
+		mContext = _context;
+	}
+
+	/**
+	 * Gets or creates the singleton instance of Controller.
+	 */
+	public static Controller getInstance(Context _context) {
+		if (sInstance == null) {
+			sInstance = new Controller(_context);
+		} else {
+			sInstance.mContext = _context;
+		}
+		return sInstance;
+	}
+
 	/**
 	 * 获取期号
 	 * 
@@ -61,13 +62,13 @@ public class Controller {
 		try {
 			issueStr = GetLotNohighFrequency.getInstance().getInfo(type);
 			JSONObject allIssue = new JSONObject(issueStr);
-			/**add by fansm 20130819 start*/
+			/** add by fansm 20130819 start */
 			String error_code = allIssue.getString("error_code");
-			/**add by fansm 20130819 end*/
+			/** add by fansm 20130819 end */
 			if (error_code.equals("0000")) {
 				// 成功获取到了期号信息
 				issueStr = allIssue.getString("batchcode");
-			} else{
+			} else {
 				issueStr = "";
 			}
 		} catch (JSONException e) {
@@ -75,45 +76,45 @@ public class Controller {
 		}
 		return issueStr;
 	}
-    
 	/**
-	 * 投注action
+	 * 获得高频彩旗号和剩余时间
+	 * @param lotno
 	 */
-   public void doBettingAction(final MyHandler handler,final BetAndGiftPojo betAndGift) {
-	   if (dialog != null) return;
-	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
-	   dialog.show();
-		// 加入是否改变切入点判断 陈晨 8.11
-		Thread t = new Thread(new Runnable() {
-			String str = "00";
+	public void getIssueJSONObject(final MyHandler handler,final String lotno) {
+		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					str = BetAndGiftInterface.getInstance().betOrGift(betAndGift);
-					JSONObject obj = new JSONObject(str);
-					final String msg = obj.getString("message");
-					final String error = obj.getString("error_code");
-					setRtnJSONObject(obj);
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
-					// TODO Auto-generated method stub			
-				} finally {
-					dialog.dismiss();
-					dialog = null;
+				String re = "";
+				re = GetLotNohighFrequency.getInstance().getInfo(lotno);
+				if (!"".equalsIgnoreCase(re)) {
+					try {
+						JSONObject obj = new JSONObject(re);
+						String error_code = obj.getString("error_code");
+						if (error_code.equals("0000")) {
+							// 成功获取到了期号信息
+							String msg = obj.getString("message");
+							setRtnJSONObject(obj);
+							handler.handleMsg(error_code, msg);
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
-		t.start();
-   }
+		thread.start();
+	}
 	/**
 	 * 投注action
 	 */
-  public void doBettingJoinAction(final MyHandler handler,final BetAndGiftPojo betAndGift) { 
-	   if (dialog != null) return;
-	   dialog = UserCenterDialog.onCreateDialog(mContext,mContext.getResources().getString(R.string.recommend_network_connection));
-	   dialog.show();
-	   
+	public void doBettingAction(final MyHandler handler,
+			final BetAndGiftPojo betAndGift) {
+		if (dialog != null)
+			return;
+		dialog = UserCenterDialog.onCreateDialog(mContext, mContext
+				.getResources()
+				.getString(R.string.recommend_network_connection));
+		dialog.show();
 		// 加入是否改变切入点判断 陈晨 8.11
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
@@ -121,7 +122,8 @@ public class Controller {
 			@Override
 			public void run() {
 				try {
-					str = JoinStartInterface.getInstance().joinStart(betAndGift);
+					str = BetAndGiftInterface.getInstance().betOrGift(
+							betAndGift);
 					JSONObject obj = new JSONObject(str);
 					final String msg = obj.getString("message");
 					final String error = obj.getString("error_code");
@@ -129,7 +131,7 @@ public class Controller {
 					handler.handleMsg(error, msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
-					// TODO Auto-generated method stub			
+					// TODO Auto-generated method stub
 				} finally {
 					dialog.dismiss();
 					dialog = null;
@@ -137,50 +139,96 @@ public class Controller {
 			}
 		});
 		t.start();
-  }
+	}
+
+	/**
+	 * 投注action
+	 */
+	public void doBettingJoinAction(final MyHandler handler,
+			final BetAndGiftPojo betAndGift) {
+		if (dialog != null)
+			return;
+		dialog = UserCenterDialog.onCreateDialog(mContext, mContext
+				.getResources()
+				.getString(R.string.recommend_network_connection));
+		dialog.show();
+
+		// 加入是否改变切入点判断 陈晨 8.11
+		Thread t = new Thread(new Runnable() {
+			String str = "00";
+
+			@Override
+			public void run() {
+				try {
+					str = JoinStartInterface.getInstance()
+							.joinStart(betAndGift);
+					JSONObject obj = new JSONObject(str);
+					final String msg = obj.getString("message");
+					final String error = obj.getString("error_code");
+					setRtnJSONObject(obj);
+					handler.handleMsg(error, msg);
+				} catch (JSONException e) {
+					e.printStackTrace();
+					// TODO Auto-generated method stub
+				} finally {
+					dialog.dismiss();
+					dialog = null;
+				}
+			}
+		});
+		t.start();
+	}
+
 	/**
 	 * 获取期号
+	 * 
 	 * @param handler
 	 * @param type
 	 * @return
 	 */
-	public void toNetIssue(final MyHandler handler,final String type) {
+	public void toNetIssue(final MyHandler handler, final String type) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				final String issue = toNetIssue(type);
-				handler.handleMsg("0000",issue);
+				handler.handleMsg("0000", issue);
 			}
 		}).start();
 	}
-   /**
-    * set return obj
-    * @param obj
-    */
-   public void setRtnJSONObject(JSONObject obj) {
-	   this.jsonObj = obj;
-   }
-   
-   /**
-    * get return obj
-    * @param obj
-    */
-   public JSONObject getRtnJSONObject() {
-	   return this.jsonObj;
-   }
-   
-   
-   /**
+
+	/**
+	 * set return obj
+	 * 
+	 * @param obj
+	 */
+	public void setRtnJSONObject(JSONObject obj) {
+		this.jsonObj = obj;
+	}
+
+	/**
+	 * get return obj
+	 * 
+	 * @param obj
+	 */
+	public JSONObject getRtnJSONObject() {
+		return this.jsonObj;
+	}
+
+	/**
 	 * 查询提现记录详情
 	 * 
 	 */
-	public void queryCashDetail(final MyHandler handler, final String cashdetailId) {
-		if (dialog != null && dialog.isShowing()) return;
-		dialog = UserCenterDialog.onCreateDialog(mContext, mContext .getResources()
+	public void queryCashDetail(final MyHandler handler,
+			final String cashdetailId) {
+		if (dialog != null && dialog.isShowing())
+			return;
+		dialog = UserCenterDialog.onCreateDialog(mContext, mContext
+				.getResources()
 				.getString(R.string.recommend_network_connection));
 		dialog.show();
 		Thread t = new Thread(new Runnable() {
 			String str = "00";
+
 			@Override
 			public void run() {
 				str = queryCashNet(cashdetailId);
@@ -213,9 +261,10 @@ public class Controller {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * 获取支付宝签名
+	 * 
 	 * @return
 	 */
 	public String getAlipaySign() {
@@ -224,7 +273,7 @@ public class Controller {
 		try {
 			jsonProtocol.put(ProtocolManager.COMMAND, "login");
 			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "alipaySign");
-			
+
 			String result = InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 			JSONObject obj = new JSONObject(result);
@@ -234,9 +283,10 @@ public class Controller {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * 查询email的绑定状态
+	 * 
 	 * @param lotno
 	 * @return
 	 */
@@ -275,13 +325,15 @@ public class Controller {
 		}).start();
 
 	}
-	
+
 	/**
 	 * 订单邮件开发设置
+	 * 
 	 * @param lotno
 	 * @return
 	 */
-	public void setOrderEmail(final Handler handler, final String lotno, final String state, final String userNo) {
+	public void setOrderEmail(final Handler handler, final String lotno,
+			final String state, final String userNo) {
 		new Thread(new Runnable() {
 
 			@Override
@@ -294,8 +346,10 @@ public class Controller {
 					jsonProtocol.put(ProtocolManager.LOTNO, lotno);
 					jsonProtocol.put(ProtocolManager.STATE, state);
 					jsonProtocol.put(ProtocolManager.USERNO, userNo);
-					String result = InternetUtils.GetMethodOpenHttpConnectSecurity(
-							Constants.LOT_SERVER, jsonProtocol.toString());
+					String result = InternetUtils
+							.GetMethodOpenHttpConnectSecurity(
+									Constants.LOT_SERVER,
+									jsonProtocol.toString());
 					JSONObject obj = new JSONObject(result);
 					String error_code = obj.getString("error_code");
 					Message msg = new Message();
@@ -313,34 +367,42 @@ public class Controller {
 					e.printStackTrace();
 				}
 			}
-			
+
 		}).start();
 	}
-	
-	
+
 	/**
 	 * 读取账户充值的显示状态
 	 */
 	public void readReChargeCenterState() {
 		final RWSharedPreferences shellRW = new RWSharedPreferences(mContext,
 				ShellRWConstants.ACCOUNT_DISPAY_STATE);
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("ch0001", Constants.YINLIAN_SOUND_DISPLAY_STATE);// 银联语音
-//		map.put("ch0002", Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE);//手机充值卡充值
-//		map.put("ch0005", Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE); //支付宝充值
-//		map.put("ch0006", Constants.YINLIAN_CARD_DISPLAY_STATE); //银联充值
-//		map.put("ch0007", Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE);//支付宝安全支付
-//		map.put("ch0008", Constants.BANK_RECHARGE_DISPLAY_STATE);//银行充值
-//		map.put("ch0010", Constants.LAKALA_PAYMENT_DISPLAY_STATE); //拉卡拉充值
-//		map.put("ch0011", Constants.UMPAY_DISPLAY_STATE);  //联动优势
-//		map.put("ch0012", Constants.UMPAY_PHONE_DISPLAY_STATE);  //联动优势话费充值
-		final String rechargeType[] = {"ch0001","ch0002","ch0005","ch0006","ch0007",
-				"ch0008","ch0010","ch0011","ch0012","ch0013","ch0014"};
-		final String rechargeTitle[] = {Constants.YINLIAN_SOUND_DISPLAY_STATE,Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE,
-				Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE,Constants.YINLIAN_CARD_DISPLAY_STATE,
-				Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE,Constants.BANK_RECHARGE_DISPLAY_STATE,
-				Constants.LAKALA_PAYMENT_DISPLAY_STATE,Constants.UMPAY_DISPLAY_STATE,
-				Constants.UMPAY_PHONE_DISPLAY_STATE,Constants.ADWALL_DISPLAY_STATE, Constants.EXCHANGE_DISPLAY_STATE};
+		// Map<String, String> map = new HashMap<String, String>();
+		// map.put("ch0001", Constants.YINLIAN_SOUND_DISPLAY_STATE);// 银联语音
+		// map.put("ch0002",
+		// Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE);//手机充值卡充值
+		// map.put("ch0005", Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE); //支付宝充值
+		// map.put("ch0006", Constants.YINLIAN_CARD_DISPLAY_STATE); //银联充值
+		// map.put("ch0007",
+		// Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE);//支付宝安全支付
+		// map.put("ch0008", Constants.BANK_RECHARGE_DISPLAY_STATE);//银行充值
+		// map.put("ch0010", Constants.LAKALA_PAYMENT_DISPLAY_STATE); //拉卡拉充值
+		// map.put("ch0011", Constants.UMPAY_DISPLAY_STATE); //联动优势
+		// map.put("ch0012", Constants.UMPAY_PHONE_DISPLAY_STATE); //联动优势话费充值
+		final String rechargeType[] = { "ch0001", "ch0002", "ch0005", "ch0006",
+				"ch0007", "ch0008", "ch0010", "ch0011", "ch0012", "ch0013",
+				"ch0014" };
+		final String rechargeTitle[] = { Constants.YINLIAN_SOUND_DISPLAY_STATE,
+				Constants.PHONE_RECHARGE_CARD_DISPLAY_STATE,
+				Constants.ZHIFUBAO_RECHARGE_DISPLAY_STATE,
+				Constants.YINLIAN_CARD_DISPLAY_STATE,
+				Constants.ZHIFUBAO_SECURE_PAYMENT_DISPLAY_STATE,
+				Constants.BANK_RECHARGE_DISPLAY_STATE,
+				Constants.LAKALA_PAYMENT_DISPLAY_STATE,
+				Constants.UMPAY_DISPLAY_STATE,
+				Constants.UMPAY_PHONE_DISPLAY_STATE,
+				Constants.ADWALL_DISPLAY_STATE,
+				Constants.EXCHANGE_DISPLAY_STATE };
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -350,15 +412,19 @@ public class Controller {
 					if (jsonObject != null) {
 						String error_code = jsonObject.getString("error_code");
 						if (error_code.equals("0000")) {
-							JSONArray jsonArray = jsonObject.getJSONArray("result");
+							JSONArray jsonArray = jsonObject
+									.getJSONArray("result");
 							for (int i = 0; i < rechargeType.length; i++) {
-								outer : for (int j = 0; j<jsonArray.length(); j++) {
-									JSONObject json = jsonArray.getJSONObject(j);
+								outer: for (int j = 0; j < jsonArray.length(); j++) {
+									JSONObject json = jsonArray
+											.getJSONObject(j);
 									if (json.has(rechargeType[i])) {
-										shellRW.putBooleanValue(rechargeTitle[i], true);
+										shellRW.putBooleanValue(
+												rechargeTitle[i], true);
 										break outer;
 									} else {
-										shellRW.putBooleanValue(rechargeTitle[i], false);
+										shellRW.putBooleanValue(
+												rechargeTitle[i], false);
 									}
 								}
 							}
@@ -370,10 +436,7 @@ public class Controller {
 			}
 		}).start();
 	}
-	
 
-	
-	
 	public void getFeedbackListNet(final Handler handler, final String userno) {
 		new Thread(new Runnable() {
 			@Override
@@ -399,4 +462,6 @@ public class Controller {
 			}
 		}).start();
 	}
+
+
 }

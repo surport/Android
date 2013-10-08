@@ -3029,17 +3029,4 @@ public class PublicMethod {
 		
 		return view;
 	}
-	
-	public static JSONObject getIssueJSONObject(String lotno) {
-		String re = "";
-		re = GetLotNohighFrequency.getInstance().getInfo(lotno);
-		if (!re.equalsIgnoreCase("")) {
-			try {
-				JSONObject obj = new JSONObject(re);
-				return obj;
-			} catch (Exception e) {
-			}
-		}
-		return null;
-	}
 }
