@@ -796,7 +796,10 @@ public class FootBallMainActivity extends Activity {
 					gameDialog = new BuyGameDialog(mContext, mLotnoArray[mPlayIndex], gameHandler);
 				}
 				gameDialog.showDialog();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+				
 			}
 		});
 
@@ -811,7 +814,10 @@ public class FootBallMainActivity extends Activity {
 				Intent intent = new Intent(FootBallMainActivity.this, NoticeZCActivity.class);
 				intent.putExtra("position", mPlayIndex);
 				startActivity(intent);
-				popupwindow.dismiss();
+				
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -834,7 +840,11 @@ public class FootBallMainActivity extends Activity {
 					intent.putExtra("lotno", Constants.LOTNO_ZC);
 					startActivity(intent);
 				}
-				popupwindow.dismiss();
+				
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+				
 			}
 
 		});

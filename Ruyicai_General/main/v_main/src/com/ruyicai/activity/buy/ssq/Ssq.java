@@ -69,7 +69,9 @@ public class Ssq extends BuyActivityGroup {
 				Intent intent = new Intent(Ssq.this,
 						SimulateSelectNumberActivity.class);
 				startActivity(intent);
-				popupwindow.dismiss();
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
 			}
 		});
 	}
