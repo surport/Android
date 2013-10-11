@@ -191,32 +191,27 @@ public class BettingSuccessActivity extends Activity {
 
 		betDetailButton = (Button) findViewById(R.id.ssq_bettingsuccess_betdetail);
 		betDetailButton.setOnClickListener(new ButtonOnClickListener());
-		if (lotnoString.equals(Constants.LOTNO_JCZQ_HUN)
-				|| lotnoString.equals(Constants.LOTNO_JCZQ)
-				|| lotnoString.equals(Constants.LOTNO_JCZQ_RQSPF)
-				|| lotnoString.equals(Constants.LOTNO_JCZQ_ZQJ)
-				|| lotnoString.equals(Constants.LOTNO_JCZQ_BF)
-				|| lotnoString.equals(Constants.LOTNO_JCZQ_BQC)
-				|| lotnoString.equals(Constants.LOTNO_ZC)
-				|| lotnoString.equals(Constants.LOTNO_JQC)
-				|| lotnoString.equals(Constants.LOTNO_LCB)
-				|| lotnoString.equals(Constants.LOTNO_SFC)
-				|| lotnoString.equals(Constants.LOTNO_RX9)
-				|| lotnoString.equals(Constants.LOTNO_JCLQ)
-				|| lotnoString.equals(Constants.LOTNO_JCLQ_RF)
-				|| lotnoString.equals(Constants.LOTNO_JCLQ_SFC)
-				|| lotnoString.equals(Constants.LOTNO_JCLQ_DXF)
-				|| lotnoString.equals(Constants.LOTNO_JCLQ_HUN)
-				|| lotnoString
-						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)
-				|| lotnoString
-						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
-				|| lotnoString
-						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
-				|| lotnoString
-						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
-				|| lotnoString
-						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+		if (Constants.LOTNO_JCZQ_HUN.equals(lotnoString)
+				|| Constants.LOTNO_JCZQ.equals(lotnoString)
+				|| Constants.LOTNO_JCZQ_RQSPF.equals(lotnoString)
+				|| Constants.LOTNO_JCZQ_ZQJ.equals(lotnoString)
+				|| Constants.LOTNO_JCZQ_BF.equals(lotnoString)
+				|| Constants.LOTNO_JCZQ_BQC.equals(lotnoString)
+				|| Constants.LOTNO_ZC.equals(lotnoString)
+				|| Constants.LOTNO_JQC.equals(lotnoString)
+				|| Constants.LOTNO_LCB.equals(lotnoString)
+				|| Constants.LOTNO_SFC.equals(lotnoString)
+				|| Constants.LOTNO_RX9.equals(lotnoString)
+				|| Constants.LOTNO_JCLQ.equals(lotnoString)
+				|| Constants.LOTNO_JCLQ_RF.equals(lotnoString)
+				|| Constants.LOTNO_JCLQ_SFC.equals(lotnoString)
+				|| Constants.LOTNO_JCLQ_DXF.equals(lotnoString)
+				|| Constants.LOTNO_JCLQ_HUN.equals(lotnoString)
+				|| Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS.equals(lotnoString)
+				|| Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS.equals(lotnoString)
+				|| Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL.equals(lotnoString)
+				|| Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE.equals(lotnoString)
+				|| Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE.equals(lotnoString)) {
 			betDetailButton.setVisibility(View.VISIBLE);
 		}
 
@@ -383,71 +378,71 @@ public class BettingSuccessActivity extends Activity {
 				intent.putExtra("isPosition", true);
 				intent.putExtra("position", 1);
 			} else {
-				if (lotnoString.equals(Constants.LOTNO_SSQ)) {
+				if (Constants.LOTNO_SSQ.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, Ssq.class);
-				} else if (lotnoString.equals(Constants.LOTNO_DLT)) {
+				} else if (Constants.LOTNO_DLT.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, Dlt.class);
-				} else if (lotnoString.equals(Constants.LOTNO_FC3D)) {
+				} else if (Constants.LOTNO_FC3D.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, Fc3d.class);
-				} else if (lotnoString.equals(Constants.LOTNO_11_5)) {
+				} else if (Constants.LOTNO_11_5.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, Dlc.class);
-				} else if (lotnoString.equals(Constants.LOTNO_SSC)) {
+				} else if (Constants.LOTNO_SSC.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, Ssc.class);
-				} else if (lotnoString.equals(Constants.LOTNO_JCZQ_HUN)
-						|| lotnoString.equals(Constants.LOTNO_JCZQ)
-						|| lotnoString.equals(Constants.LOTNO_JCZQ_RQSPF)
-						|| lotnoString.equals(Constants.LOTNO_JCZQ_ZQJ)
-						|| lotnoString.equals(Constants.LOTNO_JCZQ_BF)
-						|| lotnoString.equals(Constants.LOTNO_JCZQ_BQC)) {
+				} else if (Constants.LOTNO_JCZQ_HUN.equals(lotnoString)
+						|| Constants.LOTNO_JCZQ.equals(lotnoString)
+						|| Constants.LOTNO_JCZQ_RQSPF.equals(lotnoString)
+						|| Constants.LOTNO_JCZQ_ZQJ.equals(lotnoString)
+						|| Constants.LOTNO_JCZQ_BF.equals(lotnoString)
+						|| Constants.LOTNO_JCZQ_BQC.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							ZqMainActivity.class);
-				} else if (lotnoString.equals(Constants.LOTNO_NMK3)) {
+				} else if (Constants.LOTNO_NMK3.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							Nmk3Activity.class);
-				} else if (lotnoString.equals(Constants.LOTNO_eleven)) {
+				} else if (Constants.LOTNO_eleven.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							Eleven.class);
-				} else if (lotnoString.equals(Constants.LOTNO_GD_11_5)) {
+				} else if (Constants.LOTNO_GD_11_5.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							GdEleven.class);
-				} else if (lotnoString.equals(Constants.LOTNO_PL3)) {
+				} else if (Constants.LOTNO_PL3.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, PL3.class);
-				} else if (lotnoString.equals(Constants.LOTNO_QLC)) {
+				} else if (Constants.LOTNO_QLC.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, Qlc.class);
-				} else if (lotnoString.equals(Constants.LOTNO_22_5)) {
+				} else if (Constants.LOTNO_22_5.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							TwentyTwo.class);
-				} else if (lotnoString.equals(Constants.LOTNO_PL5)) {
+				} else if (Constants.LOTNO_PL5.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, PL5.class);
-				} else if (lotnoString.equals(Constants.LOTNO_QXC)) {
+				} else if (Constants.LOTNO_QXC.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this, QXC.class);
-				} else if (lotnoString.equals(Constants.LOTNO_ZC)
-						|| lotnoString.equals(Constants.LOTNO_JQC)
-						|| lotnoString.equals(Constants.LOTNO_LCB)
-						|| lotnoString.equals(Constants.LOTNO_SFC)
-						|| lotnoString.equals(Constants.LOTNO_RX9)) {
+				} else if (Constants.LOTNO_ZC.equals(lotnoString)
+						|| Constants.LOTNO_JQC.equals(lotnoString)
+						|| Constants.LOTNO_LCB.equals(lotnoString)
+						|| Constants.LOTNO_SFC.equals(lotnoString)
+						|| Constants.LOTNO_RX9.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							FootBallMainActivity.class);
-				} else if (lotnoString.equals(Constants.LOTNO_JCLQ)
-						|| lotnoString.equals(Constants.LOTNO_JCLQ_RF)
-						|| lotnoString.equals(Constants.LOTNO_JCLQ_SFC)
-						|| lotnoString.equals(Constants.LOTNO_JCLQ_DXF)
-						|| lotnoString.equals(Constants.LOTNO_JCLQ_HUN)) {
+				} else if (Constants.LOTNO_JCLQ.equals(lotnoString)
+						|| Constants.LOTNO_JCLQ_RF.equals(lotnoString)
+						|| Constants.LOTNO_JCLQ_SFC.equals(lotnoString)
+						|| Constants.LOTNO_JCLQ_DXF.equals(lotnoString)
+						|| Constants.LOTNO_JCLQ_HUN.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							LqMainActivity.class);
-				} else if (lotnoString.equals(Constants.LOTNO_ten)) {
+				} else if (Constants.LOTNO_ten.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							TenActivity.class);
-				} else if (lotnoString
-						.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)
-						|| lotnoString
-								.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
-						|| lotnoString
-								.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
-						|| lotnoString
-								.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
-						|| lotnoString
-								.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+				} else if (Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS
+						.equals(lotnoString)
+						|| Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS
+								.equals(lotnoString)
+						|| Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL
+								.equals(lotnoString)
+						|| Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE
+								.equals(lotnoString)
+						|| Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE
+								.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							BeiJingSingleGameActivity.class);
 				}
