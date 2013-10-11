@@ -377,11 +377,12 @@ public abstract class LotnoDetailView {
 				dialog.dismiss();
 			}
 		});
-		dialog.show();
-		dialog.getWindow().setContentView(view);
-		//add by yejc 20130802
-		dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-
+		if (context != null && !context.isFinishing()) {
+			dialog.show();
+			dialog.getWindow().setContentView(view);
+			//add by yejc 20130802
+			dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+		}
 	}
 
 }
