@@ -662,9 +662,7 @@ public class FeedbackListActivity extends Activity {
 					if ("0000".equals(strarry)) {
 						handler.sendEmptyMessage(1);
 					} else {
-						Toast.makeText(FeedbackListActivity.this,
-								R.string.feedback_network_connection_error,
-								Toast.LENGTH_LONG).show();
+						handler.sendEmptyMessage(13);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -830,12 +828,16 @@ public class FeedbackListActivity extends Activity {
 				sysInfoAdapter.notifyDataSetChanged();
 				break;
 				
-				//add by yejc 20130708
+			// add by yejc 20130708
 			case 11:
-				JSONArray feedBackArray = (JSONArray)msg.obj;
+				JSONArray feedBackArray = (JSONArray) msg.obj;
 				initListViewAfterNet(feedBackArray);
-				break;	
-
+				break;
+			case 13:
+				Toast.makeText(FeedbackListActivity.this,
+						R.string.feedback_network_connection_error,
+						Toast.LENGTH_LONG).show();
+				break;
 			default:
 				break;
 				/**add by yejc 20130423 end*/
