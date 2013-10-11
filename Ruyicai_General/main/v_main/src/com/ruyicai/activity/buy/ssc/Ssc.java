@@ -47,19 +47,23 @@ public class Ssc extends BuyActivityGroup implements HandlerMsg {
 		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), 
 				"onCreate()");
 		/*Add by fansm 20130418 end*/
-		batchCode = "";
-		setLotno(Constants.LOTNO_SSC);
-		setlastbatchcode(Constants.LOTNO_SSC);
-		time = (TextView) findViewById(R.id.layout_main_text_timessc);
-		time.setVisibility(View.VISIBLE);
-		refreshBtn.setVisibility(View.VISIBLE);
-		init(titles, topTitles, allId);
-		mTabHost.setCurrentTab(2);
-		setIssue();
-		MobclickAgent.onEvent(this, "shishicai"); // BY贺思明 点击首页的“时时彩”图标
-		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
-		relativeLayout1.setVisibility(View.GONE);
-		betInfoTextView.setVisibility(View.VISIBLE);
+		try {
+			batchCode = "";
+			setLotno(Constants.LOTNO_SSC);
+			setlastbatchcode(Constants.LOTNO_SSC);
+			time = (TextView) findViewById(R.id.layout_main_text_timessc);
+			time.setVisibility(View.VISIBLE);
+			refreshBtn.setVisibility(View.VISIBLE);
+			init(titles, topTitles, allId);
+			mTabHost.setCurrentTab(2);
+			setIssue();
+			MobclickAgent.onEvent(this, "shishicai"); // BY贺思明 点击首页的“时时彩”图标
+			MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
+			relativeLayout1.setVisibility(View.GONE);
+			betInfoTextView.setVisibility(View.VISIBLE);
+		} catch (Exception e) {
+			
+		}
 	}
 	
 	private void updateAddMissViewNum() {

@@ -106,8 +106,8 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				JSONObject jsonObject = getJSONByLotno();
 				try {
+					JSONObject jsonObject = getJSONByLotno();
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
