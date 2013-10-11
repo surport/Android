@@ -2240,7 +2240,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case 4:
-			if (addView.getSize() != 0) {
+			if (addView != null && addView.getSize() != 0) {
 				alertExit(getString(R.string.buy_alert_exit));
 			} else {
 				finish();

@@ -320,7 +320,9 @@ public class Dlc extends ZixuanAndJiXuan {
 					gameDialog = new BuyGameDialog(context, lotno, gameHandler);
 				}
 				gameDialog.showDialog();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 		});
 		layoutHosity.setOnClickListener(new OnClickListener() {
@@ -330,7 +332,9 @@ public class Dlc extends ZixuanAndJiXuan {
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				turnHosity();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -341,7 +345,7 @@ public class Dlc extends ZixuanAndJiXuan {
 				RWSharedPreferences shellRW = new RWSharedPreferences(context,
 						"addInfo");
 				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
-				if (userno == null || userno.equals("")) {
+				if (userno == null || "".equals(userno)) {
 					Intent intentSession = new Intent(context, UserLogin.class);
 					startActivity(intentSession);
 				} else {
@@ -349,7 +353,10 @@ public class Dlc extends ZixuanAndJiXuan {
 					intent.putExtra("lotno", lotno);
 					startActivity(intent);
 				}
-				popupwindow.dismiss();
+				
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -364,7 +371,10 @@ public class Dlc extends ZixuanAndJiXuan {
 				Intent intent = new Intent(Dlc.this, NoticeActivityGroup.class);
 				intent.putExtra("position", 0);
 				startActivity(intent);
-				popupwindow.dismiss();
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
+				
 			}
 		});
 
@@ -382,7 +392,10 @@ public class Dlc extends ZixuanAndJiXuan {
 					intent.putExtra("caipiaoWanfaIndex",
 							typeSpinner.getSelectedItemPosition());
 					startActivity(intent);
-					popupwindow.dismiss();
+					if(popupwindow != null && popupwindow.isShowing()){
+						popupwindow.dismiss();
+					}
+					
 				}
 			});
 		} else {
