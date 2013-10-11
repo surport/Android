@@ -232,7 +232,9 @@ public class BuyActivityGroup extends ActivityGroup {
 					gameDialog = new BuyGameDialog(context, lotNo, gameHandler);
 				}
 				gameDialog.showDialog();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 		});
 
@@ -245,7 +247,9 @@ public class BuyActivityGroup extends ActivityGroup {
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				turnHosity();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -268,7 +272,9 @@ public class BuyActivityGroup extends ActivityGroup {
 					intent.putExtra("lotno", lotNo);
 					startActivity(intent);
 				}
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -290,7 +296,9 @@ public class BuyActivityGroup extends ActivityGroup {
 					layoutPicture
 							.setBackgroundResource(R.drawable.buy_group_layout_b);
 					pictureOnclik(false);
-					popupwindow.dismiss();
+					if (popupwindow != null && popupwindow.isShowing()) {
+						popupwindow.dismiss();
+					}
 				}
 
 			});
@@ -315,7 +323,9 @@ public class BuyActivityGroup extends ActivityGroup {
 					}
 
 					startActivity(intent);
-					popupwindow.dismiss();
+					if (popupwindow != null && popupwindow.isShowing()) {
+						popupwindow.dismiss();
+					}
 				}
 			});
 		} else {
