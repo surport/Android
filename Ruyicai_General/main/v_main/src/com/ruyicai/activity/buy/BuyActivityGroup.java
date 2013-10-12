@@ -646,9 +646,10 @@ public class BuyActivityGroup extends ActivityGroup {
 
 			@Override
 			public void run() {
-				final JSONObject prizemore = PrizeInfoInterface.getInstance()
-						.getNoticePrizeInfo(type, "1", "1");
+
 				try {
+					final JSONObject prizemore = PrizeInfoInterface.getInstance()
+							.getNoticePrizeInfo(type, "1", "1");
 					final String msg = prizemore.getString("message");
 					final String code = prizemore.getString("error_code");
 					if (code.equals("0000")) {
