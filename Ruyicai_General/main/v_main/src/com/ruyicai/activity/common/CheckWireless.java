@@ -51,29 +51,31 @@ public class CheckWireless extends Activity {
 	private void checkWirelessStatus() {
 		ConnectivityManager connectivityManager = (ConnectivityManager) context
 				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
-		NetworkInfo mobNetInfo = connectivityManager
-				.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-		try {
-			if (activeNetInfo != null) {
-				if (connectivityManager.getNetworkInfo(
-						ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-					connectWIFI = true;
+		if (connectivityManager != null) {
+			NetworkInfo activeNetInfo = connectivityManager
+					.getActiveNetworkInfo();
+			NetworkInfo mobNetInfo = connectivityManager
+					.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+			try {
+				if (activeNetInfo != null) {
+					if (connectivityManager.getNetworkInfo(
+							ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+						connectWIFI = true;
+					}
+					if (connectivityManager.getNetworkInfo(
+							ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED) {
+						connectGPRS = true;
+					}
 				}
-				if (connectivityManager.getNetworkInfo(
-						ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED) {
-					connectGPRS = true;
-				}
-			}
-			if (mobNetInfo != null) {
-				connectMobNetInfo = true;
+				if (mobNetInfo != null) {
+					connectMobNetInfo = true;
 
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
 		}
-
 	}
 
 	@Override
