@@ -158,7 +158,9 @@ public class JcMainActivity extends Activity implements
 					gameDialog = new BuyGameDialog(context, lotNo, gameHandler);
 				}
 				gameDialog.showDialog();
-				popupwindow.dismiss();
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
 			}
 		});
 		layoutQuery.setOnClickListener(new OnClickListener() {
@@ -175,7 +177,9 @@ public class JcMainActivity extends Activity implements
 					intent.putExtra("lotno", lotNo);
 					startActivity(intent);
 				}
-				popupwindow.dismiss();
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -185,7 +189,9 @@ public class JcMainActivity extends Activity implements
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				turnHosity();
-				popupwindow.dismiss();
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
 			}
 
 		});
