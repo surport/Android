@@ -1151,11 +1151,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	private boolean isclearaddview = true;
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-
 	public void errorCode_000000() {
 	}
 
