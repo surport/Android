@@ -122,32 +122,33 @@ public class NoticeInfoActivity extends Activity {
 			public void run() {
 				getLotno(lotnoZC);
 				JSONObject prizemore = getJSONByLotno(Lotno, "50");
-				try {
-					final String msg = prizemore.getString("message");
-					final String code = prizemore.getString("error_code");
-					progress.dismiss();
-					if (code.equals("0000")) {
-						JsonToString(prizemore);
-						handler.post(new Runnable() {
-							@Override
-							public void run() {
-								initList();
-							}
-						});
-					} else {
-						handler.post(new Runnable() {
-							@Override
-							public void run() {
-								initList();
-								Toast.makeText(NoticeInfoActivity.this, msg,
-										Toast.LENGTH_SHORT).show();
-							}
-						});
+				if (prizemore != null) {
+					try {
+						final String msg = prizemore.getString("message");
+						final String code = prizemore.getString("error_code");
+						progress.dismiss();
+						if (code.equals("0000")) {
+							JsonToString(prizemore);
+							handler.post(new Runnable() {
+								@Override
+								public void run() {
+									initList();
+								}
+							});
+						} else {
+							handler.post(new Runnable() {
+								@Override
+								public void run() {
+									initList();
+									Toast.makeText(NoticeInfoActivity.this,
+											msg, Toast.LENGTH_SHORT).show();
+								}
+							});
+						}
+					} catch (JSONException e1) {
+						e1.printStackTrace();
 					}
-				} catch (JSONException e1) {
-					e1.printStackTrace();
 				}
-
 			}
 
 		}).start();
