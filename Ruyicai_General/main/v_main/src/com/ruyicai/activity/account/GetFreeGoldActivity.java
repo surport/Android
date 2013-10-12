@@ -62,9 +62,9 @@ public class GetFreeGoldActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
-						.rechargeDescribe("scoreWallDescriptionHtml");
 				try {
+					JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+							.rechargeDescribe("scoreWallDescriptionHtml");
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
