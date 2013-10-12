@@ -421,10 +421,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 			@Override
 			public void run() {
-				JSONObject prizemore = PrizeInfoInterface.getInstance()
-						.getNoticePrizeInfo(lotno, "1", "10");
-
 				try {
+					JSONObject prizemore = PrizeInfoInterface.getInstance()
+							.getNoticePrizeInfo(lotno, "1", "10");
 					final String msg = prizemore.getString("message");
 					final String code = prizemore.getString("error_code");
 					if (code.equals("0000")) {
