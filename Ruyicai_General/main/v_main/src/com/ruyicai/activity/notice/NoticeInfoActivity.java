@@ -586,34 +586,36 @@ public class NoticeInfoActivity extends Activity {
 				pageindex++;
 				final JSONObject prizemore = PrizeInfoInterface.getInstance()
 						.getNoticePrizeInfo(Lotno, pageindex + "", "50");
-				try {
-					final String msg = prizemore.getString("message");
-					final String code = prizemore.getString("error_code");
-					if (code.equals("0000")) {
-						JsonToString(prizemore);
-						tHandler.post(new Runnable() {
-							@Override
-							public void run() {
-								progressbar
-										.setVisibility(ProgressBar.INVISIBLE);
-								addMoreView.setEnabled(true);
-								adapter.notifyDataSetChanged();
-							}
-						});
-					} else {
-						tHandler.post(new Runnable() {
-							@Override
-							public void run() {
-								progressbar
-										.setVisibility(ProgressBar.INVISIBLE);
-								addMoreView.setEnabled(true);
-								Toast.makeText(NoticeInfoActivity.this, msg,
-										Toast.LENGTH_SHORT).show();
-							}
-						});
+				if (prizemore != null) {
+					try {
+						final String msg = prizemore.getString("message");
+						final String code = prizemore.getString("error_code");
+						if (code.equals("0000")) {
+							JsonToString(prizemore);
+							tHandler.post(new Runnable() {
+								@Override
+								public void run() {
+									progressbar
+											.setVisibility(ProgressBar.INVISIBLE);
+									addMoreView.setEnabled(true);
+									adapter.notifyDataSetChanged();
+								}
+							});
+						} else {
+							tHandler.post(new Runnable() {
+								@Override
+								public void run() {
+									progressbar
+											.setVisibility(ProgressBar.INVISIBLE);
+									addMoreView.setEnabled(true);
+									Toast.makeText(NoticeInfoActivity.this,
+											msg, Toast.LENGTH_SHORT).show();
+								}
+							});
+						}
+					} catch (JSONException e) {
+						// TODO: handle exception
 					}
-				} catch (JSONException e) {
-					// TODO: handle exception
 				}
 			}
 
