@@ -214,8 +214,10 @@ public class UmPayActivity extends Activity implements HandlerMsg {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		String message = data.getStringExtra("resultMessage");//支付结果描述
-//		String result = data.getStringExtra("resultCode");//支付结果
-		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+		if(data != null){
+			String message = data.getStringExtra("resultMessage");//支付结果描述
+//			String result = data.getStringExtra("resultCode");//支付结果
+			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+		}
 	}
 }
