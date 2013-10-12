@@ -12,14 +12,14 @@
 		<repository>
 			<id>ruyicai</id>
 			<name>Ruyicai Repository</name>
-			<url>http://202.43.152.168/nexus/content/repositories/public/</url>
+			<url>http://www.g3cai.cn/nexus/content/repositories/public/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>ruyicai-plugin</id>
 			<name>Ruyicai Repository</name>
-			<url>http://202.43.152.168/nexus/content/repositories/public/</url>
+			<url>http://www.g3cai.cn/nexus/content/repositories/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
@@ -58,12 +58,6 @@
 			<groupId>com.tencent</groupId>
 			<artifactId>weibo</artifactId>
 			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ruyicai</groupId>
-			<artifactId>upomp_Res</artifactId>
-			<version>1.1</version>
-			<type>apklib</type>
 		</dependency>
 		<dependency>
 			<groupId>com.ruyicai</groupId>
