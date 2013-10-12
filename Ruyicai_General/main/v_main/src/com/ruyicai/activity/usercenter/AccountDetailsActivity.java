@@ -163,7 +163,9 @@ public class AccountDetailsActivity extends Activity {
 							initLinearView(pagewithdrawindex, withdrawPages,
 									withdrawdatalist));
 				} else {
-					withdrawdataadadapter.notifyDataSetChanged();
+					if(withdrawdataadadapter != null){
+						withdrawdataadadapter.notifyDataSetChanged();
+					}
 				}
 				isWithdrawFirst = false;
 				break;
