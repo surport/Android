@@ -376,46 +376,49 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 				@Override
 				public void afterTextChanged(Editable s) {
-
-					// TODO Auto-generated method stub
-					if (edit.getText().toString().equals("")) {
-						Toast.makeText(ZixuanZhuihao.this, "倍数不能为空",
-								Toast.LENGTH_SHORT).show();
-						edit.setText("1");
-					} else if (!PublicMethod.isNumeric(edit.getText()
-							.toString())) {
-						Toast.makeText(ZixuanZhuihao.this, "请输入数字",
-								Toast.LENGTH_SHORT).show();
-						edit.setText("1");
-					} else if (Integer.valueOf(edit.getText().toString()) > 10000) {
-//						Toast.makeText(ZixuanZhuihao.this, "超过倍数上限10000",
-//								Toast.LENGTH_SHORT).show();
-						edit.setText("10000");
-						edit.setSelection(edit.length());
-					} else {
-						/** add by yejc 20130703 start */
-						if (isFromTrackQuery) {
-							int zhuShu = Integer.valueOf(betAndGift.getZhushu());
-							text3.setText(2*zhuShu*Integer.valueOf(edit.getText().toString())+ "元");
-						/** add by yejc 20130703 end */
+                    try {
+						// TODO Auto-generated method stub
+						if (edit.getText().toString().equals("")) {
+							Toast.makeText(ZixuanZhuihao.this, "倍数不能为空",
+									Toast.LENGTH_SHORT).show();
+							edit.setText("1");
+						} else if (!PublicMethod.isNumeric(edit.getText()
+								.toString())) {
+							Toast.makeText(ZixuanZhuihao.this, "请输入数字",
+									Toast.LENGTH_SHORT).show();
+							edit.setText("1");
+						} else if (Integer.valueOf(edit.getText().toString()) > 10000) {
+	//						Toast.makeText(ZixuanZhuihao.this, "超过倍数上限10000",
+	//								Toast.LENGTH_SHORT).show();
+							edit.setText("10000");
+							edit.setSelection(edit.length());
 						} else {
-							text3.setText(addview.getAllAmt()
-									* Integer.valueOf(edit.getText().toString())
-									+ "元");
+							/** add by yejc 20130703 start */
+							if (isFromTrackQuery) {
+								int zhuShu = Integer.valueOf(betAndGift.getZhushu());
+								text3.setText(2*zhuShu*Integer.valueOf(edit.getText().toString())+ "元");
+							/** add by yejc 20130703 end */
+							} else {
+								text3.setText(addview.getAllAmt()
+										* Integer.valueOf(edit.getText().toString())
+										+ "元");
+							}
+	                        
+							checkinfo[index].setBeishu(edit.getText().toString());
+							checkinfo[index].setAmt(Integer.valueOf(text3.getText()
+									.toString().replace("元", ""))
+									* 100 + "");
+							getTouzhuAlert();
 						}
-
-						checkinfo[index].setBeishu(edit.getText().toString());
-						checkinfo[index].setAmt(Integer.valueOf(text3.getText()
-								.toString().replace("元", ""))
-								* 100 + "");
-						getTouzhuAlert();
-					}
-					String str = s.toString();
-					if (str.length() == 1 && str.startsWith("0")) {
-						edit.setText("");
-					} else if (str.length() > 1 && str.startsWith("0")) {
-						edit.setText(str.subSequence(1, str.length()));
-					}
+						String str = s.toString();
+						if (str.length() == 1 && str.startsWith("0")) {
+							edit.setText("");
+						} else if (str.length() > 1 && str.startsWith("0")) {
+							edit.setText(str.subSequence(1, str.length()));
+						}
+                    } catch (Exception e) {
+                    	
+                    }
 				}
 			});
 			/** add by yejc 20130703 start */
