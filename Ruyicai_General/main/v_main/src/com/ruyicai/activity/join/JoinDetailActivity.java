@@ -597,7 +597,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	}
 
 	public String progress(String amt, String allAmt) {
-		if (allAmt.equals("0")) {
+		if ("0".equals(allAmt)) {
 			return "0";
 		} else {
 			float amount = Integer.parseInt(amt);
