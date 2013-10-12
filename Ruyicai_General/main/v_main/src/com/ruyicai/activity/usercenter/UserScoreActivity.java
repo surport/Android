@@ -226,24 +226,26 @@ public class UserScoreActivity extends Activity {
 			@Override
 			public void run() {
 				JSONObject jsonObject = getJSONByLotno();
-				try {
-					String content = jsonObject.get("needScores").toString();
-					if (content.equals("")) {
-						scores_P = 1000;
-					} else {
-						scores_P = Integer.valueOf(content);
-					}
-					description = jsonObject.getString("description");
-					handler.post(new Runnable() {
-						public void run() {
+				if (jsonObject != null) {
+					try {
+						String content = jsonObject.get("needScores")
+								.toString();
+						if (content.equals("")) {
+							scores_P = 1000;
+						} else {
+							scores_P = Integer.valueOf(content);
 						}
-					});
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					scores_P = 1000;
+						description = jsonObject.getString("description");
+						handler.post(new Runnable() {
+							public void run() {
+							}
+						});
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						scores_P = 1000;
+					}
 				}
-
 			}
 		}).start();
 	}
