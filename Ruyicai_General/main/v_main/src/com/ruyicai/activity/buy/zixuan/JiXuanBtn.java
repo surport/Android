@@ -173,7 +173,9 @@ public class JiXuanBtn {
 					choseNum = Integer.parseInt(btn.getText().toString());
 					dialogOnclick();
 					initBtn();
-					popupwindow.dismiss();
+					if(popupwindow != null && popupwindow.isShowing()){
+						popupwindow.dismiss();
+					}
 				}
 			});
 			layout.addView(btn, param);
