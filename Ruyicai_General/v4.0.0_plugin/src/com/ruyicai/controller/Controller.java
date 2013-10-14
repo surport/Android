@@ -73,7 +73,34 @@ public class Controller {
 		}
 		return issueStr;
 	}
-    
+	/**
+	 * 获得高频彩旗号和剩余时间
+	 * @param lotno
+	 */
+	public void getIssueJSONObject(final MyHandler handler,final String lotno) {
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String re = "";
+				re = GetLotNohighFrequency.getInstance().getInfo(lotno);
+				if (!"".equalsIgnoreCase(re)) {
+					try {
+						JSONObject obj = new JSONObject(re);
+						String error_code = obj.getString("error_code");
+						if (error_code.equals("0000")) {
+							// 成功获取到了期号信息
+							String msg = obj.getString("message");
+							setRtnJSONObject(obj);
+							handler.handleMsg(error_code, msg);
+						}
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		thread.start();
+	}
 	/**
 	 * 投注action
 	 */

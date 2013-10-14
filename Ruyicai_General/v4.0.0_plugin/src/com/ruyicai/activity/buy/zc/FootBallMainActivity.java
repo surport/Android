@@ -279,8 +279,8 @@ public class FootBallMainActivity extends Activity {
 		mainPalySelectLayout.setVisibility(View.VISIBLE);
 		upLayersLayout.setVisibility(View.VISIBLE);
 		middleLayersLayout.setVisibility(View.VISIBLE);
-		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
-				R.anim.jc_top_menu_window_enter));
+//		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
+//				R.anim.jc_top_menu_window_enter));
 		PublicMethod.setLayoutHeight(45, upLayersLayout, this);
 	}
 	
@@ -440,8 +440,8 @@ public class FootBallMainActivity extends Activity {
 			issueSelectLayout.setVisibility(View.VISIBLE);
 			downLayersLayout.setVisibility(View.VISIBLE);
 			upLayersLayout.setVisibility(View.VISIBLE);
-			issueSelectLayout.startAnimation(AnimationUtils.loadAnimation(
-					mContext, R.anim.jc_top_menu_window_enter));
+//			issueSelectLayout.startAnimation(AnimationUtils.loadAnimation(
+//					mContext, R.anim.jc_top_menu_window_enter));
 		} else {
 			setViewState();
 		}
