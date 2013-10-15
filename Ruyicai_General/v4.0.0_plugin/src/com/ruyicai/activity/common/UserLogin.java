@@ -48,24 +48,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.jpush.android.api.JPushInterface;
 import com.alipay.android.app.IAlixPay;
-import com.alipay.android.secure.BaseHelper;
-import com.alipay.android.secure.MobileSecurePayHelper;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.ChannelConstants;
-import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.controller.Controller;
-import com.ruyicai.net.newtransaction.LoginAcrossWeibo;
 import com.ruyicai.net.newtransaction.LoginInterface;
 import com.ruyicai.net.newtransaction.RegisterInterface;
 import com.ruyicai.util.CallServicePhoneConfirm;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.RWSharedPreferences;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.Tencent;
-import com.tencent.tauth.UiError;
 
 public class UserLogin extends Activity implements TextWatcher {
 	public static final String SUCCESS = "loginsuccess";
@@ -132,7 +124,6 @@ public class UserLogin extends Activity implements TextWatcher {
 	public String mAppid = "100305073";// 申请时分配的appid
 	private String scope = "get_user_info,get_user_profile,add_share,add_topic,list_album,upload_pic,add_album";// 授权范围
 	public String mAccessToken, mOpenId;
-	private Tencent tencent;
 	public static final int PROGRESS = 100000;
 	ProgressDialog mAlixPayDialog = null;
 
@@ -201,12 +192,6 @@ public class UserLogin extends Activity implements TextWatcher {
 					UserLogin.this.finish();
 				}
 				break;
-			case 21:
-				weiboToLogin("alipay", (String)msg.obj, "", getPackageName());
-				if (mAlixPayDialog != null && mAlixPayDialog.isShowing()) {
-					mAlixPayDialog.dismiss();
-				}
-				break;	
 			}
 		}
 	};
@@ -308,7 +293,6 @@ public class UserLogin extends Activity implements TextWatcher {
 		shake = AnimationUtils.loadAnimation(this, R.anim.shake);
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		tencent = Tencent.createInstance(mAppid, this.getApplicationContext());
 		Bundle bundle = getIntent().getExtras();
 		context = this;
 		mAlixPayDialog = UserCenterDialog.onCreateDialog(context);
@@ -468,30 +452,6 @@ public class UserLogin extends Activity implements TextWatcher {
 				beginLogin();
 			}
 		});
-		// 腾讯微博登陆
-		RelativeLayout qqlogin = (RelativeLayout) findViewById(R.id.logintoqq);
-		qqlogin.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				auth();
-			}
-		});
-		
-		//支付宝登录
-		RelativeLayout zhifubaologin = (RelativeLayout) findViewById(R.id.loginto_zhifubao);
-		zhifubaologin.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				MobileSecurePayHelper mspHelper = new MobileSecurePayHelper(context);
-				boolean isMobile_spExist = mspHelper.detectMobile_sp(Constants.ALIPAY_PLUGIN_NAME,
-						Constants.ALIPAY_PACK_NAME);
-				if (isMobile_spExist) {
-					alixPayLogin();
-				}
-			}
-		});
 		// 点击注册按钮时，跳转到注册页面
 		Button login_return = (Button) findViewById(R.id.usercenter_btn_return);
 		login_return.setBackgroundResource(R.drawable.returnselecter);
@@ -587,10 +547,6 @@ public class UserLogin extends Activity implements TextWatcher {
 					password_string, isAutoLogin, packageName);
 		}
 	}
-
-//	private void sinaweibologin() {
-//		weiboToLogin("sina", Uid, nickname, packageName);
-//	}
 
 	/**
 	 * 注册成功后直接登录
@@ -689,85 +645,6 @@ public class UserLogin extends Activity implements TextWatcher {
 		LinkedHashSet<String> tags = new LinkedHashSet<String>();
 		tags.add(ChannelConstants.COOP_ID);
 		JPushInterface.setAliasAndTags(UserLogin.this, userno, tags);
-	}
-
-	private void weiboToLogin(final String source, final String openId,
-			final String nickName, final String alias) {
-		showDialog(PROGRESS_VALUE);
-
-		Thread t = new Thread(new Runnable() {
-			public void run() {
-				String error_code = "0";
-				try {
-					String str = LoginAcrossWeibo.login(source, openId,
-							nickName, alias.substring(14));
-					JSONObject json = new JSONObject(str);
-					error_code = json.getString("error_code");
-					message = json.getString("message");
-					if (error_code.equals("0000")) {
-						shellRW = new RWSharedPreferences(UserLogin.this,
-								"addInfo");
-						mobileid = json.getString("mobileid");
-						name = json.getString("name");
-						if (isAutoLogin.equals("1")) {
-							randomNumber = json.getString("randomNumber");
-							shellRW.putStringValue(
-									ShellRWConstants.RANDOMNUMBER, randomNumber);
-						} else {
-							shellRW.putBooleanValue(
-									ShellRWConstants.AUTO_LOGIN, false);
-							shellRW.putStringValue(
-									ShellRWConstants.RANDOMNUMBER, "");
-						}
-						String sessionid = json.getString("sessionid");
-						String userno = json.getString("userno");
-						String cerdid = json.getString("certid");
-						String username = json.getString("userName");
-
-						shellRW.putStringValue("sessionid", sessionid);
-						shellRW.putStringValue("name", name);
-						shellRW.putStringValue("userno", userno);
-						shellRW.putStringValue("phonenum", phonenum);
-						shellRW.putStringValue("username", username);// 用户名
-						shellRW.putStringValue("mobileid", mobileid);// 向ShellRWSharesPreferences中写入绑定手机号
-						shellRW.putStringValue("certid", cerdid);// 向ShellRWSharesPreferences中写入身份证号
-						
-						// 添加極光推送用戶標簽,以用戶的用户id和渠道号作为参数
-						setJpushAlias(userno);
-						
-						b = true;
-						PublicConst.isthirdlogin = true;
-						Message msg = new Message();
-						msg.what = 10;
-
-						handler.sendMessage(msg);
-					} else if (error_code.equals("070002")) {
-						Message msg = new Message();
-						msg.what = 7;
-						handler.sendMessage(msg);
-					} else if (error_code.equals("4444")) {
-						Message msg = new Message();
-						msg.what = 3;
-						handler.sendMessage(msg);
-					} else if (error_code.equals("0")) {
-						Message msg = new Message();
-						msg.what = 8;
-						handler.sendMessage(msg);
-
-					} else {
-						Message msg = new Message();
-						msg.what = 9;
-						handler.sendMessage(msg);
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-					progressDialog.dismiss();
-				}
-			}
-
-		});
-		t.start();
-
 	}
 
 	/**
@@ -1148,102 +1025,4 @@ public class UserLogin extends Activity implements TextWatcher {
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
-
-	public static void main(String[] args) {
-		String str = "abcd";
-		System.out.println(str.indexOf("bc"));
-	}
-
-	/**
-	 * 打开登录认证与授权页面
-	 * 
-	 */
-	private void auth() {
-		if (!tencent.isSessionValid()) {
-			IUiListener listener = new BaseUiListener() {
-					@Override
-					protected void doComplete(JSONObject values) {
-						try {
-							if (values.has("openid")) {
-								weiboToLogin("qq", values.getString("openid"), "",
-										packageName);
-							}
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-					}
-				};
-				tencent.login(UserLogin.this, scope, listener);
-			} else {
-				tencent.logout(UserLogin.this);
-			}
-	}
-
-	public boolean satisfyConditions() {
-		return mAccessToken != null && mAppid != null && mOpenId != null
-				&& !mAccessToken.equals("") && !mAppid.equals("")
-				&& !mOpenId.equals("");
-	}
-	
-	IAlixPay mAlixPay = null;
-	private ServiceConnection mAlixPayConnection = new ServiceConnection() {
-		public void onServiceConnected(ComponentName className, IBinder service) {
-			mAlixPay = IAlixPay.Stub.asInterface(service);
-		}
-
-		public void onServiceDisconnected(ComponentName className) {
-			mAlixPay = null;
-		}
-	};
-	
-	private void alixPayLogin() {
-		mAlixPayDialog.show();
-		new Thread(new Runnable() {
-			public void run() {
-				bindService(new Intent(IAlixPay.class.getName()), mAlixPayConnection,
-						Context.BIND_AUTO_CREATE);
-				String alipaySign = Controller.getInstance(context).getAlipaySign();
-				try {
-					String info = mAlixPay.Pay(alipaySign);
-					BaseHelper bh = new BaseHelper();
-					JSONObject obj = bh.string2JSON(info, ";");
-					JSONObject objs = bh.string2JSON(obj.getString("result"), "&");
-					Message msg = new Message();
-					msg.obj = objs.getString("userid");
-					msg.what = 21;
-					handler.sendMessage(msg);
-				} catch (Exception e) {
-					e.printStackTrace();
-					if (mAlixPayDialog != null && mAlixPayDialog.isShowing()) {
-						mAlixPayDialog.dismiss();
-					}
-				}
-				unbindService(mAlixPayConnection);
-			}
-		}).start();
-	}
-	
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        tencent.onActivityResult(requestCode, resultCode, data) ;
-    }
-    
-    private class BaseUiListener implements IUiListener {
-
-        @Override
-        public void onComplete(JSONObject response) {
-            doComplete(response);
-        }
-
-        protected void doComplete(JSONObject values) {
-        }
-
-        @Override
-        public void onError(UiError e) {
-        }
-
-        @Override
-        public void onCancel() {
-        }
-}
 }
