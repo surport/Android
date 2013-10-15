@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -51,7 +52,10 @@ import com.ruyicai.code.dlc.DlcCode;
 import com.ruyicai.code.dlc.DlcDanTuoCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
+import com.ruyicai.controller.Controller;
 import com.ruyicai.custom.jc.button.MyButton;
+import com.ruyicai.handler.HandlerMsg;
+import com.ruyicai.handler.MyHandler;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.jixuan.DlcQxBalls;
 import com.ruyicai.jixuan.DlcRxBalls;
@@ -92,7 +96,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	protected Button imgRetrun;// 返回购彩大厅按钮
 	public static String batchCode;// 期号
 	private int lesstime;// 剩余时间
-	private Handler handler = new Handler();
+	private DlcHandler handler = new DlcHandler(this);
 	public String lotno;
 	private boolean isRun = true;
 	private PopupWindow popupwindow;
@@ -108,6 +112,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	private RelativeLayout relativeLayout;
 	private TextView betInfo;
 	private boolean isFirst = true;
+	private Controller controller = null;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -301,7 +306,9 @@ public class Dlc extends ZixuanAndJiXuan {
 					gameDialog = new BuyGameDialog(context, lotno, gameHandler);
 				}
 				gameDialog.showDialog();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 		});
 		layoutHosity.setOnClickListener(new OnClickListener() {
@@ -311,7 +318,9 @@ public class Dlc extends ZixuanAndJiXuan {
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				turnHosity();
-				popupwindow.dismiss();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -322,7 +331,7 @@ public class Dlc extends ZixuanAndJiXuan {
 				RWSharedPreferences shellRW = new RWSharedPreferences(context,
 						"addInfo");
 				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
-				if (userno == null || userno.equals("")) {
+				if (userno == null || "".equals(userno)) {
 					Intent intentSession = new Intent(context, UserLogin.class);
 					startActivity(intentSession);
 				} else {
@@ -330,7 +339,10 @@ public class Dlc extends ZixuanAndJiXuan {
 					intent.putExtra("lotno", lotno);
 					startActivity(intent);
 				}
-				popupwindow.dismiss();
+				
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
 			}
 
 		});
@@ -345,7 +357,10 @@ public class Dlc extends ZixuanAndJiXuan {
 				Intent intent = new Intent(Dlc.this, NoticeActivityGroup.class);
 				intent.putExtra("position", 0);
 				startActivity(intent);
-				popupwindow.dismiss();
+				if(popupwindow != null && popupwindow.isShowing()){
+					popupwindow.dismiss();
+				}
+				
 			}
 		});
 
@@ -363,7 +378,10 @@ public class Dlc extends ZixuanAndJiXuan {
 					intent.putExtra("caipiaoWanfaIndex",
 							typeSpinner.getSelectedItemPosition());
 					startActivity(intent);
-					popupwindow.dismiss();
+					if(popupwindow != null && popupwindow.isShowing()){
+						popupwindow.dismiss();
+					}
+					
 				}
 			});
 		} else {
@@ -1305,8 +1323,8 @@ public class Dlc extends ZixuanAndJiXuan {
 		super.onResume();
 		if (Constants.isDebug)
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
-		JSONObject obj = PublicMethod.getIssueJSONObject(lotno);
-		setIssueJSONObject(obj);
+		controller = Controller.getInstance(Dlc.this);
+		controller.getIssueJSONObject(handler, lotno); 
 		setLotno();
 	}
 
@@ -1357,5 +1375,20 @@ public class Dlc extends ZixuanAndJiXuan {
 			betInfo.setText(text);
 		}
 
+	}
+	class DlcHandler extends MyHandler {
+
+		public DlcHandler(HandlerMsg msg) {
+			super(msg);
+			// TODO Auto-generated constructor stub
+		}
+
+		public void handleMessage(Message msg) {
+			//super.handleMessage(msg);
+			if (controller != null) {
+				JSONObject obj = controller.getRtnJSONObject();
+				setIssueJSONObject(obj);
+			}
+		}
 	}
 }

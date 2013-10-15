@@ -1234,8 +1234,8 @@ public class BeiJingSingleGameActivity extends Activity {
 		upLayersLayout.setVisibility(View.VISIBLE);
 		middleLayersLayout.setVisibility(View.VISIBLE);
 		PublicMethod.setLayoutHeight(45, upLayersLayout, this);
-		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
-				R.anim.jc_top_menu_window_enter));
+//		mainPalySelectLayout.startAnimation(AnimationUtils.loadAnimation(this,
+//				R.anim.jc_top_menu_window_enter));
 
 		initPlayMethodChangeDialogShow();
 	}
@@ -2413,8 +2413,8 @@ public class BeiJingSingleGameActivity extends Activity {
 			downLayersLayout.setVisibility(View.VISIBLE);
 			upLayersLayout.setVisibility(View.VISIBLE);
 			PublicMethod.setLayoutHeight(85, upLayersLayout, this);
-			teamSelectLayout.startAnimation(AnimationUtils.loadAnimation(
-					context, R.anim.jc_top_menu_window_enter));
+//			teamSelectLayout.startAnimation(AnimationUtils.loadAnimation(
+//					context, R.anim.jc_top_menu_window_enter));
 		} else {
 			showSelectedTeam();
 		}
