@@ -66,11 +66,6 @@ import com.ruyicai.util.RWSharedPreferences;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
-import com.third.share.Token;
-import com.third.share.Utility;
-import com.third.share.Weibo;
-import com.third.share.WeiboDialogListener;
-import com.third.share.WeiboParameters;
 
 public class UserLogin extends Activity implements TextWatcher {
 	public static final String SUCCESS = "loginsuccess";
@@ -205,10 +200,6 @@ public class UserLogin extends Activity implements TextWatcher {
 					UserLogin.this.setResult(RESULT_OK);
 					UserLogin.this.finish();
 				}
-				break;
-			case 20:// 微博获取昵称后登陆
-				progressDialog.dismiss();
-				sinaweibologin();
 				break;
 			case 21:
 				weiboToLogin("alipay", (String)msg.obj, "", getPackageName());
@@ -477,16 +468,6 @@ public class UserLogin extends Activity implements TextWatcher {
 				beginLogin();
 			}
 		});
-		// 新浪微博登陆
-		// 点击注册按钮时，跳转到注册页面
-		RelativeLayout sinalogin = (RelativeLayout) findViewById(R.id.logintosina);
-		sinalogin.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				oauth();
-			}
-		});
 		// 腾讯微博登陆
 		RelativeLayout qqlogin = (RelativeLayout) findViewById(R.id.logintoqq);
 		qqlogin.setOnClickListener(new OnClickListener() {
@@ -607,9 +588,9 @@ public class UserLogin extends Activity implements TextWatcher {
 		}
 	}
 
-	private void sinaweibologin() {
-		weiboToLogin("sina", Uid, nickname, packageName);
-	}
+//	private void sinaweibologin() {
+//		weiboToLogin("sina", Uid, nickname, packageName);
+//	}
 
 	/**
 	 * 注册成功后直接登录
@@ -1130,76 +1111,6 @@ public class UserLogin extends Activity implements TextWatcher {
 			}
 		}
 		
-	}
-
-	// sina 微博
-	private void oauth() {
-
-		Weibo weibo = Weibo.getInstance();
-		weibo.setupConsumerConfig(Constants.CONSUMER_KEY,
-				Constants.CONSUMER_SECRET);
-		// Oauth2.0
-		// 隐式授权认证方式
-		weibo.setRedirectUrl(Constants.CONSUMER_URL);// 此处回调页内容应该替换为与appkey对应的应用回调页
-		// 对应的应用回调页可在开发者登陆新浪微博开发平台之后，
-		// 进入我的应用--应用详情--应用信息--高级信息--授权设置--应用回调页进行设置和查看，
-		// 应用回调页不可为空
-		weibo.authorize(UserLogin.this, new AuthDialogListener());
-	}
-
-	// sina weibo
-	class AuthDialogListener implements WeiboDialogListener {
-
-		@Override
-		public void onComplete(Bundle values) {
-			String token = values.getString("access_token");
-			String expires_in = values.getString("expires_in");
-			Uid = values.getString("uid");
-			shellRW.putStringValue("token", token);
-			shellRW.putStringValue("expires_in", expires_in);
-			WeiboParameters parameters = new WeiboParameters();
-			parameters.add("uid", Uid);
-			parameters.add("access_token", token);
-			getnickname(parameters);
-		}
-
-		@Override
-		public void onCancel() {
-			Toast.makeText(getApplicationContext(), "Auth cancel",
-					Toast.LENGTH_LONG).show();
-		}
-	}
-
-	private void getnickname(final WeiboParameters p) {
-		showDialog(PROGRESS_VALUE);
-		Thread regthread = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				// try{
-
-				String re = Utility.openUrl(context, Constants.sinaweibo,
-						"GET", p, new Token());
-				JSONObject obj;
-				try {
-					obj = new JSONObject(re);
-					nickname = obj.getString("screen_name");
-					Message msg = new Message();
-					msg.what = 20;
-					handler.sendMessage(msg);
-				} catch (JSONException e) {
-					Message msg = new Message();
-					msg.what = 20;
-					nickname = "";
-					handler.sendMessage(msg);
-					e.printStackTrace();
-				}
-
-			}
-
-		});
-		regthread.start();
-
 	}
 
 	/**

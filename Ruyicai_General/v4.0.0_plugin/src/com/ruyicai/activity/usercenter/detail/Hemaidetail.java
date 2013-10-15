@@ -31,13 +31,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -48,7 +44,6 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.ContentListView;
-import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.JoinCannelIdInterface;
@@ -59,14 +54,6 @@ import com.ruyicai.net.newtransaction.QueryJoinDetailInterface;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.tencent.weibo.oauthv1.OAuthV1;
-import com.tencent.weibo.oauthv1.OAuthV1Client;
-import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
-import com.third.share.ShareActivity;
-import com.third.share.Token;
-import com.third.share.Weibo;
-import com.third.share.WeiboDialogListener;
-import com.third.tencent.TencentShareActivity;
 
 /**
  * 合买详情
@@ -81,7 +68,7 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 			batchcodetext, faqirengou, wincode, winamt, timetext;
 	private LinearLayout starLayout;
 	private LinearLayout faqixinxi, fanganxiangqing, fanganleirong,
-			rengoushezhi, fenxianglayout;
+			rengoushezhi;
 	private Button faqi, xiangqing, leirong, rengou, canyu;
 	private boolean isfaqi = false, isxiangqing = false, isleirong = false,
 			isrengou = false, iscanyu = true;
@@ -116,11 +103,9 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 	Button chedan;
 	Vector<CanyuInfo> canyudata = new Vector<CanyuInfo>();
 	View view;
-	ImageButton wangyi, xinlang;
 	private boolean isSinaTiaoZhuan = true;
 	String tencent_token;
 	String tencent_access_token_secret;
-	private OAuthV1 tenoAuth; // Oauth鉴权所需及所得信息的封装存储单元
 	private Context context = this;
 	private ContentListView contentListView = new ContentListView(context);
 	private LinearLayout layoutMain;
@@ -131,9 +116,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.join_detail_usercenter);
 		shellRW = new RWSharedPreferences(Hemaidetail.this, "addInfo");
-		tenoAuth = new OAuthV1("null");
-		tenoAuth.setOauthConsumerKey(Constants.kAppKey);
-		tenoAuth.setOauthConsumerSecret(Constants.kAppSecret);
 		getInfo();
 		init();
 		joinDetailNet();
@@ -159,110 +141,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
-
-		wangyi = (ImageButton) findViewById(R.id.join_detail_img_buy2);
-		xinlang = (ImageButton) findViewById(R.id.join_detail_img_buy3);
-		wangyi.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				tenoauth();
-			}
-		});
-		xinlang.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// Toast.makeText(Hemaidetail.this, "新浪分享",
-				// Toast.LENGTH_SHORT).show();
-				oauthOrShare();
-
-			}
-		});
-		fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
-		fenxianglayout.setVisibility(View.VISIBLE);
-		fenxianglayout.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (issharemove) {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(PublicMethod.getPxInt(265,
-									Hemaidetail.this), 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = false;
-				} else {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, -0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(0, 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = true;
-
-				}
-
-			}
-		});
-
 		lotnotext = (TextView) findViewById(R.id.join_detail_text_lotno);
 		beishutext = (TextView) findViewById(R.id.join_detail_text_beishu);
 		timetext = (TextView) findViewById(R.id.join_detail_text_time);
@@ -379,56 +257,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		initButtonLayout();
 	}
 
-	private void oauthOrShare() {
-		token = shellRW.getStringValue("token");
-		expires_in = shellRW.getStringValue("expires_in");
-		if (token.equals("")) {
-			oauth();
-		} else {
-			isSinaTiaoZhuan = true;
-			initAccessToken(token, expires_in);
-		}
-	}
-
-	private void oauth() {
-
-		Weibo weibo = Weibo.getInstance();
-		weibo.setupConsumerConfig(Constants.CONSUMER_KEY,
-				Constants.CONSUMER_SECRET);
-		// Oauth2.0
-		// 隐式授权认证方式
-		weibo.setRedirectUrl(Constants.CONSUMER_URL);// 此处回调页内容应该替换为与appkey对应的应用回调页
-		// 对应的应用回调页可在开发者登陆新浪微博开发平台之后，
-		// 进入我的应用--应用详情--应用信息--高级信息--授权设置--应用回调页进行设置和查看，
-		// 应用回调页不可为空
-		weibo.authorize(Hemaidetail.this, new AuthDialogListener());
-	}
-
-	public void tenoauth() {
-		tencent_token = shellRW.getStringValue("tencent_token");
-		tencent_access_token_secret = shellRW
-				.getStringValue("tencent_access_token_secret");
-		if (tencent_token.equals("") && tencent_access_token_secret.equals("")) {
-			try {
-				tenoAuth = OAuthV1Client.requestToken(tenoAuth);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Intent intent = new Intent(Hemaidetail.this,
-					OAuthV1AuthorizeWebView.class);// 创建Intent，使用WebView让用户授权
-			intent.putExtra("oauth", tenoAuth);
-			startActivityForResult(intent, 1);
-		} else {
-			tenoAuth.setOauthToken(tencent_token);
-			tenoAuth.setOauthTokenSecret(tencent_access_token_secret);
-			Intent intent = new Intent(Hemaidetail.this,
-					TencentShareActivity.class);
-			intent.putExtra("tencent", getShareContent()/*Constants.shareContent*/);
-			intent.putExtra("oauth", tenoAuth);
-			startActivity(intent);
-		}
-	}
 
 	public void setListViewHeightBasedOnChildren(ListView listView) {
 
@@ -1298,45 +1126,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 	}
 
 	/**
-	 * 从上一个activity返回当前activity执行的方法
-	 */
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		switch (resultCode) {
-		case RESULT_OK:
-			isLogin();
-			break;
-		case 1:
-			if (resultCode == OAuthV1AuthorizeWebView.RESULT_CODE) {
-				// 从返回的Intent中获取验证码
-				tenoAuth = (OAuthV1) data.getExtras().getSerializable("oauth");
-				try {
-					tenoAuth = OAuthV1Client.accessToken(tenoAuth);
-					/*
-					 * 注意：此时oauth中的Oauth_token和Oauth_token_secret将发生变化，用新获取到的
-					 * 已授权的access_token和access_token_secret替换之前存储的未授权的request_token
-					 * 和request_token_secret.
-					 */
-					tencent_token = tenoAuth.getOauthToken();
-					tencent_access_token_secret = tenoAuth
-							.getOauthTokenSecret();
-					shellRW.putStringValue("tencent_token", tencent_token);
-					shellRW.putStringValue("tencent_access_token_secret",
-							tencent_access_token_secret);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				Intent intent = new Intent(Hemaidetail.this,
-						TencentShareActivity.class);
-				intent.putExtra("tencent", getShareContent()/*Constants.shareContent*/);
-				intent.putExtra("oauth", tenoAuth);
-				startActivity(intent);
-
-			}
-		}
-	}
-
-	/**
 	 * 参与合买成功
 	 * 
 	 * @param title
@@ -1805,46 +1594,46 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		return false;
 	}
 
-	class AuthDialogListener implements WeiboDialogListener {
+//	class AuthDialogListener implements WeiboDialogListener {
+//
+//		@Override
+//		public void onComplete(Bundle values) {
+//			PublicMethod.myOutLog("token111",
+//					"zhiqiande" + shellRW.getStringValue("token"));
+//			PublicMethod.myOutLog("onComplete", "12131321321321");
+//			String token = values.getString("access_token");
+//			PublicMethod.myOutLog("token", token);
+//			String expires_in = values.getString("expires_in");
+//			shellRW.putStringValue("token", token);
+//			shellRW.putStringValue("expires_in", expires_in);
+//			// is_sharetosinaweibo.setBackgroundResource(R.drawable.on);
+//			initAccessToken(token, expires_in);
+//		}
+//
+//		@Override
+//		public void onCancel() {
+//			Toast.makeText(getApplicationContext(), "Auth cancel",
+//					Toast.LENGTH_LONG).show();
+//		}
+//	}
 
-		@Override
-		public void onComplete(Bundle values) {
-			PublicMethod.myOutLog("token111",
-					"zhiqiande" + shellRW.getStringValue("token"));
-			PublicMethod.myOutLog("onComplete", "12131321321321");
-			String token = values.getString("access_token");
-			PublicMethod.myOutLog("token", token);
-			String expires_in = values.getString("expires_in");
-			shellRW.putStringValue("token", token);
-			shellRW.putStringValue("expires_in", expires_in);
-			// is_sharetosinaweibo.setBackgroundResource(R.drawable.on);
-			initAccessToken(token, expires_in);
-		}
+//	private void initAccessToken(String token, String expires_in) {
+//		Token accessToken = new Token(token, Weibo.getAppSecret());
+//		accessToken.setExpiresIn(expires_in);
+//		Weibo.getInstance().setAccessToken(accessToken);
+//		share2weibo(getShareContent()/*Constants.shareContent*/);
+//		if (isSinaTiaoZhuan) {
+//			Intent intent = new Intent();
+//			intent.setClass(Hemaidetail.this, ShareActivity.class);
+//			startActivity(intent);
+//		}
+//	}
 
-		@Override
-		public void onCancel() {
-			Toast.makeText(getApplicationContext(), "Auth cancel",
-					Toast.LENGTH_LONG).show();
-		}
-	}
-
-	private void initAccessToken(String token, String expires_in) {
-		Token accessToken = new Token(token, Weibo.getAppSecret());
-		accessToken.setExpiresIn(expires_in);
-		Weibo.getInstance().setAccessToken(accessToken);
-		share2weibo(getShareContent()/*Constants.shareContent*/);
-		if (isSinaTiaoZhuan) {
-			Intent intent = new Intent();
-			intent.setClass(Hemaidetail.this, ShareActivity.class);
-			startActivity(intent);
-		}
-	}
-
-	private void share2weibo(String content) {
-		Weibo weibo = Weibo.getInstance();
-		weibo.share2weibo(this, weibo.getAccessToken().getToken(), weibo
-				.getAccessToken().getSecret(), content, "");
-	}
+//	private void share2weibo(String content) {
+//		Weibo weibo = Weibo.getInstance();
+//		weibo.share2weibo(this, weibo.getAccessToken().getToken(), weibo
+//				.getAccessToken().getSecret(), content, "");
+//	}
 
 	/**
 	 * 判断字符串是否是空值

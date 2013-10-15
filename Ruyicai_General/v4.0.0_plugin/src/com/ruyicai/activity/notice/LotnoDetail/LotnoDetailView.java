@@ -28,14 +28,6 @@ import com.ruyicai.net.newtransaction.NoticePrizeDetailInterface;
 import com.ruyicai.util.JsonTools;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
-import com.tencent.weibo.oauthv1.OAuthV1;
-import com.tencent.weibo.oauthv1.OAuthV1Client;
-import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
-import com.third.share.ShareActivity;
-import com.third.share.Token;
-import com.third.share.Weibo;
-import com.third.share.WeiboDialogListener;
-import com.third.tencent.TencentShareActivity;
 
 /**
  * 
@@ -52,14 +44,11 @@ public abstract class LotnoDetailView {
 	public boolean isDialog = true;
 	RWSharedPreferences shellRW;
 	String token, expires_in;
-	ImageButton wangyi, xinlang;
 	private boolean issharemove = false;
 	private boolean isSinaTiaoZhuan = true;
 	public String lotno;
-	LinearLayout fenxianglayout;
 	String tencent_token;
 	String tencent_access_token_secret;
-	private OAuthV1 tenoAuth;
 	public static String shareString = "";
 
 	public LotnoDetailView(Activity context, String lotno, String batchcode,
@@ -71,15 +60,11 @@ public abstract class LotnoDetailView {
 		this.context = context;
 		this.progress = progress;
 		this.lotno = lotno;
-		tenoAuth = new OAuthV1("null");
-		tenoAuth.setOauthConsumerKey(Constants.kAppKey);
-		tenoAuth.setOauthConsumerSecret(Constants.kAppSecret);
 		shellRW = new RWSharedPreferences(context, "addInfo");
 		isTopVisable(isDialog);
 		initLotnoDetailViewWidget();
 		getPrizeDetalilNet(lotno, batchcode);
 		Constants.source = "2";
-		initfenxianglayout();
 	}
 
 	public void isTopVisable(boolean isVisable) {
@@ -107,216 +92,6 @@ public abstract class LotnoDetailView {
 	 */
 
 	public abstract void initLotonoView(JSONObject json) throws JSONException;
-
-	/**
-	 * 获取分享信息
-	 * **/
-	public abstract String getShareString();
-
-	/**
-	 * 分享
-	 * **/
-	public void initfenxianglayout() {
-		wangyi = (ImageButton) view.findViewById(R.id.join_detail_img_buy2);
-		xinlang = (ImageButton) view.findViewById(R.id.join_detail_img_buy3);
-		wangyi.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				tenoauth();
-			}
-		});
-		xinlang.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				oauthOrShare();
-
-			}
-		});
-		fenxianglayout = (LinearLayout) view.findViewById(R.id.LinearLayout10);
-		setFenXiangLayoutPosition((int) (PublicMethod.getDisplayWidth(context) - PublicMethod
-				.getPxInt(320, context) * 0.17f));
-
-		fenxianglayout.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (issharemove) {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							setFenXiangLayoutPosition((int) (PublicMethod
-									.getDisplayWidth(context) - fenxianglayout
-									.getWidth() * 0.17f));
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = false;
-				} else {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, -0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							setFenXiangLayoutPosition(PublicMethod
-									.getDisplayWidth(context)
-									- fenxianglayout.getWidth());
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = true;
-
-				}
-
-			}
-		});
-	}
-
-	private void setFenXiangLayoutPosition(int leftMargin) {
-		LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-				.getLayoutParams();
-		lp.setMargins(leftMargin, 0, 0, 0);
-		fenxianglayout.setLayoutParams(lp);
-	}
-
-	/**
-	 * 分享
-	 * **/
-	private void oauthOrShare() {
-		token = shellRW.getStringValue("token");
-		expires_in = shellRW.getStringValue("expires_in");
-		if (token.equals("")) {
-			oauth();
-		} else {
-			isSinaTiaoZhuan = true;
-			initAccessToken(token, expires_in);
-		}
-	}
-
-	/**
-	 * 分享
-	 * **/
-	private void oauth() {
-
-		Weibo weibo = Weibo.getInstance();
-		weibo.setupConsumerConfig(Constants.CONSUMER_KEY,
-				Constants.CONSUMER_SECRET);
-		// Oauth2.0
-		// 隐式授权认证方式
-		weibo.setRedirectUrl(Constants.CONSUMER_URL);// 此处回调页内容应该替换为与appkey对应的应用回调页
-		// 对应的应用回调页可在开发者登陆新浪微博开发平台之后，
-		// 进入我的应用--应用详情--应用信息--高级信息--授权设置--应用回调页进行设置和查看，
-		// 应用回调页不可为空
-		weibo.authorize(context, new AuthDialogListener());
-	}
-
-	public void tenoauth() {
-		tencent_token = shellRW.getStringValue("tencent_token");
-		tencent_access_token_secret = shellRW
-				.getStringValue("tencent_access_token_secret");
-		if (tencent_token.equals("") && tencent_access_token_secret.equals("")) {
-			try {
-				tenoAuth = OAuthV1Client.requestToken(tenoAuth);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			Intent intent = new Intent(context, OAuthV1AuthorizeWebView.class);// 创建Intent，使用WebView让用户授权
-			intent.putExtra("oauth", tenoAuth);
-			context.startActivityForResult(intent, 1);
-			shareString = getShareString();
-		} else {
-			tenoAuth.setOauthToken(tencent_token);
-			tenoAuth.setOauthTokenSecret(tencent_access_token_secret);
-			Intent intent = new Intent(context, TencentShareActivity.class);
-			intent.putExtra("tencent", getShareString());
-			intent.putExtra("oauth", tenoAuth);
-			context.startActivity(intent);
-		}
-	}
-
-	/**
-	 * 分享
-	 * **/
-	class AuthDialogListener implements WeiboDialogListener {
-
-		@Override
-		public void onComplete(Bundle values) {
-			PublicMethod.myOutLog("token111",
-					"zhiqiande" + shellRW.getStringValue("token"));
-			PublicMethod.myOutLog("onComplete", "12131321321321");
-			String token = values.getString("access_token");
-			PublicMethod.myOutLog("token", token);
-			String expires_in = values.getString("expires_in");
-			shellRW.putStringValue("token", token);
-			shellRW.putStringValue("expires_in", expires_in);
-			initAccessToken(token, expires_in);
-		}
-
-		@Override
-		public void onCancel() {
-			Toast.makeText(context.getApplicationContext(), "Auth cancel",
-					Toast.LENGTH_LONG).show();
-		}
-	}
-
-	/**
-	 * 分享
-	 * **/
-	private void initAccessToken(String token, String expires_in) {
-		Token accessToken = new Token(token, Weibo.getAppSecret());
-		accessToken.setExpiresIn(expires_in);
-		Weibo.getInstance().setAccessToken(accessToken);
-		share2weibo(getShareString());
-		if (isSinaTiaoZhuan) {
-			Intent intent = new Intent();
-			intent.setClass(context, ShareActivity.class);
-			context.startActivity(intent);
-		}
-	}
-
-	/**
-	 * 分享
-	 * **/
-	private void share2weibo(String content) {
-		Weibo weibo = Weibo.getInstance();
-		weibo.share2weibo(context, weibo.getAccessToken().getToken(), weibo
-				.getAccessToken().getSecret(), content, "");
-	}
 
 	public void getPrizeDetalilNet(final String lotno, final String batchcode) {
 		progress.show();

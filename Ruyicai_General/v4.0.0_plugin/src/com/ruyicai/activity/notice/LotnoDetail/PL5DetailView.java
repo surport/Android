@@ -84,29 +84,4 @@ public class PL5DetailView extends LotnoDetailView {
 		});
 	}
 
-	@Override
-	public String getShareString() {
-		// TODO Auto-generated method stub
-		StringBuffer str = new StringBuffer();
-		try {
-			str.append("#如意彩客户端#，").append(
-					"排列5第" + json.getString("batchCode") + "期,");
-			str.append(context.getString(R.string.prizedetail_opentime)
-					+ json.getString("openTime") + ",");
-			str.append("开奖号码:" + wincode + ",");
-			str.append(context.getString(R.string.prizedetail_thebatchcodeamt)
-					+ PublicMethod.toIntYuan(json.getString("sellTotalAmount"))
-					+ context.getString(R.string.game_card_yuan) + ",");
-			str.append("奖池奖金"
-					+ PublicMethod.toIntYuan(json
-							.getString("prizePoolTotalAmount"))
-					+ context.getString(R.string.game_card_yuan) + ",");
-			str.append("在@如意彩 买彩票，中奖福地，精“彩”不断！也许下一个大奖就属于您！");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return str.toString();
-	}
-
 }

@@ -494,40 +494,4 @@
         </RelativeLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@id/LinearLayout0000"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="50dip"
-        android:paddingLeft="10dip" >
-
-        <LinearLayout
-            android:id="@id/LinearLayout10"
-            android:layout_width="320dip"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fenxiangbg"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@id/join_detail_img_buy2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="60dip"
-                android:background="#00000000"
-                android:src="@drawable/renrenfenxiang" >
-            </ImageButton>
-
-            <ImageButton
-                android:id="@id/join_detail_img_buy3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="#00000000"
-                android:src="@drawable/xinlangfenxiang" >
-            </ImageButton>
-        </LinearLayout>
-    </LinearLayout>
-
 </RelativeLayout>

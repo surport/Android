@@ -36,7 +36,6 @@ import com.ruyicai.activity.more.lotnoalarm.LotnoAlarmSetActivity;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.dialog.LogOutDialog;
 import com.ruyicai.dialog.MyDialogListener;
 import com.ruyicai.dialog.UpdateDialog;
@@ -50,15 +49,6 @@ import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.ruyicai.util.RuyicaiActivityManager;
-import com.tencent.weibo.oauthv1.OAuthV1;
-import com.tencent.weibo.oauthv1.OAuthV1Client;
-import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
-import com.third.share.ShareActivity;
-import com.third.share.Token;
-import com.third.share.Weibo;
-import com.third.share.WeiboDialogListener;
-import com.third.tencent.TencentShareActivity;
-
 /**
  * 更多界面
  * 
@@ -92,7 +82,7 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 	String token, expires_in;
 	String tencent_token, tencent_access_token_secret;
-	private OAuthV1 tenoAuth; // Oauth鉴权所需及所得信息的封装存储单元
+//	private OAuthV1 tenoAuth; // Oauth鉴权所需及所得信息的封装存储单元
 
 	int returnType = 0;// 1为分享页面的返回参数，0为本地更多
 	OrderPrizeDiaog orderPrizeDialog;// 开奖订阅公共类
@@ -110,9 +100,9 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		shellRW = new RWSharedPreferences(MoreActivity.this, "addInfo");
 		orderPrizeDialog = new OrderPrizeDiaog(shellRW, MoreActivity.this);
 		context = this;
-		tenoAuth = new OAuthV1(oauthCallback);
-		tenoAuth.setOauthConsumerKey(Constants.kAppKey);
-		tenoAuth.setOauthConsumerSecret(Constants.kAppSecret);
+//		tenoAuth = new OAuthV1(oauthCallback);
+//		tenoAuth.setOauthConsumerKey(Constants.kAppKey);
+//		tenoAuth.setOauthConsumerSecret(Constants.kAppSecret);
 		// initView();
 		showMoreListView();
 		// appc=(ApplicationContext)getApplication();
@@ -165,15 +155,8 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	 */
 	private void showShareView() {
 		setContentView(R.layout.ruyicai_share);
-		// renren = new Renren(this);
 		returnType = 1;
-		sharesina = (RelativeLayout) findViewById(R.id.tableRow_sharetosina);
-		sharetecent = (RelativeLayout) findViewById(R.id.tableRow_sharetotecent);
-		sharerenren = (RelativeLayout) findViewById(R.id.tableRow_sharetorenren);
 		sharetomsg = (RelativeLayout) findViewById(R.id.tableRow_sharetomsg);
-		sharesina.setOnClickListener(moreActivityListener);
-		sharetecent.setOnClickListener(moreActivityListener);
-		sharerenren.setOnClickListener(moreActivityListener);
 		sharetomsg.setOnClickListener(moreActivityListener);
 	}
 
@@ -182,23 +165,11 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
-			case R.id.tableRow_sharetosina:
-				oauthOrShare();
-				break;
-			case R.id.tableRow_sharetotecent:
-
-				break;
-			case R.id.tableRow_sharetorenren:
-				tenoauth();
-				break;
 			case R.id.tableRow_sharetomsg:
 				shareToMsg();
 				break;
 			case R.id.tableRow_kaijiangdingyue:
 				orderPrizeDialog.orderPrizeDialog().show();
-				break;
-			case R.id.tableRow_weibobangding:
-				showsharesettingView();
 				break;
 			case R.id.tableRow_goucaitixing:
 				Intent intentAlarmSet = new Intent(MoreActivity.this,
@@ -231,30 +202,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 					shellRW.putBooleanValue(ShellRWConstants.ISJIXUAN, false);
 				}
 				break;
-			case R.id.isSharetoSina:
-				isSinaTiaoZhuan = false;
-				token = shellRW.getStringValue("token");
-				if (token.equals("")) {
-					oauth();
-					;
-				} else {
-					shellRW.putStringValue("token", "");
-					is_sharetosinaweibo.setBackgroundResource(R.drawable.off);
-				}
-				break;
-			case R.id.isSharetoRenren:
-				String tencent_token = shellRW.getStringValue("tencent_token");
-				String tencent_access_token_secret = shellRW
-						.getStringValue("tencent_access_token_secret");
-				if (!tencent_token.equals("")
-						&& !tencent_access_token_secret.equals("")) {
-					is_sharetorenren.setBackgroundResource(R.drawable.off);
-					shellRW.putStringValue("tencent_token", "");
-					shellRW.putStringValue("tencent_access_token_secret", "");
-				} else {
-					tenoauth();
-				}
-				break;
 			case R.id.caizhong_setting:// 彩种设置
 				Intent intent = new Intent(MoreActivity.this,
 						CaizhongSettingActivity.class);
@@ -270,30 +217,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	};
 	private boolean is_auto_login;// 从sharedpreference中获取用户的自动登录设置
 
-	public void tenoauth() {
-		tencent_token = shellRW.getStringValue("tencent_token");
-		tencent_access_token_secret = shellRW
-				.getStringValue("tencent_access_token_secret");
-		if (tencent_token.equals("") && tencent_access_token_secret.equals("")) {
-			try {
-				tenoAuth = OAuthV1Client.requestToken(tenoAuth);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			Intent intent = new Intent(MoreActivity.this,
-					OAuthV1AuthorizeWebView.class);// 创建Intent，使用WebView让用户授权
-			intent.putExtra("oauth", tenoAuth);
-			startActivityForResult(intent, 1);
-		} else {
-			tenoAuth.setOauthToken(tencent_token);
-			tenoAuth.setOauthTokenSecret(tencent_access_token_secret);
-			Intent intent = new Intent(MoreActivity.this,
-					TencentShareActivity.class);
-			intent.putExtra("tencent", Constants.shareContent);
-			intent.putExtra("oauth", tenoAuth);
-			startActivity(intent);
-		}
-	}
 
 	private void shareToMsg() {
 		Uri smsToUri = Uri.parse("smsto:");// 联系人地址
@@ -302,32 +225,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		mIntent.putExtra("sms_body", Constants.shareContent);// 短信的内容
 		startActivity(mIntent);
 	}
-
-	private void oauthOrShare() {
-		token = shellRW.getStringValue("token");
-		expires_in = shellRW.getStringValue("expires_in");
-		if (token.equals("")) {
-			oauth();
-		} else {
-			isSinaTiaoZhuan = true;
-			initAccessToken(token, expires_in);
-		}
-	}
-
-	private void oauth() {
-
-		Weibo weibo = Weibo.getInstance();
-		weibo.setupConsumerConfig(Constants.CONSUMER_KEY,
-				Constants.CONSUMER_SECRET);
-		// Oauth2.0
-		// 隐式授权认证方式
-		weibo.setRedirectUrl(Constants.CONSUMER_URL);// 此处回调页内容应该替换为与appkey对应的应用回调页
-		// 对应的应用回调页可在开发者登陆新浪微博开发平台之后，
-		// 进入我的应用--应用详情--应用信息--高级信息--授权设置--应用回调页进行设置和查看，
-		// 应用回调页不可为空
-		weibo.authorize(MoreActivity.this, new AuthDialogListener());
-	}
-
 	/**
 	 * 列表点击实现方法
 	 * 
@@ -349,12 +246,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 				Toast.makeText(this, "当前已经是最新版本！", Toast.LENGTH_SHORT).show();
 			}
 		}
-//		/* 新手指南 */
-//		if (getString(R.string.menu_introduce).equals(str)) {
-//			Intent intent4 = new Intent(MoreActivity.this, PhotoActivity.class);
-//			intent4.putExtra("isHelp", true);
-//			startActivity(intent4);
-//		}
 		/* 客服 */
 		if (getString(R.string.phone_kefu_title).equals(str)) {
 			CallServicePhoneConfirm.phoneKefu(this);
@@ -402,8 +293,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		setContentView(R.layout.applicationsetting);
 		returnType = 2;
 		kaijiangdingyue = (RelativeLayout) findViewById(R.id.tableRow_kaijiangdingyue);
-		weibobangding = (RelativeLayout) findViewById(R.id.tableRow_weibobangding);
-		weibobangding.setOnClickListener(moreActivityListener);
 		kaijiangdingyue.setOnClickListener(moreActivityListener);
 		auto_login_set = (Button) findViewById(R.id.auto_login_set_checkbox);
 		auto_jixuan_set = (Button) findViewById(R.id.auto_login_set_checkbox_jixuan);
@@ -416,25 +305,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		programmeSettings.setOnClickListener(moreActivityListener);
 		initAutoLoginSet();
 		initAutoJixuanSet();
-
-	}
-
-	/***
-	 * 分享绑定设置
-	 * 
-	 */
-	private void showsharesettingView() {
-		returnType = 3;
-		setContentView(R.layout.weibo_bind);
-		is_sharetorenren = (Button) findViewById(R.id.isSharetoRenren);
-		is_sharetosinaweibo = (Button) findViewById(R.id.isSharetoSina);
-		is_sharetorenren.setBackgroundResource(R.drawable.off);
-		token = shellRW.getStringValue("token");
-		expires_in = shellRW.getStringValue("expires_in");
-		initIsSharetosinaweiboBtn();
-		initsharetotencent();
-		is_sharetosinaweibo.setOnClickListener(moreActivityListener);
-		is_sharetorenren.setOnClickListener(moreActivityListener);
 
 	}
 
@@ -472,28 +342,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		}
 
 		auto_jixuan_set.setOnClickListener(moreActivityListener);
-
-	}
-
-	private void initIsSharetosinaweiboBtn() {
-		String token = shellRW.getStringValue("token");
-		if (token.equals("")) {
-			is_sharetosinaweibo.setBackgroundResource(R.drawable.off);
-		} else {
-			is_sharetosinaweibo.setBackgroundResource(R.drawable.on);
-		}
-	}
-
-	private void initsharetotencent() {
-		String tencent_token = shellRW.getStringValue("tencent_token");
-		String tencent_access_token_secret = shellRW
-				.getStringValue("tencent_access_token_secret");
-		if (!tencent_token.equals("")
-				&& !tencent_access_token_secret.equals("")) {
-			is_sharetorenren.setBackgroundResource(R.drawable.on);
-		} else {
-			is_sharetorenren.setBackgroundResource(R.drawable.off);
-		}
 
 	}
 
@@ -643,45 +491,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	@Override
 	public void errorCode_000000() {
 	}
-
-	/**
-	 * 从上一个activity返回当前activity执行的方法
-	 */
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == 1) {
-			if (resultCode == OAuthV1AuthorizeWebView.RESULT_CODE) {
-				// 从返回的Intent中获取验证码
-				tenoAuth = (OAuthV1) data.getExtras().getSerializable("oauth");
-				try {
-					tenoAuth = OAuthV1Client.accessToken(tenoAuth);
-					/*
-					 * 注意：此时oauth中的Oauth_token和Oauth_token_secret将发生变化，用新获取到的
-					 * 已授权的access_token和access_token_secret替换之前存储的未授权的request_token
-					 * 和request_token_secret.
-					 */
-					tencent_token = tenoAuth.getOauthToken();
-					tencent_access_token_secret = tenoAuth
-							.getOauthTokenSecret();
-					shellRW.putStringValue("tencent_token", tencent_token);
-					shellRW.putStringValue("tencent_access_token_secret",
-							tencent_access_token_secret);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				if (returnType == 3) {
-					is_sharetorenren.setBackgroundResource(R.drawable.on);
-				} else {
-					Intent intent = new Intent(MoreActivity.this,
-							TencentShareActivity.class);
-					intent.putExtra("tencent", Constants.shareContent);
-					intent.putExtra("oauth", tenoAuth);
-					startActivity(intent);
-				}
-
-			}
-		}
-	}
-
 	/**
 	 * 重写回建
 	 */
@@ -767,46 +576,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 	@Override
 	public void onCancelClick() {
-	}
-
-	class AuthDialogListener implements WeiboDialogListener {
-
-		@Override
-		public void onComplete(Bundle values) {
-			String token = values.getString("access_token");
-			String expires_in = values.getString("expires_in");
-			shellRW.putStringValue("token", token);
-			shellRW.putStringValue("expires_in", expires_in);
-			if (returnType == 3) {
-				is_sharetosinaweibo.setBackgroundResource(R.drawable.on);
-			} else {
-				initAccessToken(token, expires_in);
-			}
-		}
-
-		@Override
-		public void onCancel() {
-			Toast.makeText(getApplicationContext(), "Auth cancel",
-					Toast.LENGTH_LONG).show();
-		}
-	}
-
-	private void initAccessToken(String token, String expires_in) {
-		Token accessToken = new Token(token, Weibo.getAppSecret());
-		accessToken.setExpiresIn(expires_in);
-		Weibo.getInstance().setAccessToken(accessToken);
-		share2weibo(Constants.shareContent);
-		if (isSinaTiaoZhuan) {
-			Intent intent = new Intent();
-			intent.setClass(MoreActivity.this, ShareActivity.class);
-			startActivity(intent);
-		}
-	}
-
-	private void share2weibo(String content) {
-		Weibo weibo = Weibo.getInstance();
-		weibo.share2weibo(this, weibo.getAccessToken().getToken(), weibo
-				.getAccessToken().getSecret(), content, "");
 	}
 
 	@Override

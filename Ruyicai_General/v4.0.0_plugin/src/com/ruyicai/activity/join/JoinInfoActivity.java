@@ -63,7 +63,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	private int topIndex = 0;
 	private int lottypeIndex = 0;
 	String orderBy, orderDir;
-	Button imgUp, imgDown;
+//	Button imgUp, imgDown;
 	Button progress, allAtm, atm;// 排序按钮
 	CheckBox check;// 升序降序排序
 	private ProgressDialog progressdialog;

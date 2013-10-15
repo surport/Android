@@ -707,42 +707,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		super.onDestroy();
 	}
 
-	public void showfenxdialog(String messagestr) {
-		LayoutInflater inflate = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflate.inflate(R.layout.touzhu_succe, null);
-		final AlertDialog dialog = new AlertDialog.Builder(this).create();
-		ImageView image = (ImageView) view.findViewById(R.id.touzhu_succe_img);
-		Button ok = (Button) view.findViewById(R.id.touzhu_succe_button_sure);
-		Button share = (Button) view
-				.findViewById(R.id.touzhu_succe_button_share);
-		TextView message = (TextView) view.findViewById(R.id.touzhu_succe_text);
-		message.setText(messagestr);
-		image.setImageResource(R.drawable.succee);
-		ok.setBackgroundResource(R.drawable.loginselecter);
-		share.setBackgroundResource(R.drawable.loginselecter);
-		ok.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.cancel();
-				JoinStartActivity.this.finish();
-			}
-		});
-		share.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.cancel();
-				Intent intent = new Intent(JoinStartActivity.this,
-						JoinStarShare.class);
-				JoinStartActivity.this.startActivity(intent);
-				JoinStartActivity.this.finish();
-			}
-		});
-
-		dialog.show();
-		dialog.getWindow().setContentView(view);
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 

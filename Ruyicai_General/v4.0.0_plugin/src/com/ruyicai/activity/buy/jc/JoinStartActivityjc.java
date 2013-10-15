@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,7 +19,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -28,7 +26,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -38,7 +35,6 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
-import com.ruyicai.activity.join.JoinStarShare;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.handler.HandlerMsg;
@@ -436,42 +432,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		intent.putExtra("amount", betAndGift.getAmount());
 		startActivity(intent);
 		/**modify by pengcx 20130605 end*/
-	}
-
-	public void showfenxdialog() {
-		LayoutInflater inflate = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflate.inflate(R.layout.touzhu_succe, null);
-		final AlertDialog dialog = new AlertDialog.Builder(this).create();
-		ImageView image = (ImageView) view.findViewById(R.id.touzhu_succe_img);
-		Button ok = (Button) view.findViewById(R.id.touzhu_succe_button_sure);
-		Button share = (Button) view
-				.findViewById(R.id.touzhu_succe_button_share);
-		TextView message = (TextView) view.findViewById(R.id.touzhu_succe_text);
-		message.setText("合买成功");
-		image.setImageResource(R.drawable.succee);
-		ok.setBackgroundResource(R.drawable.loginselecter);
-		share.setBackgroundResource(R.drawable.loginselecter);
-		ok.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.cancel();
-				JoinStartActivityjc.this.finish();
-			}
-		});
-		share.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.cancel();
-				Intent intent = new Intent(JoinStartActivityjc.this,
-						JoinStarShare.class);
-				JoinStartActivityjc.this.startActivity(intent);
-				JoinStartActivityjc.this.finish();
-			}
-		});
-
-		dialog.show();
-		dialog.getWindow().setContentView(view);
 	}
 
 	/*

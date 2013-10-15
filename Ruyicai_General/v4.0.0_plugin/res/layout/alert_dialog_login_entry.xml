@@ -262,53 +262,13 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@id/logintosina"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/usercentertop" >
-
-            <ImageView
-                android:id="@id/img_sina"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:paddingTop="3dip"
-                android:layout_centerVertical="true"
-                
-                android:src="@drawable/sina_weibo_16" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/img_sina"
-                android:text="@string/loginwithsina"
-                                android:layout_centerVertical="true"
-                
-                android:textColor="#000"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                
-                android:layout_marginRight="10dp"
-                android:src="@drawable/xiangyou" />
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@id/logintoqq"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
-            android:background="@drawable/usercentermiddle" >
+            android:background="@drawable/usercentertop" >
             <ImageView
                 android:id="@id/img_sina"
                 android:layout_width="wrap_content"
