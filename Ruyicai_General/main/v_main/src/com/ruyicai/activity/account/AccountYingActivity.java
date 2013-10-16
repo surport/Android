@@ -87,7 +87,6 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
     /**
      * 该地址为获取TN的地址，具体请根据业务需求做相应改动
      */
-    private static final String TN_URL_01 = "http://222.66.233.198:8080/sim/gettn";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -445,9 +444,7 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
 	}
 
 	/***************** 银联支付 *********************/
-	private final String YINTYPE = "0900";
-	// 启动插件(进入支付页面)
-	public final static String CMD_PAY_PLUGIN = "cmd_pay_plugin";
+	private final String YINTYPE = "1001";
 
 	/**
 	 * 银联充值跳转到插件
@@ -455,16 +452,6 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
 	public void turnYinView() {
 		// 向插件提交3要素报文
 		// *********************************************************************************//
-
-//		byte[] to_upomp = info.getBytes();
-//
-//		Bundle mbundle = new Bundle();
-//		// to_upomp为商户提交的XML
-//		mbundle.putByteArray("xml", to_upomp);
-//		// 注：此处的action是：商户的action
-//		mbundle.putString("action_cmd", CMD_PAY_PLUGIN);
-//
-//		PluginHelper.LaunchPlugin(this, mbundle);
 		if (tn == null || tn.length() == 0) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("错误提示");
@@ -497,7 +484,7 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
 	private void actoinYin(String amt) {
 		RechargePojo rechargepojo = new RechargePojo();
 		rechargepojo.setAmount(amt);
-		rechargepojo.setRechargetype("06");
+		rechargepojo.setRechargetype("15");
 		rechargepojo.setCardtype(YINTYPE);
 		recharge(rechargepojo);
 	}
@@ -511,64 +498,30 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
 		mProgress = UserCenterDialog.onCreateDialog(AccountYingActivity.this);
 		mProgress.show();
 		new Thread(new Runnable() {
+
 			@Override
 			public void run() {
-//				try {
-//					rechargepojo.setSessionid(sessionId);
-//					rechargepojo.setUserno(userno);
-//					String re = RechargeInterface.getInstance().recharge(
-//							rechargepojo);
-//
-//					JSONObject obj = new JSONObject(re);
-//					String error_code = obj.getString("error_code");
-//					final String message = obj.getString("message");
-//					closeProgress();
-//					if (error_code.equals("0000")) {
-//						final String xml = obj.getString("value");
-//						handler.post(new Runnable() {
-//							@Override
-//							public void run() {
-//								turnYinView(xml);
-//							}
-//						});
-//					} else {
-//						handler.post(new Runnable() {
-//							@Override
-//							public void run() {
-//								Toast.makeText(AccountYingActivity.this,
-//										message, Toast.LENGTH_SHORT);
-//							}
-//						});
-//					}
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-		        InputStream is;
-		        try {
+				String error_code = "00";
+				String message = "";
+				try {
+					rechargepojo.setSessionid(sessionId);
+					rechargepojo.setUserno(userno);
+					String re = RechargeInterface.getInstance().recharge(
+							rechargepojo);
 
-		            String url = TN_URL_01;
-
-		            URL myURL = new URL(url);
-		            URLConnection ucon = myURL.openConnection();
-		            ucon.setConnectTimeout(120000);
-		            is = ucon.getInputStream();
-		            int i = -1;
-		            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		            while ((i = is.read()) != -1) {
-		                baos.write(i);
-		            }
-
-		            tn = baos.toString();
-		            is.close();
-		            baos.close();
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        }
-		        handler.handleMsg("0000", tn);
-		        mProgress.dismiss();
+					JSONObject obj = new JSONObject(re);
+					error_code = obj.getString("error_code");
+					message = obj.getString("message");
+					closeProgress();
+					if (error_code.equals("0000")) {
+						tn = obj.getString("value");
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				handler.handleMsg(error_code, message);
 			}
 		}).start();
-
 	}
 
 	/**

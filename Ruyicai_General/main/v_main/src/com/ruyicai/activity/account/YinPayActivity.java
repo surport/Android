@@ -50,10 +50,9 @@ import android.widget.Toast;
  * 
  */
 public class YinPayActivity extends Activity implements HandlerMsg {
-	private String xml = "";
 	private String tn = null;
 	public ProgressDialog progressdialog;
-	private final String YINTYPE = "0900";
+	private final String YINTYPE = "1001";
 	Button secureOk;
 	EditText accountnum;
 	// private TextView alipay_content = null;
@@ -70,10 +69,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
      *      "01" - 连接银联测试环境
      *****************************************************************/
     private String mMode = "01";
-    /**
-     * 该地址为获取TN的地址，具体请根据业务需求做相应改动
-     */
-    private static final String TN_URL_01 = "http://222.66.233.198:8080/sim/gettn";
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +143,7 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 				// 改为线程 2010/7/9陈晨
 				RechargePojo rechargepojo = new RechargePojo();
 				rechargepojo.setAmount(zfb_recharge_value_string);
-				rechargepojo.setRechargetype("06");
+				rechargepojo.setRechargetype("15");
 				rechargepojo.setCardtype(YINTYPE);
 				recharge(rechargepojo);
 			}
@@ -177,50 +172,24 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void run() {
-//				String error_code = "00";
-//				message = "";
-//				try {
-//					rechargepojo.setSessionid(sessionId);
-//					rechargepojo.setUserno(userno);
-//					String re = RechargeInterface.getInstance().recharge(
-//							rechargepojo);
-//
-//					JSONObject obj = new JSONObject(re);
-//					error_code = obj.getString("error_code");
-//					message = obj.getString("message");
-//					if (error_code.equals("0000")) {
-//						xml = obj.getString("value");
-//					}
-//				} catch (JSONException e) {
-//					e.printStackTrace();
-//				}
-//				handler.handleMsg(error_code, message);
-//				progressdialog.dismiss();
-				
-				
+				String error_code = "00";
+				message = "";
+				try {
+					rechargepojo.setSessionid(sessionId);
+					rechargepojo.setUserno(userno);
+					String re = RechargeInterface.getInstance().recharge(
+							rechargepojo);
 
-		        InputStream is;
-		        try {
-
-		            String url = TN_URL_01;
-
-		            URL myURL = new URL(url);
-		            URLConnection ucon = myURL.openConnection();
-		            ucon.setConnectTimeout(120000);
-		            is = ucon.getInputStream();
-		            int i = -1;
-		            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		            while ((i = is.read()) != -1) {
-		                baos.write(i);
-		            }
-
-		            tn = baos.toString();
-		            is.close();
-		            baos.close();
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        }
-		        handler.handleMsg("0000", tn);
+					JSONObject obj = new JSONObject(re);
+					error_code = obj.getString("error_code");
+					message = obj.getString("message");
+					if (error_code.equals("0000")) {
+						tn = obj.getString("value");
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				handler.handleMsg(error_code, message);
 				progressdialog.dismiss();
 			}
 		}).start();
@@ -250,21 +219,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 	public void turnYinView() {
 		// 向插件提交3要素报文
 		// *********************************************************************************//
-
-		// byte[] to_upomp = info.getBytes();
-		//
-		// Bundle mbundle = new Bundle();
-		// // to_upomp为商户提交的XML
-		// mbundle.putByteArray("xml", to_upomp);
-		// // 注：此处的action是：商户的action
-		// mbundle.putString("action_cmd", CMD_PAY_PLUGIN);
-		//
-		// PluginHelper.LaunchPlugin(this, mbundle);
-		//if (mLoadingDialog.isShowing()) {
-		//	mLoadingDialog.dismiss();
-		//}
-
-		//String tn = "";
 		if (tn == null || tn.length() == 0) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle("错误提示");
@@ -278,7 +232,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 					});
 			builder.create().show();
 		} else {
-			//tn = (String) msg.obj;
 			/*************************************************
 			 * 
 			 * 步骤2：通过银联工具类启动支付插件
