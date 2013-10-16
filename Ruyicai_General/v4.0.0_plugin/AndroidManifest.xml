@@ -51,10 +51,6 @@
             android:name="com.ruyicai.activity.common.ForgetPasswordActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.tencent.weibo.webview.OAuthV1AuthorizeWebView"
-            android:label="@string/app_name" >
-        </activity>
         <!-- maingroup -->
         <activity
             android:name="com.ruyicai.activity.home.MainGroup"
@@ -762,44 +758,12 @@
             android:name="com.alipay.android.secure.AlipaySecurePayDialog"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 分享 -->
-        <activity
-            android:name="com.third.share.ShareActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/ContentOverlay"
-            android:windowSoftInputMode="adjustPan|stateAlwaysVisible" >
-        </activity>
-        <!-- 分享至人人 -->
-        <activity android:name="com.third.sharetorenren.status.StatusPubActivity" >
-        </activity>
-        <activity android:name="com.third.sharetorenren.StatusDemo" >
-        </activity>
-        <activity
-            android:name="com.third.sharetorenren.AuthorizationHelper$BlockActivity"
-            android:theme="@android:style/Theme.Dialog" />
         <activity android:name="com.ruyicai.activity.account.AccountDialog" />
         <activity
             android:name="com.ruyicai.activity.buy.HighFrequencyNoticeHistroyActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Dialog" />
-        <!-- 腾讯 -->
-        <activity
-            android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="tencent100305073" />
- <!-- 100380359 100381104 222222 -->
-            </intent-filter>
-        </activity>
 
         <!-- 开奖订阅 -->
         <receiver

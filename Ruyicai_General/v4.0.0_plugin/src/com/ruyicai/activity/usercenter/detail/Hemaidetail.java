@@ -1594,47 +1594,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 		return false;
 	}
 
-//	class AuthDialogListener implements WeiboDialogListener {
-//
-//		@Override
-//		public void onComplete(Bundle values) {
-//			PublicMethod.myOutLog("token111",
-//					"zhiqiande" + shellRW.getStringValue("token"));
-//			PublicMethod.myOutLog("onComplete", "12131321321321");
-//			String token = values.getString("access_token");
-//			PublicMethod.myOutLog("token", token);
-//			String expires_in = values.getString("expires_in");
-//			shellRW.putStringValue("token", token);
-//			shellRW.putStringValue("expires_in", expires_in);
-//			// is_sharetosinaweibo.setBackgroundResource(R.drawable.on);
-//			initAccessToken(token, expires_in);
-//		}
-//
-//		@Override
-//		public void onCancel() {
-//			Toast.makeText(getApplicationContext(), "Auth cancel",
-//					Toast.LENGTH_LONG).show();
-//		}
-//	}
-
-//	private void initAccessToken(String token, String expires_in) {
-//		Token accessToken = new Token(token, Weibo.getAppSecret());
-//		accessToken.setExpiresIn(expires_in);
-//		Weibo.getInstance().setAccessToken(accessToken);
-//		share2weibo(getShareContent()/*Constants.shareContent*/);
-//		if (isSinaTiaoZhuan) {
-//			Intent intent = new Intent();
-//			intent.setClass(Hemaidetail.this, ShareActivity.class);
-//			startActivity(intent);
-//		}
-//	}
-
-//	private void share2weibo(String content) {
-//		Weibo weibo = Weibo.getInstance();
-//		weibo.share2weibo(this, weibo.getAccessToken().getToken(), weibo
-//				.getAccessToken().getSecret(), content, "");
-//	}
-
 	/**
 	 * 判断字符串是否是空值
 	 * 

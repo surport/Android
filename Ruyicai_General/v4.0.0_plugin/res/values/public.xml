@@ -562,7 +562,6 @@
     <public id="0x7f0201d5" name="red" type="drawable" />
     <public id="0x7f0201d6" name="refresh_last_code" type="drawable" />
     <public id="0x7f0201d7" name="renren_16" type="drawable" />
-    <public id="0x7f0201d8" name="renrenfenxiang" type="drawable" />
     <public id="0x7f0201d9" name="return_btn" type="drawable" />
     <public id="0x7f0201da" name="return_btn_b" type="drawable" />
     <public id="0x7f0201db" name="returnselecter" type="drawable" />
@@ -585,7 +584,6 @@
     <public id="0x7f0201ec" name="simulate_selectnumber_bottomnormal" type="drawable" />
     <public id="0x7f0201ed" name="simulate_selectnumber_bottomred" type="drawable" />
     <public id="0x7f0201ee" name="simulate_selectnumber_title" type="drawable" />
-    <public id="0x7f0201ef" name="sina_weibo_16" type="drawable" />
     <public id="0x7f0201f0" name="singleorsmall" type="drawable" />
     <public id="0x7f0201f1" name="smallplate" type="drawable" />
     <public id="0x7f0201f2" name="smallplate2" type="drawable" />
@@ -654,24 +652,20 @@
     <public id="0x7f020231" name="usercentertop" type="drawable" />
     <public id="0x7f020232" name="userceterback" type="drawable" />
     <public id="0x7f020233" name="usercroe" type="drawable" />
-    <public id="0x7f020234" name="wangyifenxiang" type="drawable" />
-    <public id="0x7f020235" name="weiboicon16" type="drawable" />
     <public id="0x7f020236" name="white_background" type="drawable" />
     <public id="0x7f020237" name="wodehemai" type="drawable" />
     <public id="0x7f020238" name="xiangyou" type="drawable" />
-    <public id="0x7f020239" name="xinlangfenxiang" type="drawable" />
     <public id="0x7f02023a" name="zc_play_change_selector" type="drawable" />
     <public id="0x7f02023b" name="zc_team_select_bg" type="drawable" />
     <public id="0x7f02023c" name="zengcaichaxun" type="drawable" />
     <public id="0x7f02023d" name="zhanghumingxi" type="drawable" />
     <public id="0x7f02023e" name="zhankai" type="drawable" />
     <public id="0x7f02023f" name="zhankai_click" type="drawable" />
-    <public id="0x7f020240" name="zhifubao_icon" type="drawable" />
-    <public id="0x7f020241" name="zhoangjiangchaxun" type="drawable" />
-    <public id="0x7f020242" name="zhuihaochaxun" type="drawable" />
-    <public id="0x7f020243" name="zijinxiangqing" type="drawable" />
-    <public id="0x7f020244" name="zx_list_bg_gray" type="drawable" />
-    <public id="0x7f020245" name="zx_list_bg_white" type="drawable" />
+    <public id="0x7f0201d8" name="zhoangjiangchaxun" type="drawable" /> 
+    <public id="0x7f020234" name="zhuihaochaxun" type="drawable" />
+    <public id="0x7f020239" name="zijinxiangqing" type="drawable" />
+    <public id="0x7f0201ef" name="zx_list_bg_gray" type="drawable" />
+    <public id="0x7f020235" name="zx_list_bg_white" type="drawable" />
     <public id="0x7f0b03b4" name="HorizontalScrollView01" type="id" />
     <public id="0x7f0b009e" name="LinearLayout0000" type="id" />
     <public id="0x7f0b008e" name="LinearLayout01" type="id" />
@@ -2101,7 +2095,6 @@
     <public id="0x7f030081" name="join_info_check" type="layout" />
     <public id="0x7f030082" name="join_info_listview_item" type="layout" />
     <public id="0x7f030083" name="join_start" type="layout" />
-    <public id="0x7f030084" name="joinsharelayout" type="layout" />
     <public id="0x7f030085" name="latestlottery_listitem" type="layout" />
     <public id="0x7f030086" name="layout_gift" type="layout" />
     <public id="0x7f030087" name="layout_nav_item" type="layout" />
@@ -2178,12 +2171,11 @@
     <public id="0x7f0300ce" name="userscoredetail" type="layout" />
     <public id="0x7f0300cf" name="userscroe_listitem" type="layout" />
     <public id="0x7f0300d0" name="userscroe_show" type="layout" />
-    <public id="0x7f0300d1" name="weibo_bind" type="layout" />
     <public id="0x7f0300d2" name="win_detail" type="layout" />
     <public id="0x7f0300d3" name="win_lot_high_frequency_item" type="layout" />
     <public id="0x7f0300d4" name="yonghufankuiview" type="layout" />
-    <public id="0x7f0300d5" name="zc_playchange_dialog" type="layout" />
-    <public id="0x7f0300d6" name="zhuihaoshezhi" type="layout" />
+    <public id="0x7f0300d1" name="zc_playchange_dialog" type="layout" />
+    <public id="0x7f030084" name="zhuihaoshezhi" type="layout" />
     <public id="0x7f0a0000" name="mainpage_menu" type="menu" />
     <public id="0x7f0902a4" name="Cancel" type="string" />
     <public id="0x7f0902a3" name="Ensure" type="string" />
@@ -2674,9 +2666,6 @@
     <public id="0x7f09001b" name="login_register" type="string" />
     <public id="0x7f0902b1" name="login_string_protocol" type="string" />
     <public id="0x7f0902b2" name="login_string_protocol_context" type="string" />
-    <public id="0x7f0900fb" name="loginwithqq" type="string" />
-    <public id="0x7f0900fa" name="loginwithsina" type="string" />
-    <public id="0x7f0900fc" name="loginwithzhifubao" type="string" />
     <public id="0x7f09001c" name="logout" type="string" />
     <public id="0x7f0903c1" name="lotnoalarm_textview_fixtime" type="string" />
     <public id="0x7f0903c4" name="lotnoalarm_textview_lotnoset" type="string" />
@@ -2836,7 +2825,7 @@
     <public id="0x7f090059" name="red_ball_field" type="string" />
     <public id="0x7f09005c" name="red_ball_tuoma" type="string" />
     <public id="0x7f0903dc" name="refresh_lastCode_msg" type="string" />
-    <public id="0x7f090419" name="refreshing" type="string" />
+    <public id="0x7f0900f8" name="refreshing" type="string" />
     <public id="0x7f0900a6" name="regNewUser" type="string" />
     <public id="0x7f0900b1" name="reg_new_user" type="string" />
     <public id="0x7f0900b3" name="register" type="string" />
@@ -2856,7 +2845,6 @@
     <public id="0x7f0900a4" name="remember_password" type="string" />
     <public id="0x7f0900a3" name="remember_phoneNum" type="string" />
     <public id="0x7f09035e" name="remote_call_failed" type="string" />
-    <public id="0x7f0900f8" name="renrenaccout" type="string" />
     <public id="0x7f090272" name="renxuanjiu" type="string" />
     <public id="0x7f090279" name="renxuanjiu_kaijiang" type="string" />
     <public id="0x7f090221" name="renxuanjiufenxi" type="string" />
@@ -2926,10 +2914,7 @@
     <public id="0x7f0900f3" name="share" type="string" />
     <public id="0x7f09030a" name="share_dialog_title" type="string" />
     <public id="0x7f090303" name="sharemessage" type="string" />
-    <public id="0x7f0900f6" name="sharetorenren" type="string" />
-    <public id="0x7f0900f5" name="sharetosinaweibo" type="string" />
     <public id="0x7f0900f7" name="sharetosms" type="string" />
-    <public id="0x7f0900f4" name="sharetotencentweibo" type="string" />
     <public id="0x7f090271" name="shengfucai" type="string" />
     <public id="0x7f090278" name="shengfucai_kaijiang" type="string" />
     <public id="0x7f090220" name="shengfucaifenxi" type="string" />
@@ -2948,7 +2933,6 @@
     <public id="0x7f090217" name="shuangseqiufenxi" type="string" />
     <public id="0x7f0903d2" name="simulate_selectnumber_button" type="string" />
     <public id="0x7f0903d1" name="simulate_selectnumber_text" type="string" />
-    <public id="0x7f0900f9" name="sinaweiboaccout" type="string" />
     <public id="0x7f09024a" name="ssc_daxiao" type="string" />
     <public id="0x7f090246" name="ssc_erxing" type="string" />
     <public id="0x7f090252" name="ssc_erxingzuxuanlable" type="string" />
@@ -3059,7 +3043,7 @@
     <public id="0x7f0903fd" name="umpay_recharge_bingphone_submit" type="string" />
     <public id="0x7f0903fe" name="umpay_recharge_info" type="string" />
     <public id="0x7f09013c" name="unit" type="string" />
-    <public id="0x7f09041a" name="updating" type="string" />
+    <public id="0x7f0900f9" name="updating" type="string" />
     <public id="0x7f090397" name="user_agency" type="string" />
     <public id="0x7f09039c" name="user_agency_edit_name" type="string" />
     <public id="0x7f09039b" name="user_agency_edit_password" type="string" />
@@ -3182,7 +3166,6 @@
     <public id="0x7f090231" name="wait_text" type="string" />
     <public id="0x7f090232" name="waiting_text" type="string" />
     <public id="0x7f09004e" name="week" type="string" />
-    <public id="0x7f0900f1" name="weibo_bind" type="string" />
     <public id="0x7f09001d" name="welcome" type="string" />
     <public id="0x7f09018c" name="whatisyourselect" type="string" />
     <public id="0x7f0901d9" name="xingming" type="string" />
@@ -3202,13 +3185,13 @@
     <public id="0x7f090032" name="yonghufankui" type="string" />
     <public id="0x7f0902a5" name="yonghufankui_edit_hint_msg" type="string" />
     <public id="0x7f09002d" name="yonghuzhongxin" type="string" />
-    <public id="0x7f09041b" name="zc_14sf_play" type="string" />
-    <public id="0x7f09041e" name="zc_4jq_play" type="string" />
-    <public id="0x7f09041d" name="zc_6cb_play" type="string" />
-    <public id="0x7f090421" name="zc_6cb_play_text_fail" type="string" />
-    <public id="0x7f090420" name="zc_6cb_play_text_level" type="string" />
-    <public id="0x7f09041f" name="zc_6cb_play_text_win" type="string" />
-    <public id="0x7f09041c" name="zc_rx9_play" type="string" />
+    <public id="0x7f0900fa" name="zc_14sf_play" type="string" />
+    <public id="0x7f0900f1" name="zc_4jq_play" type="string" />
+    <public id="0x7f0900fc" name="zc_6cb_play" type="string" />  
+    <public id="0x7f0900f6" name="zc_6cb_play_text_fail" type="string" />
+    <public id="0x7f0900f5" name="zc_6cb_play_text_level" type="string" />
+    <public id="0x7f0900f4" name="zc_6cb_play_text_win" type="string" />
+    <public id="0x7f0900fb" name="zc_rx9_play" type="string" />
     <public id="0x7f090314" name="zfb_dialog_title" type="string" />
     <public id="0x7f090025" name="zhanghuchongzhi" type="string" />
     <public id="0x7f090002" name="zhanghuchongzhi1" type="string" />

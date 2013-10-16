@@ -266,18 +266,9 @@
     <string name="auto_login_set">自动登录设置</string>
     <string name="auto_login_set_jixuan">摇一摇机选功能</string>
     <string name="lotteryprizemsgoder">开奖信息订阅</string>
-    <string name="weibo_bind">微博账户绑定</string>
     <string name="caizhong_setting">彩种设置</string>
     <string name="share">分享</string>
-    <string name="sharetotencentweibo">分享到腾讯微博</string>
-    <string name="sharetosinaweibo">分享到新浪微博</string>
-    <string name="sharetorenren">分享到腾讯微博</string>
     <string name="sharetosms">短信分享</string>
-    <string name="renrenaccout">腾讯微博账号设置</string>
-    <string name="sinaweiboaccout">新浪微博账号设置</string>
-    <string name="loginwithsina">用新浪微博账号登录</string>
-    <string name="loginwithqq">用QQ账号登录</string>
-    <string name="loginwithzhifubao">用支付宝账号登录</string>
 
     <!--
 		<string
