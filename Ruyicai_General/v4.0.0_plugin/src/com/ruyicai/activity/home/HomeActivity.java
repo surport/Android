@@ -78,7 +78,6 @@ public class HomeActivity extends Activity {
 	public static String softwaretitle = "";
 	private RWSharedPreferences shellRW;
 
-	private StartTask mStartTask;
 	private ImageView imageview;
 	public boolean isHint = false;
 	private JSONObject obj;
@@ -100,9 +99,7 @@ public class HomeActivity extends Activity {
 				break;
 			}
 			case 2: {
-				mStartTask = new StartTask();
-				mStartTask.execute();
-				
+				turnActivity();
 				/**add by yejc 20130724 start*/
 				Controller.getInstance(HomeActivity.this).readReChargeCenterState();
 				/**add by yejc 20130724 end*/
@@ -256,22 +253,12 @@ public class HomeActivity extends Activity {
 	 * 跳转下一页
 	 */
 	public void turnActivity() {
-		// Intent in = new Intent(HomeActivity.this, TransitActivity.class);
-		// startActivity(in);
-		// HomeActivity.this.finish();
 		// 读取本地渠道号
 		shellRW = new RWSharedPreferences(this, "addInfo");
 		boolean isFirst = shellRW.getBooleanValue("isFirst");
-//		if (isFirst) {
-			Intent in = new Intent(HomeActivity.this, MainGroup.class);
-			startActivity(in);
-			HomeActivity.this.finish();
-//		} else {
-//			shellRW.putBooleanValue("isFirst", true);
-//			Intent in = new Intent(HomeActivity.this, PhotoActivity.class);
-//			startActivity(in);
-//			HomeActivity.this.finish();
-//		}
+		Intent in = new Intent(HomeActivity.this, MainGroup.class);
+		startActivity(in);
+		HomeActivity.this.finish();
 	}
 
 	@Override
@@ -345,94 +332,6 @@ public class HomeActivity extends Activity {
 		return false;
 	}
 
-	/**
-	 * 开机联网,保存必要信息,判断软件升级
-	 * 
-	 */
-	public void initSoftwareStartInfomationFromServer() {
-
-		Constants.isProxyConnect = initProxySetting();// 初始化代理设置
-		// 判断是否要上传统计信息到服务器
-		SharedPreferences sharedPreferences = getSharedPreferences(
-				Constants.APPNAME, MODE_PRIVATE);
-		int gameSumCount = sharedPreferences
-				.getInt(Constants.GAME_CLICK_SUM, 0); // 游戏名称+n , 默认值为0
-		boolean isUpdateStatInfo = false;// 是否上传了统计信息
-		JSONObject statJsonObject = null;
-		if (gameSumCount >= Constants.STAT_INFO_CACHE_NUM) {
-			// 用户点的游戏够多了,值得上传一次统计信息
-			statJsonObject = new JSONObject();
-			try {
-				for (int i = 0; i < 12; i++) {
-					statJsonObject.put(String.valueOf(i), sharedPreferences
-							.getInt(Constants.GAME_CLASS + i, 0));// 游戏名称+n ,
-				}
-				isUpdateStatInfo = true;
-			} catch (JSONException e) {
-				statJsonObject = null;
-			}
-
-		}
-
-		softwareUpdateInfo = SoftwareUpdateInterface.getInstance()
-				.softwareupdate(statJsonObject,
-						shellRW.getStringValue("randomNumber"),
-						packageName.substring(14));
-		todaykaijianginfo = WinAndPulsaward.getInstance().winandpulsquarey();// 彩种信息。
-		try {
-			obj = new JSONObject(softwareUpdateInfo);
-			JSONObject autoLogin = obj.getJSONObject("autoLogin");
-			if (autoLogin.getString("isAutoLogin").equals("true")) {
-				Constants.isInitTop = true;
-				shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, true);
-				shellRW.putStringValue(ShellRWConstants.USERNO,
-						autoLogin.getString("userno"));
-				shellRW.putStringValue(ShellRWConstants.CERTID,
-						autoLogin.getString("certid"));
-				shellRW.putStringValue(ShellRWConstants.MOBILEID,
-						autoLogin.getString("mobileid"));
-				shellRW.putStringValue(ShellRWConstants.NAME,
-						autoLogin.getString("name"));
-				shellRW.putStringValue(ShellRWConstants.USERNAME,
-						autoLogin.getString("userName"));
-				shellRW.putStringValue(ShellRWConstants.SESSIONID,
-						autoLogin.getString("sessionid"));
-				setJpushAlias(autoLogin.getString("userno"));
-			} else {
-				shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, false);
-				Constants.isInitTop = false;
-			}
-			PublicConst.MESSAGE = obj.getString("broadcastmessage");
-			if (isUpdateStatInfo == true) {
-				// 上传了统计信息,在这里将统计信息清空
-				SharedPreferences.Editor editor = getSharedPreferences(
-						Constants.APPNAME, MODE_PRIVATE).edit();
-				for (int i = 0; i < 12; i++) {
-					editor.putInt(Constants.GAME_CLASS + i, 0);
-				}
-				editor.putInt(Constants.GAME_CLICK_SUM, 0);
-				editor.commit();
-			}
-			softwareErrorCode = obj.getString("errorCode");
-			if (softwareErrorCode.equals("true")) {
-				// 需要升级,设置升级相关字段
-				softwareurl = obj.getString("updateurl");
-				softwaretitle = obj.getString("title");
-				softwaremessageStr = obj.getString("message");
-			}
-			Constants.NEWS = obj.getString("news");
-			Constants.todayjosn = new JSONObject(todaykaijianginfo);// 彩种信息。
-			setTicketStatus();
-			imageJson(obj.getJSONObject("image"));// 是否下载开奖图片
-			Intent intent = new Intent("com.ruyicai.activity.home.HomeActivity.UpdateNews");
-			sendBroadcast(intent);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} finally {
-			// ClockThread clock = new ClockThread();// 创建合买大厅倒计时线程
-			// clock.startThread();
-		}
-	}
     /**
      * 检查彩票状态
      */
@@ -504,65 +403,6 @@ public class HomeActivity extends Activity {
 	}
 
 	private boolean flag = true;
-
-	private class StartTask extends AsyncTask<String, Void, Integer> {
-		protected Integer doInBackground(String... params) {
-
-			Thread t = new Thread(new Runnable() {
-				public void run() {
-					initSoftwareStartInfomationFromServer();
-				}
-			});
-			try {
-				t.start();
-				// 6 - 500ms
-				int counter = 0;
-				while (flag) {
-					Thread.sleep(500);
-					counter += 500;
-					if (counter >= 5000) {
-						flag = false;
-					}
-				}
-			} catch (Exception e) {
-			}
-			return 0;
-		}
-
-		protected void onPostExecute(Integer result) {
-			if (softwareErrorCode.equals("true")) {
-				try {
-					HomeUpdate update = new HomeUpdate(HomeActivity.this,
-							new Handler(), softwareurl, softwaremessageStr,
-							softwaretitle);
-					update.setDialogNoBack();
-					update.showDialog();
-					update.createMyDialog();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return;
-			} else {
-				turnActivity();
-			}
-		}
-	}
-
-	class HomeUpdate extends UpdateDialog {
-
-		public HomeUpdate(Activity activity, Handler handler, String url,
-				String message, String title) {
-			super(activity, handler, url, message, title);
-		}
-
-		@Override
-		public void onCancelButton() {
-			Message mg = Message.obtain();
-			mg.what = 3;
-			mHandler.sendMessage(mg);
-		}
-
-	}
 
 	/**
 	 * 初始化小球图片
