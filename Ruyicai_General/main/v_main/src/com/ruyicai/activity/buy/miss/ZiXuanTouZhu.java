@@ -214,7 +214,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if(zhuijiatouzhu.isChecked()){
+		if(zhuijiatouzhu != null && zhuijiatouzhu.isChecked()){
 			betAndGift.setAmt(3);
 			betAndGift.setIssuper("0");
 		}else{
