@@ -72,6 +72,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	public static String type = "";
 	private AddViewMiss addviewmiss;
 	private Controller controller = null;
+	private ToggleButton zhuijiatouzhu;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -193,7 +194,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	private void initZhuiJia() {
 		LinearLayout toggleLinear = (LinearLayout) findViewById(R.id.buy_zixuan_linear_toggle);
 		toggleLinear.setVisibility(LinearLayout.VISIBLE);
-		ToggleButton zhuijiatouzhu = (ToggleButton) findViewById(R.id.dlt_zhuijia);
+		zhuijiatouzhu = (ToggleButton) findViewById(R.id.dlt_zhuijia);
 		zhuijiatouzhu.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
@@ -213,8 +214,13 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 	@Override
 	protected void onPause() {
 		super.onPause();
-		betAndGift.setIssuper("");
-		betAndGift.setAmt(2);
+		if(zhuijiatouzhu.isChecked()){
+			betAndGift.setAmt(3);
+			betAndGift.setIssuper("0");
+		}else{
+			betAndGift.setIssuper("");
+			betAndGift.setAmt(2);
+		}
 		addviewmiss.setCodeAmt(betAndGift.getAmt());
 	}
 
