@@ -96,6 +96,17 @@ public class RuyiGuessActivity extends Activity {
 	
 	private void initListView(){
 		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
+		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
+		mFooterView.setBackgroundColor(this.getResources().getColor(R.color.jczq_listview_item_bg));
+		mListView.addFooterView(mFooterView);
+		mFooterView.setVisibility(View.GONE);
+		mFooterView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				addmore();
+			}
+		});
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -124,33 +135,10 @@ public class RuyiGuessActivity extends Activity {
 		});
 	}
 	
-//	private void initMoreView() {
-//		if (mTotalPage > 1) {
-//			mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-//			mListView.addFooterView(mFooterView);
-//			mFooterView.setOnClickListener(new OnClickListener() {
-//
-//				@Override
-//				public void onClick(View v) {
-//					addmore();
-//				}
-//			});
-//		}
-//	}
-	
 	private void setMoreViewState() {
 		if (mTotalPage > 1 && mIsFirst) {
 			mIsFirst = false;
-			mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-			mFooterView.setBackgroundColor(this.getResources().getColor(R.color.transparent));
-			mListView.addFooterView(mFooterView);
-			mFooterView.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					addmore();
-				}
-			});
+			mFooterView.setVisibility(View.VISIBLE);
 		}
 	}
 	
@@ -164,8 +152,8 @@ public class RuyiGuessActivity extends Activity {
 		mPageIndex++;
 		if (mPageIndex > mTotalPage - 1) {
 			mPageIndex = mTotalPage - 1;
-//			mFooterView.setVisibility(View.GONE);
-			mListView.removeFooterView(mFooterView);
+			mFooterView.setVisibility(View.GONE);
+//			mListView.removeFooterView(mFooterView);
 			mIsFirst = true;
 			Toast.makeText(this,
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();

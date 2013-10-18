@@ -502,7 +502,7 @@ public class Controller {
 			public void run() {
 				String pageIndex = String.valueOf(index);
 				String result = RuyiGuessInterface.getInstance()
-						.getRuyiGuessDetailList(pageIndex, "10", userno, id, type);
+						.getRuyiGuessDetailList(pageIndex, "2", userno, id, type);
 				Message msg = new Message();
 				msg.what = 1;
 				msg.obj = result;

@@ -94,6 +94,16 @@ public class RuyiGuessDetailActivity extends Activity {
 		title.setText(mTitle);
 //		mDescription.setText(mDetail);
 		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
+		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
+		mListView.addFooterView(mFooterView);
+		mFooterView.setVisibility(View.VISIBLE);
+		mFooterView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				addmore();
+			}
+		});
 		mListView.setAdapter(mAdapter);
 
 		Button submitBtn = (Button)findViewById(R.id.ruyi_guess_submit);
@@ -136,20 +146,8 @@ public class RuyiGuessDetailActivity extends Activity {
 	}
 	
 	private void setMoreViewState() {
-		Log.i("yejc", "=======mTotalPage="+mTotalPage
-				+" ==mIsFirst="+mIsFirst);
 		if(mTotalPage > 1 && mIsFirst) {
 			mIsFirst = false;
-			mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-			mListView.addFooterView(mFooterView);
-			mFooterView.setVisibility(View.VISIBLE);
-			mFooterView.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					addmore();
-				}
-			});
 		}
 	}
 
@@ -161,12 +159,13 @@ public class RuyiGuessDetailActivity extends Activity {
 		mPageIndex++;
 		if (mPageIndex > mTotalPage - 1) {
 			mPageIndex = mTotalPage - 1;
-//			mFooterView.setVisibility(View.GONE);
-			mListView.removeFooterView(mFooterView);
+			mFooterView.setVisibility(View.GONE);
+//			mListView.removeFooterView(mFooterView);
 			mIsFirst = true;
 			Toast.makeText(this,
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
 		} else {
+			mProgressdialog = PublicMethod.creageProgressDialog(this);
 			if (mIsMySelected) {
 				Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "1", mPageIndex);
 			} else {
