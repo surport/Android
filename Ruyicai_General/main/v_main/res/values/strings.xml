@@ -1252,5 +1252,19 @@
     <string name="account_exchange_warn_description">彩金码兑换彩金需先绑定手机号</string>
     <string name="account_exchange_gold_success">恭喜你，彩金码兑换成功已兑换彩金%1$s元</string>
     <string name="account_exchange_gold_fail">请输入正确彩金码才能兑换彩金</string>
+    <string name="buy_ruyi_guess">如意竞猜</string>
+    <string name="buy_ruyi_guess_item_integral">"积分奖励:"</string>
+    <string name="buy_ruyi_guess_item_integral_two">"积分奖励:\n%1$s"</string>
+    <string name="buy_ruyi_guess_item_time">"竞猜时间:"</string>
+    <string name="buy_ruyi_guess_submit_result">"提交竞猜结果"</string>
+    <string name="buy_ruyi_guess_success">"参与成功"</string>
+    <string name="buy_ruyi_guess_ok">"确定"</string>
+    <string name="buy_ruyi_guess_stop">"截止:"</string>
+    <string name="buy_ruyi_guess_btn_end">"已截止"</string>
+    <string name="buy_ruyi_guess_error">"判断错误"</string>
+    <string name="buy_ruyi_guess_right">"判断正确"</string>
+    <string name="buy_ruyi_guess_right_answer">"本题正确答案:"</string>
+    <string name="buy_ruyi_guess_answer">"答案:"</string>
+    <string name="buy_ruyi_guess_go_work">"立即去竞猜"</string>
     
 </resources>

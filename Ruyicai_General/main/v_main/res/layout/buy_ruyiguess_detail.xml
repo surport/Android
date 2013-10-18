@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/jczq_listview_item_bg" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingBottom="50dip" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/buy_bottom_bg"
+            android:gravity="center"
+            android:text="@string/buy_ruyi_guess"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/ruyi_guess_item_detail_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/zc_sfc_listview_item_bg"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/ruyi_guess_item_subtitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/ruyi_guess_item_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dip"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/jczq_listview_item_bg"
+            android:layout_marginTop="3dip">
+
+            <ListView
+                android:id="@+id/ruyi_guess_listview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@android:color/transparent"
+                android:listSelector="@android:color/transparent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="15dip"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" 
+        android:background="@drawable/jc_team_select_button_bg">
+
+        <Button
+            android:id="@+id/ruyi_guess_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="@string/buy_ruyi_guess_submit_result"
+            android:textColor="@color/white"
+            android:textSize="18sp" 
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+</RelativeLayout>
