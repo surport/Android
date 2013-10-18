@@ -27,9 +27,10 @@ public class Constants {
 	public static String TAG = "RUYICAI";
 	/* Add by fansm 20130412 end */
 
-	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-//	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
-
+//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
+//	public static String LOT_SERVER = "http://192.168.0.118:80/lotserver/RuyicaiServlet";// 测试线
+	/*""*/ 
 	/**
 	 * 彩种设置
 	 * 
@@ -257,7 +258,7 @@ public class Constants {
 	public static final String ZCLABEL = "zc";
 
 	/** add by fansm 20130515 start */
-	public static String[][] lotnoNameList = { { "hmdt", "hmdt" },
+	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, { "ruyiguess", "ruyiguess" },
 			{ LOTNO_SSQ, SSQLABEL }, { LOTNO_DLT, DLTLABEL },
 			{ LOTNO_FC3D, FC3DLABEL }, { LOTNO_11_5, DLCLABEL },
 			{ LOTNO_SSC, SSCLABEL }, { LOTNO_JCZ, JCZLABEL },

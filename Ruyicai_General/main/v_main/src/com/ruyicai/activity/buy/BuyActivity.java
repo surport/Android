@@ -53,6 +53,7 @@ import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
 import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.activity.buy.gdeleven.GdEleven;
+import com.ruyicai.activity.buy.guess.RuyiGuessActivity;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.jc.lq.LqMainActivity;
 import com.ruyicai.activity.buy.jc.zq.ZqMainActivity;
@@ -100,18 +101,18 @@ public class BuyActivity extends Activity implements OnClickListener {
 	private JSONObject obj;
 	private int SCREENTICKETMAX = 9;// 屏幕最大图标数
 	private int SCREENUM = 4;// 屏幕最大数
-	private int SCREEALL = 0;// 屏幕总图标数
+//	private int SCREEALL = 0;// 屏幕总图标数
 	private int PRIZERANKSCREEN = 1;// 新加中獎排行
 	private int HEIGHT = 0;
 	ProgressDialog progressdialog;
 	String newstitle = "";
 	String newscontent = "";
 	private int top = 20;
-	private List<String> mLabelArray = new ArrayList<String>();
+//	private List<String> mLabelArray = new ArrayList<String>();
 	private MessageUpdateReceiver newsUpdateReceiver = null;
 	private boolean isReSetNews = true;
 	
-	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ico_double,
+	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ruyi_guess_icon, R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
 			R.drawable.ico_timec, R.drawable.icon_jc, R.drawable.nmk3_ico,
 			R.drawable.ico_eleven, R.drawable.ico_expert, R.drawable.gd_eleven,
@@ -121,12 +122,13 @@ public class BuyActivity extends Activity implements OnClickListener {
 			R.drawable.beijingsinglegame_ico };
 
 	
-	private String[] imageTitle = { "合买大厅", "双色球", "大乐透", "福彩3D", "江西11选5",
+	private String[] imageTitle = { "合买大厅", "如意竞猜", "双色球", "大乐透", "福彩3D", "江西11选5",
 			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
 			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" };
 
 
-	private final Class[] cla = { JoinInfoActivity.class, Ssq.class, Dlt.class,
+	private final Class[] cla = { JoinInfoActivity.class, RuyiGuessActivity.class, 
+			Ssq.class, Dlt.class,
 			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
 			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
 			GdEleven.class, PL3.class, Qlc.class, TwentyTwo.class, PL5.class,
@@ -155,7 +157,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	// 缓存需要左右滑动的视图群的列表容器
 	private List<View> viewsBufList;
 	private Lights lights;
-	private boolean isFirstLaunch = true;
+//	private boolean isFirstLaunch = true;
 	final Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -266,12 +268,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		getCaizhongSharePreferences();
         //获得屏幕数
 		getPhoneScreenNum();
-//		if (!mLabelArray.isEmpty()) {
-//			mLabelArray.clear();
-//		}
-//		for (int i = 0; i < SCREENUM; i++) {
-//			mLabelArray.add("" + i);
-//		}
 	}
 
 	private void getCaizhongSharePreferences() {
@@ -351,7 +347,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 				war.setVisibility(View.VISIBLE);
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -437,16 +432,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		super.onPause();
 	}
 
-	protected void onStop() {
-		super.onStop();
-	}
-
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -476,7 +461,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	}
 
 	public void tendToLuckCenter() {
-		// Intent intent = new Intent(BuyActivity.this, LuckChoose.class);
 		Intent intent = new Intent(BuyActivity.this, LuckChoose2.class);
 		startActivity(intent);
 	}
@@ -514,7 +498,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			ExitDialogFactory.createExitDialog(this);
@@ -875,7 +858,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 				String lotno = newList.get(index).get("lotno");
 				boolean isStop = true;// true代表正在销售
 				if (Constants.todayjosn != null) {
-					if (!lotno.equals("hmdt") && !lotno.equals("zjjh")) {
+					if (!lotno.equals("hmdt") && !lotno.equals("zjjh") && !lotno.equals("ruyiguess")) {
 						if (lotno.equals(Constants.LOTNO_SSQ) || lotno.equals(Constants.LOTNO_QLC)
 								|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
 								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)) {

@@ -3029,4 +3029,13 @@ public class PublicMethod {
 		
 		return view;
 	}
+	
+	public static ProgressDialog creageProgressDialog(Context context) {
+		ProgressDialog mProgressdialog = new ProgressDialog(context);
+		mProgressdialog.show();
+		mProgressdialog.setCancelable(false);
+		View dialogView = getView(context);
+		mProgressdialog.getWindow().setContentView(dialogView);
+		return mProgressdialog;
+	}
 }

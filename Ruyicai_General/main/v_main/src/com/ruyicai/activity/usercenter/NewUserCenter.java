@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.AccountListActivity;
+import com.ruyicai.activity.buy.guess.RuyiGuessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.join.JoinCheckActivity;
 import com.ruyicai.activity.more.FeedBack;
@@ -556,6 +557,14 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 
 	private void userCenterDetail() {
 		String str = textStr;
+		// 如意竞猜
+		if (str.equals("我的竞猜")) {
+			Intent intent = new Intent(NewUserCenter.this,
+					RuyiGuessActivity.class);
+			intent.putExtra(RuyiGuessActivity.JUMP_FLAG, RuyiGuessActivity.JUMP_FLAG);
+			startActivity(intent);
+		}
+		
 		// 代理充值
 		if (str.equals(getString(R.string.user_agency))) {
 			Intent intent = new Intent(NewUserCenter.this,
@@ -1034,11 +1043,11 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	 * @return
 	 */
 	protected List<Map<String, Object>> getListForAccountAdapter() {
-		String[] titles = { "中奖查询", "投注查询", "追号查询", "赠送查询", "我的合买", "我的消息" };
+		String[] titles = { "中奖查询", "我的竞猜", "投注查询", "追号查询", "赠送查询", "我的合买", "我的消息" };
 		int[] accountDetailInfoIcons = { R.drawable.zhoangjiangchaxun,
-				R.drawable.touzhujilu, R.drawable.zhuihaochaxun,
-				R.drawable.zengcaichaxun, R.drawable.wodehemai,
-				R.drawable.myliuyan };
+				R.drawable.ruyi_guess_usercenter_icon, R.drawable.touzhujilu, 
+				R.drawable.zhuihaochaxun, R.drawable.zengcaichaxun, 
+				R.drawable.wodehemai, R.drawable.myliuyan };
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
 		for (int i = 0; i < titles.length; i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -1110,13 +1119,9 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 			usercaipiaolist.setAdapter(adapter2);
 			usercentertop.setVisibility(View.INVISIBLE);
 			usercenterrigist_no.setVisibility(View.VISIBLE);
+			PublicMethod
+			.setListViewHeightBasedOnChildren(usercaipiaolist, 40, this);
 		}
-	}
-
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-		// PublicMethod.myOutLog("onRestart", "onRestart");
 	}
 
 	@Override
