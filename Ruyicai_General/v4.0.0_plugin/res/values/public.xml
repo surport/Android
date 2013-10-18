@@ -1624,7 +1624,7 @@
     <public id="0x7f0b04df" name="phonebindtx" type="id" />
     <public id="0x7f0b005f" name="phoneofkefu" type="id" />
     <public id="0x7f0b04d7" name="pointscontent" type="id" />
-    <public id="0x7f0b0510" name="prizeLook" type="id" />
+    <public id="0x7f0b039d" name="prizeLook" type="id" />
     <public id="0x7f0b0434" name="prizeRank_id" type="id" />
     <public id="0x7f0b00c3" name="prizeRank_month" type="id" />
     <public id="0x7f0b0435" name="prizeRank_name" type="id" />
@@ -1777,7 +1777,6 @@
     <public id="0x7f0b00a8" name="ssq_bettingsuccess_prompt" type="id" />
     <public id="0x7f0b00ab" name="ssq_bettingsuccess_returnbetting" type="id" />
     <public id="0x7f0b00ad" name="ssq_bettingsuccess_sendtoemail" type="id" />
-    <public id="0x7f0b039d" name="system_info" type="id" />
     <public id="0x7f0b00c1" name="tabLinear" type="id" />
     <public id="0x7f0b0183" name="tab_host" type="id" />
     <public id="0x7f0b0066" name="tableLayout1" type="id" />

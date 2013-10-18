@@ -15,9 +15,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/android-1.0.jar"/>
 	<classpathentry kind="lib" path="libs/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="libs/jpushsdk-1.3.6.jar"/>
-	<classpathentry kind="lib" path="libs/openapi-1.6.jar"/>
 	<classpathentry kind="lib" path="libs/support-v4-r6.jar"/>
-	<classpathentry kind="lib" path="libs/weibo-1.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -51,7 +51,6 @@ import com.ruyicai.activity.usercenter.UserScoreActivity.ScroeQueryAdapter;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.controller.Controller;
-import com.ruyicai.databases.OperatingDataBases;
 import com.ruyicai.net.newtransaction.DeleteMessage;
 import com.ruyicai.net.newtransaction.LetterQueryInterface;
 import com.ruyicai.net.newtransaction.MsgUpdateReadState;
@@ -77,9 +76,9 @@ public class FeedbackListActivity extends Activity {
 	final String CREATETIME = "createTime";
 	final String REPLY = "reply";
 	final String CONTENT = "content";
-	private int[] linearId = {R.id.system_info, R.id.latter, R.id.message };
-	private String[] titles = {"系统信息", "站内信", "我的留言" };
-	private LinearLayout message, latter, systemInfo;
+	private int[] linearId = { R.id.latter, R.id.message };
+	private String[] titles = { "站内信", "我的留言" };
+	private LinearLayout message, latter;
 	TabHost mTabHost;
 	private LayoutInflater mInflater = null;
 	View tabSpecLinearView;// 子列表的ListView
@@ -89,7 +88,6 @@ public class FeedbackListActivity extends Activity {
 	String contentjson;
 	String title;
 	InfoAdapter adapter;
-	SystemInfoAdapter sysInfoAdapter;
 	ProgressBar progressbar;
 	View view;
 	int latterPages = 0;
@@ -107,8 +105,6 @@ public class FeedbackListActivity extends Activity {
 	private boolean isLatterSelectAll = false; //标记站内信是否点击了全选按钮
 	private boolean isMessageSelectAll = false; //标记我的留言是否点击了全选按钮
 	private boolean isMessageEdit = false; //标记我的留言是否点击了编辑按钮
-	private boolean isSysInfoSelectAll = false; //标记系统消息是否点击了全选按钮
-	private boolean isSysInfoEdit = false; //标记系统消息是否点击了编辑按钮
 	private LinearLayout submitLayout;
 	private LinearLayout latterEditLayout;
 	private LinearLayout messageEditLayout;
@@ -125,12 +121,9 @@ public class FeedbackListActivity extends Activity {
 	private Map<Integer, Boolean> selectLatterMap = new HashMap<Integer, Boolean>();
 	/*存放选择的我的留言*/
 	private Map<Integer, Boolean> selectMessageMap = new HashMap<Integer, Boolean>();
-	private Map<Integer, Boolean> selectSysInfoMap = new HashMap<Integer, Boolean>();
 	private List<Integer> selectedMsgList = new ArrayList<Integer>();
 //	private List<Integer> selectedMsgList = new ArrayList<Integer>();
 	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
-	List<SystemInfoBean> infoList;
-	OperatingDataBases operatingDb;
 	/**add by yejc 20130419 end*/
 
 	@Override
@@ -160,8 +153,7 @@ public class FeedbackListActivity extends Activity {
 		}
 		mTabHost.setOnTabChangedListener(scroeTabChangedListener);
 		userno = shellRW.getStringValue("userno");
-//		getInfoNet(userno, latterIndex, false);
-		operatingDb = new OperatingDataBases(this);
+		getInfoNet(userno, latterIndex, false);
 //		initLinear(systemInfo, linearId[0], initSystemInfo());
 	}
 
@@ -191,26 +183,12 @@ public class FeedbackListActivity extends Activity {
 				startActivity(intentSession);
 			} else {
 				if (tabId.equals(titles[0])) {
-					type = 0;
-					feedback.setText(R.string.usercenter_feedback_bet);
-					initLinear(systemInfo, linearId[0], initSystemInfo());
-					latterEditLayout.setVisibility(View.GONE);
-					if (isSysInfoEdit) {
-						editBut.setText(R.string.my_message_edit_cancel);
-						messageEditLayout.setVisibility(View.VISIBLE);
-						submitLayout.setVisibility(View.GONE);
-					} else {
-						editBut.setText(R.string.my_message_edit_text);
-						submitLayout.setVisibility(View.VISIBLE);
-						messageEditLayout.setVisibility(View.GONE);
-					}
-				} else if (tabId.equals(titles[1])) {
 					// initLinear(scroedetail, linearId[0], view);
 //					editBut.setVisibility(View.VISIBLE);
 					type = 1;
 					feedback.setText(R.string.usercenter_submitfeedback);
 					if (latterlist.size() > 0) {
-						initLinear(latter, linearId[1], initlatterview(true));
+						initLinear(latter, linearId[0], initlatterview(true));
 						adapter.notifyDataSetChanged();
 					} else {
 						getInfoNet(userno, latterIndex, false);
@@ -230,11 +208,11 @@ public class FeedbackListActivity extends Activity {
 					}
 					messageEditLayout.setVisibility(View.GONE);
 					/**add by yejc 20130422 end*/
-				} else if (tabId.equals(titles[2])) {
+				} else if (tabId.equals(titles[1])) {
 //					editBut.setVisibility(View.VISIBLE);
 					type = 2;
 					feedback.setText(R.string.usercenter_submitfeedback);
-					initLinear(message, linearId[2], initmessage());
+					initLinear(message, linearId[1], initmessage());
 					feedbackcount.setVisibility(View.GONE);
 					if (!msgReadStateId.equals("")) {
 						msgUpdateReadState(msgReadStateId);// 更新已读状态
@@ -304,7 +282,7 @@ public class FeedbackListActivity extends Activity {
 		img.setBackgroundResource(R.drawable.tab_buy_selector);
 		title.setText(titles[index]);
 
-		if (index == 1) {
+		if (index == 0) {
 			lettercount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
 			if (notReadLetterCount > 0) {
 				lettercount.setVisibility(View.VISIBLE);
@@ -314,7 +292,7 @@ public class FeedbackListActivity extends Activity {
 			}
 		}
 
-		if (index == 2) {
+		if (index == 1) {
 			feedbackcount = (TextView) indicatorTab.findViewById(R.id.tv_quan);
 			feedbackcount.setVisibility(View.INVISIBLE);
 
@@ -385,18 +363,10 @@ public class FeedbackListActivity extends Activity {
 		feedback = (Button) findViewById(R.id.usercenter_feedback_submitbtn);
 		feedback.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				if(mTabHost.getCurrentTab() == 0) {
-					Intent intent = new Intent(FeedbackListActivity.this,
-							MainGroup.class);
-					Constants.currentTab = "0";
-					startActivity(intent);
-					finish();
-				} else {
-					Intent intent1 = new Intent(FeedbackListActivity.this,
-							FeedBack.class);
-					startActivity(intent1);
-				}
-				
+				Intent intent1 = new Intent(FeedbackListActivity.this,
+						FeedBack.class);
+				startActivity(intent1);
+
 			}
 		});
 		
@@ -429,24 +399,7 @@ public class FeedbackListActivity extends Activity {
 			Button button = (Button) v;
 			switch (v.getId()) {
 			case R.id.my_message_edit_button:  //编辑按钮
-				if (type == 0) {
-					if (getResources().getString(R.string.my_message_edit_text)
-							.equals(button.getText().toString())) {
-						isSysInfoEdit = true;
-						button.setText(R.string.my_message_edit_cancel);
-						submitLayout.setVisibility(View.GONE);
-						messageEditLayout.setVisibility(View.VISIBLE);
-					} else {
-						isSysInfoEdit = false;
-						button.setText(R.string.my_message_edit_text);
-						submitLayout.setVisibility(View.VISIBLE);
-						messageEditLayout.setVisibility(View.GONE);
-						messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
-					}
-					initSystemInfoMapStatus(false);
-					latterEditLayout.setVisibility(View.GONE);
-					sysInfoAdapter.notifyDataSetChanged();
-				}else if (type == 1) {
+				if (type == 1) {
 					if (getResources().getString(R.string.my_message_edit_text)
 							.equals(button.getText().toString())) {
 						isLatterEdit = true;
@@ -515,17 +468,7 @@ public class FeedbackListActivity extends Activity {
 				
 				//我的留言全选按钮
 			case R.id.my_message_select_all_button:
-				if (type == 0) {
-					isSysInfoSelectAll = !isSysInfoSelectAll;
-					if (isSysInfoSelectAll) {
-						initSystemInfoMapStatus(true);
-						button.setText(R.string.my_message_edit_cancel_select_all);
-					} else {
-						initSystemInfoMapStatus(false);
-						button.setText(R.string.my_message_edit_select_all);
-					}
-					sysInfoAdapter.notifyDataSetChanged();
-				} else {
+				if(type == 1) {
 					isMessageSelectAll = !isMessageSelectAll;
 					if (isMessageSelectAll) {
 						initMessageMapStatus(true);
@@ -538,19 +481,13 @@ public class FeedbackListActivity extends Activity {
 				}
 				
 				break;
-				//我的留言删除按钮
+			// 我的留言删除按钮
 			case R.id.my_message_delete_msg_button:
-				if (type == 0) {
-					if (selectSysInfoMap.containsValue(true)) {
-						deleteSystenInfo();
-					}
-				} else {
-					if (selectMessageMap.containsValue(true)) {
-						deleteMsg();
-					}
+
+				if (selectMessageMap.containsValue(true)) {
+					deleteMsg();
 				}
-				
-				break;	
+				break;
 
 			default:
 				break;
@@ -572,14 +509,6 @@ public class FeedbackListActivity extends Activity {
 		selectMessageMap.clear();
 		for (int i = 0; i<count; i++) {
 			selectMessageMap.put(i, flag);
-		}
-	}
-	
-	private void initSystemInfoMapStatus(boolean flag) {
-		int count = sysInfoAdapter.getCount();
-		selectSysInfoMap.clear();
-		for (int i = 0; i<count; i++) {
-			selectSysInfoMap.put(i, flag);
 		}
 	}
 	
@@ -616,35 +545,6 @@ public class FeedbackListActivity extends Activity {
 		}
 		ids = ids.substring(0, ids.length() - 1);
 		return ids;
-	}
-	
-	/*获取选择系统消息的所有ID*/
-	private List<String> getSelectedSysInfoIds() {
-//		String ids = "";
-		List<String> list = new ArrayList<String>();
-		selectedMsgList.clear();
-		for (int i = 0; i < selectSysInfoMap.size(); i++) {
-			if (selectSysInfoMap.get(i)) {
-				String id = ((SystemInfoBean)sysInfoAdapter.getItem(i)).get_id();
-				list.add(id);
-				selectedMsgList.add(i);
-			}
-		}
-		return list;
-	}
-	/*删除系统消息方法*/
-	private void deleteSystenInfo() {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				OperatingDataBases db = new OperatingDataBases(FeedbackListActivity.this);
-				List<String> list = getSelectedSysInfoIds();
-				if (list != null && list.size()>0) {
-					db.delete(list);
-					handler.sendEmptyMessage(3);
-				}
-			}
-		}).start();
 	}
 	
 	/*删除站内信方法*/
@@ -699,40 +599,34 @@ public class FeedbackListActivity extends Activity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 //			int type = intent.getIntExtra(infoType, -1);
-			if (type == 0) {
+			if (type == 1) {
 				if (intent.getBooleanExtra(selectAllKey, false)) {
-					isSysInfoSelectAll = false;
-					messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
-				} else {
-					if(!selectSysInfoMap.containsValue(false)) {
-						isSysInfoSelectAll = true;
-						messageSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
-					}
-				}
-			}else if (type == 1) {
-				if (intent.getBooleanExtra(selectAllKey, false)) {
-					latterSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					latterSelectAllBtn
+							.setText(R.string.my_message_edit_select_all);
 					isLatterSelectAll = false;
 				} else {
-					if(!selectLatterMap.containsValue(false)) {
+					if (!selectLatterMap.containsValue(false)) {
 						isLatterSelectAll = true;
-						latterSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
+						latterSelectAllBtn
+								.setText(R.string.my_message_edit_cancel_select_all);
 					}
 				}
-			} else if (type == 2){
+			} else if (type == 2) {
 				if (intent.getBooleanExtra(selectAllKey, false)) {
-					messageSelectAllBtn.setText(R.string.my_message_edit_select_all);
+					messageSelectAllBtn
+							.setText(R.string.my_message_edit_select_all);
 					isMessageSelectAll = false;
 				} else {
-					if(!selectMessageMap.containsValue(false)) {
+					if (!selectMessageMap.containsValue(false)) {
 						isMessageSelectAll = true;
-						messageSelectAllBtn.setText(R.string.my_message_edit_cancel_select_all);
+						messageSelectAllBtn
+								.setText(R.string.my_message_edit_cancel_select_all);
 					}
 				}
 			}
-			
+
 		}
-		
+
 	}
 	/**add by yejc 20130419 end*/
 
@@ -762,7 +656,7 @@ public class FeedbackListActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				initLatterMapStatus(false);
 				if (isReadMsg) {
-					if (mTabHost.getCurrentTab() == 1) {
+					if (mTabHost.getCurrentTab() == 0) {
 						if (notReadLetterCount >= 0) {
 							shellRW.putStringValue("notReadLetterCount",
 									String.valueOf(notReadLetterCount));
@@ -792,7 +686,7 @@ public class FeedbackListActivity extends Activity {
 				adapter.notifyDataSetChanged();
 				initLatterMapStatus(false);
 				if (isDeleteReadMsg) {
-					if (mTabHost.getCurrentTab() == 1) {
+					if (mTabHost.getCurrentTab() == 0) {
 						if (notReadLetterCount >= 0) {
 							shellRW.putStringValue("notReadLetterCount",
 									String.valueOf(notReadLetterCount));
@@ -816,16 +710,6 @@ public class FeedbackListActivity extends Activity {
 				}
 				initMessageMapStatus(false);
 				listAdapter.notifyDataSetChanged();
-				break;
-				
-			case 3:
-				Collections.sort(selectedMsgList);
-				for(int i=selectedMsgList.size()-1; i>-1;i--) {
-					int index = (int)selectedMsgList.get(i);
-					infoList.remove(index);
-				}
-				initSystemInfoMapStatus(false);
-				sysInfoAdapter.notifyDataSetChanged();
 				break;
 				
 				//add by yejc 20130708
@@ -904,7 +788,7 @@ public class FeedbackListActivity extends Activity {
 								view.setEnabled(true);
 							}
 							if (latterIndex == 0) {
-								initLinear(latter, linearId[1],
+								initLinear(latter, linearId[0],
 										initlatterview(false));
 							} else {
 								/**add by yejc 20130422 start*/
@@ -1061,7 +945,7 @@ public class FeedbackListActivity extends Activity {
 						title = mList.get(index).getTitle();
 						if (mList.get(index).getReadState().equals("0")) {
 							iconread.setVisibility(View.GONE);
-							if (mTabHost.getCurrentTab() == 1) {
+							if (mTabHost.getCurrentTab() == 0) {
 								if (notReadLetterCount > 0) {
 									notReadLetterCount--;
 									shellRW.putStringValue("notReadLetterCount",
@@ -1280,23 +1164,10 @@ public class FeedbackListActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		initLinear(systemInfo, linearId[0], initSystemInfo());
 		/**add by yejc 20130419 start*/
 		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
         registerReceiver(selectTextBroadCast, filter);
         /**add by yejc 20130419 end*/
-	}
-
-	
-	@Override
-	protected void onNewIntent(Intent intent) {
-		super.onNewIntent(intent);
-		boolean isSystemInfo = intent.getBooleanExtra("isSystemInfo", false);
-		if(isSystemInfo) {
-			if (mTabHost.getCurrentTab() != 0) {
-				mTabHost.setCurrentTab(0);
-			}
-		}
 	}
 
 	/**
@@ -1312,109 +1183,5 @@ public class FeedbackListActivity extends Activity {
 		}
 		}
 		return null;
-	}
-	
-	private View initSystemInfo() {
-		tabSpecLinearView = (LinearLayout) mInflater.inflate(
-				R.layout.usercenter_listview_layout, null);
-		tabSpecListView = (ListView) tabSpecLinearView
-				.findViewById(R.id.usercenter_listview_queryinfo);
-		
-		infoList = operatingDb.getInfoList();
-		sysInfoAdapter = new SystemInfoAdapter(infoList);
-		tabSpecListView.setAdapter(sysInfoAdapter);
-		return tabSpecLinearView;
-	}
-	
-	private class SystemInfoAdapter extends BaseAdapter {
-
-		List<SystemInfoBean> mInfoList;
-		
-		public SystemInfoAdapter(List<SystemInfoBean> infoList) {
-			this.mInfoList = infoList;
-		}
-
-		@Override
-		public int getCount() {
-			return mInfoList.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mInfoList.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return 0;
-		}
-
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			ViewHolder holder = null;
-			if (convertView == null) {
-				convertView = mInflater.inflate(R.layout.informationitem, null);
-				holder = new ViewHolder();
-				holder.content = (TextView) convertView
-						.findViewById(R.id.informationcontent);
-				holder.layout = (RelativeLayout) convertView
-						.findViewById(R.id.informationitemlayout);
-				holder.icon = (ImageView)convertView
-						.findViewById(R.id.informationitemlable);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			holder.content.setText(mInfoList.get(position).getContent());
-			if (position % 2 == 0) {
-				holder.layout.setBackgroundResource(R.drawable.zx_list_bg_white);
-			} else {
-				holder.layout.setBackgroundResource(R.drawable.zx_list_bg_gray);
-			}
-			
-			if (isSysInfoEdit) {
-				holder.icon.setVisibility(View.VISIBLE);
-				if (selectSysInfoMap.containsKey(position)) {
-					if (selectSysInfoMap.get(position)) {
-						holder.icon.setImageResource(R.drawable.check_button_b);
-					} else {
-						holder.icon.setImageResource(R.drawable.check_button);
-					}
-				} else {
-					holder.icon.setImageResource(R.drawable.check_button);
-				}
-				holder.icon.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						ImageView iv = (ImageView)v;
-						if (selectSysInfoMap.containsKey(position)) {
-							Intent intent = new Intent(BROADCAST_ACTION);
-//							intent.putExtra(infoType, type);
-							if (selectSysInfoMap.get(position)) {
-								selectSysInfoMap.put(position, false);
-								intent.putExtra(selectAllKey, true);
-								iv.setImageResource(R.drawable.check_button);
-							} else {
-								selectSysInfoMap.put(position, true);
-								intent.putExtra(selectAllKey, false);
-								iv.setImageResource(R.drawable.check_button_b);
-							}
-							sendBroadcast(intent);
-						}
-					}
-				});
-			} else {
-				holder.icon.setVisibility(View.GONE);
-			}
-			return convertView;
-		}
-		
-		private class ViewHolder {
-			RelativeLayout layout;
-			TextView content;
-			ImageView icon;
-		}
-		
 	}
 }

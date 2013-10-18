@@ -1112,7 +1112,6 @@
     <item name="ssq_bettingsuccess_prompt" type="id"/>
     <item name="ssq_bettingsuccess_returnbetting" type="id"/>
     <item name="ssq_bettingsuccess_sendtoemail" type="id"/>
-    <item name="system_info" type="id"/>
     <item name="tabLinear" type="id"/>
     <item name="tab_host" type="id"/>
     <item name="tableLayout1" type="id"/>

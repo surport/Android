@@ -46,7 +46,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import cn.jpush.android.api.JPushInterface;
 import com.alipay.android.app.IAlixPay;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
@@ -600,9 +599,6 @@ public class UserLogin extends Activity implements TextWatcher {
 						shellRW.putStringValue("mobileid", mobileid);// 向ShellRWSharesPreferences中写入绑定手机号
 						shellRW.putStringValue("certid", cerdid);// 向ShellRWSharesPreferences中写入身份证号
 
-						// 添加極光推送用戶標簽,以用戶的用户id和渠道号作为参数
-						setJpushAlias(userno);
-
 						b = true;
 						PublicConst.isthirdlogin = false;
 						Message msg = new Message();
@@ -633,18 +629,6 @@ public class UserLogin extends Activity implements TextWatcher {
 			}
 		});
 		t.start();
-	}
-
-	/**
-	 * 设置Jpush的别名
-	 * 
-	 * @param userno
-	 *            用户编号
-	 */
-	private void setJpushAlias(String userno) {
-		LinkedHashSet<String> tags = new LinkedHashSet<String>();
-		tags.add(ChannelConstants.COOP_ID);
-		JPushInterface.setAliasAndTags(UserLogin.this, userno, tags);
 	}
 
 	/**
