@@ -84,7 +84,7 @@ public class RuyiGuessDetailActivity extends Activity {
 		mIsEnd = intent.getBooleanExtra(RuyiGuessActivity.ISEND, false);
 		mIsMySelected = intent.getBooleanExtra(RuyiGuessActivity.MYSELECTED, false);
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
-		Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0");
+		Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 		initView();
 	}
 	
@@ -95,27 +95,7 @@ public class RuyiGuessDetailActivity extends Activity {
 //		mDescription.setText(mDetail);
 		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
 		mListView.setAdapter(mAdapter);
-//		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-//		mListView.addFooterView(mFooterView);
-//		mFooterView.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				addmore();
-//			}
-//		});
-//		if (mTotalPage > 1 && mIsFirst) {
-//			mIsFirst = false;
-//			mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-//			mListView.addFooterView(mFooterView);
-//			mFooterView.setOnClickListener(new OnClickListener() {
-//
-//				@Override
-//				public void onClick(View v) {
-//					addmore();
-//				}
-//			});
-//		}
+
 		Button submitBtn = (Button)findViewById(R.id.ruyi_guess_submit);
 		submitBtn.setVisibility(View.VISIBLE);
 		if (mIsMySelected) {
@@ -156,10 +136,13 @@ public class RuyiGuessDetailActivity extends Activity {
 	}
 	
 	private void setMoreViewState() {
-		if(mTotalPage >= 1 && mIsFirst) {
+		Log.i("yejc", "=======mTotalPage="+mTotalPage
+				+" ==mIsFirst="+mIsFirst);
+		if(mTotalPage > 1 && mIsFirst) {
 			mIsFirst = false;
 			mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
 			mListView.addFooterView(mFooterView);
+			mFooterView.setVisibility(View.VISIBLE);
 			mFooterView.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -185,9 +168,9 @@ public class RuyiGuessDetailActivity extends Activity {
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
 		} else {
 			if (mIsMySelected) {
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex);
+				Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "1", mPageIndex);
 			} else {
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex);
+				Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 			}
 		}
 	}

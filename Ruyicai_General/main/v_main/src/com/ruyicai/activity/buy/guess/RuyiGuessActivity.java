@@ -139,7 +139,7 @@ public class RuyiGuessActivity extends Activity {
 //	}
 	
 	private void setMoreViewState() {
-		if (mTotalPage >= 1 && mIsFirst) {
+		if (mTotalPage > 1 && mIsFirst) {
 			mIsFirst = false;
 			mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
 			mFooterView.setBackgroundColor(this.getResources().getColor(R.color.transparent));
@@ -319,7 +319,7 @@ public class RuyiGuessActivity extends Activity {
 					if ("0000".equals(errorCode)) {
 						if (msg.what == 2) {
 							mQuestionsList.clear();
-							mFooterView.setVisibility(View.VISIBLE);
+//							mFooterView.setVisibility(View.VISIBLE);
 						}
 						JSONArray jsonArray = jsonObj.getJSONArray("result");
 						mTotalPage = Integer.valueOf(jsonObj.getString("totalPage").trim());

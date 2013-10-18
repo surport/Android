@@ -39,12 +39,6 @@ public class Controller {
 	private JSONObject jsonObj;
 	protected ProgressDialog dialog;
 	private List<Activity> activityList = new LinkedList<Activity>();
-	public void addActivity(Activity activity) {
-		activityList.add(activity);
-	}
-	public List<Activity> getActivityList() {
-		return activityList;
-	}
 
 	protected Controller(Context _context) {
 		mContext = _context;
@@ -502,12 +496,13 @@ public class Controller {
 	 * @param userno
 	 */
 	public void getRuyiGuessDetailList(final Handler handler, final String userno,
-			final String id, final String type) {
+			final String id, final String type, final int index) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				String pageIndex = String.valueOf(index);
 				String result = RuyiGuessInterface.getInstance()
-						.getRuyiGuessDetailList("0", "2", userno, id, type);
+						.getRuyiGuessDetailList(pageIndex, "10", userno, id, type);
 				Message msg = new Message();
 				msg.what = 1;
 				msg.obj = result;
@@ -534,6 +529,13 @@ public class Controller {
 				handler.sendMessage(msg);
 			}
 		}).start();
+	}
+	
+	public void addActivity(Activity activity) {
+		activityList.add(activity);
+	}
+	public List<Activity> getActivityList() {
+		return activityList;
 	}
 
 }
