@@ -42,8 +42,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import cn.jpush.android.api.JPushInterface;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.CheckWireless;
 import com.ruyicai.constant.AgentNumConstants;
@@ -152,8 +150,6 @@ public class HomeActivity extends Activity {
 		initBitmap();// 初始化小球
 		checkWirelessNetwork();// 实现网络的检测
 		checkCaizhongSetting();// 获取彩种设置
-		// JPushInterface.setDebugMode(true);
-		JPushInterface.init(this);
 		//registerToWeiXin();
 	}
 
@@ -338,11 +334,6 @@ public class HomeActivity extends Activity {
     private void setTicketStatus() {
     	CheckUtil.checkLotteryTicketSale(Constants.LOTNO_22_5,this);
     }
-	private void setJpushAlias(String userno) {
-		LinkedHashSet<String> tags = new LinkedHashSet<String>();
-		tags.add(ChannelConstants.COOP_ID);
-		JPushInterface.setAliasAndTags(HomeActivity.this, userno, tags);
-	}
 
 	/**
 	 * 是否下载开奖图片

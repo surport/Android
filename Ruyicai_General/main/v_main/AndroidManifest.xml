@@ -56,6 +56,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <!-- 如意竞猜 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.guess.RuyiGuessActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        
+        <activity
+            android:name="com.ruyicai.activity.buy.guess.RuyiGuessDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
+        
+        
         <!-- common -->
         <activity
             android:name="com.ruyicai.activity.common.UserLogin"

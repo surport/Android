@@ -9,10 +9,6 @@
         android:minSdkVersion="7"
         android:targetSdkVersion="8" />
 
-    <permission
-        android:name="com.palmdream.RuyicaiAndroid.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
-
     <application
         android:name="com.ruyicai.activity.buy.ApplicationAddview"
         android:icon="@drawable/icon"
@@ -869,72 +865,7 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="cn.jpush.android.ui.PushActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-            <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.palmdream.RuyicaiAndroid" />
-            </intent-filter>
-        </activity>
-
-        <service
-            android:name="cn.jpush.android.service.DownloadService"
-            android:enabled="true"
-            android:exported="false" >
-        </service>
-        <service
-            android:name="cn.jpush.android.service.PushService"
-            android:enabled="true"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER" />
-                <action android:name="cn.jpush.android.intent.REPORT" />
-                <action android:name="cn.jpush.android.intent.PushService" />
-                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-            </intent-filter>
-        </service>
-
-        <receiver
-            android:name="cn.jpush.android.service.PushReceiver"
-            android:enabled="true" >
-            <intent-filter android:priority="1000" >
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
-                <!-- Required  显示通知栏 -->
-                <category android:name="com.palmdream.RuyicaiAndroid" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
-        <receiver
-            android:name="com.ruyicai.receiver.SystemPushInfoReceiver"
-            android:enabled="true" >
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION" />
- <!-- Required  用户注册SDK的intent -->
-                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
- <!-- Required  用户接收SDK消息的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
- <!-- Required  用户接收SDK通知栏信息的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
- <!-- Required  用户打开自定义通知栏的intent -->
-                <category android:name="com.palmdream.RuyicaiAndroid" />
-            </intent-filter>
-        </receiver>
-
-        <meta-data
-            android:name="JPUSH_CHANNEL"
-            android:value="developer-default" />
-        <meta-data
-            android:name="JPUSH_APPKEY"
-            android:value="e4a4a68d4585996779499860" />
+     
     </application>
 
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
@@ -952,7 +883,6 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.palmdream.RuyicaiAndroid.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

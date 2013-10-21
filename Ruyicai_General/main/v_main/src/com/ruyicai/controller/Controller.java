@@ -1,5 +1,8 @@
 package com.ruyicai.controller;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,12 +17,14 @@ import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.FeedBackListInterface;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.JoinStartInterface;
+import com.ruyicai.net.newtransaction.RuyiGuessInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -33,6 +38,7 @@ public class Controller {
 	private Context mContext;
 	private JSONObject jsonObj;
 	protected ProgressDialog dialog;
+	private List<Activity> activityList = new LinkedList<Activity>();
 
 	protected Controller(Context _context) {
 		mContext = _context;
@@ -441,8 +447,7 @@ public class Controller {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				Constants.feedBackData = FeedBackListInterface.getInstance()
-						.getFeedbackList("0", "10", userno);
+				Constants.feedBackData = FeedBackListInterface.getFeedbackList("0", "10", userno);
 				try {
 					Message msg = new Message();
 					JSONObject feedjson = new JSONObject(Constants.feedBackData);
@@ -462,6 +467,75 @@ public class Controller {
 			}
 		}).start();
 	}
-
+	
+	/**
+	 * 获取竞猜题目列表
+	 * @param handler
+	 * @param userno
+	 */
+	public void getRuyiGuessList(final Handler handler, final String userno, 
+			final int type, final String requestType, final int index) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String pageIndex = String.valueOf(index);
+				String result = RuyiGuessInterface.getInstance()
+						.getRuyiGuessList(pageIndex, "10", userno, requestType);
+				Message msg = new Message();
+				msg.what = type;
+				msg.obj = result;
+				handler.sendMessage(msg);
+			}
+		}).start();
+	}
+	
+	
+	/**
+	 * 获取竞猜详情列表
+	 * @param handler
+	 * @param userno
+	 */
+	public void getRuyiGuessDetailList(final Handler handler, final String userno,
+			final String id, final String type, final int index) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String pageIndex = String.valueOf(index);
+				String result = RuyiGuessInterface.getInstance()
+						.getRuyiGuessDetailList(pageIndex, "2", userno, id, type);
+				Message msg = new Message();
+				msg.what = 1;
+				msg.obj = result;
+				handler.sendMessage(msg);
+			}
+		}).start();
+	}
+	
+	/**
+	 * 提交选项
+	 * @param handler
+	 * @param userno
+	 */
+	public void sendDateToService(final Handler handler, final String userno,
+			final String id, final String info) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String result = RuyiGuessInterface.getInstance()
+						.sendDateToService(userno, id, info);
+				Message msg = new Message();
+				msg.what = 2;
+				msg.obj = result;
+				handler.sendMessage(msg);
+			}
+		}).start();
+	}
+	
+	public void addActivity(Activity activity) {
+		activityList.add(activity);
+	}
+	public List<Activity> getActivityList() {
+		return activityList;
+	}
 
 }

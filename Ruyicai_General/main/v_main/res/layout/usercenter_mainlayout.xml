@@ -359,7 +359,7 @@
                 <ListView
                     android:id="@+id/usercaipiaolist"
                     android:layout_width="fill_parent"
-                    android:layout_height="245dip"
+                    android:layout_height="290dip"
                     android:background="@drawable/usercenterback"
                     android:divider="#bcbcbc"
                     android:dividerHeight="0.5dip"
