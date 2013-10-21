@@ -54,5 +54,6 @@
     <!-- add end -->
     <color name="latest_lottery_list_one">#ffffff</color>
     <color name="latest_lottery_list_two">#fffbe2</color>
-
+    <color name="ruyi_guess_end_text_color">#afafaf</color>
+    
 </resources>

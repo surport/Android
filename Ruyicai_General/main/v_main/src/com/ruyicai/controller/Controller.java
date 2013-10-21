@@ -395,7 +395,7 @@ public class Controller {
 		// map.put("ch0010", Constants.LAKALA_PAYMENT_DISPLAY_STATE); //拉卡拉充值
 		// map.put("ch0011", Constants.UMPAY_DISPLAY_STATE); //联动优势
 		// map.put("ch0012", Constants.UMPAY_PHONE_DISPLAY_STATE); //联动优势话费充值
-		final String rechargeType[] = { "ch0001", "ch0002", "ch0005", "ch0006",
+		final String rechargeType[] = { "ch0001", "ch0002", "ch0005", "ch0015",
 				"ch0007", "ch0008", "ch0010", "ch0011", "ch0012", "ch0013",
 				"ch0014" };
 		final String rechargeTitle[] = { Constants.YINLIAN_SOUND_DISPLAY_STATE,
@@ -502,7 +502,7 @@ public class Controller {
 			public void run() {
 				String pageIndex = String.valueOf(index);
 				String result = RuyiGuessInterface.getInstance()
-						.getRuyiGuessDetailList(pageIndex, "2", userno, id, type);
+						.getRuyiGuessDetailList(pageIndex, "10", userno, id, type);
 				Message msg = new Message();
 				msg.what = 1;
 				msg.obj = result;

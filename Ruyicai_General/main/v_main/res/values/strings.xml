@@ -1261,6 +1261,7 @@
     <string name="buy_ruyi_guess_ok">"确定"</string>
     <string name="buy_ruyi_guess_stop">"截止:"</string>
     <string name="buy_ruyi_guess_btn_end">"已截止"</string>
+    <string name="buy_ruyi_guess_btn_participate">"已参与"</string>
     <string name="buy_ruyi_guess_error">"判断错误"</string>
     <string name="buy_ruyi_guess_right">"判断正确"</string>
     <string name="buy_ruyi_guess_right_answer">"本题正确答案:"</string>

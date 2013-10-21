@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/zc_play_change_layout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="4dip"
+    android:padding="4dip">
+
+<LinearLayout 
+    android:id="@+id/zc_play_change_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
     <TextView
@@ -86,3 +90,13 @@
     </LinearLayout>
 
 </LinearLayout>
+
+<ImageView android:id="@+id/ruyi_guess_detail_item_state"
+    android:layout_width="45dip"
+    android:layout_height="45dip"
+    android:layout_marginRight="15dip"
+    android:layout_marginTop="5dip"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
