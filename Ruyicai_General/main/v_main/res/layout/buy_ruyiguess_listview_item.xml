@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="83dip" >
+    android:layout_height="88dip" >
 
     <LinearLayout
-        android:id="@+id/zc_play_change_layout"
+        android:id="@+id/ruyi_guess_item_layout"
         android:layout_width="fill_parent"
-        android:layout_height="80dip"
+        android:layout_height="85dip"
         android:layout_marginTop="3dip"
-        android:background="@drawable/buy_ruyiguess_item_bg"
         android:orientation="horizontal"
+        android:background="@drawable/buy_ruyiguess_item_bg"
         android:padding="5dip" >
 
         <TextView
             android:id="@+id/ruyi_guess_item_integral"
-            android:layout_width="70dip"
-            android:layout_height="70dip"
+            android:layout_width="75dip"
+            android:layout_height="75dip"
             android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
 
@@ -48,8 +50,8 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:textColor="@color/black"
-                    android:paddingRight="10dip"
-                    android:textSize="16sp" />
+                    android:layout_marginRight="23dip"
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="fill_parent"
@@ -62,6 +64,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
+                    android:textColor="@color/black"
                     android:textSize="15sp" />
             </LinearLayout>
         </RelativeLayout>
@@ -82,10 +85,10 @@
         android:textColor="@color/white" />
 
     <ImageView android:id="@+id/ruyi_guess_item_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dip"
+        android:layout_height="55dip"
         android:layout_gravity="center"
-        android:src="@drawable/ruyiguess_stop"
+        android:src="@drawable/ruyiguess_end"
         android:visibility="gone" />
 
 </FrameLayout>

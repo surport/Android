@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,7 +61,7 @@ public class RuyiGuessActivity extends Activity {
 	private List<ItemInfoBean> mQuestionsList = new ArrayList<ItemInfoBean>();
 	private MessageHandler mHandler = new MessageHandler();
 	private ListViewAdapter mAdapter = new ListViewAdapter();
-	private String[] mStateArray = { "竞猜中", "参与", "已参" };
+	private String[] mStateArray = { "竞猜中", "参与中", "已参与" };
 	private int[] mIconArray = { R.drawable.buy_ruyiguess_item_yellow,
 			R.drawable.buy_ruyiguess_item_orange,
 			R.drawable.buy_ruyiguess_item_pink };
@@ -229,6 +230,9 @@ public class RuyiGuessActivity extends Activity {
 						.findViewById(R.id.ruyi_guess_item_participate);
 				holder.guessStop = (ImageView) convertView
 						.findViewById(R.id.ruyi_guess_item_stop);
+				holder.itemLayout = (LinearLayout) convertView
+						.findViewById(R.id.ruyi_guess_item_layout);
+						
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -264,6 +268,7 @@ public class RuyiGuessActivity extends Activity {
 				} else {
 					holder.participate.setText(mStateArray[0]);//根据状态判断显示
 				}
+				holder.itemLayout.setBackgroundResource(R.drawable.buy_ruyiguess_item_bg);
 			} else {
 				holder.guessStop.setVisibility(View.VISIBLE);
 				holder.integral.setBackgroundResource(R.drawable.buy_ruyiguess_item_gray);
@@ -278,6 +283,7 @@ public class RuyiGuessActivity extends Activity {
 				} else {
 					holder.participate.setVisibility(View.GONE);
 				}
+				holder.itemLayout.setBackgroundResource(R.drawable.buy_ruyiguess_item_bg_gray);
 			}
 			return convertView;
 		}
@@ -288,6 +294,7 @@ public class RuyiGuessActivity extends Activity {
 			TextView time;
 			TextView participate; //参与状态
 			ImageView guessStop; //截止
+			LinearLayout itemLayout;
 		}
 		
 	}
@@ -307,7 +314,6 @@ public class RuyiGuessActivity extends Activity {
 					if ("0000".equals(errorCode)) {
 						if (msg.what == 2) {
 							mQuestionsList.clear();
-//							mFooterView.setVisibility(View.VISIBLE);
 						}
 						JSONArray jsonArray = jsonObj.getJSONArray("result");
 						mTotalPage = Integer.valueOf(jsonObj.getString("totalPage").trim());
