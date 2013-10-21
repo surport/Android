@@ -20,7 +20,6 @@ public class ExpertDialog extends BaseDialog {
 	public ExpertDialog(Activity activity, String title, String message,
 			String msg, String toPhone, Handler handler) {
 		super(activity, title, message);
-		// TODO Auto-generated constructor stub
 		this.msg = msg;
 		this.toPhone = toPhone;
 		this.handler = handler;
@@ -28,13 +27,11 @@ public class ExpertDialog extends BaseDialog {
 
 	@Override
 	public void onOkButton() {
-		// TODO Auto-generated method stub
 		sendSMS();
 	}
 
 	@Override
 	public void onCancelButton() {
-		// TODO Auto-generated method stub
 
 	}
 

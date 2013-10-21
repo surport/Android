@@ -170,7 +170,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
 			initImageView();
-			// beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -185,7 +184,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			codeInfo.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					addview.createCodeInfoDialog(context);
 					addview.showDialog();
 				}
@@ -196,7 +194,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
 						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
 					alertExit(getString(R.string.buy_alert_exit_detail_other));
@@ -266,7 +263,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = Controller.getInstance(
 						JoinStartActivity.this).toNetIssue(
 						betAndGift.getLotno());
@@ -274,7 +270,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						betAndGift.setBatchcode(issue);// 期号
 						issueText.setText("第" + issue + "期");
 					}
@@ -288,8 +283,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	public void getTouzhuAlert() {
 		if (Constants.type.equals("zc")) {
-			// int zhuShu = Integer.valueOf(betAndGift.getZhushu()) *
-			// iProgressBeishu;
 			zhushu.setText(mZhushu + "注     ");
 			jine.setText(iProgressQishu * mZhushu * 2 * iProgressBeishu + "元");
 		} else {
@@ -512,7 +505,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 * @param int checkedId 当前被选择的RadioId
 	 */
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		switch (group.getId()) {
 		case R.id.buy_join_radiogroup_baodi:
 			switch (checkedId) {
@@ -568,14 +560,12 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -696,14 +686,12 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		intent.putExtra("lotno", betAndGift.getLotno());
 		intent.putExtra("amount", betAndGift.getAmount());
 		startActivity(intent);
-		// showfenxdialog(message);
 	}
 
 	private boolean isclearaddview = true;
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
@@ -714,7 +702,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -725,26 +712,22 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -788,19 +771,16 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void touzhuIssue(String issue) {
-		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
 		controller = Controller.getInstance(JoinStartActivity.this);
 		if (controller != null) {
@@ -844,7 +824,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (addview != null && addview.getSize() != 0) {

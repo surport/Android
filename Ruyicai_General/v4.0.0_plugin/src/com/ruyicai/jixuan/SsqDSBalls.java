@@ -29,7 +29,6 @@ public class SsqDSBalls extends Balls {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 
 		int redNum[] = PublicMethod.getRandomsWithoutCollision(6, 1, 33);
 		redNum = PublicMethod.orderby(redNum, "abc");
@@ -45,21 +44,10 @@ public class SsqDSBalls extends Balls {
 	 * @param beishu
 	 */
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		int zhumablue[] = null;
 		int zhuma[] = null;
-		// String t_str = "1512-F47104-";
-		// t_str += "00-";
-		// int zhushu = balls.size();
-		// if (zhushu < 10) {
-		// t_str += "0"+zhushu;
-		// }
-		// if (zhushu >= 10) {
-		// t_str += zhushu;
-		// }
-		// t_str+="-";
+	
 		String t_str = "";
-		// for (int j = 0; j < balls.size(); j++) {
 		t_str += "00";
 		if (beishu < 10) {
 			t_str += "0" + beishu;

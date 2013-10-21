@@ -25,7 +25,6 @@ public class SscZMissJson extends MissJson {
 
 	@Override
 	public List<List> jsonToList(String sellWay, JSONObject json) {
-		// TODO Auto-generated method stub
 		this.sellWay = sellWay;
 		pxJson(json);
 		return null;

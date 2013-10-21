@@ -440,7 +440,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
@@ -511,10 +510,8 @@ public class BuyActivity extends Activity implements OnClickListener {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
-//			ExitDialogFactory.createExitDialog(this);
 			RuyicaiActivityManager.getInstance().exit();
 			PublicConst.islogin = false;
 			PublicConst.isthirdlogin = false;
@@ -987,7 +984,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	 * 从上一个activity返回当前activity执行的方法
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		switch (resultCode) {
 		case RESULT_OK:
 			tendToUserCenter();
@@ -1159,7 +1155,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	OnClickListener filterclick = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			informationNet();
 		}
 	};

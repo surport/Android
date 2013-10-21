@@ -28,8 +28,6 @@ public class PL3Zu3Balls extends Balls {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-
 		int[] num = PublicMethod.getRandomsWithoutCollision(2, 0, 9);
 		int[] baiNum = new int[1];
 		int[] shiNum = new int[1];
@@ -44,7 +42,6 @@ public class PL3Zu3Balls extends Balls {
 	String zuxuan = "6|";// 组选单式（包括组三和组六）
 
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		String strZM = "";
 		strZM += zuxuan;
 		int bai = getVZhuma().get(0)[0];

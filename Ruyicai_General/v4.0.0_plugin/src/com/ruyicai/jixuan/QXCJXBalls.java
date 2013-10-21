@@ -12,13 +12,11 @@ public class QXCJXBalls extends Balls {
 
 	@Override
 	public Balls createBalls() {
-		// TODO Auto-generated method stub
 		return new QXCJXBalls();
 	}
 
 	@Override
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		String strZM = "";
 
 		int first = getVZhuma().get(0)[0];
@@ -36,7 +34,6 @@ public class QXCJXBalls extends Balls {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		int[] firstNum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);
 		int[] secondNum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);
 		int[] thirdNum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);

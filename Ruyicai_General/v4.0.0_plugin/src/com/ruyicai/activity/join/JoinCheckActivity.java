@@ -396,7 +396,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				getMore();
 			}
@@ -429,7 +428,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				getMore();
 			}
@@ -465,19 +463,16 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -485,7 +480,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			JoinCheck info = (JoinCheck) mList.get(position);
@@ -584,19 +578,16 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -604,7 +595,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			final JoinFollow info = (JoinFollow) mList.get(position);
@@ -664,7 +654,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						Intent intent = new Intent(JoinCheckActivity.this,
 								JoinModifyActivity.class);
 						intent.putExtra(JoinInfoActivity.USER_NO,
@@ -692,7 +681,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						Intent intent = new Intent(JoinCheckActivity.this,
 								JoinDingActivity.class);
 						intent.putExtra(JoinInfoActivity.USER_NO,
@@ -717,7 +705,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					detaiDalogfollow(info);
 				}
 			});
@@ -790,7 +777,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 				tHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						if (progressbar != null) {
 							progressbar.setVisibility(ProgressBar.INVISIBLE);
 							view.setEnabled(true);
@@ -826,7 +812,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 				tHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						if (progressbar != null) {
 							progressbar.setVisibility(ProgressBar.INVISIBLE);
 							view.setEnabled(true);
@@ -889,7 +874,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	 * 取消网络连接框
 	 */
 	public void dismissDialog() {
-		// TODO Auto-generated method stub
 		progressdialog.dismiss();
 	}
 
@@ -900,12 +884,10 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 		}
 	}
 
-	// TODO Auto-generated method stub
 	public void errorCode_0000() {
 		if (joinType == 0) {
 			setValue();
 			if (newPage == 0) {
-				// initList();
 				initLinear(usecenercheck, R.id.joincheck_query,
 						initLinearView());
 			} else {
@@ -925,12 +907,10 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	}
 
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1255,13 +1235,11 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		if (isrefresh) {
 			newpagefollow = 0;
 			allpagefollow = 0;

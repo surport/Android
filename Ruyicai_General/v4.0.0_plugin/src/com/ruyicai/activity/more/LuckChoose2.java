@@ -399,7 +399,6 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	private class MyOnTouchListener implements OnTouchListener {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			// TODO Auto-generated method stub
 			switch (event.getAction()) {
 
 			case MotionEvent.ACTION_DOWN:
@@ -760,19 +759,16 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return codeInfos.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return codeInfos.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -1964,17 +1960,14 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	 */
 
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		Toast.makeText(this, "投注成功！", Toast.LENGTH_SHORT).show();
 	}
 
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1983,7 +1976,6 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (isWindow && popupwindow != null) {

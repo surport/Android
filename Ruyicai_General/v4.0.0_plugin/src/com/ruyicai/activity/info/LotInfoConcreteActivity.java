@@ -98,7 +98,6 @@ public class LotInfoConcreteActivity extends Activity implements
 		imgRetrun.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -166,7 +165,6 @@ public class LotInfoConcreteActivity extends Activity implements
 							new OnClickListener() {
 								@Override
 								public void onClick(View v) {
-									// TODO Auto-generated method stub
 									LayoutInflater inflater = (LayoutInflater) LotInfoConcreteActivity.this
 											.getSystemService(LAYOUT_INFLATER_SERVICE);
 									View view = inflater
@@ -237,7 +235,6 @@ public class LotInfoConcreteActivity extends Activity implements
 
 										@Override
 										public void onClick(View v) {
-											// TODO Auto-generated method stub
 											RWSharedPreferences pre = new RWSharedPreferences(
 													LotInfoConcreteActivity.this,
 													"addInfo");
@@ -283,7 +280,6 @@ public class LotInfoConcreteActivity extends Activity implements
 
 										@Override
 										public void onClick(View v) {
-											// TODO Auto-generated method stub
 											dialog.dismiss();
 										}
 									});
@@ -393,7 +389,6 @@ public class LotInfoConcreteActivity extends Activity implements
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -448,32 +443,27 @@ public class LotInfoConcreteActivity extends Activity implements
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		dialog.dismiss();
 		PublicMethod.showDialog(LotInfoConcreteActivity.this);
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -489,13 +479,11 @@ public class LotInfoConcreteActivity extends Activity implements
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

@@ -20,7 +20,6 @@ public class SscBalls extends Balls {
 
 	@Override
 	public Balls createBalls() {
-		// TODO Auto-generated method stub
 		if (isbigsmall) {
 			return new SscBalls();
 		} else {
@@ -32,14 +31,12 @@ public class SscBalls extends Balls {
 	public void init() {
 		if (isbigsmall) {
 			int onebig[] = new int[1];
-			// TODO Auto-generated method stub
 			for (int j = 0; j < 2; j++) {
 				onebig = PublicMethod.getRandomsWithoutCollision(1, 0, 3);
 				add(onebig, null);
 			}
 		} else {
 			int onenum[] = new int[1];
-			// TODO Auto-generated method stub
 			for (int j = 0; j < i; j++) {
 				onenum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);
 				add(onenum, null);

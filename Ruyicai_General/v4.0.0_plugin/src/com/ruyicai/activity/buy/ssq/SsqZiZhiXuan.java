@@ -155,7 +155,6 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 	 * 投注联网信息
 	 */
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_SSQ);
 
@@ -165,7 +164,6 @@ public class SsqZiZhiXuan extends ZixuanActivity {
 	 * 选择小球提示金额
 	 */
 	public String textSumMoney(AreaNum areaNum[], int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		int iRedHighlights = areaNum[0].table.getHighlightBallNums();
 		int iBlueHighlights = areaNum[1].table.getHighlightBallNums();
 		String iTempString = "";

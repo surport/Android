@@ -91,7 +91,6 @@ public class QLCDetailView extends LotnoDetailView {
 	@Override
 	public void initLotonoView(JSONObject ssqPrizeDetailJson)
 			throws JSONException {
-		// TODO Auto-generated method stub
 		json = ssqPrizeDetailJson;
 		prizeBatchCode.setText("七乐彩    第"
 				+ ssqPrizeDetailJson.getString("batchCode") + "期");
@@ -136,7 +135,6 @@ public class QLCDetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, Qlc.class);
 				context.startActivity(intent);
 			}

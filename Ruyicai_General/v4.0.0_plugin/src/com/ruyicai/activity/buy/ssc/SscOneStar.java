@@ -26,7 +26,6 @@ public class SscOneStar extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		lotno = Constants.LOTNO_SSC;
 		super.onCreate(savedInstanceState);
 		if (Constants.isDebug) {
@@ -41,14 +40,12 @@ public class SscOneStar extends ZixuanAndJiXuan {
 	}
 
 	public void theMethodYouWantToCall() {
-		// do what ever you want here
 		init();
 		childtypes.setVisibility(View.GONE);
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onDestroy()");
@@ -58,7 +55,6 @@ public class SscOneStar extends ZixuanAndJiXuan {
 	// 单选框切换直选，机选
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
 		isMissNet(new SscMissJson(), sellWay, false);// 获取遗漏值
 	}

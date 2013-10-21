@@ -9,7 +9,6 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
-import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
@@ -340,7 +339,6 @@ public class AccountListActivity extends Activity {
 				RuyicaiActivityManager.getInstance().exit();
 				PublicConst.islogin = false;
 				PublicConst.isthirdlogin = false;
-//				ExitDialogFactory.createExitDialog(this);
 			}
 			break;
 		}

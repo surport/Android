@@ -179,7 +179,6 @@ public class FC3DZuSan extends ZixuanActivity implements
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		itemViewArray.clear();
 		layoutView.removeAllViews();
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
@@ -276,19 +275,8 @@ public class FC3DZuSan extends ZixuanActivity implements
 				String baiweistr = oneBallTable.getHighlightBallNOs()[0] + "";// 出现两次的号码
 				String geweistr = twoBallTable.getHighlightBallNOs()[0] + "";// 出现一次的号码
 				if (iZhuShu * 2 > 100000) {
-					// dialogExcessive();
 					isTouzhu = "false";
 				} else {
-					// setZhuShu(iZhuShu);
-					// if(
-					// oneBallTable.getHighlightBallNOs()[0]>twoBallTable.getHighlightBallNOs()[0]){
-					// alert( "注码：" + geweistr + ","+ baiweistr + "," +
-					// baiweistr );
-					// }else{
-					//
-					// alert( "注码：" + baiweistr + "," + baiweistr + ","+
-					// geweistr );
-					// }
 					isTouzhu = "true";
 				}
 			}
@@ -310,11 +298,8 @@ public class FC3DZuSan extends ZixuanActivity implements
 				iZhuShu = getZhuShu();
 
 				if (iZhuShu * 2 > 100000) {
-					// dialogExcessive();
 					isTouzhu = "false";
 				} else {
-					// setZhuShu(iZhuShu);
-					// alert("注码：" + fushiStr );
 					isTouzhu = "true";
 				}
 			}
@@ -322,7 +307,6 @@ public class FC3DZuSan extends ZixuanActivity implements
 			break;
 		case PublicConst.BUY_FC3D_HEZHI_ZU3:
 
-			// TODO Auto-generated method stub
 			if (ballTable.getHighlightBallNums() < 1) {
 				isTouzhu = "请选择小球号码后再投注";
 			} else if (ballTable.getHighlightBallNums() == 1) {
@@ -331,11 +315,8 @@ public class FC3DZuSan extends ZixuanActivity implements
 				String fushiStr = PublicMethod.getZhuMa(ballTable
 						.getHighlightBallNOs()[0]) + "";
 				if (iZhuShu * 2 > 100000) {
-					// dialogExcessive();
 					isTouzhu = "false";
 				} else {
-					// setZhuShu(iZhuShu);
-					// alert( "注码：" + fushiStr);
 					isTouzhu = "true";
 				}
 			}
@@ -410,7 +391,6 @@ public class FC3DZuSan extends ZixuanActivity implements
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_FC3D);
 	}
@@ -527,7 +507,6 @@ public class FC3DZuSan extends ZixuanActivity implements
 
 	@Override
 	public String getZhuma() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

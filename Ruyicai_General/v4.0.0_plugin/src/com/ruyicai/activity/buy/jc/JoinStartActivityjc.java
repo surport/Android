@@ -114,7 +114,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		imgRetrun.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -122,7 +121,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				isJoin();
 			}
 		});
@@ -360,7 +358,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	 * @param int checkedId 当前被选择的RadioId
 	 */
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		switch (group.getId()) {
 		case R.id.buy_join_radiogroup_baodi:
 			switch (checkedId) {
@@ -416,7 +413,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	 */
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		if (controller != null) {
 			try {
 				Toast.makeText(this, controller.getRtnJSONObject().getString("message"), Toast.LENGTH_SHORT).show();
@@ -441,7 +437,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -452,7 +447,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	 */
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 	

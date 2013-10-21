@@ -19,27 +19,19 @@ public class TransitActivity extends Activity {
 		// 读取本地渠道号
 		shellRW = new RWSharedPreferences(this, "addInfo");
 		boolean isFirst = shellRW.getBooleanValue("isFirst");
-//		if (isFirst) {
-			Intent in = new Intent(TransitActivity.this, MainGroup.class);
-			startActivity(in);
-			TransitActivity.this.finish();
-//		} else {
-//			shellRW.putBooleanValue("isFirst", true);
-//			Intent in = new Intent(TransitActivity.this, PhotoActivity.class);
-//			startActivity(in);
-//			TransitActivity.this.finish();
-//		}
+		Intent in = new Intent(TransitActivity.this, MainGroup.class);
+		startActivity(in);
+		TransitActivity.this.finish();
+
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 

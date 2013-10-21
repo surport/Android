@@ -27,19 +27,16 @@ public class PL5ZiJX extends DanshiJiXuan implements BuyImplement {
 
 	@Override
 	public void isTouzhu() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("1");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_PL5);
 	}

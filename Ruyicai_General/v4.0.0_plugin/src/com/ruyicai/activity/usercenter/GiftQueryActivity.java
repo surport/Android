@@ -261,7 +261,6 @@ public class GiftQueryActivity extends Activity {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						if (progressbar != null) {
 							progressbar.setVisibility(ProgressBar.GONE);
 						}
@@ -328,7 +327,6 @@ public class GiftQueryActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				addMore();
 
@@ -353,7 +351,6 @@ public class GiftQueryActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				addMore();
 
@@ -890,7 +887,6 @@ public class GiftQueryActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String returnStr = GiftReciveCodeInterface.getInstance()
 						.giftCodeQuery(id, userno);
 				dialog.dismiss();
@@ -909,7 +905,6 @@ public class GiftQueryActivity extends Activity {
 						handler.sendMessage(msg);
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -924,7 +919,6 @@ public class GiftQueryActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String returnStr = GiftReciveInterface.getInstance()
 						.giftReciveQuery(id, code);
 				dialog.dismiss();
@@ -943,7 +937,6 @@ public class GiftQueryActivity extends Activity {
 						handler.sendMessage(msg);
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -976,7 +969,6 @@ public class GiftQueryActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				giftCode.cancel();
 			}
 		});
@@ -984,7 +976,6 @@ public class GiftQueryActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String contextStr = context.getText().toString();
 				giftCode.cancel();
 				getReciveNet(id, contextStr);
@@ -1023,13 +1014,11 @@ public class GiftQueryActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

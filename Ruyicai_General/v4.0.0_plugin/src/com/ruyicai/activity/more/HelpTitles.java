@@ -101,7 +101,6 @@ public class HelpTitles extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				JSONObject jsonObjectByLotno = HelpCenterInterface
 						.getInstance().accountDetailQuery(type, pageIndex);
 				try {
@@ -114,7 +113,6 @@ public class HelpTitles extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								showView(titleList);
 							}
 						});
@@ -122,7 +120,6 @@ public class HelpTitles extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}
@@ -201,7 +198,6 @@ public class HelpTitles extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(HelpTitles.this,
 						HelpCenterItemActivity.class);
 				Bundle bundle = new Bundle();
@@ -243,25 +239,21 @@ public class HelpTitles extends Activity {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return list.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return list.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			ViewHolder holder = null;
 			if (convertView == null) {
 				convertView = mInflater.inflate(
@@ -293,13 +285,11 @@ public class HelpTitles extends Activity {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (isMain) {
 				finish();
 			} else {
-				// setContentView(showView());
 			}
 			break;
 		}

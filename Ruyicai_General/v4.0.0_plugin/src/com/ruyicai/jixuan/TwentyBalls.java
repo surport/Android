@@ -7,13 +7,11 @@ import com.ruyicai.util.PublicMethod;
 public class TwentyBalls extends Balls {
 
 	public TwentyBalls() {
-		// TODO Auto-generated constructor stub
 		init();
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		int redNum[] = PublicMethod.getRandomsWithoutCollision(5, 1, 22);
 		redNum = PublicMethod.orderby(redNum, "abc");
 		add(redNum, null);
@@ -27,7 +25,6 @@ public class TwentyBalls extends Balls {
 
 	@Override
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		StringBuffer t_str = new StringBuffer();
 		int zhuma[] = null;
 		t_str.append("0@");

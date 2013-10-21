@@ -68,7 +68,6 @@ public class FC3DetailView extends LotnoDetailView {
 
 	@Override
 	public void initLotonoView(JSONObject json) throws JSONException {
-		// TODO Auto-generated method stub
 		this.json = json;
 		prizeBatchCode.setText("福彩3D    第" + json.getString("batchCode") + "期");
 		prizeDate.setText(context.getString(R.string.prizedetail_opentime)
@@ -115,7 +114,6 @@ public class FC3DetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, Fc3d.class);
 				context.startActivity(intent);
 			}

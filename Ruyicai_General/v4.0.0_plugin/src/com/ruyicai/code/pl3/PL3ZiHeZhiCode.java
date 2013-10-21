@@ -29,7 +29,6 @@ public class PL3ZiHeZhiCode extends CodeInterface {
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
 
-		// TODO Auto-generated method stub
 		String strZM = "";
 		if (iCurrentButton == PublicConst.BUY_PL3_HEZHI_ZHIXUAN) {
 			strZM = zxHHH;

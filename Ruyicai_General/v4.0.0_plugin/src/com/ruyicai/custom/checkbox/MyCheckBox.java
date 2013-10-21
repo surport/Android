@@ -106,7 +106,6 @@ public class MyCheckBox extends CheckBox {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isCheck) {
-				// TODO Auto-generated method stub
 				isChecked = isCheck;
 				/**add by yejc 20130816 start*/
 				if (handler != null) {

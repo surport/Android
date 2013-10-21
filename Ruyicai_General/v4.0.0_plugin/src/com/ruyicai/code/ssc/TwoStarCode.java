@@ -15,7 +15,6 @@ public class TwoStarCode extends CodeInterface {
 				str += "-," + "-," + "-," + getIsZHcode();
 			} else {
 				str = "2D|";
-				// TODO Auto-generated method stub
 				int shi[] = areaNums[0].table.getHighlightBallNOs();
 				int ge[] = areaNums[1].table.getHighlightBallNOs();
 				str += "-," + "-," + "-," + getStr(shi) + "," + getStr(ge);

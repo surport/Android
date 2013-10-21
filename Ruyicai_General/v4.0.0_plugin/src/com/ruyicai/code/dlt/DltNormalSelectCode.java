@@ -7,7 +7,6 @@ import com.ruyicai.pojo.AreaNum;
 public class DltNormalSelectCode extends CodeInterface {
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-		// TODO Auto-generated method stub
 		StringBuffer normalCode = new StringBuffer();
 		int redNum[] = areaNums[0].table.getHighlightBallNOs();
 		for (int i = 0; i < redNum.length; i++) {

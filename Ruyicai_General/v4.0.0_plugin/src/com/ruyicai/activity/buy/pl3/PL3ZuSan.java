@@ -126,7 +126,6 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		itemViewArray.clear();
 		layoutView.removeAllViews();
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
@@ -224,16 +223,6 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 					dialogExcessive();
 					isTouzhu = "false";
 				} else {
-					// setZhuShu(iZhuShu);
-					// if(
-					// oneBallTable.getHighlightBallNOs()[0]>twoBallTable.getHighlightBallNOs()[0]){
-					// alert( "注码：" + geweistr + ","+ baiweistr + "," +
-					// baiweistr );
-					// }else{
-					//
-					// alert( "注码：" + baiweistr + "," + baiweistr + ","+
-					// geweistr );
-					// }
 					isTouzhu = "true";
 				}
 			}
@@ -255,11 +244,8 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 				iZhuShu = getZhuShu();
 
 				if (iZhuShu * 2 > 100000) {
-					// dialogExcessive();
 					isTouzhu = "false";
 				} else {
-					// setZhuShu(iZhuShu);
-					// alert("注码：" + fushiStr );
 					isTouzhu = "true";
 				}
 			}
@@ -267,7 +253,6 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 			break;
 		case PublicConst.BUY_PL3_HEZHI_ZU3:
 
-			// TODO Auto-generated method stub
 			if (ballTable.getHighlightBallNums() < 1) {
 				isTouzhu = "请选择小球号码后再投注";
 			} else if (ballTable.getHighlightBallNums() == 1) {
@@ -276,11 +261,8 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 				String fushiStr = PublicMethod.getZhuMa(ballTable
 						.getHighlightBallNOs()[0]) + "";
 				if (iZhuShu * 2 > 100000) {
-					// dialogExcessive();
 					isTouzhu = "false";
 				} else {
-					// setZhuShu(iZhuShu);
-					// alert( "注码：" + fushiStr);
 					isTouzhu = "true";
 				}
 			}
@@ -344,9 +326,6 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 				if (j == BallNos[i] - 1) {// 因为数组是从0开始的，小球实际Id从1开始，故减去1
 					// 删除倍数 cc 20100713
 					iZhuShu = BallNoZhushus[j];// *iProgressBeishu;
-					// String temp = "当前玩法为和值组3，共"
-					// +(iZhuShu+"注，共"+(iZhuShu*2)+"元");
-					// mTextSumMoney.setText(temp);
 				}
 			}
 		}
@@ -355,7 +334,6 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_PL3);
 	}
@@ -464,7 +442,6 @@ public class PL3ZuSan extends ZixuanActivity implements OnCheckedChangeListener 
 
 	@Override
 	public String getZhuma() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -7,7 +7,6 @@ public class TwentyDanTuoCode extends CodeInterface {
 
 	@Override
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-		// TODO Auto-generated method stub
 
 		int zhuma[] = areaNums[0].table.getHighlightBallNOs();
 		int[] tuozhuma = areaNums[1].table.getHighlightBallNOs();

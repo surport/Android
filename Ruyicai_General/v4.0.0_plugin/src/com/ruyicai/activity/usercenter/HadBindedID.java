@@ -18,8 +18,6 @@ public class HadBindedID extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-
 		super.onCreate(savedInstanceState);
 		theBindCertid = this.getIntent().getStringExtra("certid");
 		theBindName = this.getIntent().getStringExtra("name");
@@ -37,7 +35,6 @@ public class HadBindedID extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -53,13 +50,11 @@ public class HadBindedID extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

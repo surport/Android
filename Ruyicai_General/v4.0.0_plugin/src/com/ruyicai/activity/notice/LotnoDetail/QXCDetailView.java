@@ -83,7 +83,6 @@ public class QXCDetailView extends LotnoDetailView {
 	@Override
 	public void initLotonoView(JSONObject ssqPrizeDetailJson)
 			throws JSONException {
-		// TODO Auto-generated method stub
 		json = ssqPrizeDetailJson;
 		prizeBatchCode.setText("七星彩    第"
 				+ ssqPrizeDetailJson.getString("batchCode") + "期");
@@ -125,7 +124,6 @@ public class QXCDetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, QXC.class);
 				context.startActivity(intent);
 			}

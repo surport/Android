@@ -6,8 +6,6 @@ import com.ruyicai.pojo.AreaNum;
 public class DltDantuoSelectCode extends CodeInterface {
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-
-		// TODO Auto-generated method stub
 		StringBuffer dantuoCode = new StringBuffer();
 		int frontdan[] = areaNums[0].table.getHighlightBallNOs();
 		if (frontdan != null) {

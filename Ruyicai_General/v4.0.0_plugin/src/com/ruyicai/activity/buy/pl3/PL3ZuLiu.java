@@ -45,7 +45,6 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		MAX_ZHU = 600;
 		ALL_ZHU = 99;
@@ -74,7 +73,6 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		switch (group.getId()) {
 		case R.id.buy_zixuan_radiogroup_top:
 			switch (checkedId) {
@@ -118,7 +116,6 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		itemViewArray.clear();
 		layoutView.removeAllViews();
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
@@ -151,7 +148,6 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 	}
 
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String mTextSumMoney = "";
 		int iZhuShu = getZhuShu();
 		switch (iCurrentButton) {
@@ -238,7 +234,6 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 	}
 
 	public String isTouzhu() {
-		// TODO Auto-generated method stub
 		String isTouzhu = "";
 		switch (iCurrentButton) {
 		case PublicConst.BUY_PL3_ZU6:
@@ -304,14 +299,12 @@ public class PL3ZuLiu extends ZixuanActivity implements OnCheckedChangeListener 
 	}
 
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_PL3);
 	}
 
 	@Override
 	public String getZhuma() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

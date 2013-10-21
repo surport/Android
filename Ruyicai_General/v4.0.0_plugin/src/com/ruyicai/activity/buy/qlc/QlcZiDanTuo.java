@@ -48,7 +48,6 @@ public class QlcZiDanTuo extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
 		itemViewArray.add(buyView);
 		layoutView.addView(buyView.createView());
@@ -177,7 +176,6 @@ public class QlcZiDanTuo extends ZixuanActivity {
 	 * @return
 	 */
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String iTempString = "";
 		int iRedDanHighlights = areaNum[0].table.getHighlightBallNums();
 		int iRedTuoHighlights = areaNum[1].table.getHighlightBallNums();
@@ -269,29 +267,24 @@ public class QlcZiDanTuo extends ZixuanActivity {
 	 * 投注联网
 	 */
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_QLC);
 
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 

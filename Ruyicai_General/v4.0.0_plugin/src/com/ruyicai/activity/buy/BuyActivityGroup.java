@@ -129,7 +129,6 @@ public class BuyActivityGroup extends ActivityGroup {
 
 	@Override
 	protected void onRestart() {
-		// TODO Auto-generated method stub
 		super.onRestart();
 		betInfoTextView.setText("请选择投注号码");
 	}

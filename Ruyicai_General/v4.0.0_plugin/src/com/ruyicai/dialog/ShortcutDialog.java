@@ -22,13 +22,11 @@ public class ShortcutDialog extends BaseDialog {
 
 	@Override
 	public void onOkButton() {
-		// TODO Auto-generated method stub
 		addShortcut();
 	}
 
 	@Override
 	public void onCancelButton() {
-		// TODO Auto-generated method stub
 
 	}
 

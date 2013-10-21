@@ -12,13 +12,11 @@ public class PL5JXBalls extends Balls {
 
 	@Override
 	public Balls createBalls() {
-		// TODO Auto-generated method stub
 		return new PL5JXBalls();
 	}
 
 	@Override
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		String strZM = "";
 
 		int wan = getVZhuma().get(0)[0];
@@ -32,7 +30,6 @@ public class PL5JXBalls extends Balls {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		int[] wanNum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);
 		int[] qianNum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);
 		int[] baiNum = PublicMethod.getRandomsWithoutCollision(1, 0, 9);

@@ -68,7 +68,6 @@ public class TwentyDetailView extends LotnoDetailView {
 
 	@Override
 	public void initLotonoView(JSONObject PrizeDetailJson) throws JSONException {
-		// TODO Auto-generated method stub
 		json = PrizeDetailJson;
 		prizeBatchCode.setText("22选5    第"
 				+ PrizeDetailJson.getString("batchCode") + "期");
@@ -102,7 +101,6 @@ public class TwentyDetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, TwentyTwo.class);
 				context.startActivity(intent);
 			}

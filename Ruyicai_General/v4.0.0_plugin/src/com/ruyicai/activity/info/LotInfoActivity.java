@@ -251,7 +251,6 @@ public class LotInfoActivity extends Activity {
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							String str = NewInfoGetNewsContentInterface
 									.getNewsContent((String) mList.get(index)
 											.getNewsId());
@@ -481,13 +480,11 @@ public class LotInfoActivity extends Activity {
 					}
 
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					handler.post(new Runnable() {
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							progressdialog.dismiss();
 							Toast.makeText(LotInfoActivity.this,
 									"获取信息失败，请稍候再试", Toast.LENGTH_SHORT);
@@ -500,7 +497,6 @@ public class LotInfoActivity extends Activity {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						if (type == 1) {
 							listview = (ListView) findViewById(R.id.infolist1);
 							informationdata = Constants.quwenInfoList;
@@ -538,7 +534,6 @@ public class LotInfoActivity extends Activity {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_BACK:
 			if (isExpert == true && newsinfotype == 2) {
@@ -553,23 +548,19 @@ public class LotInfoActivity extends Activity {
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 }

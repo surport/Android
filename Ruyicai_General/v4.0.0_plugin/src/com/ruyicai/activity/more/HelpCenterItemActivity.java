@@ -65,7 +65,6 @@ public class HelpCenterItemActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				JSONObject jsonObjectByLotno = HelpCenterItemInterface
 						.getInstance().accountDetailQuery(id);
 				try {
@@ -73,7 +72,6 @@ public class HelpCenterItemActivity extends Activity {
 					handler.post(new Runnable() {
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							initView(content);
 						}
 					});

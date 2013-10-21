@@ -20,14 +20,12 @@ public class DlcRxBalls extends Balls {
 
 	@Override
 	public Balls createBalls() {
-		// TODO Auto-generated method stub
 		return new DlcRxBalls(i);
 	}
 
 	@Override
 	public void init() {
 		int onenum[] = new int[i];
-		// TODO Auto-generated method stub
 		for (int j = 0; j < i; j++) {
 			onenum = PublicMethod.getRandomsWithoutCollision(i, 1, 11);
 		}
@@ -55,7 +53,6 @@ public class DlcRxBalls extends Balls {
 	 */
 	@Override
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

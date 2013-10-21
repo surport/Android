@@ -37,7 +37,6 @@ public class Fc3dZiZuXuanCode extends CodeInterface {
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
 
-		// TODO Auto-generated method stub
 		String[] zhuma = null;
 		String t_str = "";
 		int iZhuShu = getZhuShu(areaNums);

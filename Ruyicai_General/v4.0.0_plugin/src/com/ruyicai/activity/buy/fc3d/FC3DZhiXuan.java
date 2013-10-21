@@ -48,7 +48,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		topLinear = (LinearLayout) findViewById(R.id.buy_zixuan_linear_top);
 		topLinearTwo = (LinearLayout) findViewById(R.id.buy_zixuan_linear_top_two);
@@ -61,7 +60,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
@@ -80,7 +78,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String mTextSumMoney = "";
 		int iZhuShu = getZhuShu();
 		switch (iCurrentButton) {
@@ -110,7 +107,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 
 	@Override
 	public String isTouzhu() {
-		// TODO Auto-generated method stub
 		String isTouzhu = "";
 		switch (iCurrentButton) {
 		case PublicConst.BUY_FC3D_HEZHI_ZHIXUAN:
@@ -169,7 +165,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_FC3D);
 	}
@@ -183,7 +178,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 	 */
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		switch (group.getId()) {
 		case R.id.buy_zixuan_radiogroup_top:
 			switch (checkedId) {
@@ -289,7 +283,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		itemViewArray.clear();
 		layoutView.removeAllViews();
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
@@ -386,7 +379,6 @@ public class FC3DZhiXuan extends ZixuanActivity implements
 
 	@Override
 	public String getZhuma() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

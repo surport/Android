@@ -85,14 +85,12 @@ public class ExitDialogFactory {
 	}
 
 	public void onOkButton() {
-		// TODO Auto-generated method stub
 		RuyicaiActivityManager.getInstance().exit();
 		PublicConst.islogin = false;
 		PublicConst.isthirdlogin = false;
 	}
 
 	public void onCancelButton() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -102,7 +100,6 @@ public class ExitDialogFactory {
 	}
 
 	public static void createExitDialog(Activity activity) {
-		// TODO Auto-generated method stub
 		ExitDialogFactory dialog2 = new ExitDialogFactory(activity);
 		dialog2.show();
 	}

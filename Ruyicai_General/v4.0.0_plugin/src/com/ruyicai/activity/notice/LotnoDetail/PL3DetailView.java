@@ -66,7 +66,6 @@ public class PL3DetailView extends LotnoDetailView {
 
 	@Override
 	public void initLotonoView(JSONObject PrizeDetailJson) throws JSONException {
-		// TODO Auto-generated method stub
 		json = PrizeDetailJson;
 		prizeBatchCode.setText("排列三    第"
 				+ PrizeDetailJson.getString("batchCode") + "期");
@@ -94,7 +93,6 @@ public class PL3DetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, PL3.class);
 				context.startActivity(intent);
 			}

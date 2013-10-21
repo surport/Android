@@ -7,7 +7,6 @@ public class BigSamllCode extends CodeInterface {
 
 	@Override
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-		// TODO Auto-generated method stub
 		String str = "";
 		int[] shi = areaNums[0].table.getHighlightBallNOsbigsmall();
 		int[] ge = areaNums[1].table.getHighlightBallNOsbigsmall();

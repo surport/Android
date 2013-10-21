@@ -369,26 +369,22 @@ public class AddViewMiss {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return codeInfos.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return codeInfos.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(final int position, View convertView,
 				ViewGroup parent) {
-			// TODO Auto-generated method stub
 			CodeInfoMiss codeInfo = codeInfos.get(position);
 			convertView = mInflater.inflate(R.layout.buy_add_dialog_list_item,
 					null);
@@ -405,7 +401,6 @@ public class AddViewMiss {
 			btnDelet.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					codeInfos.remove(position);
 					updateListView();
 					updateInfoText();

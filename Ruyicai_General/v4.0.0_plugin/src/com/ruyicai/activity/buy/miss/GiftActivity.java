@@ -155,14 +155,12 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = Controller.getInstance(GiftActivity.this)
 						.toNetIssue(betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						issueText.setText("第" + issue + "期");
 						betAndGift.setBatchcode(issue);
 					}
@@ -203,7 +201,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			codeInfo.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					addviewmiss.createCodeInfoDialog(GiftActivity.this);
 					addviewmiss.showDialog();
 				}
@@ -218,7 +215,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				addPerson();
 				RWSharedPreferences pre = new RWSharedPreferences(
 						GiftActivity.this, "addInfo");
@@ -243,7 +239,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		cancel = (Button) findViewById(R.id.alert_dialog_touzhu_button_cancel);
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (OrderDetails.isAlert && OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE) {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit("退出该页面会清空已选择的投注号码，是否将已选择的投注号码保存？");
@@ -260,7 +255,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		language.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (Constants.avdiceStr == null) {
 					giftMsgNet();
 				} else {
@@ -274,14 +268,11 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				editPhone.setText("");
 				checkedPersons.clear();
 				LinkDialog();
 			}
 		});
-		// zhuma = (TextView) findViewById(R.id.gift_text_zhuma);
-		// zhushu = (TextView) findViewById(R.id.gift_text_zhushu);
 		editLanguage.setOnTouchListener(new OnTouchListener() {
 
 			@Override
@@ -329,14 +320,12 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -1117,7 +1106,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	}
 
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		if (isMsg) {
 			Constants.avdiceStr = jsonToStr(obj);
 			adviceDialog();
@@ -1210,7 +1198,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 
 		betAndGift.setIssuper("");
@@ -1220,14 +1207,12 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -1246,19 +1231,16 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void touzhuIssue(String issue) {
-		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
         controller = Controller.getInstance(GiftActivity.this);
 		if (controller != null) {

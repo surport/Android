@@ -12,7 +12,6 @@ import android.widget.TextView;
 public class MyLetterActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.myletter);

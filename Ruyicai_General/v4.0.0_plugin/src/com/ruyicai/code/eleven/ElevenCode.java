@@ -7,7 +7,6 @@ public class ElevenCode extends CodeInterface {
 
 	@Override
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

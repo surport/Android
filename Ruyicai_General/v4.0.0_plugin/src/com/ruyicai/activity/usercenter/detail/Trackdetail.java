@@ -82,7 +82,6 @@ public class Trackdetail extends ActionActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.track_detail);
 		getInfo();
@@ -162,7 +161,6 @@ public class Trackdetail extends ActionActivity {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					cancleTrackDialog(trackId);
 				}
 			});
@@ -173,7 +171,6 @@ public class Trackdetail extends ActionActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -288,7 +285,6 @@ public class Trackdetail extends ActionActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (isxiangqing) {
 					fanganxiangqing.setVisibility(View.VISIBLE);
 					xiangqing
@@ -306,7 +302,6 @@ public class Trackdetail extends ActionActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (isleirong) {
 					fanganleirong.setVisibility(View.VISIBLE);
 					leirong.setBackgroundResource(R.drawable.joininfobuttonup);
@@ -322,7 +317,6 @@ public class Trackdetail extends ActionActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (iscanyu) {
 					canyurenyuan.setVisibility(View.VISIBLE);
 					canyu.setBackgroundResource(R.drawable.joininfobuttonup);

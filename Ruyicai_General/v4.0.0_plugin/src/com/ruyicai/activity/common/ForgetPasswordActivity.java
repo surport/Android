@@ -89,8 +89,6 @@ public class ForgetPasswordActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// phoneKefu();
 				CallServicePhoneConfirm.phoneKefu(ForgetPasswordActivity.this);
 			}
 		});
@@ -141,32 +139,27 @@ public class ForgetPasswordActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 		finish();
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

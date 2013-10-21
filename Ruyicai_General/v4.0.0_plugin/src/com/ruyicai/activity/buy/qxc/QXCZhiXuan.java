@@ -63,7 +63,6 @@ public class QXCZhiXuan extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
 		itemViewArray.add(buyView);
 		layoutView.addView(buyView.createView());
@@ -196,7 +195,6 @@ public class QXCZhiXuan extends ZixuanActivity {
 	 * 点击小球提示金额
 	 */
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String mTextSumMoney = "";
 		if (firstlineBallTable.getHighlightBallNums() > 0
 				&& secondlineBallTable.getHighlightBallNums() > 0
@@ -228,7 +226,6 @@ public class QXCZhiXuan extends ZixuanActivity {
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_QXC);
 	}
@@ -299,7 +296,6 @@ public class QXCZhiXuan extends ZixuanActivity {
 
 	@Override
 	public String getZhuma() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

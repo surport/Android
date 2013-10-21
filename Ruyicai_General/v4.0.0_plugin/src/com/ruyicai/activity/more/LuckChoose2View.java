@@ -269,7 +269,6 @@ public class LuckChoose2View extends SurfaceView implements
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		// TODO Auto-generated method stub
 		// 屏幕按钮可点击
 		isZhuandong = false;
 

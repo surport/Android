@@ -28,7 +28,6 @@ public class PL3ZiZuXuanCode extends CodeInterface {
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
 
-		// TODO Auto-generated method stub
 		String strZM = "";
 		// 排列三组三玩法
 

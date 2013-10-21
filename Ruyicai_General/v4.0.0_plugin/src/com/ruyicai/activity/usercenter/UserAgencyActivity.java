@@ -32,7 +32,6 @@ public class UserAgencyActivity extends Activity implements OnClickListener {
 	private Context context;
 
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		context = this;
@@ -52,7 +51,6 @@ public class UserAgencyActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.ok:
 			isAgencyNet();
@@ -99,7 +97,6 @@ public class UserAgencyActivity extends Activity implements OnClickListener {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				JSONObject jsonObjectByLotno = AgencyInterface.getInstance()
 						.agency(userno, name, toName, amout, password);
 				try {
@@ -111,7 +108,6 @@ public class UserAgencyActivity extends Activity implements OnClickListener {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 								finish();
@@ -121,7 +117,6 @@ public class UserAgencyActivity extends Activity implements OnClickListener {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}

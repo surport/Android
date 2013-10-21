@@ -55,7 +55,6 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_alipay_secure_recharge_dialog);
@@ -85,7 +84,6 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 		});
 		secureCancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// RechargeType.dismiss();
 				isWebView = false;
 				beginAlipayRecharge(accountnum);
 			}
@@ -103,8 +101,6 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 					final String conten = jsonObject.get("content").toString();
 					handler.post(new Runnable() {
 						public void run() {
-//							alipay_content.setText(Html.fromHtml(conten));
-//							alipay_content.loadData(conten, "text/html", "UTF-8");
 							alipay_content.loadDataWithBaseURL("", conten, "text/html", "UTF-8", "");
 						}
 					});
@@ -176,7 +172,6 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 			public void run() {
 				String error_code = "00";
 				message = "";
-				// TODO Auto-generated method stub
 				try {
 					rechargepojo.setSessionid(sessionId);
 					rechargepojo.setUserno(userno);
@@ -200,7 +195,6 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		if (isWebView) {
 			Intent intent = new Intent(AlipaySecureActivity.this,
 					AccountDialog.class);
@@ -214,12 +208,10 @@ public class AlipaySecureActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 }

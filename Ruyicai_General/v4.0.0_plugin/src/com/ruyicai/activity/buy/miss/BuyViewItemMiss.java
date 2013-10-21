@@ -137,7 +137,6 @@ public class BuyViewItemMiss extends GalleryViewItem {
 
 	@Override
 	public void updateView(MissJson missJson) {
-		// TODO Auto-generated method stub
 
 	}
 }

@@ -153,7 +153,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		imgRetrun.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				JoinInfoActivity.isRefresh = false;
 				finish();
 			}
@@ -162,7 +161,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		dingBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(JoinDetailActivity.this,
 						JoinDingActivity.class);
 				intent.putExtra(JoinInfoActivity.USER_NO, starterUserNo);
@@ -319,8 +317,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				getMore();
 
@@ -345,7 +341,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (isfaqi) {
 					faqixinxi.setVisibility(View.VISIBLE);
 					faqi.setBackgroundResource(R.drawable.joininfobuttonup);
@@ -361,7 +356,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (isxiangqing) {
 					fanganxiangqing.setVisibility(View.VISIBLE);
 					xiangqing
@@ -379,7 +373,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (isleirong) {
 					fanganleirong.setVisibility(View.VISIBLE);
 					leirong.setBackgroundResource(R.drawable.joininfobuttonup);
@@ -395,7 +388,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (isrengou) {
 					rengoushezhi.setVisibility(View.VISIBLE);
 					rengou.setBackgroundResource(R.drawable.joininfobuttonup);
@@ -411,7 +403,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (iscanyu) {
 					canyurenyuan.setVisibility(View.VISIBLE);
 					canyu.setBackgroundResource(R.drawable.joininfobuttonup);
@@ -629,19 +620,16 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -649,7 +637,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			CanyuInfo info = (CanyuInfo) mList.get(position);
@@ -678,7 +665,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						JoinCannelIdDialog();
 					}
 				});
@@ -710,15 +696,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					JoinCannelDialog();
 				}
 			});
 		}
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
-//		if (detatil.getBatchCode().equals("null")
-//				|| detatil.getBatchCode().equals("")) {
 		if (detatil.getBatchCode() == null
 				|| "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
@@ -952,7 +935,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					tHandler.post(new Runnable() {
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							if (progressbar != null) {
 								progressbar
 										.setVisibility(ProgressBar.INVISIBLE);
@@ -1075,7 +1057,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								chedan.setVisibility(View.GONE);
 								progressdialog.dismiss();
 								JoinInfoActivity.isRefresh = true;
@@ -1089,7 +1070,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stu
 								progressdialog.dismiss();
 								Toast.makeText(JoinDetailActivity.this, msg,
 										Toast.LENGTH_SHORT).show();
@@ -1129,7 +1109,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								progressdialog.dismiss();
 								Toast.makeText(JoinDetailActivity.this, msg,
 										Toast.LENGTH_SHORT).show();
@@ -1142,7 +1121,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								progressdialog.dismiss();
 								Toast.makeText(JoinDetailActivity.this, msg,
 										Toast.LENGTH_SHORT).show();
@@ -1604,7 +1582,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -1615,7 +1592,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1624,7 +1600,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			JoinInfoActivity.isRefresh = false;
@@ -1636,13 +1611,11 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 

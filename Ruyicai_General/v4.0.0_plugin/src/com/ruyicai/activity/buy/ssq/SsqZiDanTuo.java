@@ -84,7 +84,6 @@ public class SsqZiDanTuo extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		BuyViewItemMiss buyView = new BuyViewItemMiss(this, initArea());
 		NumViewItem numView = new NumViewItem(this, initArea());
 		itemViewArray.add(buyView);
@@ -162,22 +161,18 @@ public class SsqZiDanTuo extends ZixuanActivity {
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
@@ -243,7 +238,6 @@ public class SsqZiDanTuo extends ZixuanActivity {
 	 * 选择小球提示金额
 	 */
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		int iRedHighlights = areaNum[0].table.getHighlightBallNums();
 		int iRedTuoHighlights = areaNum[1].table.getHighlightBallNums();
 		int iBlueHighlights = areaNum[2].table.getHighlightBallNums();
@@ -295,7 +289,6 @@ public class SsqZiDanTuo extends ZixuanActivity {
 	 */
 	public String isTouzhu() {
 		String isTouzhu = "";
-		// TODO Auto-generated method stub
 		int iZhuShu = getZhuShu();
 		// //周黎鸣 7.4 代码修改：添加登陆的判断
 

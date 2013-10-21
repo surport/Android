@@ -182,7 +182,6 @@ public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 	}
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -192,7 +191,6 @@ public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 }

@@ -122,7 +122,6 @@ public class Controller {
 					handler.handleMsg(error, msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
-					// TODO Auto-generated method stub			
 				} finally {
 					dialog.dismiss();
 					dialog = null;
@@ -154,7 +153,6 @@ public class Controller {
 					handler.handleMsg(error, msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
-					// TODO Auto-generated method stub			
 				} finally {
 					dialog.dismiss();
 					dialog = null;

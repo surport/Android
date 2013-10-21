@@ -661,8 +661,6 @@ public class AccountDetailsActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				addmore();
 
@@ -865,13 +863,11 @@ public class AccountDetailsActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

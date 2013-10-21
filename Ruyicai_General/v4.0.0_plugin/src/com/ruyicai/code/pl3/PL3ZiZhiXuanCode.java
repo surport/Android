@@ -16,7 +16,6 @@ public class PL3ZiZhiXuanCode extends CodeInterface {
 	static String zhixuan = "1|";// ֱѡ
 
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-		// TODO Auto-generated method stub
 		String strZM = "";
 		int[] zhuma_baiwei = areaNums[0].table.getHighlightBallNOs();
 		int[] zhuma_shiwei = areaNums[1].table.getHighlightBallNOs();
@@ -44,7 +43,6 @@ public class PL3ZiZhiXuanCode extends CodeInterface {
 
 	public static String simulateZhuma(List<Integer> hundreds, List<Integer> decades,
 			List<Integer> units) {
-		// TODO Auto-generated method stub
 		String strZM = "";
 		strZM = zhixuan;
 		if (hundreds.size() > 0 && decades.size() > 0 && units.size() > 0) {

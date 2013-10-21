@@ -21,13 +21,11 @@ public class QlcBalls extends Balls {
 	 * 工厂方法
 	 */
 	public Balls createBalls() {
-		// TODO Auto-generated method stub
 		return new QlcBalls();
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		int redNum[] = PublicMethod.getRandomsWithoutCollision(7, 1, 30);
 		redNum = PublicMethod.orderby(redNum, "abc");
 		add(redNum, null);

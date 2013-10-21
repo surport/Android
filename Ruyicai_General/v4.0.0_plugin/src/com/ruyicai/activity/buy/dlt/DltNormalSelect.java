@@ -108,11 +108,7 @@ public class DltNormalSelect extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
-		// BuyViewItem buyView = new BuyViewItem(this, initDltNormalArea());
-		// itemViewArray.add(buyView);
-		// View view = buyView.createView();
-		// layoutView.addView(view);
+
 	}
 
 	/**

@@ -90,7 +90,6 @@ public class SsqDetailView extends LotnoDetailView {
 	@Override
 	public void initLotonoView(JSONObject ssqPrizeDetailJson)
 			throws JSONException {
-		// TODO Auto-generated method stub
 		json = ssqPrizeDetailJson;
 		prizeBatchCode.setText("双色球    第"
 				+ ssqPrizeDetailJson.getString("batchCode") + "期");
@@ -132,7 +131,6 @@ public class SsqDetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, Ssq.class);
 				context.startActivity(intent);
 			}

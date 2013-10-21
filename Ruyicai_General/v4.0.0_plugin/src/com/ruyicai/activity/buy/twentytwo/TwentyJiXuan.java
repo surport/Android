@@ -18,16 +18,13 @@ public class TwentyJiXuan extends DanshiJiXuan implements BuyImplement {
 	}
 
 	public void isTouzhu() {
-		// TODO Auto-generated method stub
 	}
 
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("1");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_22_5);
 	}

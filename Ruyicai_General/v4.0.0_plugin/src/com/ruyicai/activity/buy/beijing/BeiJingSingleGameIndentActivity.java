@@ -183,9 +183,6 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		bunchButton
 				.setOnClickListener(new BeiJingSingleGameIndentOnClickListener());
 		selectedDanNum = getIntent().getIntExtra("selecteddannum", 0);
-//		if (selectedDanNum > 0) {
-//			bunchButton.setVisibility(View.GONE);
-//		}
 
 		bunchStyleLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_jc_layout_group);
 
@@ -219,13 +216,11 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 		moneyTextView = (TextView) findViewById(R.id.alert_dialog_jc_money);
 		predictMoneyTextView = (TextView) findViewById(R.id.alert_dialog_jc_predictmoney);
 		schemeTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_alert_scheme);
-//		schemeTextView.setText(againstedString);
 		schemeTextView.setText(Html.fromHtml(againstedString));
 		schemeDetailTextView = (TextView) findViewById(R.id.alert_dialog_touzhu_alert_textview_schemedetail);
 		upDownImageView = (ImageView) findViewById(R.id.alert_dialog_touzhu_updown);
 		schemeRelativeLayout = (RelativeLayout) findViewById(R.id.alert_dialog_touzhu_linear_qihao_beishu);
 		schemeDetailLinearLayout = (LinearLayout) findViewById(R.id.alert_dialog_touzhu_alert_schemedetail);
-//		schemeDetailTextView.setText(againstedString);
 		schemeDetailTextView.setText(Html.fromHtml(againstedString));
 		schemeRelativeLayout.setOnClickListener(new OnClickListener() {
 
@@ -235,13 +230,11 @@ public class BeiJingSingleGameIndentActivity extends Activity implements
 				int visibility = schemeDetailLinearLayout.getVisibility();
 				if (visibility == View.VISIBLE) {
 					schemeDetailLinearLayout.setVisibility(View.GONE);
-					// schemeTextView.setText(againstedString);
 					schemeTextView.setVisibility(View.VISIBLE);
 					upDownImageView.setImageResource(R.drawable.down_icon);
 				} else {
 					schemeDetailLinearLayout.setVisibility(View.VISIBLE);
 					upDownImageView.setImageResource(R.drawable.up_icon);
-					// schemeTextView.setText("");
 					schemeTextView.setVisibility(View.INVISIBLE);
 				}
 				/**modify by pengcx 20130806 end*/

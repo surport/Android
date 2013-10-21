@@ -163,14 +163,12 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = Controller.getInstance(GiftActivity.this)
 						.toNetIssue(betAndGift.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						betAndGift.setBatchcode(issue);// 期号
 						issueText.setText("第" + issue + "期");
 					}
@@ -220,7 +218,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			codeInfo.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					addview.createCodeInfoDialog(GiftActivity.this);
 					addview.showDialog();
 				}
@@ -235,7 +232,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				addPerson();
 				RWSharedPreferences pre = new RWSharedPreferences(
 						GiftActivity.this, "addInfo");
@@ -260,7 +256,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		cancel = (Button) findViewById(R.id.alert_dialog_touzhu_button_cancel);
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
 							|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
 						alertExit(getString(R.string.buy_alert_exit_detail_other));
@@ -273,7 +268,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		language.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (Constants.avdiceStr == null) {
 					giftMsgNet();
 				} else {
@@ -287,19 +281,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				editPhone.setText("");
 				checkedPersons.clear();
 				LinkDialog();
 			}
 		});
-		// zhuma = (TextView) findViewById(R.id.gift_text_zhuma);
-		// zhushu = (TextView) findViewById(R.id.gift_text_zhushu);
 		editLanguage.setOnTouchListener(new OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
-				// TODO Auto-generated method stub
 				editLanguage.setFocusable(true);
 				return false;
 			}
@@ -308,7 +298,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
-				// TODO Auto-generated method stub
 				editPhone.setFocusable(true);
 				return false;
 			}
@@ -347,14 +336,12 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -498,7 +485,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				adviceDialog.cancel();
 				languageStr = Constants.avdiceStr[position];
 				editLanguage.setText(languageStr);
@@ -558,7 +544,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onDismiss(DialogInterface dialog) {
-				// TODO Auto-generated method stub;
 				phoneStr = "";
 				for (int i = 0; i < checkedPersons.size(); i++) {
 					phoneStr += checkedPersons.get(i).phone;
@@ -576,7 +561,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
 				adviceDialog.cancel();
 				editPhone.setText(persons.get(position).phone);
 
@@ -594,8 +578,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// adviceDialog.cancel();
 				dialogOk();
 			}
 		});
@@ -604,8 +586,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			Toast.makeText(this, R.string.ruyichuanqing_thecontactsisnull,
 					Toast.LENGTH_SHORT).show();
 		} else {
-			// adviceDialog.show();
-			// adviceDialog.getWindow().setContentView(v);
 			setContentView(v);
 		}
 		final EditText checkEdit = (EditText) v
@@ -615,7 +595,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 			}
 
 			@Override
@@ -626,7 +605,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 				Vector<Person> newPersons = new Vector<Person>();// 所有联系人
 				String nameStr = checkEdit.getText().toString();
 				if (nameStr != null && !nameStr.equals("")) {
@@ -784,30 +762,24 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-
 			final int index = position;
 			ViewHolder holder = null;
 			final Person person = (Person) mList.get(position).get(INFO);
-			// if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.dialog_link_list_item,
 					null);
 			holder = new ViewHolder();
@@ -894,18 +866,15 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 		public TouDialog(Activity activity, String title, String message) {
 			super(activity, title, message);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public void onOkButton() {
-			// TODO Auto-generated method stub
 			giftNet();
 		}
 
 		@Override
 		public void onCancelButton() {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -1116,7 +1085,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	}
 
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		if (isMsg) {
 			Constants.avdiceStr = jsonToStr(obj);
 			adviceDialog();
@@ -1139,7 +1107,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 				avdiceStr[i] = giftMsg.getJSONObject(i).getString("content");
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return avdiceStr;
@@ -1149,7 +1116,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
@@ -1163,12 +1129,10 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	}
 
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -1224,7 +1188,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (isDialog) {
@@ -1248,20 +1211,17 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -1288,19 +1248,16 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void touzhuIssue(String issue) {
-		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);
         controller = Controller.getInstance(GiftActivity.this);
 		if (controller != null) {

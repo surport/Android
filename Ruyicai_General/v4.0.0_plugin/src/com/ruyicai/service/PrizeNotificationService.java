@@ -72,7 +72,6 @@ public class PrizeNotificationService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 
 		Object[] aaNew = null;
@@ -88,7 +87,6 @@ public class PrizeNotificationService extends Service {
 			}
 		} catch (SocketException e) {
 
-			// TODO Auto-generated catch block
 		}
 		NextStartService();
 	}
@@ -109,16 +107,13 @@ public class PrizeNotificationService extends Service {
 	}
 
 	private void comparison() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < batchCodeValue.length; i++) {
 			lotteryIShow[i] = (batchCodeValueNew[i] > batchCodeValue[i]);
 
 		}
-		// listPrize.size()
 		// 循环赋值
 		listPrize = listPrizeNew;
 		listPrizeNew = new ArrayList<Map<String, Object>>();
-		// Collections.copy(listPrize, listPrizeNew);
 		batchCodeValue = batchCodeValueNew;
 
 		listPrizeNew.clear();
@@ -133,7 +128,6 @@ public class PrizeNotificationService extends Service {
 	 * @param lotteryShowNotifacation2
 	 */
 	private void lotteryShow(boolean[] lotteryIShow) {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < lotteryIShow.length; i++) {
 			// 当彩种期号已经更新并且用户设置了此彩种更新时，弹出Natification
 			if (lotteryIShow[i] == true

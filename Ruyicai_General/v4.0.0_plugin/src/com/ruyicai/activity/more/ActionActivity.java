@@ -203,19 +203,16 @@ public class ActionActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -223,7 +220,6 @@ public class ActionActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			TitleJson titleJson = (TitleJson) mList.get(position).get(TITLE);
@@ -269,19 +265,16 @@ public class ActionActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		initList();
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -360,13 +353,11 @@ public class ActionActivity extends Activity implements HandlerMsg {
 					handler.post(new Runnable() {
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							initContentView();
 						}
 					});
 
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -387,7 +378,6 @@ public class ActionActivity extends Activity implements HandlerMsg {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (isMain) {
@@ -402,13 +392,11 @@ public class ActionActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

@@ -55,7 +55,6 @@ public class NoticeHistroy extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.noticehistroy);
@@ -69,7 +68,6 @@ public class NoticeHistroy extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				netting();
 			}
 		});
@@ -77,7 +75,6 @@ public class NoticeHistroy extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -129,7 +126,6 @@ public class NoticeHistroy extends Activity {
 						tHandler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								dialog.dismiss();
 								SubEfficientAdapter adapter = new SubEfficientAdapter(
 										NoticeHistroy.this, str, list);
@@ -148,7 +144,6 @@ public class NoticeHistroy extends Activity {
 						});
 					}
 				} catch (JSONException e) {
-					// TODO: handle exception
 				}
 			}
 
@@ -261,13 +256,11 @@ public class NoticeHistroy extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

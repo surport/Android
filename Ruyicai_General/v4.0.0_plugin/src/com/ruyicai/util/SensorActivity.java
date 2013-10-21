@@ -59,13 +59,11 @@ public abstract class SensorActivity {
 		@Override
 		public void onAccuracyChanged(android.hardware.Sensor sensor,
 				int accuracy) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			// TODO Auto-generated method stub
 			if (event.sensor.getType() == android.hardware.Sensor.TYPE_ACCELEROMETER) {
 
 				// 获取加速度传感器的三个参数

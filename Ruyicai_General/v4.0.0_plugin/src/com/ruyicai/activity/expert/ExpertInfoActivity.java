@@ -54,7 +54,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		getIntentInfo();
 		setType();
@@ -115,7 +114,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String returnStr = ExpertInfoInterface.getInstance()
 						.expertInfoQuery(TYPE, "", "");
 				progressDialog.cancel();
@@ -128,7 +126,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 					}
 					handler.handleMsg(error, msg);
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -208,19 +205,16 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
@@ -228,7 +222,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			final ExpertInfoJson info = (ExpertInfoJson) mList.get(position)
@@ -257,7 +250,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 			holder.btn.setHint(info.getBtnText() + " >");
 			holder.btn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					ExpertDialog dialog = new ExpertDialog(activity,
 							"确认是否发送短信？", info.getAlsetMsg(), info.getCode(),
 							info.getToPhone(), new Handler());
@@ -278,26 +270,22 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		splitJsonArray();
 		initList();
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 }

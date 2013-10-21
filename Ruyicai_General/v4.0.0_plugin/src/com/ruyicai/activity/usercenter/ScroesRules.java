@@ -30,7 +30,6 @@ public class ScroesRules {
 	}
 
 	private void initScoreDialog() {
-		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater) scroesContext
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.userscroe_show, null);
@@ -41,7 +40,6 @@ public class ScroesRules {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String net = AutoGetScoresRules.getInstance().getScoresRules();
 				try {
 					JSONObject json = new JSONObject(net);
@@ -50,7 +48,6 @@ public class ScroesRules {
 					scoresrules.setText(scoresRules);
 					progressDialog.dismiss();
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -63,7 +60,6 @@ public class ScroesRules {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.dismiss();
 			}
 		});

@@ -76,13 +76,11 @@ public class LogOutDialog extends BaseDialog {
 
 	@Override
 	public void onOkButton() {
-		// TODO Auto-generated method stub
 		dialogListener.onOkClick();
 	}
 
 	@Override
 	public void onCancelButton() {
-		// TODO Auto-generated method stub
 	}
 
 }

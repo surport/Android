@@ -194,7 +194,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				for (int i = 0; i < itemViewArray.get(0).areaNums.length; i++) {
 					itemViewArray.get(0).areaNums[i].table.clearAllHighlights();
 				}
@@ -722,7 +721,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	 * @param v
 	 */
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		int iBallId = v.getId();
 		isBallTable(iBallId);
 		showEditText();
@@ -738,27 +736,22 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	}
 
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		if (!toLogin) {
 			again();
@@ -766,17 +759,14 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 		String codeStr = addView.getsharezhuma();
 		clearAddView();
 		for (int i = 0; i < itemViewArray.get(0).areaNums.length; i++) {
 			itemViewArray.get(0).areaNums[i].table.clearAllHighlights();
-			// itemViewArray.get(1).areaNums[i].table.clearAllHighlights();
 		}
 
 		showEditText();
@@ -790,12 +780,10 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	}
 
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
@@ -830,7 +818,6 @@ public abstract class ZixuanActivity extends BaseActivity implements
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			if (addView.getSize() != 0) {

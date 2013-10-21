@@ -28,7 +28,6 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
@@ -42,14 +41,12 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 	}
 
 	public void theMethodYouWantToCall() {
-		// do what ever you want here
 		init();
 		childtypes.setVisibility(View.GONE);
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
 		isMissNet(new SscMissJson(), sellWay, false);// 获取遗漏值
 	}
@@ -74,18 +71,10 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 			BallTable = areaNums[0].table;
 			getable = areaNums[1].table;
 			break;
-		// case 1:
-		// radioId = 1;
-		// isjixuan=true;
-		// iProgressBeishu = 1;iProgressQishu = 1;
-		// SscBalls sscb = new SscBalls();
-		// createviewmechine(sscb,checkedId);
-		// break;
 		}
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		lotnoStr = Constants.LOTNO_SSC;
 	}
@@ -251,7 +240,6 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String iTempString;
 		int iZhuShu = getZhuShu();
 		if (iZhuShu != 0) {
@@ -265,7 +253,6 @@ public class SscBigSmall extends ZixuanAndJiXuan {
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		int zhuShu = getZhuShu();
 		if (isjixuan) {
 			betAndGift.setSellway("1");

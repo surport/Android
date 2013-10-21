@@ -38,8 +38,6 @@ public class Fc3dZu3Balls extends Balls {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-
 		int[] num = PublicMethod.getRandomsWithoutCollision(2, 0, 9);
 		int[] baiNum = new int[1];
 		int[] shiNum = new int[1];
@@ -58,7 +56,6 @@ public class Fc3dZu3Balls extends Balls {
 	 */
 	@Override
 	public String getZhuma(Vector<Balls> balls, int beishu) {
-		// TODO Auto-generated method stub
 		typeCode = z3ds;
 		String zhushu = "";
 		int iZhuShu = balls.size();

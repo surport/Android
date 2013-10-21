@@ -10,7 +10,6 @@ public class OneStarCode extends CodeInterface {
 		String str = "";
 		str = "1D|";
 
-		// TODO Auto-generated method stub
 		int zhuma[] = areaNums[0].table.getHighlightBallNOs();
 		str += "-," + "-," + "-," + "-," + getStr(zhuma);
 		return str;

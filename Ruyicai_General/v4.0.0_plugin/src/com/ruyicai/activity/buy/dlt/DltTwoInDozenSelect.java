@@ -44,7 +44,6 @@ public class DltTwoInDozenSelect extends ZixuanActivity {
 
 	@Override
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -80,7 +79,6 @@ public class DltTwoInDozenSelect extends ZixuanActivity {
 
 	@Override
 	public String isTouzhu() {
-		// TODO Auto-generated method stub
 		String isTouzhu = "";
 		int iRedHighlights = redBallTable.getHighlightBallNums();
 		int iZhuShu = (int) getDltTwoInDozenZhuShu(iRedHighlights, 1);
@@ -152,7 +150,6 @@ public class DltTwoInDozenSelect extends ZixuanActivity {
 
 	@Override
 	public int getZhuShu() {
-		// TODO Auto-generated method stub
 		int iRedHighlights = itemViewArray.get(0).areaNums[0].table
 				.getHighlightBallNums();
 		int iZhuShu = (int) getDltTwoInDozenZhuShu(iRedHighlights,

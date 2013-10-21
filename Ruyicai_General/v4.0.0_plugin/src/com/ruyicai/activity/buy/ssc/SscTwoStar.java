@@ -30,7 +30,6 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
@@ -43,13 +42,11 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 	}
 
 	public void theMethodYouWantToCall() {
-		// do what ever you want here
 		init();
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
 		((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
@@ -171,7 +168,6 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 
 	@Override
 	public String isTouzhu() {
-		// TODO Auto-generated method stub
 		String isTouzhuStr = "";
 		int iZhuShu = getZhuShu();
 		switch (TWOSTARTYPE) {
@@ -270,14 +266,12 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		lotnoStr = Constants.LOTNO_SSC;
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String iTempString = "";
 		if (isMove && itemViewArray.get(newPosition).isZHmiss) {
 			int onClickNum = getClickNum();
@@ -301,7 +295,6 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		int zhuShu = getZhuShu();
 		if (isjixuan) {
 			betAndGift.setSellway("1");

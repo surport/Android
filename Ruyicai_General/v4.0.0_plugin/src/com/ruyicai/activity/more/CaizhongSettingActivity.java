@@ -24,7 +24,6 @@ public class CaizhongSettingActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.caizhong_setting);
 		caizhongSettListView = (ListView) findViewById(R.id.caizhong_setting_ListView);

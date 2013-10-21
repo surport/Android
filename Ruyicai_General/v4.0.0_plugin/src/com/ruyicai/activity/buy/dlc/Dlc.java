@@ -65,7 +65,6 @@ import com.ruyicai.json.miss.SscZMissJson;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.pojo.AreaNum;
-import com.ruyicai.pojo.BallTable;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
@@ -115,7 +114,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	private Controller controller = null;
 
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		super.lotno = Constants.LOTNO_11_5;
 		/* Add by fansm 20130416 start */
@@ -273,7 +271,6 @@ public class Dlc extends ZixuanAndJiXuan {
 		popupView.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
 				if (popupwindow != null && popupwindow.isShowing()) {
 					popupwindow.dismiss();
 					popupwindow = null;
@@ -300,7 +297,6 @@ public class Dlc extends ZixuanAndJiXuan {
 		layoutGame.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
 				if (gameDialog == null) {
 					gameDialog = new BuyGameDialog(context, lotno, gameHandler);
@@ -314,7 +310,6 @@ public class Dlc extends ZixuanAndJiXuan {
 		layoutHosity.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				layoutHosity
 						.setBackgroundResource(R.drawable.buy_group_layout_b);
 				turnHosity();
@@ -327,7 +322,6 @@ public class Dlc extends ZixuanAndJiXuan {
 		layoutQuery.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				RWSharedPreferences shellRW = new RWSharedPreferences(context,
 						"addInfo");
 				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
@@ -370,7 +364,6 @@ public class Dlc extends ZixuanAndJiXuan {
 			layoutLuck.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					layoutLuck
 							.setBackgroundResource(R.drawable.buy_group_layout_b);
 					Intent intent = new Intent(Dlc.this, LuckChoose2.class);
@@ -475,7 +468,6 @@ public class Dlc extends ZixuanAndJiXuan {
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String error_code = "00";
 				String re = "";
 				String message = "";
@@ -543,7 +535,6 @@ public class Dlc extends ZixuanAndJiXuan {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final JSONObject prizemore = PrizeInfoInterface.getInstance()
 						.getNoticePrizeInfo(type, "1", "1");
 				try {
@@ -560,7 +551,6 @@ public class Dlc extends ZixuanAndJiXuan {
 						tHandler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								lastcode.setText(parseStrforcode(type, wincode));
 								/* Add by fansm 20130417 start */
 								lastCodeTxt.setText("第" + batchCode + "期开奖：");
@@ -578,7 +568,6 @@ public class Dlc extends ZixuanAndJiXuan {
 						});
 					}
 				} catch (JSONException e) {
-					// TODO: handle exception
 				}
 			}
 		});
@@ -650,7 +639,6 @@ public class Dlc extends ZixuanAndJiXuan {
 								+ "期已经结束,是否转入下一期")
 				.setNegativeButton("转入下一期", new Dialog.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
 						setIssue(lotno);
 					}
 
@@ -660,7 +648,6 @@ public class Dlc extends ZixuanAndJiXuan {
 
 							public void onClick(DialogInterface dialog,
 									int which) {
-								// TODO Auto-generated method stub
 								Dlc.this.finish();
 							}
 						}).create().show();
@@ -673,7 +660,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
@@ -682,7 +668,6 @@ public class Dlc extends ZixuanAndJiXuan {
 	 */
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
 		showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
@@ -1313,13 +1298,11 @@ public class Dlc extends ZixuanAndJiXuan {
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		if (Constants.isDebug)
 			PublicMethod.outLog(this.getClass().getSimpleName(), "onResume()");
@@ -1335,7 +1318,6 @@ public class Dlc extends ZixuanAndJiXuan {
 						.getString("time_remaining")));
 				batchCode = obj.getString("batchcode");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -1343,16 +1325,13 @@ public class Dlc extends ZixuanAndJiXuan {
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		isRun = false;
-		// batchCode = ""; //move to onCreate by yejc 20130708
 	}
 
 	void setLotoNoAndType(CodeInfo codeInfo) {
@@ -1380,11 +1359,9 @@ public class Dlc extends ZixuanAndJiXuan {
 
 		public DlcHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {
-			//super.handleMessage(msg);
 			if (controller != null) {
 				JSONObject obj = controller.getRtnJSONObject();
 				setIssueJSONObject(obj);

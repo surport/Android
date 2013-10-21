@@ -6,12 +6,8 @@ import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.constant.Constants;
 
 public class Dlt extends BuyActivityGroup {
-	//private String[] titles = { "自选", "胆拖", "12选2" };
 	private String[] titles = { "自选", "胆拖"};
-	//private String[] topTitles = { "大乐透", "大乐透", "大乐透" };
 	private String[] topTitles = { "大乐透", "大乐透"};
-	//private Class[] allId = { DltNormalSelect.class, DltDantuoSelect.class,
-	//		DltTwoInDozenSelect.class };
 	private Class[] allId = { DltNormalSelect.class, DltDantuoSelect.class};
 	
 	public void onCreate(Bundle savedInstanceState) {

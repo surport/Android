@@ -520,13 +520,11 @@ public class PublicMethod {
 		share.setBackgroundResource(R.drawable.loginselecter);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 			}
 		});
 		share.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 				Intent intent = new Intent(Intent.ACTION_SEND);
 				intent.setType("text/plain");
@@ -593,7 +591,6 @@ public class PublicMethod {
 		share.setVisibility(Button.GONE);
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.cancel();
 			}
 		});
@@ -2473,20 +2470,17 @@ public class PublicMethod {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before,
 				int count) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void afterTextChanged(Editable edt) {
-			// TODO Auto-generated method stub
 			String temp = edt.toString();
 			int posDot = temp.indexOf(".");
 			if (posDot <= 0)
@@ -2659,11 +2653,9 @@ public class PublicMethod {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				mTextBeishu.post(new Runnable() {

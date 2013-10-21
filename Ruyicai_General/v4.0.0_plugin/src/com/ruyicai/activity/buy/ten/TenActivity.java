@@ -33,7 +33,6 @@ public class TenActivity extends Dlc {
 	private ArrayAdapter<CharSequence> adapter = null;// 要使用的Adapter
 
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setLotnoX(Constants.LOTNO_ten);
 		setTitleOne(getString(R.string.tenTitle));

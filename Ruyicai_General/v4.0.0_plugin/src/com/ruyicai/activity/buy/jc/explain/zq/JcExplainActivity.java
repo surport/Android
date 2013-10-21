@@ -100,7 +100,6 @@ public class JcExplainActivity extends BuyActivityGroup {
 					} else {
 						handler.post(new Runnable() {
 							public void run() {
-								// TODO Auto-generated method stub
 								progressdialog.dismiss();
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();

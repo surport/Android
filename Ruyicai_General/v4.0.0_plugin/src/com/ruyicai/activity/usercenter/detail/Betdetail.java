@@ -55,7 +55,6 @@ public class Betdetail extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.bet_detail);
@@ -314,7 +313,6 @@ public class Betdetail extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String beishu = context.getText().toString();
 
 				if (beishu.equals("")) {
@@ -323,11 +321,7 @@ public class Betdetail extends Activity {
 				} else if (!PublicMethod.isNumeric(beishu)) {
 					Toast.makeText(Betdetail.this, "请输入数字", Toast.LENGTH_SHORT)
 							.show();
-				} /*else if (beishu.length() > 5
-						|| Integer.valueOf(beishu) > 2000) {
-					Toast.makeText(Betdetail.this, "不能超过10000倍",
-							Toast.LENGTH_SHORT).show();
-				}*/ else {
+				}else {
 					int allAmount = Integer.valueOf(amount)
 							/ Integer.valueOf(lotMulti)
 							* Integer.valueOf(beishu) / 100;
@@ -365,7 +359,6 @@ public class Betdetail extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialog.dismiss();
 			}
 		});
@@ -405,7 +398,6 @@ public class Betdetail extends Activity {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = Controller.getInstance(Betdetail.this).toNetIssue(lotno);
 				if (issue.equals("")) {
 					handler.post(new Runnable() {
@@ -423,7 +415,6 @@ public class Betdetail extends Activity {
 						@Override
 						public void run() {
 							dismissDialog(0);
-							// TODO Auto-generated method stub
 							alert(lotno, lotname, allAmount, lommt, betcode);
 							buyagainbatchcode.setText("彩种期号：" + issue);
 							betPojo.setBatchcode(issue);

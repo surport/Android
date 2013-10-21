@@ -51,22 +51,18 @@ public class TwentyZiXuan extends ZixuanActivity {
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
@@ -74,7 +70,6 @@ public class TwentyZiXuan extends ZixuanActivity {
 	 * 判断是否满足投注条件
 	 */
 	public String isTouzhu() {
-		// TODO Auto-generated method stub
 		String isTouzhu = "";
 		int iZhuShu = getZhuShu();
 		if (redBallTable.getHighlightBallNums() < 5) {
@@ -122,7 +117,6 @@ public class TwentyZiXuan extends ZixuanActivity {
 	 * 投注联网
 	 */
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_22_5);
 
@@ -132,7 +126,6 @@ public class TwentyZiXuan extends ZixuanActivity {
 	 * 选择小球提示金额
 	 */
 	public String textSumMoney(AreaNum areaNum[], int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		int iRedHighlights = areaNum[0].table.getHighlightBallNums();
 		String iTempString = "";
 		int iZhuShu = 0;

@@ -41,7 +41,6 @@ public class QlcZiZhiXuan extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
 		itemViewArray.add(buyView);
 		layoutView.addView(buyView.createView());
@@ -60,7 +59,6 @@ public class QlcZiZhiXuan extends ZixuanActivity {
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
@@ -112,10 +110,8 @@ public class QlcZiZhiXuan extends ZixuanActivity {
 	 * @return
 	 */
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String iTempString = "";
 		int iRedHighlights = areaNum[0].table.getHighlightBallNums();
-		// int iBlueHighlights = blueBallTable.getHighlightBallNums();
 
 		// 红球数 不足//fqc edit 当个数满足个数的时候显示相应的提示
 		if (iRedHighlights < 7) {
@@ -148,23 +144,19 @@ public class QlcZiZhiXuan extends ZixuanActivity {
 	 * 投注联网
 	 */
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		betAndGift.setSellway("0");// 1代表机选 0代表自选
 		betAndGift.setLotno(Constants.LOTNO_QLC);
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 

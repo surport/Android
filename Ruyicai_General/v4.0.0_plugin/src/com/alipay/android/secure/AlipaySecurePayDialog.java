@@ -140,7 +140,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					isOnClick = true;
 					return;
 				} 
-				// TODO Auto-generated method stub
 				String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
 				String alipaysecure = AlipaySecurePayInterface.getInstance()
 						.alipaySecurePay(rechargenum, userno, phonenum);

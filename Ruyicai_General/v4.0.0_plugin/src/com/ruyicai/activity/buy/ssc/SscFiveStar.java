@@ -27,7 +27,6 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 	public static SscFiveStar self;
 
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_SSC;
 		lotnoStr = Constants.LOTNO_SSC;
@@ -41,13 +40,11 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 	}
 
 	public void theMethodYouWantToCall() {
-		// do what ever you want here
 		init();
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// TODO Auto-generated method stub
 		onCheckAction(checkedId);
 		((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 		isMissNet(new SscMissJson(), sellWay, false);// 获取遗漏值
@@ -131,7 +128,6 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		lotnoStr = Constants.LOTNO_SSC;
 
@@ -207,7 +203,6 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		String iTempString;
 		int iZhuShu = getZhuShu();
 		if (iZhuShu != 0) {
@@ -271,7 +266,6 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 
 	@Override
 	public void touzhuNet() {
-		// TODO Auto-generated method stub
 		int zhuShu = getZhuShu();
 		if (isjixuan) {
 			betAndGift.setSellway("1");

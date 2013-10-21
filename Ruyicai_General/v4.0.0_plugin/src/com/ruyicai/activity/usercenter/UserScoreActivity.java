@@ -146,7 +146,6 @@ public class UserScoreActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				new ScroesRules(UserScoreActivity.this);
 			}
 		});
@@ -206,10 +205,7 @@ public class UserScoreActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
-				// TODO Auto-generated method stub
 				addmore();
 
 			}
@@ -278,7 +274,6 @@ public class UserScoreActivity extends Activity {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				jsonString = QueryintegrationInterface.getInstance()
 						.queryintegration(phonenum, sessionid, userno);
 				Message msg = new Message();
@@ -304,21 +299,18 @@ public class UserScoreActivity extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 				String scroeStr = scroeEdit.getText().toString();
 
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 				String scroeStr = scroeEdit.getText().toString();
 				if (scroeStr.equals("")) {
 
@@ -346,9 +338,7 @@ public class UserScoreActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				final String scroe = scroeEdit.getText().toString();
-				// final String money = sroremoney.getText().toString();
 				if (scroe.equals("")) {
 
 					Toast.makeText(UserScoreActivity.this, "输入数字不能为空",
@@ -372,8 +362,6 @@ public class UserScoreActivity extends Activity {
 
 						@Override
 						public void run() {
-
-							// TODO Auto-generated method stub
 							UserScroeDetailQueryPojo scroeDetailPojo = new UserScroeDetailQueryPojo();
 							scroeDetailPojo.setUserno(userno);
 							scroeDetailPojo.setSessionid(sessionid);
@@ -507,7 +495,6 @@ public class UserScoreActivity extends Activity {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						progressbar.setVisibility(ProgressBar.GONE);
 						view.setEnabled(true);
 					}
@@ -681,13 +668,11 @@ public class UserScoreActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

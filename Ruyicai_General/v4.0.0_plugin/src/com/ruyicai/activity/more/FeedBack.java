@@ -104,13 +104,11 @@ public class FeedBack extends Activity {
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							imm.hideSoftInputFromWindow(
 									feedbackContent.getWindowToken(), 0);
 							String feedBackRetrun = FeedbackInterface
 									.getInstance().feedback(backContettpuls,
 											userno);
-							// feedbackContent.setText("");
 							try {
 								final JSONObject obj = new JSONObject(
 										feedBackRetrun);
@@ -193,19 +191,16 @@ public class FeedBack extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 

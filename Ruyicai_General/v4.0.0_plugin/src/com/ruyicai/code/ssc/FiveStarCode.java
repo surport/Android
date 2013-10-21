@@ -16,13 +16,11 @@ public class FiveStarCode extends CodeInterface {
 		switch (type) {
 		case Constants.SSC_FIVESTAR_ZHIXUAN:
 			str = "5D|";
-			// TODO Auto-generated method stub
 			str += getStr(wan) + "," + getStr(qian) + "," + getStr(bai) + ","
 					+ getStr(shi) + "," + getStr(ge);
 			break;
 		case Constants.SSC_FIVESTAR_TONGXUAN:
 			str = "5T|";
-			// TODO Auto-generated method stub
 			str += getStr(wan) + "," + getStr(qian) + "," + getStr(bai) + ","
 					+ getStr(shi) + "," + getStr(ge);
 			break;

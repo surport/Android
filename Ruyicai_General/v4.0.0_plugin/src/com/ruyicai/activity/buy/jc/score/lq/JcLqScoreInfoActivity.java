@@ -47,7 +47,6 @@ public class JcLqScoreInfoActivity extends Activity {
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
@@ -144,7 +143,6 @@ public class JcLqScoreInfoActivity extends Activity {
 					} else {
 						handler.post(new Runnable() {
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, msg, Toast.LENGTH_SHORT)
 										.show();
 							}

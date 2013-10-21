@@ -82,7 +82,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.high_frequencyrevenue_recovery_main);
@@ -90,13 +89,11 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 		getInfo();
 		init();
 		getbatchcodes();
-		// setTitle();
 		zhumatext.setText(textzhuma);
 
 	}
 
 	private void initSpiner() {
-		// TODO Auto-generated method stub
 		ArrayList<String> batchcodestr = new ArrayList<String>();
 		for (int i = 0; i < batchcodes.size(); i++) {
 			if (i == 0) {
@@ -134,7 +131,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					allshouyilv.setEnabled(true);
 					qianhou.setChecked(false);
@@ -149,7 +145,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					allshouyilv.setEnabled(false);
 					all.setChecked(false);
@@ -229,20 +224,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 		});
 
 	}
-
-	// private void setTitle() {
-	// if (lotnostr.equals(com.ruyicai.constant.Constants.LOTNO_SSC)) {
-	// title.setText("时时彩-收益率追号");
-	// } else if (lotnostr.equals(com.ruyicai.constant.Constants.LOTNO_11_5)) {
-	// title.setText("江西11选5-收益率追号");
-	// } else if (lotnostr.equals(com.ruyicai.constant.Constants.LOTNO_eleven))
-	// {
-	// title.setText("11夺金-收益率追号");
-	// }else if(lotnostr.equals(com.ruyicai.constant.Constants.LOTNO_GD_11_5)){
-	// title.setText("广东11选5-收益率追号");
-	// }
-	// }
-
 	/*
 	 * 创建收益dialog; *
 	 */
@@ -295,7 +276,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					betAndGift.setPrizeend("1");
 				} else {
@@ -308,7 +288,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				information.dismiss();
 			}
 		});
@@ -357,7 +336,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String bathcode = getRecoveryBatchCode.getInstance().getCode(
 						lotnostr, "10");
 
@@ -374,7 +352,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							initSpiner();
 						}
 					});
@@ -385,7 +362,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							dialog.dismiss();
 							Toast.makeText(High_Frequencyrevenue_Recovery.this,
 									"期号获取失败", Toast.LENGTH_SHORT).show();
@@ -467,7 +443,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				jsonstring = ShouyiDataInterface.getInstance().getshouyidada(
 						pojo);
 
@@ -481,7 +456,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								dialog.dismiss();
 								createinformationdialog();
 							}
@@ -492,7 +466,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								dialog.dismiss();
 								Toast.makeText(
 										High_Frequencyrevenue_Recovery.this,
@@ -502,12 +475,10 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 					}
 
 				} catch (JSONException e) {
-					// TODO: handle exception
 					hand.post(new Runnable() {
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							dialog.dismiss();
 							Toast.makeText(High_Frequencyrevenue_Recovery.this,
 									"获取失败", Toast.LENGTH_SHORT).show();
@@ -726,13 +697,11 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 	
@@ -740,11 +709,9 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 		public HighFrequencyHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {
-			//super.handleMessage(msg);
 			if (controller != null) {
 				JSONObject obj = controller.getRtnJSONObject();
 				String error;
@@ -756,7 +723,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 	
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								/**modify by pengcx 20130605 start*/
 								Intent intent = new Intent(High_Frequencyrevenue_Recovery.this, BettingSuccessActivity.class);
 								intent.putExtra("page", BettingSuccessActivity.HIGHTADDTO);
@@ -771,7 +737,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 	
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(
 										High_Frequencyrevenue_Recovery.this,
 										returnMessage, Toast.LENGTH_SHORT).show();
@@ -779,7 +744,6 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 						});
 					}
 				} catch (JSONException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					Toast.makeText(High_Frequencyrevenue_Recovery.this,
 					"获取失败", Toast.LENGTH_SHORT).show();
@@ -790,18 +754,15 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 
 	@Override
 	public void errorCode_0000() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 }

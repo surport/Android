@@ -64,7 +64,6 @@ public class JoinModifyActivity extends JoinDingActivity {
 			cancelText.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					cancelNet(dingId);
 				}
 			});
@@ -97,7 +96,6 @@ public class JoinModifyActivity extends JoinDingActivity {
 		buy.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				isLogin();
 			}
 		});
@@ -117,7 +115,6 @@ public class JoinModifyActivity extends JoinDingActivity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String re = FollowCanelInterface.Joinfollowcanel(id);
 					final JSONObject obj = new JSONObject(re);
@@ -137,7 +134,6 @@ public class JoinModifyActivity extends JoinDingActivity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}
@@ -166,7 +162,6 @@ public class JoinModifyActivity extends JoinDingActivity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String re = ModifyInterface.customizeNet(customizeInfo);
 					final JSONObject obj = new JSONObject(re);
@@ -186,7 +181,6 @@ public class JoinModifyActivity extends JoinDingActivity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}

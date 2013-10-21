@@ -340,8 +340,6 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				view.setEnabled(false);
 				addmore();
 

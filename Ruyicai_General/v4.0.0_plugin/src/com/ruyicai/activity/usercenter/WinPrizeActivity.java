@@ -152,7 +152,6 @@ public class WinPrizeActivity extends Activity {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						progressbar.setVisibility(ProgressBar.INVISIBLE);
 						view.setEnabled(true);
 					}
@@ -214,8 +213,6 @@ public class WinPrizeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
 				progressbar.setVisibility(ProgressBar.VISIBLE);
 				view.setEnabled(false);
 				addmore();
@@ -556,13 +553,11 @@ public class WinPrizeActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

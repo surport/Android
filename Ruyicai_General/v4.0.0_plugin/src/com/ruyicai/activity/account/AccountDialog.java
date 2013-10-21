@@ -24,7 +24,6 @@ public class AccountDialog extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		if (Constants.isDebug) PublicMethod.outLog(this.getClass().getSimpleName(), "onCreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -35,10 +34,8 @@ public class AccountDialog extends Activity {
 	private void initWebView() {
 		account_url = getIntent().getStringExtra("accounturl");
 		mWebView = (WebView) findViewById(R.id.account_webView);
-		//
 		mWebView.getSettings().setRenderPriority(RenderPriority.HIGH);
 		mWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-		//
 		mWebView.setVerticalScrollBarEnabled(false);
 		mWebView.setHorizontalScrollBarEnabled(false);
 		mWebView.getSettings().setJavaScriptEnabled(true);
@@ -55,7 +52,6 @@ public class AccountDialog extends Activity {
 	private class WeiboWebViewClient extends WebViewClient {
 		@Override
 		public void onPageFinished(WebView view, String url) {
-			// TODO Auto-generated method stub
 			super.onPageFinished(view, url);
 			if (mSpinner != null) {
 				mSpinner.dismiss();
@@ -64,7 +60,6 @@ public class AccountDialog extends Activity {
 
 		@Override
 		public void onPageStarted(WebView view, String url, Bitmap favicon) {
-			// TODO Auto-generated method stub
 			super.onPageStarted(view, url, favicon);
 			if (mSpinner != null) {
 				mSpinner.show();
@@ -87,7 +82,6 @@ public class AccountDialog extends Activity {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		Intent intent = getIntent();
 		switch (keyCode) {
 		case 4:
@@ -104,13 +98,11 @@ public class AccountDialog extends Activity {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 }

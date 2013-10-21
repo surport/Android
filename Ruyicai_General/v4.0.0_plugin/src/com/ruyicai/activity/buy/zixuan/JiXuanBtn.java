@@ -73,13 +73,11 @@ public class JiXuanBtn {
 	private void onClickBtn() {
 		jxBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				dialogOnclick();
 			}
 		});
 		jxDwBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (popupwindow != null && popupwindow.isShowing()) {
 					popupwindow.dismiss();
 					popupwindow = null;
@@ -104,7 +102,6 @@ public class JiXuanBtn {
 		popupView.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
 				if (popupwindow != null && popupwindow.isShowing()) {
 					popupwindow.dismiss();
 					popupwindow = null;
@@ -162,7 +159,6 @@ public class JiXuanBtn {
 			btn.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					choseNum = Integer.parseInt(btn.getText().toString());
 					dialogOnclick();
 					initBtn();

@@ -56,7 +56,6 @@ public class AboutSoftwareActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				JSONObject jsonObjectByLotno = AboutInfoInterface.getInstance()
 						.aboutInfoQuery();
 				try {
@@ -70,7 +69,6 @@ public class AboutSoftwareActivity extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								initView(content);
 							}
 						});
@@ -78,7 +76,6 @@ public class AboutSoftwareActivity extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}

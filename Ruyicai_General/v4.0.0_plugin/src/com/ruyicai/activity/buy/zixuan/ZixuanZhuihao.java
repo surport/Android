@@ -86,7 +86,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.order_zhuihao);
 		context = this;
@@ -108,7 +107,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if (state == 0) {
 					getbatchcodes();
 					state = 2;
@@ -173,7 +171,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					betAndGift.setPrizeend("1");
 				} else {
@@ -184,7 +181,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		codeInfo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				addview.createCodeInfoDialog(context);
 				addview.showDialog();
 			}
@@ -192,7 +188,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 
 				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
 						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
@@ -228,14 +223,12 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				final String issue = Controller.getInstance(ZixuanZhuihao.this).toNetIssue(betAndGift
 						.getLotno());
 				handler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
 						betAndGift.setBatchcode(issue);// 期号
 						issueText.setText("第" + issue + "期");
 					}
@@ -286,7 +279,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				String bathcode = getRecoveryBatchCode.getInstance().getCode(
 						betAndGift.getLotno(), String.valueOf(iProgressQishu));
 
@@ -306,7 +298,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								getviewofzhuiqi();
 							}
 						});
@@ -315,7 +306,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								dialog.dismiss();
 								Toast.makeText(ZixuanZhuihao.this, message,
 										Toast.LENGTH_SHORT).show();
@@ -326,12 +316,10 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 					}
 
 				} catch (JSONException e) {
-					// TODO: handle exception
 					hand.post(new Runnable() {
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							dialog.dismiss();
 							Toast.makeText(ZixuanZhuihao.this, "期号获取失败",
 									Toast.LENGTH_SHORT).show();
@@ -362,20 +350,17 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 				@Override
 				public void onTextChanged(CharSequence s, int start,
 						int before, int count) {
-					// TODO Auto-generated method stub
 				}
 
 				@Override
 				public void beforeTextChanged(CharSequence s, int start,
 						int count, int after) {
-					// TODO Auto-generated method stub
 
 				}
 
 				@Override
 				public void afterTextChanged(Editable s) {
 
-					// TODO Auto-generated method stub
 					if (edit.getText().toString().equals("")) {
 						Toast.makeText(ZixuanZhuihao.this, "倍数不能为空",
 								Toast.LENGTH_SHORT).show();
@@ -442,7 +427,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView,
 						boolean isChecked) {
-					// TODO Auto-generated method stub
 					if (isChecked) {
 						checkinfo[index].setState("1");
 						getTouzhuAlert();
@@ -575,11 +559,9 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		toLogin = false;
 		isTouzhu = true;
 		initBet();
-		// TODO Auto-generated method stub
 		if (isTouzhu) {
 			touZhuNet();
 		}
-		// clearProgress();
 	}
 
 	/**
@@ -702,14 +684,12 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -811,26 +791,22 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
 	@Override
 	public void errorCode_000000() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Context getContext() {
-		// TODO Auto-generated method stub
 		return this;
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
 		if (progress < 1)
 			seekBar.setProgress(1);
 		int iProgress = seekBar.getProgress();
@@ -860,19 +836,16 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void touzhuIssue(String issue) {
-		// TODO Auto-generated method stub
 		betAndGift.setBatchcode(issue);// 设置新的投注期号
 	    controller = Controller.getInstance(context);
 	    if (controller != null) {
@@ -916,7 +889,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
 		switch (keyCode) {
 		case 4:
 			/** add by yejc 20130703 start */

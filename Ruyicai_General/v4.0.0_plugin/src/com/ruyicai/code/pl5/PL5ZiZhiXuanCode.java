@@ -5,7 +5,6 @@ import com.ruyicai.pojo.AreaNum;
 
 public class PL5ZiZhiXuanCode extends CodeInterface {
 	public String zhuma(AreaNum[] areaNums, int beishu, int type) {
-		// TODO Auto-generated method stub
 		String strZM = "";
 		int[] zhuma_wanwei = areaNums[0].table.getHighlightBallNOs();
 		int[] zhuma_qianwei = areaNums[1].table.getHighlightBallNOs();

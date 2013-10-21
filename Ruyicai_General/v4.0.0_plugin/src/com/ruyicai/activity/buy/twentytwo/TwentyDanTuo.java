@@ -39,7 +39,6 @@ public class TwentyDanTuo extends ZixuanActivity {
 	 * 初始化选区界面
 	 */
 	public void initViewItem() {
-		// TODO Auto-generated method stub
 		BuyViewItem buyView = new BuyViewItem(this, initArea());
 		itemViewArray.add(buyView);
 		layoutView.addView(buyView.createView());
@@ -105,22 +104,18 @@ public class TwentyDanTuo extends ZixuanActivity {
 	}
 
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	}
 
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
@@ -199,7 +194,6 @@ public class TwentyDanTuo extends ZixuanActivity {
 	 * 选择小球提示金额
 	 */
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// TODO Auto-generated method stub
 		int iRedHighlights = areaNum[0].table.getHighlightBallNums();
 		int iRedTuoHighlights = areaNum[1].table.getHighlightBallNums();
 		String iTempString = "";

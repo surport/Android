@@ -93,7 +93,6 @@ public class JoinDingActivity extends Activity {
 		buy.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				isLogin();
 			}
 		});
@@ -185,7 +184,6 @@ public class JoinDingActivity extends Activity {
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView,
 						boolean isChecked) {
-					// TODO Auto-generated method stub
 					if (isChecked) {
 						clearRadio(buttonView);
 					}
@@ -223,7 +221,6 @@ public class JoinDingActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					customizeInfo.setForceJoin("1");
 				} else {
@@ -297,11 +294,9 @@ public class JoinDingActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				mTextBeishu.post(new Runnable() {
@@ -340,7 +335,6 @@ public class JoinDingActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					customizeInfo.setForceJoin("1");
 				} else {
@@ -363,7 +357,6 @@ public class JoinDingActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					customizeInfo.setMaxAmt(true);
 					layout.setVisibility(View.GONE);
@@ -375,7 +368,6 @@ public class JoinDingActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					customizeInfo.setMaxAmt(false);
 					layout.setVisibility(View.VISIBLE);
@@ -400,7 +392,6 @@ public class JoinDingActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					customizeInfo.setAmt(true);
 					layoutOne.setVisibility(View.VISIBLE);
@@ -413,7 +404,6 @@ public class JoinDingActivity extends Activity {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
-				// TODO Auto-generated method stub
 				if (isChecked) {
 					customizeInfo.setAmt(false);
 					layoutOne.setVisibility(View.GONE);
@@ -440,7 +430,6 @@ public class JoinDingActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				setLayoutVisbe(infoLyoaut, infoBtn);
 			}
 		});
@@ -448,7 +437,6 @@ public class JoinDingActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				setLayoutVisbe(prizeLayout, prizeBtn);
 			}
 		});
@@ -456,7 +444,6 @@ public class JoinDingActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				setLayoutVisbe(buyLyoaut, buyBtn);
 			}
 		});
@@ -487,7 +474,6 @@ public class JoinDingActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String re = CustomizeInfoInterface.getInstance()
 							.customizeNet(starterUserNo, lotno);
@@ -506,7 +492,6 @@ public class JoinDingActivity extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}
@@ -610,7 +595,6 @@ public class JoinDingActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
 					String re = CustomizeInterface.customizeNet(customizeInfo);
 					final JSONObject obj = new JSONObject(re);
@@ -630,7 +614,6 @@ public class JoinDingActivity extends Activity {
 						handler.post(new Runnable() {
 							@Override
 							public void run() {
-								// TODO Auto-generated method stub
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
 							}
@@ -835,7 +818,6 @@ public class JoinDingActivity extends Activity {
 	 * 从上一个activity返回当前activity执行的方法
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		switch (resultCode) {
 		case RESULT_OK:
 			isLogin();

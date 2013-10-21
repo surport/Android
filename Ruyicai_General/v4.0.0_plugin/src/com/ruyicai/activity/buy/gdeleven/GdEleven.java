@@ -24,7 +24,6 @@ import com.ruyicai.json.miss.SscZMissJson;
 
 public class GdEleven extends Dlc {
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setLotnoX(Constants.LOTNO_GD115);
 		setTitleOne(getString(R.string.gdeleven));

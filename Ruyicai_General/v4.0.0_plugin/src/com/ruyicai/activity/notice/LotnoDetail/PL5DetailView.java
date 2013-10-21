@@ -55,7 +55,6 @@ public class PL5DetailView extends LotnoDetailView {
 
 	@Override
 	public void initLotonoView(JSONObject PrizeDetailJson) throws JSONException {
-		// TODO Auto-generated method stub
 		json = PrizeDetailJson;
 		prizeBatchCode.setText("排列五    第"
 				+ PrizeDetailJson.getString("batchCode") + "期");
@@ -77,7 +76,6 @@ public class PL5DetailView extends LotnoDetailView {
 		tobet.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent intent = new Intent(context, PL5.class);
 				context.startActivity(intent);
 			}
