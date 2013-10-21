@@ -85,13 +85,6 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 			shitable = areaNums[3].table;
 			getable = areaNums[4].table;
 			break;
-		// case 1:
-		// radioId = 1;
-		// isjixuan=true;
-		// iProgressBeishu = 1;iProgressQishu = 1;
-		// SscBalls sscb = new SscBalls(5);
-		// createviewmechine(sscb,checkedId);
-		// break;
 		case 1:
 			radioId = 1;
 			isjixuan = false;

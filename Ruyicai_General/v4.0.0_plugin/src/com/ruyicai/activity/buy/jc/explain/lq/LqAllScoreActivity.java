@@ -23,7 +23,6 @@ public class LqAllScoreActivity extends LqScoreActivity {
 			json = JcExplainActivity.jsonObject.getJSONObject("result")
 					.getJSONArray("totalScores");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return json;

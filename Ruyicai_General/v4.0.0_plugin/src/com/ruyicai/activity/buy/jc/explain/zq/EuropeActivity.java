@@ -52,10 +52,6 @@ public class EuropeActivity extends BaseListActivity {
 			TextView textFail = (TextView)findViewById(R.id.jc_europe_list_item_text_left_fail);
 			textWin.setText("负");
 			textFail.setText("胜");
-//			TextView standoffLu = (TextView) findViewById(R.id.jc_europe_list_item_text1_center_leve);
-//			TextView k_s = (TextView) findViewById(R.id.jc_europe_list_item_text1_right_leve);
-//			standoffLu.setVisibility(View.GONE);
-//			k_s.setVisibility(View.GONE);
 			/**Modify by yejc 20130417 end*/
 		}
 	}
@@ -66,7 +62,6 @@ public class EuropeActivity extends BaseListActivity {
 			json = JcExplainActivity.jsonObject.getJSONObject("result")
 					.getJSONArray("standards");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return json;
@@ -185,9 +180,6 @@ public class EuropeActivity extends BaseListActivity {
 				holder.guestWinLu.setText(info.getHomeWinLu());
 				holder.k_h.setText(info.getK_g());
 				holder.k_g.setText(info.getK_h());
-//				holder.standoffLu.setVisibility(View.GONE);
-//				holder.standoff.setVisibility(View.GONE);
-//				holder.k_s.setVisibility(View.GONE);
 				/**Modify by yejc 20130417 end*/
 			} else {
 				holder.standoffLu.setText(info.getStandoffLu());
@@ -205,12 +197,6 @@ public class EuropeActivity extends BaseListActivity {
 			}
 			holder.companyName.setText(info.getCompanyName());
 			/**move to up by yejc 20130418 start*/
-//			holder.homeWin.setText(info.getHomeWin());
-//			holder.guestWin.setText(info.getGuestWin());
-//			holder.homeWinLu.setText(info.getHomeWinLu());
-//			holder.guestWinLu.setText(info.getGuestWinLu());
-//			holder.k_h.setText(info.getK_h());
-//			holder.k_g.setText(info.getK_g());
 			/**move up by yejc 20130418 end*/
 			holder.fanHuanLu.setText(info.getFanHuanLu());
 			return convertView;

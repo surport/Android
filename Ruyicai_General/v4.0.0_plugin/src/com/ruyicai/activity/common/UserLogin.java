@@ -90,13 +90,11 @@ public class UserLogin extends Activity implements TextWatcher {
 	private String message, mobileid, name;
 	private String randomNumber;// 自动登录后返回的随机数
 	Boolean isProtocol = true;
-	// String isBindPhone = "1";
 	private String isAutoLogin = "0";
 	private boolean autologin = false;
 	boolean ischeckId = false;
 	boolean ischeckReferrer = false;
 	int i = 0;
-//	ProgressDialog pDialog = null;
 
 	/***
 	 * 第三方登陆

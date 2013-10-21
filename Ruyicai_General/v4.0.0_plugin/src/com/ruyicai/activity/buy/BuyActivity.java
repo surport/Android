@@ -265,12 +265,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 		getCaizhongSharePreferences();
         //获得屏幕数
 		getPhoneScreenNum();
-//		if (!mLabelArray.isEmpty()) {
-//			mLabelArray.clear();
-//		}
-//		for (int i = 0; i < SCREENUM; i++) {
-//			mLabelArray.add("" + i);
-//		}
 	}
 
 	private void getCaizhongSharePreferences() {
@@ -350,7 +344,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 				war.setVisibility(View.VISIBLE);
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -472,7 +465,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 	}
 
 	public void tendToLuckCenter() {
-		// Intent intent = new Intent(BuyActivity.this, LuckChoose.class);
 		Intent intent = new Intent(BuyActivity.this, LuckChoose2.class);
 		startActivity(intent);
 	}
@@ -877,8 +869,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 								|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
 								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)) {
 							try {
-								//String josn = Constants.todayjosn.getString(lotno);
-								//JSONObject jsonobj = new JSONObject(josn);
 								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
 								if (jsonobj == null) {
 									imgView.setVisibility(ImageView.GONE);
@@ -903,15 +893,11 @@ public class BuyActivity extends Activity implements OnClickListener {
 									imgView.setImageResource(R.drawable.jiajiang);
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 	
 						} else {
 							try {
-								//String josn = Constants.todayjosn
-								//		.getString(lotno);
-								//JSONObject jsonobj = new JSONObject(josn);
 								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
 								if (jsonobj == null) {
 									imgView.setVisibility(ImageView.GONE);
@@ -927,7 +913,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 									imgView.setImageResource(R.drawable.jiajiang);
 								}
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -954,8 +939,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 				textTitle.setVisibility(TextView.VISIBLE);
 				String title = newList.get(index).get("textRes").toString();
 				if (title.length() > 4) {
-					// textTitle.setLayoutParams(new LayoutParams(70,
-					// LayoutParams.WRAP_CONTENT));
 				}
 				textTitle.setText(title);
 			}

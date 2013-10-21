@@ -302,7 +302,6 @@ public abstract class JcMainView {
 				jsonArrayTmp = jsonObject
 						.getJSONArray("result");
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

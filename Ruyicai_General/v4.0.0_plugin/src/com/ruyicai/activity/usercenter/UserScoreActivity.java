@@ -259,7 +259,6 @@ public class UserScoreActivity extends Activity {
 		public void onTabChanged(String tabId) {
 			for (int i = 0; i < titles.length; i++) {
 				if (tabId.equals(titles[0])) {
-					// initLinear(scroedetail, linearId[0], view);
 				} else if (tabId.equals(titles[1])) {
 					initLinear(scroechange, linearId[1], initscorechangeview());
 				}
@@ -329,7 +328,6 @@ public class UserScoreActivity extends Activity {
 		Button ok = (Button) view.findViewById(R.id.change);
 		TextView scroecontent = (TextView) view
 				.findViewById(R.id.scoredicribtion);
-		// scroecontent.setText("注:"+scores_P+"积分可兑换1元购彩金(请输入"+scores_P+"的倍数),存入您的如意彩账户");
 		if (description != null && !description.equals("")) {
 			scroecontent.setText(description);
 			scroecontent.setVisibility(View.VISIBLE);

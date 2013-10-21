@@ -34,7 +34,6 @@ public class LqExplainListActivity extends ExplainListActivity {
 				info.setHomeTeamId(json.getString("homeTeamId"));
 				info.setGuestTeamId(json.getString("guestTeamId"));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try {

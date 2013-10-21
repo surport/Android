@@ -245,7 +245,6 @@ public class LotInfoConcreteActivity extends Activity implements
 											userno = pre
 													.getStringValue("userno");
 											if (sessionId.equals("")) {
-												// toLogin = true;
 												Intent intentSession = new Intent(
 														LotInfoConcreteActivity.this,
 														UserLogin.class);
@@ -291,15 +290,12 @@ public class LotInfoConcreteActivity extends Activity implements
 					sb.append(strsp);
 
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
 				sb.append(str);
 			}
 		}
-		// spstr.setSpan(span,s1.length(),s1.length()+s4.length(),
-		// Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		news.setText(sb);
 
 	}
@@ -431,7 +427,6 @@ public class LotInfoConcreteActivity extends Activity implements
 		switch (id) {
 		case 0: {
 			progressdialog = new ProgressDialog(this);
-			// progressdialog.setTitle("Indeterminate");
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 		}

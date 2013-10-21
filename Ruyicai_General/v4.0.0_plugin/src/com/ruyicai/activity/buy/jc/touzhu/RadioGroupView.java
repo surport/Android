@@ -602,7 +602,6 @@ public class RadioGroupView {
 	 * @return
 	 */
 	public int getNum(int teamNum, boolean isDan, boolean isBeiJing) {
-		// isDan=true是多串过关
 		int num = 0;
 		switch (teamNum) {
 		case 2:

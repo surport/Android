@@ -73,8 +73,6 @@ public class LotInfoActivity extends Activity {
 		mInflater = LayoutInflater.from(this);
 		mTabHost = (TabHost) findViewById(R.id.tab_host);
 		mTabHost.setup();
-		// view =mInflater.inflate(R.layout.information,
-		// mTabHost.getTabContentView(),true);
 		initTabWidge();
 		mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String tabId) {

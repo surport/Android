@@ -92,7 +92,6 @@ public class FC3DetailView extends LotnoDetailView {
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 
 		trycode.setText("试机号:" + codeshow);

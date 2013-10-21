@@ -58,7 +58,6 @@ public class LqScoreActivity extends BaseListActivity {
 			json = JcExplainActivity.jsonObject.getJSONObject("result")
 					.getJSONArray("letGoals");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return json;
@@ -91,7 +90,6 @@ public class LqScoreActivity extends BaseListActivity {
 				info.setUpOdds(json.getString("upOdds"));
 				info.setDownOdds(json.getString("downOdds"));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			listInfo.add(info);
@@ -167,11 +165,7 @@ public class LqScoreActivity extends BaseListActivity {
 				holder.downOdds.setText(info.getDownOdds());
 			}
 			holder.companyName.setText(info.getCompanyName());
-//			holder.firstUpodds.setText(info.getFirstUpodds());
-//			holder.firstDownodds.setText(info.getFirstDownodds());
 			holder.firstGoal.setText(info.getFirstGoal());
-//			holder.upOdds.setText(info.getUpOdds());
-//			holder.downOdds.setText(info.getDownOdds());
 			holder.goal.setText(info.getGoal());
 			return convertView;
 		}

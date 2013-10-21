@@ -16,7 +16,6 @@ public class OrderPrizeDiaog {
 	private Context context;
 
 	public OrderPrizeDiaog(RWSharedPreferences shellRW, Context context) {
-		// TODO Auto-generated constructor stub
 		this.shellRW = shellRW;
 		this.context = context;
 	}
@@ -33,7 +32,6 @@ public class OrderPrizeDiaog {
 						.getBooleanValue(Constants.orderPrize[i]);
 			}
 		} catch (NullPointerException e) {
-			// TODO: handle exception
 		}
 	}
 

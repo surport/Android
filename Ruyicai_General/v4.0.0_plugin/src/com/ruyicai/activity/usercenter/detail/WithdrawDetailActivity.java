@@ -19,7 +19,6 @@ public class WithdrawDetailActivity extends Activity implements HandlerMsg {
 	private Intent intent = null;
 	private Controller controller = Controller.getInstance(this);
 	private MyHandler handler = new MyHandler(this);
-//	private JSONObject jsonObject = null;
 	
 	private ImageView checkTimeImageView;
 	private ImageView remitTimeImageView;
@@ -86,7 +85,6 @@ public class WithdrawDetailActivity extends Activity implements HandlerMsg {
 		withdrawAmountTextView.setText(cashMoney+"元");
 		withdrawStateTextView.setText(cashStateText);
 		if ("1".equals(cashState)) {
-//			withdrawStateTextView.setText(cashStateText);
 			checkTimeTextView.setText(formatString(R.string.account_withdraw_detail_check_time,forecastShow,queryShow));
 			remitTimeTextView.setText(formatString(R.string.account_withdraw_detail_remit_time,forecastShow,queryShow));
 			finishTimeTextView.setText(formatString(R.string.account_withdraw_detail_finish_time,forecastShow,queryShow));
@@ -99,7 +97,6 @@ public class WithdrawDetailActivity extends Activity implements HandlerMsg {
 			checkTimeTextView.setTextColor(getColor(R.color.account_withdraw_text_color));
 			remitTimeImageView.setImageResource(R.drawable.account_withdraw_doing);
 		} else if ("105".equals(cashState)) {
-//			withdrawStateTextView.setText("已汇款");
 			checkTimeTextView.setText(formatString(R.string.account_withdraw_detail_check_time,"",queryShow));
 			remitTimeTextView.setText(formatString(R.string.account_withdraw_detail_remit_time,"",queryShow));
 			finishTimeTextView.setText(formatString(R.string.account_withdraw_detail_finish_time,"",queryShow));

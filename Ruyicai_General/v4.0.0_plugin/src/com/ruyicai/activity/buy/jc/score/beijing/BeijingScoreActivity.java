@@ -11,7 +11,6 @@ public class BeijingScoreActivity extends JcScoreActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		lotno = getIntent().getStringExtra("lotno");
-//		bebatchCode = getIntent().getStringExtra("bebatchCode");
 	}
 
 	public void initTop() {

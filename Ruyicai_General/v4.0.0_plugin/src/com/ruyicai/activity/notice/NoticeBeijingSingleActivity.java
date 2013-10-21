@@ -76,16 +76,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		
 		initViewState = FIRST_JC_NOTICE;
 		noticeBeijingSingleNet("");
-//		if (Constants.noticeJcz.equals("")) {
-//			initViewState = FIRST_JC_NOTICE;
-//			noticeBeijingSingleNet("");
-//		} else {
-//			try {
-//				showJcListView(new JSONObject(Constants.noticeJcz));
-//			} catch (JSONException e) {
-//				e.printStackTrace();
-//			}
-//		}
 
 	}
 
@@ -93,11 +83,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	 * 跳转到分析界面
 	 */
 	public void trunExplain(String event, String home, String away) {
-		//Intent intent = new Intent(context, JcExplainActivity.class);
-		//intent.putExtra("event", event);
-		//intent.putExtra("home", home);
-		//intent.putExtra("away", away);
-		//startActivity(intent);
 	}
 
 	public String getEvent(String type, JsonBeanInfo info) {
@@ -264,8 +249,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			}
 			holder.teamId.setText(info.getTeamId());
 			holder.odds.setText(getResources().getString(R.string.notice_beijing_single_item_odds)+info.getPeiLv());
-			//holder.timeEnd.append(info.getTimeEnd());
-//			holder.teamId.append(info.getWeek() + info.getTeamId());
 			holder.result.append(/*"主" + */info.getResult());
 			if (!"".equals(info.getHomeScore()) && !"".equals(info.getGuestScore())) {
 				holder.score.append(info.getHomeScore()+":"+info.getGuestScore());
@@ -287,7 +270,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			TextView home;
 			TextView away;
 			TextView letPoint;
-//			TextView teamPlay;
 			TextView result;
 			TextView score;
 			TextView odds;
@@ -315,7 +297,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				itemInfo.setHomeScore(jsonItem.getString("homeScore"));
 				itemInfo.setGuestScore(jsonItem.getString("guestScore"));
 				
-				//itemInfo.setTimeEnd(jsonItem.getString("time"));
 				itemInfo.setLetPoint(jsonItem.getString("letPoint"));
 				itemInfo.setPeiLv(jsonItem.getString("peiLv"));
 				itemInfo.setHome(jsonItem.getString("homeTeam"));

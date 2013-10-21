@@ -94,7 +94,6 @@ public class JcLqScoreInfoActivity extends Activity {
 			hBall.setText(json.getString("guestScore"));
 			vBall.setText(json.getString("homeScore"));
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

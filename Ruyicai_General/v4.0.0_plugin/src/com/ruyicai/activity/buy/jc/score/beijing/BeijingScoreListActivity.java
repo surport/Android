@@ -27,15 +27,6 @@ public class BeijingScoreListActivity extends JcScoreListActivity {
 	public void getPreferences() {
 		shellRw = new RWSharedPreferences(this, ShellRWConstants.BEIJING_PREFER);
 	}
-
-//	@Override
-//	public void initListInfo() {
-//		if (allcountries == null) {
-//			getScoreNet(TYPE, "", reguestType);
-//		} else {
-//			spinnerOnclik(allcountries.get(index));
-//		}
-//	}
 	
 	/**
 	 * 获取列表联网

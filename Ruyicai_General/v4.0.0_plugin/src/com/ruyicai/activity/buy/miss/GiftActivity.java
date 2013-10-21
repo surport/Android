@@ -142,7 +142,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		setContentView(R.layout.order_zengsong);
 		getInfo();
 		init();
-		// setValue();
 		allAtm = addviewmiss.getAllAmt() * iProgressBeishu;
 		zhumaStr = addviewmiss.getsharezhuma();
 		zhu = addviewmiss.getAllZhu();
@@ -429,27 +428,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			}
 		}
 	}
-
-	// /**
-	// * 赋值
-	// *
-	// */
-	// public void setValue() {
-	// SpannableStringBuilder builder = new SpannableStringBuilder();
-	// int beishu = Integer.parseInt(betAndGift.getLotmulti());
-	// allAtm = Integer.parseInt(betAndGift.getAmount()) / 100;
-	// zhu = allAtm / beishu / betAndGift.getAmt();
-	// String zhushuStr = "赠送注数：" + zhu + "注\n\n" + "赠送倍数：" + beishu + "倍\n\n"
-	// + "赠送金额：" + allAtm + "元";
-	// builder.append(zhushuStr);
-	// builder.setSpan(new ForegroundColorSpan(Color.RED), zhushuStr.length()
-	// - (Integer.toString(allAtm).length() + 1), zhushuStr.length(),
-	// Spanned.SPAN_COMPOSING);
-	// this.zhushu.setText(builder, BufferType.EDITABLE);
-	// // this.zhushu.setText(zhushuStr);
-	// this.zhuma.setText(zhumaStr);
-	//
-	// }
 
 	/**
 	 * 从上一个页面获取信息
@@ -773,7 +751,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			final int index = position;
 			ViewHolder holder = null;
 			final Person person = (Person) mList.get(position).get(INFO);
-			// if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.dialog_link_list_item,
 					null);
 			holder = new ViewHolder();
@@ -891,12 +868,8 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// buyImplement.touzhuNet();
 						checkedPersons.clear();
 						editPhone.setText("");
-						// if(successPersons.size()>0){
-						// sendSMS();
-						// }
 						GiftActivity.this.finish();
 					}
 				}).create();
@@ -1025,11 +998,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 					betAndGift.getAmt() * 100));
 		}
 		/** add by yejc 20130510 end */
-		/** close by yejc 20130510 start */
-		// betAndGift.setBet_code(addviewmiss.getTouzhuCode(iProgressBeishu,
-		// betAndGift.getAmt() * 100));
-		/** close by yejc 20130510 end */
-
 		betAndGift.setBettype("gift");
 		betAndGift.setDescription("");
 		betAndGift.setTo_mobile_code(editPhone.getText().toString()
@@ -1096,7 +1064,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
-		// mSeekBarQishu.setProgress(iProgressQishu);
 		if (isclearaddview) {
 			if (addviewmiss != null) {
 				addviewmiss.clearInfo();
@@ -1282,7 +1249,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 		public GiftActivityHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {

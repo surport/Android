@@ -47,7 +47,6 @@ public class BalanceQueryActivity extends Activity {
 			JSONObject balancejson = new JSONObject(json);
 			initNetBackData(balancejson);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

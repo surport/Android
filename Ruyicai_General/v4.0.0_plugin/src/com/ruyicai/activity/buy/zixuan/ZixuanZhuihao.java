@@ -129,7 +129,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		textTitle = (TextView) findViewById(R.id.alert_dialog_touzhu_text_zhuma_title);
 		CodeInfo code = addview.getCodeList().get(addview.getSize() - 1);
 		code.setTextCodeColor(textZhuma, code.getLotoNo(), code.getTouZhuType());
-		// getNetIssue();
 		
 		if (isFromTrackQuery) {
 			getNetIssue();
@@ -371,8 +370,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 								Toast.LENGTH_SHORT).show();
 						edit.setText("1");
 					} else if (Integer.valueOf(edit.getText().toString()) > 10000) {
-//						Toast.makeText(ZixuanZhuihao.this, "超过倍数上限10000",
-//								Toast.LENGTH_SHORT).show();
 						edit.setText("10000");
 						edit.setSelection(edit.length());
 					} else {
@@ -608,7 +605,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		if (isFromTrackQuery) {
 			String betCode = betAndGift.getBet_code();
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
-//			int amt = betAndGift.getAmt() * 100;
 			int amt = 2 * 100;
 			if (betCode.contains("!")) {
 				String betCodesArray[] = betCode.split("!");
@@ -917,7 +913,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 		public ZiXunTouZhuihaoHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);

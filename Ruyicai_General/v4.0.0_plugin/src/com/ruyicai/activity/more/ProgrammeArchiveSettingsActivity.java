@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 public class ProgrammeArchiveSettingsActivity extends Activity {
 	private ImageView ssqProgrammeSettingsIV;
-//	private ImageView dltProgrammeSettingsIV;
 	private RWSharedPreferences shellRW;
 	ViewClickListener clickListener = new ViewClickListener();
 	private Context context = null;
@@ -53,20 +52,13 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 
 	private void initView() {
 		ssqProgrammeSettingsIV = (ImageView)findViewById(R.id.more_settings_progamme_ssq_on_off);
-//		dltProgrammeSettingsIV = (ImageView)findViewById(R.id.more_settings_progamme_dlt_on_off);
 		ssqProgrammeSettingsIV.setOnClickListener(clickListener);
-//		dltProgrammeSettingsIV.setOnClickListener(clickListener);
 		if (shellRW.getBooleanValue(Constants.isSSQON)) {
 			ssqProgrammeSettingsIV.setImageResource(R.drawable.on);
 		} else {
 			ssqProgrammeSettingsIV.setImageResource(R.drawable.off);
 		}
 		
-//		if (shellRW.getBooleanValue(Constants.isDLTON)) {
-//			dltProgrammeSettingsIV.setImageResource(R.drawable.on);
-//		} else {
-//			dltProgrammeSettingsIV.setImageResource(R.drawable.off);
-//		}
 	}
 	
 	private class ViewClickListener implements View.OnClickListener {
@@ -95,22 +87,7 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 				}
 				
 				break;
-				
-//			case R.id.more_settings_progamme_dlt_on_off:
-//				if (shellRW.getBooleanValue(Constants.isDLTON)) {
-//					controller.setOrderEmail(handler, Constants.LOTNO_DLT, "0", userNo);
-//				} else {
-//					String email = shellRW.getStringValue("email");
-//					if (email == null || "".equals(email)) {
-//						Intent intent = new Intent(context,
-//								BindEmailActivity.class);
-//						startActivity(intent);
-//					} else {
-//						controller.setOrderEmail(handler, Constants.LOTNO_DLT, "1", userNo);
-//					}
-//				}
-//				break;
-
+			
 			default:
 				break;
 			}
@@ -158,16 +135,6 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 					shellRW.putBooleanValue(Constants.isSSQON, false);
 				}
 			}
-//			if (obj.has(Constants.LOTNO_DLT)) {
-//				JSONObject dltqObj = new JSONObject(obj.getString(Constants.LOTNO_DLT));
-//				if ("1".equals(dltqObj.getString("state"))) {
-//					dltProgrammeSettingsIV.setImageResource(R.drawable.on);
-//					shellRW.putBooleanValue(Constants.isDLTON, true);
-//				} else {
-//					dltProgrammeSettingsIV.setImageResource(R.drawable.off);
-//					shellRW.putBooleanValue(Constants.isDLTON, false);
-//				}
-//			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -182,17 +149,7 @@ public class ProgrammeArchiveSettingsActivity extends Activity {
 				ssqProgrammeSettingsIV.setImageResource(R.drawable.off);
 				shellRW.putBooleanValue(Constants.isSSQON, false);
 			}
-			
-		} /*else if (Constants.LOTNO_DLT.equals(lotno)) {
-			if ("1".equals(state)) {
-				dltProgrammeSettingsIV.setImageResource(R.drawable.on);
-				shellRW.putBooleanValue(Constants.isDLTON, true);
-			} else {
-				dltProgrammeSettingsIV.setImageResource(R.drawable.off);
-				shellRW.putBooleanValue(Constants.isDLTON, false);
-			}
-		}*/
-		
+		}		
 	}
 
 }

@@ -64,7 +64,6 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private Context context;
 
 	public void onCreate(Bundle savedInstanceState) {
-		// RuyicaiActivityManager.getInstance().addActivity(this);
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.notice_prizes_single_specific_main);
@@ -73,17 +72,6 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 		
 		initViewState = FIRST_JC_NOTICE;
 		notiecJcNet("");
-//		if (Constants.noticeJcz.equals("")) {
-//			initViewState = FIRST_JC_NOTICE;
-//			notiecJcNet("");
-//		} else {
-//			try {
-//				showJcListView(new JSONObject(Constants.noticeJcz));
-//			} catch (JSONException e) {
-//				e.printStackTrace();
-//			}
-//		}
-
 	}
 
 	/**

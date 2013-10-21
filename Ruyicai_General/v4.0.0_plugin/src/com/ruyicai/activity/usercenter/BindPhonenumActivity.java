@@ -171,7 +171,6 @@ public class BindPhonenumActivity extends Activity {
 
 								handler.sendMessage(msg);
 							} catch (JSONException e) {
-								// TODO Auto-generated catch block
 							}
 						}
 					}).start();

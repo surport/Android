@@ -106,10 +106,8 @@ public class ExplainListActivity extends BaseListActivity {
 		linearLayout.setVisibility(View.VISIBLE);
 
 		TextView homeTeamTextView = (TextView) findViewById(R.id.fenxi_listview_header_hometeam);
-//		homeTeamTextView.setText(homeTeamName + "(主队)");
 
 		TextView guestTeamTextView = (TextView) findViewById(R.id.fenxi_listview_header_guestteam);
-//		guestTeamTextView.setText(guestTeamName + "(客队)");
 		/**modify by yejc 20130418 start*/
 		if (Constants.isDebug) {
 			PublicMethod.outLog(this.getClass().getSimpleName(), "initFenXiListViewHeader");
@@ -298,7 +296,6 @@ public class ExplainListActivity extends BaseListActivity {
 					} else {
 						buttonTextString.append("(近10场 胜"+homePreWinCount +"平" +homePreStandoffCount + "负" + homePreLoseCount +")");
 					}
-//					buttonTextString.append("(近10场 胜"+homePreWinCount +"平" +homePreStandoffCount + "负" + homePreLoseCount +")");
 					/**Modify by yejc 20130415 end*/
 				}else if (position == 2) {
 					/**Modify by yejc 20130415 start*/
@@ -307,7 +304,6 @@ public class ExplainListActivity extends BaseListActivity {
 					} else {
 						buttonTextString.append("(近10场 胜"+guestPreWinCount +"平" +guestPreStandoffCount + "负" + guestPreLoseCount +")");
 					}
-//					buttonTextString.append("(近10场 胜"+guestPreWinCount +"平" +guestPreStandoffCount + "负" + guestPreLoseCount +")");
 					/**Modify by yejc 20130415 end*/
 				}
 				holder.btn.setText(buttonTextString);

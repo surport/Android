@@ -169,11 +169,9 @@ public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 
 		public Nmk3ActivityHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {
-			//super.handleMessage(msg);
 			if (controller != null) {
 				JSONObject obj = controller.getRtnJSONObject();
 				setIssueJSONObject(obj);

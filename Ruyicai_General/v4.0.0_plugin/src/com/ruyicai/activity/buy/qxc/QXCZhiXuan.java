@@ -34,21 +34,6 @@ public class QXCZhiXuan extends ZixuanActivity {
 		super.onCreate(savedInstanceState);
 		setCode(qxcCode);
 		initViewItem();
-		// LinearLayout sevenLinear =
-		// (LinearLayout)findViewById(R.id.buy_zixuan_linear_seven);
-		// LinearLayout sixLinear =
-		// (LinearLayout)findViewById(R.id.buy_zixuan_linear_six);
-		// sixLinear.setVisibility(LinearLayout.VISIBLE);
-		// sevenLinear.setVisibility(LinearLayout.VISIBLE);
-		// LinearLayout fiveLinear =
-		// (LinearLayout)findViewById(R.id.buy_zixuan_linear_five);
-		// fiveLinear.setVisibility(LinearLayout.VISIBLE);
-		// LinearLayout fourLinear =
-		// (LinearLayout)findViewById(R.id.buy_zixuan_linear_four);
-		// fourLinear.setVisibility(LinearLayout.VISIBLE);
-		// LinearLayout thirdLinear =
-		// (LinearLayout)findViewById(R.id.buy_zixuan_linear_third);
-		// thirdLinear.setVisibility(LinearLayout.VISIBLE);
 
 		firstlineBallTable = itemViewArray.get(0).areaNums[0].table;
 		secondlineBallTable = itemViewArray.get(0).areaNums[1].table;

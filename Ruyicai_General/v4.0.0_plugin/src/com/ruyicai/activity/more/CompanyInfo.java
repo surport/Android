@@ -23,7 +23,6 @@ import com.palmdream.RuyicaiAndroid.R;
  * 
  */
 public class CompanyInfo extends Activity {
-	// ReturnPage returnPage;
 	public static final String TITLE = "title";
 	public static final String URL = "url";
 	private ProgressDialog progressdialog;

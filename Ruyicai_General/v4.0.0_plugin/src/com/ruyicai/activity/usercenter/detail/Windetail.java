@@ -121,7 +121,6 @@ public class Windetail extends Activity {
 		try {
 			json = new JSONObject(info.getJson());
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return json;

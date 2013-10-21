@@ -139,7 +139,6 @@ public class Betdetail extends Activity {
 				if (disPlay.equals("true")) {
 					JSONArray jsonArray = jsonObj.getJSONArray("result");
 					JSONObject obj = jsonArray.getJSONObject(0);
-//					playTextView.setText(obj.getString("play"));
 					if (obj.has("play")) {
 						playTextView.append(obj.getString("play"));
 					}
@@ -159,7 +158,6 @@ public class Betdetail extends Activity {
 		atm.append(fPayMoney);
 		state.append(stateMo);
 		bettime.append(ordertime);
-		// content.setText(Html.fromHtml("方案内容：<br>"+betcodehtml));
 		JSONObject josn = null;
 		try {
 			josn = new JSONObject(info.getJson());

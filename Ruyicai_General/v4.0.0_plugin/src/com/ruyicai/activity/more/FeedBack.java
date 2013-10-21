@@ -38,7 +38,6 @@ import com.ruyicai.util.RWSharedPreferences;
  */
 public class FeedBack extends Activity {
 
-	// ReturnPage returnPage;
 	private ProgressDialog progressdialog;
 	Handler handler = new Handler();
 
@@ -68,9 +67,6 @@ public class FeedBack extends Activity {
 			}
 
 		}, 200); // 在一秒后打开
-		// final InputMethodManager imm =
-		// (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-		// imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 		Button btnReturn = (Button) view
 				.findViewById(R.id.ruyizhushou_btn_return);
 		TextView title = (TextView) view.findViewById(R.id.ruyipackage_title);
@@ -163,7 +159,6 @@ public class FeedBack extends Activity {
 			}
 		});
 
-		// btnreturn.setGravity(Gravity.RIGHT);
 		btnReturn.setOnClickListener(new Button.OnClickListener() {
 			public void onClick(View v) {
 				/* 返回“更多”列表 */

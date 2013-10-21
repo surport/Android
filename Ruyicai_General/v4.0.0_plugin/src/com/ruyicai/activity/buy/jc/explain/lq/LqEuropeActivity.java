@@ -26,7 +26,6 @@ public class LqEuropeActivity extends EuropeActivity {
 				info.setK_g(json.getString("k_g"));
 				info.setFanHuanLu(json.getString("fanHuanLv"));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			listInfo.add(info);

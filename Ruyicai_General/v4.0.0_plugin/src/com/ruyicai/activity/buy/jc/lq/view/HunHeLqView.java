@@ -366,11 +366,6 @@ public class HunHeLqView extends JcMainView {
 	@Override
 	public String getPlayType() {
 		/**close by yejc 20130801 start*/
-//		if (isDanguan) {
-//			return "J00007_0";
-//		} else {
-//			return "J00007_1";
-//		}
 		return "playtype"; //这里返回只要不为""并且不与其他玩法重复即可
 		/**close by yejc 20130801 end*/
 	}

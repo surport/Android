@@ -109,13 +109,6 @@ public class ContentListView {
 				JSONArray jsonArray = json.getJSONArray("result");
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject obj = jsonArray.getJSONObject(i);
-					/**close by yejc 20130710 start*/
-//					TextView text = new TextView(context);
-//					text.setTextColor(context.getResources().getColor(
-//							R.color.black));
-//					text.setText("玩法：" + obj.getString("play"));
-//					layoutMain.addView(text);
-					/**close by yejc 20130710 end*/
 					layoutMain.addView(viewTop);
 					JSONArray objArray = obj.getJSONArray("result");
 					for (int j = 0; j < objArray.length(); j++) {
@@ -140,7 +133,6 @@ public class ContentListView {
 						try {
 							isDanMa = itemJson.getString("isDanMa");
 						} catch (Exception e) {
-							// TODO: handle exception
 						}
 
 						String teamStr = homeTeam + " " + teamVs + " "
@@ -166,15 +158,7 @@ public class ContentListView {
 					}
 				}
 				layoutMain.addView(viewTop);
-			} /*else { 
-				String visiable = json.getString("visibility");
-				TextView text = new TextView(context);
-				text.setTextColor(context.getResources()
-						.getColor(R.color.black));
-				text.setText(getState(visiable));
-				layoutMain.addView(text);
-			}*/ //close by yejc 20130710
-
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -195,13 +179,6 @@ public class ContentListView {
 				JSONArray jsonArray = json.getJSONArray("result");
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject obj = jsonArray.getJSONObject(i);
-					/**close by yejc 20130710 start*/
-//					TextView text = new TextView(context);
-//					text.setTextColor(context.getResources().getColor(
-//							R.color.black));
-//					text.setText("玩法：" + obj.getString("play"));
-//					layoutMain.addView(text);
-					/**close by yejc 20130710 end*/
 					layoutMain.addView(viewTop);
 					JSONArray objArray = obj.getJSONArray("result");
 					for (int j = 0; j < objArray.length(); j++) {
@@ -244,17 +221,9 @@ public class ContentListView {
 					}
 				}
 				layoutMain.addView(viewTop);
-			} /*else {
-				String visiable = json.getString("visibility");
-				TextView text = new TextView(context);
-				text.setTextColor(context.getResources()
-						.getColor(R.color.black));
-				text.setText(getState(visiable));
-				layoutMain.addView(text);
-			}*/ //close by yejc 20130710
+			} 
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -434,13 +403,6 @@ public class ContentListView {
 								.getString("betContentHtml")));
 					}
 					if (i == 0) {
-						/**close by yejc 20130709 start*/
-//						TextView text = new TextView(context);
-//						text.setTextColor(context.getResources().getColor(
-//								R.color.black));
-//						text.setText("玩法：" + obj.getString("play"));
-//						layoutMain.addView(text);
-						/**close by yejc 20130709 end*/
 						layoutMain.addView(viewTop);
 					}
 					layoutMain.addView(viewItem);
@@ -455,7 +417,6 @@ public class ContentListView {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

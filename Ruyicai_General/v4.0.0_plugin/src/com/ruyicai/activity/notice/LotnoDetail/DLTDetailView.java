@@ -47,7 +47,6 @@ public class DLTDetailView extends LotnoDetailView {
 	public DLTDetailView(Activity context, String lotno, String batchcode,
 			ProgressDialog progress, Handler handler, boolean isDialog) {
 		super(context, lotno, batchcode, progress, handler, isDialog);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

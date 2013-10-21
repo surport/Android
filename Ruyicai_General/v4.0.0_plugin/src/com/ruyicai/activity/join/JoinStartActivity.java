@@ -128,7 +128,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		addview = app.getAddview();
 		if (Constants.type.equals("zc")) {
 			allAtm = Long.valueOf(betAndGift.getAmount()) / 100;
-			// mAmount = Integer.valueOf(betAndGift.getAmount());
 			mZhushu = Long.valueOf(betAndGift.getZhushu());
 		} else {
 			allAtm = iProgressQishu * addview.getAllAmt() * iProgressBeishu;
@@ -664,7 +663,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		switch (id) {
 		case 0: {
 			progressdialog = new ProgressDialog(this);
-			// progressdialog.setTitle("Indeterminate");
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 			progressdialog.setCancelable(true);
@@ -760,7 +758,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
-		// mSeekBarQishu.setProgress(iProgressQishu);
 		if (isclearaddview) {
 			if (addview != null) {
 				addview.clearInfo();
@@ -880,7 +877,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 
 		public JoinStartActivityHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {

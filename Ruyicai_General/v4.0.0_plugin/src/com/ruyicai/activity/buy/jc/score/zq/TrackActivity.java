@@ -127,12 +127,8 @@ public class TrackActivity extends JcScoreListActivity {
 			setContentView(R.layout.jc_score_list);
 			layoutSpinner = (LinearLayout) findViewById(R.id.jc_score_layout);
 			layoutSpinner.setVisibility(View.VISIBLE);
-			// layoutSpinner.setVisibility(View.VISIBLE);
-			// textInfo.setVisibility(View.GONE);
 			initNameSpinner();
 		} else {
-			// layoutSpinner.setVisibility(View.GONE);
-			// textInfo.setVisibility(View.VISIBLE);
 			setContentView(R.layout.jc_score_track_no_info);
 		}
 	}

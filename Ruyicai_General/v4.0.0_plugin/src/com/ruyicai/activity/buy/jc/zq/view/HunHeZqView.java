@@ -270,9 +270,6 @@ public class HunHeZqView extends JcMainView {
 				for (int i = 0; i < list.size(); i++) {
 					holder.layout.addView(addView(list.get(i), position, i));
 				}
-//				for (Info info : list) {
-//					holder.layout.addView(addView(info));
-//				}
 			}
 
 			return convertView;
@@ -387,11 +384,6 @@ public class HunHeZqView extends JcMainView {
 
 	@Override
 	public String getPlayType() {
-//		if (isDanguan) {
-//			return "J00002_0";
-//		} else {
-//			return "J00002_1";
-//		}
 		return "playtype"; //这里返回只要不为""并且不与其他玩法重复即可
 	}
 

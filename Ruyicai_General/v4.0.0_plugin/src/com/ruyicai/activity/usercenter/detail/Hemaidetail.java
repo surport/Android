@@ -815,10 +815,6 @@ public class Hemaidetail extends Activity implements HandlerMsg {
 					"请您至少认购" + detatil.getMinAmt() + "元", Toast.LENGTH_SHORT)
 					.show();
 		}
-		// else if(safeAmtInt>bao){
-		// Toast.makeText(Hemaidetail.this, "保底金额不正确",
-		// Toast.LENGTH_SHORT).show();
-		// }
 		else {
 			joinInNet();
 		}

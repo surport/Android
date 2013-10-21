@@ -601,9 +601,6 @@ public class JcScoreListActivity extends Activity {
 				info.setTime(json.getString("matchTime"));
 				info.setvTeam(json.getString("guestTeam"));
 				info.setEvent(json.getString("event"));
-//				if(json.has("progressedTime")) {
-//					info.setProgressedTime(json.getString("progressedTime"));
-//				}
 				listInfo.add(info);
 			} catch (JSONException e) {
 				e.printStackTrace();

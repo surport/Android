@@ -540,7 +540,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 
 		public ZiXunTouZhuHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {

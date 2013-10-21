@@ -40,16 +40,12 @@ public class JcScoreActivity extends BuyActivityGroup {
 		title = (TextView) findViewById(R.id.layout_main_text_title);
 		imgIcon = (Button) findViewById(R.id.layout_main_img_return);
 		imgIcon.setBackgroundResource(R.drawable.refresh_last_code);
-//		imgIcon.setBackgroundResource(R.drawable.returnselecter);
-//		imgIcon.setText("返回");
-//		imgIcon.setWidth(PublicMethod.getPxInt(70, context));
 		imgIcon.setVisibility(View.VISIBLE);
 		// ImageView的返回事件
 		imgIcon.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(JcScoreListActivity.BROADCAST_ACTION);
 				sendBroadcast(intent);
-//				finish();
 			}
 		});
 	}

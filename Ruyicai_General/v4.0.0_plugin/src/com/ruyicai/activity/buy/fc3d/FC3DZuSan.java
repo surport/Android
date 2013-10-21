@@ -380,9 +380,6 @@ public class FC3DZuSan extends ZixuanActivity implements
 				if (j == BallNos[i] - 1) {// 因为数组是从0开始的，小球实际Id从1开始，故减去1
 					// 删除倍数 cc 20100713
 					iZhuShu = BallNoZhushus[j];// *iProgressBeishu;
-					// String temp = "当前玩法为和值组3，共"
-					// +(iZhuShu+"注，共"+(iZhuShu*2)+"元");
-					// mTextSumMoney.setText(temp);
 				}
 			}
 		}

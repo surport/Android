@@ -127,7 +127,6 @@ public class ForgetPasswordActivity extends Activity implements HandlerMsg {
 		switch (id) {
 		case 0: {
 			progressdialog = new ProgressDialog(this);
-			// progressdialog.setTitle("Indeterminate");
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 			progressdialog.setCancelable(true);

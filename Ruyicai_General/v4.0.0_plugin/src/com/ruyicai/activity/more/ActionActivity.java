@@ -141,7 +141,6 @@ public class ActionActivity extends Activity implements HandlerMsg {
 				TitleJson action = new TitleJson(jsonArray.getJSONObject(i));
 				actions.add(action);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

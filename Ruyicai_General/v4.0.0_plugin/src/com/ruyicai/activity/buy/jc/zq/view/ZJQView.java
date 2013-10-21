@@ -111,7 +111,6 @@ public class ZJQView extends JcMainView {
 				if (info.isDan()) {
 					codeStr += PublicMethod.stringToHtml("(胆)", Constants.JC_TOUZHU_TEXT_COLOR) + "  ";
 				}
-//				codeStr.subSequence(0, codeStr.length() - 1);
 				codeStr += "<br>";
 			}
 		}

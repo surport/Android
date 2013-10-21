@@ -112,7 +112,6 @@ public class FeedbackListActivity extends Activity {
 	private Button messageSelectAllBtn;
 	private Button editBut;
 	private String selectAllKey = "selectAllKey";
-//	private String infoType = "infoType";
 	private final String LATTERCOMMAND = "letter";
 	private final String MSGCOMMAND = "feedback";
 	private final String BROADCAST_ACTION  = "BROADCAST_ACTION";
@@ -122,7 +121,6 @@ public class FeedbackListActivity extends Activity {
 	/*存放选择的我的留言*/
 	private Map<Integer, Boolean> selectMessageMap = new HashMap<Integer, Boolean>();
 	private List<Integer> selectedMsgList = new ArrayList<Integer>();
-//	private List<Integer> selectedMsgList = new ArrayList<Integer>();
 	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
 	/**add by yejc 20130419 end*/
 
@@ -154,7 +152,6 @@ public class FeedbackListActivity extends Activity {
 		mTabHost.setOnTabChangedListener(scroeTabChangedListener);
 		userno = shellRW.getStringValue("userno");
 		getInfoNet(userno, latterIndex, false);
-//		initLinear(systemInfo, linearId[0], initSystemInfo());
 	}
 
 	protected void onRestart() {
@@ -183,8 +180,6 @@ public class FeedbackListActivity extends Activity {
 				startActivity(intentSession);
 			} else {
 				if (tabId.equals(titles[0])) {
-					// initLinear(scroedetail, linearId[0], view);
-//					editBut.setVisibility(View.VISIBLE);
 					type = 1;
 					feedback.setText(R.string.usercenter_submitfeedback);
 					if (latterlist.size() > 0) {
@@ -209,7 +204,6 @@ public class FeedbackListActivity extends Activity {
 					messageEditLayout.setVisibility(View.GONE);
 					/**add by yejc 20130422 end*/
 				} else if (tabId.equals(titles[1])) {
-//					editBut.setVisibility(View.VISIBLE);
 					type = 2;
 					feedback.setText(R.string.usercenter_submitfeedback);
 					initLinear(message, linearId[1], initmessage());
@@ -318,7 +312,6 @@ public class FeedbackListActivity extends Activity {
 						.getStringExtra("feedBackArray"));
 				initListViewAfterNet(feedBackArray);
 			} else {
-//				dialog.show();
 				Controller.getInstance(FeedbackListActivity.this).getFeedbackListNet(handler, userno);
 			}
 			/**add by yejc 20130708 end*/
@@ -512,13 +505,6 @@ public class FeedbackListActivity extends Activity {
 		}
 	}
 	
-//	private void initMapStatus(BaseAdapter adapter, Map<Integer, Boolean> map, boolean flag) {
-//		int count = adapter.getCount();
-//		map.clear();
-//		for (int i = 0; i<count; i++) {
-//			map.put(i, flag);
-//		}
-//	}
 	
 	/*获取选择站内信的所有ID*/
 	private String getSelectedLatterIds() {
@@ -598,7 +584,6 @@ public class FeedbackListActivity extends Activity {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-//			int type = intent.getIntExtra(infoType, -1);
 			if (type == 1) {
 				if (intent.getBooleanExtra(selectAllKey, false)) {
 					latterSelectAllBtn
@@ -737,10 +722,8 @@ public class FeedbackListActivity extends Activity {
 			/**add by yejc 20130422 start*/
 			Intent intent = new Intent(BROADCAST_ACTION);
 			intent.putExtra(selectAllKey, false);
-//			intent.putExtra(infoType, type);
 			sendBroadcast(intent);
 			/**add by yejc 20130422 end*/
-			// tabSpecListView.removeFooterView(view);
 			Toast.makeText(FeedbackListActivity.this,
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
 		} else {
@@ -804,7 +787,6 @@ public class FeedbackListActivity extends Activity {
 									adapter.notifyDataSetChanged();
 									Intent intent = new Intent(BROADCAST_ACTION);
 									intent.putExtra(selectAllKey, true);
-//									intent.putExtra(infoType, type);
 									sendBroadcast(intent);
 									/**add by yejc 20130422 end*/
 								} else {
@@ -909,7 +891,6 @@ public class FeedbackListActivity extends Activity {
 						ImageView iv = (ImageView)v;
 						if (selectLatterMap.containsKey(position)) {
 							Intent intent = new Intent(BROADCAST_ACTION);
-//							intent.putExtra(infoType, type);
 							if (selectLatterMap.get(position)) {
 								selectLatterMap.put(position, false);
 								intent.putExtra(selectAllKey, true);
@@ -939,7 +920,6 @@ public class FeedbackListActivity extends Activity {
 					@Override
 					public void onClick(final View v) {
 						TextView textview = (TextView) v;
-//						mList.get(index).setTextcolor(Color.RED);
 						textview.setTextColor(mList.get(index).getTextcolor());
 						contentjson = mList.get(index).getContent();
 						title = mList.get(index).getTitle();
@@ -1116,7 +1096,6 @@ public class FeedbackListActivity extends Activity {
 						ImageView iv = (ImageView)v;
 						if (selectMessageMap.containsKey(position)) {
 							Intent intent = new Intent(BROADCAST_ACTION);
-//							intent.putExtra(infoType, type);
 							if (selectMessageMap.get(position)) {
 								selectMessageMap.put(position, false);
 								intent.putExtra(selectAllKey, true);

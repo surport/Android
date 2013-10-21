@@ -267,11 +267,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			jine.setText(iProgressQishu * addviewmiss.getAllAmt()
 					* iProgressBeishu + "元");
 		}
-		// return "注数："
-		// + addviewmiss.getAllZhu() + "注     "
-		// + "金额：" +
-		// + iProgressQishu * addviewmiss.getAllAmt() * iProgressBeishu
-		// + "元";
 	}
 
 	public void onEditTextClik() {
@@ -663,7 +658,6 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
-		// mSeekBarQishu.setProgress(iProgressQishu);
 		if (isclearaddview) {
 			if (addviewmiss != null) {
 				addviewmiss.clearInfo();

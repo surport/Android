@@ -75,12 +75,6 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 			isMissNet(new SscZMissJson(), MissConstant.SSC_MV_2ZHI_ZH, true);// 获取遗漏值
 
 			break;
-		// case 1:
-		// isjixuan=true;
-		// iProgressBeishu = 1;iProgressQishu = 1;
-		// SscBalls sscb = new SscBalls(2);
-		// createviewmechine(sscb,checkedId);
-		// break;
 		case 1:
 			sellWay = MissConstant.SSC_MV_2ZX;
 			isjixuan = false;
@@ -205,9 +199,7 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 					isTouzhuStr = "请至少选择一注！";
 				} else if (iZhuShu > MAX_ZHU) {
 					isTouzhuStr = "false";
-				}/* else if (shi + ge > 12) {
-					isTouzhuStr = "二组分位，小球的个数最大为12个！";
-				}*/ else {
+				}else {
 					isTouzhuStr = "true";
 				}
 			}
@@ -219,9 +211,7 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 				isTouzhuStr = "请至少选择一注！";
 			} else if (iZhuShu > MAX_ZHU) {
 				isTouzhuStr = "false";
-			}/* else if (one2 > 8) {
-				isTouzhuStr = "二组和值，小球的个数最大为8个！";
-			} */else {
+			}else {
 				isTouzhuStr = "true";
 			}
 			break;

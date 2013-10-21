@@ -98,7 +98,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	int allpage = 0;
 	JoinCanyuadpter adapter;
 	RWSharedPreferences shellRW;
-	// private Renren renren;
 	String token, expires_in;
 	private boolean issharemove = false;
 	ProgressBar progressbar;
@@ -842,10 +841,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			Toast.makeText(JoinDetailActivity.this, "请您至少认购" + minInt + "元",
 					Toast.LENGTH_SHORT).show();
 		}
-		// else if(safeAmtInt>bao){
-		// Toast.makeText(JoinDetailActivity.this, "保底金额不正确",
-		// Toast.LENGTH_SHORT).show();
-		// }
+
 		else {
 			joinInNet();
 		}

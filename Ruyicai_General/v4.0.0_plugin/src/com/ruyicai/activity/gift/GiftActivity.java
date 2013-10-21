@@ -119,7 +119,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 	private Vector<Person> persons = new Vector<Person>();// 所有联系人
 	private Vector<Person> checkedPersons = new Vector<Person>();// 选中联系人
 	List<String> successPersons = new ArrayList();// 赠送成功的电话号码
-	// private Vector<String> checkedState = new Vector<String>();// 选择状态
 	private boolean[] checkedState;// 选择状态
 	String phoneStr;
 	String languageStr;
@@ -203,7 +202,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			textTitle.setText("注码：共有1笔投注");
 			textZhuma.setText(betAndGift.getBet_code());
 			initImageView();
-			// beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
 			codeInfo.setVisibility(View.GONE);
 		} else {
@@ -1268,7 +1266,6 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 
 		public GiftActivityHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {

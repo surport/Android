@@ -365,8 +365,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 								Toast.LENGTH_SHORT).show();
 						edit.setText("1");
 					} else if (Integer.valueOf(edit.getText().toString()) > 10000) {
-//						Toast.makeText(ZixuanZhuihao.this, "超过倍数上限9999",
-//								Toast.LENGTH_SHORT).show();
 						edit.setText("10000");
 						edit.setSelection(edit.length());
 					} else {
@@ -548,7 +546,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		if (isTouzhu) {
 			touZhuNet();
 		}
-		// clearProgress();
 	}
 
 	/**
@@ -750,8 +747,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		intent.putExtra("page", BettingSuccessActivity.ADDTO);
 
 		intent.putExtra("lotno", betAndGift.getLotno());
-//		int totalAmount = Integer.valueOf(betAndGift.getAmount())
-//				* Integer.valueOf(betAndGift.getBatchnum());
 		/**add by yejc 20130708 start*/
 		if (isFromTrackQuery) {
 			if (state == 2) {
@@ -907,7 +902,6 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 
 		public ZiXuanZhuihaoActivityHandler(HandlerMsg msg) {
 			super(msg);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void handleMessage(Message msg) {

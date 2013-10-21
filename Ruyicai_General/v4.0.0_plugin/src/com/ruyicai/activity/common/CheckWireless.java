@@ -69,7 +69,6 @@ public class CheckWireless extends Activity {
 
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 

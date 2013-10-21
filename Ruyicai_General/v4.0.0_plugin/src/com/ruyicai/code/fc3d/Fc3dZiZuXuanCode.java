@@ -107,8 +107,6 @@ public class Fc3dZiZuXuanCode extends CodeInterface {
 			zhushu += "" + iZhuShu;
 		}
 		String beishu_ = "01";
-		// t_str += CityCode + DDD_falg + typeCode + "-" + zhushu + "-" +
-		// typeCode + beishu_;
 		t_str += typeCode + beishu_;
 		for (int i = 0; i < zhuma.length; i++) {
 			t_str += zhuma[i];

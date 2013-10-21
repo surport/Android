@@ -43,7 +43,6 @@ public class AsiaActivity extends BaseListActivity {
 			json = JcExplainActivity.jsonObject.getJSONObject("result")
 					.getJSONArray("letGoals");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return json;
@@ -72,7 +71,6 @@ public class AsiaActivity extends BaseListActivity {
 				info.setUpOdds(json.getString("upOdds"));
 				info.setDownOdds(json.getString("downOdds"));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			listInfo.add(info);

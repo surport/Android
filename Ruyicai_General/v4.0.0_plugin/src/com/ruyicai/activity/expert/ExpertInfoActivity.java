@@ -144,7 +144,6 @@ public class ExpertInfoActivity extends Activity implements HandlerMsg {
 						jsonArray.getJSONObject(i));
 				ExpertInfos.add(info);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

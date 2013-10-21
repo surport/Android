@@ -54,8 +54,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
 
 	@Override
 	public CharSequence getPageTitle(int position) {
-		// 设置每个tab view的标题
-		// return viewsTitleBufList.get(position);
+		// 设置每个tab view的标题;
 		return null;
 	}
 

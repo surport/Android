@@ -86,13 +86,6 @@ public class Fc3dZiZhiXuanCode extends CodeInterface {
 		}
 
 		String beishu_ = "01";
-		// if (beishu < 10) {
-		// beishu_ += "0" + beishu;
-		// } else if (beishu >= 10) {
-		// beishu_ += "" + beishu;
-		// }
-		// t_str += CityCode + DDD_falg + typeCode + "-" + zhushu + "-" +
-		// typeCode + beishu_;
 		t_str += typeCode + beishu_;
 		for (int i = 0; i < zhuma.length; i++) {
 			t_str += zhuma[i];
@@ -163,13 +156,6 @@ public class Fc3dZiZhiXuanCode extends CodeInterface {
 		}
 
 		String beishu_ = "01";
-		// if (beishu < 10) {
-		// beishu_ += "0" + beishu;
-		// } else if (beishu >= 10) {
-		// beishu_ += "" + beishu;
-		// }
-		// t_str += CityCode + DDD_falg + typeCode + "-" + zhushu + "-" +
-		// typeCode + beishu_;
 		t_str += typeCode + beishu_;
 		for (int i = 0; i < zhuma.length; i++) {
 			t_str += zhuma[i];

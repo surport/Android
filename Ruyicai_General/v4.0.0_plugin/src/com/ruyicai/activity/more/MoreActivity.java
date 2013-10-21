@@ -63,7 +63,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	private static final String CONTENT = "CONTENT";
 	private static final String TEL = "PHONE";
 	private final static String TITLE = "TITLE"; /* 标题 */
-	// private CompanyInfo companyInfo = new CompanyInfo(this);//公司简介
 	private Context context;
 	private ProgressDialog progressdialog;
 	private RelativeLayout relativeLayout;
@@ -82,7 +81,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 
 	String token, expires_in;
 	String tencent_token, tencent_access_token_secret;
-//	private OAuthV1 tenoAuth; // Oauth鉴权所需及所得信息的封装存储单元
 
 	int returnType = 0;// 1为分享页面的返回参数，0为本地更多
 	OrderPrizeDiaog orderPrizeDialog;// 开奖订阅公共类
@@ -100,13 +98,7 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		shellRW = new RWSharedPreferences(MoreActivity.this, "addInfo");
 		orderPrizeDialog = new OrderPrizeDiaog(shellRW, MoreActivity.this);
 		context = this;
-//		tenoAuth = new OAuthV1(oauthCallback);
-//		tenoAuth.setOauthConsumerKey(Constants.kAppKey);
-//		tenoAuth.setOauthConsumerSecret(Constants.kAppSecret);
-		// initView();
 		showMoreListView();
-		// appc=(ApplicationContext)getApplication();
-
 	}
 
 	/**
@@ -140,8 +132,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 					int position, long id) {
 				text = (TextView) view.findViewById(R.id.ruyihelper_icon_text);
 				textStr = text.getText().toString();
-				// relativeLayout.setVisibility(RelativeLayout.VISIBLE);
-				// iQuitFlag = 10;//当前主界面下一级
 				onClickListener(textStr);
 			}
 
@@ -252,7 +242,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		}
 		/* 分享 */
 		if (getString(R.string.share).equals(str)) {
-			// switchView(systemSet.showView());
 			showShareView();
 		}
 		/* 我要反馈 */
@@ -502,7 +491,6 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 				RuyicaiActivityManager.getInstance().exit();
 				PublicConst.islogin = false;
 				PublicConst.isthirdlogin = false;
-//				ExitDialogFactory.createExitDialog(this);
 			} else {
 				showMoreListView();
 			}

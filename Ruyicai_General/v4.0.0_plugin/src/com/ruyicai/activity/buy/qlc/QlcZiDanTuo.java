@@ -152,7 +152,6 @@ public class QlcZiDanTuo extends ZixuanActivity {
 		int iZhuShu = getZhuShu();
 		int redNumber = danBallTable.getHighlightBallNums();
 		int redTuoNumber = tuoBallTable.getHighlightBallNums();
-		// int blueNumber = blueBallTable.getHighlightBallNums();
 		if ((redNumber < 1 || redNumber > 6)
 				&& (redTuoNumber < 1 || redTuoNumber > 29)) {
 			isTouzhu = "请选择1~6个胆码，1~29个拖码！";

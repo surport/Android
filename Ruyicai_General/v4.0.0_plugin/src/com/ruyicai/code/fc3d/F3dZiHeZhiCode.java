@@ -85,11 +85,6 @@ public class F3dZiHeZhiCode extends CodeInterface {
 			zhushu += "" + iZhuShu;
 		}
 		String beishu_ = "01";
-		// if (beishu < 10) {
-		// beishu_ += "0" + beishu;
-		// } else if (beishu >= 10) {
-		// beishu_ += "" + beishu;
-		// }
 		t_str += typeCode + beishu_;
 		for (int i = 0; i < zhuma.length; i++) {
 			t_str += zhuma[i];
@@ -114,9 +109,6 @@ public class F3dZiHeZhiCode extends CodeInterface {
 				if (j == BallNos[i]) {// 因为数组是从0开始的，小球号码从1开始，故减去1
 					// 删除倍数 cc 20100713
 					iZhuShu = BallNoZhushus[j];// *iProgressBeishu;
-					// String temp = "当前玩法为和值直选，共"
-					// +(iZhuShu+"注，共"+(iZhuShu*2)+"元");
-					// mTextSumMoney.setText(temp);
 				}
 			}
 		}
@@ -139,9 +131,6 @@ public class F3dZiHeZhiCode extends CodeInterface {
 				if (j == BallNos[i] - 1) {// 因为数组是从0开始的，小球实际Id从1开始，故减去1
 					// 删除倍数 cc 20100713
 					iZhuShu = BallNoZhushus[j];// *iProgressBeishu;
-					// String temp = "当前玩法为和值组3，共"
-					// +(iZhuShu+"注，共"+(iZhuShu*2)+"元");
-					// mTextSumMoney.setText(temp);
 				}
 			}
 		}
@@ -164,9 +153,6 @@ public class F3dZiHeZhiCode extends CodeInterface {
 				if (j == BallNos[i] - 3) {// 因为数组是从0开始的，小球实际Id从1开始，故减去1
 					// 删除倍数 cc 20100713
 					iZhuShu = BallNoZhushus[j];// *iProgressBeishu;
-					// String temp = "当前玩法为和值组6，共"
-					// +(iZhuShu+"注，共"+(iZhuShu*2)+"元");
-					// mTextSumMoney.setText(temp);
 				}
 			}
 		}

@@ -300,8 +300,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 	 */
 	public void setPojo() {
 		betAndGift.setBettype("startcase");
-		// betAndGift.setTotalAmt(betAndGift.getAmount());
-		// betAndGift.setAmount(""+Integer.parseInt(betAndGift.getTotalAmt())/Integer.parseInt(betAndGift.getLotmulti()));
 		if (betAndGift.getIssuper().equals("0")) {
 			betAndGift.setOneAmount("300");
 		} else {
@@ -396,7 +394,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 		switch (id) {
 		case 0: {
 			progressdialog = new ProgressDialog(this);
-			// progressdialog.setTitle("Indeterminate");
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 			progressdialog.setCancelable(true);
@@ -417,7 +414,6 @@ public class JoinStartActivityjc extends Activity implements HandlerMsg,
 			try {
 				Toast.makeText(this, controller.getRtnJSONObject().getString("message"), Toast.LENGTH_SHORT).show();
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

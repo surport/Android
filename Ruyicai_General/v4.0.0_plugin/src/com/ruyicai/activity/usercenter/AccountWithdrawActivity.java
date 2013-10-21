@@ -569,7 +569,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 		if (drawBStr == null || drawBStr == "" || drawBStr == "null") {
 			drawBStr = "联网获取失败";
 		}
-//		drawbalanceText.setText("您的账户可提现余额为：" + drawBStr); //close by yejc
 		setTextViewFontColor(drawbalanceText, drawBStr); //add by yejc 20130322
 		drawMoney = drawBStr.substring(0, drawBStr.length() - 1);
 		final TextView nameText = (TextView) getView
@@ -718,8 +717,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 				.findViewById(R.id.get_money_name_edit);
 		final Spinner money_brank = (Spinner) getView
 				.findViewById(R.id.get_money_bank_spinner);
-
-		// TextView dnaRemind = (TextView)findViewById(R.id.TextView07);
 		allcountries = new ArrayList<String>();
 		if (info.getAllbankname() != null && info.getAllbankname().length > 0) {
 			allName = info.getAllbankname();
@@ -761,11 +758,8 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 		if (drawBStr == null || drawBStr == "" || drawBStr == "null") {
 			drawBStr = "联网获取失败";
 		}
-//		drawbalanceText.setText("您的账户可提现余额为：" + drawBStr); //close by yejc 20130322
 		setTextViewFontColor(drawbalanceText, drawBStr); //add by yejc 20130322
 		drawMoney = drawBStr.substring(0, drawBStr.length() - 1);
-		// final EditText money_bank_start = (EditText)
-		// getView.findViewById(R.id.get_money_bank_start_edit);
 		final EditText money_bank_num = (EditText) getView
 				.findViewById(R.id.get_money_bank_num_edit);
 		final EditText money = (EditText) getView
@@ -814,7 +808,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 				String moneyStr = money.getText().toString();
 				String passwordStr = password.getText().toString();
 				String bankNameStr = bankName;
-				// String bankAreaStr = money_bank_start.getText().toString();
 				String bankNoStr = money_bank_num.getText().toString();
 				changeWithdPojo.setUserno(userno);
 				changeWithdPojo.setPhonenum(phonenum);
@@ -915,13 +908,11 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 		exit.setBackgroundResource(R.drawable.join_info_btn_selecter);
 		submit.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// setContentView(getMoneyDialog());
 				checkDNA();
 			}
 		});
 		cancel.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// cancelNet();
 			}
 		});
 		exit.setOnClickListener(new OnClickListener() {
@@ -979,7 +970,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 		cancel.setBackgroundResource(R.drawable.join_info_btn_selecter);
 		submit.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// setContentView(getMoneyDialog());
 				checkDNA();
 			}
 		});
@@ -1512,7 +1502,6 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 				} catch (JSONException e) {
 					drawBStr = "联网获取失败";
 				}
-//				drawbalanceText.setText("您的账户可提现余额为：" + drawBStr); //close by yejc 20130322
 				setTextViewFontColor(drawbalanceText, drawBStr); //add by yejc 20130322
 				progressdialog.dismiss();
 			}

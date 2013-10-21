@@ -27,13 +27,11 @@ public class PrizeBallLinearLayout {
 	private static int[] aBlueColorResId = { R.drawable.blue };
 
 	public PrizeBallLinearLayout() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public PrizeBallLinearLayout(Context context) {
 		this.context = context;
 		BALL_WIDTH = NoticeMainActivity.BALL_WIDTH;
-		// TODO Auto-generated constructor stub
 	}
 
 	public PrizeBallLinearLayout(Context context, int ballwidth) {
@@ -49,7 +47,6 @@ public class PrizeBallLinearLayout {
 		this.linear = linear;
 		this.Lotname = Lotname;
 		this.Batchcode = Batchcode;
-		// TODO Auto-generated constructor stub
 	}
 
 	public void initLinear() {

@@ -44,7 +44,6 @@ public class SscThreeStar extends ZixuanAndJiXuan {
 
 	public void theMethodYouWantToCall() {
 		init();
-		//childtypes.setVisibility(View.GONE);
 	}
 
 	@Override

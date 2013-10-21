@@ -208,7 +208,6 @@ public class HelpCenter extends Activity {
 						.findViewById(R.id.ruyihelper_icon_text);
 				holder.icon = (ImageView) convertView
 						.findViewById(R.id.ruyihelper_iicon);
-				// holder.title.setGravity(Gravity.CENTER);
 				holder.title.setText(title);
 				holder.icon.setBackgroundResource(R.drawable.xiangyou);
 				convertView.setTag(holder);

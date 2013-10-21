@@ -236,7 +236,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		toLogin = false;
 		initBet();
 		touZhuNet();
-		// clearProgress();
 	}
 
 	/**
@@ -246,7 +245,6 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
 		mSeekBarBeishu.setProgress(iProgressBeishu);
-		// mSeekBarQishu.setProgress(iProgressQishu);
 		if (isclearaddview) {
 			if (addviewmiss != null) {
 				addviewmiss.clearInfo();

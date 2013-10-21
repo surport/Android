@@ -117,7 +117,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		scoreshow = (ImageView) findViewById(R.id.userillustrations);
 		shellRW = new RWSharedPreferences(this, "addInfo");
 		initlogin_no();
-		// initReturn();
 		initsroreshow();
 		initPojo();
 		initFuctionLayout();
@@ -1084,7 +1083,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-//		ExitDialogFactory.createExitDialog(this);
 		RuyicaiActivityManager.getInstance().exit();
 		PublicConst.islogin = false;
 		PublicConst.isthirdlogin = false;
@@ -1117,7 +1115,6 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		// PublicMethod.myOutLog("onRestart", "onRestart");
 	}
 
 	@Override
