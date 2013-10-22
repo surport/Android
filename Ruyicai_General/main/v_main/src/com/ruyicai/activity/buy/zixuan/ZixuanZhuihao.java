@@ -206,6 +206,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 		});
 		ok.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				if(!AllowCommit())return;
 				RWSharedPreferences pre = new RWSharedPreferences(
 						ZixuanZhuihao.this, "addInfo");
 				sessionId = pre.getStringValue("sessionid");
@@ -222,6 +223,18 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 			}
 		});
 
+	}
+	
+	protected boolean AllowCommit(){
+		if(checkinfo!=null){
+			for (int i = 0; i < checkinfo.length; i++) {
+				if("".equals(checkinfo[i].getBeishu()) && "1".equals(checkinfo[i].getState())){
+					Toast.makeText(ZixuanZhuihao.this, "倍数不能为空",Toast.LENGTH_SHORT).show();
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	private void getNetIssue() {
@@ -381,7 +394,8 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 						if (edit.getText().toString().equals("")) {
 							Toast.makeText(ZixuanZhuihao.this, "倍数不能为空",
 									Toast.LENGTH_SHORT).show();
-							edit.setText("1");
+							//edit.setText("1");
+							checkinfo[index].setBeishu("");
 						} else if (!PublicMethod.isNumeric(edit.getText()
 								.toString())) {
 							Toast.makeText(ZixuanZhuihao.this, "请输入数字",

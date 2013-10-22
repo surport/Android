@@ -880,7 +880,7 @@
     <string name="log_out_toast_msg">当前用户已退出！</string>
     <string name="log_out_toast_no_login">您还没有登录，请先登录！</string>
     <!-- 账户充值 -->
-    <string name="account_yinlian_alert">"支持银联卡，免开通网银，免手续费。"</string>
+    <string name="account_yinlian_alert">"支持银联卡，免开通网银，推荐使用。"</string>
     <string name="account_umplay_alert">"支持大多数信用卡充值。"</string>
     <string name="account_umplay_phone_alert">"支持移动手机话费充值。"</string>
     <string name="account_phone_alert">支持移动、联通、电信话费充值卡。</string>
@@ -1096,17 +1096,17 @@
     <string name="ding_text_state_title">状态：</string>
     <string name="ding_text_num_title">定制次数：</string>
     <string name="ding_text_lotno_title">彩种：</string>
-    <string name="ding_amt_radio1_title">按金额定制跟单</string>
+    <string name="ding_amt_radio1_title">按固定金额定制跟单</string>
     <string name="ding_amt_radio2_title">按百分比定制跟单</string>
-    <string name="ding_amt_text1_title">每次认购金额：</string>
-    <string name="ding_amt_text2_title">定制跟单次数：</string>
+    <string name="ding_amt_text1_title">每次认购：</string>
+    <string name="ding_amt_text2_title">定制次数：</string>
     <string name="ding_amt_text3_title">至少认购1元</string>
     <string name="ding_amt_text4_title">最多99次</string>
     <string name="ding_amt_text5_title">需要冻结金额</string>
     <string name="ding_radio2_text1_title">至少认购1%</string>
     <string name="ding_radio2_text2_title">无金额上限</string>
     <string name="ding_radio2_text3_title">超过金额上限</string>
-    <string name="ding_radio2_text4_title">认购金额上限：</string>
+    <string name="ding_radio2_text4_title">金额上限：</string>
     <string name="ding_radio2_text5_title">至少认购10元</string>
     <string name="ding_group1_check_text">强制参与(选择了该项，如果设置的跟单金额大于可以跟单的金额，也会参与该合买)</string>
     <!-- 购彩提醒 -->

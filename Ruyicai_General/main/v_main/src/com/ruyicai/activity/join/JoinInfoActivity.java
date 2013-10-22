@@ -4,6 +4,7 @@
 package com.ruyicai.activity.join;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -12,17 +13,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -32,14 +35,20 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
+import com.ruyicai.activity.buy.jc.lq.view.RoundProgressBar;
+import com.ruyicai.activity.join.JoinPopuAdapter.OnChickItem;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.controller.Controller;
@@ -63,14 +72,36 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	private ViewInfo[][] viewInfos = new ViewInfo[3][15];
 	private JoinInfoAdapter[][] adapter = new JoinInfoAdapter[3][15];
 	private int topIndex = 0;
-	private int lottypeIndex = 0;
+	private int lottypeIndex = 0; 
+	private boolean isSearch = false;
 	String orderBy, orderDir;
 	Button imgUp, imgDown;
-	Button progress, allAtm, atm;// 排序按钮
-	CheckBox check;// 升序降序排序
+	String name ;
+	LinearLayout ll_title;
+	RelativeLayout progress, allAtm, atm;// 排序按钮
+	ImageView iv_progress,iv_renqi,iv_allCount; 
+	boolean iv_progress_sort = true,iv_renqi_sort = false,iv_allCount_sort = false;
+	Button btn_search;//
+	EditText et_search;
+	//CheckBox check;// 升序降序排序
+	private RelativeLayout rl_search_layout;
 	private ProgressDialog progressdialog;
 	MyHandler handler = new MyHandler(this);// 自定义handler
 	Handler handlerTwo = new Handler();
+	Handler SearchHandler = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0000:
+				progressdialog.dismiss();
+				progressbar.setVisibility(View.INVISIBLE);
+				initList();
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 	JSONObject json;
 	public static boolean isRefresh = false;
 	ListView listview;
@@ -82,20 +113,30 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	/**add by yejc 20130726 start*/
 	RWSharedPreferences shellRW;
 	private String lotnoPosition = "lotno_position";
-	/**add by yejc 20130726 end*/
+	private Button bt_search;
+	boolean iShow=false;
+	
+	
+	/*xupeisong...start*/
+	private Button imgRetrun;
+	private PopupWindow popupwindow;
+	private GridView mGridView;
+	private Button mShowAllBtn;
+	/*xupeisong...end*/
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.join_info_check);
-		/**add by yejc 20130726 start*/
-		shellRW = new RWSharedPreferences(this, ShellRWConstants.JOIN_LOTNO_INFO);
+		/** add by yejc 20130726 start */
+		shellRW = new RWSharedPreferences(this,
+				ShellRWConstants.JOIN_LOTNO_INFO);
 		lottypeIndex = shellRW.getIntValue(lotnoPosition);
 		seletctitme = lottypeIndex;
 		initlotno(lottypeIndex);
 		initissue(lotno);
-		/**add by yejc 20130726 end*/
+		/** add by yejc 20130726 end */
 		isRefresh = false;
 		initViewInfos();
 		getInfo();
@@ -128,8 +169,76 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
+		
+		ll_title = (LinearLayout)findViewById(R.id.ll_title);
+		ll_title.setBackgroundResource(R.drawable.title_tab_bg);
+		iv_progress = (ImageView)findViewById(R.id.iv_progress);
+		iv_renqi = (ImageView)findViewById(R.id.iv_renqi);
+		iv_allCount = (ImageView)findViewById(R.id.iv_allcount);
+		
+		
+		et_search = (EditText) findViewById(R.id.et_search);
+		btn_search  =  (Button) findViewById(R.id.btn_search);
+		btn_search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				showDialog(0);
+				isSearch = true;
+				viewInfos[topIndex][lottypeIndex].newPage = 0;
+				viewInfos[topIndex][lottypeIndex].allPage = 0;
+				viewInfos[topIndex][lottypeIndex].listdata.clear();
+				
+				
+				 name = et_search.getText().toString().trim(); 
+				if("".equals(name) || name ==null){
+					Toast.makeText(getContext(), "搜索条件不能为空",0).show();
+				}else{
+					
+					Thread t = new Thread(new Runnable() {
+						@Override
+						public void run() {
+						String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
+								orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
+								Constants.PAGENUM,name);
+						try {
+							json = new JSONObject(str);
+							setValue();
+							Message  msg = new Message();
+							msg.what = 0000;
+							SearchHandler.sendMessage(msg);
+							}
+						 catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+						}
+					});
+					t.start();
+				}
+			
+				
+			}
+		});
+		bt_search = (Button)findViewById(R.id.bt_search);
+		rl_search_layout = (RelativeLayout)findViewById(R.id.rl_search_layout);
+	
+		bt_search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(iShow){
+					rl_search_layout.setVisibility(View.GONE);
+					iShow=false;
+				}else {
+					rl_search_layout.setVisibility(View.VISIBLE);
+					iShow=true;
+				}
+			}
+		});
 		TextView title = (TextView) findViewById(R.id.join_text_title);
-		Button imgRetrun = (Button) findViewById(R.id.join_img_return);
+		imgRetrun = (Button) findViewById(R.id.join_img_return);
 		title.setText("合买大厅");
 		title.append("-" + PublicMethod.toLotno(lotno));
 		imgRetrun.setBackgroundResource(R.drawable.returnselecter);
@@ -140,19 +249,20 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			@Override
 			public void onClick(View v) {
 				// finish();
-				selecetDialog().show();
+//				selecetDialog().show();
+				createMenuDialog();
 			}
 		});
-		LinearLayout top = (LinearLayout) findViewById(R.id.join_info_check_linear_top);
-		top.setVisibility(LinearLayout.VISIBLE);
-		progress = (Button) findViewById(R.id.join_info_btn_progress);
+		//LinearLayout top = (LinearLayout) findViewById(R.id.join_info_check_linear_top);
+		//top.setVisibility(LinearLayout.VISIBLE);
+		progress = (RelativeLayout) findViewById(R.id.join_info_btn_progress);
 		progress.setBackgroundResource(R.drawable.join_info_btn_selecter);
-		allAtm = (Button) findViewById(R.id.join_info_btn_all_atm);
+		allAtm = (RelativeLayout) findViewById(R.id.join_info_btn_all_atm);
 		allAtm.setBackgroundResource(R.drawable.join_info_btn_selecter);
-		atm = (Button) findViewById(R.id.join_info_btn_atm);
+		atm = (RelativeLayout) findViewById(R.id.join_info_btn_atm);
 		atm.setBackgroundResource(R.drawable.join_info_btn_selecter);
-		check = (CheckBox) findViewById(R.id.jion_info_check);
-		check.setButtonDrawable(R.drawable.join_info_check_select);
+		//check = (CheckBox) findViewById(R.id.jion_info_check);
+		//check.setButtonDrawable(R.drawable.join_info_check_select);
 		listview = (ListView) findViewById(R.id.join_listview);
 		LayoutInflater mInflater = (LayoutInflater) this
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -173,11 +283,77 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 	}
 
+//	private void addmore() {
+//		
+//		int newPager = viewInfos[topIndex][lottypeIndex].newPage; 
+//		//int allparer = viewInfos[topIndex][lottypeIndex].allPage;
+//		if (viewInfos[topIndex][lottypeIndex].newPage < viewInfos[topIndex][lottypeIndex].allPage) {
+////			if(isSearch){
+////				Thread t = new Thread(new Runnable() {
+////					@Override
+////					public void run() {
+////					String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
+////							orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
+////							Constants.PAGENUM,name);
+////					try {
+////						json = new JSONObject(str);
+////						setValue();
+////						Message  msg = new Message();
+////						msg.what = 0000;
+////						SearchHandler.sendMessage(msg);
+////						}
+////					 catch (JSONException e) {
+////						// TODO Auto-generated catch block
+////						e.printStackTrace();
+////					}
+////				
+////					}
+////				});
+////				t.start();
+////			}else{
+//				joinInfokNet(orderBy, orderDir);
+////			}
+//		} else {
+//			viewInfos[topIndex][lottypeIndex].newPage = viewInfos[topIndex][lottypeIndex].allPage - 1;
+//			view.setEnabled(true);
+//			progressbar.setVisibility(View.INVISIBLE);
+//			Toast.makeText(JoinInfoActivity.this, "已至尾页", Toast.LENGTH_SHORT)
+//					.show();
+//		}
+//	}
+//	
 	private void addmore() {
 
 		viewInfos[topIndex][lottypeIndex].newPage++;
+		int allpage = viewInfos[topIndex][lottypeIndex].allPage;
 		if (viewInfos[topIndex][lottypeIndex].newPage < viewInfos[topIndex][lottypeIndex].allPage) {
+			
+			if(isSearch){
+				view.setEnabled(true);
+			Thread t = new Thread(new Runnable() {
+				@Override
+				public void run() {
+				String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
+						orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
+						Constants.PAGENUM,name);
+				try {
+					json = new JSONObject(str);
+					setValue();
+					Message  msg = new Message();
+					msg.what = 0000;
+					SearchHandler.sendMessage(msg);
+					}
+				 catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+				}
+			});
+			t.start();
+		}else{
 			joinInfokNet(orderBy, orderDir);
+		}
 		} else {
 			viewInfos[topIndex][lottypeIndex].newPage = viewInfos[topIndex][lottypeIndex].allPage - 1;
 			view.setEnabled(true);
@@ -186,7 +362,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					.show();
 		}
 	}
-
 	/**
 	 * 顶部按钮事件
 	 */
@@ -198,12 +373,26 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				progress.setBackgroundResource(R.drawable.join_info_btn_b);
-				allAtm.setBackgroundResource(R.drawable.join_info_btn);
-				atm.setBackgroundResource(R.drawable.join_info_btn);
-				orderBy = QueryJoinInfoInterface.PROGRESS;
-				topIndex = 0;
-				initOrder();
+				iv_renqi.setBackgroundResource(R.drawable.hemai_normal);
+				iv_allCount.setBackgroundResource(R.drawable.hemai_normal);
+				if(iv_progress_sort){
+					
+					orderDir = QueryJoinInfoInterface.ASC;
+					iv_progress.setBackgroundResource(R.drawable.daoxu);
+					iv_progress_sort = false;
+				}else{
+					iv_progress.setBackgroundResource(R.drawable.zhengxun);
+					iv_progress_sort = true;
+					orderDir = QueryJoinInfoInterface.DESC;
+				}
+				onCheck();
+				
+//				progress.setBackgroundResource(R.drawable.join_info_btn_b);
+//				allAtm.setBackgroundResource(R.drawable.join_info_btn);
+//				atm.setBackgroundResource(R.drawable.join_info_btn);
+//				orderBy = QueryJoinInfoInterface.PROGRESS;
+//				topIndex = 0;
+//				initOrder();
 			}
 		});
 
@@ -211,43 +400,72 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
-				progress.setBackgroundResource(R.drawable.join_info_btn);
+				
+				
+				
+			/*	progress.setBackgroundResource(R.drawable.join_info_btn);
 				allAtm.setBackgroundResource(R.drawable.join_info_btn_b);
-				atm.setBackgroundResource(R.drawable.join_info_btn);
-				orderBy = QueryJoinInfoInterface.TOTALAMT;
+				atm.setBackgroundResource(R.drawable.join_info_btn);*/
+				
+				iv_progress.setBackgroundResource(R.drawable.hemai_normal);
+				iv_renqi.setBackgroundResource(R.drawable.hemai_normal);
+				if(iv_allCount_sort){
+					orderBy = QueryJoinInfoInterface.TOTALAMT;
+					orderDir = QueryJoinInfoInterface.ASC;
+					iv_allCount.setBackgroundResource(R.drawable.daoxu);
+					iv_allCount_sort = false;
+				}else{
+					orderBy = QueryJoinInfoInterface.TOTALAMT;
+					orderDir = QueryJoinInfoInterface.DESC;
+					iv_allCount.setBackgroundResource(R.drawable.zhengxun);
+					iv_allCount_sort = true;
+				}
 				topIndex = 1;
-				initOrder();
+				//initOrder();
+				onCheck();
 			}
 		});
+		//人气排序的点击事件
 		atm.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				progress.setBackgroundResource(R.drawable.join_info_btn);
-				allAtm.setBackgroundResource(R.drawable.join_info_btn);
-				atm.setBackgroundResource(R.drawable.join_info_btn_b);
-				orderBy = QueryJoinInfoInterface.POPULARITY;
-				topIndex = 2;
-				initOrder();
-			}
-		});
-		// 实现记住密码 和 复选框的状态
-		check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-				if (isChecked) {
+				
+				iv_progress.setBackgroundResource(R.drawable.hemai_normal);
+				iv_allCount.setBackgroundResource(R.drawable.hemai_normal);
+				if(iv_renqi_sort){
 					orderDir = QueryJoinInfoInterface.ASC;
-				} else {
+					iv_renqi.setBackgroundResource(R.drawable.daoxu);
+					iv_renqi_sort = false;
+				}else{
 					orderDir = QueryJoinInfoInterface.DESC;
+					iv_renqi.setBackgroundResource(R.drawable.zhengxun);
+					iv_renqi_sort = true;
 				}
-				if (viewInfos[topIndex][lottypeIndex].ischeck != isChecked) {
-					viewInfos[topIndex][lottypeIndex].ischeck = isChecked;
-					onCheck();
-				}
-
+				orderBy = QueryJoinInfoInterface.POPULARITY;
+				
+				topIndex = 2;
+				//initOrder();
+				onCheck();
 			}
 		});
+		
+		
+//		check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//			@Override
+//			public void onCheckedChanged(CompoundButton buttonView,
+//					boolean isChecked) {
+//				if (isChecked) {
+//					orderDir = QueryJoinInfoInterface.ASC;
+//				} else {
+//					orderDir = QueryJoinInfoInterface.DESC;
+//				}
+//				if (viewInfos[topIndex][lottypeIndex].ischeck != isChecked) {
+//					viewInfos[topIndex][lottypeIndex].ischeck = isChecked;
+//					onCheck();
+//				}
+//
+//			}
+//		});
 	}
 
 	/**
@@ -262,7 +480,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	}
 
 	public void initOrder() {
-		check.setChecked(viewInfos[topIndex][lottypeIndex].ischeck);
+	//	check.setChecked(viewInfos[topIndex][lottypeIndex].ischeck);
 		if (viewInfos[topIndex][lottypeIndex].newPage > viewInfos[topIndex][lottypeIndex].allPage - 1) {
 			joinInfokNet(orderBy, orderDir);
 			view.setEnabled(true);
@@ -312,6 +530,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	}
 
 	public void joinInfokNet(final String orderBy, final String orderDir) {
+		isSearch = false;
 		if (viewInfos[topIndex][lottypeIndex].newPage == 0) {
 			showDialog(0);
 		}
@@ -348,57 +567,82 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				info.setLotno(obj.getString("lotNo"));
 				info.setBatchCode(obj.getString("batchCode"));
 				info.setIsTop(obj.getString("isTop"));
+				
+				/*xupeisong...start*/
+				info.setMinAmt(obj.getString("minAmt"));
+				info.setSafeAmt(obj.getString("safeAmt"));
+				/*xupeisong...end*/
 				JSONObject displayIcon = obj.getJSONObject("displayIcon");
 				try {
-					info.setCup(displayIcon.getString("cup"));
+					if(displayIcon.has("cup")){
+						info.setCup(displayIcon.getString("cup"));
+					}
+				
 
 				} catch (Exception e) {
 
 				}
 				try {
+					if(displayIcon.has("graycup")){
 					info.setGrayCup(displayIcon.getString("graycup"));
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				try {
+					if(displayIcon.has("diamond")){
 					info.setDiamond(displayIcon.getString("diamond"));
-
+					}
 				} catch (Exception e) {
 
 				}
 				try {
+					if(displayIcon.has("graydiamond")){
 					info.setGrayDiamond(displayIcon.getString("graydiamond"));
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				try {
+					if(displayIcon.has("goldStar")){
 					info.setStarNum(displayIcon.getString("goldStar"));
-
+					}
 				} catch (Exception e) {
 
 				}
 				try {
+					if(displayIcon.has("graygoldStar")){
 					info.setGrayStarNum(displayIcon.getString("graygoldStar"));
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				try {
-					info.setCrown(displayIcon.getString("crown"));
-
+					if(displayIcon.has("graygoldStar")){
+					info.setCrown(displayIcon.getString("graygoldStar"));
+					}
 				} catch (Exception e) {
 
 				}
 				try {
+					if(displayIcon.has("graycrown")){
 					info.setGrayCrown(displayIcon.getString("graycrown"));
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 				try {
+					if(displayIcon.has("starterUserNo")){
 					info.setStarterUserNo(obj.getString("starterUserNo"));
+					}
 				} catch (Exception e) {
 
 				}
-				info.setSafe(obj.getString("safeRate"));
+				if(obj.has("safeRate")){
+					String safeRate = obj.getString("safeRate");
+					info.setSafe(safeRate);
+				}
+				
 				checkInfos.add(info);
 				viewInfos[topIndex][lottypeIndex].listdata.add(info);
 			}
@@ -412,6 +656,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 * 初始化列表
 	 */
 	public void initList() {
+		
 		TextView title = (TextView) findViewById(R.id.join_text_title);
 		title.setText("合买大厅");
 		title.append("-" + PublicMethod.toLotno(lotno));
@@ -420,6 +665,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			adapter[topIndex][lottypeIndex] = new JoinInfoAdapter(this,
 					viewInfos[topIndex][lottypeIndex].listdata);
 			listview.setAdapter(adapter[topIndex][lottypeIndex]);
+			//adapter[topIndex][lottypeIndex].notifyDataSetChanged();
 		} else {
 			adapter[topIndex][lottypeIndex].notifyDataSetChanged();
 		}
@@ -427,16 +673,12 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		/* 列表的点击后的背景 */
 		OnItemClickListener clickListener = new OnItemClickListener() {
 
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Info info = (Info) viewInfos[topIndex][lottypeIndex].listdata
-						.get(position);
+			public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
+				Info info = (Info) viewInfos[topIndex][lottypeIndex].listdata.get(position);
 				if (info.getAtm().equals(info.getAllAtm())) {
-					Toast.makeText(JoinInfoActivity.this, "该方案已经满员,请您选择其他方案！",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(JoinInfoActivity.this, "该方案已经满员,请您选择其他方案！",Toast.LENGTH_SHORT).show();
 				} else {
-					Intent intent = new Intent(JoinInfoActivity.this,
-							JoinDetailActivity.class);
+					Intent intent = new Intent(JoinInfoActivity.this,JoinDetailActivity.class);
 					intent.putExtra(ID, info.getId());
 					intent.putExtra(Constants.LOTNO, info.getLotno());
 					intent.putExtra(Constants.ISSUE, info.getBatchCode());
@@ -490,7 +732,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			lotno = Constants.LOTNO_JCL;
 		} else if (lottype == 11) {
 			lotno = Constants.LOTNO_JCZ;
-		}else if(lottype == 12){
+		} else if (lottype == 12) {
 			lotno = Constants.LOTNO_BJ_SINGLE;
 		}
 
@@ -521,10 +763,12 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 		private LayoutInflater mInflater; // 扩充主列表布局
 		private List<Info> mList;
+		Context context;
 
 		public JoinInfoAdapter(Context context, List<Info> list) {
 			mInflater = LayoutInflater.from(context);
 			mList = list;
+			this.context=context;
 
 		}
 
@@ -546,33 +790,30 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		int index;
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			index = position;
 			ViewHolder holder = null;
 			Info info = (Info) mList.get(position);
-
 			if (convertView == null) {
-				convertView = mInflater.inflate(
-						R.layout.join_info_listview_item, null);
+				convertView = mInflater.inflate(R.layout.join_info_listview_item, null);
 				holder = new ViewHolder();
-				holder.type = (TextView) convertView
-						.findViewById(R.id.join_info_item_text_name);
-				holder.ding = (TextView) convertView
-						.findViewById(R.id.join_info_item_text_ding);
-				holder.name = (TextView) convertView
-						.findViewById(R.id.join_info_item_text_faqiren);
-				holder.starNum = (LinearLayout) convertView
-						.findViewById(R.id.join_info_item_linear_star);
-				holder.progress = (TextView) convertView
-						.findViewById(R.id.join_info_item_text_progress);
-				holder.allAtm = (TextView) convertView
-						.findViewById(R.id.join_info_item_text_all_amt);
-				holder.layoutLeft = (LinearLayout) convertView
-						.findViewById(R.id.join_info_item_layout_left);
-				holder.layoutCenter = (LinearLayout) convertView
-						.findViewById(R.id.join_info_item_layout_center);
-				holder.layoutRight = (LinearLayout) convertView
-						.findViewById(R.id.join_info_item_layout_right);
+				holder.type = (TextView) convertView.findViewById(R.id.join_info_item_text_name);
+				holder.ding = (TextView) convertView.findViewById(R.id.join_info_item_text_ding);
+				holder.name = (TextView) convertView.findViewById(R.id.join_info_item_text_faqiren);
+				holder.starNum = (LinearLayout) convertView.findViewById(R.id.join_info_item_linear_star);
+				holder.atm = (TextView) convertView.findViewById(R.id.join_info_item_text_atm);
+				holder.allAtm = (TextView) convertView.findViewById(R.id.join_info_item_text_all_amt);
+				holder.layoutLeft = (LinearLayout) convertView.findViewById(R.id.join_info_item_layout_left);
+				holder.layoutCenter = (LinearLayout) convertView.findViewById(R.id.join_info_item_layout_center);
+				holder.layoutRight = (LinearLayout) convertView.findViewById(R.id.join_info_item_layout_right);
+				
+				holder.baodi = (TextView)convertView.findViewById(R.id.join_info_item_baodiTxt);//保底进度
+				holder.schedule=(RoundProgressBar)convertView.findViewById(R.id.roundProgressBar);//进度
+				holder.lestbuy=(TextView)convertView.findViewById(R.id.join_info_item_lestbuyTxt);//至少认购
+				holder.gendan=(Button)convertView.findViewById(R.id.join_info_item_dingzhiImgBtn);//定制跟单
+				
+				holder.schedule.setMax(100);
+				holder.schedule.setTextIsDisplayable(true);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -596,18 +837,46 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				holder.layoutRight.setLayoutParams(paramsLayout);
 			}
 			holder.type.setText(info.getLottype());
-			holder.name.setText("发起人:" + getusername(info.getName()));
-			holder.progress.setText(info.getProgress() + "(" + info.getSafe()
-					+ ")");
-			holder.allAtm.setText(info.getAllAtm() + "元");
-			// holder.atm.setText("￥"+info.getAtm());
-			// holder.safe.setText(info.getSafe());
+			holder.name.setText( getusername(info.getName()));
+			holder.atm.setText("￥"+(Integer.parseInt(info.getAllAtm())-Integer.parseInt(info.getAtm())) + "元");
+			holder.lestbuy.setText(info.getMinAmt()+"元");
+			holder.allAtm.setText("￥"+info.getAllAtm() + "元");
+			holder.baodi.setText("保"+info.getSafe()+"%");
+			int ProgressCount=Integer.parseInt(info.getProgress()+"");
+			
+			holder.schedule.setTextColor(cricleProgressColor(ProgressCount));//设置中间显示的百分比颜色
+			holder.schedule.setCricleProgressColor(cricleProgressColor(ProgressCount));//设置进度条的颜色
+			holder.schedule.setProgress(ProgressCount);
+			
+			
 			PublicMethod.createStar(holder.starNum, info.getCrown(),
 					info.getGrayCrown(), info.getCup(), info.getGrayCup(),
 					info.getDiamond(), info.getGrayDiamond(),
 					info.getStarNum(), info.getGrayStarNum(),
 					JoinInfoActivity.this, 4);
+			//跳转定制跟单界面
+			holder.gendan.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Info info = (Info) viewInfos[topIndex][lottypeIndex].listdata.get(position);
+					Intent intent = new Intent(context,JoinDingActivity.class);
+					intent.putExtra(Constants.LOTNO, info.getLotno());
+					intent.putExtra(USER_NO, info.getStarterUserNo());
+					startActivity(intent);
+				}
+			});
 			return convertView;
+		}
+		//根据进度百分比设置颜色
+		private int cricleProgressColor(int percent) {
+			if((percent>0||percent==0)&&percent<50){
+				return Color.RED;
+			}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+				return Color.GREEN;
+			}
+			return Color.RED;
 		}
 
 		class ViewHolder {
@@ -616,10 +885,13 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			TextView type;
 			TextView name;
 			LinearLayout starNum;
-			TextView progress;
+			TextView atm;
 			TextView allAtm;
-			// TextView atm;
-			// TextView safe;
+			TextView baodi;//保底
+			Button gendan;//定制跟单
+			TextView lestbuy;//至少认购
+
+			RoundProgressBar schedule;// 进度
 		}
 	}
 
@@ -705,6 +977,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		String batchCode;
 		String isTop;
 		String starterUserNo;
+		String minAmt;
+		String safeAmt;
 
 		public String getGrayCrown() {
 			return grayCrown;
@@ -783,7 +1057,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		}
 
 		public void setSafe(String safe) {
-			this.safe = "+" + safe + "%";
+			this.safe = safe;
 		}
 
 		public String getCrown() {
@@ -839,7 +1113,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		}
 
 		public void setProgress(String progress) {
-			this.progress = progress + "%";
+			this.progress = progress;
 		}
 
 		public String getAllAtm() {
@@ -857,7 +1131,22 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		public void setAtm(String atm) {
 			this.atm = Integer.toString(Integer.parseInt(atm) / 100);
 		}
+		
+		public String getMinAmt() {
+			return minAmt;
+		}
 
+		public void setMinAmt(String minAmt) {
+			this.minAmt = Integer.toString(Integer.parseInt(minAmt) / 100);
+		}
+		
+		public String getSafeAmt() {
+			return safeAmt;
+		}
+
+		public void setSafeAmt(String safeAmt) {
+			this.safeAmt = safeAmt;
+		}
 		public Info() {
 
 		}
@@ -944,30 +1233,114 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
-	AlertDialog selecetDialog() {
-
-		return new AlertDialog.Builder(JoinInfoActivity.this)
-				.setTitle("筛选彩种")
-				.setSingleChoiceItems(R.array.hemai_list, seletctitme,
-						new DialogInterface.OnClickListener() {
-
-							public void onClick(DialogInterface dialog,
-									int which) {
-								/**add by yejc 20130726 start*/
-								shellRW.putIntValue(lotnoPosition, which);
-								/**add by yejc 20130726 end*/
-								seletctitme = which;
-								lottypeIndex = which;
-								initlotno(lottypeIndex);
-								initissue(lotno);
-							}
-						})
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						/* User clicked Yes so do some stuff */
-						isSelect = true;
-						initOrder();
-					}
-				}).create();
+//	AlertDialog selecetDialog() {
+//
+//		return new AlertDialog.Builder(JoinInfoActivity.this)
+//				.setTitle("筛选彩种")
+//				.setSingleChoiceItems(R.array.hemai_list, seletctitme,
+//						new DialogInterface.OnClickListener() {
+//
+//							public void onClick(DialogInterface dialog,int which) {
+//								/** add by yejc 20130726 start */
+//								shellRW.putIntValue(lotnoPosition, which);
+//								/** add by yejc 20130726 end */
+//								seletctitme = which;
+//								lottypeIndex = which;
+//								initlotno(lottypeIndex);
+//								initissue(lotno);
+//							}
+//						})
+//				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int whichButton) {
+//						/* User clicked Yes so do some stuff */
+//						isSelect = true;
+//						initOrder();
+//					}
+//				}).create();
+//	}
+	
+	
+	
+	////xupeisong......start
+	/**
+	 * 彩种下拉列表，选择窗口
+	 */
+	private JoinPopuAdapter showMenuadapter;
+	private int index=0;
+	private void createMenuDialog() {
+		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View popupView = (LinearLayout) inflate.inflate(R.layout.buy_join__window, null);
+		mGridView = (GridView) popupView.findViewById(R.id.gridView);
+		mShowAllBtn=(Button)popupView.findViewById(R.id.show_allBtn);
+		mShowAllBtn.setOnClickListener(new showAllOnCgick());
+		
+		
+		String[] str=getResources().getStringArray(R.array.hemai_list);
+		List<String> stooges = Arrays.asList(str);
+		showMenuadapter = new JoinPopuAdapter(this,new popOnItemChick(),stooges);
+		mGridView.setAdapter(showMenuadapter);
+		
+		popupwindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		popupwindow.setTouchable(true); // 设置PopupWindow可触摸
+		popupwindow.setOutsideTouchable(true);
+		popupView.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+					popupwindow = null;
+				}
+				return false;
+			}
+		});
+		popupwindow.showAsDropDown(imgRetrun);
+		if(lottypeIndex==0){
+			mShowAllBtn.setBackgroundResource(R.drawable.shaixuan_chick);
+			showMenuadapter.setItemSelect(-1);
+			showMenuadapter.notifyDataSetInvalidated();
+		}else if(lottypeIndex>0){
+			mShowAllBtn.setBackgroundResource(R.drawable.shaixuan_normal);
+			showMenuadapter.setItemSelect(lottypeIndex);
+			showMenuadapter.notifyDataSetInvalidated();
+		}
+		
 	}
+	//显示所有按钮事件
+	public class showAllOnCgick implements OnClickListener{
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			popupwindow.dismiss();
+			
+			
+			shellRW.putIntValue(lotnoPosition, 0);
+			seletctitme = 0;
+			lottypeIndex = 0;
+			initlotno(lottypeIndex);
+			initissue(lotno);
+			isSelect = true;
+			initOrder();
+		}
+		
+	}
+	//菜单选择按钮事件
+	public class popOnItemChick implements OnChickItem{
+		@Override
+		public void onChickItem(View view, int position,String text) {
+			// TODO Auto-generated method stub
+			popupwindow.dismiss();
+			mShowAllBtn.setBackgroundResource(R.drawable.shaixuan_normal);
+			showMenuadapter.setItemSelect(position);
+			showMenuadapter.notifyDataSetInvalidated();
+			
+			shellRW.putIntValue(lotnoPosition, position);
+			seletctitme = position;
+			lottypeIndex = position;
+			initlotno(lottypeIndex);
+			initissue(lotno);
+			isSelect = true;
+			initOrder();
+		}
+	}
+	////end...
 }

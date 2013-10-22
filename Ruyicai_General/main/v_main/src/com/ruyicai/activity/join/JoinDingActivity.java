@@ -14,7 +14,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -58,6 +61,8 @@ public class JoinDingActivity extends Activity {
 	protected String starterUserNo;
 	protected String lotno;
 	private final int LineNum = 3;
+	private TextView tv_jianzhitixing;
+	private TextView tv_jianzhitixing02;
 	private List<RadioButton> radioBtns = new ArrayList<RadioButton>();
 
 	@Override
@@ -397,6 +402,11 @@ public class JoinDingActivity extends Activity {
 		RadioButton radio1 = (RadioButton) findViewById(R.id.ding_group1_radio1);
 		radio0.setPadding(Constants.PADDING, 0, 15, 0);
 		radio1.setPadding(Constants.PADDING, 0, 15, 0);
+		tv_jianzhitixing = (TextView) findViewById(R.id.tv_jianzhitixing);
+		tv_jianzhitixing02 = (TextView) findViewById(R.id.tv_jianzhitixing02);
+		setTextdifColor(tv_jianzhitixing02);// 设置颜色值
+		setTextdifColor(tv_jianzhitixing);// 设置颜色值
+
 		radio0.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
@@ -427,24 +437,34 @@ public class JoinDingActivity extends Activity {
 		initGroupTwoView();
 	}
 
+	private void setTextdifColor(TextView tv) {
+		String str = getResources().getString(R.string.ding_group1_check_text);
+		SpannableStringBuilder style = new SpannableStringBuilder(str);
+		// //SpannableStringBuilder实现CharSequence接口
+		style.setSpan(new ForegroundColorSpan(Color.BLACK), 0, 4,
+				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		style.setSpan(new ForegroundColorSpan(Color.RED), 4, str.length(),
+				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		tv.setText(style);// 将其添加到tv中
+
+	}
+
 	/**
 	 * 初始化按钮显示隐藏
 	 */
 	public void initButtonLayout() {
-		final Button infoBtn = (Button) findViewById(R.id.ding_info);
+		// final Button infoBtn = (Button) findViewById(R.id.ding_info);
 		final LinearLayout infoLyoaut = (LinearLayout) findViewById(R.id.faqixinxi);
 		final Button prizeBtn = (Button) findViewById(R.id.fangan);
 		final LinearLayout prizeLayout = (LinearLayout) findViewById(R.id.fanganxiangqing);
 		final Button buyBtn = (Button) findViewById(R.id.rengou);
 		final LinearLayout buyLyoaut = (LinearLayout) findViewById(R.id.rengoushezhi);
-		infoBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setLayoutVisbe(infoLyoaut, infoBtn);
-			}
-		});
+		/*
+		 * infoBtn.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub setLayoutVisbe(infoLyoaut, infoBtn); } });
+		 */
 		prizeBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -453,14 +473,14 @@ public class JoinDingActivity extends Activity {
 				setLayoutVisbe(prizeLayout, prizeBtn);
 			}
 		});
-		buyBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setLayoutVisbe(buyLyoaut, buyBtn);
-			}
-		});
+		// buyBtn.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// // TODO Auto-generated method stub
+		// setLayoutVisbe(buyLyoaut, buyBtn);
+		// }
+		// });
 
 	}
 

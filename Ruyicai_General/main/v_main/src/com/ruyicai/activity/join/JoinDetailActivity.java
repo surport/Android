@@ -25,7 +25,6 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,10 +47,10 @@ import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.jc.lq.view.RoundProgressBar;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.ContentListView;
-import com.ruyicai.activity.usercenter.detail.Hemaidetail;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -80,18 +79,19 @@ import com.umeng.analytics.MobclickAgent;
  * 
  */
 public class JoinDetailActivity extends Activity implements HandlerMsg {
-	private TextView name, describe, atm, id, renAtm, baoAtm, progress, state,
+	private TextView name, describe, atm, id, renAtm, baoAtm, state,
 			shengAtm, person, deduct, content, amountProgress, amountText,
 			safeProgress, safeText, minText, minText1, lotnotext, beishutext,
-			batchcodetext, faqirengou, timeText, rengouText, minRGText;
+			batchcodetext, faqirengou, timeText, rengouText,minRGText;
+	
 	private LinearLayout starLayout;
-	private LinearLayout faqixinxi, fanganxiangqing, fanganleirong,
+	private LinearLayout  faqixinxi,fanganxiangqing, fanganleirong,
 			rengoushezhi, fenxianglayout;
 	private Button faqi, xiangqing, leirong, rengou, canyu;
 	private boolean isfaqi = false, isxiangqing = false, isleirong = false,
 			isrengou = false, iscanyu = true;
 	private EditText amountEdit, safeAmtEdit;
-	private ImageButton joinInImg;
+	private Button joinInImg;
 	private ProgressDialog progressdialog;
 	private String caseId = "", issue = "";
 	private String lotno = "F47104";
@@ -116,7 +116,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	Button chedan;
 	Vector<CanyuInfo> canyudata = new Vector<CanyuInfo>();
 	View view;
-	ImageButton wangyi, xinlang;
+	ImageButton  xinlang,wangyi;
 	private boolean isSinaTiaoZhuan = true;
 	private String starterUserNo;
 	String tencent_token;
@@ -125,6 +125,13 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private Context context = this;
 	private ContentListView contentListView = new ContentListView(context);
 	private LinearLayout layoutMain;
+	
+	
+	private Button mMiaoshu;
+	boolean isMiaoShu=false;
+	private LinearLayout mFanganmiaoshu;
+	private RoundProgressBar mRoundProgressBar;
+	private TextView mJoin_detail_text_rengou_progress2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -173,18 +180,18 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				finish();
 			}
 		});
-		Button dingBtn = (Button) findViewById(R.id.join_dingzhi);
-		dingBtn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(JoinDetailActivity.this,
-						JoinDingActivity.class);
-				intent.putExtra(JoinInfoActivity.USER_NO, starterUserNo);
-				intent.putExtra(Constants.LOTNO, lotno);
-				startActivity(intent);
-			}
-		});
+//		Button dingBtn = (Button) findViewById(R.id.join_dingzhi);
+//		dingBtn.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent intent = new Intent(JoinDetailActivity.this,
+//						JoinDingActivity.class);
+//				intent.putExtra(JoinInfoActivity.USER_NO, starterUserNo);
+//				intent.putExtra(Constants.LOTNO, lotno);
+//				startActivity(intent);
+//			}
+//		});
 		wangyi = (ImageButton) findViewById(R.id.join_detail_img_buy2);
 		xinlang = (ImageButton) findViewById(R.id.join_detail_img_buy3);
 		wangyi.setOnClickListener(new OnClickListener() {
@@ -301,7 +308,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		id = (TextView) findViewById(R.id.join_detail_text_num);
 		baoAtm = (TextView) findViewById(R.id.join_detail_text_baodi_atm);
 		renAtm = (TextView) findViewById(R.id.join_detail_text_rengou_atm);
-		progress = (TextView) findViewById(R.id.join_detail_tex_progress);
 		state = (TextView) findViewById(R.id.join_detail_text_state);
 		shengAtm = (TextView) findViewById(R.id.join_detail_text_shengyu_atm);
 		person = (TextView) findViewById(R.id.join_detail_text_person);
@@ -315,8 +321,17 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		timeText = (TextView) findViewById(R.id.join_detail_text_time);
 		amountEdit = (EditText) findViewById(R.id.join_detail_edit_rengou);
 		safeAmtEdit = (EditText) findViewById(R.id.join_detail_edit_baodi);
-		joinInImg = (ImageButton) findViewById(R.id.join_detail_img_buy);
+		joinInImg = (Button) findViewById(R.id.join_detail_img_buy);
 		layoutMain = (LinearLayout) findViewById(R.id.join_detail_layout_context);
+		
+		
+		//..........
+		mMiaoshu=(Button)findViewById(R.id.miaoshu);
+		mFanganmiaoshu=(LinearLayout)findViewById(R.id.fanganmiaoshu);
+		mRoundProgressBar=(RoundProgressBar)findViewById(R.id.join_detail_tex_progress);
+		mJoin_detail_text_rengou_progress2=(TextView)findViewById(R.id.join_detail_text_rengou_progress2);
+		
+		
 		joinInImg.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				isLogin();
@@ -590,6 +605,26 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					canyurenyuan.setVisibility(View.GONE);
 					canyu.setBackgroundResource(R.drawable.joninfobuttonoff);
 					iscanyu = true;
+				}
+			}
+		});
+		
+		
+		
+		//.....................
+		mMiaoshu.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(isMiaoShu){
+					mFanganmiaoshu.setVisibility(View.GONE);
+					mMiaoshu.setBackgroundResource(R.drawable.joninfobuttonoff);
+					isMiaoShu=false;
+				}else {
+					mFanganmiaoshu.setVisibility(View.VISIBLE);
+					mMiaoshu.setBackgroundResource(R.drawable.joininfobuttonup);
+					isMiaoShu=true;
 				}
 			}
 		});
@@ -906,8 +941,20 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
-		progress.append(detatil.getBuyProgress() + "%+"
-				+ detatil.getSafeProgress() + "%");
+		
+		
+		//。。。。。。。。。。。。。
+		/**
+		 * 显示百分比
+		 */
+		int ProgressCount=Integer.parseInt(detatil.getBuyProgress());
+		mRoundProgressBar.setTextColor(cricleProgressColor(ProgressCount));//设置中间显示的百分比颜色
+		mRoundProgressBar.setCricleProgressColor(cricleProgressColor(ProgressCount));//设置进度条的颜色
+		mRoundProgressBar.setProgress(ProgressCount);
+		//显示保底百分比
+		mJoin_detail_text_rengou_progress2.setText("保"+detatil.getSafeProgress() + "%");
+		
+		
 		state.append(detatil.getDisplayState());
 		shengAtm.append(detatil.getRemainderAmt() + "元");
 		person.append(detatil.getParticipantCount() + "人");
@@ -927,11 +974,15 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			minStr = "(至少认购" + minInt + "元)";
 			this.minInt = minInt;
 		}
-		String rengouStr = "可认购金额：" + rengouInt + "元";
+		String rengouStr = rengouInt + "元";
+		rengouText.setTextColor(Color.RED);
+		rengouText.setText(rengouStr);
+		
 		PublicMethod.setTextColor(minRGText, 5, minStr.length() - 2, minStr,
 				Color.RED);
-		PublicMethod.setTextColor(rengouText, 6, rengouStr.length() - 1,
-				rengouStr, Color.RED);
+//		PublicMethod.setTextColor(rengouText, 6, rengouStr.length() - 1,
+//				rengouStr, Color.RED);
+		
 		amountProgress.setText("占总额"
 				+ progress(amountEdit.getText().toString(),
 						detatil.getTotalAmt()) + "%");
@@ -951,6 +1002,20 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				String.valueOf(detatil.getGraygoldStar()),
 				JoinDetailActivity.this, 0);
 
+	}
+	
+	/**
+	 * 根据进度百分比设置颜色
+	 * @param percent
+	 * @return
+	 */
+	private int cricleProgressColor(int percent) {
+		if((percent>0||percent==0)&&percent<50){
+			return Color.RED;
+		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+			return Color.GREEN;
+		}
+		return Color.RED;
 	}
 
 	/**

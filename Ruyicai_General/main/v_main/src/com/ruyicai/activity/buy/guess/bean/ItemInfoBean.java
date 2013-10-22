@@ -6,8 +6,9 @@ public class ItemInfoBean {
 	private String award = "";
 	private String startTime = "";
 	private String endTime = "";
-	private String participate = "0";
-	private String endState = "0";
+	private String participate = "";
+	private String endState = "";
+	private String allDraw = "";
 	public String getId() {
 		return id;
 	}
@@ -49,6 +50,12 @@ public class ItemInfoBean {
 	}
 	public void setEndState(String endState) {
 		this.endState = endState;
+	}
+	public String getAllDraw() {
+		return allDraw;
+	}
+	public void setAllDraw(String allDraw) {
+		this.allDraw = allDraw;
 	}
 	
 }
