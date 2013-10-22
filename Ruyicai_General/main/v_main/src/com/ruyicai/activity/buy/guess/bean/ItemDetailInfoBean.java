@@ -8,6 +8,7 @@ public class ItemDetailInfoBean {
 	private String[][] options = null;
 	private String endState = "";
 	private String answer = "";
+	private String correct = "";
 	public String getQuestion() {
 		return question;
 	}
@@ -49,6 +50,12 @@ public class ItemDetailInfoBean {
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	public String getCorrect() {
+		return correct;
+	}
+	public void setCorrect(String correct) {
+		this.correct = correct;
 	}
 	
 }

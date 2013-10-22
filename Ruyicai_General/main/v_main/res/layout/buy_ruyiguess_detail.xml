@@ -23,7 +23,7 @@
             android:id="@+id/ruyi_guess_item_detail_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bet_query_jc_little_bg"
+            android:background="@color/ruyi_guess_title_text_bg"
             android:orientation="vertical" >
 
             <TextView
@@ -72,8 +72,8 @@
             android:layout_width="wrap_content"
             android:layout_height="40dip"
             android:gravity="center"
-            android:paddingLeft="10dip"
-            android:paddingRight="10dip"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip"
             android:textColor="@color/white"
             android:textSize="18sp" 
             android:visibility="invisible"/>
