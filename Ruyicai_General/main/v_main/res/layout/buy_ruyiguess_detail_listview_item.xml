@@ -48,11 +48,13 @@
         android:paddingBottom="3dip"
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
-        android:paddingTop="3dip" >
+        android:paddingTop="3dip" 
+        android:gravity="center">
         
         <ImageView android:id="@+id/ruyi_guess_item_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
             android:visibility="gone"/>
 
         <TextView

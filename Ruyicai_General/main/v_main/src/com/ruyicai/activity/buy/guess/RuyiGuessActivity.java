@@ -179,7 +179,7 @@ public class RuyiGuessActivity extends Activity {
 				mUserNo = mSharedPreferences.getStringValue(ShellRWConstants.USERNO);
 				mProgressdialog = PublicMethod.creageProgressDialog(this);
 				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0);
-			} else {
+			} else if (requestCode == 1001){
 				mIsSuccess = true;
 				mAdapter.notifyDataSetChanged();
 			}
@@ -232,7 +232,6 @@ public class RuyiGuessActivity extends Activity {
 						.findViewById(R.id.ruyi_guess_item_stop);
 				holder.itemLayout = (LinearLayout) convertView
 						.findViewById(R.id.ruyi_guess_item_layout);
-						
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -264,7 +263,6 @@ public class RuyiGuessActivity extends Activity {
 							holder.participate.setText(mStateArray[1]);//根据状态判断显示
 						}
 					}
-					
 				} else {
 					holder.participate.setText(mStateArray[0]);//根据状态判断显示
 				}
@@ -283,15 +281,17 @@ public class RuyiGuessActivity extends Activity {
 				} else {
 					holder.participate.setVisibility(View.GONE);
 				}
-				holder.itemLayout.setBackgroundResource(R.drawable.buy_ruyiguess_item_bg_gray);
+				holder.itemLayout.setBackgroundResource(R.drawable.buy_ruyiguess_item_bg_yellow);
 			}
+			int padValue = PublicMethod.getPxInt(2, RuyiGuessActivity.this);
+			holder.participate.setPadding(3*padValue, padValue, padValue, padValue);
 			return convertView;
 		}
 		
 		class ViewHolder {
-			TextView integral;
-			TextView title;
-			TextView time;
+			TextView integral; //积分
+			TextView title; //竞猜题目
+			TextView time; //竞猜时间
 			TextView participate; //参与状态
 			ImageView guessStop; //截止
 			LinearLayout itemLayout;
@@ -331,7 +331,6 @@ public class RuyiGuessActivity extends Activity {
 						}
 						mAdapter.notifyDataSetChanged();
 						setMoreViewState();
-//						initListView();
 					} else {
 						String message = jsonObj.getString("message");
 						Toast.makeText(RuyiGuessActivity.this, message, Toast.LENGTH_SHORT).show();

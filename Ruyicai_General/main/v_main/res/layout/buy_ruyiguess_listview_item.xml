@@ -79,7 +79,7 @@
         android:background="@drawable/buy_ruyiguess_item_participateing"
         android:gravity="center"
         android:paddingBottom="2dip"
-        android:paddingLeft="6dip"
+        android:paddingLeft="8dip"
         android:paddingRight="2dip"
         android:paddingTop="2dip"
         android:textColor="@color/white" />

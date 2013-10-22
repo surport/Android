@@ -55,5 +55,7 @@
     <color name="latest_lottery_list_one">#ffffff</color>
     <color name="latest_lottery_list_two">#fffbe2</color>
     <color name="ruyi_guess_end_text_color">#afafaf</color>
+    <color name="ruyi_guess_title_text_bg">#faf0ee</color>
+    <color name="ruyi_guess_item_bg">#F0F0E6</color>
     
 </resources>
