@@ -562,9 +562,6 @@
     <public id="0x7f0201d5" name="red" type="drawable" />
     <public id="0x7f0201d6" name="refresh_last_code" type="drawable" />
     <public id="0x7f0201d7" name="renren_16" type="drawable" />
-    <public id="0x7f0201d9" name="return_btn" type="drawable" />
-    <public id="0x7f0201da" name="return_btn_b" type="drawable" />
-    <public id="0x7f0201db" name="returnselecter" type="drawable" />
     <public id="0x7f0201dc" name="scroll_track" type="drawable" />
     <public id="0x7f0201dd" name="scrollbar_horizontal_thumb" type="drawable" />
     <public id="0x7f0201de" name="scrollbar_horizontal_track" type="drawable" />
@@ -659,8 +656,8 @@
     <public id="0x7f02023b" name="zc_team_select_bg" type="drawable" />
     <public id="0x7f02023c" name="zengcaichaxun" type="drawable" />
     <public id="0x7f02023d" name="zhanghumingxi" type="drawable" />
-    <public id="0x7f02023e" name="zhankai" type="drawable" />
-    <public id="0x7f02023f" name="zhankai_click" type="drawable" />
+    <public id="0x7f02023f" name="zhankai" type="drawable" />
+    <public id="0x7f020240" name="zhankai_click" type="drawable" />
     <public id="0x7f0201d8" name="zhoangjiangchaxun" type="drawable" /> 
     <public id="0x7f020234" name="zhuihaochaxun" type="drawable" />
     <public id="0x7f020239" name="zijinxiangqing" type="drawable" />
