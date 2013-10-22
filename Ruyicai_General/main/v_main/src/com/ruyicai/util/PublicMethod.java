@@ -1785,7 +1785,7 @@ public class PublicMethod {
 			} else if (type.equals(Constants.LOTNO_SSC)) {
 				title = "时时彩";
 			} else if (type.equals(Constants.LOTNO_11_5)) {
-				title = "11选5";
+				title = "江西11选5";
 			} else if (type.equals(Constants.LOTNO_QXC)) {
 				title = "七星彩";
 			} else if (type.equals(Constants.LOTNO_PL5)) {
