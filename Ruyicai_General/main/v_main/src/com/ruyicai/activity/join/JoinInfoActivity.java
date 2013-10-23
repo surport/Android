@@ -800,7 +800,13 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				holder.layoutCenter.setLayoutParams(paramsLayout);
 				holder.layoutRight.setLayoutParams(paramsLayout);
 			}
-			holder.type.setText(info.getLottype());
+			if(lottypeIndex==0){
+				holder.type.setText(info.getLottype());
+			}else if (lottypeIndex>0) {
+				holder.type.setText(PublicMethod.infoToLotno(info.getLotno()));
+			}
+			
+			
 			holder.name.setText( getusername(info.getName()));
 			holder.atm.setText("￥"+(Integer.parseInt(info.getAllAtm())-Integer.parseInt(info.getAtm())) + "元");
 			holder.lestbuy.setText(info.getMinAmt()+"元");
