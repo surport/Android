@@ -10,12 +10,12 @@
         android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shouye_top" >
+        android:background="@drawable/hongse" >
 
         <TextView
             android:id="@+id/ding_text_title"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dip"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:gravity="center"
@@ -253,9 +253,9 @@
                 <Button
                     android:id="@+id/rengou"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dip"
                     android:layout_marginTop="5dip"
-                    android:background="@drawable/shouye_top"
+                    android:background="@drawable/hongse"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="@string/ding_btn_amt_title"
