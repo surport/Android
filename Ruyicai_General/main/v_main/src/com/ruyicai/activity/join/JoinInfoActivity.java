@@ -17,12 +17,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Gravity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,8 +34,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -122,6 +119,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	
 	/*xupeisong...start*/
 	private Button imgRetrun;
+	private RelativeLayout layoutReturn;
 	private PopupWindow popupwindow;
 	private GridView mGridView;
 	private Button mShowAllBtn;
@@ -173,74 +171,26 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 */
 	public void init() {
 		ll_title = (LinearLayout)findViewById(R.id.ll_title);
-		ll_title.setBackgroundResource(R.drawable.title_tab_bg);
+		//ll_title.setBackgroundResource(R.drawable.title_tab_bg);
 		iv_progress = (ImageView)findViewById(R.id.iv_progress);
+		
 		iv_renqi = (ImageView)findViewById(R.id.iv_renqi);
 		iv_allCount = (ImageView)findViewById(R.id.iv_allcount);
-		
-		
-		
-		LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
-		et_search = (EditText)viewpop.findViewById(R.id.et_search);
-		btn_search  =  (Button)viewpop. findViewById(R.id.btn_search);
-		btn_search.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				showDialog(0);
-				isSearch = true;
-				viewInfos[topIndex][lottypeIndex].newPage = 0;
-				viewInfos[topIndex][lottypeIndex].allPage = 0;
-				viewInfos[topIndex][lottypeIndex].listdata.clear();
-				
-				
-				 name = et_search.getText().toString().trim(); 
-				if("".equals(name) || name ==null){
-					Toast.makeText(getContext(), "搜索条件不能为空",0).show();
-				}else{
-					
-					Thread t = new Thread(new Runnable() {
-						@Override
-						public void run() {
-						String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
-								orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
-								Constants.PAGENUM,name);
-						try {
-							json = new JSONObject(str);
-							setValue();
-							Message  msg = new Message();
-							msg.what = 0000;
-							SearchHandler.sendMessage(msg);
-							}
-						 catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					
-						}
-					});
-					t.start();
-				}
-			
-				
-			}
-		});
 		bt_search = (Button)findViewById(R.id.bt_search);
 		rl_search_layout = (RelativeLayout)findViewById(R.id.rl_search_layout);
-	
 		bt_search.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
-				Button bt_search = (Button) viewpop.findViewById(R.id.btn_search);
-				bt_search.setOnClickListener(new OnClickListener() {
+				Button bt_search_popwindow = (Button) viewpop.findViewById(R.id.btn_search);
+				et_search = (EditText)viewpop.findViewById(R.id.et_search);
+				bt_search_popwindow.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
-						showDialog(0);
+						
 						isSearch = true;
 						viewInfos[topIndex][lottypeIndex].newPage = 0;
 						viewInfos[topIndex][lottypeIndex].allPage = 0;
@@ -248,10 +198,10 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						
 						
 						 name = et_search.getText().toString().trim(); 
-						if("".equals(name) || name ==null){
+						if(TextUtils.isEmpty(name)){
 							Toast.makeText(getContext(), "搜索条件不能为空",0).show();
 						}else{
-							
+							showDialog(0);
 							Thread t = new Thread(new Runnable() {
 								@Override
 								public void run() {
@@ -278,33 +228,27 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						
 					}
 				});
-				
-				
-				searchWindow = new PopupWindow(viewpop,LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				searchWindow = new PopupWindow(viewpop,LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 				searchWindow.setFocusable(true);
 				searchWindow.setOutsideTouchable(true);
 				searchWindow.update();
 				searchWindow.setBackgroundDrawable(new BitmapDrawable());
-				searchWindow.showAtLocation(ll_title, Gravity.RIGHT, 0, 0); 
-				
-//				if(iShow){
-//					rl_search_layout.setVisibility(View.GONE);
-//					iShow=false;
-//				}else {
-//					rl_search_layout.setVisibility(View.VISIBLE);
-//					iShow=true;
-//				}
+				searchWindow.showAsDropDown(ll_title,Math.abs(ll_title.getWidth()-searchWindow.getWidth())/2, 0);
 			}
 		});
 		TextView title = (TextView) findViewById(R.id.join_text_title);
 		imgRetrun = (Button) findViewById(R.id.join_img_return);
-		title.setText("合买大厅");
-		title.append("-" + PublicMethod.toLotno(lotno));
-		imgRetrun.setBackgroundResource(R.drawable.returnselecter);
-		imgRetrun.setText("筛选");
+		layoutReturn=(RelativeLayout)findViewById(R.id.join_returnLayout);
+		title.setText(PublicMethod.toLotno(lotno));
+		
+//		title.setText("合买大厅");
+//		title.append("-" + PublicMethod.toLotno(lotno));
+		imgRetrun.setBackgroundResource(R.drawable.join_info_xia);
+		imgRetrun.setText("");
 		imgRetrun.setVisibility(View.VISIBLE);
+		layoutReturn.setVisibility(View.VISIBLE);
 		// ImageView的返回事件
-		imgRetrun.setOnClickListener(new OnClickListener() {
+		layoutReturn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// finish();
@@ -315,11 +259,11 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		//LinearLayout top = (LinearLayout) findViewById(R.id.join_info_check_linear_top);
 		//top.setVisibility(LinearLayout.VISIBLE);
 		progress = (RelativeLayout) findViewById(R.id.join_info_btn_progress);
-		progress.setBackgroundResource(R.drawable.join_info_btn_selecter);
+	//	progress.setBackgroundResource(R.drawable.join_info_btn_selecter);
 		allAtm = (RelativeLayout) findViewById(R.id.join_info_btn_all_atm);
-		allAtm.setBackgroundResource(R.drawable.join_info_btn_selecter);
+		//allAtm.setBackgroundResource(R.drawable.join_info_btn_selecter);
 		atm = (RelativeLayout) findViewById(R.id.join_info_btn_atm);
-		atm.setBackgroundResource(R.drawable.join_info_btn_selecter);
+	//	atm.setBackgroundResource(R.drawable.join_info_btn_selecter);
 		//check = (CheckBox) findViewById(R.id.jion_info_check);
 		//check.setButtonDrawable(R.drawable.join_info_check_select);
 		listview = (ListView) findViewById(R.id.join_listview);
@@ -341,46 +285,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		});
 
 	}
-
-//	private void addmore() {
-//		
-//		int newPager = viewInfos[topIndex][lottypeIndex].newPage; 
-//		//int allparer = viewInfos[topIndex][lottypeIndex].allPage;
-//		if (viewInfos[topIndex][lottypeIndex].newPage < viewInfos[topIndex][lottypeIndex].allPage) {
-////			if(isSearch){
-////				Thread t = new Thread(new Runnable() {
-////					@Override
-////					public void run() {
-////					String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
-////							orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
-////							Constants.PAGENUM,name);
-////					try {
-////						json = new JSONObject(str);
-////						setValue();
-////						Message  msg = new Message();
-////						msg.what = 0000;
-////						SearchHandler.sendMessage(msg);
-////						}
-////					 catch (JSONException e) {
-////						// TODO Auto-generated catch block
-////						e.printStackTrace();
-////					}
-////				
-////					}
-////				});
-////				t.start();
-////			}else{
-//				joinInfokNet(orderBy, orderDir);
-////			}
-//		} else {
-//			viewInfos[topIndex][lottypeIndex].newPage = viewInfos[topIndex][lottypeIndex].allPage - 1;
-//			view.setEnabled(true);
-//			progressbar.setVisibility(View.INVISIBLE);
-//			Toast.makeText(JoinInfoActivity.this, "已至尾页", Toast.LENGTH_SHORT)
-//					.show();
-//		}
-//	}
-//	
 	private void addmore() {
 
 		viewInfos[topIndex][lottypeIndex].newPage++;
@@ -425,13 +329,17 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 * 顶部按钮事件
 	 */
 	public void buttonOnclik() {
-		progress.setBackgroundResource(R.drawable.join_info_btn_b);
+		progress.setBackgroundResource(R.drawable.hemai_title_bg);
 		orderBy = QueryJoinInfoInterface.PROGRESS;
 		orderDir = QueryJoinInfoInterface.DESC;
 		progress.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				progress.setBackgroundResource(R.drawable.hemai_title_bg);
+				allAtm.setBackgroundResource(R.drawable.white_bg);
+				atm.setBackgroundResource(R.drawable.white_bg);
+				
 				iv_renqi.setBackgroundResource(R.drawable.hemai_normal);
 				iv_allCount.setBackgroundResource(R.drawable.hemai_normal);
 				if(iv_progress_sort){
@@ -462,9 +370,9 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				
 				
 				
-			/*	progress.setBackgroundResource(R.drawable.join_info_btn);
-				allAtm.setBackgroundResource(R.drawable.join_info_btn_b);
-				atm.setBackgroundResource(R.drawable.join_info_btn);*/
+				progress.setBackgroundResource(R.drawable.white_bg);
+				allAtm.setBackgroundResource(R.drawable.hemai_title_bg);
+				atm.setBackgroundResource(R.drawable.white_bg);
 				
 				iv_progress.setBackgroundResource(R.drawable.hemai_normal);
 				iv_renqi.setBackgroundResource(R.drawable.hemai_normal);
@@ -488,7 +396,9 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		atm.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				progress.setBackgroundResource(R.drawable.white_bg);
+				allAtm.setBackgroundResource(R.drawable.white_bg);
+				atm.setBackgroundResource(R.drawable.hemai_title_bg);
 				iv_progress.setBackgroundResource(R.drawable.hemai_normal);
 				iv_allCount.setBackgroundResource(R.drawable.hemai_normal);
 				if(iv_renqi_sort){
@@ -630,6 +540,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				/*xupeisong...start*/
 				info.setMinAmt(obj.getString("minAmt"));
 				info.setSafeAmt(obj.getString("safeAmt"));
+				info.setStarterUserNo(obj.getString("starterUserNo"));
 				/*xupeisong...end*/
 				JSONObject displayIcon = obj.getJSONObject("displayIcon");
 				try {
@@ -690,13 +601,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				try {
-					if(displayIcon.has("starterUserNo")){
-					info.setStarterUserNo(obj.getString("starterUserNo"));
-					}
-				} catch (Exception e) {
-
-				}
 				if(obj.has("safeRate")){
 					String safeRate = obj.getString("safeRate");
 					info.setSafe(safeRate);
@@ -717,8 +621,9 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	public void initList() {
 		
 		TextView title = (TextView) findViewById(R.id.join_text_title);
-		title.setText("合买大厅");
-		title.append("-" + PublicMethod.toLotno(lotno));
+		title.setText(PublicMethod.toLotno(lotno));
+//		title.setText("合买大厅");
+//		title.append("-" + PublicMethod.toLotno(lotno));
 		if (viewInfos[topIndex][lottypeIndex].newPage == 0 || isSelect) {
 			isSelect = false;
 			adapter[topIndex][lottypeIndex] = new JoinInfoAdapter(this,
@@ -852,7 +757,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		public View getView(final int position, View convertView, ViewGroup parent) {
 			index = position;
 			ViewHolder holder = null;
-			Info info = (Info) mList.get(position);
+			final Info info = (Info) mList.get(position);
 			if (convertView == null) {
 				convertView = mInflater.inflate(R.layout.join_info_listview_item, null);
 				holder = new ViewHolder();
@@ -900,6 +805,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			holder.atm.setText("￥"+(Integer.parseInt(info.getAllAtm())-Integer.parseInt(info.getAtm())) + "元");
 			holder.lestbuy.setText(info.getMinAmt()+"元");
 			holder.allAtm.setText("￥"+info.getAllAtm() + "元");
+			holder.baodi.setBackgroundResource(cricleTextColor(Integer.parseInt(info.getSafe())));
 			holder.baodi.setText("保"+info.getSafe()+"%");
 			int ProgressCount=Integer.parseInt(info.getProgress()+"");
 			
@@ -919,7 +825,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Info info = (Info) viewInfos[topIndex][lottypeIndex].listdata.get(position);
 					Intent intent = new Intent(context,JoinDingActivity.class);
 					intent.putExtra(Constants.LOTNO, info.getLotno());
 					intent.putExtra(USER_NO, info.getStarterUserNo());
@@ -931,11 +836,21 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		//根据进度百分比设置颜色
 		private int cricleProgressColor(int percent) {
 			if((percent>0||percent==0)&&percent<50){
-				return Color.RED;
+				return getResources().getColor(R.color.join_info_listitem_green);
 			}else if((percent>50||percent==50)&&(percent<100||percent==100)){
-				return Color.GREEN;
+				return getResources().getColor(R.color.join_info_listitem_red);
 			}
-			return Color.RED;
+			return getResources().getColor(R.color.join_info_listitem_green);
+		}
+		
+		//根据进度百分比设置颜色
+		private int cricleTextColor(int percent) {
+			if((percent>0||percent==0)&&percent<50){
+				return R.drawable.join_iten_shape_text_gree;
+			}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+				return R.drawable.join_iten_shape_text;
+			}
+			return R.drawable.join_iten_shape_text_gree;
 		}
 
 		class ViewHolder {
@@ -1340,19 +1255,13 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		mGridView.setAdapter(showMenuadapter);
 		
 		popupwindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-		popupwindow.setTouchable(true); // 设置PopupWindow可触摸
+		popupwindow.setFocusable(true);
 		popupwindow.setOutsideTouchable(true);
-		popupView.setOnTouchListener(new OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				if (popupwindow != null && popupwindow.isShowing()) {
-					popupwindow.dismiss();
-					popupwindow = null;
-				}
-				return false;
-			}
-		});
+		popupwindow.update();
+		popupwindow.setBackgroundDrawable(new BitmapDrawable());
 		popupwindow.showAsDropDown(imgRetrun);
+		
+		
 		if(lottypeIndex==0){
 			mShowAllBtn.setBackgroundResource(R.drawable.shaixuan_chick);
 			showMenuadapter.setItemSelect(-1);
