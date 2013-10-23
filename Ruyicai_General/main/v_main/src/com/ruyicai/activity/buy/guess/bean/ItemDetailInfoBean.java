@@ -4,11 +4,13 @@ public class ItemDetailInfoBean {
 	private String question = "";
 	private String award = "";
 	private String drawTime = "";
+	private String endTime = "";
 	private String id = "";
 	private String[][] options = null;
 	private String endState = "";
 	private String answer = "";
 	private String correct = "";
+	private boolean isSelected = false;
 	public String getQuestion() {
 		return question;
 	}
@@ -56,6 +58,18 @@ public class ItemDetailInfoBean {
 	}
 	public void setCorrect(String correct) {
 		this.correct = correct;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public boolean isSelected() {
+		return isSelected;
+	}
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 	
 }

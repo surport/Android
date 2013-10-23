@@ -287,6 +287,16 @@ public class AccountListActivity extends Activity {
 			map.put(ISHANDINGFREE, getString(R.string.get_free_gold_summary));
 			list.add(map);
 		}
+		
+		/**add by yejc 20130505 start*/
+		//联动优势充值
+		if (shellRW.getBooleanValue(Constants.UMPAY_DISPLAY_STATE, false)) {
+			map = new HashMap<String, Object>();
+			map.put(TITLE, getString(R.string.umpay_recharge));
+			map.put(PICTURE, R.drawable.recharge_umpay);
+			map.put(ISHANDINGFREE, getString(R.string.account_umplay_alert));
+			list.add(map);
+		}
 				
 		// 银联支付
 		if (shellRW.getBooleanValue(Constants.YINLIAN_CARD_DISPLAY_STATE, false)) {
@@ -332,15 +342,6 @@ public class AccountListActivity extends Activity {
 			list.add(map);
 		}
 		
-		/**add by yejc 20130505 start*/
-		//联动优势充值
-		if (shellRW.getBooleanValue(Constants.UMPAY_DISPLAY_STATE, false)) {
-			map = new HashMap<String, Object>();
-			map.put(TITLE, getString(R.string.umpay_recharge));
-			map.put(PICTURE, R.drawable.recharge_umpay);
-			map.put(ISHANDINGFREE, getString(R.string.account_umplay_alert));
-			list.add(map);
-		}
 		/**add by yejc 20130505 end*/
 		
 		// 拉卡拉充值

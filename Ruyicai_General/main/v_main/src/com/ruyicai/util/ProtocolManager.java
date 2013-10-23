@@ -99,7 +99,12 @@ public class ProtocolManager {
 	/**
 	 * infoway 通过咨询投注
 	 */
-	public static String INFOWAY = "infoway";
+	public static String INFOWAY = "infoway"; 
+	
+	/**
+	 *按昵称搜索
+	 */
+	public static String INFO  =  "info";
 	/**
 	 * amount 在投注和赠送接口、修改提现、中使用
 	 */

@@ -125,7 +125,7 @@ public class RuyiGuessActivity extends Activity {
 					intent.putExtra(USER_NO, mUserNo);
 					intent.putExtra(TITLE, mQuestionsList.get(arg2).getTitle());
 					intent.putExtra(MYSELECTED, mIsMySelected);
-					if ("1".equals(mQuestionsList.get(arg2).getEndState())) {
+					if ("1".equals(mQuestionsList.get(arg2).getAllDraw()/*getEndState()*/)) {
 						intent.putExtra(ISEND, true);
 					} else {
 						intent.putExtra(ISEND, false);
@@ -248,7 +248,7 @@ public class RuyiGuessActivity extends Activity {
 			strBuffer.append(info.getEndTime());
 			holder.time.setText(strBuffer.toString());
 
-			if ("0".equals(info.getEndState())) { //竞猜是否结束 0:未结束;1:已结束
+			if ("0".equals(info.getAllDraw())) { //竞猜是否结束 0:未结束;1:已结束
 				holder.guessStop.setVisibility(View.GONE);
 				holder.integral.setBackgroundResource(mIconArray[position%3]);
 				holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_participateing);
@@ -285,6 +285,8 @@ public class RuyiGuessActivity extends Activity {
 			}
 			int padValue = PublicMethod.getPxInt(2, RuyiGuessActivity.this);
 			holder.participate.setPadding(3*padValue, padValue, padValue, padValue);
+			int layoutPad = 2*padValue;
+			holder.itemLayout.setPadding(layoutPad, layoutPad, layoutPad, layoutPad);
 			return convertView;
 		}
 		
@@ -327,6 +329,7 @@ public class RuyiGuessActivity extends Activity {
 							info.setEndTime(itemObj.getString("endTime"));
 							info.setParticipate(itemObj.getString("participate"));
 							info.setEndState(itemObj.getString("isEnd"));
+							info.setAllDraw(itemObj.getString("allDraw"));
 							mQuestionsList.add(info);
 						}
 						mAdapter.notifyDataSetChanged();

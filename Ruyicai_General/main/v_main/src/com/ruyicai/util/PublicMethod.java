@@ -3033,7 +3033,7 @@ public class PublicMethod {
 	public static ProgressDialog creageProgressDialog(Context context) {
 		ProgressDialog mProgressdialog = new ProgressDialog(context);
 		mProgressdialog.show();
-		mProgressdialog.setCancelable(false);
+//		mProgressdialog.setCancelable(false);
 		View dialogView = getView(context);
 		mProgressdialog.getWindow().setContentView(dialogView);
 		return mProgressdialog;
