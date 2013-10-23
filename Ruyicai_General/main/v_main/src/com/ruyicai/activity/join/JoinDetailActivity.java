@@ -38,6 +38,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -132,6 +133,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private LinearLayout mFanganmiaoshu;
 	private RoundProgressBar mRoundProgressBar;
 	private TextView mJoin_detail_text_rengou_progress2;
+	
+	private ImageView jianGeXian;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -331,6 +334,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		mRoundProgressBar=(RoundProgressBar)findViewById(R.id.join_detail_tex_progress);
 		mJoin_detail_text_rengou_progress2=(TextView)findViewById(R.id.join_detail_text_rengou_progress2);
 		
+		//...............
+		jianGeXian=(ImageView)findViewById(R.id.join_detail_jiangexian);
 		
 		joinInImg.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -513,9 +518,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	}
 
 	public void initButtonLayout() {
-		faqi = (Button) findViewById(R.id.faqi);
+		//faqi = (Button) findViewById(R.id.faqi);
 		faqixinxi = (LinearLayout) findViewById(R.id.faqixinxi);
-		xiangqing = (Button) findViewById(R.id.fangan);
+		//xiangqing = (Button) findViewById(R.id.fangan);
 		fanganxiangqing = (LinearLayout) findViewById(R.id.fanganxiangqing);
 		leirong = (Button) findViewById(R.id.leirong);
 		fanganleirong = (LinearLayout) findViewById(R.id.fanganleirong);
@@ -523,7 +528,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		rengoushezhi = (LinearLayout) findViewById(R.id.rengoushezhi);
 		canyu = (Button) findViewById(R.id.canyu);
 		canyurenyuan = (ListView) findViewById(R.id.canyurenyuan);
-		faqi.setOnClickListener(new OnClickListener() {
+		/*faqi.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -538,8 +543,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					isfaqi = true;
 				}
 			}
-		});
-		xiangqing.setOnClickListener(new OnClickListener() {
+		});*/
+		/*xiangqing.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -556,7 +561,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					isxiangqing = true;
 				}
 			}
-		});
+		});*/
 		leirong.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -924,6 +929,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		if (detatil.getBatchCode() == null
 				|| "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
+			jianGeXian.setVisibility(View.GONE);
 		} else {
 			batchcodetext.append("第" + detatil.getBatchCode() + "期");
 		}
@@ -937,7 +943,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		minText1.append(detatil.getMinAmt() + "元");
 		name.append(detatil.getStarter());
 		describe.append(detatil.getDescription());
-		atm.append(detatil.getTotalAmt() + "元");
+		atm.append("￥"+detatil.getTotalAmt() + "元");
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
@@ -945,7 +951,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		
 		//。。。。。。。。。。。。。
 		/**
-		 * 显示百分比
 		 */
 		int ProgressCount=Integer.parseInt(detatil.getBuyProgress());
 		mRoundProgressBar.setTextColor(cricleProgressColor(ProgressCount));//设置中间显示的百分比颜色
@@ -956,7 +961,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		
 		
 		state.append(detatil.getDisplayState());
-		shengAtm.append(detatil.getRemainderAmt() + "元");
+		shengAtm.append("￥"+detatil.getRemainderAmt() + "元");
 		person.append(detatil.getParticipantCount() + "人");
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
