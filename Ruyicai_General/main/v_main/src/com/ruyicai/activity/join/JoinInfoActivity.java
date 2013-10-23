@@ -18,9 +18,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -83,6 +85,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	boolean iv_progress_sort = true,iv_renqi_sort = false,iv_allCount_sort = false;
 	Button btn_search;//
 	EditText et_search;
+	PopupWindow searchWindow ;
 	//CheckBox check;// 升序降序排序
 	private RelativeLayout rl_search_layout;
 	private ProgressDialog progressdialog;
@@ -169,7 +172,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
-		
 		ll_title = (LinearLayout)findViewById(R.id.ll_title);
 		ll_title.setBackgroundResource(R.drawable.title_tab_bg);
 		iv_progress = (ImageView)findViewById(R.id.iv_progress);
@@ -177,8 +179,11 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		iv_allCount = (ImageView)findViewById(R.id.iv_allcount);
 		
 		
-		et_search = (EditText) findViewById(R.id.et_search);
-		btn_search  =  (Button) findViewById(R.id.btn_search);
+		
+		LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
+		et_search = (EditText)viewpop.findViewById(R.id.et_search);
+		btn_search  =  (Button)viewpop. findViewById(R.id.btn_search);
 		btn_search.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -228,13 +233,67 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			
 			@Override
 			public void onClick(View v) {
-				if(iShow){
-					rl_search_layout.setVisibility(View.GONE);
-					iShow=false;
-				}else {
-					rl_search_layout.setVisibility(View.VISIBLE);
-					iShow=true;
-				}
+				LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
+				Button bt_search = (Button) viewpop.findViewById(R.id.btn_search);
+				bt_search.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						showDialog(0);
+						isSearch = true;
+						viewInfos[topIndex][lottypeIndex].newPage = 0;
+						viewInfos[topIndex][lottypeIndex].allPage = 0;
+						viewInfos[topIndex][lottypeIndex].listdata.clear();
+						
+						
+						 name = et_search.getText().toString().trim(); 
+						if("".equals(name) || name ==null){
+							Toast.makeText(getContext(), "搜索条件不能为空",0).show();
+						}else{
+							
+							Thread t = new Thread(new Runnable() {
+								@Override
+								public void run() {
+								String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
+										orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
+										Constants.PAGENUM,name);
+								try {
+									json = new JSONObject(str);
+									setValue();
+									Message  msg = new Message();
+									msg.what = 0000;
+									SearchHandler.sendMessage(msg);
+									}
+								 catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							
+								}
+							});
+							t.start();
+						}
+					
+						
+					}
+				});
+				
+				
+				searchWindow = new PopupWindow(viewpop,LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+				searchWindow.setFocusable(true);
+				searchWindow.setOutsideTouchable(true);
+				searchWindow.update();
+				searchWindow.setBackgroundDrawable(new BitmapDrawable());
+				searchWindow.showAtLocation(ll_title, Gravity.RIGHT, 0, 0); 
+				
+//				if(iShow){
+//					rl_search_layout.setVisibility(View.GONE);
+//					iShow=false;
+//				}else {
+//					rl_search_layout.setVisibility(View.VISIBLE);
+//					iShow=true;
+//				}
 			}
 		});
 		TextView title = (TextView) findViewById(R.id.join_text_title);

@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/grey"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:id="@+id/lineartop" >
 
     <RelativeLayout
         android:id="@+id/main_buy_title"
@@ -44,7 +45,18 @@
             android:text="返回"
             android:textColor="@color/white"
             android:textSize="15dip"
-            android:visibility="invisible" >
+            android:visibility="gone" >
+        </Button>
+        
+        <Button
+            android:id="@+id/join_detail_btnbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/share_bt_selector"
+            >
         </Button>
     </RelativeLayout>
 
@@ -855,7 +867,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="265dip"
                 android:background="@drawable/fenxiangbg"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:visibility="gone" >
 
                 <ImageButton
                     android:id="@+id/join_detail_img_buy2"
