@@ -21,23 +21,32 @@
             android:paddingLeft="5dip"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="18dip" >
+            android:textSize="18sp" >
         </TextView>
 
-        <Button
-            android:id="@+id/join_img_return"
-            android:layout_width="15dip"
-            android:layout_height="15dip"
+        <RelativeLayout
+            android:id="@+id/join_returnLayout"
+            android:layout_width="60.0dip"
+            android:layout_height="40.0dip"
             android:layout_centerInParent="true"
             android:layout_marginRight="10dip"
-            android:text="返回"
-            android:textColor="@color/white"
-            android:textSize="15dip"
             android:visibility="invisible" >
-        </Button>
+
+            <Button
+                android:id="@+id/join_img_return"
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:layout_centerInParent="true"
+                android:text="返回"
+                android:textColor="@color/white"
+                 android:visibility="invisible" 
+                android:textSize="15sp" >
+            </Button>
+        </RelativeLayout>
     </RelativeLayout>
 
-    <!-- <LinearLayout
+    <!--
+    <LinearLayout
         android:id="@+id/join_info_check_linear_top"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -94,7 +103,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/hemai_search"
             android:visibility="gone" />
-    </LinearLayout> -->
+    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/ll_title"
@@ -115,6 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:background="#00000000"
                 android:text="参与进度"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -196,14 +206,18 @@
             android:background="@drawable/jiangexian" />
 
         <Button
-             android:id="@+id/bt_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/bt_search"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="5dip"
+            android:layout_weight="0.55"
             android:background="@drawable/hemai_search" />
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#33333333" />
 
     <RelativeLayout
         android:layout_width="match_parent"
