@@ -113,9 +113,7 @@ public class RuyiGuessDetailActivity extends Activity {
 		mSubmitBtn = (Button)findViewById(R.id.ruyi_guess_submit);
 		mSubmitBtn.setVisibility(View.VISIBLE);
 		if (mIsMySelected) {
-			mSubmitBtn.setBackgroundResource(R.drawable.loginselecter);
-			mSubmitBtn.setText(R.string.buy_ruyi_guess_go_work);
-			mSubmitBtn.setPadding(mPadValue, 0, mPadValue, 0);
+			setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_go_work);
 			mSubmitBtn.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
@@ -133,12 +131,9 @@ public class RuyiGuessDetailActivity extends Activity {
 			});
 		} else {
 			if (mIsEnd) {
-				mSubmitBtn.setBackgroundResource(R.drawable.buy_ruyiguess_item_gray);
-				mSubmitBtn.setText(R.string.buy_ruyi_guess_btn_end);
-				mSubmitBtn.setPadding(mPadValue, 0, mPadValue, 0);
+				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end);
 			}
 		}
-		
 	}
 	
 //	private void setMoreViewState() {
@@ -151,9 +146,7 @@ public class RuyiGuessDetailActivity extends Activity {
 	private void setSubmitState(boolean flag) {
 		if (!mIsMySelected) {
 			if (flag) {
-				mSubmitBtn.setBackgroundResource(R.drawable.loginselecter);
-				mSubmitBtn.setText(R.string.buy_ruyi_guess_submit_result);
-				mSubmitBtn.setPadding(mPadValue, 0, mPadValue, 0);
+				setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_submit_result);
 				mSubmitBtn.setOnClickListener(new View.OnClickListener() {
 
 					@Override
@@ -166,18 +159,17 @@ public class RuyiGuessDetailActivity extends Activity {
 					}
 				});
 			} else {
-				if (!mIsEnd) { 
-					mSubmitBtn
-							.setBackgroundResource(R.drawable.buy_ruyiguess_item_gray);
-					mSubmitBtn.setText(R.string.buy_ruyi_guess_btn_participate);
-					mSubmitBtn.setPadding(mPadValue, 0, mPadValue, 0);
+				if (!mIsEnd) {
+					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
 				}
 			}
 		}
 	}
 	
 	private void setSubmitBtnState(int picResId, int textResId) {
-		
+		mSubmitBtn.setBackgroundResource(picResId);
+		mSubmitBtn.setText(textResId);
+		mSubmitBtn.setPadding(mPadValue, 0, mPadValue, 0);
 	}
 
 	
@@ -301,18 +293,20 @@ public class RuyiGuessDetailActivity extends Activity {
 			}
 			int titleId = position + 1;
 			holder.title.setText(titleId+"、"+info.getQuestion());
-			String[][] options = info.getOptions();
-			boolean isSelected = false;
-			//每一个item是否被选择过
-			for (int i = 0; i < options.length; i++) {
-				if ("1".equals(options[i][2])) {
-					isSelected = true;
-					break;
-				}
-			}
+//			String[][] options = info.getOptions();
+//			boolean isSelected = false;
+//			//每一个item是否被选择过
+//			for (int i = 0; i < options.length; i++) {
+//				if ("1".equals(options[i][2])) {
+//					isSelected = true;
+//					break;
+//				}
+//			}
+			
+			createDynamicView(holder.layout, position, info.isSelected(), info.getEndState());
 			
 			if (/*mIsEnd*/"1".equals(info.getEndState())) { //如果竞猜已经截止
-				if (isSelected) {
+				if (info.isSelected()) { //我选择的
 					if ("1".equals(info.getCorrect())) {//未开奖或没选择的时候为空;选择的时候(0:错误;1:正确)
 						holder.icon.setImageResource(R.drawable.buy_ruyi_guess_right);
 						holder.participate.setText(R.string.buy_ruyi_guess_right);
@@ -326,8 +320,6 @@ public class RuyiGuessDetailActivity extends Activity {
 						holder.icon.setVisibility(View.VISIBLE);
 						holder.participate.setVisibility(View.VISIBLE);
 					} else {
-						holder.icon.setVisibility(View.VISIBLE);
-						holder.participate.setVisibility(View.VISIBLE);
 						holder.icon.setVisibility(View.GONE);
 						holder.participate.setVisibility(View.GONE);
 					}
@@ -339,8 +331,14 @@ public class RuyiGuessDetailActivity extends Activity {
 				}
 				
 				if (!"".equals(info.getAnswer())/* && !"null".equals(info.getAnswer())*/) {
-					String str = getResources().getString(
-							R.string.buy_ruyi_guess_answer);
+					String str = "";
+					if (info.isSelected()) {
+						str = getResources().getString(
+								R.string.buy_ruyi_guess_answer);
+					} else {
+						str = getResources().getString(
+								R.string.buy_ruyi_guess_right_answer);
+					}
 					String answer = "";
 					if (mAnswerMap.containsKey(position)) {
 						answer = mAnswerMap.get(position);
@@ -359,14 +357,7 @@ public class RuyiGuessDetailActivity extends Activity {
 				}
 				holder.layout.setBackgroundResource(R.drawable.buy_ruyi_guess_item_center_gray);
 			} else {
-				//根据选择情况来显示
-				if (isSelected) {
-//					holder.participate.setText(mStateArray[1]);
-//					if ("1".equals(info.getEndState())) {
-//						holder.state.setBackgroundResource(R.drawable.ruyiguess_participate);
-//					} else {
-//						holder.state.setBackgroundResource(R.drawable.ruyiguess_wait);
-//					}
+				if (info.isSelected()) {//我选择的
 					holder.state.setBackgroundResource(R.drawable.ruyiguess_participate);
 					String timeStr = getResources().getString(
 							R.string.buy_ruyi_guess_lottery);
@@ -375,18 +366,7 @@ public class RuyiGuessDetailActivity extends Activity {
 							timeStr.length() + info.getDrawTime().length());
 					holder.time.setText(timeSpan);
 				} else {
-//					holder.participate.setText(mStateArray[0]);
-//					String timeStr = "";
-//					if ("1".equals(info.getEndState())) {
-//						holder.state.setBackgroundResource(R.drawable.ruyiguess_stop);
-//						timeStr = getResources().getString(
-//								R.string.buy_ruyi_guess_lottery);
-//					} else {
-						holder.state.setBackgroundResource(getResources().getColor(R.color.transparent));
-//						timeStr = getResources().getString(
-//								R.string.buy_ruyi_guess_stop);
-//					}
-					
+					holder.state.setBackgroundResource(getResources().getColor(R.color.transparent));
 					String timeStr = getResources().getString(
 								R.string.buy_ruyi_guess_stop);
 					SpannableString timeSpan = getSpannableString(
@@ -405,44 +385,16 @@ public class RuyiGuessDetailActivity extends Activity {
 			//奖励积分
 			String awardStr = getResources().getString(R.string.buy_ruyi_guess_item_integral);
 			String award = "";
-			
-//			if ("".equals(info.getCorrect())) {
-//				String str = getResources().getString(
-//						R.string.buy_ruyi_guess_answer);
-//				String answer = "";
-//				if (mAnswerMap.containsKey(position)) {
-//					answer = mAnswerMap.get(position);
-//				}
-//				SpannableString span = getSpannableString(
-//						str + answer, str.length(),
-//						str.length() + answer.length());
-//				holder.time.setText(span);
-//			} else {
-//				if ("1".equals(info.getCorrect())) {
-//					award = "+"+info.getAward();
-//					
-//				} else if ("0".equals(info.getCorrect())) {
-//					award = info.getAward();
-//				} 
-//				String str = getResources().getString(
-//						R.string.buy_ruyi_guess_answer);
-//				String answer = "";
-//				if (mAnswerMap.containsKey(position)) {
-//					answer = mAnswerMap.get(position);
-//				}
-//				SpannableString span = getSpannableString(
-//						str + answer, str.length(),
-//						str.length() + answer.length());
-//				holder.time.setText(span);
-//			}
+			if ("1".equals(info.getCorrect())) {
+				award = "+"+info.getAward();
+			} else {
+				award = info.getAward();
+			} 
 			
 			SpannableString awardSpan = getSpannableString(
 					awardStr+award, awardStr.length(),
 					awardStr.length() + award.length());
 			holder.integral.setText(awardSpan);
-			
-//			addViewForRadioGroup(holder.radioGroup, position);
-			createDynamicView(holder.layout, position, isSelected, info.getEndState());
 			
 			return convertView;
 		}
@@ -455,9 +407,7 @@ public class RuyiGuessDetailActivity extends Activity {
 			ImageView icon;
 			ImageView state;
 			LinearLayout layout;
-//			RadioGroup radioGroup;
 		}
-		
 	}
 	
 	private SpannableString getSpannableString(String text, int start, int end) {
@@ -526,7 +476,7 @@ public class RuyiGuessDetailActivity extends Activity {
 			if ((options[index][0]).equals(mQuestionsList.get(position).getAnswer())) {
 				mAnswerMap.put(position, mTitleSerial[mViewIndex]);
 			}
-			text.setText(/*mTitleSerial[mViewIndex]+"、"+*/options[index][1]);
+			text.setText(options[index][1]);
 			mViewIndex ++;
 			/**add 20131022*/
 			
@@ -543,18 +493,15 @@ public class RuyiGuessDetailActivity extends Activity {
 					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
 				}
 			} else {
-//				boolean vFlag = false;
 				icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
 				text.setTextColor(getResources().getColor(R.color.black));
 				itemLayout.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						
 						TextView icon = (TextView)v.findViewById(R.id.ruyi_guess_dynamic_icon);
 						String[] info = new String[2];
 						info[0] = (String)icon.getTag();
 						info[1] = mQuestionsList.get(position).getId();
-						
 						if ("true".equals((String)v.getTag())) {
 							icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
 							mInfoMap.remove(position);
@@ -563,6 +510,7 @@ public class RuyiGuessDetailActivity extends Activity {
 							for (int i = 0; i < layouts.length; i++) {
 								TextView tv = (TextView)layouts[i].findViewById(R.id.ruyi_guess_dynamic_icon);
 								tv.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
+								layouts[i].setTag("false");
 							}
 							v.setTag("true");
 							icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
@@ -676,6 +624,7 @@ public class RuyiGuessDetailActivity extends Activity {
 						options[j][2] = item.getString("selected");
 						if ("1".equals(item.getString("selected"))) {
 							isAdd = true;
+							info.setSelected(true);
 						}
 					}
 					if (!isAdd && "0".equals(itemObj.getString("isEnd"))) {

@@ -10,6 +10,7 @@ public class ItemDetailInfoBean {
 	private String endState = "";
 	private String answer = "";
 	private String correct = "";
+	private boolean isSelected = false;
 	public String getQuestion() {
 		return question;
 	}
@@ -63,6 +64,12 @@ public class ItemDetailInfoBean {
 	}
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+	public boolean isSelected() {
+		return isSelected;
+	}
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 	
 }
