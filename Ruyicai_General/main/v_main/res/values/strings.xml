@@ -1268,5 +1268,6 @@
     <string name="buy_ruyi_guess_right_answer">"本题正确答案:"</string>
     <string name="buy_ruyi_guess_answer">"答案:"</string>
     <string name="buy_ruyi_guess_go_work">"立即去竞猜"</string>
+    <string name="buy_ruyi_guess_no_record">"无记录"</string>
     
 </resources>
