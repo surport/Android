@@ -15,6 +15,8 @@
     android:layout_marginTop="30dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
     />
 
 <Button  
@@ -24,6 +26,8 @@
     android:text="@string/sharetotencentweibo"
     android:layout_marginBottom="20dp"
     android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
     />
 
 <Button 
@@ -32,6 +36,8 @@
     android:layout_height="wrap_content" 
     android:text="@string/cancle"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/fenxiangbtn_click"
+    android:background="@drawable/fenxiangbtn_normal2"
+    android:textSize="20sp"
+    android:textColor="@android:color/white"
     />
 </LinearLayout>
