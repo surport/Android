@@ -959,6 +959,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		mRoundProgressBar.setCricleProgressColor(cricleProgressColor(ProgressCount));//设置进度条的颜色
 		mRoundProgressBar.setProgress(ProgressCount);
 		//显示保底百分比
+		mJoin_detail_text_rengou_progress2.setBackgroundResource(cricleTextColor(Integer.parseInt(detatil.getSafeProgress())));
 		mJoin_detail_text_rengou_progress2.setText("保"+detatil.getSafeProgress() + "%");
 		
 		
@@ -1018,11 +1019,25 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	private int cricleProgressColor(int percent) {
 		if((percent>0||percent==0)&&percent<50){
-			return Color.RED;
+			return getResources().getColor(R.color.join_info_listitem_green);
 		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
-			return Color.GREEN;
+			return getResources().getColor(R.color.join_info_listitem_red);
 		}
-		return Color.RED;
+		return getResources().getColor(R.color.join_info_listitem_green);
+	}
+	
+	/**
+	 * 根据进度百分比设置颜色
+	 * @param percent
+	 * @return
+	 */
+	private int cricleTextColor(int percent) {
+		if((percent>0||percent==0)&&percent<50){
+			return R.drawable.join_iten_shape_text_gree;
+		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+			return R.drawable.join_iten_shape_text;
+		}
+		return R.drawable.join_iten_shape_text_gree;
 	}
 
 	/**
