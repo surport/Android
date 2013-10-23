@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -25,6 +26,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +44,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -116,7 +119,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private ListView canyurenyuan;
 	Button chedan;
 	Vector<CanyuInfo> canyudata = new Vector<CanyuInfo>();
-	View view;
+	View view,parent;
 	ImageButton  xinlang,wangyi;
 	private boolean isSinaTiaoZhuan = true;
 	private String starterUserNo;
@@ -133,10 +136,11 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private LinearLayout mFanganmiaoshu;
 	private RoundProgressBar mRoundProgressBar;
 	private TextView mJoin_detail_text_rengou_progress2;
-	
 	private ImageView jianGeXian;
-	
 	private TextView dDianji,dDianjiNeiRong,dDianJiFangAn;
+
+	private PopupWindow popupWindow;
+	private Button toshare,tosinaweibo,totengxunweibo,tocancel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +190,19 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				finish();
 			}
 		});
+		initSharePopWindow();
+		//test点击事件
+		toshare = (Button) findViewById(R.id.join_detail_btnbtn);
+		parent=this.findViewById(R.id.lineartop);
+		toshare.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(popupWindow!=null){
+					popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0); 		
+				}
+			}
+		});
+		
 //		Button dingBtn = (Button) findViewById(R.id.join_dingzhi);
 //		dingBtn.setOnClickListener(new OnClickListener() {
 //			@Override
@@ -219,6 +236,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			}
 		});
+		
+/*
 		fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
 		fenxianglayout.setOnClickListener(new OnClickListener() {
 
@@ -299,6 +318,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			}
 		});
+		
+		*/
 		rengouText = (TextView) findViewById(R.id.join_detail_text_rengou_amt);
 		minRGText = (TextView) findViewById(R.id.join_detail_text_rengou_min_amt);
 		lotnotext = (TextView) findViewById(R.id.join_detail_text_lotno);
@@ -425,6 +446,46 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		});
 
 		initButtonLayout();
+		
+	}
+
+	
+	
+	private void initSharePopWindow() {
+		
+		
+		View contentView=getLayoutInflater().inflate(R.layout.share_popwindow, null);
+		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		tocancel=(Button) contentView.findViewById(R.id.tocancel);
+		
+		
+   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
+   			ViewGroup.LayoutParams.WRAP_CONTENT);
+   	    popupWindow.setFocusable(true);
+   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
+   	    popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
+   	   
+   	    tosinaweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				oauthOrShare();
+			}
+		});
+   	   totengxunweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tenoauth();
+			}
+		});
+   	  tocancel.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (popupWindow != null && popupWindow.isShowing()) {
+				popupWindow.dismiss();
+			}
+		}
+	});
 	}
 
 	private void oauthOrShare() {

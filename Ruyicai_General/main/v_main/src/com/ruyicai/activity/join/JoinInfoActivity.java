@@ -176,55 +176,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		
 		iv_renqi = (ImageView)findViewById(R.id.iv_renqi);
 		iv_allCount = (ImageView)findViewById(R.id.iv_allcount);
-		
-		
-		
-		//LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	//	View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
-		//et_search = (EditText)viewpop.findViewById(R.id.et_search);
-	//	btn_search  =  (Button)viewpop. findViewById(R.id.btn_search);
-//		btn_search.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				showDialog(0);
-//				isSearch = true;
-//				viewInfos[topIndex][lottypeIndex].newPage = 0;
-//				viewInfos[topIndex][lottypeIndex].allPage = 0;
-//				viewInfos[topIndex][lottypeIndex].listdata.clear();
-//				
-//				
-//				 name = et_search.getText().toString().trim(); 
-//				if("".equals(name) || name ==null){
-//					Toast.makeText(getContext(), "搜索条件不能为空",0).show();
-//				}else{
-//					
-//					Thread t = new Thread(new Runnable() {
-//						@Override
-//						public void run() {
-//						String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
-//								orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
-//								Constants.PAGENUM,name);
-//						try {
-//							json = new JSONObject(str);
-//							setValue();
-//							Message  msg = new Message();
-//							msg.what = 0000;
-//							SearchHandler.sendMessage(msg);
-//							}
-//						 catch (JSONException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//					
-//						}
-//					});
-//					t.start();
-//				}
-//			
-//				
-//			}
-//		});
 		bt_search = (Button)findViewById(R.id.bt_search);
 		rl_search_layout = (RelativeLayout)findViewById(R.id.rl_search_layout);
 		bt_search.setOnClickListener(new OnClickListener() {
@@ -282,15 +233,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				searchWindow.setOutsideTouchable(true);
 				searchWindow.update();
 				searchWindow.setBackgroundDrawable(new BitmapDrawable());
-				//searchWindow.showAtLocation(ll_title, Gravity.RIGHT, 0, 0); 
 				searchWindow.showAsDropDown(ll_title,Math.abs(ll_title.getWidth()-searchWindow.getWidth())/2, 0);
-//				if(iShow){
-//					rl_search_layout.setVisibility(View.GONE);
-//					iShow=false;
-//				}else {
-//					rl_search_layout.setVisibility(View.VISIBLE);
-//					iShow=true;
-//				}
 			}
 		});
 		TextView title = (TextView) findViewById(R.id.join_text_title);
@@ -342,46 +285,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		});
 
 	}
-
-//	private void addmore() {
-//		
-//		int newPager = viewInfos[topIndex][lottypeIndex].newPage; 
-//		//int allparer = viewInfos[topIndex][lottypeIndex].allPage;
-//		if (viewInfos[topIndex][lottypeIndex].newPage < viewInfos[topIndex][lottypeIndex].allPage) {
-////			if(isSearch){
-////				Thread t = new Thread(new Runnable() {
-////					@Override
-////					public void run() {
-////					String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
-////							orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
-////							Constants.PAGENUM,name);
-////					try {
-////						json = new JSONObject(str);
-////						setValue();
-////						Message  msg = new Message();
-////						msg.what = 0000;
-////						SearchHandler.sendMessage(msg);
-////						}
-////					 catch (JSONException e) {
-////						// TODO Auto-generated catch block
-////						e.printStackTrace();
-////					}
-////				
-////					}
-////				});
-////				t.start();
-////			}else{
-//				joinInfokNet(orderBy, orderDir);
-////			}
-//		} else {
-//			viewInfos[topIndex][lottypeIndex].newPage = viewInfos[topIndex][lottypeIndex].allPage - 1;
-//			view.setEnabled(true);
-//			progressbar.setVisibility(View.INVISIBLE);
-//			Toast.makeText(JoinInfoActivity.this, "已至尾页", Toast.LENGTH_SHORT)
-//					.show();
-//		}
-//	}
-//	
 	private void addmore() {
 
 		viewInfos[topIndex][lottypeIndex].newPage++;
