@@ -1842,6 +1842,8 @@ public class PublicMethod {
 				title = "北京单场上下单双";
 			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
 				title = "北京单场";
+			} else if (type.equals(Constants.LOTNO_ZC)) {
+				title = "足彩";
 			}else {
 				title = "所有彩种";
 			}

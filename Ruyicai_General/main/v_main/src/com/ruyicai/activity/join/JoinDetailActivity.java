@@ -83,7 +83,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private TextView name, describe, atm, id, renAtm, baoAtm, state,
 			shengAtm, person, deduct, content, amountProgress, amountText,
 			safeProgress, safeText, minText, minText1, lotnotext, beishutext,
-			batchcodetext, faqirengou, timeText, rengouText,minRGText;
+			batchcodetext, faqirengou, timeText, rengouText,minRGText,textView8;
 	
 	private LinearLayout starLayout;
 	private LinearLayout  faqixinxi,fanganxiangqing, fanganleirong,
@@ -169,6 +169,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
+		textView8 = (TextView) findViewById(R.id.textView8);
 
 		TextView title = (TextView) findViewById(R.id.join_detail_text_title);
 		// title.append("-"+PublicMethod.toLotno(lotno));
@@ -922,6 +923,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				}
 			});
 		}
+		textView8.setText("玩法："+detatil.getLotName());//zhangkaikai add
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
 //		if (detatil.getBatchCode().equals("null")
