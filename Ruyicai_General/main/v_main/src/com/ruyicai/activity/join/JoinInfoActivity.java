@@ -241,8 +241,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		imgRetrun = (Button) findViewById(R.id.join_img_return);
 		title.setText("合买大厅");
 		title.append("-" + PublicMethod.toLotno(lotno));
-		imgRetrun.setBackgroundResource(R.drawable.returnselecter);
-		imgRetrun.setText("筛选");
+		imgRetrun.setBackgroundResource(R.drawable.join_info_xia);
+		imgRetrun.setText("");
 		imgRetrun.setVisibility(View.VISIBLE);
 		// ImageView的返回事件
 		imgRetrun.setOnClickListener(new OnClickListener() {

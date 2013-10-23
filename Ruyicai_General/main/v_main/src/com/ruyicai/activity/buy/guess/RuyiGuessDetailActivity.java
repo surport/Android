@@ -543,27 +543,31 @@ public class RuyiGuessDetailActivity extends Activity {
 					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
 				}
 			} else {
+//				boolean vFlag = false;
 				icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
 				text.setTextColor(getResources().getColor(R.color.black));
 				itemLayout.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						for (int i = 0; i < layouts.length; i++) {
-							TextView tv = (TextView)layouts[i].findViewById(R.id.ruyi_guess_dynamic_icon);
-							tv.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
-						}
-//						if (icon.) {
-//							
-//						} else {
-//							
-//						}
-						TextView icon = (TextView)v.findViewById(R.id.ruyi_guess_dynamic_icon);
-						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
 						
+						TextView icon = (TextView)v.findViewById(R.id.ruyi_guess_dynamic_icon);
 						String[] info = new String[2];
 						info[0] = (String)icon.getTag();
 						info[1] = mQuestionsList.get(position).getId();
-						mInfoMap.put(position, info);
+						
+						if ("true".equals((String)v.getTag())) {
+							icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
+							mInfoMap.remove(position);
+							v.setTag("false");
+						} else {
+							for (int i = 0; i < layouts.length; i++) {
+								TextView tv = (TextView)layouts[i].findViewById(R.id.ruyi_guess_dynamic_icon);
+								tv.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
+							}
+							v.setTag("true");
+							icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
+							mInfoMap.put(position, info);
+						}
 					}
 				});
 			}
