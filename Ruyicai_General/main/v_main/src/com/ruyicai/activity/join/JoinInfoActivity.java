@@ -21,6 +21,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -178,63 +179,63 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		
 		
 		
-		LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
-		et_search = (EditText)viewpop.findViewById(R.id.et_search);
-		btn_search  =  (Button)viewpop. findViewById(R.id.btn_search);
-		btn_search.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				showDialog(0);
-				isSearch = true;
-				viewInfos[topIndex][lottypeIndex].newPage = 0;
-				viewInfos[topIndex][lottypeIndex].allPage = 0;
-				viewInfos[topIndex][lottypeIndex].listdata.clear();
-				
-				
-				 name = et_search.getText().toString().trim(); 
-				if("".equals(name) || name ==null){
-					Toast.makeText(getContext(), "搜索条件不能为空",0).show();
-				}else{
-					
-					Thread t = new Thread(new Runnable() {
-						@Override
-						public void run() {
-						String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
-								orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
-								Constants.PAGENUM,name);
-						try {
-							json = new JSONObject(str);
-							setValue();
-							Message  msg = new Message();
-							msg.what = 0000;
-							SearchHandler.sendMessage(msg);
-							}
-						 catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					
-						}
-					});
-					t.start();
-				}
-			
-				
-			}
-		});
+		//LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	//	View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
+		//et_search = (EditText)viewpop.findViewById(R.id.et_search);
+	//	btn_search  =  (Button)viewpop. findViewById(R.id.btn_search);
+//		btn_search.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				showDialog(0);
+//				isSearch = true;
+//				viewInfos[topIndex][lottypeIndex].newPage = 0;
+//				viewInfos[topIndex][lottypeIndex].allPage = 0;
+//				viewInfos[topIndex][lottypeIndex].listdata.clear();
+//				
+//				
+//				 name = et_search.getText().toString().trim(); 
+//				if("".equals(name) || name ==null){
+//					Toast.makeText(getContext(), "搜索条件不能为空",0).show();
+//				}else{
+//					
+//					Thread t = new Thread(new Runnable() {
+//						@Override
+//						public void run() {
+//						String	str = QueryJoinInfoInterface.queryLotJoinInfo("", "", orderBy,
+//								orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
+//								Constants.PAGENUM,name);
+//						try {
+//							json = new JSONObject(str);
+//							setValue();
+//							Message  msg = new Message();
+//							msg.what = 0000;
+//							SearchHandler.sendMessage(msg);
+//							}
+//						 catch (JSONException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					
+//						}
+//					});
+//					t.start();
+//				}
+//			
+//				
+//			}
+//		});
 		bt_search = (Button)findViewById(R.id.bt_search);
 		rl_search_layout = (RelativeLayout)findViewById(R.id.rl_search_layout);
-	
 		bt_search.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
-				Button bt_search = (Button) viewpop.findViewById(R.id.btn_search);
-				bt_search.setOnClickListener(new OnClickListener() {
+				Button bt_search_popwindow = (Button) viewpop.findViewById(R.id.btn_search);
+				et_search = (EditText)viewpop.findViewById(R.id.et_search);
+				bt_search_popwindow.setOnClickListener(new OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
@@ -246,7 +247,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						
 						
 						 name = et_search.getText().toString().trim(); 
-						if("".equals(name) || name ==null){
+						if(TextUtils.isEmpty(name)){
 							Toast.makeText(getContext(), "搜索条件不能为空",0).show();
 						}else{
 							showDialog(0);
@@ -276,8 +277,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						
 					}
 				});
-				
-				
 				searchWindow = new PopupWindow(viewpop,LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 				searchWindow.setFocusable(true);
 				searchWindow.setOutsideTouchable(true);
