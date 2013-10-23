@@ -40,6 +40,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -85,7 +86,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private TextView name, describe, atm, id, renAtm, baoAtm, state,
 			shengAtm, person, deduct, content, amountProgress, amountText,
 			safeProgress, safeText, minText, minText1, lotnotext, beishutext,
-			batchcodetext, faqirengou, timeText, rengouText,minRGText;
+			batchcodetext, faqirengou, timeText, rengouText,minRGText,textView8;
 	
 	private LinearLayout starLayout;
 	private LinearLayout  faqixinxi,fanganxiangqing, fanganleirong,
@@ -135,8 +136,10 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private LinearLayout mFanganmiaoshu;
 	private RoundProgressBar mRoundProgressBar;
 	private TextView mJoin_detail_text_rengou_progress2;
+
 	private PopupWindow popupWindow;
 	private Button toshare,tosinaweibo,totengxunweibo,tocancel;
+	private ImageView jianGeXian;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -171,6 +174,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
+		textView8 = (TextView) findViewById(R.id.textView8);
 
 		TextView title = (TextView) findViewById(R.id.join_detail_text_title);
 		// title.append("-"+PublicMethod.toLotno(lotno));
@@ -353,6 +357,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		mRoundProgressBar=(RoundProgressBar)findViewById(R.id.join_detail_tex_progress);
 		mJoin_detail_text_rengou_progress2=(TextView)findViewById(R.id.join_detail_text_rengou_progress2);
 		
+		//...............
+		jianGeXian=(ImageView)findViewById(R.id.join_detail_jiangexian);
 		
 		joinInImg.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -575,9 +581,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	}
 
 	public void initButtonLayout() {
-		faqi = (Button) findViewById(R.id.faqi);
+		//faqi = (Button) findViewById(R.id.faqi);
 		faqixinxi = (LinearLayout) findViewById(R.id.faqixinxi);
-		xiangqing = (Button) findViewById(R.id.fangan);
+		//xiangqing = (Button) findViewById(R.id.fangan);
 		fanganxiangqing = (LinearLayout) findViewById(R.id.fanganxiangqing);
 		leirong = (Button) findViewById(R.id.leirong);
 		fanganleirong = (LinearLayout) findViewById(R.id.fanganleirong);
@@ -585,7 +591,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		rengoushezhi = (LinearLayout) findViewById(R.id.rengoushezhi);
 		canyu = (Button) findViewById(R.id.canyu);
 		canyurenyuan = (ListView) findViewById(R.id.canyurenyuan);
-		faqi.setOnClickListener(new OnClickListener() {
+		/*faqi.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -600,8 +606,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					isfaqi = true;
 				}
 			}
-		});
-		xiangqing.setOnClickListener(new OnClickListener() {
+		});*/
+		/*xiangqing.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -618,7 +624,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					isxiangqing = true;
 				}
 			}
-		});
+		});*/
 		leirong.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -979,6 +985,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				}
 			});
 		}
+		textView8.setText("玩法："+detatil.getLotName());//zhangkaikai add
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
 //		if (detatil.getBatchCode().equals("null")
@@ -986,6 +993,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		if (detatil.getBatchCode() == null
 				|| "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
+			jianGeXian.setVisibility(View.GONE);
 		} else {
 			batchcodetext.append("第" + detatil.getBatchCode() + "期");
 		}
@@ -999,7 +1007,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		minText1.append(detatil.getMinAmt() + "元");
 		name.append(detatil.getStarter());
 		describe.append(detatil.getDescription());
-		atm.append(detatil.getTotalAmt() + "元");
+		atm.append("￥"+detatil.getTotalAmt() + "元");
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
@@ -1007,18 +1015,18 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		
 		//。。。。。。。。。。。。。
 		/**
-		 * 显示百分比
 		 */
 		int ProgressCount=Integer.parseInt(detatil.getBuyProgress());
 		mRoundProgressBar.setTextColor(cricleProgressColor(ProgressCount));//设置中间显示的百分比颜色
 		mRoundProgressBar.setCricleProgressColor(cricleProgressColor(ProgressCount));//设置进度条的颜色
 		mRoundProgressBar.setProgress(ProgressCount);
 		//显示保底百分比
+		mJoin_detail_text_rengou_progress2.setBackgroundResource(cricleTextColor(Integer.parseInt(detatil.getSafeProgress())));
 		mJoin_detail_text_rengou_progress2.setText("保"+detatil.getSafeProgress() + "%");
 		
 		
 		state.append(detatil.getDisplayState());
-		shengAtm.append(detatil.getRemainderAmt() + "元");
+		shengAtm.append("￥"+detatil.getRemainderAmt() + "元");
 		person.append(detatil.getParticipantCount() + "人");
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
@@ -1073,11 +1081,25 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	private int cricleProgressColor(int percent) {
 		if((percent>0||percent==0)&&percent<50){
-			return Color.RED;
+			return getResources().getColor(R.color.join_info_listitem_green);
 		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
-			return Color.GREEN;
+			return getResources().getColor(R.color.join_info_listitem_red);
 		}
-		return Color.RED;
+		return getResources().getColor(R.color.join_info_listitem_green);
+	}
+	
+	/**
+	 * 根据进度百分比设置颜色
+	 * @param percent
+	 * @return
+	 */
+	private int cricleTextColor(int percent) {
+		if((percent>0||percent==0)&&percent<50){
+			return R.drawable.join_iten_shape_text_gree;
+		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+			return R.drawable.join_iten_shape_text;
+		}
+		return R.drawable.join_iten_shape_text_gree;
 	}
 
 	/**

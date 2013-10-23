@@ -33,7 +33,8 @@
                 android:layout_toLeftOf="@id/btn_search"
                 android:background="@drawable/search_edit_b"
                 android:gravity="center_vertical"
-                android:hint="请输入用户名称进行搜索"
+                android:textSize="13sp"
+                android:hint="请输入用户昵称进行搜索"
                 android:paddingLeft="5dip" />
         </RelativeLayout>
     
