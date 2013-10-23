@@ -295,8 +295,8 @@ public class DanshiJiXuan extends Activity implements
 		if (balls.size() == 0) {
 			alertInfo("请至少选择1注彩票");
 		} else {
+			addToCodes();
 			if (addView.getSize() == 0) {
-				addToCodes();
 				alert_jixuan();
 			} else {
 				showAddViewDialog();
