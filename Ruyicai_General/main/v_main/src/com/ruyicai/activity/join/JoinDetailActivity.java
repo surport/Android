@@ -33,9 +33,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -239,89 +236,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			}
 		});
 		
-/*
-		fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
-		fenxianglayout.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (issharemove) {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(PublicMethod.getPxInt(265,
-									JoinDetailActivity.this), 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = false;
-				} else {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, -0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(0, 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = true;
-
-				}
-
-			}
-		});
-		
-		*/
 		rengouText = (TextView) findViewById(R.id.join_detail_text_rengou_amt);
 		minRGText = (TextView) findViewById(R.id.join_detail_text_rengou_min_amt);
 		lotnotext = (TextView) findViewById(R.id.join_detail_text_lotno);
@@ -487,18 +402,25 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
    			ViewGroup.LayoutParams.WRAP_CONTENT);
    	    popupWindow.setFocusable(true);
    	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
-   	    popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
+   	    //popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
    	   
    	    tosinaweibo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				oauthOrShare();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+				
 			}
 		});
    	   totengxunweibo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				tenoauth();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
 			}
 		});
    	  tocancel.setOnClickListener(new OnClickListener() {
