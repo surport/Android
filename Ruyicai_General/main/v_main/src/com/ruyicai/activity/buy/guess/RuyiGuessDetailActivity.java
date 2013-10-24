@@ -1,7 +1,6 @@
 package com.ruyicai.activity.buy.guess;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -40,7 +39,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +78,11 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 	private int mViewIndex = 0;
 	//存放问题序号的map
 	private Map<Integer, String> mAnswerMap = new HashMap<Integer, String>();
+	//保存参与的题目状态
 	private Map<Integer, String[]> mLocalDataMap = new HashMap<Integer, String[]>();
+	//存放没有选择的题目
+//	private Map<Integer, Boolean> mNoSelectedMap = new HashMap<Integer, Boolean>();
+	private int mNoSelectedCount = 0;
 
 	
 	@Override
@@ -106,8 +108,8 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		TextView title = (TextView)findViewById(R.id.ruyi_guess_item_subtitle);
 		mDescription = (TextView)findViewById(R.id.ruyi_guess_item_description);
 		title.setText(mTitle);
-//		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
 		mPullListView = (PullRefreshListView)findViewById(R.id.ruyi_guess_listview);
+//		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
 //		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
 //		mListView.addFooterView(mFooterView);
 //		mFooterView.setVisibility(View.GONE);
@@ -163,6 +165,11 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 
 					@Override
 					public void onClick(View v) {
+						if (mSubmitBtn.getText().toString()
+								.equals(getResources()
+										.getString(R.string.buy_ruyi_guess_btn_participate))) {
+							return;
+						}
 						if (mInfoMap.size() > 0) {
 							mProgressdialog = PublicMethod
 									.creageProgressDialog(RuyiGuessDetailActivity.this);
@@ -228,7 +235,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		}
 		String strInfo = buffer.toString();
 		if (strInfo.length() > 0) {
-			mInfoMap.clear();
+//			mInfoMap.clear();
 			return strInfo.substring(0, strInfo.length()-1);
 		} 
 		return "";
@@ -439,8 +446,10 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 	
 	/**
 	 * 动态创建选项视图
-	 * @param layout
-	 * @param position
+	 * @param layout 选项的父布局
+	 * @param position 在listview中的位置
+	 * @param isSelected 是否选择题目
+	 * @param endState 结束状态
 	 */
 	private void createDynamicView(LinearLayout layout, int position, 
 			boolean isSelected, String endState) {
@@ -477,6 +486,18 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		}
 	}
 	
+	/**
+	 * 添加一行
+	 * @param lastNum 每行的数量
+	 * @param line 行数
+	 * @param layouts 
+	 * @param lineNum 最后一行的数量
+	 * @param options
+	 * @param position 在listview中的位置
+	 * @param isSelected 是否选择题目
+	 * @param endState 结束状态 1：结束； 0：为结束
+	 * @return
+	 */
 	private LinearLayout addLine(int lastNum, int line, final LinearLayout[] layouts,
 			int lineNum, String[][] options, final int position, final boolean isSelected,
 			String endState) {
@@ -488,7 +509,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			TextView icon = (TextView)itemLayout.findViewById(R.id.ruyi_guess_dynamic_icon);
 			icon.setTag(options[index][0]);
 			
-//			String info[] = (String[])(mInfoMap.get(position));
 			String info[] = null;
 			if (mLocalDataMap.containsKey(position)) {
 				info = (String[])(mLocalDataMap.get(position));
@@ -510,7 +530,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 				itemLayout.setClickable(false);
 				text.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
 				number.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-//				if ((mInfoMap.containsKey(position)
 				if ((info != null && (info[0]).equals(options[index][0]))
 						|| "1".equals(options[index][2])) {
 					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
@@ -518,43 +537,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
 				}
 			} else {
-//				if (info != null 
-//						&& (info[0]).equals(options[index][0])) {
-//					itemLayout.setClickable(false);
-//					text.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-//					number.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-//					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
-//				} else {
-//					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
-//					text.setTextColor(getResources().getColor(R.color.black));
-//					number.setTextColor(getResources().getColor(R.color.black));
-//					itemLayout.setOnClickListener(new OnClickListener() {
-//						@Override
-//						public void onClick(View v) {
-//							TextView icon = (TextView)v.findViewById(R.id.ruyi_guess_dynamic_icon);
-//							String[] info = new String[2];
-//							info[0] = (String)icon.getTag();
-//							info[1] = mQuestionsList.get(position).getId();
-//							if ("true".equals((String)v.getTag())) {
-//								icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
-//								mInfoMap.remove(position);
-//								mLocalDataMap.remove(position);
-//								v.setTag("false");
-//							} else {
-//								for (int i = 0; i < layouts.length; i++) {
-//									TextView tv = (TextView)layouts[i].findViewById(R.id.ruyi_guess_dynamic_icon);
-//									tv.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
-//									layouts[i].setTag("false");
-//								}
-//								v.setTag("true");
-//								icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
-//								mInfoMap.put(position, info);
-//								mLocalDataMap.put(position, info);
-//							}
-//						}
-//					});
-//				}
-				
 				if (mIsSuccess && mLocalDataMap.containsKey(position)) {
 					itemLayout.setClickable(false);
 					text.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
@@ -662,6 +644,11 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 						String errorCode = jsonObj.getString("error_code");
 						if ("0000".equals(errorCode)) {
 							mIsSuccess = true;
+							Log.i("yejc", "=========mNoSelectedMap.size()="+mInfoMap.size()
+									+" ==========mNoSelectedCount="+mNoSelectedCount);
+							if ((mNoSelectedCount - mInfoMap.size()) == 0) {
+								setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
+							}
 							mInfoMap.clear();
 							mAdapter.notifyDataSetChanged();
 							createDialog();
@@ -684,15 +671,19 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 				}
 			}
 		}
-		
 	}
 	
+	/**
+	 * 解析json串
+	 * @param data json串
+	 */
 	private void parserDetailJSON(String data) {
 		try {
 			JSONObject jsonObj = new JSONObject(data);
 			String errorCode = jsonObj.getString("error_code");
 			if ("0000".equals(errorCode)) {
 				mQuestionsList.clear(); //20131023
+				mNoSelectedCount = 0;
 				mDetail = jsonObj.getJSONObject("quiz").getString("detail");
 				mDescription.setText(mDetail);
 				JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -724,6 +715,8 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					}
 					if (!isAdd && "0".equals(itemObj.getString("isEnd"))) {
 						isSubmit = true;
+						mNoSelectedCount++;
+						Log.i("yejc", "===========i="+i);
 					}
 					info.setOptions(options);
 					if (mIsMySelected) {
