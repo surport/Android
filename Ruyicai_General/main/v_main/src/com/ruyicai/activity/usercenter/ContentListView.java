@@ -477,6 +477,22 @@ public class ContentListView {
 		}
 		return returnStr;
 	}
+	// 0:对所有人立即公开;1:保密;2:对所有人截止后公开;3:对跟单者立即公开;4:对跟单者截止后公开
+	public boolean getEnable(String enable) {
+		boolean returnEnable = true;
+		if (enable.equals("") | enable.equals("1")) {
+			returnEnable =false;
+		} else if (enable.equals("0")) {
+			returnEnable= true;
+		} else if (enable.equals("2")) {
+			returnEnable =false;
+		} else if (enable.equals("3")) {
+			returnEnable = true;
+		} else if (enable.equals("4")) {
+			returnEnable =false ;
+		}
+		return returnEnable;
+	}
 
 	public void setDisplayText() {
 
