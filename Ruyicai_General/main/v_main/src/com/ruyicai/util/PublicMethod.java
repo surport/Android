@@ -1842,6 +1842,8 @@ public class PublicMethod {
 				title = "北京单场上下单双";
 			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
 				title = "北京单场";
+			} else if (type.equals(Constants.LOTNO_ZC)) {
+				title = "足彩";
 			}else {
 				title = "所有彩种";
 			}
@@ -1908,6 +1910,100 @@ public class PublicMethod {
 			} else if (type.equals(Constants.LOTNO_JCZQ_BQC)) {
 				title = "竞彩足球";
 			} else {
+				title = "所有彩种";
+			}
+		}
+		return title;
+
+	}
+	
+	
+	public static String infoToLotno(String type) {
+		String title = "";
+		if (type != null) {
+			if (type.equals(Constants.LOTNO_SSQ)) {
+				title = "双色球";
+			} else if (type.equals(Constants.LOTNO_FC3D)) {
+				title = "福彩3D";
+			} else if (type.equals(Constants.LOTNO_QLC)) {
+				title = "七乐彩";
+			} else if (type.equals(Constants.LOTNO_PL3)) {
+				title = "排列三";
+			} else if (type.equals(Constants.LOTNO_DLT)) {
+				title = "大乐透";
+			} else if (type.equals(Constants.LOTNO_SFC)) {
+				title = "胜负彩";
+			} else if (type.equals(Constants.LOTNO_JQC)) {
+				title = "进球彩";
+			} else if (type.equals(Constants.LOTNO_LCB)) {
+				title = "六场半";
+			} else if (type.equals(Constants.LOTNO_RX9)) {
+				title = "任选九";
+			} else if (type.equals(Constants.LOTNO_QXC)) {
+				title = "七星彩";
+			} else if (type.equals(Constants.LOTNO_SSC)) {
+				title = "时时彩";
+			} else if (type.equals(Constants.LOTNO_11_5)) {
+				title = "江西11选5";
+			} else if (type.equals(Constants.LOTNO_QXC)) {
+				title = "七星彩";
+			} else if (type.equals(Constants.LOTNO_PL5)) {
+				title = "排列五";
+			} else if (type.equals(Constants.LOTNO_JCLQ)) {
+				title = "胜负";
+			} else if (type.equals(Constants.LOTNO_JCLQ_RF)) {
+				title = "让分胜负";
+			} else if (type.equals(Constants.LOTNO_JCLQ_SFC)) {
+				title = "胜分差";
+			} else if (type.equals(Constants.LOTNO_JCLQ_DXF)) {
+				title = "大小分";
+			} else if (type.equals(Constants.LOTNO_22_5)) {
+				title = "22选5";
+			} else if (type.equals(Constants.LOTNO_eleven)) {
+				title = "11运夺金";
+			} else if (type.equals(Constants.LOTNO_JCL)) {
+				title = "竞彩篮球";
+			} else if (type.equals(Constants.LOTNO_JCZ)) {
+				title = "竞彩足球";
+			} else if (type.equals(Constants.LOTNO_JCZQ)) {
+				title = "胜负";
+			} else if (type.equals(Constants.LOTNO_JCZQ_RQSPF)) {
+				title = "让球胜平负";
+			} else if (type.equals(Constants.LOTNO_JCZQ_ZQJ)) {
+				title = "总进球";
+			} else if (type.equals(Constants.LOTNO_JCZQ_BQC)) {
+				title = "半全场";
+			} else if (type.equals(Constants.LOTNO_JCZQ_BF)) {
+				title = "比分";
+			} else if (type.equals(Constants.LOTNO_GD_11_5)) {
+				title = "广东11选5";
+			} else if (type.equals(Constants.LOTNO_ten)) {
+				title = "广东快乐十分";
+			} else if (type.equals(Constants.LOTNO_JCLQ_HUN)) {
+				title = "混合";
+			} else if (type.equals(Constants.LOTNO_JCZQ_HUN)) {
+				title = "混合";
+			} else if (type.equals(Constants.LOTNO_NMK3)) {
+				title = "快三";
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
+				title = "胜平负";
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)) {
+				title = "总进球";
+			} else if (type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)) {
+				title = "全场总比分";
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)) {
+				title = "半全场";
+			} else if (type
+					.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)) {
+				title = "上下单双";
+			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
+				title = "北京单场";
+			} else if (type.equals(Constants.LOTNO_ZC)) {
+				title = "足彩";
+			}else {
 				title = "所有彩种";
 			}
 		}

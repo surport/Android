@@ -78,15 +78,6 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
 	private ArrayAdapter<String> adapter;
 	private MyHandler handler = new MyHandler(this);
 	private String tn = null;
-    /*****************************************************************
-     * mMode参数解释：
-     *      "00" - 启动银联正式环境
-     *      "01" - 连接银联测试环境
-     *****************************************************************/
-    private String mMode = "01";
-    /**
-     * 该地址为获取TN的地址，具体请根据业务需求做相应改动
-     */
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -475,7 +466,7 @@ public class AccountYingActivity extends Activity implements OnClickListener,Han
 			// 0 - 启动银联正式环境info
 			// 1 - 连接银联测试环境
 			UPPayAssistEx.startPayByJAR(AccountYingActivity.this, PayActivity.class,
-					null, null, tn, mMode);
+					null, null, tn, Constants.BANCK_Mode);
 		}
 	}
 

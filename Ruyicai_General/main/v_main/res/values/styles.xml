@@ -184,4 +184,15 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+    
+    <!--分享的进入推出效果  -->
+     <style name="share_animation">
+  <item name="android:windowEnterAnimation">@anim/enter</item>
+  <item name="android:windowExitAnimation">@anim/out</item>
+  </style>
+  
+     <!--分享的推出效果  -->
+     <style name="share_animation_exit">
+  <item name="android:windowExitAnimation">@anim/out</item>
+  </style>
 </resources>

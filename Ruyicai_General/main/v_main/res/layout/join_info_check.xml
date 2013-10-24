@@ -9,35 +9,44 @@
     <RelativeLayout
         android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45.0dip"
         android:background="@drawable/shouye_top" >
 
-        <TextView
-            android:id="@+id/join_text_title"
+        <RelativeLayout
+            android:id="@+id/join_returnLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:paddingLeft="5dip"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="18dip" >
-        </TextView>
-
-        <Button
-            android:id="@+id/join_img_return"
-            android:layout_width="15dip"
-            android:layout_height="15dip"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_marginRight="10dip"
-            android:text="返回"
-            android:textColor="@color/white"
-            android:textSize="15dip"
             android:visibility="invisible" >
-        </Button>
+
+            <TextView
+                android:id="@+id/join_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/join_img_return"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="18sp" >
+            </TextView>
+
+            <Button
+                android:id="@+id/join_img_return"
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="返回"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:visibility="invisible" >
+            </Button>
+        </RelativeLayout>
     </RelativeLayout>
 
-    <!-- <LinearLayout
+    <!--
+    <LinearLayout
         android:id="@+id/join_info_check_linear_top"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -115,6 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:background="#00000000"
                 android:text="参与进度"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
@@ -196,14 +206,18 @@
             android:background="@drawable/jiangexian" />
 
         <Button
-             android:id="@+id/bt_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/bt_search"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="5dip"
+            android:layout_weight="0.55"
             android:background="@drawable/hemai_search" />
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#33333333" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -243,6 +257,7 @@
             </RelativeLayout>
         </RelativeLayout>
 
+        <!--
         <RelativeLayout
             android:id="@+id/rl_search_layout"
             android:layout_width="fill_parent"
@@ -273,7 +288,7 @@
                 android:gravity="center_vertical"
                 android:hint="请输入用户名称进行搜索"
                 android:paddingLeft="5dip" />
-        </RelativeLayout>
+        </RelativeLayout> -->
     </RelativeLayout>
 
 </LinearLayout>

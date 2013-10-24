@@ -58,4 +58,6 @@
     <color name="ruyi_guess_title_text_bg">#faf0ee</color>
     <color name="ruyi_guess_item_bg">#F0F0E6</color>
     
+     <color name="join_info_listitem_green">#0a950e</color>
+    <color name="join_info_listitem_red">#a00000</color>
 </resources>

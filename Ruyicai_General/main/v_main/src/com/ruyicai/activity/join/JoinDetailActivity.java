@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -25,6 +26,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,9 +40,11 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TextView.BufferType;
@@ -82,7 +86,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private TextView name, describe, atm, id, renAtm, baoAtm, state,
 			shengAtm, person, deduct, content, amountProgress, amountText,
 			safeProgress, safeText, minText, minText1, lotnotext, beishutext,
-			batchcodetext, faqirengou, timeText, rengouText,minRGText;
+			batchcodetext, faqirengou, timeText, rengouText,minRGText,textView8;
 	
 	private LinearLayout starLayout;
 	private LinearLayout  faqixinxi,fanganxiangqing, fanganleirong,
@@ -115,7 +119,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private ListView canyurenyuan;
 	Button chedan;
 	Vector<CanyuInfo> canyudata = new Vector<CanyuInfo>();
-	View view;
+	View view,parent;
 	ImageButton  xinlang,wangyi;
 	private boolean isSinaTiaoZhuan = true;
 	private String starterUserNo;
@@ -132,6 +136,13 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private LinearLayout mFanganmiaoshu;
 	private RoundProgressBar mRoundProgressBar;
 	private TextView mJoin_detail_text_rengou_progress2;
+	private ImageView jianGeXian;
+	private TextView dDianji,dDianjiNeiRong,dDianJiFangAn;
+
+	private PopupWindow popupWindow;
+	private Button toshare,tosinaweibo,totengxunweibo,tocancel;
+	
+	private TextView renGouZhan,baoDiZhan,shengYuKe,baoDiKe;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -166,6 +177,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
+		textView8 = (TextView) findViewById(R.id.textView8);
 
 		TextView title = (TextView) findViewById(R.id.join_detail_text_title);
 		// title.append("-"+PublicMethod.toLotno(lotno));
@@ -180,6 +192,19 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				finish();
 			}
 		});
+		initSharePopWindow();
+		//test点击事件
+		toshare = (Button) findViewById(R.id.join_detail_btnbtn);
+		parent=this.findViewById(R.id.lineartop);
+		toshare.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(popupWindow!=null){
+					popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0); 		
+				}
+			}
+		});
+		
 //		Button dingBtn = (Button) findViewById(R.id.join_dingzhi);
 //		dingBtn.setOnClickListener(new OnClickListener() {
 //			@Override
@@ -213,6 +238,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			}
 		});
+		
+/*
 		fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
 		fenxianglayout.setOnClickListener(new OnClickListener() {
 
@@ -293,6 +320,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			}
 		});
+		
+		*/
 		rengouText = (TextView) findViewById(R.id.join_detail_text_rengou_amt);
 		minRGText = (TextView) findViewById(R.id.join_detail_text_rengou_min_amt);
 		lotnotext = (TextView) findViewById(R.id.join_detail_text_lotno);
@@ -331,6 +360,17 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		mRoundProgressBar=(RoundProgressBar)findViewById(R.id.join_detail_tex_progress);
 		mJoin_detail_text_rengou_progress2=(TextView)findViewById(R.id.join_detail_text_rengou_progress2);
 		
+		//...............
+		jianGeXian=(ImageView)findViewById(R.id.join_detail_jiangexian);
+		dDianji=(TextView)findViewById(R.id.join_detail_dianji);
+		dDianjiNeiRong=(TextView)findViewById(R.id.join_detail_dianji_neirong);
+		dDianJiFangAn=(TextView)findViewById(R.id.join_detail_dianji_fangan);
+		
+		//........
+		renGouZhan=(TextView)findViewById(R.id.rengouzhanzonge);
+		baoDiZhan=(TextView)findViewById(R.id.baodizhanzonge);
+        shengYuKe=(TextView)findViewById(R.id.shengyurengou);
+        baoDiKe=(TextView)findViewById(R.id.shengyubaodi);
 		
 		joinInImg.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -360,6 +400,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					amountEdit.setText(str.subSequence(1, str.length()));
 				}
 				/**add by yejc 20130704 end*/
+				int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
+				//........
+				renGouZhan.setText("占总额" + renGou_per+ "%");
 
 			}
 
@@ -395,6 +438,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					safeAmtEdit.setText(str.subSequence(1, str.length()));
 				}
 				/**add by yejc 20130704 end*/
+				int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getSafeAmt().toString()));
+				//.......
+				baoDiZhan.setText("占总额" + renGou_per+ "%");
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -414,6 +460,46 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		});
 
 		initButtonLayout();
+		
+	}
+
+	
+	
+	private void initSharePopWindow() {
+		
+		
+		View contentView=getLayoutInflater().inflate(R.layout.share_popwindow, null);
+		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		tocancel=(Button) contentView.findViewById(R.id.tocancel);
+		
+		
+   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
+   			ViewGroup.LayoutParams.WRAP_CONTENT);
+   	    popupWindow.setFocusable(true);
+   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
+   	    popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
+   	   
+   	    tosinaweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				oauthOrShare();
+			}
+		});
+   	   totengxunweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tenoauth();
+			}
+		});
+   	  tocancel.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (popupWindow != null && popupWindow.isShowing()) {
+				popupWindow.dismiss();
+			}
+		}
+	});
 	}
 
 	private void oauthOrShare() {
@@ -513,9 +599,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	}
 
 	public void initButtonLayout() {
-		faqi = (Button) findViewById(R.id.faqi);
 		faqixinxi = (LinearLayout) findViewById(R.id.faqixinxi);
-		xiangqing = (Button) findViewById(R.id.fangan);
 		fanganxiangqing = (LinearLayout) findViewById(R.id.fanganxiangqing);
 		leirong = (Button) findViewById(R.id.leirong);
 		fanganleirong = (LinearLayout) findViewById(R.id.fanganleirong);
@@ -523,50 +607,19 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		rengoushezhi = (LinearLayout) findViewById(R.id.rengoushezhi);
 		canyu = (Button) findViewById(R.id.canyu);
 		canyurenyuan = (ListView) findViewById(R.id.canyurenyuan);
-		faqi.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (isfaqi) {
-					faqixinxi.setVisibility(View.VISIBLE);
-					faqi.setBackgroundResource(R.drawable.joininfobuttonup);
-					isfaqi = false;
-				} else {
-					faqixinxi.setVisibility(View.GONE);
-					faqi.setBackgroundResource(R.drawable.joninfobuttonoff);
-					isfaqi = true;
-				}
-			}
-		});
-		xiangqing.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (isxiangqing) {
-					fanganxiangqing.setVisibility(View.VISIBLE);
-					xiangqing
-							.setBackgroundResource(R.drawable.joininfobuttonup);
-					isxiangqing = false;
-				} else {
-					fanganxiangqing.setVisibility(View.GONE);
-					xiangqing
-							.setBackgroundResource(R.drawable.joninfobuttonoff);
-					isxiangqing = true;
-				}
-			}
-		});
+		
 		leirong.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (isleirong) {
+					dDianjiNeiRong.setVisibility(View.GONE);
 					fanganleirong.setVisibility(View.VISIBLE);
 					leirong.setBackgroundResource(R.drawable.joininfobuttonup);
 					isleirong = false;
 				} else {
+					dDianjiNeiRong.setVisibility(View.VISIBLE);
 					fanganleirong.setVisibility(View.GONE);
 					leirong.setBackgroundResource(R.drawable.joninfobuttonoff);
 					isleirong = true;
@@ -597,12 +650,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				if (iscanyu) {
 					canyurenyuan.setVisibility(View.VISIBLE);
 					canyu.setBackgroundResource(R.drawable.joininfobuttonup);
+					dDianji.setVisibility(View.GONE);
 					iscanyu = false;
 					if (canyudata.size() == 0) {
 						joinCanyuNet();
 					}
 				} else {
 					canyurenyuan.setVisibility(View.GONE);
+					dDianji.setVisibility(View.VISIBLE);
 					canyu.setBackgroundResource(R.drawable.joninfobuttonoff);
 					iscanyu = true;
 				}
@@ -618,11 +673,13 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if(isMiaoShu){
-					mFanganmiaoshu.setVisibility(View.GONE);
+					dDianJiFangAn.setVisibility(View.GONE);
+					mFanganmiaoshu.setVisibility(View.VISIBLE);
 					mMiaoshu.setBackgroundResource(R.drawable.joninfobuttonoff);
 					isMiaoShu=false;
 				}else {
-					mFanganmiaoshu.setVisibility(View.VISIBLE);
+					dDianJiFangAn.setVisibility(View.VISIBLE);
+					mFanganmiaoshu.setVisibility(View.GONE);
 					mMiaoshu.setBackgroundResource(R.drawable.joininfobuttonup);
 					isMiaoShu=true;
 				}
@@ -917,6 +974,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				}
 			});
 		}
+		textView8.setText("玩法："+detatil.getLotName());//zhangkaikai add
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
 //		if (detatil.getBatchCode().equals("null")
@@ -924,6 +982,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		if (detatil.getBatchCode() == null
 				|| "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
+			jianGeXian.setVisibility(View.GONE);
 		} else {
 			batchcodetext.append("第" + detatil.getBatchCode() + "期");
 		}
@@ -937,26 +996,30 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		minText1.append(detatil.getMinAmt() + "元");
 		name.append(detatil.getStarter());
 		describe.append(detatil.getDescription());
-		atm.append(detatil.getTotalAmt() + "元");
+		atm.append("￥"+detatil.getTotalAmt() + "元");
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
 		
+		//.........
+		//shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
+		baoDiKe.setText("剩余"+detatil.getSafeAmt()+"元可保底");
+		
 		
 		//。。。。。。。。。。。。。
 		/**
-		 * 显示百分比
 		 */
 		int ProgressCount=Integer.parseInt(detatil.getBuyProgress());
 		mRoundProgressBar.setTextColor(cricleProgressColor(ProgressCount));//设置中间显示的百分比颜色
 		mRoundProgressBar.setCricleProgressColor(cricleProgressColor(ProgressCount));//设置进度条的颜色
 		mRoundProgressBar.setProgress(ProgressCount);
 		//显示保底百分比
+		mJoin_detail_text_rengou_progress2.setBackgroundResource(cricleTextColor(Integer.parseInt(detatil.getSafeProgress())));
 		mJoin_detail_text_rengou_progress2.setText("保"+detatil.getSafeProgress() + "%");
 		
 		
 		state.append(detatil.getDisplayState());
-		shengAtm.append(detatil.getRemainderAmt() + "元");
+		shengAtm.append("￥"+detatil.getRemainderAmt() + "元");
 		person.append(detatil.getParticipantCount() + "人");
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
@@ -968,9 +1031,11 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		int minInt = Integer.parseInt(detatil.getMinAmt());
 		int rengouInt = Integer.parseInt(detatil.getRemainderAmt());
 		if (rengouInt < minInt) {
+			shengYuKe.setText("剩余可认购"+detatil.getRemainderAmt()+",至少认购"+rengouInt +"元");
 			minStr = "(至少认购" + rengouInt + "元)";
 			this.minInt = rengouInt;
 		} else {
+			shengYuKe.setText("剩余可认购"+detatil.getRemainderAmt()+",至少认购"+minInt +"元");
 			minStr = "(至少认购" + minInt + "元)";
 			this.minInt = minInt;
 		}
@@ -1011,11 +1076,25 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	private int cricleProgressColor(int percent) {
 		if((percent>0||percent==0)&&percent<50){
-			return Color.RED;
+			return getResources().getColor(R.color.join_info_listitem_green);
 		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
-			return Color.GREEN;
+			return getResources().getColor(R.color.join_info_listitem_red);
 		}
-		return Color.RED;
+		return getResources().getColor(R.color.join_info_listitem_green);
+	}
+	
+	/**
+	 * 根据进度百分比设置颜色
+	 * @param percent
+	 * @return
+	 */
+	private int cricleTextColor(int percent) {
+		if((percent>0||percent==0)&&percent<50){
+			return R.drawable.join_iten_shape_text_gree;
+		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+			return R.drawable.join_iten_shape_text;
+		}
+		return R.drawable.join_iten_shape_text_gree;
 	}
 
 	/**

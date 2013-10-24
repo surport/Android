@@ -334,6 +334,10 @@ public class RuyiGuessActivity extends Activity {
 						}
 						mAdapter.notifyDataSetChanged();
 						setMoreViewState();
+					} else if ("0047".equals(errorCode)) {
+						TextView tv = (TextView) findViewById(R.id.ruyi_guest_no_record);
+						tv.setVisibility(View.VISIBLE);
+						mListView.setVisibility(View.GONE);
 					} else {
 						String message = jsonObj.getString("message");
 						Toast.makeText(RuyiGuessActivity.this, message, Toast.LENGTH_SHORT).show();
