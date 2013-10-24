@@ -893,6 +893,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		switch (id) {
 		case 0: {
 			progressdialog = new ProgressDialog(this);
+			progressdialog.setCanceledOnTouchOutside(false);
+			progressdialog.setCancelable(false);
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 			return progressdialog;
