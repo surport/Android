@@ -83,6 +83,8 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 	/** 是否可以刷新：实现了OnRefreshListener接口，才可以刷新 */
 	private boolean isRefreshable;
 	private boolean isPush;
+	
+	private boolean isShow = true;
 
 	public void setonRefreshListener(OnRefreshListener refreshListener) {
 		this.refreshListener = refreshListener;
@@ -368,7 +370,12 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 
 		case REFRESHING:
 			listHeadView.setPadding(0, 0, 0, 0);
-			progressBar.setVisibility(View.VISIBLE);
+			if (isShow) {
+				progressBar.setVisibility(View.VISIBLE);
+			} else {
+				progressBar.setVisibility(View.GONE);
+			}
+			
 			arrowImageView.clearAnimation();
 			arrowImageView.setVisibility(View.GONE);
 			tipsTextview.setText(getResources().getString(R.string.refreshing));
@@ -407,6 +414,18 @@ public class PullRefreshListView extends ListView implements OnScrollListener {
 		if (refreshListener != null) {
 			refreshListener.onRefresh();
 		}
+	}
+	
+	public void onRefreshComplete() {
+		listState = DONE;
+//		lastUpdatedTextView.setText(getResources().getString(R.string.updating) + new Date().toLocaleString());
+		changeHeaderViewByState();
+		invalidateViews();
+		setSelection(0);
+	}
+	
+	public void setShowState(boolean flag) {
+		this.isShow = flag;
 	}
 
 }

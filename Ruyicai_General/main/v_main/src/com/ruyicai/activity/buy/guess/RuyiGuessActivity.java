@@ -1,13 +1,17 @@
 package com.ruyicai.activity.buy.guess;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.guess.bean.ItemInfoBean;
+import com.ruyicai.activity.common.PullRefreshListView;
 import com.ruyicai.activity.common.UserLogin;
+import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.util.PublicMethod;
@@ -29,7 +33,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +40,7 @@ import android.widget.Toast;
  * @author yejc
  *
  */
-public class RuyiGuessActivity extends Activity {
+public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 
 	public final static String ITEM_ID = "itemId";
 	public final static String USER_NO = "userNo";
@@ -52,11 +55,12 @@ public class RuyiGuessActivity extends Activity {
 	private boolean mIsLogin = false; // 是否登陆
 	private boolean mIsMySelected = false; //true我竞猜过的问题
 	private boolean mIsFirst = true; 
-	private boolean mIsSuccess = false;
+//	private boolean mIsSuccess = false;
 	private LayoutInflater mInflater = null;
 	private ProgressDialog mProgressdialog = null;
 	private RWSharedPreferences mSharedPreferences = null;
-	private ListView mListView = null;
+//	private ListView mListView = null;
+	private PullRefreshListView mPullListView = null;
 	private View mFooterView = null;
 	private List<ItemInfoBean> mQuestionsList = new ArrayList<ItemInfoBean>();
 	private MessageHandler mHandler = new MessageHandler();
@@ -65,6 +69,8 @@ public class RuyiGuessActivity extends Activity {
 	private int[] mIconArray = { R.drawable.buy_ruyiguess_item_yellow,
 			R.drawable.buy_ruyiguess_item_orange,
 			R.drawable.buy_ruyiguess_item_pink };
+	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
+	private String mItemCount = "10"; //每次请求的数量
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +83,9 @@ public class RuyiGuessActivity extends Activity {
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
 		if (JUMP_FLAG.equals(getIntent().getStringExtra(JUMP_FLAG))) {
 			mIsMySelected = true;
-			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex);
+			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex, mItemCount);
 		} else {
-			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex);
+			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex, mItemCount);
 		}
 		Controller.getInstance(this).addActivity(this);
 	}
@@ -96,10 +102,12 @@ public class RuyiGuessActivity extends Activity {
 	}
 	
 	private void initListView(){
-		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
+//		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
+		mPullListView = (PullRefreshListView)findViewById(R.id.ruyi_guess_listview);
 		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
 		mFooterView.setBackgroundColor(this.getResources().getColor(R.color.jczq_listview_item_bg));
-		mListView.addFooterView(mFooterView);
+//		mListView.addFooterView(mFooterView);
+		mPullListView.addFooterView(mFooterView);
 		mFooterView.setVisibility(View.GONE);
 		mFooterView.setOnClickListener(new OnClickListener() {
 
@@ -108,8 +116,10 @@ public class RuyiGuessActivity extends Activity {
 				addmore();
 			}
 		});
-		mListView.setAdapter(mAdapter);
-		mListView.setOnItemClickListener(new OnItemClickListener() {
+		mPullListView.setAdapter(mAdapter);
+		mPullListView.setonRefreshListener(this);
+		mPullListView.setShowState(false);
+		mPullListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -120,12 +130,12 @@ public class RuyiGuessActivity extends Activity {
 				} else {
 					Intent intent = new Intent(RuyiGuessActivity.this,
 							RuyiGuessDetailActivity.class);
-					mSelectedId = arg2;
-					intent.putExtra(ITEM_ID, mQuestionsList.get(arg2).getId());
+					mSelectedId = arg2-1;
+					intent.putExtra(ITEM_ID, mQuestionsList.get(mSelectedId).getId());
 					intent.putExtra(USER_NO, mUserNo);
-					intent.putExtra(TITLE, mQuestionsList.get(arg2).getTitle());
+					intent.putExtra(TITLE, mQuestionsList.get(mSelectedId).getTitle());
 					intent.putExtra(MYSELECTED, mIsMySelected);
-					if ("1".equals(mQuestionsList.get(arg2).getAllDraw()/*getEndState()*/)) {
+					if ("1".equals(mQuestionsList.get(mSelectedId).getAllDraw()/*getEndState()*/)) {
 						intent.putExtra(ISEND, true);
 					} else {
 						intent.putExtra(ISEND, false);
@@ -161,9 +171,9 @@ public class RuyiGuessActivity extends Activity {
 		} else {
 			mProgressdialog = PublicMethod.creageProgressDialog(this);
 			if (mIsMySelected) {
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex);
+				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex, mItemCount);
 			} else {
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex);
+				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex, mItemCount);
 			}
 		}
 	}
@@ -178,9 +188,10 @@ public class RuyiGuessActivity extends Activity {
 				mIsLogin = true;
 				mUserNo = mSharedPreferences.getStringValue(ShellRWConstants.USERNO);
 				mProgressdialog = PublicMethod.creageProgressDialog(this);
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0);
+				String count = String.valueOf(mQuestionsList.size());
+				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
 			} else if (requestCode == 1001){
-				mIsSuccess = true;
+				mLocalDataMap.put(mSelectedId, true);
 				mAdapter.notifyDataSetChanged();
 			}
 			
@@ -239,7 +250,6 @@ public class RuyiGuessActivity extends Activity {
 			
 			holder.integral.setText(formatString(
 					R.string.buy_ruyi_guess_item_integral_two, info.getAward()));
-			
 			holder.title.setText(info.getTitle());
 			StringBuffer strBuffer = new StringBuffer();
 			strBuffer.append(getResources().getString(R.string.buy_ruyi_guess_item_time));
@@ -247,14 +257,14 @@ public class RuyiGuessActivity extends Activity {
 			strBuffer.append(" ~ ");
 			strBuffer.append(info.getEndTime());
 			holder.time.setText(strBuffer.toString());
-
 			if ("0".equals(info.getAllDraw())) { //竞猜是否结束 0:未结束;1:已结束
 				holder.guessStop.setVisibility(View.GONE);
 				holder.integral.setBackgroundResource(mIconArray[position%3]);
 				holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_participateing);
 				holder.participate.setVisibility(View.VISIBLE);
 				if (mIsLogin) {
-					if (mSelectedId == position && mIsSuccess) {
+					if (mLocalDataMap.containsKey(position) 
+							&& mLocalDataMap.get(position)) {
 						holder.participate.setText(mStateArray[1]);//根据状态判断显示
 					} else {
 						if ("0".equals(info.getParticipate())) { //是否参与竞猜 0:未参与;1:已参与
@@ -287,6 +297,7 @@ public class RuyiGuessActivity extends Activity {
 			holder.participate.setPadding(3*padValue, padValue, padValue, padValue);
 			int layoutPad = 2*padValue;
 			holder.itemLayout.setPadding(layoutPad, layoutPad, layoutPad, layoutPad);
+			
 			return convertView;
 		}
 		
@@ -298,7 +309,6 @@ public class RuyiGuessActivity extends Activity {
 			ImageView guessStop; //截止
 			LinearLayout itemLayout;
 		}
-		
 	}
 	
 	private class MessageHandler extends Handler {
@@ -316,7 +326,9 @@ public class RuyiGuessActivity extends Activity {
 					if ("0000".equals(errorCode)) {
 						if (msg.what == 2) {
 							mQuestionsList.clear();
+							mLocalDataMap.clear();
 						}
+						
 						JSONArray jsonArray = jsonObj.getJSONArray("result");
 						mTotalPage = Integer.valueOf(jsonObj.getString("totalPage").trim());
 						for (int i = 0; i < jsonArray.length(); i++) {
@@ -333,11 +345,12 @@ public class RuyiGuessActivity extends Activity {
 							mQuestionsList.add(info);
 						}
 						mAdapter.notifyDataSetChanged();
+						mPullListView.onRefreshComplete();
 						setMoreViewState();
 					} else if ("0047".equals(errorCode)) {
 						TextView tv = (TextView) findViewById(R.id.ruyi_guest_no_record);
 						tv.setVisibility(View.VISIBLE);
-						mListView.setVisibility(View.GONE);
+						mPullListView.setVisibility(View.GONE);
 					} else {
 						String message = jsonObj.getString("message");
 						Toast.makeText(RuyiGuessActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -349,5 +362,12 @@ public class RuyiGuessActivity extends Activity {
 			dismissDialog();
 		}
 		
+	}
+
+	@Override
+	public void onRefresh() {
+		mProgressdialog = PublicMethod.creageProgressDialog(this);
+		String count = String.valueOf(mQuestionsList.size());
+		Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
 	}
 }

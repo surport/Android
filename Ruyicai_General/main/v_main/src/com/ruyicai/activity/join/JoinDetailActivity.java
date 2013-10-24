@@ -34,9 +34,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.TranslateAnimation;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -238,62 +235,6 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			}
 		});
-
-		/*
-		 * fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
-		 * fenxianglayout.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { // TODO Auto-generated method
-		 * stub if (issharemove) { TranslateAnimation anim = new
-		 * TranslateAnimation( Animation.RELATIVE_TO_SELF, 0.0f,
-		 * Animation.RELATIVE_TO_SELF, 0.83f, Animation.RELATIVE_TO_SELF, 0.0f,
-		 * Animation.RELATIVE_TO_SELF, 0.0f); anim.setDuration(500); //
-		 * anim.setFillAfter(true); anim.setFillEnabled(true);
-		 * anim.setAnimationListener(new AnimationListener() {
-		 * 
-		 * @Override public void onAnimationStart(Animation animation) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void onAnimationRepeat(Animation animation) { //
-		 * TODO Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void onAnimationEnd(Animation animation) { // TODO
-		 * Auto-generated method stub LinearLayout.LayoutParams lp =
-		 * (LinearLayout.LayoutParams) fenxianglayout .getLayoutParams();
-		 * lp.setMargins(PublicMethod.getPxInt(265, JoinDetailActivity.this), 0,
-		 * 0, 0); fenxianglayout.setLayoutParams(lp); } });
-		 * fenxianglayout.startAnimation(anim); issharemove = false; } else {
-		 * TranslateAnimation anim = new TranslateAnimation(
-		 * Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -0.83f,
-		 * Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-		 * anim.setDuration(500); // anim.setFillAfter(true);
-		 * anim.setFillEnabled(true); anim.setAnimationListener(new
-		 * AnimationListener() {
-		 * 
-		 * @Override public void onAnimationStart(Animation animation) { // TODO
-		 * Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void onAnimationRepeat(Animation animation) { //
-		 * TODO Auto-generated method stub
-		 * 
-		 * }
-		 * 
-		 * @Override public void onAnimationEnd(Animation animation) { // TODO
-		 * Auto-generated method stub LinearLayout.LayoutParams lp =
-		 * (LinearLayout.LayoutParams) fenxianglayout .getLayoutParams();
-		 * lp.setMargins(0, 0, 0, 0); fenxianglayout.setLayoutParams(lp); } });
-		 * fenxianglayout.startAnimation(anim); issharemove = true;
-		 * 
-		 * }
-		 * 
-		 * } });
-		 */
 		rengouText = (TextView) findViewById(R.id.join_detail_text_rengou_amt);
 		minRGText = (TextView) findViewById(R.id.join_detail_text_rengou_min_amt);
 		lotnotext = (TextView) findViewById(R.id.join_detail_text_lotno);
@@ -370,12 +311,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				} else if (str.length() > 1 && str.startsWith("0")) {
 					amountEdit.setText(str.subSequence(1, str.length()));
 				}
-				/** add by yejc 20130704 end */
-				int renGou_per = (int) (Double.valueOf(amountEdit.getText()
-						.toString()) * 100 / Double.valueOf(detatil
-						.getTotalAmt().toString()));
-				// ........
-				renGouZhan.setText("占总额" + renGou_per + "%");
+				/**add by yejc 20130704 end*/
+				//.......
+				if(str.length()<1){
+					renGouZhan.setText("占总额0%");
+				}else{
+					int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
+					renGouZhan.setText("占总额" + renGou_per+ "%");
+				}
 
 			}
 
@@ -411,12 +354,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				if (str.length() > 1 && str.startsWith("0")) {
 					safeAmtEdit.setText(str.subSequence(1, str.length()));
 				}
-				/** add by yejc 20130704 end */
-				int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText()
-						.toString()) * 100 / Double.valueOf(detatil
-						.getSafeAmt().toString()));
-				// .......
-				baoDiZhan.setText("占总额" + renGou_per + "%");
+				/**add by yejc 20130704 end*/
+				if(str.length()<1){
+					baoDiZhan.setText("占总额0%");
+				}else{
+					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
+				    baoDiZhan.setText("占总额" + renGou_per+ "%");
+				}
+				
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -440,30 +385,35 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	}
 
 	private void initSharePopWindow() {
-
-		View contentView = getLayoutInflater().inflate(
-				R.layout.share_popwindow, null);
-		tosinaweibo = (Button) contentView.findViewById(R.id.tosinaweibo);
-		totengxunweibo = (Button) contentView.findViewById(R.id.totengxunweibo);
-		tocancel = (Button) contentView.findViewById(R.id.tocancel);
-
-		popupWindow = new PopupWindow(contentView,
-				ViewGroup.LayoutParams.FILL_PARENT, // 得到pop对象,并设置该pop的样子和宽高
-				ViewGroup.LayoutParams.WRAP_CONTENT);
-		popupWindow.setFocusable(true);
-		popupWindow.setBackgroundDrawable(new BitmapDrawable());// 当点击空白处时，pop会关掉
-		popupWindow.setAnimationStyle(R.style.share_animation);// 通过此方法从styles.xml中得到pop的进入和退出效果
-
-		tosinaweibo.setOnClickListener(new OnClickListener() {
+		View contentView=getLayoutInflater().inflate(R.layout.share_popwindow, null);
+		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		tocancel=(Button) contentView.findViewById(R.id.tocancel);
+		
+		
+   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
+   			ViewGroup.LayoutParams.WRAP_CONTENT);
+   	    popupWindow.setFocusable(true);
+   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
+   	    //popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
+   	   
+   	    tosinaweibo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				oauthOrShare();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+				
 			}
 		});
 		totengxunweibo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				tenoauth();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
 			}
 		});
 		tocancel.setOnClickListener(new OnClickListener() {
