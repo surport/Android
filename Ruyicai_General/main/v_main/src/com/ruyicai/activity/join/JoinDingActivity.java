@@ -644,7 +644,7 @@ public class JoinDingActivity extends Activity {
 							public void run() {
 								Toast.makeText(context, message,
 										Toast.LENGTH_SHORT).show();
-								finish();
+								//finish();
 							}
 						});
 					} else {
