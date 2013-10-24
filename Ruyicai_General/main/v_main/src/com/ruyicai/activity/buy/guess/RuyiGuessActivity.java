@@ -131,7 +131,6 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 					Intent intent = new Intent(RuyiGuessActivity.this,
 							RuyiGuessDetailActivity.class);
 					mSelectedId = arg2-1;
-					
 					intent.putExtra(ITEM_ID, mQuestionsList.get(mSelectedId).getId());
 					intent.putExtra(USER_NO, mUserNo);
 					intent.putExtra(TITLE, mQuestionsList.get(mSelectedId).getTitle());
@@ -310,7 +309,6 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 			ImageView guessStop; //截止
 			LinearLayout itemLayout;
 		}
-		
 	}
 	
 	private class MessageHandler extends Handler {
@@ -328,6 +326,7 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 					if ("0000".equals(errorCode)) {
 						if (msg.what == 2) {
 							mQuestionsList.clear();
+							mLocalDataMap.clear();
 						}
 						
 						JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -367,7 +366,6 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 
 	@Override
 	public void onRefresh() {
-//		mIsClear = true;
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
 		String count = String.valueOf(mQuestionsList.size());
 		Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
