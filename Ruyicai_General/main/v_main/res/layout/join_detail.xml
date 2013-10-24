@@ -12,7 +12,7 @@
         android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/hongse" >
+        android:background="@drawable/u149_normal" >
 
         <TextView
             android:id="@+id/join_detail_text_title"
@@ -64,9 +64,9 @@
         android:id="@+id/LinearLayout02"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/usercenter_detail_bg"
         android:orientation="horizontal"
         android:paddingLeft="3dip"
-        android:background="@drawable/usercenter_detail_bg"
         android:paddingRight="3dip" >
 
         <LinearLayout
@@ -98,13 +98,13 @@
 
             <TextView
                 android:id="@+id/join_detail_text_rengou_progress2"
-                android:layout_width="50dip"
+                android:layout_width="70dip"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5.0dip"
                 android:background="@drawable/join_iten_shape_text"
                 android:gravity="center"
-                android:paddingLeft="3.0dip"
-                android:paddingRight="3.0dip"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -134,6 +134,18 @@
                     android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/join_chedan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:background="@drawable/quxiao_normal"
+                    android:text="撤单"
+                    android:textColor="@color/white"
+                    android:textSize="13dip"
+                    android:visibility="gone" >
+                </Button>
             </LinearLayout>
 
             <RelativeLayout
@@ -576,6 +588,62 @@
                             android:textSize="13dip"
                             android:visibility="gone" >
                         </TextView>
+
+                        <Button
+                            android:id="@+id/miaoshu"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dip"
+                            android:background="@drawable/joininfobuttonup"
+                            android:gravity="left|center_vertical"
+                            android:paddingLeft="10dip"
+                            android:text="方案内容"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/join_detail_dianji_fangan"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="点击箭头查看方案详情"
+                        android:textColor="@color/black"
+                        android:textSize="15dip" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:id="@+id/fanganmiaoshu"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginTop="5dip"
+                        android:orientation="vertical" 
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:id="@+id/join_detail_layout_context"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical" >
+
+                                <TextView
+                                    android:id="@+id/join_detail_text_describe"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="40dip" 
+                                    android:visibility="gone">
+                                </TextView>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <TextView
@@ -597,9 +665,19 @@
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
-                    android:text="方案内容"
+                    android:text="方案描述"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/join_detail_dianji_neirong"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="点击箭头查看方案详情"
+                    android:textColor="@color/black"
+                    android:textSize="15dip" >
+                </TextView>
 
                 <LinearLayout
                     android:id="@+id/fanganleirong"
@@ -624,51 +702,6 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="点击箭头查看方案详情"
-                                android:textColor="@color/black"
-                                android:textSize="13dip" >
-                            </TextView>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/miaoshu"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dip"
-                    android:background="@drawable/joininfobuttonup"
-                    android:gravity="left|center_vertical"
-                    android:paddingLeft="10dip"
-                    android:text="方案描述"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <LinearLayout
-                    android:id="@+id/fanganmiaoshu"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
-                    android:orientation="vertical"
-                    android:visibility="gone" >
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <LinearLayout
-                            android:id="@+id/join_detail_layout_context"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/join_detail_text_describe"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:paddingTop="10dip"
-                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="13dip" >
                             </TextView>
@@ -711,12 +744,22 @@
                     android:visibility="gone" >
                 </ListView>
 
+                <TextView
+                    android:id="@+id/join_detail_dianji"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="点击箭头查看方案详情"
+                    android:textColor="@color/black"
+                    android:textSize="15dip" >
+                </TextView>
+
                 <LinearLayout
                     android:id="@+id/LinearLayout02"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:background="@drawable/usercenter_detail_bg"
+                    android:orientation="vertical"
                     android:paddingLeft="3dip"
                     android:paddingRight="3dip" >
 
