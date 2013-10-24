@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
@@ -83,13 +84,13 @@ import com.umeng.analytics.MobclickAgent;
  * 
  */
 public class JoinDetailActivity extends Activity implements HandlerMsg {
-	private TextView name, describe, atm, id, renAtm, baoAtm, state,
-			shengAtm, person, deduct, content, amountProgress, amountText,
-			safeProgress, safeText, minText, minText1, lotnotext, beishutext,
-			batchcodetext, faqirengou, timeText, rengouText,minRGText,textView8;
-	
+	private TextView name, describe, atm, id, renAtm, baoAtm, state, shengAtm,
+			person, deduct, content, amountProgress, amountText, safeProgress,
+			safeText, minText, minText1, lotnotext, beishutext, batchcodetext,
+			faqirengou, timeText, rengouText, minRGText, textView8;
+
 	private LinearLayout starLayout;
-	private LinearLayout  faqixinxi,fanganxiangqing, fanganleirong,
+	private LinearLayout faqixinxi, fanganxiangqing, fanganleirong,
 			rengoushezhi, fenxianglayout;
 	private Button faqi, xiangqing, leirong, rengou, canyu;
 	private boolean isfaqi = false, isxiangqing = false, isleirong = false,
@@ -119,8 +120,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private ListView canyurenyuan;
 	Button chedan;
 	Vector<CanyuInfo> canyudata = new Vector<CanyuInfo>();
-	View view,parent;
-	ImageButton  xinlang,wangyi;
+	View view, parent;
+	ImageButton xinlang, wangyi;
 	private boolean isSinaTiaoZhuan = true;
 	private String starterUserNo;
 	String tencent_token;
@@ -129,20 +130,19 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private Context context = this;
 	private ContentListView contentListView = new ContentListView(context);
 	private LinearLayout layoutMain;
-	
-	
+
 	private Button mMiaoshu;
-	boolean isMiaoShu=false;
+	boolean isMiaoShu = false;
 	private LinearLayout mFanganmiaoshu;
 	private RoundProgressBar mRoundProgressBar;
 	private TextView mJoin_detail_text_rengou_progress2;
 	private ImageView jianGeXian;
-	private TextView dDianji,dDianjiNeiRong,dDianJiFangAn;
+	private TextView dDianji, dDianjiNeiRong, dDianJiFangAn;
 
 	private PopupWindow popupWindow;
-	private Button toshare,tosinaweibo,totengxunweibo,tocancel;
-	
-	private TextView renGouZhan,baoDiZhan,shengYuKe,baoDiKe;
+	private Button toshare, tosinaweibo, totengxunweibo, tocancel;
+
+	private TextView renGouZhan, baoDiZhan, shengYuKe, baoDiKe;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -193,30 +193,30 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			}
 		});
 		initSharePopWindow();
-		//test点击事件
+		// test点击事件
 		toshare = (Button) findViewById(R.id.join_detail_btnbtn);
-		parent=this.findViewById(R.id.lineartop);
+		parent = this.findViewById(R.id.lineartop);
 		toshare.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(popupWindow!=null){
-					popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0); 		
+				if (popupWindow != null) {
+					popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
 				}
 			}
 		});
-		
-//		Button dingBtn = (Button) findViewById(R.id.join_dingzhi);
-//		dingBtn.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Intent intent = new Intent(JoinDetailActivity.this,
-//						JoinDingActivity.class);
-//				intent.putExtra(JoinInfoActivity.USER_NO, starterUserNo);
-//				intent.putExtra(Constants.LOTNO, lotno);
-//				startActivity(intent);
-//			}
-//		});
+
+		// Button dingBtn = (Button) findViewById(R.id.join_dingzhi);
+		// dingBtn.setOnClickListener(new OnClickListener() {
+		// @Override
+		// public void onClick(View v) {
+		// // TODO Auto-generated method stub
+		// Intent intent = new Intent(JoinDetailActivity.this,
+		// JoinDingActivity.class);
+		// intent.putExtra(JoinInfoActivity.USER_NO, starterUserNo);
+		// intent.putExtra(Constants.LOTNO, lotno);
+		// startActivity(intent);
+		// }
+		// });
 		wangyi = (ImageButton) findViewById(R.id.join_detail_img_buy2);
 		xinlang = (ImageButton) findViewById(R.id.join_detail_img_buy3);
 		wangyi.setOnClickListener(new OnClickListener() {
@@ -238,90 +238,62 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			}
 		});
-		
-/*
-		fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
-		fenxianglayout.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (issharemove) {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(PublicMethod.getPxInt(265,
-									JoinDetailActivity.this), 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = false;
-				} else {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, -0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(0, 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = true;
-
-				}
-
-			}
-		});
-		
-		*/
+		/*
+		 * fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
+		 * fenxianglayout.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub if (issharemove) { TranslateAnimation anim = new
+		 * TranslateAnimation( Animation.RELATIVE_TO_SELF, 0.0f,
+		 * Animation.RELATIVE_TO_SELF, 0.83f, Animation.RELATIVE_TO_SELF, 0.0f,
+		 * Animation.RELATIVE_TO_SELF, 0.0f); anim.setDuration(500); //
+		 * anim.setFillAfter(true); anim.setFillEnabled(true);
+		 * anim.setAnimationListener(new AnimationListener() {
+		 * 
+		 * @Override public void onAnimationStart(Animation animation) { // TODO
+		 * Auto-generated method stub
+		 * 
+		 * }
+		 * 
+		 * @Override public void onAnimationRepeat(Animation animation) { //
+		 * TODO Auto-generated method stub
+		 * 
+		 * }
+		 * 
+		 * @Override public void onAnimationEnd(Animation animation) { // TODO
+		 * Auto-generated method stub LinearLayout.LayoutParams lp =
+		 * (LinearLayout.LayoutParams) fenxianglayout .getLayoutParams();
+		 * lp.setMargins(PublicMethod.getPxInt(265, JoinDetailActivity.this), 0,
+		 * 0, 0); fenxianglayout.setLayoutParams(lp); } });
+		 * fenxianglayout.startAnimation(anim); issharemove = false; } else {
+		 * TranslateAnimation anim = new TranslateAnimation(
+		 * Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, -0.83f,
+		 * Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+		 * anim.setDuration(500); // anim.setFillAfter(true);
+		 * anim.setFillEnabled(true); anim.setAnimationListener(new
+		 * AnimationListener() {
+		 * 
+		 * @Override public void onAnimationStart(Animation animation) { // TODO
+		 * Auto-generated method stub
+		 * 
+		 * }
+		 * 
+		 * @Override public void onAnimationRepeat(Animation animation) { //
+		 * TODO Auto-generated method stub
+		 * 
+		 * }
+		 * 
+		 * @Override public void onAnimationEnd(Animation animation) { // TODO
+		 * Auto-generated method stub LinearLayout.LayoutParams lp =
+		 * (LinearLayout.LayoutParams) fenxianglayout .getLayoutParams();
+		 * lp.setMargins(0, 0, 0, 0); fenxianglayout.setLayoutParams(lp); } });
+		 * fenxianglayout.startAnimation(anim); issharemove = true;
+		 * 
+		 * }
+		 * 
+		 * } });
+		 */
 		rengouText = (TextView) findViewById(R.id.join_detail_text_rengou_amt);
 		minRGText = (TextView) findViewById(R.id.join_detail_text_rengou_min_amt);
 		lotnotext = (TextView) findViewById(R.id.join_detail_text_lotno);
@@ -351,27 +323,26 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		amountEdit = (EditText) findViewById(R.id.join_detail_edit_rengou);
 		safeAmtEdit = (EditText) findViewById(R.id.join_detail_edit_baodi);
 		joinInImg = (Button) findViewById(R.id.join_detail_img_buy);
-		layoutMain = (LinearLayout) findViewById(R.id.join_detail_layout_context);
-		
-		
-		//..........
-		mMiaoshu=(Button)findViewById(R.id.miaoshu);
-		mFanganmiaoshu=(LinearLayout)findViewById(R.id.fanganmiaoshu);
-		mRoundProgressBar=(RoundProgressBar)findViewById(R.id.join_detail_tex_progress);
-		mJoin_detail_text_rengou_progress2=(TextView)findViewById(R.id.join_detail_text_rengou_progress2);
-		
-		//...............
-		jianGeXian=(ImageView)findViewById(R.id.join_detail_jiangexian);
-		dDianji=(TextView)findViewById(R.id.join_detail_dianji);
-		dDianjiNeiRong=(TextView)findViewById(R.id.join_detail_dianji_neirong);
-		dDianJiFangAn=(TextView)findViewById(R.id.join_detail_dianji_fangan);
-		
-		//........
-		renGouZhan=(TextView)findViewById(R.id.rengouzhanzonge);
-		baoDiZhan=(TextView)findViewById(R.id.baodizhanzonge);
-        shengYuKe=(TextView)findViewById(R.id.shengyurengou);
-        baoDiKe=(TextView)findViewById(R.id.shengyubaodi);
-		
+		layoutMain = (LinearLayout) findViewById(R.id.fanganleirong);
+
+		// ..........
+		mMiaoshu = (Button) findViewById(R.id.miaoshu);
+		mFanganmiaoshu = (LinearLayout) findViewById(R.id.fanganmiaoshu);
+		mRoundProgressBar = (RoundProgressBar) findViewById(R.id.join_detail_tex_progress);
+		mJoin_detail_text_rengou_progress2 = (TextView) findViewById(R.id.join_detail_text_rengou_progress2);
+
+		// ...............
+		jianGeXian = (ImageView) findViewById(R.id.join_detail_jiangexian);
+		dDianji = (TextView) findViewById(R.id.join_detail_dianji);
+		dDianjiNeiRong = (TextView) findViewById(R.id.join_detail_dianji_neirong);
+		dDianJiFangAn = (TextView) findViewById(R.id.join_detail_dianji_fangan);
+
+		// ........
+		renGouZhan = (TextView) findViewById(R.id.rengouzhanzonge);
+		baoDiZhan = (TextView) findViewById(R.id.baodizhanzonge);
+		shengYuKe = (TextView) findViewById(R.id.shengyurengou);
+		baoDiKe = (TextView) findViewById(R.id.shengyubaodi);
+
 		joinInImg.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				isLogin();
@@ -386,23 +357,25 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				String renAmt = leavMount(detatil.getRemainderAmt(), amountEdit
 						.getText().toString());
 				amountEdit.setClickable(true);
-				amountEdit.setEnabled(true); 
+				amountEdit.setEnabled(true);
 				String amt = detatil.getTotalAmt();
-				amountProgress.setText("占总额" + progress(CheckUtil.isNull(amount), amt)
-						+ "%");// 总金额
+				amountProgress.setText("占总额"
+						+ progress(CheckUtil.isNull(amount), amt) + "%");// 总金额
 				leavTextView(amountText, true);
 				leavTextView(safeText, false);
-				/**add by yejc 20130704 start*/
+				/** add by yejc 20130704 start */
 				String str = s.toString();
 				if (str.length() == 1 && str.startsWith("0")) {
 					amountEdit.setText("1");
 				} else if (str.length() > 1 && str.startsWith("0")) {
 					amountEdit.setText(str.subSequence(1, str.length()));
 				}
-				/**add by yejc 20130704 end*/
-				int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
-				//........
-				renGouZhan.setText("占总额" + renGou_per+ "%");
+				/** add by yejc 20130704 end */
+				int renGou_per = (int) (Double.valueOf(amountEdit.getText()
+						.toString()) * 100 / Double.valueOf(detatil
+						.getTotalAmt().toString()));
+				// ........
+				renGouZhan.setText("占总额" + renGou_per + "%");
 
 			}
 
@@ -428,19 +401,22 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				safeAmtEdit.setClickable(true);
 				safeAmtEdit.setEnabled(true);
 				safeProgress.setText("占总额"
-						+ progress(CheckUtil.isNull(amt), detatil.getTotalAmt()) + "%");
+						+ progress(CheckUtil.isNull(amt), detatil.getTotalAmt())
+						+ "%");
 				if (Integer.parseInt(baoAmt) > 0) {
 					leavTextView(safeText, false);
 				}
-				/**add by yejc 20130704 start*/
+				/** add by yejc 20130704 start */
 				String str = s.toString();
 				if (str.length() > 1 && str.startsWith("0")) {
 					safeAmtEdit.setText(str.subSequence(1, str.length()));
 				}
-				/**add by yejc 20130704 end*/
-				int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getSafeAmt().toString()));
-				//.......
-				baoDiZhan.setText("占总额" + renGou_per+ "%");
+				/** add by yejc 20130704 end */
+				int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText()
+						.toString()) * 100 / Double.valueOf(detatil
+						.getSafeAmt().toString()));
+				// .......
+				baoDiZhan.setText("占总额" + renGou_per + "%");
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -460,46 +436,44 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		});
 
 		initButtonLayout();
-		
+
 	}
 
-	
-	
 	private void initSharePopWindow() {
-		
-		
-		View contentView=getLayoutInflater().inflate(R.layout.share_popwindow, null);
-		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
-		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
-		tocancel=(Button) contentView.findViewById(R.id.tocancel);
-		
-		
-   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
-   			ViewGroup.LayoutParams.WRAP_CONTENT);
-   	    popupWindow.setFocusable(true);
-   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
-   	    popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
-   	   
-   	    tosinaweibo.setOnClickListener(new OnClickListener() {
+
+		View contentView = getLayoutInflater().inflate(
+				R.layout.share_popwindow, null);
+		tosinaweibo = (Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo = (Button) contentView.findViewById(R.id.totengxunweibo);
+		tocancel = (Button) contentView.findViewById(R.id.tocancel);
+
+		popupWindow = new PopupWindow(contentView,
+				ViewGroup.LayoutParams.FILL_PARENT, // 得到pop对象,并设置该pop的样子和宽高
+				ViewGroup.LayoutParams.WRAP_CONTENT);
+		popupWindow.setFocusable(true);
+		popupWindow.setBackgroundDrawable(new BitmapDrawable());// 当点击空白处时，pop会关掉
+		popupWindow.setAnimationStyle(R.style.share_animation);// 通过此方法从styles.xml中得到pop的进入和退出效果
+
+		tosinaweibo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				oauthOrShare();
 			}
 		});
-   	   totengxunweibo.setOnClickListener(new OnClickListener() {
+		totengxunweibo.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				tenoauth();
 			}
 		});
-   	  tocancel.setOnClickListener(new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			if (popupWindow != null && popupWindow.isShowing()) {
-				popupWindow.dismiss();
+		tocancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
 			}
-		}
-	});
+		});
 	}
 
 	private void oauthOrShare() {
@@ -533,7 +507,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			tenoAuth.setOauthTokenSecret(tencent_access_token_secret);
 			Intent intent = new Intent(JoinDetailActivity.this,
 					TencentShareActivity.class);
-			intent.putExtra("tencent", getShareContent()/*Constants.shareContent*/);
+			intent.putExtra("tencent", getShareContent()/*
+														 * Constants.shareContent
+														 */);
 			intent.putExtra("oauth", tenoAuth);
 			startActivity(intent);
 		}
@@ -607,7 +583,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		rengoushezhi = (LinearLayout) findViewById(R.id.rengoushezhi);
 		canyu = (Button) findViewById(R.id.canyu);
 		canyurenyuan = (ListView) findViewById(R.id.canyurenyuan);
-		
+
 		leirong.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -663,25 +639,23 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				}
 			}
 		});
-		
-		
-		
-		//.....................
+
+		// .....................
 		mMiaoshu.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(isMiaoShu){
+				if (isMiaoShu) {
 					dDianJiFangAn.setVisibility(View.GONE);
 					mFanganmiaoshu.setVisibility(View.VISIBLE);
-					mMiaoshu.setBackgroundResource(R.drawable.joninfobuttonoff);
-					isMiaoShu=false;
-				}else {
+					mMiaoshu.setBackgroundResource(R.drawable.joininfobuttonup);
+					isMiaoShu = false;
+				} else {
 					dDianJiFangAn.setVisibility(View.VISIBLE);
 					mFanganmiaoshu.setVisibility(View.GONE);
-					mMiaoshu.setBackgroundResource(R.drawable.joininfobuttonup);
-					isMiaoShu=true;
+					mMiaoshu.setBackgroundResource(R.drawable.joninfobuttonoff);
+					isMiaoShu = true;
 				}
 			}
 		});
@@ -840,7 +814,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			detatil.setBatchCode(jsonObject.getString("batchCode"));
 			detatil.setDescription(jsonObject.getString("description"));
 			detatil.setLotNo(jsonObject.getString("lotNo"));
-			
+
 			detatil.setUrl(jsonObject.getString("url"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -974,13 +948,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				}
 			});
 		}
-		textView8.setText("玩法："+detatil.getLotName());//zhangkaikai add
+		textView8.setText("玩法：" + detatil.getLotName());// zhangkaikai add
 		lotnotext.append(detatil.getLotName());
 		beishutext.append(detatil.getLotMulti());
-//		if (detatil.getBatchCode().equals("null")
-//				|| detatil.getBatchCode().equals("")) {
-		if (detatil.getBatchCode() == null
-				|| "".equals(detatil.getBatchCode())) {
+		// if (detatil.getBatchCode().equals("null")
+		// || detatil.getBatchCode().equals("")) {
+		if (detatil.getBatchCode() == null || "".equals(detatil.getBatchCode())) {
 			batchcodetext.setVisibility(View.GONE);
 			jianGeXian.setVisibility(View.GONE);
 		} else {
@@ -995,59 +968,85 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		faqirengou.append(detatil.getBuyAmtByStarter() + "元");
 		minText1.append(detatil.getMinAmt() + "元");
 		name.append(detatil.getStarter());
+		if (TextUtils.isEmpty(detatil.getDescription())) {
+			dDianJiFangAn.setText("此人很懒未留下任何描述");
+			mMiaoshu.setEnabled(false);
+			dDianJiFangAn.setEnabled(false);
+		} else {
+			dDianJiFangAn
+					.setText(detatil.getDescription().length() > 10 ? detatil
+							.getDescription().subSequence(0, 10) + "..."
+							: detatil.getDescription());
+		}
 		describe.append(detatil.getDescription());
-		atm.append("￥"+detatil.getTotalAmt() + "元");
+		atm.append("￥" + detatil.getTotalAmt() + "元");
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
-		
-		//.........
-		//shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
-		baoDiKe.setText("剩余"+detatil.getSafeAmt()+"元可保底");
-		
-		
-		//。。。。。。。。。。。。。
+
+		// .........
+		// shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
+		baoDiKe.setText("剩余" + detatil.getSafeAmt() + "元可保底");
+
+		// 。。。。。。。。。。。。。
 		/**
 		 */
-		int ProgressCount=Integer.parseInt(detatil.getBuyProgress());
-		mRoundProgressBar.setTextColor(cricleProgressColor(ProgressCount));//设置中间显示的百分比颜色
-		mRoundProgressBar.setCricleProgressColor(cricleProgressColor(ProgressCount));//设置进度条的颜色
+		int ProgressCount = Integer.parseInt(detatil.getBuyProgress());
+		mRoundProgressBar.setTextColor(cricleProgressColor(ProgressCount));// 设置中间显示的百分比颜色
+		mRoundProgressBar
+				.setCricleProgressColor(cricleProgressColor(ProgressCount));// 设置进度条的颜色
 		mRoundProgressBar.setProgress(ProgressCount);
-		//显示保底百分比
-		mJoin_detail_text_rengou_progress2.setBackgroundResource(cricleTextColor(Integer.parseInt(detatil.getSafeProgress())));
-		mJoin_detail_text_rengou_progress2.setText("保"+detatil.getSafeProgress() + "%");
-		
-		
+		// 显示保底百分比
+		mJoin_detail_text_rengou_progress2
+				.setBackgroundResource(cricleTextColor(Integer.parseInt(detatil
+						.getSafeProgress())));
+		mJoin_detail_text_rengou_progress2.setText("保"
+				+ detatil.getSafeProgress() + "%");
+
 		state.append(detatil.getDisplayState());
-		shengAtm.append("￥"+detatil.getRemainderAmt() + "元");
+		shengAtm.append("￥" + detatil.getRemainderAmt() + "元");
 		person.append(detatil.getParticipantCount() + "人");
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
+		// .....
+		try {
+			boolean isEnable=contentListView.getEnable( detatil.getBetCodeJson().getString("visibility"));
+			dDianjiNeiRong.setText(contentListView.getState(detatil.getBetCodeJson().getString("visibility")));
+			leirong.setEnabled(isEnable);
+			content.setEnabled(isEnable);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//....
 		contentListView.createListContent(layoutMain, content,
 				detatil.getLotNo(), detatil.getBetCodeHtml(),
 				detatil.getBetCodeJson());
+
 		amountEdit.setText(detatil.getMinAmt());
 		String minStr = "";
 		int minInt = Integer.parseInt(detatil.getMinAmt());
 		int rengouInt = Integer.parseInt(detatil.getRemainderAmt());
 		if (rengouInt < minInt) {
-			shengYuKe.setText("剩余可认购"+detatil.getRemainderAmt()+",至少认购"+rengouInt +"元");
+			shengYuKe.setText("剩余可认购" + detatil.getRemainderAmt() + ",至少认购"
+					+ rengouInt + "元");
 			minStr = "(至少认购" + rengouInt + "元)";
 			this.minInt = rengouInt;
 		} else {
-			shengYuKe.setText("剩余可认购"+detatil.getRemainderAmt()+",至少认购"+minInt +"元");
+			shengYuKe.setText("剩余可认购" + detatil.getRemainderAmt() + ",至少认购"
+					+ minInt + "元");
 			minStr = "(至少认购" + minInt + "元)";
 			this.minInt = minInt;
 		}
 		String rengouStr = rengouInt + "元";
 		rengouText.setTextColor(Color.RED);
 		rengouText.setText(rengouStr);
-		
+
 		PublicMethod.setTextColor(minRGText, 5, minStr.length() - 2, minStr,
 				Color.RED);
-//		PublicMethod.setTextColor(rengouText, 6, rengouStr.length() - 1,
-//				rengouStr, Color.RED);
-		
+		// PublicMethod.setTextColor(rengouText, 6, rengouStr.length() - 1,
+		// rengouStr, Color.RED);
+
 		amountProgress.setText("占总额"
 				+ progress(amountEdit.getText().toString(),
 						detatil.getTotalAmt()) + "%");
@@ -1068,30 +1067,34 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				JoinDetailActivity.this, 0);
 
 	}
-	
+
 	/**
 	 * 根据进度百分比设置颜色
+	 * 
 	 * @param percent
 	 * @return
 	 */
 	private int cricleProgressColor(int percent) {
-		if((percent>0||percent==0)&&percent<50){
+		if ((percent > 0 || percent == 0) && percent < 50) {
 			return getResources().getColor(R.color.join_info_listitem_green);
-		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+		} else if ((percent > 50 || percent == 50)
+				&& (percent < 100 || percent == 100)) {
 			return getResources().getColor(R.color.join_info_listitem_red);
 		}
 		return getResources().getColor(R.color.join_info_listitem_green);
 	}
-	
+
 	/**
 	 * 根据进度百分比设置颜色
+	 * 
 	 * @param percent
 	 * @return
 	 */
 	private int cricleTextColor(int percent) {
-		if((percent>0||percent==0)&&percent<50){
+		if ((percent > 0 || percent == 0) && percent < 50) {
 			return R.drawable.join_iten_shape_text_gree;
-		}else if((percent>50||percent==50)&&(percent<100||percent==100)){
+		} else if ((percent > 50 || percent == 50)
+				&& (percent < 100 || percent == 100)) {
 			return R.drawable.join_iten_shape_text;
 		}
 		return R.drawable.join_iten_shape_text_gree;
@@ -1912,19 +1915,21 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	@Override
 	public void errorCode_0000() {
 		if (isJoinIn) {
-//			succeedDialog("提示", message);
-			/** add by pengcx 20130725 start*/
-			Intent intent = new Intent(JoinDetailActivity.this,BettingSuccessActivity.class);
+			// succeedDialog("提示", message);
+			/** add by pengcx 20130725 start */
+			Intent intent = new Intent(JoinDetailActivity.this,
+					BettingSuccessActivity.class);
 			intent.putExtra("from", BettingSuccessActivity.JOINCOOPERATION);
 			intent.putExtra("lotno", detatil.getLotNo());
-			intent.putExtra("amount", Integer.valueOf((Integer.valueOf(amount) * 100)).toString());
+			intent.putExtra("amount",
+					Integer.valueOf((Integer.valueOf(amount) * 100)).toString());
 			startActivity(intent);
-			/** add by pengcx 20130725 end*/
+			/** add by pengcx 20130725 end */
 		} else {
 			setValue(getValue());
-            if ("".equals(amountEdit.getText().toString())) {
-            	amountEdit.setText(1);
-            }
+			if ("".equals(amountEdit.getText().toString())) {
+				amountEdit.setText(1);
+			}
 			amountProgress.setText("占总额"
 					+ progress(amountEdit.getText().toString(),
 							detatil.getTotalAmt()) + "%");
@@ -2011,7 +2016,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		Token accessToken = new Token(token, Weibo.getAppSecret());
 		accessToken.setExpiresIn(expires_in);
 		Weibo.getInstance().setAccessToken(accessToken);
-		share2weibo(getShareContent()/*Constants.shareContent*/);
+		share2weibo(getShareContent()/* Constants.shareContent */);
 		if (isSinaTiaoZhuan) {
 			Intent intent = new Intent();
 			intent.setClass(JoinDetailActivity.this, ShareActivity.class);
