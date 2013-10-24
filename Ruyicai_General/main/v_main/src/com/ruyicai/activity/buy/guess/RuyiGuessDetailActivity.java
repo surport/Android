@@ -11,6 +11,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.guess.bean.ItemDetailInfoBean;
+import com.ruyicai.activity.common.PullRefreshListView;
+import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.util.PublicMethod;
 import android.app.Activity;
@@ -42,7 +44,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RuyiGuessDetailActivity extends Activity {
+public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListener{
 
 	private String mTitle = "";  //问题的标题
 	private String mDetail = ""; //问题详情
@@ -62,7 +64,8 @@ public class RuyiGuessDetailActivity extends Activity {
 	private ProgressDialog mProgressdialog = null;
 	private TextView mDescription = null;  //问题描述
 //	private View mFooterView = null;
-	private ListView mListView = null;
+//	private ListView mListView = null;
+	private PullRefreshListView mPullListView = null;
 	private Button mSubmitBtn = null;
 //	private String[] mStateArray = {"未参与", "已参与"};
 	private MessageHandler mHandler = new MessageHandler();
@@ -103,7 +106,8 @@ public class RuyiGuessDetailActivity extends Activity {
 		TextView title = (TextView)findViewById(R.id.ruyi_guess_item_subtitle);
 		mDescription = (TextView)findViewById(R.id.ruyi_guess_item_description);
 		title.setText(mTitle);
-		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
+//		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
+		mPullListView = (PullRefreshListView)findViewById(R.id.ruyi_guess_listview);
 //		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
 //		mListView.addFooterView(mFooterView);
 //		mFooterView.setVisibility(View.GONE);
@@ -114,7 +118,10 @@ public class RuyiGuessDetailActivity extends Activity {
 //				addmore();
 //			}
 //		});
-		mListView.setAdapter(mAdapter);
+//		mListView.setAdapter(mAdapter);
+		mPullListView.setAdapter(mAdapter);
+		mPullListView.setonRefreshListener(this);
+		mPullListView.setShowState(false);
 
 		mSubmitBtn = (Button)findViewById(R.id.ruyi_guess_submit);
 		if (mIsMySelected) {
@@ -161,6 +168,10 @@ public class RuyiGuessDetailActivity extends Activity {
 									.creageProgressDialog(RuyiGuessDetailActivity.this);
 							Controller.getInstance(RuyiGuessDetailActivity.this)
 									.sendDateToService(mHandler, mUserNo, mId, getSelectedInfo());
+						} else {
+							Toast.makeText(RuyiGuessDetailActivity.this, 
+									R.string.buy_ruyi_guess_please_select, 
+									Toast.LENGTH_SHORT).show();
 						}
 					}
 				});
@@ -655,6 +666,15 @@ public class RuyiGuessDetailActivity extends Activity {
 							mAdapter.notifyDataSetChanged();
 							createDialog();
 						} else {
+							Iterator<Integer> iterator = mInfoMap.keySet().iterator();
+							while (iterator.hasNext()) {
+								int index = iterator.next();
+								if (mLocalDataMap.containsKey(index)) {
+									mLocalDataMap.remove(index);
+								}
+							}
+							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
+							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 							String message = jsonObj.getString("message");
 							Toast.makeText(RuyiGuessDetailActivity.this, message, Toast.LENGTH_SHORT).show();
 						}
@@ -672,6 +692,7 @@ public class RuyiGuessDetailActivity extends Activity {
 			JSONObject jsonObj = new JSONObject(data);
 			String errorCode = jsonObj.getString("error_code");
 			if ("0000".equals(errorCode)) {
+				mQuestionsList.clear(); //20131023
 				mDetail = jsonObj.getJSONObject("quiz").getString("detail");
 				mDescription.setText(mDetail);
 				JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -715,6 +736,7 @@ public class RuyiGuessDetailActivity extends Activity {
 					
 				}
 				mAdapter.notifyDataSetChanged();
+				mPullListView.onRefreshComplete();
 //				setMoreViewState();
 				setSubmitState(isSubmit);
 			} else {
@@ -736,6 +758,12 @@ public class RuyiGuessDetailActivity extends Activity {
 		}
 		finish();
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	public void onRefresh() {
+		mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
+		Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 	}
 
 }

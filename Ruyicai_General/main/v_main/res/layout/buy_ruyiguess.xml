@@ -30,7 +30,20 @@
             android:textSize="28sp"
             android:visibility="gone"/>
 
-        <ListView
+        <com.ruyicai.activity.common.PullRefreshListView
+            android:id="@+id/ruyi_guess_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/list_color"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dip"
+            android:padding="10dip"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:scrollingCache="false" />
+        <!-- <ListView
             android:id="@+id/ruyi_guess_listview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -39,7 +52,7 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="8dip"
             android:padding="10dip"
-            android:scrollbars="none"/>
+            android:scrollbars="none"/> -->
     </LinearLayout>
 
 </LinearLayout>
