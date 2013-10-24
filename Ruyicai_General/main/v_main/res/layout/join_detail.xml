@@ -202,6 +202,7 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:gravity="center"
                             android:text=""
                             android:textColor="@color/red" />
 
@@ -209,6 +210,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="方案金额"
+                            android:layout_gravity="center_horizontal"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
@@ -223,6 +225,7 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:gravity="center"
                             android:text=""
                             android:textColor="@color/red" />
 
@@ -230,6 +233,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="剩余金额"
+                            android:layout_gravity="center_horizontal"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
@@ -244,6 +248,7 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:gravity="center"
                             android:text=""
                             android:textColor="@color/red" />
 
@@ -252,6 +257,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="已跟单"
+                            android:layout_gravity="center_horizontal"
                             android:textColor="@color/black" />
                     </LinearLayout>
                 </TableRow>
@@ -844,7 +850,7 @@
                             android:orientation="vertical" >
 
                             <TextView
-                                android:id="@+id/faqirengou"
+                                android:id="@+id/rengouzhanzonge"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -853,7 +859,7 @@
                                 android:textColor="@color/black" />
 
                             <TextView
-                                android:id="@+id/faqirengou"
+                                android:id="@+id/shengyurengou"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -875,7 +881,7 @@
                             android:orientation="vertical" >
 
                             <TextView
-                                android:id="@+id/faqirengou"
+                                android:id="@+id/baodizhanzonge"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -884,7 +890,7 @@
                                 android:textColor="@color/black" />
 
                             <TextView
-                                android:id="@+id/faqirengou"
+                                android:id="@+id/shengyubaodi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
