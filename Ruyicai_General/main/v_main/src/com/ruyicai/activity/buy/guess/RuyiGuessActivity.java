@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,7 +23,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +33,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,11 +51,11 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 	private String mUserNo = ""; // 用户名
 	private int mPageIndex = 0; //当前列表显示了多少页数据
 	private int mTotalPage = 0; //服务器端总共有多少页数据
-//	private int mSelectedId = 0; //选择的竞猜Id
+	private int mSelectedId = 0; //选择的竞猜Id
 	private boolean mIsLogin = false; // 是否登陆
 	private boolean mIsMySelected = false; //true我竞猜过的问题
 	private boolean mIsFirst = true; 
-	private boolean mIsSuccess = false;
+//	private boolean mIsSuccess = false;
 	private LayoutInflater mInflater = null;
 	private ProgressDialog mProgressdialog = null;
 	private RWSharedPreferences mSharedPreferences = null;
@@ -74,8 +71,6 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 			R.drawable.buy_ruyiguess_item_pink };
 	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
 	private String mItemCount = "10"; //每次请求的数量
-//	private boolean mIsClear = false;
-	private int mSelectedId = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -136,13 +131,12 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 					Intent intent = new Intent(RuyiGuessActivity.this,
 							RuyiGuessDetailActivity.class);
 					mSelectedId = arg2-1;
-					Log.i("yejc", "========arg2="+arg2);
 					
-					intent.putExtra(ITEM_ID, mQuestionsList.get(arg2).getId());
+					intent.putExtra(ITEM_ID, mQuestionsList.get(mSelectedId).getId());
 					intent.putExtra(USER_NO, mUserNo);
-					intent.putExtra(TITLE, mQuestionsList.get(arg2).getTitle());
+					intent.putExtra(TITLE, mQuestionsList.get(mSelectedId).getTitle());
 					intent.putExtra(MYSELECTED, mIsMySelected);
-					if ("1".equals(mQuestionsList.get(arg2).getAllDraw()/*getEndState()*/)) {
+					if ("1".equals(mQuestionsList.get(mSelectedId).getAllDraw()/*getEndState()*/)) {
 						intent.putExtra(ISEND, true);
 					} else {
 						intent.putExtra(ISEND, false);
