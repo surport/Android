@@ -74,7 +74,7 @@
                         <ImageView
                             android:layout_width="30dip"
                             android:layout_height="30dip"
-                            android:background="@drawable/ico_3d" />
+                            android:background="@drawable/normal_head_image" />
 
                         <TextView
                             android:id="@+id/join_detail_text_name"
