@@ -936,7 +936,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 		// .........
 		// shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
-		baoDiKe.setText("剩余" + detatil.getSafeAmt() + "元可保底");
+		int baoDi_per =(int) (Double.valueOf(detatil.getTotalAmt().toString())-Double.valueOf(detatil.getSafeAmt().toString()));
+		baoDiKe.setText("剩余" + baoDi_per + "元可保底");
 
 		// 。。。。。。。。。。。。。
 		/**
