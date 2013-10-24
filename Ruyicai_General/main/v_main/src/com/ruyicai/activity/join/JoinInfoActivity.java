@@ -336,6 +336,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 			@Override
 			public void onClick(View v) {
+				orderBy = QueryJoinInfoInterface.PROGRESS;
 				progress.setBackgroundResource(R.drawable.hemai_title_bg);
 				allAtm.setBackgroundResource(R.drawable.white_bg);
 				atm.setBackgroundResource(R.drawable.white_bg);
@@ -368,8 +369,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			@Override
 			public void onClick(View v) {
 				
-				
-				
+				orderBy = QueryJoinInfoInterface.TOTALAMT;
 				progress.setBackgroundResource(R.drawable.white_bg);
 				allAtm.setBackgroundResource(R.drawable.hemai_title_bg);
 				atm.setBackgroundResource(R.drawable.white_bg);
@@ -377,12 +377,11 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				iv_progress.setBackgroundResource(R.drawable.hemai_normal);
 				iv_renqi.setBackgroundResource(R.drawable.hemai_normal);
 				if(iv_allCount_sort){
-					orderBy = QueryJoinInfoInterface.TOTALAMT;
+					
 					orderDir = QueryJoinInfoInterface.ASC;
 					iv_allCount.setBackgroundResource(R.drawable.daoxu);
 					iv_allCount_sort = false;
 				}else{
-					orderBy = QueryJoinInfoInterface.TOTALAMT;
 					orderDir = QueryJoinInfoInterface.DESC;
 					iv_allCount.setBackgroundResource(R.drawable.zhengxun);
 					iv_allCount_sort = true;
@@ -894,6 +893,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		switch (id) {
 		case 0: {
 			progressdialog = new ProgressDialog(this);
+			progressdialog.setCanceledOnTouchOutside(false);
+			progressdialog.setCancelable(false);
 			progressdialog.setMessage("网络连接中...");
 			progressdialog.setIndeterminate(true);
 			return progressdialog;

@@ -12,6 +12,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.common.RechargeMoneyTextWatcher;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.usercenter.UserCenterDialog;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -63,12 +64,6 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 	private String message = "";
 	private MyHandler handler = new MyHandler(this);
 	private TextView accountTitleTextView = null;
-    /*****************************************************************
-     * mMode参数解释：
-     *      "00" - 启动银联正式环境
-     *      "01" - 连接银联测试环境
-     *****************************************************************/
-    private String mMode = "01";
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -241,7 +236,7 @@ public class YinPayActivity extends Activity implements HandlerMsg {
 			// 0 - 启动银联正式环境info
 			// 1 - 连接银联测试环境
 			UPPayAssistEx.startPayByJAR(YinPayActivity.this, PayActivity.class,
-					null, null, tn, mMode);
+					null, null, tn, Constants.BANCK_Mode);
 		}
 	}
 
