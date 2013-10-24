@@ -400,9 +400,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					amountEdit.setText(str.subSequence(1, str.length()));
 				}
 				/**add by yejc 20130704 end*/
-				int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
-				//........
-				renGouZhan.setText("占总额" + renGou_per+ "%");
+				
+				//.......
+				if(str.length()<1){
+					renGouZhan.setText("占总额0%");
+				}else{
+					int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
+					renGouZhan.setText("占总额" + renGou_per+ "%");
+				}
 
 			}
 
@@ -438,9 +443,13 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					safeAmtEdit.setText(str.subSequence(1, str.length()));
 				}
 				/**add by yejc 20130704 end*/
-				int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getSafeAmt().toString()));
-				//.......
-				baoDiZhan.setText("占总额" + renGou_per+ "%");
+				if(str.length()<1){
+					baoDiZhan.setText("占总额0%");
+				}else{
+					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getSafeAmt().toString()));
+				    baoDiZhan.setText("占总额" + renGou_per+ "%");
+				}
+				
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
