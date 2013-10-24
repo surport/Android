@@ -44,7 +44,8 @@
             android:background="@drawable/join_iten_shape_text"
             android:layout_marginTop="2.0dip"
             android:textColor="@color/white"
-            android:text="86%" />
+            android:textSize="12sp"
+            android:text="保100%" />
     </RelativeLayout>
 
     <LinearLayout

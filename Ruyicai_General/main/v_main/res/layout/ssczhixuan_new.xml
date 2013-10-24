@@ -26,14 +26,16 @@
         android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
+        <!-- 滑动区域 -->
 
         <android.support.v4.view.ViewPager
             android:id="@+id/buy_zixuan_viewpager"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:paddingBottom="80dip" >
+            android:layout_above="@id/buy_activity_bottom_layout"
+            android:layout_gravity="center" >
         </android.support.v4.view.ViewPager>
+        <!-- 已选号码 -->
 
         <LinearLayout
             android:id="@+id/buy_activity_bottom_layout"
@@ -87,6 +89,7 @@
             </EditText>
         </LinearLayout>
 
+        <!-- 投注栏 -->
         <RelativeLayout
             android:id="@+id/buy_zixuan_relativelayout"
             android:layout_width="fill_parent"

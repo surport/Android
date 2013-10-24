@@ -1980,9 +1980,9 @@ public class PublicMethod {
 			} else if (type.equals(Constants.LOTNO_ten)) {
 				title = "广东快乐十分";
 			} else if (type.equals(Constants.LOTNO_JCLQ_HUN)) {
-				title = "竞彩篮球混合";
+				title = "混合";
 			} else if (type.equals(Constants.LOTNO_JCZQ_HUN)) {
-				title = "竞彩足球混合";
+				title = "混合";
 			} else if (type.equals(Constants.LOTNO_NMK3)) {
 				title = "快三";
 			} else if (type

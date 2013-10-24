@@ -141,6 +141,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 	private PopupWindow popupWindow;
 	private Button toshare,tosinaweibo,totengxunweibo,tocancel;
+	
+	private TextView renGouZhan,baoDiZhan,shengYuKe,baoDiKe;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -364,6 +366,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		dDianjiNeiRong=(TextView)findViewById(R.id.join_detail_dianji_neirong);
 		dDianJiFangAn=(TextView)findViewById(R.id.join_detail_dianji_fangan);
 		
+		//........
+		renGouZhan=(TextView)findViewById(R.id.rengouzhanzonge);
+		baoDiZhan=(TextView)findViewById(R.id.baodizhanzonge);
+        shengYuKe=(TextView)findViewById(R.id.shengyurengou);
+        baoDiKe=(TextView)findViewById(R.id.shengyubaodi);
+		
 		joinInImg.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				isLogin();
@@ -392,6 +400,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					amountEdit.setText(str.subSequence(1, str.length()));
 				}
 				/**add by yejc 20130704 end*/
+				int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
+				//........
+				renGouZhan.setText("占总额" + renGou_per+ "%");
 
 			}
 
@@ -427,6 +438,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					safeAmtEdit.setText(str.subSequence(1, str.length()));
 				}
 				/**add by yejc 20130704 end*/
+				int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getSafeAmt().toString()));
+				//.......
+				baoDiZhan.setText("占总额" + renGou_per+ "%");
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
@@ -987,6 +1001,10 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
 		
+		//.........
+		//shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
+		baoDiKe.setText("剩余"+detatil.getSafeAmt()+"元可保底");
+		
 		
 		//。。。。。。。。。。。。。
 		/**
@@ -1013,9 +1031,11 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		int minInt = Integer.parseInt(detatil.getMinAmt());
 		int rengouInt = Integer.parseInt(detatil.getRemainderAmt());
 		if (rengouInt < minInt) {
+			shengYuKe.setText("剩余可认购"+detatil.getRemainderAmt()+",至少认购"+rengouInt +"元");
 			minStr = "(至少认购" + rengouInt + "元)";
 			this.minInt = rengouInt;
 		} else {
+			shengYuKe.setText("剩余可认购"+detatil.getRemainderAmt()+",至少认购"+minInt +"元");
 			minStr = "(至少认购" + minInt + "元)";
 			this.minInt = minInt;
 		}

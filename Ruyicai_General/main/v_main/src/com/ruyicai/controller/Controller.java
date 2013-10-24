@@ -474,13 +474,13 @@ public class Controller {
 	 * @param userno
 	 */
 	public void getRuyiGuessList(final Handler handler, final String userno, 
-			final int type, final String requestType, final int index) {
+			final int type, final String requestType, final int index, final String count) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				String pageIndex = String.valueOf(index);
 				String result = RuyiGuessInterface.getInstance()
-						.getRuyiGuessList(pageIndex, "10", userno, requestType);
+						.getRuyiGuessList(pageIndex, count, userno, requestType);
 				Message msg = new Message();
 				msg.what = type;
 				msg.obj = result;

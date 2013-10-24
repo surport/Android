@@ -31,7 +31,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fadeScrollbars="false"
-            android:paddingBottom="80dip" >
+            android:layout_above="@+id/buy_activity_bottom_layout">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -165,8 +165,8 @@
 
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp" >
+                    android:layout_height="fill_parent"
+                    android:paddingTop="10dp" >
 
                     <ListView
                         android:id="@+id/buy_zixuan_latest_lottery"
@@ -177,7 +177,7 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
+		<!-- 已选号码 -->
         <LinearLayout
             android:id="@+id/buy_activity_bottom_layout"
             android:layout_width="fill_parent"
@@ -231,6 +231,7 @@
             </EditText>
         </LinearLayout>
 
+       <!-- 投注栏 -->
         <RelativeLayout
             android:id="@+id/buy_zixuan_relativelayout"
             android:layout_width="fill_parent"

@@ -43,6 +43,20 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <com.ruyicai.activity.common.PullRefreshListView
+            android:id="@+id/ruyi_guess_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/list_color"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="15dip"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:scrollingCache="false" />
+
+        <!--
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -58,14 +72,15 @@
                 android:dividerHeight="15dip"
                 android:scrollbars="none" />
         </LinearLayout>
+        -->
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dip"
         android:layout_alignParentBottom="true"
-        android:gravity="center" 
-        android:background="@drawable/jc_team_select_button_bg">
+        android:background="@drawable/jc_team_select_button_bg"
+        android:gravity="center" >
 
         <Button
             android:id="@+id/ruyi_guess_submit"
@@ -75,8 +90,8 @@
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
             android:textColor="@color/white"
-            android:textSize="18sp" 
-            android:visibility="invisible"/>
+            android:textSize="18sp"
+            android:visibility="invisible" />
     </LinearLayout>
 
 </RelativeLayout>
