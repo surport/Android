@@ -600,7 +600,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dip"
-                        android:background="@drawable/joininfobuttonup"
+                        android:background="@drawable/joninfobuttonoff"
                         android:gravity="left|center_vertical"
                         android:paddingLeft="10dip"
                         android:text="方案内容"
@@ -643,7 +643,7 @@
                     android:id="@+id/miaoshu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/joininfobuttonup"
+                    android:background="@drawable/joninfobuttonoff"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="方案描述"
@@ -692,7 +692,7 @@
 
                 <Button
                     android:id="@+id/canyu"
-                    android:background="@drawable/joininfobuttonup"
+                    android:background="@drawable/joninfobuttonoff"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"

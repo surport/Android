@@ -563,14 +563,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (isleirong) {
-					dDianjiNeiRong.setVisibility(View.GONE);
-					fanganleirong.setVisibility(View.VISIBLE);
-					leirong.setBackgroundResource(R.drawable.joininfobuttonup);
-					isleirong = false;
-				} else {
 					dDianjiNeiRong.setVisibility(View.VISIBLE);
 					fanganleirong.setVisibility(View.GONE);
 					leirong.setBackgroundResource(R.drawable.joninfobuttonoff);
+					isleirong = false;
+				} else {
+					dDianjiNeiRong.setVisibility(View.GONE);
+					fanganleirong.setVisibility(View.VISIBLE);
+					leirong.setBackgroundResource(R.drawable.joininfobuttonup);
 					isleirong = true;
 				}
 			}
@@ -620,14 +620,14 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (isMiaoShu) {
-					dDianJiFangAn.setVisibility(View.GONE);
-					mFanganmiaoshu.setVisibility(View.VISIBLE);
-					mMiaoshu.setBackgroundResource(R.drawable.joininfobuttonup);
-					isMiaoShu = false;
-				} else {
 					dDianJiFangAn.setVisibility(View.VISIBLE);
 					mFanganmiaoshu.setVisibility(View.GONE);
 					mMiaoshu.setBackgroundResource(R.drawable.joninfobuttonoff);
+					isMiaoShu = false;
+				} else {
+					dDianJiFangAn.setVisibility(View.GONE);
+					mFanganmiaoshu.setVisibility(View.VISIBLE);
+					mMiaoshu.setBackgroundResource(R.drawable.joininfobuttonup);
 					isMiaoShu = true;
 				}
 			}
@@ -983,11 +983,22 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
 		// .....
-//		contentListView.createListContent(fanganrengouLayout, dDianjiNeiRong,
-//				detatil.getLotNo(), detatil.getBetCodeHtml(),
-//				detatil.getBetCodeJson());
+		
+		
 		try {
 			dDianjiNeiRong.setText(contentListView.getState(detatil.getBetCodeJson().getString("visibility")));
+			
+			if(!contentListView.getEnable(detatil.getBetCodeJson().getString("visibility"))){
+				if(detatil == null || !detatil.getBetCodeHtml().equals("保密")
+						||!detatil.getBetCodeHtml().equals("对跟单者截至后公开")
+						||!detatil.getBetCodeHtml().equals("对所有人截止后公开")){
+					dDianjiNeiRong.setText("点击展开内容");
+					leirong.setEnabled(true);
+				}else {
+					leirong.setEnabled(false);
+				}
+				
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -996,9 +1007,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		contentListView.createListContent(layoutMain, content,
 				detatil.getLotNo(), detatil.getBetCodeHtml(),
 				detatil.getBetCodeJson());
-		if(detatil != null && detatil.getBetCodeHtml().equals("保密")){
-			leirong.setEnabled(false);
-		}
+		
+		
 		amountEdit.setText(detatil.getMinAmt());
 		String minStr = "";
 		int minInt = Integer.parseInt(detatil.getMinAmt());
