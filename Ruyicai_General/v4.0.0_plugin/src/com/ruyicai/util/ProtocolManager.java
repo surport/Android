@@ -258,6 +258,8 @@ public class ProtocolManager {
 	public static String EMAIL = "email";
 	/**add by pengcx 20130604 end*/
 	public static String COMMAND = "command";
+	public static String TOKEN = "token";
+	public static String PLAT = "platform";
 	public static String IS_EMULATOR = "isemulator";
 	public static String IMEI = "imei";
 	public static String IMSI = "imsi";

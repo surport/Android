@@ -1093,6 +1093,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	protected void onResume() {
 		super.onResume();
 		initPojo();
+		//TODO在第三方插件中隐藏退出按钮
 		initReturn();
 		if (sessionid != null && !sessionid.equals("")) {
 			getusermessage();
