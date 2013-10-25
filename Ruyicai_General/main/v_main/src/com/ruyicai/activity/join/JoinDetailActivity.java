@@ -983,15 +983,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
 		// .....
-		
-		
 		try {
 			dDianjiNeiRong.setText(contentListView.getState(detatil.getBetCodeJson().getString("visibility")));
-			
 			if(!contentListView.getEnable(detatil.getBetCodeJson().getString("visibility"))){
-				if(detatil == null || !detatil.getBetCodeHtml().equals("保密")
-						||!detatil.getBetCodeHtml().equals("对跟单者截至后公开")
-						||!detatil.getBetCodeHtml().equals("对所有人截止后公开")){
+				if(!detatil.getBetCodeHtml().equals("保密")
+						&&!detatil.getBetCodeHtml().equals("对跟单者截至后公开")
+						&&!detatil.getBetCodeHtml().equals("对所有人截止后公开")){
 					dDianjiNeiRong.setText("点击展开内容");
 					leirong.setEnabled(true);
 				}else {
