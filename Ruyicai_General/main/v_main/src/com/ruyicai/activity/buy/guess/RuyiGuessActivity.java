@@ -48,18 +48,24 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 	public final static String ISEND = "isend";
 	public final static String JUMP_FLAG = "jump_flag";
 	public final static String MYSELECTED = "my_selected";
-	private String mUserNo = ""; // 用户名
-	private int mPageIndex = 0; //当前列表显示了多少页数据
-	private int mTotalPage = 0; //服务器端总共有多少页数据
-	private int mSelectedId = 0; //选择的竞猜Id
-	private boolean mIsLogin = false; // 是否登陆
-	private boolean mIsMySelected = false; //true我竞猜过的问题
+	/**用户名*/
+	private String mUserNo = "";
+	/**当前列表显示了多少页数据*/
+	private int mPageIndex = 0;
+	/**服务器端总共有多少页数据*/
+	private int mTotalPage = 0;
+	/**选择的竞猜Id*/
+	private int mSelectedId = 0;
+	/**是否登陆*/
+	private boolean mIsLogin = false;
+	/**true我竞猜过的问题*/
+	private boolean mIsMySelected = false;
+	/**用户名*/
 	private boolean mIsFirst = true; 
-//	private boolean mIsSuccess = false;
 	private LayoutInflater mInflater = null;
 	private ProgressDialog mProgressdialog = null;
 	private RWSharedPreferences mSharedPreferences = null;
-//	private ListView mListView = null;
+	/**自定义listview 用于下拉刷新*/
 	private PullRefreshListView mPullListView = null;
 	private View mFooterView = null;
 	private List<ItemInfoBean> mQuestionsList = new ArrayList<ItemInfoBean>();
@@ -69,6 +75,7 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 	private int[] mIconArray = { R.drawable.buy_ruyiguess_item_yellow,
 			R.drawable.buy_ruyiguess_item_orange,
 			R.drawable.buy_ruyiguess_item_pink };
+	/**把参与题目的状态保存到map中，不用再去请求后台来改变当前页面的显示状态状态*/
 	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
 	private String mItemCount = "10"; //每次请求的数量
 	
@@ -87,9 +94,8 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 		} else {
 			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex, mItemCount);
 		}
-		Controller.getInstance(this).addActivity(this);
+		Controller.getInstance(this).addActivity(this); //添加到Activity list用于管理
 	}
-
 
 	private void readUserInfo() {
 		mSharedPreferences = new RWSharedPreferences(RuyiGuessActivity.this,
@@ -135,7 +141,7 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 					intent.putExtra(USER_NO, mUserNo);
 					intent.putExtra(TITLE, mQuestionsList.get(mSelectedId).getTitle());
 					intent.putExtra(MYSELECTED, mIsMySelected);
-					if ("1".equals(mQuestionsList.get(mSelectedId).getAllDraw()/*getEndState()*/)) {
+					if ("1".equals(mQuestionsList.get(mSelectedId).getAllDraw())) {
 						intent.putExtra(ISEND, true);
 					} else {
 						intent.putExtra(ISEND, false);
@@ -159,6 +165,9 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 		}
 	}
 	
+	/**
+	 * 获取更多数据
+	 */
 	private void addmore() {
 		mPageIndex++;
 		if (mPageIndex > mTotalPage - 1) {
@@ -183,14 +192,14 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
 			mIsFirst = true;
-			if (requestCode == 1000) {
+			if (requestCode == 1000) {//登陆成功后重新加载当前账户的参与状态
 				mPageIndex = 0;
 				mIsLogin = true;
 				mUserNo = mSharedPreferences.getStringValue(ShellRWConstants.USERNO);
 				mProgressdialog = PublicMethod.creageProgressDialog(this);
 				String count = String.valueOf(mQuestionsList.size());
 				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
-			} else if (requestCode == 1001){
+			} else if (requestCode == 1001){ //如果参与成功后把参与题目的状态保存到map对象中并重新加载
 				mLocalDataMap.put(mSelectedId, true);
 				mAdapter.notifyDataSetChanged();
 			}
@@ -319,6 +328,8 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 			String str = (String)msg.obj;
 			if (str == null || "".equals(null)) {
 				Toast.makeText(RuyiGuessActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+				mPullListView.onRefreshComplete();
+				dismissDialog();
 			} else {
 				try {
 					JSONObject jsonObj = new JSONObject(str);
@@ -345,7 +356,6 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 							mQuestionsList.add(info);
 						}
 						mAdapter.notifyDataSetChanged();
-						mPullListView.onRefreshComplete();
 						setMoreViewState();
 					} else if ("0047".equals(errorCode)) {
 						TextView tv = (TextView) findViewById(R.id.ruyi_guest_no_record);
@@ -357,9 +367,12 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
+				} finally {
+					mPullListView.onRefreshComplete();
+					dismissDialog();
 				}
 			}
-			dismissDialog();
+			
 		}
 		
 	}
