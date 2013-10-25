@@ -686,15 +686,16 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="认购设置"
+                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:visibility="gone" />
 
                 <Button
                     android:id="@+id/canyu"
+                    android:background="@drawable/joininfobuttonup"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
-                    android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="参与人员"
@@ -857,7 +858,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center"
-                                android:text="剩余219元可保底"
+                                android:text="剩余元可保底"
                                 android:textColor="@color/black"
                                 android:textSize="10sp" />
                         </LinearLayout>

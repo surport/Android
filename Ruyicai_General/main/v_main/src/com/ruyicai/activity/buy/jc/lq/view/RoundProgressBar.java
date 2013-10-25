@@ -139,7 +139,6 @@ public class RoundProgressBar extends View {
 				canvas.drawText("0%", centre - textWidth / 2, centre+ textSize / 2, paint); // 画出进度百分比
 			}
 		}
-		
 
 		/**
 		 * 画圆弧 ，画圆环的进度
