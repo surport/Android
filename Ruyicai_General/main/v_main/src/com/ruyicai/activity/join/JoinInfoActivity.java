@@ -802,7 +802,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						PublicMethod.getPxInt(110, JoinInfoActivity.this),
 						PublicMethod.getPxInt(28, JoinInfoActivity.this));
 				holder.type.setLayoutParams(params);
-				RelativeLayout.LayoutParams paramsLayout = new RelativeLayout.LayoutParams(
+				LinearLayout.LayoutParams paramsLayout = new LinearLayout.LayoutParams(
 						250, LayoutParams.WRAP_CONTENT);
 				holder.layoutLeft.setLayoutParams(paramsLayout);
 				holder.layoutCenter.setLayoutParams(paramsLayout);
