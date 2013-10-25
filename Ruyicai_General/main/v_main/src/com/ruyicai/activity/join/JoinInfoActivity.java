@@ -124,6 +124,11 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	private GridView mGridView;
 	private Button mShowAllBtn;
 	/*xupeisong...end*/
+	//add by yejc 20131025
+	private String[] mLotnoArray = {"", Constants.LOTNO_SSQ, Constants.LOTNO_FC3D,
+			Constants.LOTNO_QLC, Constants.LOTNO_DLT, Constants.LOTNO_QXC,Constants.LOTNO_PL3,
+			Constants.LOTNO_PL5, Constants.LOTNO_ZC, Constants.LOTNO_JCL, Constants.LOTNO_JCZ,
+			Constants.LOTNO_BJ_SINGLE};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -669,35 +674,39 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			issue = getIssue(type);
 		}
 	}
+	
 
 	public void initlotno(int lottype) {
-		if (lottype == 0) {
-			lotno = "";
-		} else if (lottype == 1) {
-			lotno = Constants.LOTNO_SSQ;
-		} else if (lottype == 2) {
-			lotno = Constants.LOTNO_FC3D;
-		} else if (lottype == 3) {
-			lotno = Constants.LOTNO_QLC;
-		} else if (lottype == 4) {
-			lotno = Constants.LOTNO_DLT;
-		} else if (lottype == 5) {
-			lotno = Constants.LOTNO_QXC;
-		} else if (lottype == 6) {
-			lotno = Constants.LOTNO_PL3;
-		} else if (lottype == 7) {
-			lotno = Constants.LOTNO_PL5;
-		} else if (lottype == 8) {
-			lotno = Constants.LOTNO_22_5;
-		} else if (lottype == 9) {
-			lotno = Constants.LOTNO_ZC;
-		} else if (lottype == 10) {
-			lotno = Constants.LOTNO_JCL;
-		} else if (lottype == 11) {
-			lotno = Constants.LOTNO_JCZ;
-		} else if (lottype == 12) {
-			lotno = Constants.LOTNO_BJ_SINGLE;
-		}
+		lotno = mLotnoArray[lottype];
+		/**close by yejc 20131025 start*/
+//		if (lottype == 0) {
+//			lotno = "";
+//		} else if (lottype == 1) {
+//			lotno = Constants.LOTNO_SSQ;
+//		} else if (lottype == 2) {
+//			lotno = Constants.LOTNO_FC3D;
+//		} else if (lottype == 3) {
+//			lotno = Constants.LOTNO_QLC;
+//		} else if (lottype == 4) {
+//			lotno = Constants.LOTNO_DLT;
+//		} else if (lottype == 5) {
+//			lotno = Constants.LOTNO_QXC;
+//		} else if (lottype == 6) {
+//			lotno = Constants.LOTNO_PL3;
+//		} else if (lottype == 7) {
+//			lotno = Constants.LOTNO_PL5;
+//		} else if (lottype == 8) {
+//			lotno = Constants.LOTNO_22_5;
+//		} else if (lottype == 9) {
+//			lotno = Constants.LOTNO_ZC;
+//		} else if (lottype == 10) {
+//			lotno = Constants.LOTNO_JCL;
+//		} else if (lottype == 11) {
+//			lotno = Constants.LOTNO_JCZ;
+//		} else if (lottype == 12) {
+//			lotno = Constants.LOTNO_BJ_SINGLE;
+//		}
+		/**close by yejc 20131025 end*/
 
 	}
 

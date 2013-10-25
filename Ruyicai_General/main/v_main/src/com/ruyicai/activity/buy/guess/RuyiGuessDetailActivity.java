@@ -82,6 +82,8 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 	private String[] mTitleSerial = {"A", "B", "C", "D", "E", "F", "G", "H",
 	        "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
 	        "V", "W", "X", "Y", "Z"};
+//	private String[] mTitleSerial = {"A", "B", "C", "D", "E", "F", "G", "H",
+//	        "I", "J"};
 	/** 选项控件的索引 */
 	private int mViewIndex = 0;
 	/** 存放问题序号的map */
