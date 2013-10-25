@@ -659,6 +659,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 							mAdapter.notifyDataSetChanged();
 							createDialog();
 						} else {
+							mIsSuccess = false;
 							Iterator<Integer> iterator = mInfoMap.keySet().iterator();
 							while (iterator.hasNext()) {
 								int index = iterator.next();
@@ -666,6 +667,8 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 									mLocalDataMap.remove(index);
 								}
 							}
+							mInfoMap.clear();
+							mAdapter.notifyDataSetChanged();
 //							//如果提交竞猜结果失败，有可能是提交的题目已截止。需要再次请求后台刷新状态。
 //							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
 //							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
