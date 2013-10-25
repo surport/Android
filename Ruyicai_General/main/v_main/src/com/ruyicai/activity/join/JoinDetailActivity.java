@@ -359,7 +359,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				if(str.length()<1){
 					baoDiZhan.setText("占总额0%");
 				}else{
-					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
+					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*10000/Double.valueOf(detatil.getTotalAmt().toString()));
 					double renGou=renGou_per/100.0;
 					baoDiZhan.setText("占总额" + renGou+ "%");
 				}
