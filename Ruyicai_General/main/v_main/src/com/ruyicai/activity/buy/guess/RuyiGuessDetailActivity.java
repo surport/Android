@@ -27,7 +27,6 @@ import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -44,44 +43,54 @@ import android.widget.Toast;
 
 public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListener{
 
-	private String mTitle = "";  //问题的标题
-	private String mDetail = ""; //问题详情
-	private String mId = "";  //竞猜Id
-	private String mUserNo = ""; //用户名
-	private boolean mIsEnd = false; //竞彩是否截止
-	private boolean mIsMySelected = false; //是否从我的竞猜进入
-	private boolean mIsSuccess = false; //参与成功标识
+	/** 问题的标题 */
+	private String mTitle = "";
+	/** 问题详情 */
+	private String mDetail = "";
+	/** 竞猜Id */
+	private String mId = "";
+	/** 用户名 */
+	private String mUserNo = "";
+	/** 竞彩是否截止 */
+	private boolean mIsEnd = false;
+	/** 是否从我的竞猜进入 */
+	private boolean mIsMySelected = false;
+	/** 参与成功标识 */
+	private boolean mIsSuccess = false;
+	/** 当前列表显示了多少页数据 */
+	private int mPageIndex = 0;
 //	private boolean mIsFirst = true;
-	private int mPageIndex = 0; //当前列表显示了多少页数据
 //	private int mTotalPage = 0; //服务器端总共有多少页数据
-//	private int mScreenWidth = 0; //屏幕的宽
 	private int mPadValue = 0;
 	private LayoutInflater mInflater = null;
 	private LinearLayout[] mLinearLayouts = null;
-	private Dialog mDialog = null;  //参与成功对话框
+	/** 参与成功对话框 */
+	private Dialog mDialog = null;
 	private ProgressDialog mProgressdialog = null;
-	private TextView mDescription = null;  //问题描述
+	/** 问题描述 */
+	private TextView mDescription = null;
 //	private View mFooterView = null;
-//	private ListView mListView = null;
+	/**自定义listview 用于下拉刷新*/
 	private PullRefreshListView mPullListView = null;
 	private Button mSubmitBtn = null;
-//	private String[] mStateArray = {"未参与", "已参与"};
 	private MessageHandler mHandler = new MessageHandler();
 	private List<ItemDetailInfoBean> mQuestionsList = new ArrayList<ItemDetailInfoBean>();
-	//存放所要提交的参与问题
+	/** 存放所要提交的参与问题 */
 	private Map<Integer, String[]> mInfoMap = new HashMap<Integer, String[]>();
 	private ListViewAdapter mAdapter = new ListViewAdapter();
-	//问题前的序号
+	/** 问题前的序号 */
 	private String[] mTitleSerial = {"A", "B", "C", "D", "E", "F", "G", "H",
 	        "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
 	        "V", "W", "X", "Y", "Z"};
+//	private String[] mTitleSerial = {"A", "B", "C", "D", "E", "F", "G", "H",
+//	        "I", "J"};
+	/** 选项控件的索引 */
 	private int mViewIndex = 0;
-	//存放问题序号的map
+	/** 存放问题序号的map */
 	private Map<Integer, String> mAnswerMap = new HashMap<Integer, String>();
-	//保存参与的题目状态
+	/** 保存参与的题目状态 */
 	private Map<Integer, String[]> mLocalDataMap = new HashMap<Integer, String[]>();
-	//存放没有选择的题目
-//	private Map<Integer, Boolean> mNoSelectedMap = new HashMap<Integer, Boolean>();
+	/** 记录可以参加竞猜的题目数量 */
 	private int mNoSelectedCount = 0;
 
 	
@@ -92,7 +101,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		setContentView(R.layout.buy_ruyiguess_detail);
 		mInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mPadValue = PublicMethod.getPxInt(15, this);
-//		mScreenWidth = PublicMethod.getDisplayWidth(this);
 		Intent intent = getIntent();
 		mUserNo = intent.getStringExtra(RuyiGuessActivity.USER_NO);
 		mId = intent.getStringExtra(RuyiGuessActivity.ITEM_ID);
@@ -321,7 +329,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			//动态添加竞猜问题
 			createDynamicView(holder.layout, position, info.isSelected(), info.getEndState());
 			
-			if (/*mIsEnd*/"1".equals(info.getEndState())) { //如果竞猜已经截止
+			if ("1".equals(info.getEndState())) { //如果竞猜已经截止
 				if (info.isSelected()) { //我选择的
 					if ("1".equals(info.getCorrect())) {//未开奖或没选择的时候为空;选择的时候(0:错误;1:正确)
 						holder.icon.setImageResource(R.drawable.buy_ruyi_guess_right);
@@ -344,6 +352,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					holder.state.setBackgroundResource(R.drawable.ruyiguess_stop);
 				}
 				
+				//如果答案不为空设置相应状态
 				if (!"".equals(info.getAnswer())/* && !"null".equals(info.getAnswer())*/) {
 					String str = "";
 					if (info.isSelected()) {
@@ -456,7 +465,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		layout.removeAllViews();
 		String[][] options = mQuestionsList.get(position).getOptions();
 		if (options !=null && options.length > 0) {
-			int length = options.length;
+			int length = options.length; //选项的个数
 			mLinearLayouts = new LinearLayout[length];
 			int lineNum = 2;// 每行个数
 			int lastNum = length % lineNum;// 最后一行个数
@@ -514,7 +523,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 				info = (String[])(mLocalDataMap.get(position));
 			} 
 			TextView text = (TextView)itemLayout.findViewById(R.id.ruyi_guess_dynamic_text);
-			/**add 20131022*/
 			TextView number = (TextView)itemLayout.findViewById(R.id.ruyi_guess_dynamic_number);
 			number.setText(mTitleSerial[mViewIndex]+" ");
 			if ((options[index][0]).equals(mQuestionsList.get(position).getAnswer())) {
@@ -522,8 +530,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			}
 			text.setText(options[index][1]);
 			mViewIndex ++;
-			/**add 20131022*/
-			
 			layouts[index] = itemLayout;
 			
 			if (isSelected || mIsEnd || ("1".equals(endState))) {
@@ -634,19 +640,19 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			int type = msg.what;
 			if (data == null || "".equals(data)) {
 				Toast.makeText(RuyiGuessDetailActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
+				dismissDialog();
 			} else {
-				if (type == 1) {
+				if (type == 1) { //请求后台数据完成
 					parserDetailJSON(data);
-				} else if (type == 2){
+				} else if (type == 2){ //提交竞猜结果完成
 					dismissDialog();
 					try {
 						JSONObject jsonObj = new JSONObject(data);
 						String errorCode = jsonObj.getString("error_code");
 						if ("0000".equals(errorCode)) {
 							mIsSuccess = true;
-							Log.i("yejc", "=========mNoSelectedMap.size()="+mInfoMap.size()
-									+" ==========mNoSelectedCount="+mNoSelectedCount);
-							if ((mNoSelectedCount - mInfoMap.size()) == 0) {
+							mNoSelectedCount = mNoSelectedCount - mInfoMap.size();
+							if (mNoSelectedCount == 0) {
 								setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
 							}
 							mInfoMap.clear();
@@ -660,8 +666,9 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 									mLocalDataMap.remove(index);
 								}
 							}
-							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
-							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
+//							//如果提交竞猜结果失败，有可能是提交的题目已截止。需要再次请求后台刷新状态。
+//							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
+//							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 							String message = jsonObj.getString("message");
 							Toast.makeText(RuyiGuessDetailActivity.this, message, Toast.LENGTH_SHORT).show();
 						}
@@ -682,7 +689,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			JSONObject jsonObj = new JSONObject(data);
 			String errorCode = jsonObj.getString("error_code");
 			if ("0000".equals(errorCode)) {
-				mQuestionsList.clear(); //20131023
+				mQuestionsList.clear();
 				mNoSelectedCount = 0;
 				mDetail = jsonObj.getJSONObject("quiz").getString("detail");
 				mDescription.setText(mDetail);
@@ -716,7 +723,6 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					if (!isAdd && "0".equals(itemObj.getString("isEnd"))) {
 						isSubmit = true;
 						mNoSelectedCount++;
-						Log.i("yejc", "===========i="+i);
 					}
 					info.setOptions(options);
 					if (mIsMySelected) {
@@ -729,7 +735,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					
 				}
 				mAdapter.notifyDataSetChanged();
-				mPullListView.onRefreshComplete();
+//				mPullListView.onRefreshComplete();
 //				setMoreViewState();
 				setSubmitState(isSubmit);
 			} else {
@@ -739,6 +745,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} finally {
+			mPullListView.onRefreshComplete();
 			dismissDialog();
 		}
 	}

@@ -96,7 +96,7 @@ public class RoundProgressBar extends View {
 		textColor = mTypedArray.getColor(
 				R.styleable.RoundProgressBar_textColor, Color.GREEN);
 		textSize = mTypedArray.getDimension(
-				R.styleable.RoundProgressBar_textSize, 15);
+				R.styleable.RoundProgressBar_textSize, 10);
 		roundWidth = mTypedArray.getDimension(
 				R.styleable.RoundProgressBar_roundWidth, 5);
 		max = mTypedArray.getInteger(R.styleable.RoundProgressBar_max, 100);
@@ -132,14 +132,24 @@ public class RoundProgressBar extends View {
 		int percent = (int) (((float) progress / (float) max) * 100); // 中间的进度百分比，先转换成float在进行除法运算，不然都为0
 		float textWidth = paint.measureText(percent + "%"); // 测量字体宽度，我们需要根据字体的宽度设置在圆环中间
 		if(textIsDisplayable && style == STROKE){
-			if (percent != 0) {
-				canvas.drawText(percent + "%", centre - textWidth / 2, centre
-						+ textSize / 2, paint); // 画出进度百分比
-			}else if(percent == 0){
-				canvas.drawText("0%", centre - textWidth / 2, centre+ textSize / 2, paint); // 画出进度百分比
+			if(percent == 0){
+				canvas.drawText("进度",  (int)(centre - textWidth / 1.5), centre-textSize/5, paint);
+			}else{
+				canvas.drawText("进度",  centre - textWidth / 2, centre-textSize/5, paint);
 			}
+			canvas.drawText(percent + "%", centre - textWidth / 2, centre
+					+ (textSize / 5)*4, paint); // 画出进度百分比
+//			if (percent != 0) {
+//				canvas.drawText("进度",  centre - textWidth / 2, centre-textSize/5, paint);
+//				canvas.drawText(percent + "%", centre - textWidth / 2, centre
+//						+ (textSize / 5)*4, paint); // 画出进度百分比
+//				
+//			
+//			}else if(percent == 0){
+//				canvas.drawText("进度",  centre - textWidth / 2, centre-textSize/5, paint);
+//				canvas.drawText("0%", centre - textWidth / 2,(textSize / 5)*4, paint); // 画出进度百分比
+//			}
 		}
-		
 
 		/**
 		 * 画圆弧 ，画圆环的进度
