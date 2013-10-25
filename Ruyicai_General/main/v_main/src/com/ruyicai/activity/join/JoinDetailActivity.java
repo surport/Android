@@ -316,8 +316,9 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				if(str.length()<1){
 					renGouZhan.setText("占总额0%");
 				}else{
-					int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
-					renGouZhan.setText("占总额" + renGou_per+ "%");
+					int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*10000/Double.valueOf(detatil.getTotalAmt().toString()));
+					double renGou=renGou_per/100.0;
+					renGouZhan.setText("占总额" + renGou+ "%");
 				}
 
 			}
@@ -359,7 +360,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 					baoDiZhan.setText("占总额0%");
 				}else{
 					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
-				    baoDiZhan.setText("占总额" + renGou_per+ "%");
+					double renGou=renGou_per/100.0;
+					baoDiZhan.setText("占总额" + renGou+ "%");
 				}
 				
 			}
