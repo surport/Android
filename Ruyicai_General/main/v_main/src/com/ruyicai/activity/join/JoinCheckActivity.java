@@ -97,8 +97,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	}
 
 	private void initUserInfo() {
-		RWSharedPreferences shellRW = new RWSharedPreferences(
-				JoinCheckActivity.this, "addInfo");
+		RWSharedPreferences shellRW = new RWSharedPreferences(JoinCheckActivity.this, "addInfo");
 		phonenum = shellRW.getStringValue("phonenum");
 		sessionid = shellRW.getStringValue("sessionid");
 		userno = shellRW.getStringValue("userno");

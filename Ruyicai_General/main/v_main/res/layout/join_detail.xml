@@ -2,17 +2,17 @@
 <!-- 合买大厅 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android_custom="http://schemas.android.com/apk/res/com.palmdream.RuyicaiAndroid"
+    android:id="@+id/lineartop"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/grey"
-    android:orientation="vertical"
-    android:id="@+id/lineartop" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/u149_normal" >
+        android:background="@drawable/hongse" >
 
         <TextView
             android:id="@+id/join_detail_text_title"
@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:text="合买详情"
             android:textColor="@color/white"
-            android:textSize="20dip" >
+            android:textSize="20sp" >
         </TextView>
 
         <ImageButton
@@ -44,10 +44,10 @@
             android:layout_marginRight="10dip"
             android:text="返回"
             android:textColor="@color/white"
-            android:textSize="15dip"
+            android:textSize="15sp"
             android:visibility="gone" >
         </Button>
-        
+
         <Button
             android:id="@+id/join_detail_btnbtn"
             android:layout_width="40dp"
@@ -55,8 +55,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dip"
-            android:background="@drawable/share_bt_selector"
-            >
+            android:background="@drawable/share_bt_selector" >
         </Button>
     </RelativeLayout>
 
@@ -84,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="13dip" />
+                android:textSize="13sp" />
 
             <com.ruyicai.activity.buy.jc.lq.view.RoundProgressBar
                 android:id="@+id/join_detail_tex_progress"
@@ -143,7 +142,7 @@
                     android:background="@drawable/quxiao_normal"
                     android:text="撤单"
                     android:textColor="@color/white"
-                    android:textSize="13dip"
+                    android:textSize="13sp"
                     android:visibility="gone" >
                 </Button>
             </LinearLayout>
@@ -209,8 +208,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="方案金额"
                             android:layout_gravity="center_horizontal"
+                            android:text="方案金额"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
@@ -232,8 +231,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="剩余金额"
                             android:layout_gravity="center_horizontal"
+                            android:text="剩余金额"
                             android:textColor="@color/black" />
                     </LinearLayout>
 
@@ -256,8 +255,8 @@
                             android:id="@+id/textView7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="已跟单"
                             android:layout_gravity="center_horizontal"
+                            android:text="已跟单"
                             android:textColor="@color/black" />
                     </LinearLayout>
                 </TableRow>
@@ -566,7 +565,7 @@
                         android:paddingTop="10dip"
                         android:text="最低认购："
                         android:textColor="@color/black"
-                        android:textSize="13dip"
+                        android:textSize="13sp"
                         android:visibility="gone" >
                     </TextView>
 
@@ -580,7 +579,7 @@
                             android:paddingTop="10dip"
                             android:text="认购金额："
                             android:textColor="@color/black"
-                            android:textSize="13dip"
+                            android:textSize="13sp"
                             android:visibility="gone" >
                         </TextView>
 
@@ -591,81 +590,57 @@
                             android:paddingTop="10dip"
                             android:text=""
                             android:textColor="@color/red"
-                            android:textSize="13dip"
+                            android:textSize="13sp"
                             android:visibility="gone" >
                         </TextView>
-
-                        <Button
-                            android:id="@+id/miaoshu"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dip"
-                            android:background="@drawable/joininfobuttonup"
-                            android:gravity="left|center_vertical"
-                            android:paddingLeft="10dip"
-                            android:text="方案内容"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/join_detail_dianji_fangan"
+                    <Button
+                        android:id="@+id/leirong"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="点击箭头查看方案详情"
-                        android:textColor="@color/black"
-                        android:textSize="15dip" >
-                    </TextView>
-
+                        android:layout_marginTop="5dip"
+                        android:background="@drawable/joininfobuttonup"
+                        android:gravity="left|center_vertical"
+                        android:paddingLeft="10dip"
+                        android:text="方案内容"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+					<LinearLayout 
+					    android:id="@+id/fanganneirongLayout"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content">	                    <TextView
+	                        android:id="@+id/join_detail_dianji_neirong"
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        android:gravity="center"
+	                        android:text=""
+	                        android:textColor="@color/black"
+	                        android:textSize="15sp" >
+	                    </TextView>
+					</LinearLayout>
                     <LinearLayout
-                        android:id="@+id/fanganmiaoshu"
+                        android:id="@+id/fanganleirong"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
                         android:layout_marginTop="5dip"
-                        android:orientation="vertical" 
-                        android:visibility="gone">
-
-                        <LinearLayout
+                        android:orientation="vertical"
+                        android:visibility="gone" >
+                        <TextView
+                            android:id="@+id/join_detail_text_context"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <LinearLayout
-                                android:id="@+id/join_detail_layout_context"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical" >
-
-                                <TextView
-                                    android:id="@+id/join_detail_text_describe"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text=""
-                                    android:textColor="@color/black"
-                                    android:textSize="40dip" 
-                                    android:visibility="gone">
-                                </TextView>
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="13sp">
+                        </TextView>
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/join_detail_text_describe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dip"
-                        android:text="方案描述："
-                        android:textColor="@color/black"
-                        android:textSize="13dip"
-                        android:visibility="gone" >
-                    </TextView>
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/leirong"
+                    android:id="@+id/miaoshu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/joininfobuttonup"
@@ -676,43 +651,30 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/join_detail_dianji_neirong"
+                    android:id="@+id/join_detail_dianji_fangan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:text=""
                     android:gravity="center"
-                    android:text="点击箭头查看方案详情"
                     android:textColor="@color/black"
-                    android:textSize="15dip" >
+                    android:textSize="15sp" >
                 </TextView>
 
                 <LinearLayout
-                    android:id="@+id/fanganleirong"
+                    android:id="@+id/fanganmiaoshu"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                     android:visibility="gone"
                     android:orientation="vertical" >
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/join_detail_text_describe"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
-
-                        <LinearLayout
-                            android:id="@+id/join_detail_layout_context"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" >
-
-                            <TextView
-                                android:id="@+id/join_detail_text_context"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="点击箭头查看方案详情"
-                                android:textColor="@color/black"
-                                android:textSize="13dip" >
-                            </TextView>
-                        </LinearLayout>
-                    </LinearLayout>
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="13sp" >
+                    </TextView>
                 </LinearLayout>
 
                 <Button
@@ -724,15 +686,16 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="认购设置"
+                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:visibility="gone" />
 
                 <Button
                     android:id="@+id/canyu"
+                    android:background="@drawable/joininfobuttonup"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
-                    android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="参与人员"
@@ -886,7 +849,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center"
-                                android:text="占总额2.35%"
+                                android:text="占总额%"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -895,7 +858,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center"
-                                android:text="剩余219元可保底"
+                                android:text="剩余元可保底"
                                 android:textColor="@color/black"
                                 android:textSize="10sp" />
                         </LinearLayout>
