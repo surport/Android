@@ -368,7 +368,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-
+				
 			}
 
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -938,7 +938,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 		// .........
 		// shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
-		int baoDi_per =(int) (Double.valueOf(detatil.getTotalAmt().toString())-Double.valueOf(detatil.getSafeAmt().toString()));
+		int baoDi_per =(int) (Double.valueOf(detatil.getTotalAmt().toString())-Double.valueOf(detatil.getBuyAmtByStarter().toString()));
 		baoDiKe.setText("剩余" + baoDi_per + "元可保底");
 
 		// 。。。。。。。。。。。。。
