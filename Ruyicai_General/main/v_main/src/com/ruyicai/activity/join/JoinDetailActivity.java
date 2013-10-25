@@ -88,7 +88,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 	private LinearLayout starLayout;
 	private LinearLayout faqixinxi, fanganxiangqing, fanganleirong,
-			rengoushezhi, fenxianglayout;
+			rengoushezhi, fenxianglayout,fanganrengouLayout;
 	private Button faqi, xiangqing, leirong, rengou, canyu;
 	private boolean isfaqi = false, isxiangqing = false, isleirong = false,
 			isrengou = false, iscanyu = true;
@@ -271,6 +271,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		mFanganmiaoshu = (LinearLayout) findViewById(R.id.fanganmiaoshu);
 		mRoundProgressBar = (RoundProgressBar) findViewById(R.id.join_detail_tex_progress);
 		mJoin_detail_text_rengou_progress2 = (TextView) findViewById(R.id.join_detail_text_rengou_progress2);
+		fanganrengouLayout=(LinearLayout)findViewById(R.id.fanganneirongLayout);
 
 		// ...............
 		jianGeXian = (ImageView) findViewById(R.id.join_detail_jiangexian);
@@ -959,20 +960,22 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
 		// .....
+//		contentListView.createListContent(fanganrengouLayout, dDianjiNeiRong,
+//				detatil.getLotNo(), detatil.getBetCodeHtml(),
+//				detatil.getBetCodeJson());
 		try {
-			boolean isEnable=contentListView.getEnable( detatil.getBetCodeJson().getString("visibility"));
 			dDianjiNeiRong.setText(contentListView.getState(detatil.getBetCodeJson().getString("visibility")));
-			leirong.setEnabled(isEnable);
-			content.setEnabled(isEnable);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//....
+
 		contentListView.createListContent(layoutMain, content,
 				detatil.getLotNo(), detatil.getBetCodeHtml(),
 				detatil.getBetCodeJson());
-
+		if(detatil != null && detatil.getBetCodeHtml().equals("保密")){
+			leirong.setEnabled(false);
+		}
 		amountEdit.setText(detatil.getMinAmt());
 		String minStr = "";
 		int minInt = Integer.parseInt(detatil.getMinAmt());
