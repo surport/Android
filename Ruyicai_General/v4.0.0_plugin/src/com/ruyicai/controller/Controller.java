@@ -14,6 +14,7 @@ import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.FeedBackListInterface;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.net.newtransaction.JoinStartInterface;
+import com.ruyicai.net.newtransaction.ThirdPartyLoginInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.recharge.RechargeDescribeInterface;
 import com.ruyicai.util.ProtocolManager;
@@ -24,6 +25,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.Toast;
 
 public class Controller {
     private static final String TAG = "Controller";
@@ -413,6 +415,45 @@ public class Controller {
 					msg.obj = Constants.feedBackJSONArray;
 					// end
 					handler.sendMessage(msg);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+	
+	/**
+	 * 第三方登录接口
+	 * @param handler
+	 * @param token
+	 * @param plat
+	 */
+	public void thirdPartyLogin(final Handler handler, final String token,
+			final String plat) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				JSONObject jsonObject = ThirdPartyLoginInterface.getInstance()
+						.thirdPartyLogin(token, plat);
+				try {
+					String errorCode = jsonObject.getString("errorcode");
+					if("0".equals(errorCode)){
+						Message message = new Message();
+						message.what = 6;
+						message.obj = jsonObject;
+						handler.sendMessage(message);
+					}else{
+						final String message = jsonObject.getString("message");
+						handler.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+							}
+						});
+						
+					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

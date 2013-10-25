@@ -128,6 +128,9 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 				RuyicaiActivityManager.getInstance().exit();
 				PublicConst.islogin = false;
 				PublicConst.isthirdlogin = false;
+				Constants.hasLogin = false;
+				logOutDialog = LogOutDialog.createDialog(MainGroup.this);
+				logOutDialog.clearLastLoginInfo();
 			}
 		});
 		ruyicaiLogo = (TextView) findViewById(R.id.ruyicai_beauty_logo);
@@ -188,19 +191,19 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 					returnButton.setVisibility(View.VISIBLE);
 					login.setVisibility(View.INVISIBLE);
 					usermessage.setVisibility(View.INVISIBLE);
-					if (Constants.hasLogin) {
-						dingyue.setVisibility(View.VISIBLE);
-						dingyue.setText("退出");
-					} else {
+//					if (Constants.hasLogin) {
+//						dingyue.setVisibility(View.VISIBLE);
+//						dingyue.setText("退出");
+//					} else {
 						dingyue.setVisibility(View.GONE);
-					}
-					dingyue.setOnClickListener(new OnClickListener() {
-						public void onClick(View v) {
-							logOutDialog = LogOutDialog
-									.createDialog(MainGroup.this);
-							logOutDialog.setOnClik(MainGroup.this);
-						}
-					});
+//					}
+//					dingyue.setOnClickListener(new OnClickListener() {
+//						public void onClick(View v) {
+//							logOutDialog = LogOutDialog
+//									.createDialog(MainGroup.this);
+//							logOutDialog.setOnClik(MainGroup.this);
+//						}
+//					});
 					break;
 				case 4:
 					isnotice = false;
