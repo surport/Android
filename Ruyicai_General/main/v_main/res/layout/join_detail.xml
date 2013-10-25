@@ -855,7 +855,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center"
-                                android:text="剩余219元可保底"
+                                android:text="剩余元可保底"
                                 android:textColor="@color/black"
                                 android:textSize="10sp" />
                         </LinearLayout>
