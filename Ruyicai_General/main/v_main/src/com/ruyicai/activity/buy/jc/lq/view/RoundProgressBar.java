@@ -96,7 +96,7 @@ public class RoundProgressBar extends View {
 		textColor = mTypedArray.getColor(
 				R.styleable.RoundProgressBar_textColor, Color.GREEN);
 		textSize = mTypedArray.getDimension(
-				R.styleable.RoundProgressBar_textSize, 10);
+				R.styleable.RoundProgressBar_textSize, 9);
 		roundWidth = mTypedArray.getDimension(
 				R.styleable.RoundProgressBar_roundWidth, 5);
 		max = mTypedArray.getInteger(R.styleable.RoundProgressBar_max, 100);
@@ -164,13 +164,13 @@ public class RoundProgressBar extends View {
 		switch (style) {
 		case STROKE: {
 			paint.setStyle(Paint.Style.STROKE);
-			canvas.drawArc(oval, 0, 360 * progress / max, false, paint); // 根据进度画圆弧
+			canvas.drawArc(oval, -90, 360 * progress / max, false, paint); // 根据进度画圆弧
 			break;
 		}
 		case FILL: {
 			paint.setStyle(Paint.Style.FILL_AND_STROKE);
 			if (progress != 0)
-				canvas.drawArc(oval, 0, 360 * progress / max, true, paint); // 根据进度画圆弧
+				canvas.drawArc(oval, -90, 360 * progress / max, true, paint); // 根据进度画圆弧
 			break;
 		}
 		}
