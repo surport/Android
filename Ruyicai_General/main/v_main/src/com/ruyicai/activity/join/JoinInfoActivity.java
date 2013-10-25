@@ -789,7 +789,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			}
 			int with = PublicMethod.getDisplayWidth(JoinInfoActivity.this);
 			if (with == 800) {
-				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 						PublicMethod.getPxInt(110, JoinInfoActivity.this),
 						PublicMethod.getPxInt(28, JoinInfoActivity.this));
 				holder.type.setLayoutParams(params);
