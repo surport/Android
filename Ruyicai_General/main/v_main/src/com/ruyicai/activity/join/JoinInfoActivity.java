@@ -592,8 +592,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					e1.printStackTrace();
 				}
 				try {
-					if(displayIcon.has("graygoldStar")){
-					info.setCrown(displayIcon.getString("graygoldStar"));
+					if(displayIcon.has("crown")){
+					info.setCrown(displayIcon.getString("crown"));
 					}
 				} catch (Exception e) {
 
