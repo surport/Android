@@ -67,6 +67,7 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="发起人信息"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -135,6 +136,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
+                       android:textColor="@color/white"
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
@@ -381,6 +383,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
+                       android:textColor="@color/white"
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
@@ -428,6 +431,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
+                       android:textColor="@color/white"
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
@@ -586,6 +590,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
+                       android:textColor="@color/white"
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"

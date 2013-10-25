@@ -66,6 +66,7 @@
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
+                     android:textColor="@color/white"
                     android:text="方案详情"
                     android:textSize="18sp" />
 
@@ -236,6 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
                     android:background="@drawable/joininfobuttonup"
+                     android:textColor="@color/white"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="方案内容"
@@ -267,6 +269,7 @@
                     android:layout_marginTop="5dip"
                     android:background="@drawable/joininfobuttonup"
                     android:gravity="left|center_vertical"
+                     android:textColor="@color/white"
                     android:paddingLeft="10dip"
                     android:text="追号详情"
                     android:textSize="18sp" />
