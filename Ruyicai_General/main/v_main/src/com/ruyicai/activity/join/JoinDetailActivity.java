@@ -88,7 +88,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 
 	private LinearLayout starLayout;
 	private LinearLayout faqixinxi, fanganxiangqing, fanganleirong,
-			rengoushezhi, fenxianglayout;
+			rengoushezhi, fenxianglayout,fanganrengouLayout;
 	private Button faqi, xiangqing, leirong, rengou, canyu;
 	private boolean isfaqi = false, isxiangqing = false, isleirong = false,
 			isrengou = false, iscanyu = true;
@@ -271,6 +271,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		mFanganmiaoshu = (LinearLayout) findViewById(R.id.fanganmiaoshu);
 		mRoundProgressBar = (RoundProgressBar) findViewById(R.id.join_detail_tex_progress);
 		mJoin_detail_text_rengou_progress2 = (TextView) findViewById(R.id.join_detail_text_rengou_progress2);
+		fanganrengouLayout=(LinearLayout)findViewById(R.id.fanganneirongLayout);
 
 		// ...............
 		jianGeXian = (ImageView) findViewById(R.id.join_detail_jiangexian);
@@ -315,10 +316,31 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				//.......
 				if(str.length()<1){
 					renGouZhan.setText("占总额0%");
+					
 				}else{
-					int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
-					renGouZhan.setText("占总额" + renGou_per+ "%");
+					int renGou_per = (int) (Double.valueOf(amountEdit.getText().toString())*10000/Double.valueOf(detatil.getTotalAmt().toString()));
+					double renGou=renGou_per/100.0;
+					renGouZhan.setText("占总额" + renGou+ "%");
+					int minInt = Integer.parseInt(detatil.getMinAmt());
+					int rengouInt = Integer.parseInt(detatil.getRemainderAmt());
+					int min_RenGou;
+					if (rengouInt < minInt) {
+						shengYuKe.setText("剩余可认购" + (int)(Double.valueOf(detatil.getRemainderAmt().toString())-Double.valueOf(amountEdit.getText().toString())) + ",至少认购"
+								+ rengouInt + "元");
+					} else {
+						shengYuKe.setText("剩余可认购" + (int)(Double.valueOf(detatil.getRemainderAmt().toString())-Double.valueOf(amountEdit.getText().toString())) + ",至少认购"
+								+ minInt + "元");
+					}
+					
+					int baoDi_per =(int) (Double.valueOf(detatil.getRemainderAmt().toString())-Double.valueOf(detatil.getSafeAmt().toString())-Double.valueOf(amountEdit.getText().toString()));
+					if(baoDi_per>0){
+						baoDiKe.setText("剩余" + baoDi_per + "元可保底");
+					}else{
+						baoDiKe.setText("剩余0元可保底");
+					}
 				}
+				
+				
 
 			}
 
@@ -358,15 +380,16 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				if(str.length()<1){
 					baoDiZhan.setText("占总额0%");
 				}else{
-					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*100/Double.valueOf(detatil.getTotalAmt().toString()));
-				    baoDiZhan.setText("占总额" + renGou_per+ "%");
+					int renGou_per = (int) (Double.valueOf(safeAmtEdit.getText().toString())*10000/Double.valueOf(detatil.getTotalAmt().toString()));
+					double renGou=renGou_per/100.0;
+					baoDiZhan.setText("占总额" + renGou+ "%");
 				}
 				
 			}
 
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-
+				
 			}
 
 			public void onTextChanged(CharSequence s, int start, int before,
@@ -933,12 +956,12 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		id.append(detatil.getCaseLotId());
 		baoAtm.append(detatil.getSafeAmt() + "元");
 		renAtm.append(detatil.getHasBuyAmt() + "元");
+		
 
-		// .........
-		// shengYuKe.setText("剩余"+detatil.getRemainderAmt()+"元可认购,至少认购"+"元");
-		int baoDi_per =(int) (Double.valueOf(detatil.getTotalAmt().toString())-Double.valueOf(detatil.getSafeAmt().toString()));
+		//........
+		int baoDi_per =(int) (Double.valueOf(detatil.getRemainderAmt().toString())-Double.valueOf(detatil.getSafeAmt().toString())-Double.valueOf(amountEdit.getText().toString()));
 		baoDiKe.setText("剩余" + baoDi_per + "元可保底");
-
+		
 		// 。。。。。。。。。。。。。
 		/**
 		 */
@@ -960,32 +983,30 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		deduct.append(detatil.getCommisionRatio() + "%");
 		// content.append(detatil.getContent());
 		// .....
+//		contentListView.createListContent(fanganrengouLayout, dDianjiNeiRong,
+//				detatil.getLotNo(), detatil.getBetCodeHtml(),
+//				detatil.getBetCodeJson());
 		try {
-			boolean isEnable=contentListView.getEnable( detatil.getBetCodeJson().getString("visibility"));
 			dDianjiNeiRong.setText(contentListView.getState(detatil.getBetCodeJson().getString("visibility")));
-			leirong.setEnabled(isEnable);
-			content.setEnabled(isEnable);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//....
+
 		contentListView.createListContent(layoutMain, content,
 				detatil.getLotNo(), detatil.getBetCodeHtml(),
 				detatil.getBetCodeJson());
-
+		if(detatil != null && detatil.getBetCodeHtml().equals("保密")){
+			leirong.setEnabled(false);
+		}
 		amountEdit.setText(detatil.getMinAmt());
 		String minStr = "";
 		int minInt = Integer.parseInt(detatil.getMinAmt());
 		int rengouInt = Integer.parseInt(detatil.getRemainderAmt());
 		if (rengouInt < minInt) {
-			shengYuKe.setText("剩余可认购" + detatil.getRemainderAmt() + ",至少认购"
-					+ rengouInt + "元");
 			minStr = "(至少认购" + rengouInt + "元)";
 			this.minInt = rengouInt;
 		} else {
-			shengYuKe.setText("剩余可认购" + detatil.getRemainderAmt() + ",至少认购"
-					+ minInt + "元");
 			minStr = "(至少认购" + minInt + "元)";
 			this.minInt = minInt;
 		}
