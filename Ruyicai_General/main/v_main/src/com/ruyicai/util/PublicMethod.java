@@ -1916,7 +1916,72 @@ public class PublicMethod {
 		return title;
 
 	}
-	
+	public static String infoToLotnoName(String type) {
+		String title = "";
+		if (type != null) {
+			if (type.equals(Constants.LOTNO_SSQ)) {
+				title = "双色球";
+			} else if (type.equals(Constants.LOTNO_FC3D)) {
+				title = "福彩3D";
+			} else if (type.equals(Constants.LOTNO_QLC)) {
+				title = "七乐彩";
+			} else if (type.equals(Constants.LOTNO_PL3)) {
+				title = "排列三";
+			} else if (type.equals(Constants.LOTNO_DLT)) {
+				title = "大乐透";
+			} else if (type.equals(Constants.LOTNO_ZC)
+					||type.equals(Constants.LOTNO_SFC)
+					||type.equals(Constants.LOTNO_JQC)
+					||type.equals(Constants.LOTNO_LCB)
+					||type.equals(Constants.LOTNO_RX9)) {
+				title = "足彩";
+			} else if (type.equals(Constants.LOTNO_QXC)) {
+				title = "七星彩";
+			} else if (type.equals(Constants.LOTNO_SSC)) {
+				title = "时时彩";
+			} else if (type.equals(Constants.LOTNO_11_5)) {
+				title = "江西11选5";
+			} else if (type.equals(Constants.LOTNO_PL5)) {
+				title = "排列五";
+			} else if (type.equals(Constants.LOTNO_JCLQ_HUN)
+					||type.equals(Constants.LOTNO_JCLQ)
+					||type.equals(Constants.LOTNO_JCLQ_RF)
+					||type.equals(Constants.LOTNO_JCLQ_SFC)
+					||type.equals(Constants.LOTNO_JCLQ_DXF)
+					||type.equals(Constants.LOTNO_JCL)) {
+				title = "竞彩篮球";
+			} else if (type.equals(Constants.LOTNO_22_5)) {
+				title = "22选5";
+			} else if (type.equals(Constants.LOTNO_eleven)) {
+				title = "11运夺金";
+			}else if (type.equals(Constants.LOTNO_JCZQ_HUN)
+					||type.equals(Constants.LOTNO_JCZ)
+					||type.equals(Constants.LOTNO_JCZQ)
+					||type.equals(Constants.LOTNO_JCZQ_RQSPF)
+					||type.equals(Constants.LOTNO_JCZQ_ZQJ)
+					||type.equals(Constants.LOTNO_JCZQ_BQC)
+					||type.equals(Constants.LOTNO_JCZQ_BF)) {
+				title = "竞彩足球";
+			} else if (type.equals(Constants.LOTNO_GD_11_5)) {
+				title = "广东11选5";
+			} else if (type.equals(Constants.LOTNO_ten)) {
+				title = "广东快乐十分";
+			}else if (type.equals(Constants.LOTNO_NMK3)) {
+				title = "快三";
+			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)
+					||type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE)
+					||type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE)
+					||type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_OVERALL)
+					||type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS)
+					||type.equals(Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS)) {
+				title = "北京单场";
+			}else {
+				title = "所有彩种";
+			}
+		}
+		return title;
+
+	}
 	
 	public static String infoToLotno(String type) {
 		String title = "";

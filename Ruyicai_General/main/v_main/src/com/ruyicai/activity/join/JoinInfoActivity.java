@@ -810,14 +810,15 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				holder.layoutRight.setLayoutParams(paramsLayout);
 			}
 			if(lottypeIndex==0){
-				if(info.getLotno().equals(Constants.LOTNO_SFC)
-						||info.getLotno().equals(Constants.LOTNO_RX9)
-						||info.getLotno().equals(Constants.LOTNO_JQC)
-						||info.getLotno().equals(Constants.LOTNO_LCB)){
-					holder.type.setText("足彩");
-				}else {
-					holder.type.setText(info.getLottype());
-				}
+//				if(info.getLotno().equals(Constants.LOTNO_SFC)
+//						||info.getLotno().equals(Constants.LOTNO_RX9)
+//						||info.getLotno().equals(Constants.LOTNO_JQC)
+//						||info.getLotno().equals(Constants.LOTNO_LCB)){
+//					holder.type.setText("足彩");
+//				}else {
+//					holder.type.setText(info.getLottype());
+//				}
+				holder.type.setText(PublicMethod.infoToLotnoName(info.getLotno()));
 			}else if (lottypeIndex>0) {
 				holder.type.setText(PublicMethod.infoToLotno(info.getLotno()));
 			}
