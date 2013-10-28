@@ -447,7 +447,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	public void onCheck() {
 		viewInfos[topIndex][lottypeIndex].newPage = 0;
 		viewInfos[topIndex][lottypeIndex].allPage = 0;
-
+		viewInfos[topIndex][lottypeIndex].listdata.clear();
 		joinInfokNet(orderBy, orderDir);
 		view.setEnabled(true);
 	}
@@ -471,7 +471,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		str = QueryJoinInfoInterface.queryLotJoinInfo(lotno, issue, orderBy,
 				orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
 				Constants.PAGENUM);
-		viewInfos[topIndex][lottypeIndex].listdata.clear();
 		handlerTwo.post(new Runnable() {
 			@Override
 			public void run() {
