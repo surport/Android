@@ -99,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/jc_lq_dx_bj"
+                android:layout_marginTop="1.0dip"
                 android:focusable = "false" 
                 android:text="定制跟单" />
         </RelativeLayout>
