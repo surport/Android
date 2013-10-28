@@ -165,9 +165,9 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 //		}
 //	}
 	
-	private void setSubmitState(boolean flag) {
+	private void setSubmitState(boolean isSubmit, boolean isItemEnd) {
 		if (!mIsMySelected) {
-			if (flag) {
+			if (isSubmit) {
 				setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_submit_result);
 				mSubmitBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -191,7 +191,9 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					}
 				});
 			} else {
-				if (!mIsEnd) {
+				if (isItemEnd) {
+					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end);
+				} else {
 					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
 				}
 			}
@@ -656,19 +658,20 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 								setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
 							}
 							mInfoMap.clear();
+//							mLocalDataMap.clear();
 							mAdapter.notifyDataSetChanged();
 							createDialog();
 						} else {
 							mIsSuccess = false;
-							Iterator<Integer> iterator = mInfoMap.keySet().iterator();
-							while (iterator.hasNext()) {
-								int index = iterator.next();
-								if (mLocalDataMap.containsKey(index)) {
-									mLocalDataMap.remove(index);
-								}
-							}
-							mInfoMap.clear();
-							mAdapter.notifyDataSetChanged();
+//							Iterator<Integer> iterator = mInfoMap.keySet().iterator();
+//							while (iterator.hasNext()) {
+//								int index = iterator.next();
+//								if (mLocalDataMap.containsKey(index)) {
+//									mLocalDataMap.remove(index);
+//								}
+//							}
+//							mInfoMap.clear();
+//							mAdapter.notifyDataSetChanged();
 //							//如果提交竞猜结果失败，有可能是提交的题目已截止。需要再次请求后台刷新状态。
 //							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
 //							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
@@ -692,6 +695,8 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			JSONObject jsonObj = new JSONObject(data);
 			String errorCode = jsonObj.getString("error_code");
 			if ("0000".equals(errorCode)) {
+				mInfoMap.clear();
+				mLocalDataMap.clear();
 				mQuestionsList.clear();
 				mNoSelectedCount = 0;
 				mDetail = jsonObj.getJSONObject("quiz").getString("detail");
@@ -699,6 +704,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 				JSONArray jsonArray = jsonObj.getJSONArray("result");
 //				mTotalPage = Integer.valueOf(jsonObj.getString("totalPage").trim());//
 				boolean isSubmit = false;
+				boolean isItemEnd = true;
 				for (int i = 0; i < jsonArray.length(); i++) {
 					boolean isAdd = false;
 					ItemDetailInfoBean info = new ItemDetailInfoBean();
@@ -723,10 +729,14 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 							info.setSelected(true);
 						}
 					}
-					if (!isAdd && "0".equals(itemObj.getString("isEnd"))) {
-						isSubmit = true;
-						mNoSelectedCount++;
+					if ("0".equals(itemObj.getString("isEnd"))) {
+						if (!isAdd) {
+							isSubmit = true;
+							mNoSelectedCount++;
+						}
+						isItemEnd = false;
 					}
+					
 					info.setOptions(options);
 					if (mIsMySelected) {
 						if (isAdd) {
@@ -740,7 +750,7 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 				mAdapter.notifyDataSetChanged();
 //				mPullListView.onRefreshComplete();
 //				setMoreViewState();
-				setSubmitState(isSubmit);
+				setSubmitState(isSubmit, isItemEnd);
 			} else {
 				String message = jsonObj.getString("message");
 				Toast.makeText(RuyiGuessDetailActivity.this, message, Toast.LENGTH_SHORT).show();

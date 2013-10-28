@@ -60,10 +60,9 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 	private boolean mIsLogin = false;
 	/**true我竞猜过的问题*/
 	private boolean mIsMySelected = false;
-	/**用户名*/
 	private boolean mIsFirst = true;
-	/**是否点击了更多按钮*/
-	private boolean mIsClickMoreBtn = false; 
+//	/**是否点击了更多按钮*/
+//	private boolean mIsClickMoreBtn = false; 
 	private LayoutInflater mInflater = null;
 	private ProgressDialog mProgressdialog = null;
 	private RWSharedPreferences mSharedPreferences = null;
