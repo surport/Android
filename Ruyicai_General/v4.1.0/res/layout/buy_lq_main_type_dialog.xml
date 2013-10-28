@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buy_jc_play_select_layout"
+    android:layout_width="300dip"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="45dip"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/jc_play_select_background"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="20dip" >
+
+        <LinearLayout
+            android:layout_width="300dip"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/buy_lq_main_dialog_type1"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="25dip"
+                    android:text="@string/jclq_dialog_sf_guoguan_title" />
+                
+                 <TextView
+                    android:id="@+id/buy_lq_main_dialog_new_type1"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="25dip"
+                    android:text="@string/jczq_dialog_rqspf_guoguan_title" 
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/buy_lq_main_dialog_type2"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="25dip"
+                    android:text="@string/jclq_dialog_rf_guoguan_title" />
+
+                <TextView
+                    android:id="@+id/buy_lq_main_dialog_type3"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="24dip"
+                    android:text="@string/jclq_dialog_sfc_guoguan_title" />
+
+                <TextView
+                    android:id="@+id/buy_lq_main_dialog_type4"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="24dip"
+                    android:text="@string/jclq_dialog_dxf_guoguan_title" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="8dip"
+                android:paddingTop="10dip" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select"
+                    android:checked="true" />
+                
+                 <RadioButton
+                    android:id="@+id/radio_new0"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select" 
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select" />
+
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingTop="10dip" >
+
+                <RadioButton
+                    android:id="@+id/radio4"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select_dan" />
+                
+                <RadioButton
+                    android:id="@+id/radio_new4"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select_dan" 
+                    android:visibility="gone"/>
+
+                <RadioButton
+                    android:id="@+id/radio5"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select_dan" />
+
+                <RadioButton
+                    android:id="@+id/radio6"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select_dan" />
+
+                <RadioButton
+                    android:id="@+id/radio7"
+                    android:layout_width="90dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:button="@drawable/jc_radio_select_dan" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:gravity="right" >
+
+                <TextView
+                    android:id="@+id/buy_lq_main_dialog_type1"
+                    style="@style/style_jc_dialog_text"
+                    android:paddingTop="15dip"
+                    android:text="@string/jclq_dialog_hunhe_title" />
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/radio8"
+                android:layout_width="190dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:button="@drawable/jc_hunhe_select"
+                android:layout_marginLeft="8dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

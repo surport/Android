@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:gravity="center_horizontal|clip_vertical" >
+
+        <TextView
+            android:id="@+id/alert_dialog_touzhu_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dip"
+            android:text="您的订单"
+            android:textColor="@color/white"
+            android:textSize="25sp" >
+        </TextView>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/linearLayout"
+        android:background="#ffffff"
+        android:paddingBottom="110sp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5sp" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/jc_alert_bg"
+                android:orientation="vertical" >
+
+                <!-- 彩种 -->
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:gravity="center_vertical|left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dip" >
+
+                    <TextView
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="彩种：" />
+
+                    <TextView
+                        android:id="@+id/alert_dialog_jc_lotnotype"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/litt"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <!-- 方案 -->
+
+                <RelativeLayout
+                    android:id="@+id/alert_dialog_touzhu_linear_qihao_beishu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:gravity="center_vertical|left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dip" >
+
+                    <TextView
+                        android:id="@+id/alert_dialog_touzhu_text_zhuma"
+                        style="@style/touzhuTextstyle"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/jc_main_touzhu_alert_text" />
+
+                    <TextView
+                        android:id="@+id/alert_dialog_touzhu_alert_scheme"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="226dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/alert_dialog_touzhu_text_zhuma"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/alert_dialog_touzhu_updown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/down_icon" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/litt"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+                <!-- 开奖详情 -->
+
+                <LinearLayout
+                    android:id="@+id/alert_dialog_touzhu_alert_schemedetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/alert_dialog_touzhu_alert_textview_schemedetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dip"
+                        android:layout_margin="0.5dip"
+                        android:background="@color/jc_touzhu_background_color"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/litt"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <!-- 场次 -->
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:gravity="center_vertical|left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dip" >
+
+                    <TextView
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="场次：" />
+
+                    <TextView
+                        android:id="@+id/alert_dialog_jc_gamenum"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="注数：" />
+
+                    <TextView
+                        android:id="@+id/alert_dialog_jc_betnum"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/litt"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:gravity="center_vertical|left"
+                    android:paddingLeft="10dip" >
+
+                    <TextView
+                        android:id="@+id/buy_zixuan_text_beishu_title"
+                        style="@style/touzhuTextstyle"
+                        android:text="@string/meiqibeishu" />
+
+                    <ImageButton
+                        android:id="@+id/buy_zixuan_img_subtract_beishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:src="@drawable/subtractselecter" />
+
+                    <SeekBar
+                        android:id="@+id/buy_jc_zixuan_seek_beishu"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="120dip"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:max="10000"
+                        android:maxHeight="6dip"
+                        android:minHeight="6dip"
+                        android:paddingLeft="15dip"
+                        android:paddingRight="15dip"
+                        android:progress="1"
+                        android:progressDrawable="@drawable/seekbar_style"
+                        android:thumb="@drawable/thumb"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/buy_zixuan_text_beishu"
+                        android:layout_width="70dip"
+                        android:layout_height="40dip"
+                        android:layout_marginTop="2dip"
+                        android:numeric="integer"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/buy_zixuan_img_add_beishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
+                        android:background="#00000000"
+                        android:src="@drawable/addselecter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/bettingDetails_maxMutiple_one"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/litt"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <!-- 金额 -->
+
+                <LinearLayout
+                    android:id="@+id/alert_dialog_touzhu_linear_qihao_beishu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:gravity="center_vertical|left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dip" >
+
+                    <TextView
+                        android:id="@+id/alert_dialog_touzhu_text_zhuma"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="金额：" />
+
+                    <TextView
+                        android:id="@+id/alert_dialog_jc_money"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/litt"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <!-- 预计奖金 -->
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="55dip"
+                    android:gravity="center_vertical|left"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dip" >
+
+                    <TextView
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="预计奖金：" />
+
+                    <TextView
+                        android:id="@+id/alert_dialog_jc_predictmoney"
+                        style="@style/touzhuTextstyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/alert_dialog_touzhu_text_fangshi"
+                    style="@style/touzhuTextstyle"
+                    android:paddingBottom="10dip"
+                    android:paddingTop="10dip"
+                    android:text="@string/jc_main_touzhu_alert_text_guo" />
+
+                <LinearLayout
+                    android:id="@+id/buttonlayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/jc_alert_bg"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2" >
+
+                        <Button
+                            android:id="@+id/jc_alert_btn_ziyou"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/jc_main_touzhu_alert_btn_ziyou" />
+
+                        <Button
+                            android:id="@+id/jc_alert_btn_duochuan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/jc_main_touzhu_alert_btn_duochuan" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/alert_dialog_jc_layout_group"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingBottom="40dip"
+                        android:paddingLeft="5dip" >
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/alert_dialog_touzhu_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="70sp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buy_bot_bg" >
+
+        <Button
+            android:id="@+id/alert_dialog_touzhu_button_cancel"
+            android:layout_width="120dip"
+            android:layout_height="40sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18sp"
+            android:background="@drawable/loginselecter"
+            android:text="@string/jc_sendhemai"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/alert_dialog_touzhu_button_ok"
+            android:layout_width="120dip"
+            android:layout_height="40sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18sp"
+            android:background="@drawable/loginselecter"
+            android:text="@string/jc_makesurebuy"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>

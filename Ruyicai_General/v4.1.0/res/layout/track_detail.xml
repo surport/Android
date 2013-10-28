@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 合买大厅 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/grey"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/join_detail_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dip"
+            android:text="追号方案详情"
+            android:textColor="@color/white"
+            android:textSize="20dip" >
+        </TextView>
+
+        <Button
+            android:id="@+id/join_detail_img_return"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+            android:visibility="invisible" >
+        </Button>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/grey"
+            android:paddingBottom="80dip" >
+
+            <LinearLayout
+                android:id="@+id/LinearLayout02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/LinearLayout01"
+                android:orientation="vertical"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" >
+
+                <Button
+                    android:id="@+id/fangan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                     android:textColor="@color/white"
+                    android:text="方案详情"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/fanganxiangqing"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/usercenter_bg"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/track_detail_text_lotno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="彩种："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                     <TextView
+                        android:id="@+id/track_detail_text_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="订单号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/track_detail_text_qishu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="追号期数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/track_detail_text_qishu_yi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="已追期期数："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" />
+
+                    <TextView
+                        android:id="@+id/track_detail_text_qishu_che"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="已撤销期数："
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/track_detail_text_qishu_startno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="起始期号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="追号总额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/track_detail_text_atm_zong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text="已追金额："
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/track_detail_text_atm_yi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dip"
+                            android:text=""
+                            android:textColor="@color/red"
+                            android:textSize="13dip" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/track_detail_text_starttime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案发起时间："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/track_detail_iswinafter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="中奖后停止追号："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dip" >
+
+                        <TextView
+                            android:id="@+id/track_detail_text_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="当前状态："
+                            android:paddingTop="10dip"
+                            android:textColor="@color/black"
+                            android:textSize="13dip" >
+                        </TextView>
+
+                        <Button
+                            android:id="@+id/trackquery_cancle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dip"
+                            android:paddingLeft="80dip"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dip"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="3dip"
+                            android:paddingTop="10dip"
+                            android:visibility="gone"
+                            android:background="@drawable/usercenter_cancletrack_selector" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/leirong"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                     android:textColor="@color/white"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="10dip"
+                    android:text="方案内容"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/fanganleirong"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:background="@drawable/usercenter_bg"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/track_detail_text_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dip"
+                        android:text="方案内容："
+                        android:textColor="@color/black"
+                        android:textSize="13dip" >
+                    </TextView>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/canyu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/joininfobuttonup"
+                    android:gravity="left|center_vertical"
+                     android:textColor="@color/white"
+                    android:paddingLeft="10dip"
+                    android:text="追号详情"
+                    android:textSize="18sp" />
+
+                <ListView
+                    android:id="@+id/canyurenyuan"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fadingEdge="none"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:visibility="gone" >
+                </ListView>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout0000"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/LinearLayout0111"
+            android:paddingBottom="50dip"
+            android:paddingLeft="10dip" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout0111"
+            android:layout_width="fill_parent"
+            android:layout_height="70dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/join_detail_bottom_bg"
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/track_detail_img_cannle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"
+                android:text="返回" >
+            </Button>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

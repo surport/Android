@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent"
+	android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content" android:background="#ffffff">
+	<RelativeLayout android:id="@+id/main_buy_title"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:background="@drawable/shouye_top">
+		<TextView android:text="我的积分"
+			android:id="@+id/usercenter_mainlayou_text_title"
+			style="@style/UserTitleTextLeft"></TextView>
+		<Button android:id="@+id/usercenter_accountdetail_img_return" android:background="@drawable/returnselecter"
+			android:layout_width="wrap_content" android:layout_height="30dip"
+			android:layout_alignParentRight="true" android:layout_marginRight="10dip"
+			android:paddingLeft="10dip" android:paddingRight="10dip"
+			android:layout_centerVertical="true" android:text="@string/returnlastpage"
+			android:visibility="invisible"
+			android:textColor="@color/white" android:textSize="15dip">
+		</Button>
+	</RelativeLayout>
+    <RelativeLayout   android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/userscroe_top" android:paddingTop="3dip">
+	<TextView android:text="我的现有积分：" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textColor="@color/black"
+			android:id="@+id/userscroe_toptitle"
+			android:textSize="15dip" android:paddingLeft="5sp"/>  
+    <TextView android:text="" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:textColor="@color/red"
+			android:id="@+id/userscroe_topscroe"
+			android:layout_toRightOf="@+id/userscroe_toptitle"
+			android:textSize="15dip" /> 
+    <TextView android:text="如何获取更多积分>>" android:layout_width="140dip"
+			android:layout_height="wrap_content" android:textColor="@color/red"
+			android:layout_alignParentRight="true"
+			android:id="@+id/userscroe_tophuoqu"
+			android:textSize="15dip" />          
+	</RelativeLayout>
+	<TextView android:layout_width="fill_parent"
+		android:id="@+id/usercenter_accountdetail_showbalancetext"
+		android:layout_height="3dp" 
+		android:background="#ffffff" android:gravity="center_horizontal" />
+	<ImageView android:src="@drawable/litt" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+	<TabHost android:id="@+id/usercenter_tab_host"
+		android:layout_width="fill_parent" android:layout_height="fill_parent">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			<TabWidget android:id="@android:id/tabs"
+				android:background="@color/white" android:layout_alignParentTop="true"
+				android:layout_width="fill_parent" android:layout_height="wrap_content" />
+			<FrameLayout android:id="@android:id/tabcontent"
+				android:background="@drawable/bg" android:layout_width="fill_parent"
+				android:layout_height="fill_parent" android:layout_below="@android:id/tabs"
+				android:layout_alignParentBottom="true">
+				<LinearLayout android:id="@+id/usercenterscroedetail"
+					android:layout_width="fill_parent" android:layout_height="fill_parent" />
+				<LinearLayout android:id="@+id/usercenterscroechange"
+					android:layout_width="fill_parent" android:layout_height="fill_parent"/>"
+			</FrameLayout>
+		</RelativeLayout>
+	</TabHost>
+
+</LinearLayout>
