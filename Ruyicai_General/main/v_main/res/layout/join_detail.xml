@@ -92,7 +92,9 @@
                 android_custom:roundColor="#D1D1D1"
                 android_custom:roundProgressColor="@android:color/black"
                 android_custom:roundWidth="8dip"
-                android_custom:textColor="#9A32CD"
+                android_custom:textColor="#e00000"
+                 android_custom:text_textSize="12sp"
+            android_custom:text_textColor="#D1D1D1"
                 android_custom:textSize="14sp" />
 
             <TextView
