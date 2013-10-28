@@ -64,6 +64,15 @@ public class LogOutDialog extends BaseDialog {
 				shellRW.putStringValue("password", "");
 			}
 			/**add by pengcx 20130719 end*/
+			
+			/**add by yejc 20131028 start*/
+			/**清空保存的数据用于QQ，支付宝等联合登陆时不再显示之前绑定的邮箱和身份证*/
+			shellRW.putStringValue("email", "");
+			shellRW.putStringValue("phonenum", "");
+			shellRW.putStringValue("mobileid", "");
+			shellRW.putStringValue("certid", "");
+			/**add by yejc 20131028 end*/
+			
 			shellRW.putStringValue("userno", "");
 			shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, false);
 			shellRW.putStringValue(ShellRWConstants.RANDOMNUMBER, "");
