@@ -262,8 +262,8 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 			String score = info.getGuestScore()+":"+info.getHomeScore();
 			holder.score.append(score);
 			
-			holder.home.append(info.getHome()+"(主)");
-			holder.away.append(info.getAway()+"(客)");
+			holder.home.append(info.getAway()+"(客)");
+			holder.away.append(info.getHome()+"(主)");
 			if (Constants.LOTNO_JCLQ_RF.equals(playMethodType)) {
 				if (!"".equals(info.getLetPoint())) {
 					holder.letPoint.setText(info.getLetPoint());
