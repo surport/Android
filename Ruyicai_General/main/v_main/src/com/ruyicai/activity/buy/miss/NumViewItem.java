@@ -7,7 +7,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.BaseActivity;
@@ -56,8 +56,7 @@ public class NumViewItem extends BuyViewItemMiss {
 	public View createView() {
 		LayoutInflater inflate = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = (LinearLayout) inflate.inflate(
-				R.layout.buy_zixuan_new_view, null);
+		View view = (RelativeLayout) inflate.inflate(R.layout.buy_zixuan_new_view, null);
 		int iScreenWidth = PublicMethod.getDisplayWidth(context);
 		int layoutIds[] = { R.id.buy_zixuan_linear_one,
 				R.id.buy_zixuan_linear_two, R.id.buy_zixuan_linear_third,
