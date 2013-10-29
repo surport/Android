@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -72,7 +73,7 @@ public class BuyViewItemMiss extends GalleryViewItem {
 	public View createView() {
 		LayoutInflater inflate = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = (LinearLayout) inflate.inflate(
+		View view = (RelativeLayout) inflate.inflate(
 				R.layout.buy_zixuan_new_view, null);
 		int iScreenWidth = PublicMethod.getDisplayWidth(context);
 		int layoutIds[] = { R.id.buy_zixuan_linear_one,
