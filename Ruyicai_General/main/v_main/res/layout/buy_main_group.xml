@@ -3,7 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+     android:id="@+id/LinearLayout0000" >
 
     <RelativeLayout
         android:id="@+id/main_buy_title"
@@ -146,7 +147,7 @@
         </TextView>
     </RelativeLayout>
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/LinearLayout02"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/litt" >
@@ -161,20 +162,21 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
+            <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@id/LinearLayout01" >
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@color/white" />
-
+                android:layout_height="wrap_content"/>
+            </LinearLayout>
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_alignParentBottom="true"
-                android:layout_below="@android:id/tabs"
-                android:background="@color/white" />
+                android:layout_below="@id/LinearLayout01"/>
         </RelativeLayout>
     </TabHost>
 

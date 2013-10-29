@@ -696,7 +696,16 @@ public class BuyActivityGroup extends ActivityGroup {
 				.findViewById(R.id.layout_nav_item);
 		topTitle = (TextView) indicatorTab
 				.findViewById(R.id.layout_nav_icon_title);
-		img.setBackgroundResource(R.drawable.tab_buy_selector);
+		if (Constants.LOTNO_NMK3.equals(lotNo)) {
+			if (index != (titles.length-1)) {
+				RelativeLayout relative = (RelativeLayout) indicatorTab
+						.findViewById(R.id.RelativeLayout01);
+				relative.setPadding(0, 0, PublicMethod.getPxInt(3, this), 0);
+			}
+			img.setBackgroundResource(R.drawable.nmk3_tab_buy_selector);
+		} else {
+			img.setBackgroundResource(R.drawable.tab_buy_selector);
+		}
 		topTitle.setText(titles[index]);
 		Intent intent = new Intent(BuyActivityGroup.this, allId[index]);
 		intent.putExtra("index", index);

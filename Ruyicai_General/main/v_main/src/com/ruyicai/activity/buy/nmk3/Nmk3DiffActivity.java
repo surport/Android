@@ -2,6 +2,7 @@ package com.ruyicai.activity.buy.nmk3;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -31,14 +32,19 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		BallResId[1] = R.drawable.nmk3_click;
 		setContentView(R.layout.sscbuyview);
 		init();
+
+		// 2013-10-18徐培松
+		childtypes.setVisibility(View.GONE);
+		zixuanLayout.setBackgroundResource(R.color.transparent);
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		radioId = checkedId;
-		onCheckAction(checkedId);
-		((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
-				iProgressBeishu));
+		// radioId = checkedId;
+		// onCheckAction(checkedId);
+		onCheckAction(0);
+		 ((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
+		 iProgressBeishu));
 	}
 
 	@Override
@@ -199,11 +205,11 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		switch (checkedId) {
 		case 0:
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_THREE,
-					true, checkedId, false);
+					true, checkedId, true);
 			break;
 		case 1:
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_TWO, true,
-					checkedId, false);
+					checkedId, true);
 			break;
 		}
 	}
