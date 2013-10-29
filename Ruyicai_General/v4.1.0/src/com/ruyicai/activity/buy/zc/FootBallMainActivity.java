@@ -28,7 +28,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,7 +35,6 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -93,6 +91,7 @@ public class FootBallMainActivity extends Activity {
 	private ArrayList[] mIssueArray = new ArrayList[4];
 	private LinearLayout noGamePrompt;
 	private boolean[] isShowState = {false, false, false, false};
+	private boolean[] isViewShowState = {false, false, false, false};//add by yejc 20131029
 	private int[] mStringId = {R.string.zc_14sf_play, R.string.zc_rx9_play, 
 			R.string.zc_6cb_play, R.string.zc_4jq_play};
 	
@@ -481,7 +480,13 @@ public class FootBallMainActivity extends Activity {
 				FootballContantDialog.alertIssueNOFQueue(mContext);
 				break;
 			case 5:
-				setMainLayoutState();
+				/**add by yejc 20131029 start*/
+				isViewShowState[mPlayIndex] = true;
+				setMainLayoutState(isViewShowState[mPlayIndex]);
+				layout_football_issue.setText("");
+				layout_football_time.setText("");
+				titleView.setText(mStringId[mPlayIndex]);
+				/**add by yejc 20131029 end*/
 				dismissDialog();
 				break;
 			}
@@ -541,6 +546,9 @@ public class FootBallMainActivity extends Activity {
 		}
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 		titleView.setText(mStringId[mPlayIndex]);
+		/** add by yejc 20131029 start*/
+		setMainLayoutState(isViewShowState[mPlayIndex]);
+		/** add by yejc 20131029 end*/
 	}
 	
 	private void getTeamInfo(int index) {
@@ -853,8 +861,13 @@ public class FootBallMainActivity extends Activity {
 		layoutParentLuck.setVisibility(View.GONE);
 	}
 	
-	private void setMainLayoutState() {
-		footBallList.setVisibility(View.GONE);
-		noGamePrompt.setVisibility(View.VISIBLE);
+	private void setMainLayoutState(boolean flag) {
+		if (flag) {
+			footBallList.setVisibility(View.GONE);
+			noGamePrompt.setVisibility(View.VISIBLE);
+		} else {
+			footBallList.setVisibility(View.VISIBLE);
+			noGamePrompt.setVisibility(View.GONE);
+		}
 	}
 }

@@ -91,7 +91,7 @@ public class FootBallMainActivity extends Activity {
 	private ArrayList[] mIssueArray = new ArrayList[4];
 	private LinearLayout noGamePrompt;
 	private boolean[] isShowState = {false, false, false, false};
-	private boolean[] isViewShowState = {false, false, false, false};
+	private boolean[] isViewShowState = {false, false, false, false};//add by yejc 20131029
 	private int[] mStringId = {R.string.zc_14sf_play, R.string.zc_rx9_play, 
 			R.string.zc_6cb_play, R.string.zc_4jq_play};
 	
@@ -480,7 +480,13 @@ public class FootBallMainActivity extends Activity {
 				FootballContantDialog.alertIssueNOFQueue(mContext);
 				break;
 			case 5:
+				/**add by yejc 20131029 start*/
 				isViewShowState[mPlayIndex] = true;
+				setMainLayoutState(isViewShowState[mPlayIndex]);
+				layout_football_issue.setText("");
+				layout_football_time.setText("");
+				titleView.setText(mStringId[mPlayIndex]);
+				/**add by yejc 20131029 end*/
 				dismissDialog();
 				break;
 			}
@@ -540,7 +546,9 @@ public class FootBallMainActivity extends Activity {
 		}
 		footBallList.setAdapter(mFootBallAdapters[mPlayIndex]);
 		titleView.setText(mStringId[mPlayIndex]);
+		/** add by yejc 20131029 start*/
 		setMainLayoutState(isViewShowState[mPlayIndex]);
+		/** add by yejc 20131029 end*/
 	}
 	
 	private void getTeamInfo(int index) {
