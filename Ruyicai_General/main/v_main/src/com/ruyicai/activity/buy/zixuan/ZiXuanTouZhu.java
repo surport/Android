@@ -275,14 +275,17 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			long amount = zhuShu *200 * iProgressBeishu;
 			betAndGift.setAmount(String.valueOf(amount));
 			betAndGift.setZhushu(String.valueOf(zhuShu));
+			/**add by yejc 20131028 start*/
 			StringBuffer buf = new StringBuffer();
-			buf.append(betAndGift.getBet_code());
+			buf.append(betAndGift.getBetCode());
 			buf.append("_");
+			buf.append("" + iProgressBeishu);
 			buf.append("_");
+			buf.append("200");
 			buf.append("_");
-			buf.append("_");
-			buf.append("_");
-			betAndGift.setBet_code();
+			buf.append(String.valueOf(zhuShu *200));
+			betAndGift.setBet_code(buf.toString());
+			/**add by yejc 20131028 end*/
 		}
 		touZhuNet();
 	}

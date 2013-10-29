@@ -41,6 +41,10 @@ public class BetAndGiftPojo implements Serializable {
 	private String isBetAfterIssue = "";
 	private String zhushu;
 	private String blessing;
+	/**
+	 * 用于足彩临时存放注码。不作为投注时的注码
+	 */
+	private String betCode = ""; 
 	/**add by pengcx 20130609 start*/
 	private String predictMoney="0";//预计奖金
 	public String getPredictMoney() {
@@ -297,6 +301,14 @@ public class BetAndGiftPojo implements Serializable {
 
 	public void setIsBetAfterIssue(String isBetAfterIssue) {
 		this.isBetAfterIssue = isBetAfterIssue;
+	}
+
+	public String getBetCode() {
+		return betCode;
+	}
+
+	public void setBetCode(String betCode) {
+		this.betCode = betCode;
 	}
 
 }

@@ -173,7 +173,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 		getTouzhuAlert();
 		if (Constants.type.equals("zc")) {
 			textTitle.setText("注码：共有1笔投注");
-			textZhuma.setText(betAndGift.getBet_code());
+			textZhuma.setText(betAndGift.getBetCode());
 			initImageView();
 			// beishulayLayout.setVisibility(View.GONE);
 			codeInfo = (Button) findViewById(R.id.alert_dialog_touzhu_btn_look_code);
@@ -465,7 +465,7 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			betAndGift.setBet_code(addview.getTouzhuCode(iProgressBeishu,
 					betAndGift.getAmt() * 100));
 		} else {
-			betAndGift.setIsSellWays("");
+			betAndGift.setIsSellWays("1");
 
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 			// int amount = Integer.valueOf(betAndGift.getAmount()) *
@@ -474,6 +474,17 @@ public class JoinStartActivity extends TouzhuBaseActivity implements
 			String amount = String.valueOf(mZhushu * iProgressBeishu * 200);
 			betAndGift.setAmount(amount);
 			betAndGift.setZhushu(zhuShu);
+			/**add by yejc 20131028 start*/
+			StringBuffer buf = new StringBuffer();
+			buf.append(betAndGift.getBetCode());
+			buf.append("_");
+			buf.append("" + iProgressBeishu);
+			buf.append("_");
+			buf.append("200");
+			buf.append("_");
+			buf.append(String.valueOf(mZhushu *200));
+			betAndGift.setBet_code(buf.toString());
+			/**add by yejc 20131028 end*/
 		}
 	}
 
