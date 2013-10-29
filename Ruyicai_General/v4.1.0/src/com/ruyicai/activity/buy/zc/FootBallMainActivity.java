@@ -461,6 +461,7 @@ public class FootBallMainActivity extends Activity {
 						.show();
 				break;
 			case 1:
+				isViewShowState[mPlayIndex] = false;//add by yejc 20131029
 				initList();
 				isShowState[mPlayIndex] = true;
 				dismissDialog();
