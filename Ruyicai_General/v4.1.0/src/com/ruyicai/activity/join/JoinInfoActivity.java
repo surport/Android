@@ -176,7 +176,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 */
 	public void init() {
 		ll_title = (LinearLayout)findViewById(R.id.ll_title);
-		//ll_title.setBackgroundResource(R.drawable.title_tab_bg);
 		iv_progress = (ImageView)findViewById(R.id.iv_progress);
 		
 		iv_renqi = (ImageView)findViewById(R.id.iv_renqi);
