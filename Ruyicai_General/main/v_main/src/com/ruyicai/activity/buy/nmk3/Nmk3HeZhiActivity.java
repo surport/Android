@@ -22,7 +22,7 @@ import com.ruyicai.util.PublicMethod;
  * @author PengCX
  * 
  */
-public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
+public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
 
 	protected int BallResId[] = { R.drawable.nmk3_hezhi_normal, R.drawable.nmk3_hezhi_click };
 	@Override
@@ -45,7 +45,6 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
 	}
-
 	@Override
 	protected void onResume() {
 		super.onResume();

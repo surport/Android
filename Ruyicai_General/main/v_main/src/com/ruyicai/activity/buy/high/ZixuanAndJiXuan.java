@@ -36,6 +36,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -165,6 +167,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	protected View layoutMain;
 	
 	protected LinearLayout zixuanLayout;
+	protected CheckBox mCheckBox;
 	
 	protected void setAddView(AddView addView) {
 		this.addView = addView;
@@ -380,6 +383,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				addBtn.setBackgroundResource(R.drawable.nmk3_buy_add_selector);
 				betBtn.setBackgroundResource(R.drawable.nmk3_bet_selector);
 				betBtn.setText("");
+				mCheckBox=(CheckBox)findViewById(R.id.louzhi_check);
 			}
 			/**add by yejc 20131008 end*/		
 		} else {
@@ -1555,7 +1559,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				if (isMiss) {
 					TextView textView = new TextView(context);
 					//来自2013-10-17徐培松
-					textView.setBackgroundColor(Color.WHITE);
+					if (lotno == Constants.LOTNO_NMK3) {
+						textView.setTextColor(Color.WHITE);
+						textView.setBackgroundColor(getResources().getColor(R.color.nmk3_latest_lottery_list_one));
+					}else {
+						textView.setBackgroundColor(Color.WHITE);
+					}
 					if (missValues != null) {
 						String missValue = missValues.get(iBallViewNo);
 						textView.setText(missValue);
@@ -2418,14 +2427,28 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 
 			holder.winningNumber.setText(winCodeString);
+			
+			
 			//来自2013-10-17徐培松  －－－>>>latestlottery_listitem布局
-//			if (position % 2 == 0) {
-//				convertView
-//						.setBackgroundResource(R.color.latest_lottery_list_one);
-//			} else {
-//				convertView
-//						.setBackgroundResource(R.color.latest_lottery_list_two);
-//			}
+			if (lotno == Constants.LOTNO_NMK3) {
+				holder.issue.setTextColor(getResources().getColor(R.color.white));
+				holder.winningNumber.setTextColor(getResources().getColor(R.color.white));
+				if (position % 2 == 0) {
+					convertView
+							.setBackgroundResource(R.color.nmk3_latest_lottery_list_one);//0x157800
+				} else {
+					convertView
+							.setBackgroundResource(R.color.nmk3_latest_lottery_list_two);//0x126800
+				}
+			}else {
+				if (position % 2 == 0) {
+					convertView
+							.setBackgroundResource(R.color.latest_lottery_list_one);
+				} else {
+					convertView
+							.setBackgroundResource(R.color.latest_lottery_list_two);
+				}
+			}
 
 			return convertView;
 		}

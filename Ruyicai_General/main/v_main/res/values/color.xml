@@ -60,4 +60,7 @@
     
      <color name="join_info_listitem_green">#0a950e</color>
     <color name="join_info_listitem_red">#e00000</color>
+    <!-- nmk3   Listitem -->
+       <color name="nmk3_latest_lottery_list_one">#157800</color>
+    <color name="nmk3_latest_lottery_list_two">#126800</color>
 </resources>
