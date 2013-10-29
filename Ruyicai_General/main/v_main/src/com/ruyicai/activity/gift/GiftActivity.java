@@ -34,6 +34,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -1057,11 +1058,13 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			lotno = PublicMethod.toLotno(betAndGift.getLotno());
 		} else {
 			betAndGift.setIsSellWays("1");
-
+			
 			betAndGift.setLotmulti("" + iProgressBeishu);// lotmulti 倍数 投注的倍数
 			int zhuShu = Integer.valueOf(betAndGift.getZhushu());
 			betAndGift.setZhushu(String.valueOf(zhuShu));
 			/**add by yejc 20131028 start*/
+			long amount = zhuShu *200 * iProgressBeishu;
+			betAndGift.setAmount(String.valueOf(amount));
 			StringBuffer buf = new StringBuffer();
 			buf.append(betAndGift.getBetCode());
 			buf.append("_");
