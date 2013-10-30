@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -12,6 +14,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
@@ -22,9 +26,10 @@ import com.ruyicai.util.PublicMethod;
  * @author PengCX
  * 
  */
-public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
+public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChangeListener{
 
 	protected int BallResId[] = { R.drawable.nmk3_hezhi_normal, R.drawable.nmk3_hezhi_click };
+	private int checked;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setAddView(((Nmk3Activity) getParent()).addView);
@@ -37,6 +42,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
 		//来自2013-10-16徐培松 start
 		childtypes.setVisibility(View.GONE);
 		zixuanLayout.setBackgroundResource(R.color.transparent);
+		mCheckBox.setOnCheckedChangeListener(this);
 		//。。。end
 
 	}
@@ -44,6 +50,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
+		checked=checkedId;
 	}
 	@Override
 	protected void onResume() {
@@ -170,9 +177,12 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
 	public void onCheckAction(int checkedId) {
 		switch (checkedId) {
 		case 0:
+			sellWay = MissConstant.NMK3_HEZHI;
+			lotnoStr=Constants.LOTNO_NMK3;
 			initArea();
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_HEZHI, true,
 					checkedId, true);
+			isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 			break;
 		}
 	}
@@ -241,5 +251,11 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
 			toast.setText(prompt);
 			toast.show();
 		}
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO Auto-generated method stub
+		System.out.println(isChecked);
 	}
 }

@@ -10,6 +10,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicMethod;
 
@@ -248,17 +250,21 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCheckAction(int checkedId) {
+		
 		initArea(checkedId);
-
+		lotnoStr=Constants.LOTNO_NMK3;
 		switch (checkedId) {
 		case 0:
-
+			sellWay = MissConstant.NMK3_TWOSAME_FU;
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_TWOSAME_FU,
 					true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 			break;
 		case 1:
+			sellWay = MissConstant.NMK3_TWO_DAN;
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_TWOSAME_DAN,
 					true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 			break;
 		}
 		zixuanLayout.setBackgroundResource(R.color.transparent);
