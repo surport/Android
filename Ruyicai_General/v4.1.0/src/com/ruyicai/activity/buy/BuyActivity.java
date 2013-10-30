@@ -858,16 +858,27 @@ public class BuyActivity extends Activity implements OnClickListener {
 				String lotno = newList.get(index).get("lotno");
 				boolean isStop = true;// true代表正在销售
 				if (Constants.todayjosn != null) {
-					if (!lotno.equals("hmdt") && !lotno.equals("zjjh") && !lotno.equals("ruyiguess")) {
+					if (!lotno.equals("hmdt") && !lotno.equals("zjjh")/* && !lotno.equals("ruyiguess")*/) {
 						if (lotno.equals(Constants.LOTNO_SSQ) || lotno.equals(Constants.LOTNO_QLC)
 								|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
-								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)) {
+								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)
+								|| lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
 							try {
 								//String josn = Constants.todayjosn.getString(lotno);
 								//JSONObject jsonobj = new JSONObject(josn);
 								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
 								if (jsonobj == null) {
 									imgView.setVisibility(ImageView.GONE);
+									/**add by yejc 20131030 start*/
+									if (lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
+										RWSharedPreferences shellRW = new RWSharedPreferences(
+												BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
+										shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
+												Constants.CAIZHONG_CLOSE);
+										shellRW.putStringValue(Constants.RYJCLABEL,
+												Constants.CAIZHONG_CLOSE);
+									}
+									/**add by yejc 20131030 end*/
 									continue;
 								}
 								String isTodayOpenPrize = jsonobj

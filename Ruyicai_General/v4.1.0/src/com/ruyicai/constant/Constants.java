@@ -216,6 +216,8 @@ public class Constants {
 	public static final String LOTNO_BEIJINGSINGLEGAME_OVERALL = "B00005";// 北京单场全场总比分
 	public static final String LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE = "B00003";// 北京单半全场
 	public static final String LOTNO_BEIJINGSINGLEGAME_UPDOWNSINGLEDOUBLE = "B00004";// 北京单场上下单双
+	
+	public static final String LOTNO_RUYI_GUESS = "RyJc";// 如意竞猜
 
 	public static final int SSC_TWOSTAR_ZHIXUAN = 1;
 	public static final int SSC_TWOSTAR_ZUXUAN = 2;
@@ -261,9 +263,10 @@ public class Constants {
 	public static final String JCZLABEL = "jcz";
 	public static final String GDLABEL = "gd-11-5";
 	public static final String ZCLABEL = "zc";
+	public static final String RYJCLABEL = "ruyiguess";
 
 	/** add by fansm 20130515 start */
-	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, { "ruyiguess", "ruyiguess" },
+	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, { LOTNO_RUYI_GUESS, RYJCLABEL },
 			{ LOTNO_SSQ, SSQLABEL }, { LOTNO_DLT, DLTLABEL },
 			{ LOTNO_FC3D, FC3DLABEL }, { LOTNO_11_5, DLCLABEL },
 			{ LOTNO_SSC, SSCLABEL }, { LOTNO_JCZ, JCZLABEL },
@@ -283,6 +286,7 @@ public class Constants {
 	public static final String TWENWILLSALES = "22-5-willsale";
 	public static final String TWENCLOSED = "22-5-closed";
 	public static final String BDWILLSATES = "beijingsinglegame-willsale";
+	public static final String RYJC_SHOW_STATE = "ryjc_show_state"; //add by yejc 20131030
 
 	/**
 	 * 竞彩足球TYpe标示
