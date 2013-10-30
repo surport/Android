@@ -625,7 +625,7 @@ public class HomeActivity extends Activity {
 			"排列五", "七星彩", "22选5", "时时彩", "江西11选5", "11运夺金", "专家荐号", "广东11选5",
 			"足彩", "竞足彩", "竞篮彩", "广东快乐十分", "快三", "北京单场" };
 	
-	private String iGameName[] = { "hmdt", "ruyiguess", "ssq", "fc3d", "qlc", "cjdlt",
+	private String iGameName[] = { "hmdt", Constants.RYJCLABEL, "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "zjjh",
 			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame" }; // 8.9
 
