@@ -1537,8 +1537,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
 				//来自2013-10-17徐培松start
-				TableRow.LayoutParams lp2 = new TableRow.LayoutParams();
-				lp2.setMargins(0, nmk3HezhiMargin, 0, nmk3HezhiMargin);
+//				TableRow.LayoutParams lp2 = new TableRow.LayoutParams();
+//				lp2.setMargins(0, nmk3HezhiMargin, 0, nmk3HezhiMargin);
 				//...end
 				if (col == 0) {
 					lp.setMargins(margin, 1, 1, 1);
@@ -1580,11 +1580,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					if(type==NMK3_THREESAME_TONG||type==NMK3_THREE_LINK){
 						tableRowText.addView(textView,lp);
 					}else {
-						if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
-							tableRowText.addView(textView,lp2);
-						}else {
-							tableRowText.addView(textView);
-						}
+//						if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
+//							tableRowText.addView(textView,lp2);
+//						}else {
+//							tableRowText.addView(textView);
+//						}
+						tableRowText.addView(textView);
 					}
 					//...end
 					iBallTable.textList.add(textView);
