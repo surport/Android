@@ -155,7 +155,8 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 				if (lotno.equals(Constants.LOTNO_JQC)
 						|| lotno.equals(Constants.LOTNO_LCB)
 						|| lotno.equals(Constants.LOTNO_SFC)
-						|| lotno.equals(Constants.LOTNO_RX9)) {
+						|| lotno.equals(Constants.LOTNO_RX9)
+						|| HghtOrderdeail.fromInt == Constants.SEND_FROM_SIMULATE) {
 					finish();
 				} else {
 					if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL

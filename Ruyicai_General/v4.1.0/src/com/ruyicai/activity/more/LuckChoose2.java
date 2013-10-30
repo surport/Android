@@ -1260,6 +1260,7 @@ public class LuckChoose2 extends Activity implements HandlerMsg {
 				app.setHtextzhuma(addView.getsharezhuma());
 
 				intent = new Intent(LuckChoose2.this, HghtOrderdeail.class);
+				intent.putExtra("from", Constants.SEND_FROM_SIMULATE);
 				startActivity(intent);
 				break;
 			}

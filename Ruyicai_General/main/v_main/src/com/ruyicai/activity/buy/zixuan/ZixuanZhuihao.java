@@ -199,7 +199,7 @@ public class ZixuanZhuihao extends TouzhuBaseActivity implements HandlerMsg,
 				if (OrderDetails.fromInt == BettingSuccessActivity.NOTICEBALL
 						|| HghtOrderdeail.fromInt == BettingSuccessActivity.NOTICEBALL) {
 					alertExit(getString(R.string.buy_alert_exit_detail_other));
-				} else if(OrderDetails.fromInt != Constants.SEND_FROM_SIMULATE){
+				} else if(HghtOrderdeail.fromInt == Constants.SEND_FROM_SIMULATE){
 					finish();
 				}else {
 					alertExit(getString(R.string.buy_alert_exit_detail));
