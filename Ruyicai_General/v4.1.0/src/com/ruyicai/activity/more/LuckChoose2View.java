@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -281,7 +282,7 @@ public class LuckChoose2View extends SurfaceView implements
 			screenHeight = getHeight();
 
 			centerX = screenWidth / 2;
-			centerY = 450;
+			centerY = screenHeight / 2 + 50;
 
 			tupianShuofang();
 
