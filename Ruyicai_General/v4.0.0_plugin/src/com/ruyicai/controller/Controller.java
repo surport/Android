@@ -437,7 +437,7 @@ public class Controller {
 				JSONObject jsonObject = ThirdPartyLoginInterface.getInstance()
 						.thirdPartyLogin(token, plat);
 				try {
-					String errorCode = jsonObject.getString("errorcode");
+					String errorCode = jsonObject.getString("error_code");
 					if("0".equals(errorCode)){
 						Message message = new Message();
 						message.what = 6;
