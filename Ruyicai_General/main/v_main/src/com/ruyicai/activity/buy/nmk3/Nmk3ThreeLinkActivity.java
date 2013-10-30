@@ -31,7 +31,10 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 		BallResId[1] = R.drawable.nmk3_click;
 		highttype = "NMK3-THREE-LINK";
 		init();
+		//来自2013-10-16徐培松 start
 		childtypes.setVisibility(View.GONE);
+		zixuanLayout.setBackgroundResource(R.color.transparent);
+		//。。。end
 	}
 
 	@Override
@@ -130,7 +133,7 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 		case 0:
 			initArea();
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREE_LINK,
-					true, checkedId, false);
+					true, checkedId, true);
 			break;
 		}
 	}

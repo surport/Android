@@ -328,6 +328,9 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			int titleId = position + 1;
 			holder.title.setText(titleId+"、"+info.getQuestion());
 			
+			String awardStr = getResources().getString(R.string.buy_ruyi_guess_item_integral);
+			String award = "";
+			
 			//动态添加竞猜问题
 			createDynamicView(holder.layout, position, info.isSelected(), info.getEndState());
 			
@@ -380,6 +383,14 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 							timeStr.length() + info.getDrawTime().length());
 					holder.time.setText(timeSpan);
 				}
+				
+				//奖励积分
+				if ("1".equals(info.getCorrect())) {
+					award = "+"+info.getAward();
+				} else {
+					award = info.getAward();
+				}
+				
 				holder.layout.setBackgroundResource(R.drawable.buy_ruyi_guess_item_center_gray);
 			} else {
 				if (info.isSelected()) {//我选择的
@@ -414,20 +425,12 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					}
 				}
 				
+				award = info.getAward();
 				holder.participate.setVisibility(View.GONE);
 				holder.icon.setVisibility(View.GONE);
 			}
 			int value = PublicMethod.getPxInt(10, RuyiGuessDetailActivity.this);
 			holder.layout.setPadding(value, value, value, value);
-			
-			//奖励积分
-			String awardStr = getResources().getString(R.string.buy_ruyi_guess_item_integral);
-			String award = "";
-			if ("1".equals(info.getCorrect())) {
-				award = "+"+info.getAward();
-			} else {
-				award = info.getAward();
-			} 
 			
 			SpannableString awardSpan = getSpannableString(
 					awardStr+award, awardStr.length(),
@@ -438,12 +441,12 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		}
 		
 		class ViewHolder {
-			TextView integral;
-			TextView title;
-			TextView time;
-			TextView participate;
-			ImageView icon;
-			ImageView state;
+			TextView integral; //显示积分
+			TextView title; //题目
+			TextView time;//时间或答案
+			TextView participate; //答案是否正确
+			ImageView icon;//答案是否正确图标
+			ImageView state;//参与状态图标
 			LinearLayout layout;
 		}
 	}

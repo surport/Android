@@ -11,6 +11,7 @@ import com.ruyicai.util.PublicMethod;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
 
 /**
@@ -27,10 +28,15 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "通选", "单选" };
-		BallResId[0] = R.drawable.nmk3_normal;
-		BallResId[1] = R.drawable.nmk3_click;
+//		BallResId[0] = R.drawable.nmk3_normal;
+//		BallResId[1] = R.drawable.nmk3_click;
+		BallResId[0] = R.drawable.nmk3_hezhi_normal;
+		BallResId[1] = R.drawable.nmk3_hezhi_click;
 		setContentView(R.layout.sscbuyview);
 		init();
+		//来自2013-10-16徐培松 start
+		zixuanLayout.setBackgroundResource(R.color.transparent);
+		//。。。end
 	}
 
 	@Override
@@ -185,13 +191,14 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		switch (checkedId) {
 		case 0:
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREESAME_TONG,
-					false, checkedId, false);
+					false, checkedId, true);
 			break;
 		case 1:
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREESAME_DAN,
-					false, checkedId, false);
+					false, checkedId, true);
 			break;
 		}
+		zixuanLayout.setBackgroundResource(R.color.transparent);
 	}
 
 	public AreaNum[] initArea(int checkedId) {

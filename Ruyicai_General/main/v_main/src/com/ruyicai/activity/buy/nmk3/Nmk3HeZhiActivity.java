@@ -22,8 +22,9 @@ import com.ruyicai.util.PublicMethod;
  * @author PengCX
  * 
  */
-public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
+public class Nmk3HeZhiActivity extends ZixuanAndJiXuan{
 
+	protected int BallResId[] = { R.drawable.nmk3_hezhi_normal, R.drawable.nmk3_hezhi_click };
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setAddView(((Nmk3Activity) getParent()).addView);
@@ -33,7 +34,10 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 		setContentView(R.layout.sscbuyview);
 		highttype = "NMK3-HE";
 		init();
+		//来自2013-10-16徐培松 start
 		childtypes.setVisibility(View.GONE);
+		zixuanLayout.setBackgroundResource(R.color.transparent);
+		//。。。end
 
 	}
 
@@ -41,7 +45,6 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
 	}
-
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -169,7 +172,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 		case 0:
 			initArea();
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_HEZHI, true,
-					checkedId, false);
+					checkedId, true);
 			break;
 		}
 	}
@@ -179,8 +182,10 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	 */
 	public AreaNum[] initArea() {
 		areaNums = new AreaNum[1];
-		areaNums[0] = new AreaNum(14, 10, 1, 14, BallResId, 0, 4, Color.RED,
-				"", false, true);
+//		areaNums[0] = new AreaNum(14, 10, 1, 14, BallResId, 0, 4, Color.RED,
+//				"", false, true);
+		
+		areaNums[0] = new AreaNum(14, 7, 1, 14, BallResId, 0, 4, Color.RED,"", false, true);
 		return areaNums;
 	}
 

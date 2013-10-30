@@ -1031,6 +1031,11 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+            <activity
+            android:name="com.ruyicai.activity.buy.nmk3.Nmk2DiffActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.ruyicai.activity.buy.nmk3.Nmk3ThreeLinkActivity"
             android:configChanges="keyboardHidden|orientation"

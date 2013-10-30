@@ -36,6 +36,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -44,6 +46,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -57,17 +60,15 @@ import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.dlc.Dlc;
-import com.ruyicai.activity.buy.miss.AddViewMiss;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
 import com.ruyicai.activity.buy.miss.NumViewItem;
 import com.ruyicai.activity.buy.miss.ZHmissViewItem;
-import com.ruyicai.activity.buy.nmk3.Nmk3Activity;
 import com.ruyicai.activity.buy.ssc.Ssc;
 import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
-import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
+import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.code.ssc.OneStarCode;
 import com.ruyicai.constant.Constants;
@@ -123,14 +124,14 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public final static int TIME = 5 * 60000;// 获取期号线程刷新时间单位是分
 	private final static String ERROR_WIN = "0000";
 
-	public final static int NMK3_HEZHI = 10;
-	public final static int NMK3_THREESAME_TONG = 11;
-	public final static int NMK3_THREESAME_DAN = 12;
-	public final static int NMK3_TWOSAME_FU = 13;
-	public final static int NMK3_TWOSAME_DAN = 14;
-	public final static int NMK3_DIFF_THREE = 15;
-	public final static int NMK3_DIFF_TWO = 16;
-	public final static int NMK3_THREE_LINK = 17;
+	public final static int NMK3_HEZHI = 10;//和值
+	public final static int NMK3_THREESAME_TONG = 11;//三同通选
+	public final static int NMK3_THREESAME_DAN = 12;//三同单选
+	public final static int NMK3_TWOSAME_FU = 13;//二同复选
+	public final static int NMK3_TWOSAME_DAN = 14;//二同单选
+	public final static int NMK3_DIFF_THREE = 15;//三不同
+	public final static int NMK3_DIFF_TWO = 16;//二不同
+	public final static int NMK3_THREE_LINK = 17;//三连号
 
 	int iZhuShu;
 	int zhushuforshouyi;
@@ -164,6 +165,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	float startY;
 	protected LinearLayout childtypes;
 	protected View layoutMain;
+	
+	protected LinearLayout zixuanLayout;
+	protected CheckBox mCheckBox;
+	
 	protected void setAddView(AddView addView) {
 		this.addView = addView;
 	}
@@ -361,6 +366,26 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			missView.put(id, new HighItemView(zhixuanview, areaNum, addView,
 					null, editZhuma));
 			refreshView(type, id);
+			/**add by yejc 20131008 start*/
+			if (Constants.LOTNO_NMK3.equals(lotno)) {
+				LinearLayout nmk3TitleLayout  = (LinearLayout)zhixuanview.findViewById(R.id.nmk3_play_title_layout);
+				nmk3TitleLayout.setVisibility(View.VISIBLE);
+				LinearLayout zhumaLayout  = (LinearLayout)zhixuanview.findViewById(R.id.zhuma_introduction);
+				zhumaLayout.setVisibility(View.GONE);
+				LinearLayout benNumLayout  = (LinearLayout)zhixuanview.findViewById(R.id.buy_activity_bottom_layout);
+				benNumLayout.setVisibility(View.GONE);
+				zixuanLayout = (LinearLayout)zhixuanview.findViewById(R.id.sszhixuan_layout);
+//				zixuanLayout.setBackgroundResource(R.drawable.nmk3_bg);//来自2013-10-16徐培松
+				RelativeLayout bottomLayout = (RelativeLayout)zhixuanview.findViewById(R.id.buy_zixuan_relativelayout);
+				bottomLayout.setBackgroundResource(R.drawable.nmk3_bottom_bg);
+				Button addBtn = (Button)zhixuanview.findViewById(R.id.buy_zixuan_img_add);
+				Button betBtn = (Button)zhixuanview.findViewById(R.id.buy_zixuan_img_touzhu);
+				addBtn.setBackgroundResource(R.drawable.nmk3_buy_add_selector);
+				betBtn.setBackgroundResource(R.drawable.nmk3_bet_selector);
+				betBtn.setText("");
+				mCheckBox=(CheckBox)findViewById(R.id.louzhi_check);
+			}
+			/**add by yejc 20131008 end*/		
 		} else {
 			refreshView(type, id);
 		}
@@ -1405,13 +1430,25 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
 				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
 				|| type == NMK3_DIFF_TWO) {
-			viewNumPerLine = 4;
+			viewNumPerLine = 6;//来自2013-10-17徐培松    每行显示的最大个数
+		} else if (type == NMK3_HEZHI) {
+			viewNumPerLine = 7;
 		}
 
 		int iFieldWidth = aFieldWidth;
 		int scrollBarWidth = 6;
-		int iBallViewWidth = (iFieldWidth - scrollBarWidth) / viewNumPerLine
-				- 2;
+		
+		int nmk3HezhiMargin = PublicMethod.getPxInt(8, context);
+		int nmk3HezhiMarginTop = PublicMethod.getPxInt(3, context);
+		int iBallViewWidth = 0;
+		if (type == NMK3_HEZHI||type == NMK3_THREESAME_DAN){ //add by yejc 20130929
+			iBallViewWidth = (iFieldWidth - scrollBarWidth - 7*nmk3HezhiMargin) / viewNumPerLine- 2;
+		} else if(type == NMK3_TWOSAME_FU||type == NMK3_TWOSAME_DAN||type == NMK3_DIFF_THREE||type == NMK3_DIFF_TWO||type == NMK3_THREESAME_DAN){
+			iBallViewWidth = (iFieldWidth - scrollBarWidth - 6*nmk3HezhiMargin) / viewNumPerLine-2;
+		}else {
+			iBallViewWidth = (iFieldWidth - scrollBarWidth) / viewNumPerLine- 2;
+		}
+		
 		int lineNum = iBallNum / viewNumPerLine;
 		int lastLineViewNum = iBallNum % viewNumPerLine;
 		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)
@@ -1439,14 +1476,30 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		String[] nmk3ThreeSameStrs = { "111", "222", "333", "444", "555", "666" };
 		String[] nmk3TwoSameStrs = { "11*", "22*", "33*", "44*", "55*", "66*" };
 		String[] nmk3TwoSameDanStrs = { "11", "22", "33", "44", "55", "66" };
-		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
-				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
-				|| type == NMK3_DIFF_TWO) {
-			/** add by pengcx 20130718 start */
-			int screenHeight = PublicMethod.getDisplayHeight(context);
-			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
-			/** add by pengcx 20130718 end */
-		}
+		int[][] nmk3DifBg={
+				{R.drawable.one_normal,R.drawable.one_click},
+				{R.drawable.two_normal,R.drawable.two_click},
+				{R.drawable.three_normal,R.drawable.three_click},
+				{R.drawable.four_normal,R.drawable.four_click},
+				{R.drawable.five_normal,R.drawable.five_click},
+				{R.drawable.six_normal,R.drawable.six_click}
+			};
+//		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
+//				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
+//				|| type == NMK3_DIFF_TWO) {
+//			/** add by pengcx 20130718 start */
+//			int screenHeight = PublicMethod.getDisplayHeight(context);
+//			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
+//			/** add by pengcx 20130718 end */
+//		}
+		//2013-10-17徐培松
+//		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
+//				|| type == NMK3_TWOSAME_DAN ) {
+//			/** add by pengcx 20130718 start */
+//			int screenHeight = PublicMethod.getDisplayHeight(context);
+//			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
+//			/** add by pengcx 20130718 end */
+//		}
 
 		for (int row = 0; row < lineNum; row++) {
 			TableRow tableRow = new TableRow(context);
@@ -1465,23 +1518,53 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				} else if (type == NMK3_TWOSAME_DAN && area == 0) {
 					iStrTemp = nmk3TwoSameDanStrs[col];
 				}
-				OneBallView tempBallView = new OneBallView(context);
-				tempBallView.setId(aIdStart + iBallViewNo);
-				tempBallView.initBall(iBallViewWidth, iBallViewHeight,
-						iStrTemp, aResId);
+				
+				
+				OneBallView tempBallView = null;
+				//徐培松start
+				if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
+					tempBallView =new  OneBallView(context,2);
+					tempBallView.setId(aIdStart + iBallViewNo);
+					tempBallView.initBall(iBallViewWidth,iBallViewHeight,iStrTemp, nmk3DifBg[col],R.color.transparent);
+				}else {
+					tempBallView =new  OneBallView(context);
+					tempBallView.setId(aIdStart + iBallViewNo);
+					tempBallView.initBall(iBallViewWidth, iBallViewHeight,iStrTemp, aResId);
+				}
+				//end
 				tempBallView.setOnClickListener(onclick);
 				iBallTable.addBallView(tempBallView);
 
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
+				//来自2013-10-17徐培松start
+//				TableRow.LayoutParams lp2 = new TableRow.LayoutParams();
+//				lp2.setMargins(0, nmk3HezhiMargin, 0, nmk3HezhiMargin);
+				//...end
 				if (col == 0) {
 					lp.setMargins(margin, 1, 1, 1);
 				} else if (col == viewNumPerLine - 1) {
 					lp.setMargins(1, 1, margin + scrollBarWidth + 1, 1);
-				} else
+				} else {
 					lp.setMargins(1, 1, 1, 1);
+				}
+				
+				if (type == NMK3_HEZHI||type == NMK3_TWOSAME_DAN || type == NMK3_TWOSAME_FU|| type == NMK3_THREESAME_DAN||type == NMK3_DIFF_THREE||type == NMK3_DIFF_TWO) {
+					if (col != (viewNumPerLine - 1)) {
+						lp.setMargins(nmk3HezhiMargin, nmk3HezhiMarginTop, 0, nmk3HezhiMargin);
+					} else {
+						lp.setMargins(nmk3HezhiMargin, nmk3HezhiMarginTop, nmk3HezhiMargin, nmk3HezhiMargin);
+					}
+				}
 				tableRow.addView(tempBallView, lp);
 				if (isMiss) {
 					TextView textView = new TextView(context);
+					//来自2013-10-17徐培松
+					if (lotno == Constants.LOTNO_NMK3) {
+						textView.setTextColor(Color.WHITE);
+						textView.setBackgroundColor(getResources().getColor(R.color.nmk3_latest_lottery_list_one));
+					}else {
+						textView.setBackgroundColor(Color.WHITE);
+					}
 					if (missValues != null) {
 						String missValue = missValues.get(iBallViewNo);
 						textView.setText(missValue);
@@ -1493,7 +1576,18 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 						textView.setText("0");
 					}
 					textView.setGravity(Gravity.CENTER);
-					tableRowText.addView(textView, lp);
+					//来自2013-10-17徐培松start
+					if(type==NMK3_THREESAME_TONG||type==NMK3_THREE_LINK){
+						tableRowText.addView(textView,lp);
+					}else {
+//						if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
+//							tableRowText.addView(textView,lp2);
+//						}else {
+//							tableRowText.addView(textView);
+//						}
+						tableRowText.addView(textView);
+					}
+					//...end
 					iBallTable.textList.add(textView);
 				}
 				iBallViewNo++;
@@ -1518,8 +1612,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 				OneBallView tempBallView = new OneBallView(context);
 				tempBallView.setId(aIdStart + iBallViewNo);
-				tempBallView.initBall(iBallViewWidth, iBallViewHeight,
-						iStrTemp, aResId);
+				//徐培松start
+				if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
+					tempBallView.initBall(iBallViewWidth, iBallViewHeight,iStrTemp, nmk3DifBg[nmk3DifBg.length-lastLineViewNum+col-1]);
+				}else {
+					tempBallView.initBall(iBallViewWidth, iBallViewHeight,iStrTemp, aResId);
+				}
+				//end
 				tempBallView.setOnClickListener(onclick);
 				iBallTable.addBallView(tempBallView);
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
@@ -1530,6 +1629,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				tableRow.addView(tempBallView, lp);
 				if (isMiss) {
 					TextView textView = new TextView(context);
+					//来自2013-10-17徐培松
+					textView.setBackgroundColor(Color.WHITE);
 					if (missValues != null) {
 						String missValue = missValues.get(iBallViewNo);
 						textView.setText(missValue);
@@ -1541,7 +1642,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 						textView.setText("0");
 					}
 					textView.setGravity(Gravity.CENTER);
-					tableRowText.addView(textView, lp);
+					//来自2013-10-17徐培松start
+					if(type==NMK3_THREESAME_TONG||type==NMK3_THREE_LINK){
+						tableRowText.addView(textView,lp);
+					}else {
+						tableRowText.addView(textView);
+					}
+					//...end
 					iBallTable.textList.add(textView);
 				}
 				iBallViewNo++;
@@ -2321,13 +2428,27 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 
 			holder.winningNumber.setText(winCodeString);
-
-			if (position % 2 == 0) {
-				convertView
-						.setBackgroundResource(R.color.latest_lottery_list_one);
-			} else {
-				convertView
-						.setBackgroundResource(R.color.latest_lottery_list_two);
+			
+			
+			//来自2013-10-17徐培松  －－－>>>latestlottery_listitem布局
+			if (lotno == Constants.LOTNO_NMK3) {
+				holder.issue.setTextColor(getResources().getColor(R.color.white));
+				holder.winningNumber.setTextColor(getResources().getColor(R.color.white));
+				if (position % 2 == 0) {
+					convertView
+							.setBackgroundResource(R.color.nmk3_latest_lottery_list_one);//0x157800
+				} else {
+					convertView
+							.setBackgroundResource(R.color.nmk3_latest_lottery_list_two);//0x126800
+				}
+			}else {
+				if (position % 2 == 0) {
+					convertView
+							.setBackgroundResource(R.color.latest_lottery_list_one);
+				} else {
+					convertView
+							.setBackgroundResource(R.color.latest_lottery_list_two);
+				}
 			}
 
 			return convertView;
