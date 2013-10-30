@@ -28,7 +28,7 @@
 				android:layout_width="160dip" android:layout_height="wrap_content"
 				android:layout_alignParentRight="true" android:layout_marginLeft="10dip"
 				android:layout_marginRight="10dip" android:password="true"
-				android:maxLength="15" />
+				android:maxLength="16" />
 		</RelativeLayout>
 		<RelativeLayout android:id="@+id/linearlayout_usercenter_newpwd"
 			android:orientation="horizontal" android:layout_below="@+id/linearlayout_usercenter_originalpwd"
