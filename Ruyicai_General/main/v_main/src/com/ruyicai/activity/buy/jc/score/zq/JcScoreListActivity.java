@@ -122,7 +122,7 @@ public class JcScoreListActivity extends Activity {
 	}
 
 	public void initNameSpinner() {
-		if (money_brank == null) {
+		if (money_brank == null && allcountries != null) {
 			money_brank = (Spinner) findViewById(R.id.jc_score_list_spinner);
 			money_brank.setOnItemSelectedListener(new OnItemSelectedListener() {
 				@Override
