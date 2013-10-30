@@ -1561,7 +1561,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					//来自2013-10-17徐培松
 					if (lotno == Constants.LOTNO_NMK3) {
 						textView.setTextColor(Color.WHITE);
-						textView.setBackgroundColor(getResources().getColor(R.color.nmk3_latest_lottery_list_one));
+						textView.setBackgroundResource(R.drawable.miss_bg);
 					}else {
 						textView.setBackgroundColor(Color.WHITE);
 					}
@@ -2334,8 +2334,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 	public void showBetInfo(String text) {
 		if (getParent() != null) {
-			((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums,
-					iProgressBeishu));
+			((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums,iProgressBeishu));
 		}
 	}
 

@@ -10,6 +10,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicMethod;
 
@@ -40,11 +42,9 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		// radioId = checkedId;
-		// onCheckAction(checkedId);
-		onCheckAction(0);
-		 ((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
-		 iProgressBeishu));
+		 radioId = checkedId;
+		 onCheckAction(checkedId);
+		 ((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
 
 	@Override
@@ -201,16 +201,17 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 	@Override
 	public void onCheckAction(int checkedId) {
 		initArea(checkedId);
-
+		lotnoStr=Constants.LOTNO_NMK3;
+		sellWay = MissConstant.NMK3_THREE_TWO;
 		switch (checkedId) {
 		case 0:
-			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_THREE,
-					true, checkedId, true);
+			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_THREE,true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 			break;
-		case 1:
-			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_TWO, true,
-					checkedId, true);
-			break;
+//		case 1:
+//			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_TWO, true,
+//					checkedId, true);
+//			break;
 		}
 	}
 

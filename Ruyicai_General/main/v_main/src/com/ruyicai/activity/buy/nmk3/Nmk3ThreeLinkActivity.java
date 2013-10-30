@@ -10,6 +10,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 
 /**
@@ -129,11 +131,14 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCheckAction(int checkedId) {
+		lotnoStr=Constants.LOTNO_NMK3;
+		sellWay = MissConstant.NMK3_THREE_LINK_TONG;
 		switch (checkedId) {
 		case 0:
 			initArea();
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREE_LINK,
 					true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 			break;
 		}
 	}

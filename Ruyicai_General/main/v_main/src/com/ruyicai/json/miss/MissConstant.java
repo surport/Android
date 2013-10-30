@@ -61,5 +61,14 @@ public class MissConstant {
 	public static final String FC3D_ZXHZ = "F47103MV_ZXHZ";
 	public static final String FC3D_Z36HZ = "F47103MV_Z36HZ";
 	public static final String FC3D_TYPE_Z6HZ = "F47103MV_Z6HZ";
+	
+	//内蒙快三遗漏值常量
+	public static final String NMK3_THREE_TWO="F47107MV_BASE";//三不同单式，三不同组合，三不同胆拖，二不同胆拖，二不同组合，二不同复选
+	public static final String NMK3_TWO_DAN="F47107MV_01";//二同号单式，二同号单选组合/////
+	public static final String NMK3_THREE_DAN_FU="F47107MV_02";//三同号单式,三同号复式
+	public static final String NMK3_HEZHI="F47107MV_10";//和值
+	public static final String NMK3_TWOSAME_FU="F47107MV_30";//二同号复选
+	public static final String NMK3_THREESAME_TONG="F47107MV_40";//三同号通选
+	public static final String NMK3_THREE_LINK_TONG="F47107MV_50";//三连号通选
 
 }

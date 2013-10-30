@@ -6,6 +6,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicMethod;
 
@@ -43,6 +45,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
 		((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
+		 isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 	}
 
 	@Override
@@ -187,13 +190,15 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	public void onCheckAction(int checkedId) {
 		radioId = checkedId;
 		initArea(checkedId);
-
+		lotnoStr=Constants.LOTNO_NMK3;
 		switch (checkedId) {
 		case 0:
+			sellWay = MissConstant.NMK3_THREESAME_TONG;
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREESAME_TONG,
 					false, checkedId, true);
 			break;
 		case 1:
+			sellWay = MissConstant.NMK3_THREE_DAN_FU;
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREESAME_DAN,
 					false, checkedId, true);
 			break;
