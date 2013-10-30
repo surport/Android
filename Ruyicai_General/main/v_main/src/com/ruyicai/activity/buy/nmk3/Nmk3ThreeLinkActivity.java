@@ -55,7 +55,6 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
 		int zhuShu = getZhuShu();
-
 		if (zhuShu == 0) {
 			return "请选择投注号码";
 		} else {

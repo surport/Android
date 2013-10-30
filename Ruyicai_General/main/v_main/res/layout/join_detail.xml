@@ -292,7 +292,7 @@
                     android:paddingLeft="10dip"
                     android:text="方案信息"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:id="@+id/faqixinxi"
@@ -391,7 +391,7 @@
                     android:paddingLeft="10dip"
                     android:text="方案详情"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:id="@+id/fanganxiangqing"
@@ -604,7 +604,7 @@
                         android:paddingLeft="10dip"
                         android:text="方案内容"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:id="@+id/fanganneirongLayout"
@@ -652,7 +652,7 @@
                     android:paddingLeft="10dip"
                     android:text="方案描述"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/join_detail_dianji_fangan"
@@ -704,7 +704,7 @@
                     android:paddingLeft="10dip"
                     android:text="参与人员"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <ListView
                     android:id="@+id/canyurenyuan"
