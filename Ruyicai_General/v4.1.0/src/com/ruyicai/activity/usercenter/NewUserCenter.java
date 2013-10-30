@@ -1049,11 +1049,19 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 				R.drawable.zhuihaochaxun, R.drawable.zengcaichaxun, 
 				R.drawable.wodehemai, R.drawable.myliuyan };
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
+		/**add by yejc 20131030 start*/
+		RWSharedPreferences shellRW = new RWSharedPreferences(
+				this, ShellRWConstants.CAIZHONGSETTING);
+		String state = shellRW.getStringValue(Constants.RYJC_SHOW_STATE);
+		/**add by yejc 20131030 start*/
 		for (int i = 0; i < titles.length; i++) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put(TITLE, titles[i]);
-			map.put(IICON, accountDetailInfoIcons[i]);
-			list.add(map);
+			//如果竞猜后台关闭将不显示 add by yejc 20131030 start
+			if (!((i == 1) && (Constants.CAIZHONG_CLOSE.equals(state)))) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put(TITLE, titles[i]);
+				map.put(IICON, accountDetailInfoIcons[i]);
+				list.add(map);
+			}
 		}
 		return list;
 	}
