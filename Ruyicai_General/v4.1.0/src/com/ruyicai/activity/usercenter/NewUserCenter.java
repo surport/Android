@@ -216,6 +216,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		usersetlist.setOnItemClickListener(clickListener);
 		PublicMethod.setListViewHeightBasedOnChildren(usermoneylist, 40, this);
 		PublicMethod.setListViewHeightBasedOnChildren(usersetlist, 40, this);
+		PublicMethod.setListViewHeightBasedOnChildren(usercaipiaolist, 40, this);
 	}
 
 	// 用户积分显示控件

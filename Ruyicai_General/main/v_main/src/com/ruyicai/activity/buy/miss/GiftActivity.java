@@ -1126,6 +1126,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			Intent intent = new Intent(this, BettingSuccessActivity.class);
 			if (isSsq()) {
 				intent.putExtra("isssq", true);
+				intent.putExtra("isgift", true); //add by yejc 20131030
 			}
 
 			if (OrderDetails.fromInt != 0) {

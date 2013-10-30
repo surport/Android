@@ -104,6 +104,8 @@ public class BettingSuccessActivity extends Activity {
 	private RWSharedPreferences shellRW;
 	private int fromInt;
 	ProgressDialog dialog;
+	
+	private boolean isGift = false;
 
 	final Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -153,6 +155,7 @@ public class BettingSuccessActivity extends Activity {
 		String amountString = intent.getStringExtra("amount");
 		// 是否是双色球
 		boolean isSsq = intent.getBooleanExtra("isssq", false);
+		isGift = intent.getBooleanExtra("isgift", false);
 
 		// 初始化返回按钮
 		returnBettingButton = (Button) findViewById(R.id.ssq_bettingsuccess_returnbetting);
@@ -227,7 +230,7 @@ public class BettingSuccessActivity extends Activity {
 		amtTextView.setText(menoy + "元");
 
 		// 如果没有绑定，则显示；否则默认不显示
-		if (!isBindedEmail() && isSsq) {
+		if (!isBindedEmail() && isSsq && !isGift) {
 			// 初始化发送到邮箱
 			sendToEmailLayout = (RelativeLayout) findViewById(R.id.ssq_bettingsuccess_sendtoemail);
 			sendToEmailLayout.setOnClickListener(new ButtonOnClickListener());
