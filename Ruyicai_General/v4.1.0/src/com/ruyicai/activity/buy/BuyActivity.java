@@ -795,6 +795,26 @@ public class BuyActivity extends Activity implements OnClickListener {
 				String caizhongSetting = (String) caizhongSettingList.get(i)
 						.get("caizhongSetting");
 				String lotno = caizhongSettingList.get(i).get("lotno");
+				
+				/**add by yejc 20131030 start*/
+				JSONObject jsonobj;
+				try {
+					jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+					if (jsonobj == null && lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
+						RWSharedPreferences shellRW = new RWSharedPreferences(
+								BuyActivity.this,
+								ShellRWConstants.CAIZHONGSETTING);
+						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
+								Constants.CAIZHONG_CLOSE);
+						shellRW.putStringValue(Constants.RYJCLABEL,
+								Constants.CAIZHONG_CLOSE);
+						caizhongSetting = Constants.CAIZHONG_CLOSE;
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				/**add by yejc 20131030 end*/
+				
 				if (caizhongSetting.equals(Constants.CAIZHONG_OPEN)) {
 					newMap = new HashMap<String, String>();
 					// 添加图片资源
@@ -869,16 +889,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 								JSONObject jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
 								if (jsonobj == null) {
 									imgView.setVisibility(ImageView.GONE);
-									/**add by yejc 20131030 start*/
-									if (lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
-										RWSharedPreferences shellRW = new RWSharedPreferences(
-												BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
-										shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
-												Constants.CAIZHONG_CLOSE);
-										shellRW.putStringValue(Constants.RYJCLABEL,
-												Constants.CAIZHONG_CLOSE);
-									}
-									/**add by yejc 20131030 end*/
 									continue;
 								}
 								String isTodayOpenPrize = jsonobj
