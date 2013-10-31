@@ -228,7 +228,6 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					
 					@Override
 					public void onClick(View v) {
-						
 						searchWindow.dismiss();
 						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
 						imm.hideSoftInputFromWindow(view.getWindowToken(), 0); 

@@ -385,7 +385,13 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 	@Override
 	public void onRefresh() {
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
-		String count = String.valueOf(mQuestionsList.size());
+		int maxResult = 0;
+		if (mQuestionsList.size() > 10) {
+			maxResult = mQuestionsList.size();
+		} else {
+			maxResult = 10;
+		}
+		String count = String.valueOf(maxResult);
 		Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
 	}
 }
