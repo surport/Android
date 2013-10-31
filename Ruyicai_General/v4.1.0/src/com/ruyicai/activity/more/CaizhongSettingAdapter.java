@@ -99,7 +99,7 @@ public class CaizhongSettingAdapter extends BaseAdapter {
 				PublicMethod.showMessage(mContext, PublicMethod.getMessageByLoto(mContext,shellRW,lotnoString));
 			} else if(Constants.RYJCLABEL.equals(lotnoString) 
 					&& Constants.CAIZHONG_CLOSE.equals(shellRW.getStringValue(Constants.RYJC_SHOW_STATE))) {
-				Toast.makeText(mContext, R.string.buy_ruyi_guess_close_info, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(mContext, R.string.buy_ruyi_guess_close_info, Toast.LENGTH_SHORT).show();
 			} else {
 				String checkOpenOrClosed = shellRW.getStringValue(lotnoString);
 				if (checkOpenOrClosed.equals(Constants.CAIZHONG_OPEN)) {
