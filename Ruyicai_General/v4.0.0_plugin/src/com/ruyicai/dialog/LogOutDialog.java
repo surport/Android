@@ -29,7 +29,7 @@ public class LogOutDialog extends BaseDialog {
 		dialog = new LogOutDialog(activity,
 				activity.getString(R.string.log_out_title),
 				activity.getString(R.string.log_out_content));
-		dialog.showDialog();
+//		dialog.showDialog();
 		dialog.createMyDialog();
 		// }else{
 		// dialog.showDialog();
@@ -65,9 +65,9 @@ public class LogOutDialog extends BaseDialog {
 			shellRW.putStringValue("userno", "");
 			shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, false);
 			shellRW.putStringValue(ShellRWConstants.RANDOMNUMBER, "");
-			Toast.makeText(activity,
-					activity.getString(R.string.log_out_toast_msg),
-					Toast.LENGTH_SHORT).show();
+//			Toast.makeText(activity,
+//					activity.getString(R.string.log_out_toast_msg),
+//					Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent("logout");
 			activity.sendBroadcast(intent);
 		}

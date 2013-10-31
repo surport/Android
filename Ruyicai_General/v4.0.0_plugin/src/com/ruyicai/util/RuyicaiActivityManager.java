@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Process;
+import android.util.Log;
 
 /**
  * 
@@ -41,6 +42,7 @@ public class RuyicaiActivityManager extends Application {
 		}
 
 		// System.exit(0);
-		Process.killProcess(Process.myPid());
+//		Log.i("aaa", "杀死进程：" + Process.myPid());
+//		Process.killProcess(Process.myPid());
 	}
 }
