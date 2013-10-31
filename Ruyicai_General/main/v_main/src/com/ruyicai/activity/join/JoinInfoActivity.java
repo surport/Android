@@ -13,9 +13,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -77,6 +79,8 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	Button imgUp, imgDown;
 	String name ;
 	LinearLayout ll_title;
+	
+	Dialog dialog;
 	RelativeLayout progress, allAtm, atm;// 排序按钮
 	ImageView iv_progress,iv_renqi,iv_allCount; 
 	boolean iv_progress_sort = true,iv_renqi_sort = false,iv_allCount_sort = false;
@@ -96,7 +100,25 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				progressbar.setVisibility(View.INVISIBLE);
 				initList();
 				break;
-
+			case 2:
+				progressdialog.dismiss();
+				View alertview = View.inflate(getContext(), R.layout.alert_dialog, null);
+				dialog = new Dialog(getContext(),R.style.add_dialog);
+				dialog.setContentView(alertview);
+				Button bt_dialog = (Button) alertview.findViewById(R.id.ok);
+				bt_dialog.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						progress.performClick();
+						searchWindow.dismiss();
+						dialog.dismiss();
+						
+					}
+				});
+				dialog.show();
+				
+				
+				
 			default:
 				break;
 			}
@@ -175,6 +197,10 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 * 初始化组件
 	 */
 	public void init() {
+		
+		
+	
+		
 		ll_title = (LinearLayout)findViewById(R.id.ll_title);
 		iv_progress = (ImageView)findViewById(R.id.iv_progress);
 		
@@ -188,6 +214,12 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			public void onClick(View v) {
 				LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				View viewpop=inflater.inflate(R.layout.searchpopwindow,null);
+				searchWindow = new PopupWindow(viewpop,LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+				searchWindow.setFocusable(true);
+				searchWindow.setOutsideTouchable(true);
+				searchWindow.update();
+				searchWindow.setBackgroundDrawable(new BitmapDrawable());
+				searchWindow.showAsDropDown(ll_title,Math.abs(ll_title.getWidth()-searchWindow.getWidth())/2, 0);
 				Button bt_search_popwindow = (Button) viewpop.findViewById(R.id.btn_search);
 				et_search = (EditText)viewpop.findViewById(R.id.et_search);
 				bt_search_popwindow.setOnClickListener(new OnClickListener() {
@@ -214,10 +246,16 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 										Constants.PAGENUM,name);
 								try {
 									json = new JSONObject(str);
-									setValue();
-									Message  msg = new Message();
-									msg.what = 0000;
-									SearchHandler.sendMessage(msg);
+									JSONArray array = json.getJSONArray("result");
+									if(json.has("result") && array.length()==0){
+										SearchHandler.sendEmptyMessage(2);
+										
+									}else{
+										setValue();
+										Message  msg = new Message();
+										msg.what = 0000;
+										SearchHandler.sendMessage(msg);
+									}
 									}
 								 catch (JSONException e) {
 									// TODO Auto-generated catch block
@@ -232,12 +270,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						
 					}
 				});
-				searchWindow = new PopupWindow(viewpop,LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-				searchWindow.setFocusable(true);
-				searchWindow.setOutsideTouchable(true);
-				searchWindow.update();
-				searchWindow.setBackgroundDrawable(new BitmapDrawable());
-				searchWindow.showAsDropDown(ll_title,Math.abs(ll_title.getWidth()-searchWindow.getWidth())/2, 0);
+			
 			}
 		});
 		TextView title = (TextView) findViewById(R.id.join_text_title);
@@ -1264,6 +1297,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	 */
 	private JoinPopuAdapter showMenuadapter;
 	private int index=0;
+
 	private void createMenuDialog() {
 		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View popupView = (LinearLayout) inflate.inflate(R.layout.buy_join__window, null);
@@ -1319,7 +1353,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		@Override
 		public void onChickItem(View view, int position,String text) {
 			// TODO Auto-generated method stub
-			popupwindow.dismiss();
+		
 			mShowAllBtn.setBackgroundResource(R.drawable.shaixuan_normal);
 			showMenuadapter.setItemSelect(position);
 			showMenuadapter.notifyDataSetInvalidated();
@@ -1331,6 +1365,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			initissue(lotno);
 			isSelect = true;
 			initOrder();
+			popupwindow.dismiss();
 		}
 	}
 	////end...
