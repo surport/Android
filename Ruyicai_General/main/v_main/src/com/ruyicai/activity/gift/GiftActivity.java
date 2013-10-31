@@ -1140,6 +1140,7 @@ public class GiftActivity extends TouzhuBaseActivity implements HandlerMsg,
 			intent.putExtra("page", BettingSuccessActivity.PRESENT);
 			intent.putExtra("lotno", betAndGift.getLotno());
 			intent.putExtra("amount", betAndGift.getAmount());
+			
 			startActivity(intent);
 		}
 
