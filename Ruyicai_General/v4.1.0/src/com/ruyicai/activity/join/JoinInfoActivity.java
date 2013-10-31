@@ -237,13 +237,12 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 						isSearch = true;
 						viewInfos[topIndex][lottypeIndex].newPage = 0;
 						viewInfos[topIndex][lottypeIndex].allPage = 0;
-						viewInfos[topIndex][lottypeIndex].listdata.clear();
-						
 						
 						 name = et_search.getText().toString().trim(); 
 						if(TextUtils.isEmpty(name)){
 							Toast.makeText(getContext(), "搜索条件不能为空",0).show();
 						}else{
+							viewInfos[topIndex][lottypeIndex].listdata.clear();
 							showDialog(0);
 							Thread t = new Thread(new Runnable() {
 								@Override
