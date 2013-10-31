@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -25,7 +23,6 @@ import android.os.Message;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +39,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.usercenter.detail.Betdetail;
 import com.ruyicai.activity.usercenter.info.BetQueryInfo;
@@ -51,10 +47,8 @@ import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetDetailsInterface;
 import com.ruyicai.net.newtransaction.BetQueryInterface;
-import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.util.CheckUtil;
-import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
@@ -66,7 +60,6 @@ import com.umeng.analytics.MobclickAgent;
  */
 public class BetQueryActivity extends Activity implements HandlerMsg {
 	private LinearLayout usecenerLinear;
-	private Button returnButton;
 	private TextView titleTextView;
 	private LinearLayout kind;// 按彩种查询
 	private Spinner betkindspinner;
@@ -116,6 +109,13 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	List<BetQueryInfo> tendatalist = new ArrayList<BetQueryInfo>();
 	
 	List<BetQueryInfo> beijingSinglelist = new ArrayList<BetQueryInfo>();
+	
+	private String[] mLotnoArray = {"", Constants.LOTNO_SSQ, Constants.LOTNO_FC3D, 
+			Constants.LOTNO_11_5,Constants.LOTNO_GD115, Constants.LOTNO_NMK3,
+			Constants.LOTNO_DLT, Constants.LOTNO_SSC, Constants.LOTNO_QLC,
+			Constants.LOTNO_PL3, Constants.LOTNO_PL5, Constants.LOTNO_QXC,
+			Constants.LOTNO_eleven, Constants.LOTNO_ten, Constants.LOTNO_ZC, 
+			Constants.LOTNO_JCL, Constants.LOTNO_JCZ, Constants.LOTNO_BJ_SINGLE}; 
 
 	private int typekind = 0;
 	Context context = this;
@@ -498,17 +498,13 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.usercenter_mainlayoutold);
-		returnButton = (Button) findViewById(R.id.layout_usercenter_img_return);
 		titleTextView = (TextView) findViewById(R.id.usercenter_mainlayou_text_title);
-		returnButton.setBackgroundResource(R.drawable.returnselecter);
 		titleTextView.setText(R.string.usercenter_bettingDetails);
-		returnButton.setText(R.string.returnlastpage);
 		kind = (LinearLayout) findViewById(R.id.betkind);
 		kind.setVisibility(View.VISIBLE);
 		betkindspinner = (Spinner) findViewById(R.id.bet_kind_spinner);
 		initLinear();
 		initspinner();
-		initReturn();
 		getInfo();
 		isfirst = true;
 	}
@@ -745,14 +741,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 
-			}
-		});
-	}
-
-	protected void initReturn() {
-		returnButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				finish();
 			}
 		});
 	}

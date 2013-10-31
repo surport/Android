@@ -32,6 +32,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -79,6 +80,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	Button imgUp, imgDown;
 	String name ;
 	LinearLayout ll_title;
+	private boolean isAddMoreUse;
 	
 	Dialog dialog;
 	RelativeLayout progress, allAtm, atm;// 排序按钮
@@ -227,16 +229,20 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					@Override
 					public void onClick(View v) {
 						
+						searchWindow.dismiss();
+						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
+						imm.hideSoftInputFromWindow(view.getWindowToken(), 0); 
+
+						
 						isSearch = true;
 						viewInfos[topIndex][lottypeIndex].newPage = 0;
 						viewInfos[topIndex][lottypeIndex].allPage = 0;
-						viewInfos[topIndex][lottypeIndex].listdata.clear();
-						
 						
 						 name = et_search.getText().toString().trim(); 
 						if(TextUtils.isEmpty(name)){
 							Toast.makeText(getContext(), "搜索条件不能为空",0).show();
 						}else{
+							viewInfos[topIndex][lottypeIndex].listdata.clear();
 							showDialog(0);
 							Thread t = new Thread(new Runnable() {
 								@Override
@@ -323,7 +329,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 
 	}
 	private void addmore() {
-
+		isAddMoreUse = true;
 		viewInfos[topIndex][lottypeIndex].newPage++;
 		int allpage = viewInfos[topIndex][lottypeIndex].allPage;
 		if (viewInfos[topIndex][lottypeIndex].newPage < viewInfos[topIndex][lottypeIndex].allPage) {
@@ -479,7 +485,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 	public void onCheck() {
 		viewInfos[topIndex][lottypeIndex].newPage = 0;
 		viewInfos[topIndex][lottypeIndex].allPage = 0;
-		viewInfos[topIndex][lottypeIndex].listdata.clear();
+		
 		joinInfokNet(orderBy, orderDir);
 		view.setEnabled(true);
 	}
@@ -503,6 +509,10 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		str = QueryJoinInfoInterface.queryLotJoinInfo(lotno, issue, orderBy,
 				orderDir, "" + viewInfos[topIndex][lottypeIndex].newPage,
 				Constants.PAGENUM);
+		if(!isAddMoreUse){
+			viewInfos[topIndex][lottypeIndex].listdata.clear();
+		}
+		isAddMoreUse = false;
 		handlerTwo.post(new Runnable() {
 			@Override
 			public void run() {
@@ -674,16 +684,18 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		OnItemClickListener clickListener = new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view,final int position, long id) {
-				Info info = (Info) viewInfos[topIndex][lottypeIndex].listdata.get(position);
-				if (info.getAtm().equals(info.getAllAtm())) {
-					Toast.makeText(JoinInfoActivity.this, "该方案已经满员,请您选择其他方案！",Toast.LENGTH_SHORT).show();
-				} else {
-					Intent intent = new Intent(JoinInfoActivity.this,JoinDetailActivity.class);
-					intent.putExtra(ID, info.getId());
-					intent.putExtra(Constants.LOTNO, info.getLotno());
-					intent.putExtra(Constants.ISSUE, info.getBatchCode());
-					intent.putExtra(USER_NO, info.getStarterUserNo());
-					startActivity(intent);
+				if(viewInfos[topIndex][lottypeIndex].listdata.size()!=0){
+					Info info = (Info) viewInfos[topIndex][lottypeIndex].listdata.get(position);
+					if (info.getAtm().equals(info.getAllAtm())) {
+						Toast.makeText(JoinInfoActivity.this, "该方案已经满员,请您选择其他方案！",Toast.LENGTH_SHORT).show();
+					} else {
+						Intent intent = new Intent(JoinInfoActivity.this,JoinDetailActivity.class);
+						intent.putExtra(ID, info.getId());
+						intent.putExtra(Constants.LOTNO, info.getLotno());
+						intent.putExtra(Constants.ISSUE, info.getBatchCode());
+						intent.putExtra(USER_NO, info.getStarterUserNo());
+						startActivity(intent);
+					}
 				}
 			}
 
