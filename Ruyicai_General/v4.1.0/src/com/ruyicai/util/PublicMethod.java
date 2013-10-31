@@ -312,7 +312,7 @@ public class PublicMethod {
 	}
 
 	public static void myOutLog(String tag, String msg) {
-		Log.e(tag, msg);
+//		Log.e(tag, msg);
 	}
 
 	/* Modify by fansm 20130412 start */
