@@ -31,6 +31,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.InputMethodManager;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -226,6 +227,10 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					
 					@Override
 					public void onClick(View v) {
+						
+						searchWindow.dismiss();
+						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
+						imm.hideSoftInputFromWindow(view.getWindowToken(), 0); 
 						
 						isSearch = true;
 						viewInfos[topIndex][lottypeIndex].newPage = 0;
