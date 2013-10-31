@@ -103,6 +103,12 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 				initList();
 				break;
 			case 2:
+				/**move by yejc 20131031 start*/
+				isSearch = true;
+				viewInfos[topIndex][lottypeIndex].newPage = 0;
+				viewInfos[topIndex][lottypeIndex].allPage = 0;
+				viewInfos[topIndex][lottypeIndex].listdata.clear();
+				/**move by yejc 20131031 start*/
 				progressdialog.dismiss();
 				View alertview = View.inflate(getContext(), R.layout.alert_dialog, null);
 				dialog = new Dialog(getContext(),R.style.add_dialog);
@@ -229,16 +235,15 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					@Override
 					public void onClick(View v) {
 						
+//						isSearch = true;
+//						viewInfos[topIndex][lottypeIndex].newPage = 0;
+//						viewInfos[topIndex][lottypeIndex].allPage = 0;
+//						viewInfos[topIndex][lottypeIndex].listdata.clear();
+
 						searchWindow.dismiss();
 						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
 						imm.hideSoftInputFromWindow(view.getWindowToken(), 0); 
 
-						
-						isSearch = true;
-						viewInfos[topIndex][lottypeIndex].newPage = 0;
-						viewInfos[topIndex][lottypeIndex].allPage = 0;
-						viewInfos[topIndex][lottypeIndex].listdata.clear();
-						
 						
 						 name = et_search.getText().toString().trim(); 
 						if(TextUtils.isEmpty(name)){
