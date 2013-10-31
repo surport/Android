@@ -105,11 +105,17 @@ public class CaizhongSettingAdapter extends BaseAdapter {
 				if (checkOpenOrClosed.equals(Constants.CAIZHONG_OPEN)) {
 					shellRW.putStringValue(v.getTag(R.id.caizhong_set_checkbox)
 							.toString(), Constants.CAIZHONG_CLOSE);
+					if (Constants.RYJCLABEL.equals(lotnoString) ) {
+						shellRW.putStringValue(Constants.RYJC_LAST_STATE, Constants.CAIZHONG_CLOSE);
+					}
 					v.setBackgroundResource(R.drawable.off);
 				} else {
 					shellRW.putStringValue(v.getTag(R.id.caizhong_set_checkbox)
 							.toString(), Constants.CAIZHONG_OPEN);
 					v.setBackgroundResource(R.drawable.on);
+					if (Constants.RYJCLABEL.equals(lotnoString) ) {
+						shellRW.putStringValue(Constants.RYJC_LAST_STATE, Constants.CAIZHONG_OPEN);
+					}
 				}
 			}
 

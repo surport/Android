@@ -183,7 +183,7 @@ public class HomeActivity extends Activity {
 		String token = intent.getStringExtra("token");
 		String plat = intent.getStringExtra("plat");
 		Controller controller = Controller.getInstance(this);
-		controller.thirdPartyLogin(mHandler, "00000", "operator");
+		controller.thirdPartyLogin(mHandler, token, plat);
 		/**add by third-party end*/
 		checkCaizhongSetting();// 获取彩种设置
 		//registerToWeiXin();

@@ -42,6 +42,7 @@ public class Constants {
 	 */
 	public static final String CAIZHONG_OPEN = "on";
 	public static final String CAIZHONG_CLOSE = "off";
+	public static final String RYJC_LAST_STATE = "ryjc_last_state";
 	/**
 	 * 支付宝
 	 */

@@ -1,1301 +1,1301 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<item type="id" name = "HorizontalScrollView01"/>
+<item type="id" name = "LinearLayout0000"/>
+<item type="id" name = "LinearLayout01"/>
+<item type="id" name = "LinearLayout0111"/>
+<item type="id" name = "LinearLayout02"/>
+<item type="id" name = "LinearLayout03"/>
+<item type="id" name = "LinearLayout07"/>
+<item type="id" name = "LinearLayout08"/>
+<item type="id" name = "LinearLayout10"/>
+<item type="id" name = "LinearLayout_four"/>
+<item type="id" name = "LinearLayout_one"/>
+<item type="id" name = "LinearLayout_six"/>
+<item type="id" name = "LinearLayout_third"/>
+<item type="id" name = "LinearLayout_two"/>
+<item type="id" name = "Relative"/>
+<item type="id" name = "RelativeLayout01"/>
+<item type="id" name = "RelativeLayout02"/>
+<item type="id" name = "ScrollView01"/>
+<item type="id" name = "TextView01"/>
+<item type="id" name = "TextView02"/>
+<item type="id" name = "TextView03"/>
+<item type="id" name = "TextView04"/>
+<item type="id" name = "TextView07"/>
+<item type="id" name = "about"/>
+<item type="id" name = "accountTitle_text"/>
+<item type="id" name = "account_list_main_text"/>
+<item type="id" name = "account_phone_title"/>
+<item type="id" name = "account_rechange_listview"/>
+<item type="id" name = "account_recharge_iicon"/>
+<item type="id" name = "account_recharge_listview_linerlayout"/>
+<item type="id" name = "account_recharge_listview_text"/>
+<item type="id" name = "account_recharge_type"/>
+<item type="id" name = "account_recharge_user_number"/>
+<item type="id" name = "account_webView"/>
+<item type="id" name = "account_withdraw_detail_amount"/>
+<item type="id" name = "account_withdraw_detail_imageview_checktime"/>
+<item type="id" name = "account_withdraw_detail_imageview_createtime"/>
+<item type="id" name = "account_withdraw_detail_imageview_finishtime"/>
+<item type="id" name = "account_withdraw_detail_imageview_remittime"/>
+<item type="id" name = "account_withdraw_detail_order_state"/>
+<item type="id" name = "account_withdraw_detail_remark"/>
+<item type="id" name = "account_withdraw_detail_textview_checktime"/>
+<item type="id" name = "account_withdraw_detail_textview_createtime"/>
+<item type="id" name = "account_withdraw_detail_textview_finishtime"/>
+<item type="id" name = "account_withdraw_detail_textview_remittime"/>
+<item type="id" name = "account_withdraw_detail_withdraw_mode"/>
+<item type="id" name = "account_withdraw_number"/>
+<item type="id" name = "aciton_content_text_content"/>
+<item type="id" name = "aciton_content_text_title"/>
+<item type="id" name = "action_center_list_item_img"/>
+<item type="id" name = "action_center_list_item_text_title1"/>
+<item type="id" name = "action_center_list_item_text_title2"/>
+<item type="id" name = "action_center_list_item_text_title3"/>
+<item type="id" name = "alert_dialog_jc_betnum"/>
+<item type="id" name = "alert_dialog_jc_gamenum"/>
+<item type="id" name = "alert_dialog_jc_layout_group"/>
+<item type="id" name = "alert_dialog_jc_lotnotype"/>
+<item type="id" name = "alert_dialog_jc_money"/>
+<item type="id" name = "alert_dialog_jc_predictmoney"/>
+<item type="id" name = "alert_dialog_shouyi_check_prize"/>
+<item type="id" name = "alert_dialog_touzhu_alert_scheme"/>
+<item type="id" name = "alert_dialog_touzhu_alert_schemedetail"/>
+<item type="id" name = "alert_dialog_touzhu_alert_textview_schemedetail"/>
+<item type="id" name = "alert_dialog_touzhu_btn_look_code"/>
+<item type="id" name = "alert_dialog_touzhu_button_cancel"/>
+<item type="id" name = "alert_dialog_touzhu_button_ok"/>
+<item type="id" name = "alert_dialog_touzhu_check_prize"/>
+<item type="id" name = "alert_dialog_touzhu_linear_qihao_beishu"/>
+<item type="id" name = "alert_dialog_touzhu_relative"/>
+<item type="id" name = "alert_dialog_touzhu_text_alert"/>
+<item type="id" name = "alert_dialog_touzhu_text_fangshi"/>
+<item type="id" name = "alert_dialog_touzhu_text_one"/>
+<item type="id" name = "alert_dialog_touzhu_text_title"/>
+<item type="id" name = "alert_dialog_touzhu_text_two"/>
+<item type="id" name = "alert_dialog_touzhu_text_zhuma"/>
+<item type="id" name = "alert_dialog_touzhu_text_zhuma_title"/>
+<item type="id" name = "alert_dialog_touzhu_textview_caizhong"/>
+<item type="id" name = "alert_dialog_touzhu_textview_jine"/>
+<item type="id" name = "alert_dialog_touzhu_textview_qihao"/>
+<item type="id" name = "alert_dialog_touzhu_textview_zhushu"/>
+<item type="id" name = "alert_dialog_touzhu_updown"/>
+<item type="id" name = "alert_login_title"/>
+<item type="id" name = "alipay_content"/>
+<item type="id" name = "alipay_secure_cancel"/>
+<item type="id" name = "alipay_secure_ok"/>
+<item type="id" name = "alipay_secure_ok_alipay"/>
+<item type="id" name = "alipay_secure_ok_alipay_layout"/>
+<item type="id" name = "alipay_secure_recharge_value"/>
+<item type="id" name = "alipay_secure_title"/>
+<item type="id" name = "all_check"/>
+<item type="id" name = "auto_login_checkBox"/>
+<item type="id" name = "auto_login_set_checkbox"/>
+<item type="id" name = "auto_login_set_checkbox_jixuan"/>
+<item type="id" name = "balanceinfo"/>
+<item type="id" name = "ball_linearlayout"/>
+<item type="id" name = "beidan_play_change_layout"/>
+<item type="id" name = "beijing_single_mani_history"/>
+<item type="id" name = "beijingsinglegame_playmethodchange_button_halftheaudience"/>
+<item type="id" name = "beijingsinglegame_playmethodchange_button_overall"/>
+<item type="id" name = "beijingsinglegame_playmethodchange_button_totalgoals"/>
+<item type="id" name = "beijingsinglegame_playmethodchange_button_updownsigledouble"/>
+<item type="id" name = "beijingsinglegame_playmethodchange_button_wintieloss"/>
+<item type="id" name = "beishulayout"/>
+<item type="id" name = "bet_detail_img_cannle"/>
+<item type="id" name = "bet_detail_img_ok"/>
+<item type="id" name = "bet_detail_layout_content"/>
+<item type="id" name = "bet_detail_linearlayout_expert"/>
+<item type="id" name = "bet_detail_tex_bettime"/>
+<item type="id" name = "bet_detail_text_atm"/>
+<item type="id" name = "bet_detail_text_batchcode"/>
+<item type="id" name = "bet_detail_text_content"/>
+<item type="id" name = "bet_detail_text_dingdan"/>
+<item type="id" name = "bet_detail_text_expert"/>
+<item type="id" name = "bet_detail_text_kaijianghao"/>
+<item type="id" name = "bet_detail_text_lotno"/>
+<item type="id" name = "bet_detail_text_play"/>
+<item type="id" name = "bet_detail_text_state"/>
+<item type="id" name = "bet_detail_text_zhushu"/>
+<item type="id" name = "bet_info"/>
+<item type="id" name = "bet_kind_spinner"/>
+<item type="id" name = "bet_query_jc_info_layout"/>
+<item type="id" name = "bet_query_text_check"/>
+<item type="id" name = "bet_query_text_num"/>
+<item type="id" name = "bet_query_text_over"/>
+<item type="id" name = "bet_query_text_score"/>
+<item type="id" name = "bet_query_text_team"/>
+<item type="id" name = "betkind"/>
+<item type="id" name = "bindedcertid_servicephone"/>
+<item type="id" name = "btnClose"/>
+<item type="id" name = "btnSend"/>
+<item type="id" name = "btn_return"/>
+<item type="id" name = "button_cancel"/>
+<item type="id" name = "button_ok"/>
+<item type="id" name = "buttonlayout"/>
+<item type="id" name = "buttontype"/>
+<item type="id" name = "buy_activity_bottom_layout"/>
+<item type="id" name = "buy_activity_layout_view"/>
+<item type="id" name = "buy_activity_light_layout"/>
+<item type="id" name = "buy_add_dialog_delet"/>
+<item type="id" name = "buy_add_dialog_list"/>
+<item type="id" name = "buy_add_dialog_text_info"/>
+<item type="id" name = "buy_add_list_item_text_amt"/>
+<item type="id" name = "buy_add_list_item_text_code"/>
+<item type="id" name = "buy_add_list_item_text_num"/>
+<item type="id" name = "buy_add_list_item_text_zhushu"/>
+<item type="id" name = "buy_danshi_jixuan_img_touzhu"/>
+<item type="id" name = "buy_danshi_jixuan_linear_zhuma"/>
+<item type="id" name = "buy_danshi_jixuan_spinner"/>
+<item type="id" name = "buy_dlc_spinner"/>
+<item type="id" name = "buy_dlc_top"/>
+<item type="id" name = "buy_footballlottery_img_touzhu"/>
+<item type="id" name = "buy_footballlottery_list"/>
+<item type="id" name = "buy_group_game_btn_cancel"/>
+<item type="id" name = "buy_group_game_content"/>
+<item type="id" name = "buy_group_game_title"/>
+<item type="id" name = "buy_group_layout1"/>
+<item type="id" name = "buy_group_layout2"/>
+<item type="id" name = "buy_group_layout3"/>
+<item type="id" name = "buy_group_layout4"/>
+<item type="id" name = "buy_group_layout5"/>
+<item type="id" name = "buy_group_layout6"/>
+<item type="id" name = "buy_group_one_layout3"/>
+<item type="id" name = "buy_group_one_layout4"/>
+<item type="id" name = "buy_group_one_layout5"/>
+<item type="id" name = "buy_group_one_layout6"/>
+<item type="id" name = "buy_jc_main_listview"/>
+<item type="id" name = "buy_jc_main_text_team_num"/>
+<item type="id" name = "buy_jc_main_view_list_item_btn"/>
+<item type="id" name = "buy_jc_main_view_list_item_linearLayout"/>
+<item type="id" name = "buy_jc_play_select_layout"/>
+<item type="id" name = "buy_jc_recommend_main_listview"/>
+<item type="id" name = "buy_jc_zixuan_seek_beishu"/>
+<item type="id" name = "buy_join_radiogroup_baodi"/>
+<item type="id" name = "buy_join_radiogroup_open"/>
+<item type="id" name = "buy_jx_btn_layout"/>
+<item type="id" name = "buy_lq_main_btn_score"/>
+<item type="id" name = "buy_lq_main_btn_team"/>
+<item type="id" name = "buy_lq_main_btn_type"/>
+<item type="id" name = "buy_lq_main_dialog_new_type1"/>
+<item type="id" name = "buy_lq_main_dialog_type1"/>
+<item type="id" name = "buy_lq_main_dialog_type2"/>
+<item type="id" name = "buy_lq_main_dialog_type3"/>
+<item type="id" name = "buy_lq_main_dialog_type4"/>
+<item type="id" name = "buy_lq_main_layout_team"/>
+<item type="id" name = "buy_lq_mian_layout"/>
+<item type="id" name = "buy_zh_view_btn1"/>
+<item type="id" name = "buy_zh_view_layout"/>
+<item type="id" name = "buy_zh_view_text1"/>
+<item type="id" name = "buy_zixuan_add_text_num"/>
+<item type="id" name = "buy_zixuan_bottom_layout"/>
+<item type="id" name = "buy_zixuan_btn_five"/>
+<item type="id" name = "buy_zixuan_btn_four"/>
+<item type="id" name = "buy_zixuan_btn_num_five"/>
+<item type="id" name = "buy_zixuan_btn_num_four"/>
+<item type="id" name = "buy_zixuan_btn_num_one"/>
+<item type="id" name = "buy_zixuan_btn_num_seven"/>
+<item type="id" name = "buy_zixuan_btn_num_six"/>
+<item type="id" name = "buy_zixuan_btn_num_third"/>
+<item type="id" name = "buy_zixuan_btn_num_two"/>
+<item type="id" name = "buy_zixuan_btn_one"/>
+<item type="id" name = "buy_zixuan_btn_seven"/>
+<item type="id" name = "buy_zixuan_btn_six"/>
+<item type="id" name = "buy_zixuan_btn_third"/>
+<item type="id" name = "buy_zixuan_btn_two"/>
+<item type="id" name = "buy_zixuan_button_zu3"/>
+<item type="id" name = "buy_zixuan_button_zu6"/>
+<item type="id" name = "buy_zixuan_edit_zhuma"/>
+<item type="id" name = "buy_zixuan_img_add"/>
+<item type="id" name = "buy_zixuan_img_add_beishu"/>
+<item type="id" name = "buy_zixuan_img_add_delet"/>
+<item type="id" name = "buy_zixuan_img_add_qishu"/>
+<item type="id" name = "buy_zixuan_img_again"/>
+<item type="id" name = "buy_zixuan_img_delele"/>
+<item type="id" name = "buy_zixuan_img_subtract_beishu"/>
+<item type="id" name = "buy_zixuan_img_subtract_qihao"/>
+<item type="id" name = "buy_zixuan_img_touzhu"/>
+<item type="id" name = "buy_zixuan_latest_lottery"/>
+<item type="id" name = "buy_zixuan_linear_five"/>
+<item type="id" name = "buy_zixuan_linear_four"/>
+<item type="id" name = "buy_zixuan_linear_one"/>
+<item type="id" name = "buy_zixuan_linear_progress"/>
+<item type="id" name = "buy_zixuan_linear_progress_all"/>
+<item type="id" name = "buy_zixuan_linear_seven"/>
+<item type="id" name = "buy_zixuan_linear_six"/>
+<item type="id" name = "buy_zixuan_linear_third"/>
+<item type="id" name = "buy_zixuan_linear_toggle"/>
+<item type="id" name = "buy_zixuan_linear_top"/>
+<item type="id" name = "buy_zixuan_linear_top_one"/>
+<item type="id" name = "buy_zixuan_linear_top_two"/>
+<item type="id" name = "buy_zixuan_linear_two"/>
+<item type="id" name = "buy_zixuan_new_btn_main"/>
+<item type="id" name = "buy_zixuan_new_btn_miss"/>
+<item type="id" name = "buy_zixuan_radiogroup_top"/>
+<item type="id" name = "buy_zixuan_relativelayout"/>
+<item type="id" name = "buy_zixuan_relativelayout2"/>
+<item type="id" name = "buy_zixuan_scroll"/>
+<item type="id" name = "buy_zixuan_seek_beishu"/>
+<item type="id" name = "buy_zixuan_seek_qishu"/>
+<item type="id" name = "buy_zixuan_table_five"/>
+<item type="id" name = "buy_zixuan_table_four"/>
+<item type="id" name = "buy_zixuan_table_one"/>
+<item type="id" name = "buy_zixuan_table_seven"/>
+<item type="id" name = "buy_zixuan_table_six"/>
+<item type="id" name = "buy_zixuan_table_third"/>
+<item type="id" name = "buy_zixuan_table_two"/>
+<item type="id" name = "buy_zixuan_text_beishu"/>
+<item type="id" name = "buy_zixuan_text_beishu_title"/>
+<item type="id" name = "buy_zixuan_text_five"/>
+<item type="id" name = "buy_zixuan_text_four"/>
+<item type="id" name = "buy_zixuan_text_one"/>
+<item type="id" name = "buy_zixuan_text_prize"/>
+<item type="id" name = "buy_zixuan_text_qishu"/>
+<item type="id" name = "buy_zixuan_text_qishu_title"/>
+<item type="id" name = "buy_zixuan_text_seven"/>
+<item type="id" name = "buy_zixuan_text_six"/>
+<item type="id" name = "buy_zixuan_text_sum_money"/>
+<item type="id" name = "buy_zixuan_text_third"/>
+<item type="id" name = "buy_zixuan_text_title"/>
+<item type="id" name = "buy_zixuan_text_title_shu"/>
+<item type="id" name = "buy_zixuan_text_two"/>
+<item type="id" name = "buy_zixuan_viewpager"/>
+<item type="id" name = "buyactivity_tab_host"/>
+<item type="id" name = "buyagain_title"/>
+<item type="id" name = "buyagain_touzhu_beishu"/>
+<item type="id" name = "buyagain_touzhu_button_cancel"/>
+<item type="id" name = "buyagain_touzhu_button_ok"/>
+<item type="id" name = "buyagain_touzhu_jine"/>
+<item type="id" name = "buyagain_touzhu_lotname"/>
+<item type="id" name = "buyagain_touzhu_qihao"/>
+<item type="id" name = "buyagain_touzhu_zhuma"/>
+<item type="id" name = "buyview"/>
+<item type="id" name = "caizhong_TextView"/>
+<item type="id" name = "caizhong_set_checkbox"/>
+<item type="id" name = "caizhong_setting"/>
+<item type="id" name = "caizhong_setting_ListView"/>
+<item type="id" name = "cancel"/>
+<item type="id" name = "canel"/>
+<item type="id" name = "canyu"/>
+<item type="id" name = "canyujine"/>
+<item type="id" name = "canyumingcheng"/>
+<item type="id" name = "canyurchezi"/>
+<item type="id" name = "canyurenyuan"/>
+<item type="id" name = "canyuriqi"/>
+<item type="id" name = "change"/>
+<item type="id" name = "chechbutton"/>
+<item type="id" name = "checkBox1"/>
+<item type="id" name = "checkBox10"/>
+<item type="id" name = "checkBox11"/>
+<item type="id" name = "checkBox12"/>
+<item type="id" name = "checkBox13"/>
+<item type="id" name = "checkBox14"/>
+<item type="id" name = "checkBox2"/>
+<item type="id" name = "checkBox3"/>
+<item type="id" name = "checkBox4"/>
+<item type="id" name = "checkBox5"/>
+<item type="id" name = "checkBox6"/>
+<item type="id" name = "checkBox7"/>
+<item type="id" name = "checkBox8"/>
+<item type="id" name = "checkBox9"/>
+<item type="id" name = "checkBoxDan"/>
+<item type="id" name = "checkboxzhuihao"/>
+<item type="id" name = "checkprize"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_linearlayout01"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_linearlayout02"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_linearlayout03"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_linearlayout04"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_linearlayout05"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text01"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text02"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text03"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text04"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text05"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text06"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_text07"/>
+<item type="id" name = "choose_luck_lottery_num_agree_and_pay_dialog_title"/>
+<item type="id" name = "choose_luck_num_gametype_title"/>
+<item type="id" name = "choose_luck_num_gridview_layout_button_group"/>
+<item type="id" name = "clear_check"/>
+<item type="id" name = "company_infoTitle_text"/>
+<item type="id" name = "company_info_image"/>
+<item type="id" name = "company_info_title"/>
+<item type="id" name = "company_info_webview"/>
+<item type="id" name = "content"/>
+<item type="id" name = "cp1"/>
+<item type="id" name = "critidbindimmmmm"/>
+<item type="id" name = "critidbindtx"/>
+<item type="id" name = "current_gold_title"/>
+<item type="id" name = "dialog_advice_edit_check"/>
+<item type="id" name = "dialog_advice_img_ok"/>
+<item type="id" name = "dialog_advice_item_text_title"/>
+<item type="id" name = "dialog_advice_list"/>
+<item type="id" name = "dialog_link_item_check"/>
+<item type="id" name = "dialog_link_item_text_phone"/>
+<item type="id" name = "dialog_link_item_text_title"/>
+<item type="id" name = "ding_btn_chedan"/>
+<item type="id" name = "ding_buy_group1"/>
+<item type="id" name = "ding_buy_group2"/>
+<item type="id" name = "ding_group1_check"/>
+<item type="id" name = "ding_group1_layout_num"/>
+<item type="id" name = "ding_group1_radio0"/>
+<item type="id" name = "ding_group1_radio1"/>
+<item type="id" name = "ding_group2_check"/>
+<item type="id" name = "ding_group2_layout_num"/>
+<item type="id" name = "ding_group2_max_layout"/>
+<item type="id" name = "ding_group2_radio0"/>
+<item type="id" name = "ding_group2_radio1"/>
+<item type="id" name = "ding_group_layout_id"/>
+<item type="id" name = "ding_info"/>
+<item type="id" name = "ding_text_lotno_id"/>
+<item type="id" name = "ding_text_num_id"/>
+<item type="id" name = "ding_text_person_id"/>
+<item type="id" name = "ding_text_prize_id"/>
+<item type="id" name = "ding_text_state_id"/>
+<item type="id" name = "ding_text_time_id"/>
+<item type="id" name = "ding_text_title"/>
+<item type="id" name = "directpay_listview_paymethod"/>
+<item type="id" name = "directpay_relativelayout_title"/>
+<item type="id" name = "directpay_textview_title"/>
+<item type="id" name = "divider_01"/>
+<item type="id" name = "divider_02"/>
+<item type="id" name = "dlt_zhuijia"/>
+<item type="id" name = "doregister"/>
+<item type="id" name = "downdouble"/>
+<item type="id" name = "downdouble_textview"/>
+<item type="id" name = "downsingle"/>
+<item type="id" name = "downsingle_textview"/>
+<item type="id" name = "edittext1"/>
+<item type="id" name = "etEdit"/>
+<item type="id" name = "expert_info_main_list_item_btn"/>
+<item type="id" name = "expert_info_main_list_item_code"/>
+<item type="id" name = "expert_info_main_list_item_content"/>
+<item type="id" name = "expert_info_main_list_item_title"/>
+<item type="id" name = "expert_main_listview"/>
+<item type="id" name = "explain_history_four_1"/>
+<item type="id" name = "explain_history_four_2"/>
+<item type="id" name = "explain_history_four_3"/>
+<item type="id" name = "explain_history_one_1"/>
+<item type="id" name = "explain_history_one_2"/>
+<item type="id" name = "explain_history_three_1"/>
+<item type="id" name = "explain_history_three_2"/>
+<item type="id" name = "explain_history_three_3"/>
+<item type="id" name = "explain_history_two_1"/>
+<item type="id" name = "explain_history_two_2"/>
+<item type="id" name = "explain_history_two_3"/>
+<item type="id" name = "explain_list_item_text_five"/>
+<item type="id" name = "explain_list_item_text_four"/>
+<item type="id" name = "explain_list_item_text_one"/>
+<item type="id" name = "explain_list_item_text_seven"/>
+<item type="id" name = "explain_list_item_text_six"/>
+<item type="id" name = "explain_list_item_text_team"/>
+<item type="id" name = "explain_list_item_text_three"/>
+<item type="id" name = "explain_list_item_text_two"/>
+<item type="id" name = "fangan"/>
+<item type="id" name = "fanganleirong"/>
+<item type="id" name = "fanganxiangqing"/>
+<item type="id" name = "faqi"/>
+<item type="id" name = "faqixinxi"/>
+<item type="id" name = "feedback"/>
+<item type="id" name = "feedback_time"/>
+<item type="id" name = "feedbackconnection"/>
+<item type="id" name = "feededmessage"/>
+<item type="id" name = "fenxi_listview_header"/>
+<item type="id" name = "fenxi_listview_header_guestteam"/>
+<item type="id" name = "fenxi_listview_header_hometeam"/>
+<item type="id" name = "findoutpassword"/>
+<item type="id" name = "follow_atm"/>
+<item type="id" name = "follow_forceJoin"/>
+<item type="id" name = "follow_kind"/>
+<item type="id" name = "follow_man"/>
+<item type="id" name = "follow_state"/>
+<item type="id" name = "follow_time"/>
+<item type="id" name = "follow_times"/>
+<item type="id" name = "forget_password_btn"/>
+<item type="id" name = "forget_password_edit_name"/>
+<item type="id" name = "forget_password_edit_phone"/>
+<item type="id" name = "game_analysis"/>
+<item type="id" name = "game_dan"/>
+<item type="id" name = "game_date"/>
+<item type="id" name = "game_name"/>
+<item type="id" name = "game_vs"/>
+<item type="id" name = "game_vs_odds"/>
+<item type="id" name = "get_moeny_amt_relatie"/>
+<item type="id" name = "get_money_bank"/>
+<item type="id" name = "get_money_bank_address"/>
+<item type="id" name = "get_money_bank_num"/>
+<item type="id" name = "get_money_bank_num_edit"/>
+<item type="id" name = "get_money_bank_num_text"/>
+<item type="id" name = "get_money_bank_spinner"/>
+<item type="id" name = "get_money_bank_start_edit"/>
+<item type="id" name = "get_money_img_back"/>
+<item type="id" name = "get_money_img_cancel"/>
+<item type="id" name = "get_money_img_exit"/>
+<item type="id" name = "get_money_img_submit"/>
+<item type="id" name = "get_money_list_item"/>
+<item type="id" name = "get_money_money"/>
+<item type="id" name = "get_money_money_edit"/>
+<item type="id" name = "get_money_money_text"/>
+<item type="id" name = "get_money_name"/>
+<item type="id" name = "get_money_name_edit"/>
+<item type="id" name = "get_money_name_text"/>
+<item type="id" name = "get_money_password_edit"/>
+<item type="id" name = "get_money_password_text"/>
+<item type="id" name = "get_money_state_text"/>
+<item type="id" name = "get_money_stating_remind"/>
+<item type="id" name = "getmoenyamt"/>
+<item type="id" name = "getmoenytime"/>
+<item type="id" name = "getmoneyamtdata"/>
+<item type="id" name = "getmoneyoftime"/>
+<item type="id" name = "getmoneystat"/>
+<item type="id" name = "getmore_progressbar"/>
+<item type="id" name = "gift_detail_img_cannle"/>
+<item type="id" name = "gift_detail_tex_gifttime"/>
+<item type="id" name = "gift_detail_tex_time"/>
+<item type="id" name = "gift_detail_text_atm"/>
+<item type="id" name = "gift_detail_text_atmzhong"/>
+<item type="id" name = "gift_detail_text_batchcode"/>
+<item type="id" name = "gift_detail_text_beishu"/>
+<item type="id" name = "gift_detail_text_content"/>
+<item type="id" name = "gift_detail_text_dingdan"/>
+<item type="id" name = "gift_detail_text_kaijianghao"/>
+<item type="id" name = "gift_detail_text_lotno"/>
+<item type="id" name = "gift_detail_text_person"/>
+<item type="id" name = "gift_detail_text_state"/>
+<item type="id" name = "gift_detail_text_zhushu"/>
+<item type="id" name = "gift_edit_language"/>
+<item type="id" name = "gift_edit_phone"/>
+<item type="id" name = "gift_img_cancel"/>
+<item type="id" name = "gift_img_language"/>
+<item type="id" name = "gift_img_ok"/>
+<item type="id" name = "gift_img_phone"/>
+<item type="id" name = "gift_result_view_text"/>
+<item type="id" name = "gift_text_language"/>
+<item type="id" name = "gift_text_phone"/>
+<item type="id" name = "gift_text_zhuma"/>
+<item type="id" name = "gift_text_zhushu"/>
+<item type="id" name = "gridview_item"/>
+<item type="id" name = "guest_layout"/>
+<item type="id" name = "guest_team_name"/>
+<item type="id" name = "guest_team_odds"/>
+<item type="id" name = "head_arrowImageView"/>
+<item type="id" name = "head_contentLayout"/>
+<item type="id" name = "head_lastUpdatedTextView"/>
+<item type="id" name = "head_progressBar"/>
+<item type="id" name = "head_tipsTextView"/>
+<item type="id" name = "help"/>
+<item type="id" name = "helpCenterItemContent"/>
+<item type="id" name = "helpCenterItemTitle"/>
+<item type="id" name = "home_layout"/>
+<item type="id" name = "home_team_name"/>
+<item type="id" name = "home_team_odds"/>
+<item type="id" name = "icon"/>
+<item type="id" name = "imageText"/>
+<item type="id" name = "imageView"/>
+<item type="id" name = "img_sina"/>
+<item type="id" name = "img_zhifubao"/>
+<item type="id" name = "imgview"/>
+<item type="id" name = "infolist1"/>
+<item type="id" name = "infolist2"/>
+<item type="id" name = "infolist3"/>
+<item type="id" name = "infolist4"/>
+<item type="id" name = "informationcontent"/>
+<item type="id" name = "informationcontent1"/>
+<item type="id" name = "informationitemlable"/>
+<item type="id" name = "informationitemlayout"/>
+<item type="id" name = "informationlist"/>
+<item type="id" name = "informationlist1"/>
+<item type="id" name = "informationlist2"/>
+<item type="id" name = "informationlist3"/>
+<item type="id" name = "informationlist4"/>
+<item type="id" name = "informationtime"/>
+<item type="id" name = "informationtitle"/>
+<item type="id" name = "insufficient_balance_amt"/>
+<item type="id" name = "insufficient_balance_button_directpay"/>
+<item type="id" name = "insufficient_balance_button_recharge"/>
+<item type="id" name = "insufficient_balance_lottype"/>
+<item type="id" name = "insufficient_balance_title"/>
+<item type="id" name = "introduce_img_btn"/>
+<item type="id" name = "isSharetoRenren"/>
+<item type="id" name = "isSharetoSina"/>
+<item type="id" name = "ishandingfree"/>
+<item type="id" name = "jc_alert_btn_duochuan"/>
+<item type="id" name = "jc_alert_btn_ziyou"/>
+<item type="id" name = "jc_asia_top_layout"/>
+<item type="id" name = "jc_data_analysis_score_guest"/>
+<item type="id" name = "jc_data_analysis_score_home"/>
+<item type="id" name = "jc_data_analysis_score_let"/>
+<item type="id" name = "jc_data_analysis_score_top_layout"/>
+<item type="id" name = "jc_europe_list_item_text_center_fail"/>
+<item type="id" name = "jc_europe_list_item_text_center_leve"/>
+<item type="id" name = "jc_europe_list_item_text_center_win"/>
+<item type="id" name = "jc_europe_list_item_text_company"/>
+<item type="id" name = "jc_europe_list_item_text_give"/>
+<item type="id" name = "jc_europe_list_item_text_left_fail"/>
+<item type="id" name = "jc_europe_list_item_text_left_leve"/>
+<item type="id" name = "jc_europe_list_item_text_left_leve_divider"/>
+<item type="id" name = "jc_europe_list_item_text_left_leve_layout"/>
+<item type="id" name = "jc_europe_list_item_text_left_win"/>
+<item type="id" name = "jc_europe_list_item_text_right_fail"/>
+<item type="id" name = "jc_europe_list_item_text_right_leve"/>
+<item type="id" name = "jc_europe_list_item_text_right_win"/>
+<item type="id" name = "jc_europe_top_layout"/>
+<item type="id" name = "jc_linear_check_all"/>
+<item type="id" name = "jc_lq_score_text_h1"/>
+<item type="id" name = "jc_lq_score_text_h2"/>
+<item type="id" name = "jc_lq_score_text_h3"/>
+<item type="id" name = "jc_lq_score_text_h4"/>
+<item type="id" name = "jc_lq_score_text_hteam"/>
+<item type="id" name = "jc_lq_score_text_v1"/>
+<item type="id" name = "jc_lq_score_text_v2"/>
+<item type="id" name = "jc_lq_score_text_v3"/>
+<item type="id" name = "jc_lq_score_text_v4"/>
+<item type="id" name = "jc_lq_score_text_vteam"/>
+<item type="id" name = "jc_main_divider_up"/>
+<item type="id" name = "jc_main_list_item_button"/>
+<item type="id" name = "jc_main_list_item_text_jieguo"/>
+<item type="id" name = "jc_main_list_item_text_score"/>
+<item type="id" name = "jc_main_list_item_text_team"/>
+<item type="id" name = "jc_main_list_item_text_team_id"/>
+<item type="id" name = "jc_main_list_item_text_team_name1"/>
+<item type="id" name = "jc_main_list_item_text_team_name2"/>
+<item type="id" name = "jc_main_list_item_text_vs"/>
+<item type="id" name = "jc_main_team_layout_layers_down"/>
+<item type="id" name = "jc_main_team_layout_layers_middle"/>
+<item type="id" name = "jc_main_team_layout_layers_up"/>
+<item type="id" name = "jc_main_team_select"/>
+<item type="id" name = "jc_play_detail_layout"/>
+<item type="id" name = "jc_play_select"/>
+<item type="id" name = "jc_recommend_news_content"/>
+<item type="id" name = "jc_recommend_news_title_btn"/>
+<item type="id" name = "jc_score_btn_next"/>
+<item type="id" name = "jc_score_btn_start"/>
+<item type="id" name = "jc_score_info_item_img_left"/>
+<item type="id" name = "jc_score_info_item_img_right"/>
+<item type="id" name = "jc_score_info_item_layout_time"/>
+<item type="id" name = "jc_score_info_item_text_left"/>
+<item type="id" name = "jc_score_info_item_text_right"/>
+<item type="id" name = "jc_score_info_item_text_time"/>
+<item type="id" name = "jc_score_info_layout"/>
+<item type="id" name = "jc_score_info_layout_bottom_layout"/>
+<item type="id" name = "jc_score_layout"/>
+<item type="id" name = "jc_score_list_item_layout"/>
+<item type="id" name = "jc_score_list_item_layout_left"/>
+<item type="id" name = "jc_score_list_spinner"/>
+<item type="id" name = "jc_score_list_text"/>
+<item type="id" name = "jc_score_mark"/>
+<item type="id" name = "jc_score_text_guest_score"/>
+<item type="id" name = "jc_score_text_h_ball"/>
+<item type="id" name = "jc_score_text_half_score"/>
+<item type="id" name = "jc_score_text_home_score"/>
+<item type="id" name = "jc_score_text_hteam"/>
+<item type="id" name = "jc_score_text_no_info"/>
+<item type="id" name = "jc_score_text_state"/>
+<item type="id" name = "jc_score_text_team_name"/>
+<item type="id" name = "jc_score_text_time"/>
+<item type="id" name = "jc_score_text_v_ball"/>
+<item type="id" name = "jc_score_text_vteam"/>
+<item type="id" name = "jc_score_top_layout"/>
+<item type="id" name = "jion_info_check"/>
+<item type="id" name = "jisuan"/>
+<item type="id" name = "join_check_detail_cancel"/>
+<item type="id" name = "join_check_detail_text_all_atm"/>
+<item type="id" name = "join_check_detail_text_bao_atm"/>
+<item type="id" name = "join_check_detail_text_beishu"/>
+<item type="id" name = "join_check_detail_text_betchcode"/>
+<item type="id" name = "join_check_detail_text_id"/>
+<item type="id" name = "join_check_detail_text_kaijiang"/>
+<item type="id" name = "join_check_detail_text_lotno"/>
+<item type="id" name = "join_check_detail_text_prize_atm"/>
+<item type="id" name = "join_check_detail_text_progress"/>
+<item type="id" name = "join_check_detail_text_ren_atm"/>
+<item type="id" name = "join_check_detail_text_result"/>
+<item type="id" name = "join_check_detail_text_start_prize_atm"/>
+<item type="id" name = "join_check_detail_text_time"/>
+<item type="id" name = "join_check_detail_text_zhuma"/>
+<item type="id" name = "join_check_item_text_amt"/>
+<item type="id" name = "join_check_item_text_icon"/>
+<item type="id" name = "join_check_item_text_id"/>
+<item type="id" name = "join_check_item_text_prizeamt"/>
+<item type="id" name = "join_check_item_text_result"/>
+<item type="id" name = "join_check_item_text_time"/>
+<item type="id" name = "join_check_listView_item_jump"/>
+<item type="id" name = "join_check_top_linear"/>
+<item type="id" name = "join_chedan"/>
+<item type="id" name = "join_detail_edit_baodi"/>
+<item type="id" name = "join_detail_edit_rengou"/>
+<item type="id" name = "join_detail_img_buy"/>
+<item type="id" name = "join_detail_img_buy2"/>
+<item type="id" name = "join_detail_img_buy3"/>
+<item type="id" name = "join_detail_img_return"/>
+<item type="id" name = "join_detail_layout_context"/>
+<item type="id" name = "join_detail_linear_record"/>
+<item type="id" name = "join_detail_tex_progress"/>
+<item type="id" name = "join_detail_text_atm"/>
+<item type="id" name = "join_detail_text_baodi_atm"/>
+<item type="id" name = "join_detail_text_baodi_progress"/>
+<item type="id" name = "join_detail_text_baodi_sheng"/>
+<item type="id" name = "join_detail_text_batchcode"/>
+<item type="id" name = "join_detail_text_beishu"/>
+<item type="id" name = "join_detail_text_context"/>
+<item type="id" name = "join_detail_text_describe"/>
+<item type="id" name = "join_detail_text_faqirengou"/>
+<item type="id" name = "join_detail_text_get"/>
+<item type="id" name = "join_detail_text_jinezhong"/>
+<item type="id" name = "join_detail_text_lotno"/>
+<item type="id" name = "join_detail_text_name"/>
+<item type="id" name = "join_detail_text_num"/>
+<item type="id" name = "join_detail_text_person"/>
+<item type="id" name = "join_detail_text_record"/>
+<item type="id" name = "join_detail_text_rengou_amt"/>
+<item type="id" name = "join_detail_text_rengou_atm"/>
+<item type="id" name = "join_detail_text_rengou_min"/>
+<item type="id" name = "join_detail_text_rengou_min_amt"/>
+<item type="id" name = "join_detail_text_rengou_progress"/>
+<item type="id" name = "join_detail_text_rengou_sheng"/>
+<item type="id" name = "join_detail_text_shengyu_atm"/>
+<item type="id" name = "join_detail_text_state"/>
+<item type="id" name = "join_detail_text_time"/>
+<item type="id" name = "join_detail_text_title"/>
+<item type="id" name = "join_detail_text_wincode"/>
+<item type="id" name = "join_detail_text_zuidirengou"/>
+<item type="id" name = "join_ding_btn_buy"/>
+<item type="id" name = "join_ding_edit_buy"/>
+<item type="id" name = "join_ding_edit_num"/>
+<item type="id" name = "join_ding_radio2_edit_buy"/>
+<item type="id" name = "join_ding_radio2_edit_max_buy"/>
+<item type="id" name = "join_ding_radio2_edit_num"/>
+<item type="id" name = "join_ding_text_amt"/>
+<item type="id" name = "join_dingzhi"/>
+<item type="id" name = "join_follow"/>
+<item type="id" name = "join_hall_img_join"/>
+<item type="id" name = "join_hall_img_return"/>
+<item type="id" name = "join_hall_linear_views"/>
+<item type="id" name = "join_hall_listview_img_icon"/>
+<item type="id" name = "join_hall_listview_img_join"/>
+<item type="id" name = "join_hall_listview_text_icon_title"/>
+<item type="id" name = "join_hall_listview_text_issue"/>
+<item type="id" name = "join_hall_listview_text_time"/>
+<item type="id" name = "join_hall_text_title"/>
+<item type="id" name = "join_img_down"/>
+<item type="id" name = "join_img_ok"/>
+<item type="id" name = "join_img_return"/>
+<item type="id" name = "join_info_btn_all_atm"/>
+<item type="id" name = "join_info_btn_atm"/>
+<item type="id" name = "join_info_btn_progress"/>
+<item type="id" name = "join_info_check_linear_top"/>
+<item type="id" name = "join_info_item_layout_center"/>
+<item type="id" name = "join_info_item_layout_left"/>
+<item type="id" name = "join_info_item_layout_right"/>
+<item type="id" name = "join_info_item_linear_star"/>
+<item type="id" name = "join_info_item_text_all_amt"/>
+<item type="id" name = "join_info_item_text_ding"/>
+<item type="id" name = "join_info_item_text_faqiren"/>
+<item type="id" name = "join_info_item_text_name"/>
+<item type="id" name = "join_info_item_text_progress"/>
+<item type="id" name = "join_listview"/>
+<item type="id" name = "join_text_title"/>
+<item type="id" name = "joincheck_query"/>
+<item type="id" name = "joinfollow_query_"/>
+<item type="id" name = "kefulabe"/>
+<item type="id" name = "last_batchcode"/>
+<item type="id" name = "last_batchcode_textlable"/>
+<item type="id" name = "last_batchcode_textlable_bule"/>
+<item type="id" name = "last_batchcode_textlable_red"/>
+<item type="id" name = "latestlottery_textview_issue"/>
+<item type="id" name = "latestlottery_textview_winningnumbers"/>
+<item type="id" name = "latter"/>
+<item type="id" name = "layout"/>
+<item type="id" name = "layout01"/>
+<item type="id" name = "layout1_top"/>
+<item type="id" name = "layout2_top"/>
+<item type="id" name = "layout3_top"/>
+<item type="id" name = "layout4_top"/>
+<item type="id" name = "layout_account"/>
+<item type="id" name = "layout_football_issue"/>
+<item type="id" name = "layout_football_time"/>
+<item type="id" name = "layout_gift_img_return"/>
+<item type="id" name = "layout_gift_text_title"/>
+<item type="id" name = "layout_join_edit_baodi"/>
+<item type="id" name = "layout_join_edit_description"/>
+<item type="id" name = "layout_join_edit_gendan"/>
+<item type="id" name = "layout_join_edit_rengou"/>
+<item type="id" name = "layout_join_img_return"/>
+<item type="id" name = "layout_join_start_spinner"/>
+<item type="id" name = "layout_join_text_all_atm"/>
+<item type="id" name = "layout_join_text_baodi"/>
+<item type="id" name = "layout_join_text_beishu"/>
+<item type="id" name = "layout_join_text_rengou"/>
+<item type="id" name = "layout_join_text_title"/>
+<item type="id" name = "layout_join_text_zhushu"/>
+<item type="id" name = "layout_main_img_return"/>
+<item type="id" name = "layout_main_text_issue"/>
+<item type="id" name = "layout_main_text_time"/>
+<item type="id" name = "layout_main_text_timessc"/>
+<item type="id" name = "layout_main_text_title"/>
+<item type="id" name = "layout_main_text_title_one"/>
+<item type="id" name = "layout_nav_icon_title"/>
+<item type="id" name = "layout_nav_item"/>
+<item type="id" name = "layout_text_amt"/>
+<item type="id" name = "layout_text_name"/>
+<item type="id" name = "layout_top"/>
+<item type="id" name = "layout_usercenter_img_return"/>
+<item type="id" name = "leirong"/>
+<item type="id" name = "lesscontent"/>
+<item type="id" name = "letterview"/>
+<item type="id" name = "linearLayout"/>
+<item type="id" name = "linearLayout1"/>
+<item type="id" name = "linearLayout2"/>
+<item type="id" name = "linearLayout3"/>
+<item type="id" name = "linearLayout4"/>
+<item type="id" name = "linearLayout_rangqiu"/>
+<item type="id" name = "linearlayout_usercenter_beishu"/>
+<item type="id" name = "linearlayout_usercenter_confirmnewpwd"/>
+<item type="id" name = "linearlayout_usercenter_newpwd"/>
+<item type="id" name = "linearlayout_usercenter_originalpwd"/>
+<item type="id" name = "llImage"/>
+<item type="id" name = "ll_text_limit_unit"/>
+<item type="id" name = "login_button"/>
+<item type="id" name = "loginto_zhifubao"/>
+<item type="id" name = "logintoqq"/>
+<item type="id" name = "logintosina"/>
+<item type="id" name = "lotno_alarm_setting_ssq"/>
+<item type="id" name = "lotno_alarm_toggle_twentyfive"/>
+<item type="id" name = "lotno_alarm_togglebutton_dlt"/>
+<item type="id" name = "lotno_alarm_togglebutton_fc3d"/>
+<item type="id" name = "lotno_alarm_togglebutton_pl3"/>
+<item type="id" name = "lotno_alarm_togglebutton_pl5"/>
+<item type="id" name = "lotno_alarm_togglebutton_qlc"/>
+<item type="id" name = "lotno_alarm_togglebutton_qxc"/>
+<item type="id" name = "lotno_alarm_togglebutton_ssq"/>
+<item type="id" name = "lotnoalarm_layout_time"/>
+<item type="id" name = "lotnoalarm_textview_time"/>
+<item type="id" name = "lotnoalarm_togglebutton_openvoice"/>
+<item type="id" name = "lq_rqspf_dialog_textview"/>
+<item type="id" name = "lq_sfc_dialog_check01"/>
+<item type="id" name = "lq_sfc_dialog_check010"/>
+<item type="id" name = "lq_sfc_dialog_check011"/>
+<item type="id" name = "lq_sfc_dialog_check012"/>
+<item type="id" name = "lq_sfc_dialog_check013"/>
+<item type="id" name = "lq_sfc_dialog_check014"/>
+<item type="id" name = "lq_sfc_dialog_check015"/>
+<item type="id" name = "lq_sfc_dialog_check016"/>
+<item type="id" name = "lq_sfc_dialog_check017"/>
+<item type="id" name = "lq_sfc_dialog_check018"/>
+<item type="id" name = "lq_sfc_dialog_check019"/>
+<item type="id" name = "lq_sfc_dialog_check02"/>
+<item type="id" name = "lq_sfc_dialog_check020"/>
+<item type="id" name = "lq_sfc_dialog_check021"/>
+<item type="id" name = "lq_sfc_dialog_check022"/>
+<item type="id" name = "lq_sfc_dialog_check023"/>
+<item type="id" name = "lq_sfc_dialog_check024"/>
+<item type="id" name = "lq_sfc_dialog_check025"/>
+<item type="id" name = "lq_sfc_dialog_check026"/>
+<item type="id" name = "lq_sfc_dialog_check027"/>
+<item type="id" name = "lq_sfc_dialog_check028"/>
+<item type="id" name = "lq_sfc_dialog_check029"/>
+<item type="id" name = "lq_sfc_dialog_check03"/>
+<item type="id" name = "lq_sfc_dialog_check030"/>
+<item type="id" name = "lq_sfc_dialog_check031"/>
+<item type="id" name = "lq_sfc_dialog_check032"/>
+<item type="id" name = "lq_sfc_dialog_check033"/>
+<item type="id" name = "lq_sfc_dialog_check034"/>
+<item type="id" name = "lq_sfc_dialog_check035"/>
+<item type="id" name = "lq_sfc_dialog_check036"/>
+<item type="id" name = "lq_sfc_dialog_check037"/>
+<item type="id" name = "lq_sfc_dialog_check038"/>
+<item type="id" name = "lq_sfc_dialog_check039"/>
+<item type="id" name = "lq_sfc_dialog_check04"/>
+<item type="id" name = "lq_sfc_dialog_check040"/>
+<item type="id" name = "lq_sfc_dialog_check041"/>
+<item type="id" name = "lq_sfc_dialog_check042"/>
+<item type="id" name = "lq_sfc_dialog_check043"/>
+<item type="id" name = "lq_sfc_dialog_check044"/>
+<item type="id" name = "lq_sfc_dialog_check045"/>
+<item type="id" name = "lq_sfc_dialog_check046"/>
+<item type="id" name = "lq_sfc_dialog_check047"/>
+<item type="id" name = "lq_sfc_dialog_check048"/>
+<item type="id" name = "lq_sfc_dialog_check049"/>
+<item type="id" name = "lq_sfc_dialog_check05"/>
+<item type="id" name = "lq_sfc_dialog_check050"/>
+<item type="id" name = "lq_sfc_dialog_check051"/>
+<item type="id" name = "lq_sfc_dialog_check06"/>
+<item type="id" name = "lq_sfc_dialog_check07"/>
+<item type="id" name = "lq_sfc_dialog_check08"/>
+<item type="id" name = "lq_sfc_dialog_check09"/>
+<item type="id" name = "lq_sfc_dialog_rangqiu1"/>
+<item type="id" name = "lq_sfc_dialog_rangqiu2"/>
+<item type="id" name = "lq_sfc_dialog_rangqiu3"/>
+<item type="id" name = "main_buy_relat_issue"/>
+<item type="id" name = "main_buy_title"/>
+<item type="id" name = "main_score_layout_bottom"/>
+<item type="id" name = "main_score_layout_center"/>
+<item type="id" name = "main_score_layout_top"/>
+<item type="id" name = "mainpage_10_sign"/>
+<item type="id" name = "mainpage_10_text"/>
+<item type="id" name = "mainpage_11_sign"/>
+<item type="id" name = "mainpage_11_text"/>
+<item type="id" name = "mainpage_11x5_sign"/>
+<item type="id" name = "mainpage_11x5_text"/>
+<item type="id" name = "mainpage_12_sign"/>
+<item type="id" name = "mainpage_12_text"/>
+<item type="id" name = "mainpage_13_sign"/>
+<item type="id" name = "mainpage_13_text"/>
+<item type="id" name = "mainpage_14_sign"/>
+<item type="id" name = "mainpage_14_text"/>
+<item type="id" name = "mainpage_15_sign"/>
+<item type="id" name = "mainpage_15_text"/>
+<item type="id" name = "mainpage_chongzhi"/>
+<item type="id" name = "mainpage_dingyue"/>
+<item type="id" name = "mainpage_dlt_sign"/>
+<item type="id" name = "mainpage_dlt_text"/>
+<item type="id" name = "mainpage_fc3d_sign"/>
+<item type="id" name = "mainpage_fc3d_text"/>
+<item type="id" name = "mainpage_help"/>
+<item type="id" name = "mainpage_hemai_sign"/>
+<item type="id" name = "mainpage_hemai_text"/>
+<item type="id" name = "mainpage_luck_sign"/>
+<item type="id" name = "mainpage_pl3_sign"/>
+<item type="id" name = "mainpage_pl3_text"/>
+<item type="id" name = "mainpage_qlc_sign"/>
+<item type="id" name = "mainpage_qlc_text"/>
+<item type="id" name = "mainpage_ssc_sign"/>
+<item type="id" name = "mainpage_ssc_text"/>
+<item type="id" name = "mainpage_ssq_sign"/>
+<item type="id" name = "mainpage_ssq_text"/>
+<item type="id" name = "mainpage_usercenter"/>
+<item type="id" name = "mainpage_zucai_sign"/>
+<item type="id" name = "mainpage_zucai_text"/>
+<item type="id" name = "mainpagetext1"/>
+<item type="id" name = "mainpagetext2"/>
+<item type="id" name = "mainpagetext3"/>
+<item type="id" name = "message"/>
+<item type="id" name = "mobilecontent"/>
+<item type="id" name = "moneytext"/>
+<item type="id" name = "more_settings_progamme_ssq_on_off"/>
+<item type="id" name = "myView"/>
+<item type="id" name = "my_latter_delete_msg_button"/>
+<item type="id" name = "my_latter_read_msg_button"/>
+<item type="id" name = "my_latter_select_all_button"/>
+<item type="id" name = "my_message_delete_msg_button"/>
+<item type="id" name = "my_message_edit_button"/>
+<item type="id" name = "my_message_select_all_button"/>
+<item type="id" name = "nickcontent"/>
+<item type="id" name = "nickname"/>
+<item type="id" name = "no_game_prompt"/>
+<item type="id" name = "no_game_prompt_imageview"/>
+<item type="id" name = "no_game_prompt_textview"/>
+<item type="id" name = "notice_ball_blue_text_code_one"/>
+<item type="id" name = "notice_ball_blue_text_code_two"/>
+<item type="id" name = "notice_ball_btn_touzhu"/>
+<item type="id" name = "notice_ball_main_linear"/>
+<item type="id" name = "notice_ball_red_text_code"/>
+<item type="id" name = "notice_ball_red_text_code_one"/>
+<item type="id" name = "notice_ball_red_text_code_two"/>
+<item type="id" name = "notice_ball_relative_bottom"/>
+<item type="id" name = "notice_ball_select_linear"/>
+<item type="id" name = "notice_ball_text_code"/>
+<item type="id" name = "notice_ball_three_text_code_one"/>
+<item type="id" name = "notice_ball_three_text_code_two"/>
+<item type="id" name = "notice_beijing_single_item_odds"/>
+<item type="id" name = "notice_beijing_single_item_play"/>
+<item type="id" name = "notice_beijing_single_main_batch_code"/>
+<item type="id" name = "notice_detail_2"/>
+<item type="id" name = "notice_detail_linear10"/>
+<item type="id" name = "notice_detail_linear11"/>
+<item type="id" name = "notice_detail_linear12"/>
+<item type="id" name = "notice_detail_linear13"/>
+<item type="id" name = "notice_detail_linear14"/>
+<item type="id" name = "notice_detail_linear15"/>
+<item type="id" name = "notice_detail_linear16"/>
+<item type="id" name = "notice_detail_linear8"/>
+<item type="id" name = "notice_detail_linear9"/>
+<item type="id" name = "notice_detail_title"/>
+<item type="id" name = "notice_layout"/>
+<item type="id" name = "notice_other_flipper"/>
+<item type="id" name = "notice_other_title"/>
+<item type="id" name = "notice_pirzes_single_specific_ball_linearlayout"/>
+<item type="id" name = "notice_pirzes_single_specific_finaldateandmoneysum_linearlayout"/>
+<item type="id" name = "notice_pirzes_single_specific_noticedateandissue_linearlayout"/>
+<item type="id" name = "notice_prezes_lotteryNameId"/>
+<item type="id" name = "notice_prize_getmore_text"/>
+<item type="id" name = "notice_prizes"/>
+<item type="id" name = "notice_prizes_dateAndTimeId"/>
+<item type="id" name = "notice_prizes_issueId"/>
+<item type="id" name = "notice_prizes_listview"/>
+<item type="id" name = "notice_prizes_main_btn_jc"/>
+<item type="id" name = "notice_prizes_main_btn_score"/>
+<item type="id" name = "notice_prizes_main_title"/>
+<item type="id" name = "notice_prizes_relative"/>
+<item type="id" name = "notice_prizes_single_specific_finalPrizesDate_id"/>
+<item type="id" name = "notice_prizes_single_specific_img"/>
+<item type="id" name = "notice_prizes_single_specific_issue_id"/>
+<item type="id" name = "notice_prizes_single_specific_listview"/>
+<item type="id" name = "notice_prizes_single_specific_main_relative01"/>
+<item type="id" name = "notice_prizes_single_specific_main_returnID"/>
+<item type="id" name = "notice_prizes_single_specific_noticedDate_id"/>
+<item type="id" name = "notice_prizes_single_specific_title_id"/>
+<item type="id" name = "notice_prizes_single_specific_totalSum_id"/>
+<item type="id" name = "notice_return_main"/>
+<item type="id" name = "noticehistroylist"/>
+<item type="id" name = "notiece_tablelayout"/>
+<item type="id" name = "notification_icon"/>
+<item type="id" name = "notification_title"/>
+<item type="id" name = "ok"/>
+<item type="id" name = "onedown_button_spinner"/>
+<item type="id" name = "orderdetail_hemai"/>
+<item type="id" name = "orderdetail_tab_host"/>
+<item type="id" name = "orderdetail_text_title"/>
+<item type="id" name = "orderdetail_touzhu"/>
+<item type="id" name = "orderdetail_zhuihao"/>
+<item type="id" name = "orderdetailzengsong"/>
+<item type="id" name = "password_edit"/>
+<item type="id" name = "password_view"/>
+<item type="id" name = "phoneNum_edit"/>
+<item type="id" name = "phoneNum_view"/>
+<item type="id" name = "phonebindim"/>
+<item type="id" name = "phonebindtx"/>
+<item type="id" name = "phoneofkefu"/>
+<item type="id" name = "pointscontent"/>
+<item type="id" name = "prizeLook"/>
+<item type="id" name = "prizeRank_id"/>
+<item type="id" name = "prizeRank_month"/>
+<item type="id" name = "prizeRank_name"/>
+<item type="id" name = "prizeRank_number"/>
+<item type="id" name = "prizeRank_total"/>
+<item type="id" name = "prizeRank_week"/>
+<item type="id" name = "prizedetail_batchcode"/>
+<item type="id" name = "prizedetail_numball"/>
+<item type="id" name = "prizedetail_prizeData"/>
+<item type="id" name = "prizedetail_prizemoney1"/>
+<item type="id" name = "prizedetail_prizemoney10"/>
+<item type="id" name = "prizedetail_prizemoney11"/>
+<item type="id" name = "prizedetail_prizemoney12"/>
+<item type="id" name = "prizedetail_prizemoney13"/>
+<item type="id" name = "prizedetail_prizemoney14"/>
+<item type="id" name = "prizedetail_prizemoney15"/>
+<item type="id" name = "prizedetail_prizemoney16"/>
+<item type="id" name = "prizedetail_prizemoney2"/>
+<item type="id" name = "prizedetail_prizemoney3"/>
+<item type="id" name = "prizedetail_prizemoney4"/>
+<item type="id" name = "prizedetail_prizemoney5"/>
+<item type="id" name = "prizedetail_prizemoney6"/>
+<item type="id" name = "prizedetail_prizemoney7"/>
+<item type="id" name = "prizedetail_prizemoney8"/>
+<item type="id" name = "prizedetail_prizemoney9"/>
+<item type="id" name = "prizedetail_prizename1"/>
+<item type="id" name = "prizedetail_prizename10"/>
+<item type="id" name = "prizedetail_prizename11"/>
+<item type="id" name = "prizedetail_prizename12"/>
+<item type="id" name = "prizedetail_prizename13"/>
+<item type="id" name = "prizedetail_prizename14"/>
+<item type="id" name = "prizedetail_prizename15"/>
+<item type="id" name = "prizedetail_prizename16"/>
+<item type="id" name = "prizedetail_prizename2"/>
+<item type="id" name = "prizedetail_prizename3"/>
+<item type="id" name = "prizedetail_prizename4"/>
+<item type="id" name = "prizedetail_prizename5"/>
+<item type="id" name = "prizedetail_prizename6"/>
+<item type="id" name = "prizedetail_prizename7"/>
+<item type="id" name = "prizedetail_prizename8"/>
+<item type="id" name = "prizedetail_prizename9"/>
+<item type="id" name = "prizedetail_prizenum1"/>
+<item type="id" name = "prizedetail_prizenum10"/>
+<item type="id" name = "prizedetail_prizenum11"/>
+<item type="id" name = "prizedetail_prizenum12"/>
+<item type="id" name = "prizedetail_prizenum13"/>
+<item type="id" name = "prizedetail_prizenum14"/>
+<item type="id" name = "prizedetail_prizenum15"/>
+<item type="id" name = "prizedetail_prizenum16"/>
+<item type="id" name = "prizedetail_prizenum2"/>
+<item type="id" name = "prizedetail_prizenum3"/>
+<item type="id" name = "prizedetail_prizenum4"/>
+<item type="id" name = "prizedetail_prizenum5"/>
+<item type="id" name = "prizedetail_prizenum6"/>
+<item type="id" name = "prizedetail_prizenum7"/>
+<item type="id" name = "prizedetail_prizenum8"/>
+<item type="id" name = "prizedetail_prizenum9"/>
+<item type="id" name = "prizedetail_prizepoolmoney"/>
+<item type="id" name = "prizedetail_totalsellmoney"/>
+<item type="id" name = "programme_settings"/>
+<item type="id" name = "radio0"/>
+<item type="id" name = "radio1"/>
+<item type="id" name = "radio2"/>
+<item type="id" name = "radio3"/>
+<item type="id" name = "radio4"/>
+<item type="id" name = "radio5"/>
+<item type="id" name = "radio6"/>
+<item type="id" name = "radio7"/>
+<item type="id" name = "radio8"/>
+<item type="id" name = "radioGroup"/>
+<item type="id" name = "radio_new0"/>
+<item type="id" name = "radio_new4"/>
+<item type="id" name = "radio_one_layout"/>
+<item type="id" name = "radio_two_layout"/>
+<item type="id" name = "receiverandsend_email_button"/>
+<item type="id" name = "receiverandsend_email_edittext"/>
+<item type="id" name = "refresh_code"/>
+<item type="id" name = "regist_no"/>
+<item type="id" name = "register_button_"/>
+<item type="id" name = "register_confirm_password_edit"/>
+<item type="id" name = "register_confirm_password_view"/>
+<item type="id" name = "register_free_info_view"/>
+<item type="id" name = "register_id_num_edit"/>
+<item type="id" name = "register_id_num_view"/>
+<item type="id" name = "register_name_edit"/>
+<item type="id" name = "register_name_view"/>
+<item type="id" name = "register_password_edit"/>
+<item type="id" name = "register_password_view"/>
+<item type="id" name = "register_refer_info_view"/>
+<item type="id" name = "register_refer_info_view2"/>
+<item type="id" name = "register_referrer_edit"/>
+<item type="id" name = "register_referrer_view"/>
+<item type="id" name = "register_username_edit"/>
+<item type="id" name = "register_username_view"/>
+<item type="id" name = "relativeLayout1"/>
+<item type="id" name = "remember_password_checkBox"/>
+<item type="id" name = "remind_forgetPasOrBind"/>
+<item type="id" name = "rengou"/>
+<item type="id" name = "rengoushezhi"/>
+<item type="id" name = "rengoutype"/>
+<item type="id" name = "rlTitle"/>
+<item type="id" name = "rlTotal"/>
+<item type="id" name = "ruyicai_beauty_logo"/>
+<item type="id" name = "ruyicai_icon_text"/>
+<item type="id" name = "ruyihelper_icon_layout_text1"/>
+<item type="id" name = "ruyihelper_icon_layout_text2"/>
+<item type="id" name = "ruyihelper_icon_linerlayout"/>
+<item type="id" name = "ruyihelper_icon_text"/>
+<item type="id" name = "ruyihelper_iicon"/>
+<item type="id" name = "ruyihelper_listview_relative"/>
+<item type="id" name = "ruyihelper_listview_ruyihelper_id"/>
+<item type="id" name = "ruyipackage_text"/>
+<item type="id" name = "ruyipackage_title"/>
+<item type="id" name = "ruyipackage_webview"/>
+<item type="id" name = "ruyizhushou_btn_return"/>
+<item type="id" name = "scoredicribtion"/>
+<item type="id" name = "scroechange"/>
+<item type="id" name = "scrollView1"/>
+<item type="id" name = "servicer_reply"/>
+<item type="id" name = "share"/>
+<item type="id" name = "sharecontent"/>
+<item type="id" name = "shibailayout"/>
+<item type="id" name = "shibaitext"/>
+<item type="id" name = "shouye_usermessage_linear"/>
+<item type="id" name = "shouyibeishuEditext"/>
+<item type="id" name = "shouyibeishutext"/>
+<item type="id" name = "shouyiitem"/>
+<item type="id" name = "shouyilist"/>
+<item type="id" name = "shouyiqianEditext"/>
+<item type="id" name = "shouyiqihao"/>
+<item type="id" name = "shouyiqihaotext"/>
+<item type="id" name = "shouyiqishuEditext"/>
+<item type="id" name = "shouyiqishutext"/>
+<item type="id" name = "shouyiquancheng"/>
+<item type="id" name = "shouyiquanchengEditext"/>
+<item type="id" name = "shouyizhihao"/>
+<item type="id" name = "shouyizhihaozhuma"/>
+<item type="id" name = "shouyizhihou"/>
+<item type="id" name = "shouyizhihouEditext"/>
+<item type="id" name = "shouyizhihouEditext1"/>
+<item type="id" name = "shouyizhuma"/>
+<item type="id" name = "simulate_button_touzhu"/>
+<item type="id" name = "simulate_selectnumber_view"/>
+<item type="id" name = "simulate_textview_selectednumbers"/>
+<item type="id" name = "sroremoney"/>
+<item type="id" name = "sscchildtype"/>
+<item type="id" name = "ssq_bettingsuccess_amt"/>
+<item type="id" name = "ssq_bettingsuccess_betdetail"/>
+<item type="id" name = "ssq_bettingsuccess_lottype"/>
+<item type="id" name = "ssq_bettingsuccess_prompt"/>
+<item type="id" name = "ssq_bettingsuccess_returnbetting"/>
+<item type="id" name = "ssq_bettingsuccess_sendtoemail"/>
+<item type="id" name = "tabLinear"/>
+<item type="id" name = "tab_host"/>
+<item type="id" name = "tableLayout1"/>
+<item type="id" name = "tableRow_goucaitixing"/>
+<item type="id" name = "tableRow_kaijiangdingyue"/>
+<item type="id" name = "tableRow_sharetomsg"/>
+<item type="id" name = "tableRow_sharetorenren"/>
+<item type="id" name = "tableRow_sharetosina"/>
+<item type="id" name = "tableRow_sharetotecent"/>
+<item type="id" name = "tableRow_weibobangding"/>
+<item type="id" name = "teamrank"/>
+<item type="id" name = "text1"/>
+<item type="id" name = "textView1"/>
+<item type="id" name = "textView2"/>
+<item type="id" name = "textView3"/>
+<item type="id" name = "tijiao"/>
+<item type="id" name = "title"/>
+<item type="id" name = "titletext"/>
+<item type="id" name = "titletext_football"/>
+<item type="id" name = "tobet"/>
+<item type="id" name = "touzhu_succe_button_share"/>
+<item type="id" name = "touzhu_succe_button_sure"/>
+<item type="id" name = "touzhu_succe_img"/>
+<item type="id" name = "touzhu_succe_text"/>
+<item type="id" name = "track_detail_img_cannle"/>
+<item type="id" name = "track_detail_iswinafter"/>
+<item type="id" name = "track_detail_text_atm_yi"/>
+<item type="id" name = "track_detail_text_atm_zong"/>
+<item type="id" name = "track_detail_text_content"/>
+<item type="id" name = "track_detail_text_id"/>
+<item type="id" name = "track_detail_text_lotno"/>
+<item type="id" name = "track_detail_text_qishu"/>
+<item type="id" name = "track_detail_text_qishu_che"/>
+<item type="id" name = "track_detail_text_qishu_startno"/>
+<item type="id" name = "track_detail_text_qishu_yi"/>
+<item type="id" name = "track_detail_text_starttime"/>
+<item type="id" name = "track_detail_text_state"/>
+<item type="id" name = "trackquery_cancle"/>
+<item type="id" name = "tv_quan"/>
+<item type="id" name = "tv_text_limit"/>
+<item type="id" name = "tv_warming"/>
+<item type="id" name = "twodown_button_spinner"/>
+<item type="id" name = "uesrpoints"/>
+<item type="id" name = "update"/>
+<item type="id" name = "updouble"/>
+<item type="id" name = "updouble_textview"/>
+<item type="id" name = "upsingle"/>
+<item type="id" name = "upsingle_textview"/>
+<item type="id" name = "userExit"/>
+<item type="id" name = "user_center_account_detail_trading_date_id"/>
+<item type="id" name = "user_center_account_detail_trading_mode_id"/>
+<item type="id" name = "user_center_account_detail_yu_e_id"/>
+<item type="id" name = "user_center_track_number_text"/>
+<item type="id" name = "user_register_check"/>
+<item type="id" name = "user_register_check_card_id"/>
+<item type="id" name = "user_register_check_protocol"/>
+<item type="id" name = "user_register_check_referrer"/>
+<item type="id" name = "user_register_linear_card_id"/>
+<item type="id" name = "user_register_linear_referrer"/>
+<item type="id" name = "user_register_text_protocol"/>
+<item type="id" name = "usercaipiaolist"/>
+<item type="id" name = "usercenterAccountdetailContent_all"/>
+<item type="id" name = "usercenterAccountdetailContent_cz"/>
+<item type="id" name = "usercenterAccountdetailContent_pj"/>
+<item type="id" name = "usercenterAccountdetailContent_tx"/>
+<item type="id" name = "usercenterAccountdetailContent_zf"/>
+<item type="id" name = "usercenterContent"/>
+<item type="id" name = "usercenter_accountdetail_img_return"/>
+<item type="id" name = "usercenter_accountdetail_showbalancetext"/>
+<item type="id" name = "usercenter_balancequery_back"/>
+<item type="id" name = "usercenter_balancequery_ok"/>
+<item type="id" name = "usercenter_balancequery_title"/>
+<item type="id" name = "usercenter_bindID_back"/>
+<item type="id" name = "usercenter_bindID_bind"/>
+<item type="id" name = "usercenter_bindedcertidnum"/>
+<item type="id" name = "usercenter_bindedemail"/>
+<item type="id" name = "usercenter_bindedemail_back"/>
+<item type="id" name = "usercenter_bindedemail_unbind"/>
+<item type="id" name = "usercenter_bindedidremind_back"/>
+<item type="id" name = "usercenter_bindedname"/>
+<item type="id" name = "usercenter_bindemail_back"/>
+<item type="id" name = "usercenter_bindemail_edittext"/>
+<item type="id" name = "usercenter_bindemail_ok"/>
+<item type="id" name = "usercenter_bindemailinfo_title"/>
+<item type="id" name = "usercenter_bindphone_back"/>
+<item type="id" name = "usercenter_bindphone_ok"/>
+<item type="id" name = "usercenter_bindphonelabel"/>
+<item type="id" name = "usercenter_bindphoneorid_dialogtitle"/>
+<item type="id" name = "usercenter_bindphonetitle"/>
+<item type="id" name = "usercenter_btn_return"/>
+<item type="id" name = "usercenter_buyagain"/>
+<item type="id" name = "usercenter_changepwd_back"/>
+<item type="id" name = "usercenter_changepwd_content"/>
+<item type="id" name = "usercenter_changepwd_submit"/>
+<item type="id" name = "usercenter_edittext_beishuContext"/>
+<item type="id" name = "usercenter_edittext_bindphoneContext"/>
+<item type="id" name = "usercenter_edittext_certid"/>
+<item type="id" name = "usercenter_edittext_confirmnewpwd"/>
+<item type="id" name = "usercenter_edittext_name"/>
+<item type="id" name = "usercenter_edittext_newpwd"/>
+<item type="id" name = "usercenter_edittext_originalpwd"/>
+<item type="id" name = "usercenter_feedback_latter_edit_layout"/>
+<item type="id" name = "usercenter_feedback_list"/>
+<item type="id" name = "usercenter_feedback_message_edit_layout"/>
+<item type="id" name = "usercenter_feedback_submitbtn"/>
+<item type="id" name = "usercenter_feedback_submitbtn_layout"/>
+<item type="id" name = "usercenter_giftquery_amount"/>
+<item type="id" name = "usercenter_giftquery_img_return"/>
+<item type="id" name = "usercenter_giftquery_leftone"/>
+<item type="id" name = "usercenter_giftquery_leftone_recive"/>
+<item type="id" name = "usercenter_giftquery_leftthree"/>
+<item type="id" name = "usercenter_giftquery_lefttwo"/>
+<item type="id" name = "usercenter_giftquery_lookdetail"/>
+<item type="id" name = "usercenter_giftquery_recive_state"/>
+<item type="id" name = "usercenter_item_lefticon"/>
+<item type="id" name = "usercenter_item_linerlayout"/>
+<item type="id" name = "usercenter_item_righticon"/>
+<item type="id" name = "usercenter_item_text"/>
+<item type="id" name = "usercenter_listview_id"/>
+<item type="id" name = "usercenter_listview_id_two"/>
+<item type="id" name = "usercenter_listview_manageaccount"/>
+<item type="id" name = "usercenter_listview_queryinfo"/>
+<item type="id" name = "usercenter_login"/>
+<item type="id" name = "usercenter_mainlayou_text_title"/>
+<item type="id" name = "usercenter_querydetail"/>
+<item type="id" name = "usercenter_regiset"/>
+<item type="id" name = "usercenter_remind_text"/>
+<item type="id" name = "usercenter_scrore_back"/>
+<item type="id" name = "usercenter_tab_host"/>
+<item type="id" name = "usercenter_textview_originalpwd"/>
+<item type="id" name = "usercenter_trackquery_cancle"/>
+<item type="id" name = "usercenter_trackquery_item"/>
+<item type="id" name = "usercenter_trackquery_lookdetail"/>
+<item type="id" name = "usercenter_trackquery_lotteryname"/>
+<item type="id" name = "usercenter_trackquery_money"/>
+<item type="id" name = "usercenter_trackquery_ordertime"/>
+<item type="id" name = "usercenter_trackquery_tracknum"/>
+<item type="id" name = "usercenter_trackquery_trackstate"/>
+<item type="id" name = "usercenter_winprize_buyagain"/>
+<item type="id" name = "usercenter_winprize_item"/>
+<item type="id" name = "usercenter_winprize_linear"/>
+<item type="id" name = "usercenter_winprize_lotteryname"/>
+<item type="id" name = "usercenter_winprize_ordertime"/>
+<item type="id" name = "usercenter_winprize_paymoney"/>
+<item type="id" name = "usercenter_winprize_predictmoney"/>
+<item type="id" name = "usercenter_winprize_prizemoney"/>
+<item type="id" name = "usercenter_winprize_prizeqihao"/>
+<item type="id" name = "usercenter_winprize_querydetail"/>
+<item type="id" name = "usercentergiftquery_gift"/>
+<item type="id" name = "usercentergiftquery_gifted"/>
+<item type="id" name = "usercenterlogin"/>
+<item type="id" name = "usercenterregister"/>
+<item type="id" name = "usercenterscroe_zfb"/>
+<item type="id" name = "usercenterscroechange"/>
+<item type="id" name = "usercenterscroedetail"/>
+<item type="id" name = "usercentertable"/>
+<item type="id" name = "userillustrations"/>
+<item type="id" name = "userlayout01"/>
+<item type="id" name = "userless"/>
+<item type="id" name = "usermobile"/>
+<item type="id" name = "usermoneylist"/>
+<item type="id" name = "userscore_webview"/>
+<item type="id" name = "userscroe_top"/>
+<item type="id" name = "userscroe_tophuoqu"/>
+<item type="id" name = "userscroe_topscroe"/>
+<item type="id" name = "userscroe_toptitle"/>
+<item type="id" name = "usersetlist"/>
+<item type="id" name = "useryue"/>
+<item type="id" name = "viewpager"/>
+<item type="id" name = "vs_layout"/>
+<item type="id" name = "webview"/>
+<item type="id" name = "withdraw_drawbalance"/>
+<item type="id" name = "yonghufankui"/>
+<item type="id" name = "zc_play_change_button_14sfc"/>
+<item type="id" name = "zc_play_change_button_4jq"/>
+<item type="id" name = "zc_play_change_button_6cb"/>
+<item type="id" name = "zc_play_change_button_rx9"/>
+<item type="id" name = "zc_play_change_layout"/>
+<item type="id" name = "zfb_recharge_name"/>
+<item type="id" name = "zfb_recharge_password"/>
+<item type="id" name = "zfb_recharge_value"/>
+<item type="id" name = "zfb_text_alert"/>
+<item type="id" name = "zfb_text_title"/>
+<item type="id" name = "zhuiqi"/>
+<item type="id" name = "zhuiqishezhi"/>
 
-    <item name="HorizontalScrollView01" type="id"/>
-    <item name="LinearLayout0000" type="id"/>
-    <item name="LinearLayout01" type="id"/>
-    <item name="LinearLayout0111" type="id"/>
-    <item name="LinearLayout02" type="id"/>
-    <item name="LinearLayout03" type="id"/>
-    <item name="LinearLayout07" type="id"/>
-    <item name="LinearLayout08" type="id"/>
-    <item name="LinearLayout10" type="id"/>
-    <item name="LinearLayout_four" type="id"/>
-    <item name="LinearLayout_one" type="id"/>
-    <item name="LinearLayout_six" type="id"/>
-    <item name="LinearLayout_third" type="id"/>
-    <item name="LinearLayout_two" type="id"/>
-    <item name="Relative" type="id"/>
-    <item name="RelativeLayout01" type="id"/>
-    <item name="RelativeLayout02" type="id"/>
-    <item name="ScrollView01" type="id"/>
-    <item name="TextView01" type="id"/>
-    <item name="TextView02" type="id"/>
-    <item name="TextView03" type="id"/>
-    <item name="TextView04" type="id"/>
-    <item name="TextView07" type="id"/>
-    <item name="about" type="id"/>
-    <item name="accountTitle_text" type="id"/>
-    <item name="account_list_main_text" type="id"/>
-    <item name="account_phone_title" type="id"/>
-    <item name="account_rechange_listview" type="id"/>
-    <item name="account_recharge_iicon" type="id"/>
-    <item name="account_recharge_listview_linerlayout" type="id"/>
-    <item name="account_recharge_listview_text" type="id"/>
-    <item name="account_recharge_type" type="id"/>
-    <item name="account_recharge_user_number" type="id"/>
-    <item name="account_webView" type="id"/>
-    <item name="account_withdraw_detail_amount" type="id"/>
-    <item name="account_withdraw_detail_imageview_checktime" type="id"/>
-    <item name="account_withdraw_detail_imageview_createtime" type="id"/>
-    <item name="account_withdraw_detail_imageview_finishtime" type="id"/>
-    <item name="account_withdraw_detail_imageview_remittime" type="id"/>
-    <item name="account_withdraw_detail_order_state" type="id"/>
-    <item name="account_withdraw_detail_remark" type="id"/>
-    <item name="account_withdraw_detail_textview_checktime" type="id"/>
-    <item name="account_withdraw_detail_textview_createtime" type="id"/>
-    <item name="account_withdraw_detail_textview_finishtime" type="id"/>
-    <item name="account_withdraw_detail_textview_remittime" type="id"/>
-    <item name="account_withdraw_detail_withdraw_mode" type="id"/>
-    <item name="account_withdraw_number" type="id"/>
-    <item name="aciton_content_text_content" type="id"/>
-    <item name="aciton_content_text_title" type="id"/>
-    <item name="action_center_list_item_img" type="id"/>
-    <item name="action_center_list_item_text_title1" type="id"/>
-    <item name="action_center_list_item_text_title2" type="id"/>
-    <item name="action_center_list_item_text_title3" type="id"/>
-    <item name="alert_dialog_jc_betnum" type="id"/>
-    <item name="alert_dialog_jc_gamenum" type="id"/>
-    <item name="alert_dialog_jc_layout_group" type="id"/>
-    <item name="alert_dialog_jc_lotnotype" type="id"/>
-    <item name="alert_dialog_jc_money" type="id"/>
-    <item name="alert_dialog_jc_predictmoney" type="id"/>
-    <item name="alert_dialog_shouyi_check_prize" type="id"/>
-    <item name="alert_dialog_touzhu_alert_scheme" type="id"/>
-    <item name="alert_dialog_touzhu_alert_schemedetail" type="id"/>
-    <item name="alert_dialog_touzhu_alert_textview_schemedetail" type="id"/>
-    <item name="alert_dialog_touzhu_btn_look_code" type="id"/>
-    <item name="alert_dialog_touzhu_button_cancel" type="id"/>
-    <item name="alert_dialog_touzhu_button_ok" type="id"/>
-    <item name="alert_dialog_touzhu_check_prize" type="id"/>
-    <item name="alert_dialog_touzhu_linear_qihao_beishu" type="id"/>
-    <item name="alert_dialog_touzhu_relative" type="id"/>
-    <item name="alert_dialog_touzhu_text_alert" type="id"/>
-    <item name="alert_dialog_touzhu_text_fangshi" type="id"/>
-    <item name="alert_dialog_touzhu_text_one" type="id"/>
-    <item name="alert_dialog_touzhu_text_title" type="id"/>
-    <item name="alert_dialog_touzhu_text_two" type="id"/>
-    <item name="alert_dialog_touzhu_text_zhuma" type="id"/>
-    <item name="alert_dialog_touzhu_text_zhuma_title" type="id"/>
-    <item name="alert_dialog_touzhu_textview_caizhong" type="id"/>
-    <item name="alert_dialog_touzhu_textview_jine" type="id"/>
-    <item name="alert_dialog_touzhu_textview_qihao" type="id"/>
-    <item name="alert_dialog_touzhu_textview_zhushu" type="id"/>
-    <item name="alert_dialog_touzhu_updown" type="id"/>
-    <item name="alert_login_title" type="id"/>
-    <item name="alipay_content" type="id"/>
-    <item name="alipay_secure_cancel" type="id"/>
-    <item name="alipay_secure_ok" type="id"/>
-    <item name="alipay_secure_ok_alipay" type="id"/>
-    <item name="alipay_secure_ok_alipay_layout" type="id"/>
-    <item name="alipay_secure_recharge_value" type="id"/>
-    <item name="alipay_secure_title" type="id"/>
-    <item name="all_check" type="id"/>
-    <item name="auto_login_checkBox" type="id"/>
-    <item name="auto_login_set_checkbox" type="id"/>
-    <item name="auto_login_set_checkbox_jixuan" type="id"/>
-    <item name="balanceinfo" type="id"/>
-    <item name="ball_linearlayout" type="id"/>
-    <item name="beidan_play_change_layout" type="id"/>
-    <item name="beijing_single_mani_history" type="id"/>
-    <item name="beijingsinglegame_playmethodchange_button_halftheaudience" type="id"/>
-    <item name="beijingsinglegame_playmethodchange_button_overall" type="id"/>
-    <item name="beijingsinglegame_playmethodchange_button_totalgoals" type="id"/>
-    <item name="beijingsinglegame_playmethodchange_button_updownsigledouble" type="id"/>
-    <item name="beijingsinglegame_playmethodchange_button_wintieloss" type="id"/>
-    <item name="beishulayout" type="id"/>
-    <item name="bet_detail_img_cannle" type="id"/>
-    <item name="bet_detail_img_ok" type="id"/>
-    <item name="bet_detail_layout_content" type="id"/>
-    <item name="bet_detail_linearlayout_expert" type="id"/>
-    <item name="bet_detail_tex_bettime" type="id"/>
-    <item name="bet_detail_text_atm" type="id"/>
-    <item name="bet_detail_text_batchcode" type="id"/>
-    <item name="bet_detail_text_content" type="id"/>
-    <item name="bet_detail_text_dingdan" type="id"/>
-    <item name="bet_detail_text_expert" type="id"/>
-    <item name="bet_detail_text_kaijianghao" type="id"/>
-    <item name="bet_detail_text_lotno" type="id"/>
-    <item name="bet_detail_text_play" type="id"/>
-    <item name="bet_detail_text_state" type="id"/>
-    <item name="bet_detail_text_zhushu" type="id"/>
-    <item name="bet_info" type="id"/>
-    <item name="bet_kind_spinner" type="id"/>
-    <item name="bet_query_jc_info_layout" type="id"/>
-    <item name="bet_query_text_check" type="id"/>
-    <item name="bet_query_text_num" type="id"/>
-    <item name="bet_query_text_over" type="id"/>
-    <item name="bet_query_text_score" type="id"/>
-    <item name="bet_query_text_team" type="id"/>
-    <item name="betkind" type="id"/>
-    <item name="bindedcertid_servicephone" type="id"/>
-    <item name="btnClose" type="id"/>
-    <item name="btnSend" type="id"/>
-    <item name="btn_return" type="id"/>
-    <item name="button_cancel" type="id"/>
-    <item name="button_ok" type="id"/>
-    <item name="buttonlayout" type="id"/>
-    <item name="buttontype" type="id"/>
-    <item name="buy_activity_bottom_layout" type="id"/>
-    <item name="buy_activity_layout_view" type="id"/>
-    <item name="buy_activity_light_layout" type="id"/>
-    <item name="buy_add_dialog_delet" type="id"/>
-    <item name="buy_add_dialog_list" type="id"/>
-    <item name="buy_add_dialog_text_info" type="id"/>
-    <item name="buy_add_list_item_text_amt" type="id"/>
-    <item name="buy_add_list_item_text_code" type="id"/>
-    <item name="buy_add_list_item_text_num" type="id"/>
-    <item name="buy_add_list_item_text_zhushu" type="id"/>
-    <item name="buy_danshi_jixuan_img_touzhu" type="id"/>
-    <item name="buy_danshi_jixuan_linear_zhuma" type="id"/>
-    <item name="buy_danshi_jixuan_spinner" type="id"/>
-    <item name="buy_dlc_spinner" type="id"/>
-    <item name="buy_dlc_top" type="id"/>
-    <item name="buy_footballlottery_img_touzhu" type="id"/>
-    <item name="buy_footballlottery_list" type="id"/>
-    <item name="buy_group_game_btn_cancel" type="id"/>
-    <item name="buy_group_game_content" type="id"/>
-    <item name="buy_group_game_title" type="id"/>
-    <item name="buy_group_layout1" type="id"/>
-    <item name="buy_group_layout2" type="id"/>
-    <item name="buy_group_layout3" type="id"/>
-    <item name="buy_group_layout4" type="id"/>
-    <item name="buy_group_layout5" type="id"/>
-    <item name="buy_group_layout6" type="id"/>
-    <item name="buy_group_one_layout3" type="id"/>
-    <item name="buy_group_one_layout4" type="id"/>
-    <item name="buy_group_one_layout5" type="id"/>
-    <item name="buy_group_one_layout6" type="id"/>
-    <item name="buy_jc_main_listview" type="id"/>
-    <item name="buy_jc_main_text_team_num" type="id"/>
-    <item name="buy_jc_main_view_list_item_btn" type="id"/>
-    <item name="buy_jc_main_view_list_item_linearLayout" type="id"/>
-    <item name="buy_jc_play_select_layout" type="id"/>
-    <item name="buy_jc_recommend_main_listview" type="id"/>
-    <item name="buy_jc_zixuan_seek_beishu" type="id"/>
-    <item name="buy_join_radiogroup_baodi" type="id"/>
-    <item name="buy_join_radiogroup_open" type="id"/>
-    <item name="buy_jx_btn_layout" type="id"/>
-    <item name="buy_lq_main_btn_score" type="id"/>
-    <item name="buy_lq_main_btn_team" type="id"/>
-    <item name="buy_lq_main_btn_type" type="id"/>
-    <item name="buy_lq_main_dialog_new_type1" type="id"/>
-    <item name="buy_lq_main_dialog_type1" type="id"/>
-    <item name="buy_lq_main_dialog_type2" type="id"/>
-    <item name="buy_lq_main_dialog_type3" type="id"/>
-    <item name="buy_lq_main_dialog_type4" type="id"/>
-    <item name="buy_lq_main_layout_team" type="id"/>
-    <item name="buy_lq_mian_layout" type="id"/>
-    <item name="buy_zh_view_btn1" type="id"/>
-    <item name="buy_zh_view_layout" type="id"/>
-    <item name="buy_zh_view_text1" type="id"/>
-    <item name="buy_zixuan_add_text_num" type="id"/>
-    <item name="buy_zixuan_bottom_layout" type="id"/>
-    <item name="buy_zixuan_btn_five" type="id"/>
-    <item name="buy_zixuan_btn_four" type="id"/>
-    <item name="buy_zixuan_btn_num_five" type="id"/>
-    <item name="buy_zixuan_btn_num_four" type="id"/>
-    <item name="buy_zixuan_btn_num_one" type="id"/>
-    <item name="buy_zixuan_btn_num_seven" type="id"/>
-    <item name="buy_zixuan_btn_num_six" type="id"/>
-    <item name="buy_zixuan_btn_num_third" type="id"/>
-    <item name="buy_zixuan_btn_num_two" type="id"/>
-    <item name="buy_zixuan_btn_one" type="id"/>
-    <item name="buy_zixuan_btn_seven" type="id"/>
-    <item name="buy_zixuan_btn_six" type="id"/>
-    <item name="buy_zixuan_btn_third" type="id"/>
-    <item name="buy_zixuan_btn_two" type="id"/>
-    <item name="buy_zixuan_button_zu3" type="id"/>
-    <item name="buy_zixuan_button_zu6" type="id"/>
-    <item name="buy_zixuan_edit_zhuma" type="id"/>
-    <item name="buy_zixuan_img_add" type="id"/>
-    <item name="buy_zixuan_img_add_beishu" type="id"/>
-    <item name="buy_zixuan_img_add_delet" type="id"/>
-    <item name="buy_zixuan_img_add_qishu" type="id"/>
-    <item name="buy_zixuan_img_again" type="id"/>
-    <item name="buy_zixuan_img_delele" type="id"/>
-    <item name="buy_zixuan_img_subtract_beishu" type="id"/>
-    <item name="buy_zixuan_img_subtract_qihao" type="id"/>
-    <item name="buy_zixuan_img_touzhu" type="id"/>
-    <item name="buy_zixuan_latest_lottery" type="id"/>
-    <item name="buy_zixuan_linear_five" type="id"/>
-    <item name="buy_zixuan_linear_four" type="id"/>
-    <item name="buy_zixuan_linear_one" type="id"/>
-    <item name="buy_zixuan_linear_progress" type="id"/>
-    <item name="buy_zixuan_linear_progress_all" type="id"/>
-    <item name="buy_zixuan_linear_seven" type="id"/>
-    <item name="buy_zixuan_linear_six" type="id"/>
-    <item name="buy_zixuan_linear_third" type="id"/>
-    <item name="buy_zixuan_linear_toggle" type="id"/>
-    <item name="buy_zixuan_linear_top" type="id"/>
-    <item name="buy_zixuan_linear_top_one" type="id"/>
-    <item name="buy_zixuan_linear_top_two" type="id"/>
-    <item name="buy_zixuan_linear_two" type="id"/>
-    <item name="buy_zixuan_new_btn_main" type="id"/>
-    <item name="buy_zixuan_new_btn_miss" type="id"/>
-    <item name="buy_zixuan_radiogroup_top" type="id"/>
-    <item name="buy_zixuan_relativelayout" type="id"/>
-    <item name="buy_zixuan_relativelayout2" type="id"/>
-    <item name="buy_zixuan_scroll" type="id"/>
-    <item name="buy_zixuan_seek_beishu" type="id"/>
-    <item name="buy_zixuan_seek_qishu" type="id"/>
-    <item name="buy_zixuan_table_five" type="id"/>
-    <item name="buy_zixuan_table_four" type="id"/>
-    <item name="buy_zixuan_table_one" type="id"/>
-    <item name="buy_zixuan_table_seven" type="id"/>
-    <item name="buy_zixuan_table_six" type="id"/>
-    <item name="buy_zixuan_table_third" type="id"/>
-    <item name="buy_zixuan_table_two" type="id"/>
-    <item name="buy_zixuan_text_beishu" type="id"/>
-    <item name="buy_zixuan_text_beishu_title" type="id"/>
-    <item name="buy_zixuan_text_five" type="id"/>
-    <item name="buy_zixuan_text_four" type="id"/>
-    <item name="buy_zixuan_text_one" type="id"/>
-    <item name="buy_zixuan_text_prize" type="id"/>
-    <item name="buy_zixuan_text_qishu" type="id"/>
-    <item name="buy_zixuan_text_qishu_title" type="id"/>
-    <item name="buy_zixuan_text_seven" type="id"/>
-    <item name="buy_zixuan_text_six" type="id"/>
-    <item name="buy_zixuan_text_sum_money" type="id"/>
-    <item name="buy_zixuan_text_third" type="id"/>
-    <item name="buy_zixuan_text_title" type="id"/>
-    <item name="buy_zixuan_text_title_shu" type="id"/>
-    <item name="buy_zixuan_text_two" type="id"/>
-    <item name="buy_zixuan_viewpager" type="id"/>
-    <item name="buyactivity_tab_host" type="id"/>
-    <item name="buyagain_title" type="id"/>
-    <item name="buyagain_touzhu_beishu" type="id"/>
-    <item name="buyagain_touzhu_button_cancel" type="id"/>
-    <item name="buyagain_touzhu_button_ok" type="id"/>
-    <item name="buyagain_touzhu_jine" type="id"/>
-    <item name="buyagain_touzhu_lotname" type="id"/>
-    <item name="buyagain_touzhu_qihao" type="id"/>
-    <item name="buyagain_touzhu_zhuma" type="id"/>
-    <item name="buyview" type="id"/>
-    <item name="caizhong_TextView" type="id"/>
-    <item name="caizhong_set_checkbox" type="id"/>
-    <item name="caizhong_setting" type="id"/>
-    <item name="caizhong_setting_ListView" type="id"/>
-    <item name="cancel" type="id"/>
-    <item name="canel" type="id"/>
-    <item name="canyu" type="id"/>
-    <item name="canyujine" type="id"/>
-    <item name="canyumingcheng" type="id"/>
-    <item name="canyurchezi" type="id"/>
-    <item name="canyurenyuan" type="id"/>
-    <item name="canyuriqi" type="id"/>
-    <item name="change" type="id"/>
-    <item name="chechbutton" type="id"/>
-    <item name="checkBox1" type="id"/>
-    <item name="checkBox10" type="id"/>
-    <item name="checkBox11" type="id"/>
-    <item name="checkBox12" type="id"/>
-    <item name="checkBox13" type="id"/>
-    <item name="checkBox14" type="id"/>
-    <item name="checkBox2" type="id"/>
-    <item name="checkBox3" type="id"/>
-    <item name="checkBox4" type="id"/>
-    <item name="checkBox5" type="id"/>
-    <item name="checkBox6" type="id"/>
-    <item name="checkBox7" type="id"/>
-    <item name="checkBox8" type="id"/>
-    <item name="checkBox9" type="id"/>
-    <item name="checkBoxDan" type="id"/>
-    <item name="checkboxzhuihao" type="id"/>
-    <item name="checkprize" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_linearlayout01" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_linearlayout02" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_linearlayout03" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_linearlayout04" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_linearlayout05" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text01" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text02" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text03" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text04" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text05" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text06" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_text07" type="id"/>
-    <item name="choose_luck_lottery_num_agree_and_pay_dialog_title" type="id"/>
-    <item name="choose_luck_num_gametype_title" type="id"/>
-    <item name="choose_luck_num_gridview_layout_button_group" type="id"/>
-    <item name="clear_check" type="id"/>
-    <item name="company_infoTitle_text" type="id"/>
-    <item name="company_info_image" type="id"/>
-    <item name="company_info_title" type="id"/>
-    <item name="company_info_webview" type="id"/>
-    <item name="content" type="id"/>
-    <item name="cp1" type="id"/>
-    <item name="critidbindimmmmm" type="id"/>
-    <item name="critidbindtx" type="id"/>
-    <item name="current_gold_title" type="id"/>
-    <item name="dialog_advice_edit_check" type="id"/>
-    <item name="dialog_advice_img_ok" type="id"/>
-    <item name="dialog_advice_item_text_title" type="id"/>
-    <item name="dialog_advice_list" type="id"/>
-    <item name="dialog_link_item_check" type="id"/>
-    <item name="dialog_link_item_text_phone" type="id"/>
-    <item name="dialog_link_item_text_title" type="id"/>
-    <item name="ding_btn_chedan" type="id"/>
-    <item name="ding_buy_group1" type="id"/>
-    <item name="ding_buy_group2" type="id"/>
-    <item name="ding_group1_check" type="id"/>
-    <item name="ding_group1_layout_num" type="id"/>
-    <item name="ding_group1_radio0" type="id"/>
-    <item name="ding_group1_radio1" type="id"/>
-    <item name="ding_group2_check" type="id"/>
-    <item name="ding_group2_layout_num" type="id"/>
-    <item name="ding_group2_max_layout" type="id"/>
-    <item name="ding_group2_radio0" type="id"/>
-    <item name="ding_group2_radio1" type="id"/>
-    <item name="ding_group_layout_id" type="id"/>
-    <item name="ding_info" type="id"/>
-    <item name="ding_text_lotno_id" type="id"/>
-    <item name="ding_text_num_id" type="id"/>
-    <item name="ding_text_person_id" type="id"/>
-    <item name="ding_text_prize_id" type="id"/>
-    <item name="ding_text_state_id" type="id"/>
-    <item name="ding_text_time_id" type="id"/>
-    <item name="ding_text_title" type="id"/>
-    <item name="directpay_listview_paymethod" type="id"/>
-    <item name="directpay_relativelayout_title" type="id"/>
-    <item name="directpay_textview_title" type="id"/>
-    <item name="divider_01" type="id"/>
-    <item name="divider_02" type="id"/>
-    <item name="dlt_zhuijia" type="id"/>
-    <item name="doregister" type="id"/>
-    <item name="downdouble" type="id"/>
-    <item name="downdouble_textview" type="id"/>
-    <item name="downsingle" type="id"/>
-    <item name="downsingle_textview" type="id"/>
-    <item name="edittext1" type="id"/>
-    <item name="etEdit" type="id"/>
-    <item name="expert_info_main_list_item_btn" type="id"/>
-    <item name="expert_info_main_list_item_code" type="id"/>
-    <item name="expert_info_main_list_item_content" type="id"/>
-    <item name="expert_info_main_list_item_title" type="id"/>
-    <item name="expert_main_listview" type="id"/>
-    <item name="explain_history_four_1" type="id"/>
-    <item name="explain_history_four_2" type="id"/>
-    <item name="explain_history_four_3" type="id"/>
-    <item name="explain_history_one_1" type="id"/>
-    <item name="explain_history_one_2" type="id"/>
-    <item name="explain_history_three_1" type="id"/>
-    <item name="explain_history_three_2" type="id"/>
-    <item name="explain_history_three_3" type="id"/>
-    <item name="explain_history_two_1" type="id"/>
-    <item name="explain_history_two_2" type="id"/>
-    <item name="explain_history_two_3" type="id"/>
-    <item name="explain_list_item_text_five" type="id"/>
-    <item name="explain_list_item_text_four" type="id"/>
-    <item name="explain_list_item_text_one" type="id"/>
-    <item name="explain_list_item_text_seven" type="id"/>
-    <item name="explain_list_item_text_six" type="id"/>
-    <item name="explain_list_item_text_team" type="id"/>
-    <item name="explain_list_item_text_three" type="id"/>
-    <item name="explain_list_item_text_two" type="id"/>
-    <item name="fangan" type="id"/>
-    <item name="fanganleirong" type="id"/>
-    <item name="fanganxiangqing" type="id"/>
-    <item name="faqi" type="id"/>
-    <item name="faqixinxi" type="id"/>
-    <item name="feedback" type="id"/>
-    <item name="feedback_time" type="id"/>
-    <item name="feedbackconnection" type="id"/>
-    <item name="feededmessage" type="id"/>
-    <item name="fenxi_listview_header" type="id"/>
-    <item name="fenxi_listview_header_guestteam" type="id"/>
-    <item name="fenxi_listview_header_hometeam" type="id"/>
-    <item name="findoutpassword" type="id"/>
-    <item name="follow_atm" type="id"/>
-    <item name="follow_forceJoin" type="id"/>
-    <item name="follow_kind" type="id"/>
-    <item name="follow_man" type="id"/>
-    <item name="follow_state" type="id"/>
-    <item name="follow_time" type="id"/>
-    <item name="follow_times" type="id"/>
-    <item name="forget_password_btn" type="id"/>
-    <item name="forget_password_edit_name" type="id"/>
-    <item name="forget_password_edit_phone" type="id"/>
-    <item name="game_analysis" type="id"/>
-    <item name="game_dan" type="id"/>
-    <item name="game_date" type="id"/>
-    <item name="game_name" type="id"/>
-    <item name="game_vs" type="id"/>
-    <item name="game_vs_odds" type="id"/>
-    <item name="get_moeny_amt_relatie" type="id"/>
-    <item name="get_money_bank" type="id"/>
-    <item name="get_money_bank_address" type="id"/>
-    <item name="get_money_bank_num" type="id"/>
-    <item name="get_money_bank_num_edit" type="id"/>
-    <item name="get_money_bank_num_text" type="id"/>
-    <item name="get_money_bank_spinner" type="id"/>
-    <item name="get_money_bank_start_edit" type="id"/>
-    <item name="get_money_img_back" type="id"/>
-    <item name="get_money_img_cancel" type="id"/>
-    <item name="get_money_img_exit" type="id"/>
-    <item name="get_money_img_submit" type="id"/>
-    <item name="get_money_list_item" type="id"/>
-    <item name="get_money_money" type="id"/>
-    <item name="get_money_money_edit" type="id"/>
-    <item name="get_money_money_text" type="id"/>
-    <item name="get_money_name" type="id"/>
-    <item name="get_money_name_edit" type="id"/>
-    <item name="get_money_name_text" type="id"/>
-    <item name="get_money_password_edit" type="id"/>
-    <item name="get_money_password_text" type="id"/>
-    <item name="get_money_state_text" type="id"/>
-    <item name="get_money_stating_remind" type="id"/>
-    <item name="getmoenyamt" type="id"/>
-    <item name="getmoenytime" type="id"/>
-    <item name="getmoneyamtdata" type="id"/>
-    <item name="getmoneyoftime" type="id"/>
-    <item name="getmoneystat" type="id"/>
-    <item name="getmore_progressbar" type="id"/>
-    <item name="gift_detail_img_cannle" type="id"/>
-    <item name="gift_detail_tex_gifttime" type="id"/>
-    <item name="gift_detail_tex_time" type="id"/>
-    <item name="gift_detail_text_atm" type="id"/>
-    <item name="gift_detail_text_atmzhong" type="id"/>
-    <item name="gift_detail_text_batchcode" type="id"/>
-    <item name="gift_detail_text_beishu" type="id"/>
-    <item name="gift_detail_text_content" type="id"/>
-    <item name="gift_detail_text_dingdan" type="id"/>
-    <item name="gift_detail_text_kaijianghao" type="id"/>
-    <item name="gift_detail_text_lotno" type="id"/>
-    <item name="gift_detail_text_person" type="id"/>
-    <item name="gift_detail_text_state" type="id"/>
-    <item name="gift_detail_text_zhushu" type="id"/>
-    <item name="gift_edit_language" type="id"/>
-    <item name="gift_edit_phone" type="id"/>
-    <item name="gift_img_cancel" type="id"/>
-    <item name="gift_img_language" type="id"/>
-    <item name="gift_img_ok" type="id"/>
-    <item name="gift_img_phone" type="id"/>
-    <item name="gift_result_view_text" type="id"/>
-    <item name="gift_text_language" type="id"/>
-    <item name="gift_text_phone" type="id"/>
-    <item name="gift_text_zhuma" type="id"/>
-    <item name="gift_text_zhushu" type="id"/>
-    <item name="gridview_item" type="id"/>
-    <item name="guest_layout" type="id"/>
-    <item name="guest_team_name" type="id"/>
-    <item name="guest_team_odds" type="id"/>
-    <item name="head_arrowImageView" type="id"/>
-    <item name="head_contentLayout" type="id"/>
-    <item name="head_lastUpdatedTextView" type="id"/>
-    <item name="head_progressBar" type="id"/>
-    <item name="head_tipsTextView" type="id"/>
-    <item name="help" type="id"/>
-    <item name="helpCenterItemContent" type="id"/>
-    <item name="helpCenterItemTitle" type="id"/>
-    <item name="home_layout" type="id"/>
-    <item name="home_team_name" type="id"/>
-    <item name="home_team_odds" type="id"/>
-    <item name="icon" type="id"/>
-    <item name="imageText" type="id"/>
-    <item name="imageView" type="id"/>
-    <item name="img_sina" type="id"/>
-    <item name="img_zhifubao" type="id"/>
-    <item name="imgview" type="id"/>
-    <item name="infolist1" type="id"/>
-    <item name="infolist2" type="id"/>
-    <item name="infolist3" type="id"/>
-    <item name="infolist4" type="id"/>
-    <item name="informationcontent" type="id"/>
-    <item name="informationcontent1" type="id"/>
-    <item name="informationitemlable" type="id"/>
-    <item name="informationitemlayout" type="id"/>
-    <item name="informationlist" type="id"/>
-    <item name="informationlist1" type="id"/>
-    <item name="informationlist2" type="id"/>
-    <item name="informationlist3" type="id"/>
-    <item name="informationlist4" type="id"/>
-    <item name="informationtime" type="id"/>
-    <item name="informationtitle" type="id"/>
-    <item name="insufficient_balance_amt" type="id"/>
-    <item name="insufficient_balance_button_directpay" type="id"/>
-    <item name="insufficient_balance_button_recharge" type="id"/>
-    <item name="insufficient_balance_lottype" type="id"/>
-    <item name="insufficient_balance_title" type="id"/>
-    <item name="introduce_img_btn" type="id"/>
-    <item name="isSharetoRenren" type="id"/>
-    <item name="isSharetoSina" type="id"/>
-    <item name="ishandingfree" type="id"/>
-    <item name="jc_alert_btn_duochuan" type="id"/>
-    <item name="jc_alert_btn_ziyou" type="id"/>
-    <item name="jc_asia_top_layout" type="id"/>
-    <item name="jc_data_analysis_score_guest" type="id"/>
-    <item name="jc_data_analysis_score_home" type="id"/>
-    <item name="jc_data_analysis_score_let" type="id"/>
-    <item name="jc_data_analysis_score_top_layout" type="id"/>
-    <item name="jc_europe_list_item_text_center_fail" type="id"/>
-    <item name="jc_europe_list_item_text_center_leve" type="id"/>
-    <item name="jc_europe_list_item_text_center_win" type="id"/>
-    <item name="jc_europe_list_item_text_company" type="id"/>
-    <item name="jc_europe_list_item_text_give" type="id"/>
-    <item name="jc_europe_list_item_text_left_fail" type="id"/>
-    <item name="jc_europe_list_item_text_left_leve" type="id"/>
-    <item name="jc_europe_list_item_text_left_leve_divider" type="id"/>
-    <item name="jc_europe_list_item_text_left_leve_layout" type="id"/>
-    <item name="jc_europe_list_item_text_left_win" type="id"/>
-    <item name="jc_europe_list_item_text_right_fail" type="id"/>
-    <item name="jc_europe_list_item_text_right_leve" type="id"/>
-    <item name="jc_europe_list_item_text_right_win" type="id"/>
-    <item name="jc_europe_top_layout" type="id"/>
-    <item name="jc_linear_check_all" type="id"/>
-    <item name="jc_lq_score_text_h1" type="id"/>
-    <item name="jc_lq_score_text_h2" type="id"/>
-    <item name="jc_lq_score_text_h3" type="id"/>
-    <item name="jc_lq_score_text_h4" type="id"/>
-    <item name="jc_lq_score_text_hteam" type="id"/>
-    <item name="jc_lq_score_text_v1" type="id"/>
-    <item name="jc_lq_score_text_v2" type="id"/>
-    <item name="jc_lq_score_text_v3" type="id"/>
-    <item name="jc_lq_score_text_v4" type="id"/>
-    <item name="jc_lq_score_text_vteam" type="id"/>
-    <item name="jc_main_divider_up" type="id"/>
-    <item name="jc_main_list_item_button" type="id"/>
-    <item name="jc_main_list_item_text_jieguo" type="id"/>
-    <item name="jc_main_list_item_text_score" type="id"/>
-    <item name="jc_main_list_item_text_team" type="id"/>
-    <item name="jc_main_list_item_text_team_id" type="id"/>
-    <item name="jc_main_list_item_text_team_name1" type="id"/>
-    <item name="jc_main_list_item_text_team_name2" type="id"/>
-    <item name="jc_main_list_item_text_vs" type="id"/>
-    <item name="jc_main_team_layout_layers_down" type="id"/>
-    <item name="jc_main_team_layout_layers_middle" type="id"/>
-    <item name="jc_main_team_layout_layers_up" type="id"/>
-    <item name="jc_main_team_select" type="id"/>
-    <item name="jc_play_detail_layout" type="id"/>
-    <item name="jc_play_select" type="id"/>
-    <item name="jc_recommend_news_content" type="id"/>
-    <item name="jc_recommend_news_title_btn" type="id"/>
-    <item name="jc_score_btn_next" type="id"/>
-    <item name="jc_score_btn_start" type="id"/>
-    <item name="jc_score_info_item_img_left" type="id"/>
-    <item name="jc_score_info_item_img_right" type="id"/>
-    <item name="jc_score_info_item_layout_time" type="id"/>
-    <item name="jc_score_info_item_text_left" type="id"/>
-    <item name="jc_score_info_item_text_right" type="id"/>
-    <item name="jc_score_info_item_text_time" type="id"/>
-    <item name="jc_score_info_layout" type="id"/>
-    <item name="jc_score_info_layout_bottom_layout" type="id"/>
-    <item name="jc_score_layout" type="id"/>
-    <item name="jc_score_list_item_layout" type="id"/>
-    <item name="jc_score_list_item_layout_left" type="id"/>
-    <item name="jc_score_list_spinner" type="id"/>
-    <item name="jc_score_list_text" type="id"/>
-    <item name="jc_score_mark" type="id"/>
-    <item name="jc_score_text_guest_score" type="id"/>
-    <item name="jc_score_text_h_ball" type="id"/>
-    <item name="jc_score_text_half_score" type="id"/>
-    <item name="jc_score_text_home_score" type="id"/>
-    <item name="jc_score_text_hteam" type="id"/>
-    <item name="jc_score_text_no_info" type="id"/>
-    <item name="jc_score_text_state" type="id"/>
-    <item name="jc_score_text_team_name" type="id"/>
-    <item name="jc_score_text_time" type="id"/>
-    <item name="jc_score_text_v_ball" type="id"/>
-    <item name="jc_score_text_vteam" type="id"/>
-    <item name="jc_score_top_layout" type="id"/>
-    <item name="jion_info_check" type="id"/>
-    <item name="jisuan" type="id"/>
-    <item name="join_check_detail_cancel" type="id"/>
-    <item name="join_check_detail_text_all_atm" type="id"/>
-    <item name="join_check_detail_text_bao_atm" type="id"/>
-    <item name="join_check_detail_text_beishu" type="id"/>
-    <item name="join_check_detail_text_betchcode" type="id"/>
-    <item name="join_check_detail_text_id" type="id"/>
-    <item name="join_check_detail_text_kaijiang" type="id"/>
-    <item name="join_check_detail_text_lotno" type="id"/>
-    <item name="join_check_detail_text_prize_atm" type="id"/>
-    <item name="join_check_detail_text_progress" type="id"/>
-    <item name="join_check_detail_text_ren_atm" type="id"/>
-    <item name="join_check_detail_text_result" type="id"/>
-    <item name="join_check_detail_text_start_prize_atm" type="id"/>
-    <item name="join_check_detail_text_time" type="id"/>
-    <item name="join_check_detail_text_zhuma" type="id"/>
-    <item name="join_check_item_text_amt" type="id"/>
-    <item name="join_check_item_text_icon" type="id"/>
-    <item name="join_check_item_text_id" type="id"/>
-    <item name="join_check_item_text_prizeamt" type="id"/>
-    <item name="join_check_item_text_result" type="id"/>
-    <item name="join_check_item_text_time" type="id"/>
-    <item name="join_check_listView_item_jump" type="id"/>
-    <item name="join_check_top_linear" type="id"/>
-    <item name="join_chedan" type="id"/>
-    <item name="join_detail_edit_baodi" type="id"/>
-    <item name="join_detail_edit_rengou" type="id"/>
-    <item name="join_detail_img_buy" type="id"/>
-    <item name="join_detail_img_buy2" type="id"/>
-    <item name="join_detail_img_buy3" type="id"/>
-    <item name="join_detail_img_return" type="id"/>
-    <item name="join_detail_layout_context" type="id"/>
-    <item name="join_detail_linear_record" type="id"/>
-    <item name="join_detail_tex_progress" type="id"/>
-    <item name="join_detail_text_atm" type="id"/>
-    <item name="join_detail_text_baodi_atm" type="id"/>
-    <item name="join_detail_text_baodi_progress" type="id"/>
-    <item name="join_detail_text_baodi_sheng" type="id"/>
-    <item name="join_detail_text_batchcode" type="id"/>
-    <item name="join_detail_text_beishu" type="id"/>
-    <item name="join_detail_text_context" type="id"/>
-    <item name="join_detail_text_describe" type="id"/>
-    <item name="join_detail_text_faqirengou" type="id"/>
-    <item name="join_detail_text_get" type="id"/>
-    <item name="join_detail_text_jinezhong" type="id"/>
-    <item name="join_detail_text_lotno" type="id"/>
-    <item name="join_detail_text_name" type="id"/>
-    <item name="join_detail_text_num" type="id"/>
-    <item name="join_detail_text_person" type="id"/>
-    <item name="join_detail_text_record" type="id"/>
-    <item name="join_detail_text_rengou_amt" type="id"/>
-    <item name="join_detail_text_rengou_atm" type="id"/>
-    <item name="join_detail_text_rengou_min" type="id"/>
-    <item name="join_detail_text_rengou_min_amt" type="id"/>
-    <item name="join_detail_text_rengou_progress" type="id"/>
-    <item name="join_detail_text_rengou_sheng" type="id"/>
-    <item name="join_detail_text_shengyu_atm" type="id"/>
-    <item name="join_detail_text_state" type="id"/>
-    <item name="join_detail_text_time" type="id"/>
-    <item name="join_detail_text_title" type="id"/>
-    <item name="join_detail_text_wincode" type="id"/>
-    <item name="join_detail_text_zuidirengou" type="id"/>
-    <item name="join_ding_btn_buy" type="id"/>
-    <item name="join_ding_edit_buy" type="id"/>
-    <item name="join_ding_edit_num" type="id"/>
-    <item name="join_ding_radio2_edit_buy" type="id"/>
-    <item name="join_ding_radio2_edit_max_buy" type="id"/>
-    <item name="join_ding_radio2_edit_num" type="id"/>
-    <item name="join_ding_text_amt" type="id"/>
-    <item name="join_dingzhi" type="id"/>
-    <item name="join_follow" type="id"/>
-    <item name="join_hall_img_join" type="id"/>
-    <item name="join_hall_img_return" type="id"/>
-    <item name="join_hall_linear_views" type="id"/>
-    <item name="join_hall_listview_img_icon" type="id"/>
-    <item name="join_hall_listview_img_join" type="id"/>
-    <item name="join_hall_listview_text_icon_title" type="id"/>
-    <item name="join_hall_listview_text_issue" type="id"/>
-    <item name="join_hall_listview_text_time" type="id"/>
-    <item name="join_hall_text_title" type="id"/>
-    <item name="join_img_down" type="id"/>
-    <item name="join_img_ok" type="id"/>
-    <item name="join_img_return" type="id"/>
-    <item name="join_info_btn_all_atm" type="id"/>
-    <item name="join_info_btn_atm" type="id"/>
-    <item name="join_info_btn_progress" type="id"/>
-    <item name="join_info_check_linear_top" type="id"/>
-    <item name="join_info_item_layout_center" type="id"/>
-    <item name="join_info_item_layout_left" type="id"/>
-    <item name="join_info_item_layout_right" type="id"/>
-    <item name="join_info_item_linear_star" type="id"/>
-    <item name="join_info_item_text_all_amt" type="id"/>
-    <item name="join_info_item_text_ding" type="id"/>
-    <item name="join_info_item_text_faqiren" type="id"/>
-    <item name="join_info_item_text_name" type="id"/>
-    <item name="join_info_item_text_progress" type="id"/>
-    <item name="join_listview" type="id"/>
-    <item name="join_text_title" type="id"/>
-    <item name="joincheck_query" type="id"/>
-    <item name="joinfollow_query_" type="id"/>
-    <item name="kefulabe" type="id"/>
-    <item name="last_batchcode" type="id"/>
-    <item name="last_batchcode_textlable" type="id"/>
-    <item name="last_batchcode_textlable_bule" type="id"/>
-    <item name="last_batchcode_textlable_red" type="id"/>
-    <item name="latestlottery_textview_issue" type="id"/>
-    <item name="latestlottery_textview_winningnumbers" type="id"/>
-    <item name="latter" type="id"/>
-    <item name="layout" type="id"/>
-    <item name="layout01" type="id"/>
-    <item name="layout1_top" type="id"/>
-    <item name="layout2_top" type="id"/>
-    <item name="layout3_top" type="id"/>
-    <item name="layout4_top" type="id"/>
-    <item name="layout_account" type="id"/>
-    <item name="layout_football_issue" type="id"/>
-    <item name="layout_football_time" type="id"/>
-    <item name="layout_gift_img_return" type="id"/>
-    <item name="layout_gift_text_title" type="id"/>
-    <item name="layout_join_edit_baodi" type="id"/>
-    <item name="layout_join_edit_description" type="id"/>
-    <item name="layout_join_edit_gendan" type="id"/>
-    <item name="layout_join_edit_rengou" type="id"/>
-    <item name="layout_join_img_return" type="id"/>
-    <item name="layout_join_start_spinner" type="id"/>
-    <item name="layout_join_text_all_atm" type="id"/>
-    <item name="layout_join_text_baodi" type="id"/>
-    <item name="layout_join_text_beishu" type="id"/>
-    <item name="layout_join_text_rengou" type="id"/>
-    <item name="layout_join_text_title" type="id"/>
-    <item name="layout_join_text_zhushu" type="id"/>
-    <item name="layout_main_img_return" type="id"/>
-    <item name="layout_main_text_issue" type="id"/>
-    <item name="layout_main_text_time" type="id"/>
-    <item name="layout_main_text_timessc" type="id"/>
-    <item name="layout_main_text_title" type="id"/>
-    <item name="layout_main_text_title_one" type="id"/>
-    <item name="layout_nav_icon_title" type="id"/>
-    <item name="layout_nav_item" type="id"/>
-    <item name="layout_text_amt" type="id"/>
-    <item name="layout_text_name" type="id"/>
-    <item name="layout_top" type="id"/>
-    <item name="layout_usercenter_img_return" type="id"/>
-    <item name="leirong" type="id"/>
-    <item name="lesscontent" type="id"/>
-    <item name="letterview" type="id"/>
-    <item name="linearLayout" type="id"/>
-    <item name="linearLayout1" type="id"/>
-    <item name="linearLayout2" type="id"/>
-    <item name="linearLayout3" type="id"/>
-    <item name="linearLayout4" type="id"/>
-    <item name="linearLayout_rangqiu" type="id"/>
-    <item name="linearlayout_usercenter_beishu" type="id"/>
-    <item name="linearlayout_usercenter_confirmnewpwd" type="id"/>
-    <item name="linearlayout_usercenter_newpwd" type="id"/>
-    <item name="linearlayout_usercenter_originalpwd" type="id"/>
-    <item name="llImage" type="id"/>
-    <item name="ll_text_limit_unit" type="id"/>
-    <item name="login_button" type="id"/>
-    <item name="loginto_zhifubao" type="id"/>
-    <item name="logintoqq" type="id"/>
-    <item name="logintosina" type="id"/>
-    <item name="lotno_alarm_setting_ssq" type="id"/>
-    <item name="lotno_alarm_toggle_twentyfive" type="id"/>
-    <item name="lotno_alarm_togglebutton_dlt" type="id"/>
-    <item name="lotno_alarm_togglebutton_fc3d" type="id"/>
-    <item name="lotno_alarm_togglebutton_pl3" type="id"/>
-    <item name="lotno_alarm_togglebutton_pl5" type="id"/>
-    <item name="lotno_alarm_togglebutton_qlc" type="id"/>
-    <item name="lotno_alarm_togglebutton_qxc" type="id"/>
-    <item name="lotno_alarm_togglebutton_ssq" type="id"/>
-    <item name="lotnoalarm_layout_time" type="id"/>
-    <item name="lotnoalarm_textview_time" type="id"/>
-    <item name="lotnoalarm_togglebutton_openvoice" type="id"/>
-    <item name="lq_rqspf_dialog_textview" type="id"/>
-    <item name="lq_sfc_dialog_check01" type="id"/>
-    <item name="lq_sfc_dialog_check010" type="id"/>
-    <item name="lq_sfc_dialog_check011" type="id"/>
-    <item name="lq_sfc_dialog_check012" type="id"/>
-    <item name="lq_sfc_dialog_check013" type="id"/>
-    <item name="lq_sfc_dialog_check014" type="id"/>
-    <item name="lq_sfc_dialog_check015" type="id"/>
-    <item name="lq_sfc_dialog_check016" type="id"/>
-    <item name="lq_sfc_dialog_check017" type="id"/>
-    <item name="lq_sfc_dialog_check018" type="id"/>
-    <item name="lq_sfc_dialog_check019" type="id"/>
-    <item name="lq_sfc_dialog_check02" type="id"/>
-    <item name="lq_sfc_dialog_check020" type="id"/>
-    <item name="lq_sfc_dialog_check021" type="id"/>
-    <item name="lq_sfc_dialog_check022" type="id"/>
-    <item name="lq_sfc_dialog_check023" type="id"/>
-    <item name="lq_sfc_dialog_check024" type="id"/>
-    <item name="lq_sfc_dialog_check025" type="id"/>
-    <item name="lq_sfc_dialog_check026" type="id"/>
-    <item name="lq_sfc_dialog_check027" type="id"/>
-    <item name="lq_sfc_dialog_check028" type="id"/>
-    <item name="lq_sfc_dialog_check029" type="id"/>
-    <item name="lq_sfc_dialog_check03" type="id"/>
-    <item name="lq_sfc_dialog_check030" type="id"/>
-    <item name="lq_sfc_dialog_check031" type="id"/>
-    <item name="lq_sfc_dialog_check032" type="id"/>
-    <item name="lq_sfc_dialog_check033" type="id"/>
-    <item name="lq_sfc_dialog_check034" type="id"/>
-    <item name="lq_sfc_dialog_check035" type="id"/>
-    <item name="lq_sfc_dialog_check036" type="id"/>
-    <item name="lq_sfc_dialog_check037" type="id"/>
-    <item name="lq_sfc_dialog_check038" type="id"/>
-    <item name="lq_sfc_dialog_check039" type="id"/>
-    <item name="lq_sfc_dialog_check04" type="id"/>
-    <item name="lq_sfc_dialog_check040" type="id"/>
-    <item name="lq_sfc_dialog_check041" type="id"/>
-    <item name="lq_sfc_dialog_check042" type="id"/>
-    <item name="lq_sfc_dialog_check043" type="id"/>
-    <item name="lq_sfc_dialog_check044" type="id"/>
-    <item name="lq_sfc_dialog_check045" type="id"/>
-    <item name="lq_sfc_dialog_check046" type="id"/>
-    <item name="lq_sfc_dialog_check047" type="id"/>
-    <item name="lq_sfc_dialog_check048" type="id"/>
-    <item name="lq_sfc_dialog_check049" type="id"/>
-    <item name="lq_sfc_dialog_check05" type="id"/>
-    <item name="lq_sfc_dialog_check050" type="id"/>
-    <item name="lq_sfc_dialog_check051" type="id"/>
-    <item name="lq_sfc_dialog_check06" type="id"/>
-    <item name="lq_sfc_dialog_check07" type="id"/>
-    <item name="lq_sfc_dialog_check08" type="id"/>
-    <item name="lq_sfc_dialog_check09" type="id"/>
-    <item name="lq_sfc_dialog_rangqiu1" type="id"/>
-    <item name="lq_sfc_dialog_rangqiu2" type="id"/>
-    <item name="lq_sfc_dialog_rangqiu3" type="id"/>
-    <item name="main_buy_relat_issue" type="id"/>
-    <item name="main_buy_title" type="id"/>
-    <item name="main_score_layout_bottom" type="id"/>
-    <item name="main_score_layout_center" type="id"/>
-    <item name="main_score_layout_top" type="id"/>
-    <item name="mainpage_10_sign" type="id"/>
-    <item name="mainpage_10_text" type="id"/>
-    <item name="mainpage_11_sign" type="id"/>
-    <item name="mainpage_11_text" type="id"/>
-    <item name="mainpage_11x5_sign" type="id"/>
-    <item name="mainpage_11x5_text" type="id"/>
-    <item name="mainpage_12_sign" type="id"/>
-    <item name="mainpage_12_text" type="id"/>
-    <item name="mainpage_13_sign" type="id"/>
-    <item name="mainpage_13_text" type="id"/>
-    <item name="mainpage_14_sign" type="id"/>
-    <item name="mainpage_14_text" type="id"/>
-    <item name="mainpage_15_sign" type="id"/>
-    <item name="mainpage_15_text" type="id"/>
-    <item name="mainpage_chongzhi" type="id"/>
-    <item name="mainpage_dingyue" type="id"/>
-    <item name="mainpage_dlt_sign" type="id"/>
-    <item name="mainpage_dlt_text" type="id"/>
-    <item name="mainpage_fc3d_sign" type="id"/>
-    <item name="mainpage_fc3d_text" type="id"/>
-    <item name="mainpage_help" type="id"/>
-    <item name="mainpage_hemai_sign" type="id"/>
-    <item name="mainpage_hemai_text" type="id"/>
-    <item name="mainpage_luck_sign" type="id"/>
-    <item name="mainpage_pl3_sign" type="id"/>
-    <item name="mainpage_pl3_text" type="id"/>
-    <item name="mainpage_qlc_sign" type="id"/>
-    <item name="mainpage_qlc_text" type="id"/>
-    <item name="mainpage_ssc_sign" type="id"/>
-    <item name="mainpage_ssc_text" type="id"/>
-    <item name="mainpage_ssq_sign" type="id"/>
-    <item name="mainpage_ssq_text" type="id"/>
-    <item name="mainpage_usercenter" type="id"/>
-    <item name="mainpage_zucai_sign" type="id"/>
-    <item name="mainpage_zucai_text" type="id"/>
-    <item name="mainpagetext1" type="id"/>
-    <item name="mainpagetext2" type="id"/>
-    <item name="mainpagetext3" type="id"/>
-    <item name="message" type="id"/>
-    <item name="mobilecontent" type="id"/>
-    <item name="moneytext" type="id"/>
-    <item name="more_settings_progamme_ssq_on_off" type="id"/>
-    <item name="myView" type="id"/>
-    <item name="my_latter_delete_msg_button" type="id"/>
-    <item name="my_latter_read_msg_button" type="id"/>
-    <item name="my_latter_select_all_button" type="id"/>
-    <item name="my_message_delete_msg_button" type="id"/>
-    <item name="my_message_edit_button" type="id"/>
-    <item name="my_message_select_all_button" type="id"/>
-    <item name="nickcontent" type="id"/>
-    <item name="nickname" type="id"/>
-    <item name="no_game_prompt" type="id"/>
-    <item name="no_game_prompt_imageview" type="id"/>
-    <item name="no_game_prompt_textview" type="id"/>
-    <item name="notice_ball_blue_text_code_one" type="id"/>
-    <item name="notice_ball_blue_text_code_two" type="id"/>
-    <item name="notice_ball_btn_touzhu" type="id"/>
-    <item name="notice_ball_main_linear" type="id"/>
-    <item name="notice_ball_red_text_code" type="id"/>
-    <item name="notice_ball_red_text_code_one" type="id"/>
-    <item name="notice_ball_red_text_code_two" type="id"/>
-    <item name="notice_ball_relative_bottom" type="id"/>
-    <item name="notice_ball_select_linear" type="id"/>
-    <item name="notice_ball_text_code" type="id"/>
-    <item name="notice_ball_three_text_code_one" type="id"/>
-    <item name="notice_ball_three_text_code_two" type="id"/>
-    <item name="notice_beijing_single_item_odds" type="id"/>
-    <item name="notice_beijing_single_item_play" type="id"/>
-    <item name="notice_beijing_single_main_batch_code" type="id"/>
-    <item name="notice_detail_2" type="id"/>
-    <item name="notice_detail_linear10" type="id"/>
-    <item name="notice_detail_linear11" type="id"/>
-    <item name="notice_detail_linear12" type="id"/>
-    <item name="notice_detail_linear13" type="id"/>
-    <item name="notice_detail_linear14" type="id"/>
-    <item name="notice_detail_linear15" type="id"/>
-    <item name="notice_detail_linear16" type="id"/>
-    <item name="notice_detail_linear8" type="id"/>
-    <item name="notice_detail_linear9" type="id"/>
-    <item name="notice_detail_title" type="id"/>
-    <item name="notice_layout" type="id"/>
-    <item name="notice_other_flipper" type="id"/>
-    <item name="notice_other_title" type="id"/>
-    <item name="notice_pirzes_single_specific_ball_linearlayout" type="id"/>
-    <item name="notice_pirzes_single_specific_finaldateandmoneysum_linearlayout" type="id"/>
-    <item name="notice_pirzes_single_specific_noticedateandissue_linearlayout" type="id"/>
-    <item name="notice_prezes_lotteryNameId" type="id"/>
-    <item name="notice_prize_getmore_text" type="id"/>
-    <item name="notice_prizes" type="id"/>
-    <item name="notice_prizes_dateAndTimeId" type="id"/>
-    <item name="notice_prizes_issueId" type="id"/>
-    <item name="notice_prizes_listview" type="id"/>
-    <item name="notice_prizes_main_btn_jc" type="id"/>
-    <item name="notice_prizes_main_btn_score" type="id"/>
-    <item name="notice_prizes_main_title" type="id"/>
-    <item name="notice_prizes_relative" type="id"/>
-    <item name="notice_prizes_single_specific_finalPrizesDate_id" type="id"/>
-    <item name="notice_prizes_single_specific_img" type="id"/>
-    <item name="notice_prizes_single_specific_issue_id" type="id"/>
-    <item name="notice_prizes_single_specific_listview" type="id"/>
-    <item name="notice_prizes_single_specific_main_relative01" type="id"/>
-    <item name="notice_prizes_single_specific_main_returnID" type="id"/>
-    <item name="notice_prizes_single_specific_noticedDate_id" type="id"/>
-    <item name="notice_prizes_single_specific_title_id" type="id"/>
-    <item name="notice_prizes_single_specific_totalSum_id" type="id"/>
-    <item name="notice_return_main" type="id"/>
-    <item name="noticehistroylist" type="id"/>
-    <item name="notiece_tablelayout" type="id"/>
-    <item name="notification_icon" type="id"/>
-    <item name="notification_title" type="id"/>
-    <item name="ok" type="id"/>
-    <item name="onedown_button_spinner" type="id"/>
-    <item name="orderdetail_hemai" type="id"/>
-    <item name="orderdetail_tab_host" type="id"/>
-    <item name="orderdetail_text_title" type="id"/>
-    <item name="orderdetail_touzhu" type="id"/>
-    <item name="orderdetail_zhuihao" type="id"/>
-    <item name="orderdetailzengsong" type="id"/>
-    <item name="password_edit" type="id"/>
-    <item name="password_view" type="id"/>
-    <item name="phoneNum_edit" type="id"/>
-    <item name="phoneNum_view" type="id"/>
-    <item name="phonebindim" type="id"/>
-    <item name="phonebindtx" type="id"/>
-    <item name="phoneofkefu" type="id"/>
-    <item name="pointscontent" type="id"/>
-    <item name="prizeLook" type="id"/>
-    <item name="prizeRank_id" type="id"/>
-    <item name="prizeRank_month" type="id"/>
-    <item name="prizeRank_name" type="id"/>
-    <item name="prizeRank_number" type="id"/>
-    <item name="prizeRank_total" type="id"/>
-    <item name="prizeRank_week" type="id"/>
-    <item name="prizedetail_batchcode" type="id"/>
-    <item name="prizedetail_numball" type="id"/>
-    <item name="prizedetail_prizeData" type="id"/>
-    <item name="prizedetail_prizemoney1" type="id"/>
-    <item name="prizedetail_prizemoney10" type="id"/>
-    <item name="prizedetail_prizemoney11" type="id"/>
-    <item name="prizedetail_prizemoney12" type="id"/>
-    <item name="prizedetail_prizemoney13" type="id"/>
-    <item name="prizedetail_prizemoney14" type="id"/>
-    <item name="prizedetail_prizemoney15" type="id"/>
-    <item name="prizedetail_prizemoney16" type="id"/>
-    <item name="prizedetail_prizemoney2" type="id"/>
-    <item name="prizedetail_prizemoney3" type="id"/>
-    <item name="prizedetail_prizemoney4" type="id"/>
-    <item name="prizedetail_prizemoney5" type="id"/>
-    <item name="prizedetail_prizemoney6" type="id"/>
-    <item name="prizedetail_prizemoney7" type="id"/>
-    <item name="prizedetail_prizemoney8" type="id"/>
-    <item name="prizedetail_prizemoney9" type="id"/>
-    <item name="prizedetail_prizename1" type="id"/>
-    <item name="prizedetail_prizename10" type="id"/>
-    <item name="prizedetail_prizename11" type="id"/>
-    <item name="prizedetail_prizename12" type="id"/>
-    <item name="prizedetail_prizename13" type="id"/>
-    <item name="prizedetail_prizename14" type="id"/>
-    <item name="prizedetail_prizename15" type="id"/>
-    <item name="prizedetail_prizename16" type="id"/>
-    <item name="prizedetail_prizename2" type="id"/>
-    <item name="prizedetail_prizename3" type="id"/>
-    <item name="prizedetail_prizename4" type="id"/>
-    <item name="prizedetail_prizename5" type="id"/>
-    <item name="prizedetail_prizename6" type="id"/>
-    <item name="prizedetail_prizename7" type="id"/>
-    <item name="prizedetail_prizename8" type="id"/>
-    <item name="prizedetail_prizename9" type="id"/>
-    <item name="prizedetail_prizenum1" type="id"/>
-    <item name="prizedetail_prizenum10" type="id"/>
-    <item name="prizedetail_prizenum11" type="id"/>
-    <item name="prizedetail_prizenum12" type="id"/>
-    <item name="prizedetail_prizenum13" type="id"/>
-    <item name="prizedetail_prizenum14" type="id"/>
-    <item name="prizedetail_prizenum15" type="id"/>
-    <item name="prizedetail_prizenum16" type="id"/>
-    <item name="prizedetail_prizenum2" type="id"/>
-    <item name="prizedetail_prizenum3" type="id"/>
-    <item name="prizedetail_prizenum4" type="id"/>
-    <item name="prizedetail_prizenum5" type="id"/>
-    <item name="prizedetail_prizenum6" type="id"/>
-    <item name="prizedetail_prizenum7" type="id"/>
-    <item name="prizedetail_prizenum8" type="id"/>
-    <item name="prizedetail_prizenum9" type="id"/>
-    <item name="prizedetail_prizepoolmoney" type="id"/>
-    <item name="prizedetail_totalsellmoney" type="id"/>
-    <item name="programme_settings" type="id"/>
-    <item name="radio0" type="id"/>
-    <item name="radio1" type="id"/>
-    <item name="radio2" type="id"/>
-    <item name="radio3" type="id"/>
-    <item name="radio4" type="id"/>
-    <item name="radio5" type="id"/>
-    <item name="radio6" type="id"/>
-    <item name="radio7" type="id"/>
-    <item name="radio8" type="id"/>
-    <item name="radioGroup" type="id"/>
-    <item name="radio_new0" type="id"/>
-    <item name="radio_new4" type="id"/>
-    <item name="radio_one_layout" type="id"/>
-    <item name="radio_two_layout" type="id"/>
-    <item name="receiverandsend_email_button" type="id"/>
-    <item name="receiverandsend_email_edittext" type="id"/>
-    <item name="refresh_code" type="id"/>
-    <item name="regist_no" type="id"/>
-    <item name="register_button_" type="id"/>
-    <item name="register_confirm_password_edit" type="id"/>
-    <item name="register_confirm_password_view" type="id"/>
-    <item name="register_free_info_view" type="id"/>
-    <item name="register_id_num_edit" type="id"/>
-    <item name="register_id_num_view" type="id"/>
-    <item name="register_name_edit" type="id"/>
-    <item name="register_name_view" type="id"/>
-    <item name="register_password_edit" type="id"/>
-    <item name="register_password_view" type="id"/>
-    <item name="register_refer_info_view" type="id"/>
-    <item name="register_refer_info_view2" type="id"/>
-    <item name="register_referrer_edit" type="id"/>
-    <item name="register_referrer_view" type="id"/>
-    <item name="register_username_edit" type="id"/>
-    <item name="register_username_view" type="id"/>
-    <item name="relativeLayout1" type="id"/>
-    <item name="remember_password_checkBox" type="id"/>
-    <item name="remind_forgetPasOrBind" type="id"/>
-    <item name="rengou" type="id"/>
-    <item name="rengoushezhi" type="id"/>
-    <item name="rengoutype" type="id"/>
-    <item name="rlTitle" type="id"/>
-    <item name="rlTotal" type="id"/>
-    <item name="ruyicai_beauty_logo" type="id"/>
-    <item name="ruyicai_icon_text" type="id"/>
-    <item name="ruyihelper_icon_layout_text1" type="id"/>
-    <item name="ruyihelper_icon_layout_text2" type="id"/>
-    <item name="ruyihelper_icon_linerlayout" type="id"/>
-    <item name="ruyihelper_icon_text" type="id"/>
-    <item name="ruyihelper_iicon" type="id"/>
-    <item name="ruyihelper_listview_relative" type="id"/>
-    <item name="ruyihelper_listview_ruyihelper_id" type="id"/>
-    <item name="ruyipackage_text" type="id"/>
-    <item name="ruyipackage_title" type="id"/>
-    <item name="ruyipackage_webview" type="id"/>
-    <item name="ruyizhushou_btn_return" type="id"/>
-    <item name="scoredicribtion" type="id"/>
-    <item name="scroechange" type="id"/>
-    <item name="scrollView1" type="id"/>
-    <item name="servicer_reply" type="id"/>
-    <item name="share" type="id"/>
-    <item name="sharecontent" type="id"/>
-    <item name="shibailayout" type="id"/>
-    <item name="shibaitext" type="id"/>
-    <item name="shouye_usermessage_linear" type="id"/>
-    <item name="shouyibeishuEditext" type="id"/>
-    <item name="shouyibeishutext" type="id"/>
-    <item name="shouyiitem" type="id"/>
-    <item name="shouyilist" type="id"/>
-    <item name="shouyiqianEditext" type="id"/>
-    <item name="shouyiqihao" type="id"/>
-    <item name="shouyiqihaotext" type="id"/>
-    <item name="shouyiqishuEditext" type="id"/>
-    <item name="shouyiqishutext" type="id"/>
-    <item name="shouyiquancheng" type="id"/>
-    <item name="shouyiquanchengEditext" type="id"/>
-    <item name="shouyizhihao" type="id"/>
-    <item name="shouyizhihaozhuma" type="id"/>
-    <item name="shouyizhihou" type="id"/>
-    <item name="shouyizhihouEditext" type="id"/>
-    <item name="shouyizhihouEditext1" type="id"/>
-    <item name="shouyizhuma" type="id"/>
-    <item name="simulate_button_touzhu" type="id"/>
-    <item name="simulate_selectnumber_view" type="id"/>
-    <item name="simulate_textview_selectednumbers" type="id"/>
-    <item name="sroremoney" type="id"/>
-    <item name="sscchildtype" type="id"/>
-    <item name="ssq_bettingsuccess_amt" type="id"/>
-    <item name="ssq_bettingsuccess_betdetail" type="id"/>
-    <item name="ssq_bettingsuccess_lottype" type="id"/>
-    <item name="ssq_bettingsuccess_prompt" type="id"/>
-    <item name="ssq_bettingsuccess_returnbetting" type="id"/>
-    <item name="ssq_bettingsuccess_sendtoemail" type="id"/>
-    <item name="tabLinear" type="id"/>
-    <item name="tab_host" type="id"/>
-    <item name="tableLayout1" type="id"/>
-    <item name="tableRow_goucaitixing" type="id"/>
-    <item name="tableRow_kaijiangdingyue" type="id"/>
-    <item name="tableRow_sharetomsg" type="id"/>
-    <item name="tableRow_sharetorenren" type="id"/>
-    <item name="tableRow_sharetosina" type="id"/>
-    <item name="tableRow_sharetotecent" type="id"/>
-    <item name="tableRow_weibobangding" type="id"/>
-    <item name="teamrank" type="id"/>
-    <item name="text1" type="id"/>
-    <item name="textView1" type="id"/>
-    <item name="textView2" type="id"/>
-    <item name="textView3" type="id"/>
-    <item name="tijiao" type="id"/>
-    <item name="title" type="id"/>
-    <item name="titletext" type="id"/>
-    <item name="titletext_football" type="id"/>
-    <item name="tobet" type="id"/>
-    <item name="touzhu_succe_button_share" type="id"/>
-    <item name="touzhu_succe_button_sure" type="id"/>
-    <item name="touzhu_succe_img" type="id"/>
-    <item name="touzhu_succe_text" type="id"/>
-    <item name="track_detail_img_cannle" type="id"/>
-    <item name="track_detail_iswinafter" type="id"/>
-    <item name="track_detail_text_atm_yi" type="id"/>
-    <item name="track_detail_text_atm_zong" type="id"/>
-    <item name="track_detail_text_content" type="id"/>
-    <item name="track_detail_text_id" type="id"/>
-    <item name="track_detail_text_lotno" type="id"/>
-    <item name="track_detail_text_qishu" type="id"/>
-    <item name="track_detail_text_qishu_che" type="id"/>
-    <item name="track_detail_text_qishu_startno" type="id"/>
-    <item name="track_detail_text_qishu_yi" type="id"/>
-    <item name="track_detail_text_starttime" type="id"/>
-    <item name="track_detail_text_state" type="id"/>
-    <item name="trackquery_cancle" type="id"/>
-    <item name="tv_quan" type="id"/>
-    <item name="tv_text_limit" type="id"/>
-    <item name="tv_warming" type="id"/>
-    <item name="twodown_button_spinner" type="id"/>
-    <item name="uesrpoints" type="id"/>
-    <item name="update" type="id"/>
-    <item name="updouble" type="id"/>
-    <item name="updouble_textview" type="id"/>
-    <item name="upsingle" type="id"/>
-    <item name="upsingle_textview" type="id"/>
-    <item name="userExit" type="id"/>
-    <item name="user_center_account_detail_trading_date_id" type="id"/>
-    <item name="user_center_account_detail_trading_mode_id" type="id"/>
-    <item name="user_center_account_detail_yu_e_id" type="id"/>
-    <item name="user_center_track_number_text" type="id"/>
-    <item name="user_register_check" type="id"/>
-    <item name="user_register_check_card_id" type="id"/>
-    <item name="user_register_check_protocol" type="id"/>
-    <item name="user_register_check_referrer" type="id"/>
-    <item name="user_register_linear_card_id" type="id"/>
-    <item name="user_register_linear_referrer" type="id"/>
-    <item name="user_register_text_protocol" type="id"/>
-    <item name="usercaipiaolist" type="id"/>
-    <item name="usercenterAccountdetailContent_all" type="id"/>
-    <item name="usercenterAccountdetailContent_cz" type="id"/>
-    <item name="usercenterAccountdetailContent_pj" type="id"/>
-    <item name="usercenterAccountdetailContent_tx" type="id"/>
-    <item name="usercenterAccountdetailContent_zf" type="id"/>
-    <item name="usercenterContent" type="id"/>
-    <item name="usercenter_accountdetail_img_return" type="id"/>
-    <item name="usercenter_accountdetail_showbalancetext" type="id"/>
-    <item name="usercenter_balancequery_back" type="id"/>
-    <item name="usercenter_balancequery_ok" type="id"/>
-    <item name="usercenter_balancequery_title" type="id"/>
-    <item name="usercenter_bindID_back" type="id"/>
-    <item name="usercenter_bindID_bind" type="id"/>
-    <item name="usercenter_bindedcertidnum" type="id"/>
-    <item name="usercenter_bindedemail" type="id"/>
-    <item name="usercenter_bindedemail_back" type="id"/>
-    <item name="usercenter_bindedemail_unbind" type="id"/>
-    <item name="usercenter_bindedidremind_back" type="id"/>
-    <item name="usercenter_bindedname" type="id"/>
-    <item name="usercenter_bindemail_back" type="id"/>
-    <item name="usercenter_bindemail_edittext" type="id"/>
-    <item name="usercenter_bindemail_ok" type="id"/>
-    <item name="usercenter_bindemailinfo_title" type="id"/>
-    <item name="usercenter_bindphone_back" type="id"/>
-    <item name="usercenter_bindphone_ok" type="id"/>
-    <item name="usercenter_bindphonelabel" type="id"/>
-    <item name="usercenter_bindphoneorid_dialogtitle" type="id"/>
-    <item name="usercenter_bindphonetitle" type="id"/>
-    <item name="usercenter_btn_return" type="id"/>
-    <item name="usercenter_buyagain" type="id"/>
-    <item name="usercenter_changepwd_back" type="id"/>
-    <item name="usercenter_changepwd_content" type="id"/>
-    <item name="usercenter_changepwd_submit" type="id"/>
-    <item name="usercenter_edittext_beishuContext" type="id"/>
-    <item name="usercenter_edittext_bindphoneContext" type="id"/>
-    <item name="usercenter_edittext_certid" type="id"/>
-    <item name="usercenter_edittext_confirmnewpwd" type="id"/>
-    <item name="usercenter_edittext_name" type="id"/>
-    <item name="usercenter_edittext_newpwd" type="id"/>
-    <item name="usercenter_edittext_originalpwd" type="id"/>
-    <item name="usercenter_feedback_latter_edit_layout" type="id"/>
-    <item name="usercenter_feedback_list" type="id"/>
-    <item name="usercenter_feedback_message_edit_layout" type="id"/>
-    <item name="usercenter_feedback_submitbtn" type="id"/>
-    <item name="usercenter_feedback_submitbtn_layout" type="id"/>
-    <item name="usercenter_giftquery_amount" type="id"/>
-    <item name="usercenter_giftquery_img_return" type="id"/>
-    <item name="usercenter_giftquery_leftone" type="id"/>
-    <item name="usercenter_giftquery_leftone_recive" type="id"/>
-    <item name="usercenter_giftquery_leftthree" type="id"/>
-    <item name="usercenter_giftquery_lefttwo" type="id"/>
-    <item name="usercenter_giftquery_lookdetail" type="id"/>
-    <item name="usercenter_giftquery_recive_state" type="id"/>
-    <item name="usercenter_item_lefticon" type="id"/>
-    <item name="usercenter_item_linerlayout" type="id"/>
-    <item name="usercenter_item_righticon" type="id"/>
-    <item name="usercenter_item_text" type="id"/>
-    <item name="usercenter_listview_id" type="id"/>
-    <item name="usercenter_listview_id_two" type="id"/>
-    <item name="usercenter_listview_manageaccount" type="id"/>
-    <item name="usercenter_listview_queryinfo" type="id"/>
-    <item name="usercenter_login" type="id"/>
-    <item name="usercenter_mainlayou_text_title" type="id"/>
-    <item name="usercenter_querydetail" type="id"/>
-    <item name="usercenter_regiset" type="id"/>
-    <item name="usercenter_remind_text" type="id"/>
-    <item name="usercenter_scrore_back" type="id"/>
-    <item name="usercenter_tab_host" type="id"/>
-    <item name="usercenter_textview_originalpwd" type="id"/>
-    <item name="usercenter_trackquery_cancle" type="id"/>
-    <item name="usercenter_trackquery_item" type="id"/>
-    <item name="usercenter_trackquery_lookdetail" type="id"/>
-    <item name="usercenter_trackquery_lotteryname" type="id"/>
-    <item name="usercenter_trackquery_money" type="id"/>
-    <item name="usercenter_trackquery_ordertime" type="id"/>
-    <item name="usercenter_trackquery_tracknum" type="id"/>
-    <item name="usercenter_trackquery_trackstate" type="id"/>
-    <item name="usercenter_winprize_buyagain" type="id"/>
-    <item name="usercenter_winprize_item" type="id"/>
-    <item name="usercenter_winprize_linear" type="id"/>
-    <item name="usercenter_winprize_lotteryname" type="id"/>
-    <item name="usercenter_winprize_ordertime" type="id"/>
-    <item name="usercenter_winprize_paymoney" type="id"/>
-    <item name="usercenter_winprize_predictmoney" type="id"/>
-    <item name="usercenter_winprize_prizemoney" type="id"/>
-    <item name="usercenter_winprize_prizeqihao" type="id"/>
-    <item name="usercenter_winprize_querydetail" type="id"/>
-    <item name="usercentergiftquery_gift" type="id"/>
-    <item name="usercentergiftquery_gifted" type="id"/>
-    <item name="usercenterlogin" type="id"/>
-    <item name="usercenterregister" type="id"/>
-    <item name="usercenterscroe_zfb" type="id"/>
-    <item name="usercenterscroechange" type="id"/>
-    <item name="usercenterscroedetail" type="id"/>
-    <item name="usercentertable" type="id"/>
-    <item name="userillustrations" type="id"/>
-    <item name="userlayout01" type="id"/>
-    <item name="userless" type="id"/>
-    <item name="usermobile" type="id"/>
-    <item name="usermoneylist" type="id"/>
-    <item name="userscore_webview" type="id"/>
-    <item name="userscroe_top" type="id"/>
-    <item name="userscroe_tophuoqu" type="id"/>
-    <item name="userscroe_topscroe" type="id"/>
-    <item name="userscroe_toptitle" type="id"/>
-    <item name="usersetlist" type="id"/>
-    <item name="useryue" type="id"/>
-    <item name="viewpager" type="id"/>
-    <item name="vs_layout" type="id"/>
-    <item name="webview" type="id"/>
-    <item name="withdraw_drawbalance" type="id"/>
-    <item name="yonghufankui" type="id"/>
-    <item name="zc_play_change_button_14sfc" type="id"/>
-    <item name="zc_play_change_button_4jq" type="id"/>
-    <item name="zc_play_change_button_6cb" type="id"/>
-    <item name="zc_play_change_button_rx9" type="id"/>
-    <item name="zc_play_change_layout" type="id"/>
-    <item name="zfb_recharge_name" type="id"/>
-    <item name="zfb_recharge_password" type="id"/>
-    <item name="zfb_recharge_value" type="id"/>
-    <item name="zfb_text_alert" type="id"/>
-    <item name="zfb_text_title" type="id"/>
-    <item name="zhuiqi" type="id"/>
-    <item name="zhuiqishezhi" type="id"/>
 
 </resources>
