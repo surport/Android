@@ -85,8 +85,8 @@
                             android:layout_marginLeft="10dip"
                             android:text="跟单名人："
                             android:textColor="@color/black"
-                            android:textSize="13dip"
-                            android:textStyle="bold" >
+                            android:textSize="14dip"
+                             >
                         </TextView>
 
                         <Button
@@ -113,8 +113,8 @@
                             android:layout_height="wrap_content"
                             android:text="名人战绩："
                             android:textColor="@color/black"
-                            android:textSize="13dip"
-                            android:textStyle="bold" >
+                            android:textSize="14dip"
+                            >
                         </TextView>
 
                         <LinearLayout
@@ -132,8 +132,8 @@
                         android:paddingTop="10dip"
                         android:text="@string/ding_text_lotno_title"
                         android:textColor="@color/black"
-                        android:textSize="13dip"
-                        android:textStyle="bold" >
+                        android:textSize="14dip"
+                         >
                     </TextView>
 
                     <TextView
@@ -143,8 +143,8 @@
                         android:paddingTop="10dip"
                         android:text="@string/ding_text_person_title"
                         android:textColor="@color/black"
-                        android:textSize="13dip"
-                        android:textStyle="bold" >
+                        android:textSize="14dip"
+                         >
                     </TextView>
 
                     <TextView
