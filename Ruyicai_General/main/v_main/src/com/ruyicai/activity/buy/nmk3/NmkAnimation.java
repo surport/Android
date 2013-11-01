@@ -1,6 +1,9 @@
 package com.ruyicai.activity.buy.nmk3;
 
+import java.util.Vector;
+
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.pojo.OneBallView;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -30,6 +33,7 @@ public class NmkAnimation {
 	private int point1, point2, point3; // 随机骰子点数
 	private Activity activity;
 	public static boolean flag = true;
+	
 
 	/**
 	 * @param activity当前显示的Activity
@@ -51,6 +55,87 @@ public class NmkAnimation {
 		this.nmk_MoveToView2=view5;
 		this.nmk_MoveToView3=view6;
 		this.nmk_ShaiZiHuaLan=view7;
+		this.activity = activity;
+		if(flag){
+			flag=false;
+		    initAnimation();
+		}
+	}
+	
+	/**
+	 * @param activity当前显示的Activity
+	 * @param view1第一个骰子
+	 * @param view2第二个骰子
+	 * @param view3第三个骰子
+	 * @param ballViewVector 需要移动到的view集合
+	 * @param view7骰子花篮
+	 */
+	public NmkAnimation(Activity activity, ImageView view1, ImageView view2,
+			ImageView view3, Vector<OneBallView> ballViewVector,
+			ImageView view4) {
+		this.nmk_ShaiZi1=view1;
+		this.nmk_ShaiZi2=view2;
+		this.nmk_ShaiZi3=view3;
+		if(ballViewVector.size()==1){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(0);
+			this.nmk_MoveToView3=ballViewVector.elementAt(0);
+		}
+		if(ballViewVector.size()==2){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(0);
+			this.nmk_MoveToView3=ballViewVector.elementAt(1);
+		}
+		if(ballViewVector.size()==3){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(1);
+			this.nmk_MoveToView3=ballViewVector.elementAt(2);
+		}
+		
+		this.nmk_ShaiZiHuaLan=view4;
+		this.activity = activity;
+		if(flag){
+			flag=false;
+		    initAnimation();
+		}
+	}
+	
+	/**
+	* @param activity当前显示的Activity
+	 * @param view1第一个骰子
+	 * @param view2第二个骰子
+	 * @param view3第三个骰子
+	 * @param ballViewVector 需要移动到的view集合
+	 * @param view7骰子花篮
+	 * @param numFirst 第一个筛子点数
+	 * @param numSecond 第二个筛子点数
+	 * @param numThird 第三个筛子点数
+	 */
+	public NmkAnimation(Activity activity, ImageView view1, ImageView view2,
+			ImageView view3, Vector<OneBallView> ballViewVector,
+			ImageView view4,int numFirst,int numSecond,int numThird) {
+		this.nmk_ShaiZi1=view1;
+		this.nmk_ShaiZi2=view2;
+		this.nmk_ShaiZi3=view3;
+		if(ballViewVector.size()==1){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(0);
+			this.nmk_MoveToView3=ballViewVector.elementAt(0);
+		}
+		if(ballViewVector.size()==2){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(0);
+			this.nmk_MoveToView3=ballViewVector.elementAt(1);
+		}
+		if(ballViewVector.size()==3){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(1);
+			this.nmk_MoveToView3=ballViewVector.elementAt(2);
+		}
+		this.point1=numFirst;
+		this.point2=numSecond;
+		this.point3=numThird;
+		this.nmk_ShaiZiHuaLan=view4;
 		this.activity = activity;
 		if(flag){
 			flag=false;
@@ -200,9 +285,9 @@ public class NmkAnimation {
 		nmk_ShaiZi3.clearAnimation();
 		int[] array = new int[] { R.drawable.s1, R.drawable.s2, R.drawable.s3,
 				R.drawable.s4, R.drawable.s5, R.drawable.s6 };
-		point1 = (int) (Math.random() * 6);
-		point2 = (int) (Math.random() * 6);
-		point3 = (int) (Math.random() * 6);
+		//point1 = (int) (Math.random() * 6);
+		//point2 = (int) (Math.random() * 6);
+		//point3 = (int) (Math.random() * 6);
 		nmk_ShaiZi1.setBackgroundResource(array[point1]);
 		nmk_ShaiZi2.setBackgroundResource(array[point2]);
 		nmk_ShaiZi3.setBackgroundResource(array[point3]);
