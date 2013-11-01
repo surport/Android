@@ -369,12 +369,37 @@ public class SimulateSelectNumberView extends View {
 				} else if (chileCell instanceof LotteryNumberCell) {
 					((LotteryNumberCell) chileCell).onDrawLossValue(canvas);
 
-					if (isWinCodeCell(chileCell)) {
+					if (isWinCodeCell(chileCell)
+							&& !(chileCell instanceof BatchCodeCell)) {
 						((LotteryNumberCell) chileCell).onDrawPrizeInfo(canvas);
 					}
 				}
 			}
 		}
+		for (int row_i = 0; row_i < viewRowNum - 1; row_i++) {
+			Row chileRow = viewRows.get(row_i);
+
+			for (int colum_i = 0; colum_i < Row.columNum; colum_i++) {
+				Cell chileCell = chileRow.getRowCells().get(colum_i);
+
+				if (chileCell instanceof BatchCodeCell) {
+					if (row_i != 0) {
+						((BatchCodeCell) chileCell).onDrawBatchCode(canvas);
+					}else {
+						Paint paint = new Paint();
+						paint.setTextSize(20 * ratio);
+						paint.setColor(Color.RED);
+						paint.setTextAlign(Align.CENTER);
+						paint.setAntiAlias(true);
+						paint.setSubpixelText(true);
+						((BatchCodeCell) chileCell).onDrawBathCode(canvas,
+								paint);
+					}
+
+				}
+			}
+		}
+
 	}
 
 	private boolean isWinCodeCell(Cell chileCell) {
@@ -795,6 +820,11 @@ public class SimulateSelectNumberView extends View {
 		public void onDrawBatchCode(Canvas canvas) {
 			canvas.drawText(batchCode, textAlignLeft, textAlignTop, paint);
 		}
+
+		// add by zhangkaikai for the color of qihao is baise bug
+		public void onDrawBathCode(Canvas canvas, Paint paint) {
+			canvas.drawText(batchCode, textAlignLeft, textAlignTop, paint);
+		}
 	}
 
 	/**
@@ -832,7 +862,7 @@ public class SimulateSelectNumberView extends View {
 			// 如果被点击，则判断球种，如果是红球，则绘制红球背景；如果是篮球，则绘制篮球背景；默认绘制默认图片
 			if (isTouched) {
 				int type = getType();
-				paint.setColor(Color.WHITE);
+				paint.setColor(Color.BLACK);
 
 				if (type == Cell.RED_BALL) {
 					canvas.drawBitmap(redSelectBitmap, left, top, null);
