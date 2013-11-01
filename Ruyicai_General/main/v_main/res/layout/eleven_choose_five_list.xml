@@ -16,7 +16,7 @@
             android:layout_height="1.0dip"
             android:layout_alignRight="@+id/show_allBtn"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="12dip"
             android:background="@color/zc_sfc_divider" />
         
          <View
@@ -24,7 +24,7 @@
             android:layout_height="1.0dip"
             android:layout_alignLeft="@+id/show_allBtn"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="12dip"
             android:background="@color/zc_sfc_divider" />
         
         <TextView
@@ -56,7 +56,7 @@
             android:layout_alignRight="@+id/show_allBtn1"
             android:layout_gravity="center_vertical"
             android:layout_below="@+id/chooseviewfirst"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="12dip"
             android:background="@color/zc_sfc_divider" />
         
         <View
@@ -65,7 +65,7 @@
             android:layout_alignLeft="@+id/show_allBtn1"
             android:layout_gravity="center_vertical"
             android:layout_below="@+id/chooseviewfirst"
-            android:layout_marginTop="10dip"
+            android:layout_marginTop="12dip"
             android:background="@color/zc_sfc_divider" />
         
         <TextView
