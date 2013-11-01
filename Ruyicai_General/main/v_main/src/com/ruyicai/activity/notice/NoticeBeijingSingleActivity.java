@@ -1,6 +1,11 @@
 package com.ruyicai.activity.notice;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -308,7 +313,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		ArrayList<JsonBeanInfo> list = new ArrayList<JsonBeanInfo>();
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
-				dateStr = jsonObj.getString("beforeBatchCode");
+				dateStr = jsonObj.getString("batchCodeSelect");
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
