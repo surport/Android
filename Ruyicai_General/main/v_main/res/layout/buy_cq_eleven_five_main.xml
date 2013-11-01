@@ -38,7 +38,7 @@
                 android:background="@drawable/refresh_last_code"
                 android:textColor="@color/white"
                 android:textSize="15dip"
-                android:visibility="visible" >
+                android:visibility="invisible" >
             </Button>
 
             <Button
@@ -51,7 +51,7 @@
                 android:background="@drawable/buy_group_top_icon"
                 android:textColor="@color/white"
                 android:textSize="15dip"
-                android:visibility="visible" >
+                android:visibility="invisible" >
             </Button>
         </RelativeLayout>
 
