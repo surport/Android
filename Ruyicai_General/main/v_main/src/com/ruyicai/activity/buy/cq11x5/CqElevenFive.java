@@ -1,4 +1,6 @@
 package com.ruyicai.activity.buy.cq11x5;
+import java.util.Arrays;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -6,26 +8,31 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.buy.dlc.Dlc;
+import com.ruyicai.activity.buy.cq11x5.ChoosePopuAdapter.OnChickItem;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
-import com.ruyicai.code.dlc.DlcCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 
 public class CqElevenFive extends ZixuanAndJiXuan {
 
@@ -41,7 +48,18 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	int lesstime;// 剩余时间
 	public static String batchCode;// 期号
 	private boolean isRun = true;
-
+	//...miqingqiang start
+	private TextView viewButton;
+	private RelativeLayout reBtn;
+	private GridView mGridViewFirst,mGridViewSecond;
+	private PopupWindow popupWindow;
+	private Button returnBtn;
+	private int lottypeIndex = 0;
+	RWSharedPreferences shellRW;
+	private int position=0;
+	private static final String PT="pt";//普通
+	private static final String DT="dt";//胆拖
+	//...end
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -123,6 +141,19 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 				// createDialog(NoticeActivityGroup.ID_SUB_DLC_LISTVIEW);
 			}
 		});
+		
+		//...miqingqiang start
+		reBtn=(RelativeLayout)findViewById(R.id.main_buy_title);
+		viewButton=(TextView)findViewById(R.id.layout_main_text_title_one);
+		reBtn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//Toast.makeText(getBaseContext(), "", Toast.LENGTH_LONG).show();
+				createMenuDialog();
+			}});
+		//...end
 	}
 
 	/**
@@ -222,7 +253,6 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 							}
 						}).create().show();
 	}
-
 	/**
 	 * 投注提示
 	 */
@@ -324,6 +354,58 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 
 		default:
 			break;
+		}
+	}
+	//...miqingqiang start
+	private ChoosePopuAdapter showMenuAdapterFirst,showMenuAdapterSecond;
+	public void createMenuDialog(){
+		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View popupView = (LinearLayout) inflate.inflate(R.layout.eleven_choose_five_list, null);
+			
+		mGridViewFirst = (GridView) popupView.findViewById(R.id.chooseviewfirst);
+		String[] str1=getResources().getStringArray(R.array.dlc_type);
+		List<String> stoogesFirst = Arrays.asList(str1);
+		showMenuAdapterFirst = new ChoosePopuAdapter(this,new popFirstOnItemChick(),stoogesFirst,PT);
+		mGridViewFirst.setAdapter(showMenuAdapterFirst);
+			
+		mGridViewSecond=(GridView)popupView.findViewById(R.id.chooseviewsecond);
+		String[] str2=getResources().getStringArray(R.array.choose_type);
+		List<String> stoogesSecond=Arrays.asList(str2);
+		showMenuAdapterSecond = new ChoosePopuAdapter(this,new popSecondOnItemChick(),stoogesSecond,DT);
+		mGridViewSecond.setAdapter(showMenuAdapterSecond);
+			
+		popupWindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		popupWindow.setFocusable(true);
+		popupWindow.setOutsideTouchable(true);
+		popupWindow.update();
+		popupWindow.setBackgroundDrawable(new BitmapDrawable());
+		popupWindow.showAsDropDown(reBtn);
+	}
+		
+	public class popFirstOnItemChick implements OnChickItem{
+
+		@Override
+		public void onChickItem(View view, int position, String text) {
+			// TODO Auto-generated method stub
+				
+			showMenuAdapterFirst.setItemSelect(position);
+			showMenuAdapterFirst.notifyDataSetInvalidated();
+			popupWindow.dismiss();
+			System.out.println(text+"---"+position);
+		}
+			
+	}
+		
+	public class popSecondOnItemChick implements OnChickItem{
+
+		@Override
+		public void onChickItem(View view, int position, String text) {
+				// TODO Auto-generated method stub
+				
+			showMenuAdapterSecond.setItemSelect(position);
+			showMenuAdapterSecond.notifyDataSetInvalidated();
+			popupWindow.dismiss();
+			System.out.println(text+"---"+position);
 		}
 	}
 }

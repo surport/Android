@@ -142,6 +142,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		betInfo.setVisibility(View.VISIBLE);
 		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
+		
 	}
 
 	
@@ -250,6 +251,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		refreshBtn = (Button) findViewById(R.id.refresh_code);
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
 		refreshBtn.setVisibility(View.VISIBLE);
+				
 		refreshBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				initLatestLotteryList();
@@ -1411,4 +1413,5 @@ public class Dlc extends ZixuanAndJiXuan {
 			}
 		}
 	}
+	
 }

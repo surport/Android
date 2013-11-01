@@ -302,12 +302,13 @@ public class JiXuanBtn {
 	    ImageView shaiZiThird=(ImageView)activity.findViewById(R.id.nmk_shaizi3);
 		huaLanView.setVisibility(View.VISIBLE);
 		if(activity instanceof Nmk3HeZhiActivity){
-			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, 
-					ballViewVector.elementAt(0),ballViewVector.elementAt(0) ,ballViewVector.elementAt(0),huaLanView);
-			
+//			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, 
+//			   ballViewVector.elementAt(0),ballViewVector.elementAt(0) ,ballViewVector.elementAt(0),huaLanView);
+			//animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector, huaLanView);
+			animation =new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector, huaLanView, 1, 1, 1);
 		}else{
-			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, 
-					ballViewVector.elementAt(0),ballViewVector.elementAt(0) ,ballViewVector.elementAt(0),huaLanView);
+			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector, huaLanView);
+
 		}
 	}
 
