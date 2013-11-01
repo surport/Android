@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
@@ -9,14 +9,20 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+        
+        
 
         <RelativeLayout
             android:id="@+id/main_buy_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/nmk3_head_bg" >
-
+            
+            
+       
             <TextView
+                android:background="@drawable/chongqing_toubu_down"
                 android:id="@+id/layout_main_text_title_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -24,10 +30,14 @@
                 android:layout_centerVertical="true"
                 android:paddingLeft="10dip"
                 android:text="Title"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="85dp"
                 android:textColor="@color/white"
                 android:textSize="20dip" >
             </TextView>
-
+   
+            
             <Button
                 android:id="@+id/refresh_code"
                 android:layout_width="wrap_content"
@@ -38,7 +48,7 @@
                 android:background="@drawable/refresh_last_code"
                 android:textColor="@color/white"
                 android:textSize="15dip"
-                android:visibility="invisible" >
+                android:visibility="gone" >
             </Button>
 
             <Button
@@ -51,25 +61,37 @@
                 android:background="@drawable/buy_group_top_icon"
                 android:textColor="@color/white"
                 android:textSize="15dip"
-                android:visibility="invisible" >
+                android:visibility="gone" >
             </Button>
         </RelativeLayout>
+        
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/toubu_caizhongshaixuan"
+            />
 
         <RelativeLayout
             android:id="@+id/last_batchcode"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/toubu_caizhongshaixuan"
+            android:layout_height="30dp"
+            android:background="@drawable/nmk3_head_bg"
             android:orientation="horizontal" >
 
             <Button
                 android:id="@+id/yaoyao_jisuan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="58dp"
+                android:layout_height="26dp"
+                android:text="摇一摇机选"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/nmk3_jixuan"
-                android:paddingLeft="10dip" >
+                android:background="@drawable/toubu_caizhongshaixuan"
+                android:textSize="10sp" 
+                android:textColor="@color/white"
+                android:paddingLeft="3dip" 
+                android:paddingRight="3dip">
             </Button>
 
             <TextView
@@ -78,9 +100,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/yaoyao_jisuan"
-                android:text="至少选择两个号码"
+                android:text="至少选择2个号码"
+                android:layout_marginLeft="3dp"
                 android:textColor="@color/white"
-                android:textSize="14sp" >
+                android:textSize="12sp" >
             </TextView>
 
             <TextView
@@ -89,10 +112,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:paddingRight="10dip"
-                android:text="距离06期截至：3分13秒"
+                android:paddingRight="5dip"
+                android:text="距离06期截至:3分13秒"
                 android:textColor="@color/white"
-                android:textSize="14sp" >
+                android:textSize="12sp" >
             </TextView>
         </RelativeLayout>
         <!-- 显示投注信息 -->
@@ -102,8 +125,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="3.0dip"
-            android:paddingTop="3.0dip" >
+            android:background="#FFFFFF"
+            android:paddingBottom="2.6dip"
+            android:paddingTop="2.6dip" >
 
             <TextView
                 android:id="@+id/bet_info"
@@ -113,7 +137,7 @@
                 android:layout_centerVertical="true"
                 android:paddingLeft="10dip"
                 android:text="猜中开奖的任意2个号码即奖9元"
-                android:textColor="@color/black"
+                android:textColor="#007811"
                 android:textSize="14sp" >
             </TextView>
 
@@ -121,10 +145,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="5.0dip"
+                android:layout_marginRight="4.0dip"
                 android:layout_toLeftOf="@+id/missCheck"
                 android:text="遗漏"
-                android:textColor="@color/black"
+                android:textColor="#007811"
                 android:textSize="14sp" >
             </TextView>
 
@@ -134,14 +158,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10.0dip"
-                android:button="@drawable/nmk3_yilou_selector" />
+                android:layout_marginRight="4.0dip"
+                android:button="@drawable/chongqing_yilou_selector" />
         </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/sscchildtype"
             android:layout_width="fill_parent"
-            android:layout_height="2.0dip"
+            android:layout_height="1.0dip"
             android:orientation="horizontal"
             android:background="@drawable/nmk3_head_bg" >
         </LinearLayout>
@@ -152,5 +176,88 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
     </LinearLayout>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <RelativeLayout
+            android:id="@+id/buy_zixuan_relativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/toubu_caizhongshaixuan"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip" >
 
-</LinearLayout>
+            <RelativeLayout
+                android:id="@+id/buy_zixuan_relativelayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true" >
+				<!-- 号码篮按钮 -->
+                <Button
+                    android:id="@+id/buy_zixuan_img_add_delet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selecet_add" >
+                </Button>
+
+                <TextView
+                    android:id="@+id/buy_zixuan_add_text_num"
+                    android:layout_width="40dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:paddingBottom="4dip"
+                    android:paddingRight="7dip"
+                    android:textColor="@color/black"
+                    android:textSize="13dip" />
+            </RelativeLayout>
+
+            <!-- 清除号码按钮 -->
+            <Button
+                android:id="@+id/buy_zixuan_img_delele"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dip"
+                android:layout_toRightOf="@+id/buy_zixuan_relativelayout2"
+                android:background="@drawable/delete" >
+            </Button>
+			<!-- 加入号码篮按钮 -->
+            <Button
+                android:id="@+id/buy_zixuan_img_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/buy_zixuan_img_delele"
+                android:background="@drawable/nmk3_buy_add_selector" >
+            </Button>
+			<!-- 投注按钮 -->
+            <Button
+                android:id="@+id/buy_zixuan_img_touzhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/nmk3_bet_selector"
+                android:textSize="18dip" />
+        </RelativeLayout>
+    
+    
+    
+    
+    
+
+</RelativeLayout>
