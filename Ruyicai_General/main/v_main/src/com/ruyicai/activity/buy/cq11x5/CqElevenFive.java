@@ -254,9 +254,21 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 						}).create().show();
 	}
 	/**
-	 * 投注提示
+	 * 创建普通界面
 	 */
-	private void setBetPrompt(int type) {
+	private void createViewPT(){
+		
+	}
+	/**
+	 * 创建胆拖界面
+	 */
+	private void createViewDT(){
+		
+	}
+	/**
+	 * 普通投注提示
+	 */
+	private void setPtBetPrompt(int type) {
 		switch (type) {
 		//普通
 		case 0:
@@ -287,67 +299,76 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			betInfo.setText(getString(R.string.cq_11_5_prize_rx_8));
 			batchcode.setText(getString(R.string.cq_11_5_prize2_rx_8));
 			break;
-			//胆拖
-		case 7:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_2));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_2));
-			break;
-		case 8:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_3));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_3));
-			break;
-		case 9:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_4));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_4));
-			break;
-		case 10:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_5));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_5));
-			break;
-		case 11:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_6));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_6));
-			break;
-		case 12:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_7));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_7));
-			break;
-		case 13:
-			betInfo.setText(getString(R.string.cq_11_5_prize_rx_8));
-			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_8));
-			break;
 			//前一
-		case 14:
+		case 7:
 			betInfo.setText(getString(R.string.cq_11_5_prize_pt_qy));
 			batchcode.setText(getString(R.string.cq_11_5_prize2_pt_qy));
 			break;
 			//前二直选
-		case 15:
+		case 8:
 			betInfo.setText(getString(R.string.cq_11_5_prize_pt_qe_zhix));
 			batchcode.setText(getString(R.string.cq_11_5_prize2_pt_qe_zhix));
 			break;
 			//前二组选
-		case 16:
+		case 9:
 			betInfo.setText(getString(R.string.cq_11_5_prize_pt_qe_zux));
 			batchcode.setText(getString(R.string.cq_11_5_prize2_pt_qe_zux));
 			break;
 			//前三直选
-		case 17:
+		case 10:
 			betInfo.setText(getString(R.string.cq_11_5_prize_pt_qs_zhix));
 			batchcode.setText(getString(R.string.cq_11_5_prize2_pt_qs_zhix));
 			break;
-		case 18:
+		case 11:
 			//前三组选
 			betInfo.setText(getString(R.string.cq_11_5_prize_pt_qs_zux));
 			batchcode.setText(getString(R.string.cq_11_5_prize2_pt_qs_zux));
 			break;
+		default:
+			break;
+		}
+	}
+	/**
+	 * 胆拖投注提示
+	 */
+	private void setDtBetPrompt(int type) {
+		switch (type) {
+			//胆拖
+		case 0:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_2));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_2));
+			break;
+		case 1:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_3));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_3));
+			break;
+		case 2:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_4));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_4));
+			break;
+		case 3:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_5));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_5));
+			break;
+		case 4:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_6));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_6));
+			break;
+		case 5:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_7));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_7));
+			break;
+		case 6:
+			betInfo.setText(getString(R.string.cq_11_5_prize_rx_8));
+			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_8));
+			break;
 			//胆拖前二组选
-		case 19:
+		case 7:
 			betInfo.setText("");
 			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_qe_zux));
 			break;
 			//胆拖前三组选
-		case 20:
+		case 8:
 			betInfo.setText("");
 			batchcode.setText(getString(R.string.cq_11_5_prize2_dt_qs_zux));
 			break;
@@ -356,6 +377,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			break;
 		}
 	}
+	
 	//...miqingqiang start
 	private ChoosePopuAdapter showMenuAdapterFirst,showMenuAdapterSecond;
 	public void createMenuDialog(){
@@ -391,7 +413,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			showMenuAdapterFirst.setItemSelect(position);
 			showMenuAdapterFirst.notifyDataSetInvalidated();
 			popupWindow.dismiss();
-			System.out.println(text+"---"+position);
+			setPtBetPrompt(position);
 		}
 			
 	}
@@ -405,7 +427,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			showMenuAdapterSecond.setItemSelect(position);
 			showMenuAdapterSecond.notifyDataSetInvalidated();
 			popupWindow.dismiss();
-			System.out.println(text+"---"+position);
+			setDtBetPrompt(position);
 		}
 	}
 }

@@ -12,7 +12,7 @@
         android:id="@+id/main_buy_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/hongse" >
+        android:background="@drawable/shouye_top" >
 
         <TextView
             android:id="@+id/join_detail_text_title"
