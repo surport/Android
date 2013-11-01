@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,12 +21,14 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.cq11x5.ChoosePopuAdapter.OnChickItem;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
+import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
@@ -35,7 +38,7 @@ import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 
 public class CqElevenFive extends ZixuanAndJiXuan {
-
+	protected int BallResId[] = { R.drawable.cq_11_5_ball_normal, R.drawable.cq_11_5_ball_select };
 	private RelativeLayout relativeLayout;
 	private TextView titleOne;// 标题
 	private TextView betInfo;// 投注提示1
@@ -59,19 +62,29 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private int position=0;
 	private static final String PT="pt";//普通
 	private static final String DT="dt";//胆拖
+	private int checkedId;
+	public AddView addView = new AddView(this);
 	//...end
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setAddView(addView);
 		lotno = Constants.LOTNO_CQ_ELVEN_FIVE;
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutMain = inflater.inflate(R.layout.buy_cq_eleven_five_main, null);
 		setContentView(layoutMain);
 		initView();
 		setIssue(lotno);
+		initGroup();
 	}
-
+	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId) {
+		// TODO Auto-generated method stub
+		super.onCheckedChanged(group, checkedId);
+		this.checkedId=checkedId;
+		onCheckAction(checkedId);
+	}
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
 		// TODO Auto-generated method stub
@@ -111,7 +124,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	@Override
 	public void onCheckAction(int checkedId) {
 		// TODO Auto-generated method stub
-
+		createViewPT(checkedId);
 	}
 	/**
 	 * 初始化组件
@@ -127,20 +140,20 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 		mYaoYao = (Button) findViewById(R.id.yaoyao_jisuan);// 摇一摇机选
 		missCheck = (CheckBox) findViewById(R.id.missCheck);// 遗漏值开关
 
-		titleOne.setText(getString(R.string.cq_11_5));
+//		titleOne.setText(getString(R.string.cq_11_5));
 
-		refreshBtn.setVisibility(View.VISIBLE);
-		refreshBtn.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				initLatestLotteryList();
-			}
-		});
-		imgRetrun.setVisibility(View.VISIBLE);
-		imgRetrun.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				// createDialog(NoticeActivityGroup.ID_SUB_DLC_LISTVIEW);
-			}
-		});
+//		refreshBtn.setVisibility(View.VISIBLE);
+//		refreshBtn.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				initLatestLotteryList();
+//			}
+//		});
+//		imgRetrun.setVisibility(View.VISIBLE);
+//		imgRetrun.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				// createDialog(NoticeActivityGroup.ID_SUB_DLC_LISTVIEW);
+//			}
+//		});
 		
 		//...miqingqiang start
 		reBtn=(RelativeLayout)findViewById(R.id.main_buy_title);
@@ -254,10 +267,21 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 						}).create().show();
 	}
 	/**
+	 * 初始化group
+	 */
+	public void initGroup() {
+		childtype = new String[] { "" };
+		init();
+		group.setOnCheckedChangeListener(this);
+		group.check(0);
+	}
+	/**
 	 * 创建普通界面
 	 */
-	private void createViewPT(){
-		
+	private void createViewPT(int id){
+		areaNums = new AreaNum[1];
+		areaNums[0] = new AreaNum(11, 5, 1, 11, BallResId, 0, 1,Color.RED, "", false, true, true);
+		createView(areaNums, sscCode, ZixuanAndJiXuan.NULL, true,checkedId, true);
 	}
 	/**
 	 * 创建胆拖界面

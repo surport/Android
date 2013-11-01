@@ -139,7 +139,7 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/line"
+            android:id="@+id/sscchildtype"
             android:layout_width="fill_parent"
             android:layout_height="2.0dip"
             android:orientation="horizontal"
