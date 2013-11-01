@@ -240,7 +240,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		for (int i = 0; i < childtype.length; i++) {
 			RadioButton radio = new RadioButton(this);
 			radio.setText(childtype[i]);
-			radio.setTextColor(Color.BLACK);
+			radio.setTextColor(Color.WHITE);
 			radio.setId(i);
 			radio.setTextSize(14);
 			radio.setButtonDrawable(R.drawable.radio_select);

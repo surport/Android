@@ -807,6 +807,7 @@
     <string name="eleven">11运夺金</string>
     <string name="tenTitle">广东快乐十分</string>
     <string name="gdeleven">广东11选5</string>
+    <string name="cq_11_5">重庆11选5</string>
     <!-- 提示框字段 -->
     <string name="alert_dialog_touzhu_prize_title">中奖停止追号：</string>
     <!-- 开奖号码 -->

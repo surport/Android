@@ -1047,6 +1047,11 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 重庆11选5 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.cq11x5.CqElevenFive"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
         <!-- 北京单场您的订单 -->
         <activity
             android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity"
