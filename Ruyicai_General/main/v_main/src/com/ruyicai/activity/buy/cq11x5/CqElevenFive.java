@@ -60,7 +60,6 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	public static String batchCode;// 期号
 	private boolean isRun = true;
 	//...miqingqiang start
-	private TextView viewButton;
 	private RelativeLayout reBtn;
 	private MyGridView mGridViewFirst,mGridViewSecond;
 	private PopupWindow popupWindow;
@@ -166,13 +165,11 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 //		titleOne.setText(getString(R.string.cq_11_5));
 		//...miqingqiang start
 		reBtn=(RelativeLayout)findViewById(R.id.main_buy_title);
-		viewButton=(TextView)findViewById(R.id.layout_main_text_title_one);
 		reBtn.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//Toast.makeText(getBaseContext(), "", Toast.LENGTH_LONG).show();
 				createMenuDialog();
 			}});
 		//...end
@@ -513,7 +510,10 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			break;
 		}
 	}
-	
+	/**
+	 * 设置标题
+	 * @param titleType玩法名称
+	 */
 	private void setTitle(String titleType){
 		if(tag==1){
 			titleOne.setText(TITLE+"--"+titleType+"--普通");
