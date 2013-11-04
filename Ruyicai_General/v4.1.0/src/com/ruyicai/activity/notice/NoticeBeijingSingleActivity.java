@@ -308,7 +308,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		ArrayList<JsonBeanInfo> list = new ArrayList<JsonBeanInfo>();
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
-				dateStr = jsonObj.getString("beforeBatchCode");
+				dateStr = jsonObj.getString("batchCodeSelect");
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");

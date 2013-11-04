@@ -3,13 +3,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/notice_detail_background"
-    android:scrollbars="vertical" >
+    android:scrollbars="vertical"
+    android:id="@+id/relativetopone" >
 
     <RelativeLayout
         android:id="@+id/notice_detail_title"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/shouye_top"
+        android:layout_height="40dp"
+        android:background="@drawable/hongse"
         android:gravity="center_vertical"
         android:paddingLeft="5dp" >
 
@@ -18,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="开奖详情"
+            android:layout_centerVertical="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffffff"
             android:textSize="20sp"
@@ -34,6 +36,17 @@
             android:text="返回列表"
             android:textColor="#FFFFFFFF"
             android:visibility="invisible" />
+        
+        <Button
+            android:id="@+id/notice_detail_btn"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dip"
+            android:background="@drawable/share_bt_selector" >
+        </Button>
+        
     </RelativeLayout>
 
     <ScrollView
@@ -507,7 +520,8 @@
             android:layout_width="320dip"
             android:layout_height="wrap_content"
             android:background="@drawable/fenxiangbg"
-            android:orientation="horizontal" >
+            android:orientation="horizontal" 
+            android:visibility="gone">
 
             <ImageButton
                 android:id="@+id/join_detail_img_buy2"

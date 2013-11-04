@@ -48,6 +48,7 @@ import android.widget.ViewFlipper;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
+import com.ruyicai.activity.buy.cq11x5.CqElevenFive;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
@@ -119,12 +120,12 @@ public class BuyActivity extends Activity implements OnClickListener {
 			R.drawable.ico_three, R.drawable.ico_seven, R.drawable.twentyfive,
 			R.drawable.icon_pl5, R.drawable.icon_qxc, R.drawable.ico_goalin,
 			R.drawable.ico_basketball, R.drawable.ten_icon,
-			R.drawable.beijingsinglegame_ico };
+			R.drawable.beijingsinglegame_ico,R.drawable.elven_five_ico};
 
 	
 	private String[] imageTitle = { "合买大厅", "如意竞猜", "双色球", "大乐透", "福彩3D", "江西11选5",
 			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
-			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" };
+			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" ,"重庆11选五"};
 
 
 	private final Class[] cla = { JoinInfoActivity.class, RuyiGuessActivity.class, 
@@ -133,7 +134,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
 			GdEleven.class, PL3.class, Qlc.class, TwentyTwo.class, PL5.class,
 			QXC.class, FootBallMainActivity.class, LqMainActivity.class,
-			TenActivity.class, BeiJingSingleGameActivity.class };
+			TenActivity.class, BeiJingSingleGameActivity.class,CqElevenFive.class };
 
 	private int[] imgViewsId = { R.id.mainpage_hemai_sign,
 			R.id.mainpage_ssq_sign, R.id.mainpage_fc3d_sign,

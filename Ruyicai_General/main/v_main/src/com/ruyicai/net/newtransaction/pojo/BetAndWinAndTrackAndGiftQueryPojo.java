@@ -22,6 +22,8 @@ public class BetAndWinAndTrackAndGiftQueryPojo {
 	private String maxresult = "";
 	private String lotno = "";
 	private String type = "";
+	private String dateType = "";
+	private String awardType = "";
 
 	public String getType() {
 		return type;
@@ -89,6 +91,22 @@ public class BetAndWinAndTrackAndGiftQueryPojo {
 
 	public void setPhonenum(String phonenum) {
 		this.phonenum = phonenum;
+	}
+
+	public String getDateType() {
+		return dateType;
+	}
+
+	public void setDateType(String dateType) {
+		this.dateType = dateType;
+	}
+
+	public String getAwardType() {
+		return awardType;
+	}
+
+	public void setAwardType(String awardType) {
+		this.awardType = awardType;
 	}
 
 }

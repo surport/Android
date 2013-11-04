@@ -12,13 +12,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -27,6 +30,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -51,6 +55,7 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
+import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 public class LotInfoConcreteActivity extends Activity implements
@@ -76,17 +81,18 @@ public class LotInfoConcreteActivity extends Activity implements
 	private String lotno;
 	private int zhushu = 1;
 	private String titletype[] = { "彩民趣闻", "专家推荐", "足彩天地", "如意公告" };
-	private LinearLayout fenxianglayout;
+	private LinearLayout fenxianglayout,parent;
 	private boolean issharemove = false;
 	ImageButton wangyi, xinlang;
-	RWSharedPreferences shellRW;
+	RWSharedPreferences shellRW,RW;
 	String token, expires_in;
 	// private Renren renren;
 	private boolean isSinaTiaoZhuan = true;
 	String tencent_token;
 	String tencent_access_token_secret;
 	private OAuthV1 tenoAuth;
-
+	private Button caipiaozixun_sharebtn,tosinaweibo,totengxunweibo,toweixin,topengyouquan,tocancel;
+	private PopupWindow popupWindow;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -107,6 +113,7 @@ public class LotInfoConcreteActivity extends Activity implements
 	 * 初始化组件
 	 */
 	public void init() {
+		RW = new RWSharedPreferences(LotInfoConcreteActivity.this, "shareweixin");
 		news = (TextView) findViewById(R.id.webview);
 		news.setTextColor(Color.BLACK);
 		titleTextView = (TextView) findViewById(R.id.join_hall_text_title);
@@ -122,110 +129,105 @@ public class LotInfoConcreteActivity extends Activity implements
 				finish();
 			}
 		});
-
-		wangyi = (ImageButton) findViewById(R.id.join_detail_img_buy2);
-		xinlang = (ImageButton) findViewById(R.id.join_detail_img_buy3);
-		wangyi.setOnClickListener(new OnClickListener() {
-
+		
+		initSharePopWindow();
+		parent = (LinearLayout) this.findViewById(R.id.linearlayout_caipiaozixun);
+		caipiaozixun_sharebtn=(Button) this.findViewById(R.id.caipiaozixun_sharebtn);
+		caipiaozixun_sharebtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				tenoauth();
-
-			}
-		});
-		xinlang.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				oauthOrShare();
-
-			}
-		});
-		fenxianglayout = (LinearLayout) findViewById(R.id.LinearLayout10);
-		fenxianglayout.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (issharemove) {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(PublicMethod.getPxInt(265,
-									LotInfoConcreteActivity.this), 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-					issharemove = false;
-				} else {
-					TranslateAnimation anim = new TranslateAnimation(
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, -0.83f,
-							Animation.RELATIVE_TO_SELF, 0.0f,
-							Animation.RELATIVE_TO_SELF, 0.0f);
-					anim.setDuration(500);
-					// anim.setFillAfter(true);
-					anim.setFillEnabled(true);
-					anim.setAnimationListener(new AnimationListener() {
-
-						@Override
-						public void onAnimationStart(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationRepeat(Animation animation) {
-							// TODO Auto-generated method stub
-
-						}
-
-						@Override
-						public void onAnimationEnd(Animation animation) {
-							// TODO Auto-generated method stub
-							LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fenxianglayout
-									.getLayoutParams();
-							lp.setMargins(0, 0, 0, 0);
-							fenxianglayout.setLayoutParams(lp);
-						}
-					});
-					fenxianglayout.startAnimation(anim);
-
-					issharemove = true;
-
+				if (popupWindow != null) {
+					popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
 				}
-
 			}
 		});
+		
+		
+		
 
+		
 	}
+
+	private void initSharePopWindow() {
+		View contentView=getLayoutInflater().inflate(R.layout.share_popwindow, null);
+		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		toweixin=(Button) contentView.findViewById(R.id.toweixin);
+		topengyouquan=(Button) contentView.findViewById(R.id.topengyouquan);
+		tocancel=(Button) contentView.findViewById(R.id.tocancel);
+		
+		
+   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
+   			ViewGroup.LayoutParams.WRAP_CONTENT);
+   	    popupWindow.setFocusable(true);
+   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
+   	   
+   	    tosinaweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				oauthOrShare();
+				closePopWindow();
+			}
+		});
+		totengxunweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tenoauth();
+				closePopWindow();
+			}
+		});
+		toweixin.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				/**
+				 * 分享到微信
+				 */
+				toShareWeiXin();
+				closePopWindow();
+			}
+		});
+		topengyouquan.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				/**
+				 * 分享到朋友圈
+				 */
+				toPengYouQuan();
+				closePopWindow();
+			}
+		});
+		tocancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				closePopWindow();
+			}
+		});
+		
+	}
+	
+	protected void toPengYouQuan() {
+	       RW.putStringValue("weixin_pengyou", "topengyouquan");
+			Intent intent = new Intent(LotInfoConcreteActivity.this,
+					WXEntryActivity.class);
+			intent.putExtra("sharecontent", Constants.shareContent);
+			startActivity(intent);
+			
+		}
+
+		protected void toShareWeiXin() {
+			RW.putStringValue("weixin_pengyou", "toweixin");
+			Intent intent = new Intent(LotInfoConcreteActivity.this,
+					WXEntryActivity.class);
+			intent.putExtra("sharecontent", Constants.shareContent);
+			startActivity(intent);	
+			
+		}
+
+		private void closePopWindow(){
+			if (popupWindow != null && popupWindow.isShowing()) {
+				popupWindow.dismiss();
+			}
+		}
 
 	private void oauthOrShare() {
 		token = shellRW.getStringValue("token");

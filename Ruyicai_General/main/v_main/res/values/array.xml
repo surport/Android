@@ -94,6 +94,17 @@
         <item>任选七</item>
         <item>任选八</item>
     </string-array>
+    <string-array name="choose_type">
+        <item>任选二</item>
+        <item>任选三</item>
+        <item>任选四</item>
+        <item>任选五</item>
+        <item>任选六</item>
+        <item>任选七</item>
+        <item>任选八</item>
+        <item>前二组选</item>
+        <item>前三组选</item>
+    </string-array>
     <string-array name="ten_type">
         <item>选一数投</item>
         <item>选一红投</item>
@@ -151,7 +162,7 @@
         -->
     </string-array>
     
-    <string-array name="search_list">
+    <string-array name="lotno_list">
         <item>所有彩种</item>
         <item>双色球</item>
         <item>福彩3D</item>
@@ -164,12 +175,28 @@
         <item>七星彩</item>
         <item>排列三</item>
         <item>排列五</item>
+        <item>十一运夺金</item>
+		<item>广东快乐十分</item>
         <item>足彩</item>
         <item>竞彩篮球</item>
         <item>竞彩足球</item>
         <item>北京单场</item>
-		<item>十一运夺金</item>
-		<item>广东快乐十分</item>
+    </string-array>
+    
+    <string-array name="award_state_list">
+        <item>全部状态</item>
+        <item>未开奖</item>
+        <item>未中奖</item>
+        <item>中奖</item>
+        <item>撤单</item>
+    </string-array>
+    
+    <string-array name="time_state_list">
+        <item>全部时间</item>
+        <item>最近1个月</item>
+        <item>最近2个月</item>
+        <item>最近3个月</item>
+        <item>最近1周</item>
     </string-array>
     
    <declare-styleable name="RoundProgressBar">

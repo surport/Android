@@ -7,8 +7,16 @@ import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
+import com.ruyicai.activity.buy.nmk3.Nmk2DiffActivity;
+import com.ruyicai.activity.buy.nmk3.Nmk3DiffActivity;
+import com.ruyicai.activity.buy.nmk3.Nmk3HeZhiActivity;
+import com.ruyicai.activity.buy.nmk3.Nmk3ThreeLinkActivity;
+import com.ruyicai.activity.buy.nmk3.Nmk3ThreeSameActivty;
+import com.ruyicai.activity.buy.nmk3.Nmk3TwoSameActivty;
+import com.ruyicai.activity.buy.nmk3.NmkAnimation;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.pojo.BallTable;
+import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
 
 import android.content.Context;
@@ -22,8 +30,10 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 import android.widget.PopupWindow.OnDismissListener;
 
 /**
@@ -46,6 +56,11 @@ public class JiXuanBtn {
 	private int width, padding, leftPadd;
 	private int areaId;
 	BaseActivity activity;
+	
+	//...2013.10.30秘青强
+	private NmkAnimation animation;
+	OneBallView oneBallView;
+	private Vector<OneBallView> ballViewVector = new Vector<OneBallView>();
 
 	public JiXuanBtn(boolean isRed, Button jxBtn, Button jxDwBtn, int sizeNum,
 			BaseActivity activity, View view, BallTable table, int areaMin,
@@ -196,21 +211,105 @@ public class JiXuanBtn {
 	}
 
 	public void dialogOnclick() {
-		activity.again(areaId);
-		int[] iBallId = table.randomChooseId(choseNum);
-		for (int i = 0; i < iBallId.length; i++) {
-			activity.isBallTable(iBallId[i]);
+		if(activity instanceof Nmk3HeZhiActivity){
+			if(animation.flag){
+				activity.again(areaId);
+				int[] iBallId = table.randomChooseId(choseNum);
+			    for (int i = 0; i < iBallId.length; i++) {
+					activity.isBallTable(iBallId[i]);
+					ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
+				   // oneBallView=(OneBallView) table.getBallViews().get(iBallId[i]);
+				}
+			    initAnimation(ballViewVector);
+			    ballViewVector.removeAllElements();
+				activity.showEditText();
+			}
+		}else if(activity instanceof Nmk3DiffActivity){
+			if(animation.flag){
+			    activity.again(areaId);
+			    int[] iBallId = table.randomChooseId(choseNum);
+		        for (int i = 0; i < iBallId.length; i++) {
+				    activity.isBallTable(iBallId[i]);
+				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
+			    }
+		        initAnimation(ballViewVector);
+		        ballViewVector.removeAllElements();
+			    activity.showEditText();
+			}
+		}else if(activity instanceof Nmk3ThreeSameActivty){
+			if(animation.flag){
+			    activity.again(areaId);
+			    int[] iBallId = table.randomChooseId(choseNum);
+		        for (int i = 0; i < iBallId.length; i++) {
+				    activity.isBallTable(iBallId[i]);
+				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
+			    }
+		        initAnimation(ballViewVector);
+		        ballViewVector.removeAllElements();
+			    activity.showEditText();
+			}
+		}else if(activity instanceof Nmk2DiffActivity){
+			if(animation.flag){
+			    activity.again(areaId);
+			    int[] iBallId = table.randomChooseId(choseNum);
+		        for (int i = 0; i < iBallId.length; i++) {
+				    activity.isBallTable(iBallId[i]);
+				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
+			    }
+		        initAnimation(ballViewVector);
+		        ballViewVector.removeAllElements();
+			    activity.showEditText();
+			}
+		}else if(activity instanceof Nmk3TwoSameActivty){
+			if(animation.flag){
+			    activity.again(areaId);
+			    int[] iBallId = table.randomChooseId(choseNum);
+		        for (int i = 0; i < iBallId.length; i++) {
+				    activity.isBallTable(iBallId[i]);
+				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
+			    }
+		        initAnimation(ballViewVector);
+		        ballViewVector.removeAllElements();
+			    activity.showEditText();
+			}
 		}
-		activity.showEditText();
-		if (activity instanceof Dlc) {
-			((Dlc) activity).showBetInfo("");
-		} else if (activity instanceof ZixuanAndJiXuan) {
+		else{
+			activity.again(areaId);
+			int[] iBallId = table.randomChooseId(choseNum);
+			for (int i = 0; i < iBallId.length; i++) {
+				activity.isBallTable(iBallId[i]);
+			}
+			activity.showEditText();
+			if (activity instanceof Dlc) {
+				((Dlc) activity).showBetInfo("");
+			} else if (activity instanceof ZixuanAndJiXuan) {
 
-			((ZixuanAndJiXuan) activity).showBetInfo("");
-		} else {
-			activity.changeTextSumMoney();
+				((ZixuanAndJiXuan) activity).showBetInfo("");
+			} else {
+				activity.changeTextSumMoney();
+			}
 		}
+		
+	}
+	
+	/**
+	 * 摇骰子动画
+	 */
+	private void initAnimation(Vector<OneBallView> ballViewVector){
+		ImageView huaLanView=(ImageView)activity.findViewById(R.id.nmk_shaizihualan);
+	    ImageView shaiZiFirst=(ImageView)activity.findViewById(R.id.nmk_shaizi1);
+	    ImageView shaiZiSecond=(ImageView)activity.findViewById(R.id.nmk_shaizi2);
+	    ImageView shaiZiThird=(ImageView)activity.findViewById(R.id.nmk_shaizi3);
+		huaLanView.setVisibility(View.VISIBLE);
+		if(activity instanceof Nmk3HeZhiActivity){
+//			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, 
+//			   ballViewVector.elementAt(0),ballViewVector.elementAt(0) ,ballViewVector.elementAt(0),huaLanView);
+			//animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector, huaLanView);
+			animation =new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector, huaLanView, 1, 1, 1);
+		}else{
+			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector, huaLanView);
 
+		}
 	}
 
 	public void onclickText() {

@@ -285,6 +285,8 @@
     <string name="share">分享</string>
     <string name="sharetotencentweibo">分享到腾讯微博</string>
     <string name="sharetosinaweibo">分享到新浪微博</string>
+    <string name="sharetoweixin">分享到微信</string>
+    <string name="sharetopengyouquan">分享到朋友圈</string>
     <string name="sharetorenren">分享到腾讯微博</string>
     <string name="sharetosms">短信分享</string>
     <string name="renrenaccout">腾讯微博账号设置</string>
@@ -807,6 +809,7 @@
     <string name="eleven">11运夺金</string>
     <string name="tenTitle">广东快乐十分</string>
     <string name="gdeleven">广东11选5</string>
+    <string name="cq_11_5">重庆11选5</string>
     <!-- 提示框字段 -->
     <string name="alert_dialog_touzhu_prize_title">中奖停止追号：</string>
     <!-- 开奖号码 -->
@@ -1047,6 +1050,53 @@
     <string name="h_11_5_prize_dan_rx_6">胆码可选1-5个，拖码至少选择2个，胆码加拖码≥7个，选号中任意5位与开奖号码一致即中奖！\n奖金：90元</string>
     <string name="h_11_5_prize_dan_rx_7">胆码可选1-6个，拖码至少选择2个，胆码加拖码≥8个，选号中任意5位与开奖号码一致即中奖！\n奖金：26元</string>
     <string name="h_11_5_prize_dan_rx_8">胆码可选1-7个，拖码至少选择2个，胆码加拖码≥9个，选号中任意5位与开奖号码一致即中奖！\n奖金：9元</string>
+    
+    <!-- 重庆11选五  普通 -->
+     <string name="cq_11_5_prize_rx_2">至少选择2个号码</string>
+     <string name="cq_11_5_prize_rx_3">至少选择3个号码</string>
+     <string name="cq_11_5_prize_rx_4">至少选择4个号码</string>
+     <string name="cq_11_5_prize_rx_5">至少选择5个号码</string>
+     <string name="cq_11_5_prize_rx_6">至少选择6个号码</string>
+     <string name="cq_11_5_prize_rx_7">至少选择7个号码</string>
+     <string name="cq_11_5_prize_rx_8">至少选择8个号码</string>
+     
+     <string name="cq_11_5_prize2_rx_2">猜中开奖的任意2个号即奖6元</string>
+     <string name="cq_11_5_prize2_rx_3">猜中开奖的任意3个号即奖19元</string>
+     <string name="cq_11_5_prize2_rx_4">猜中开奖的任意4个号即奖78元</string>
+     <string name="cq_11_5_prize2_rx_5">猜中开奖的全部5个号即奖540元</string>
+     <string name="cq_11_5_prize2_rx_6">猜中开奖的全部5个号即奖90元</string>
+     <string name="cq_11_5_prize2_rx_7">猜中开奖的全部5个号即奖26元</string>
+     <string name="cq_11_5_prize2_rx_8">猜中开奖的全部5个号即奖9元</string>
+        <!--重庆11选五  普通 前一 -->
+     <string name="cq_11_5_prize_pt_qy">至少选择1个数字</string>
+     <string name="cq_11_5_prize2_pt_qy">猜中开奖的第一位即奖13元</string>
+     <!--重庆11选五  普通 前二直选 -->
+     <string name="cq_11_5_prize_pt_qe_zhix">每位至少选择1个数字</string>
+     <string name="cq_11_5_prize2_pt_qe_zhix">与开奖前2位————对应即奖130元</string>
+       <!--重庆11选五  普通 前二组选 -->
+     <string name="cq_11_5_prize_pt_qe_zux">至少选择2个数字</string>
+     <string name="cq_11_5_prize2_pt_qe_zux">猜中开奖前2位顺序不限即奖65元</string>
+     
+      <!--重庆11选五  普通 前三直选 -->
+     <string name="cq_11_5_prize_pt_qs_zhix">至少选择3个号码</string>
+     <string name="cq_11_5_prize2_pt_qs_zhix">猜中开奖前3位顺序不限即奖195元</string>
+       <!--重庆11选五  普通 前三组选 -->
+     <string name="cq_11_5_prize_pt_qs_zux">至少选择3个数字</string>
+     <string name="cq_11_5_prize2_pt_qs_zux">猜中开奖前3位顺序不限即奖65元</string>
+     
+     <!-- 重庆11选五   胆拖-->
+      <string name="cq_11_5_prize2_dt_2">猜中开奖的任意2个号即奖6元（胆码+托码≧3个）</string>
+     <string name="cq_11_5_prize2_dt_3">猜中开奖的任意3个号即奖19元（胆码+托码≧4个）</string>
+     <string name="cq_11_5_prize2_dt_4">猜中开奖的任意4个号即奖78元（胆码+托码≧5个）</string>
+     <string name="cq_11_5_prize2_dt_5">猜中开奖的全部5个号即奖540元（胆码+托码≧6个）</string>
+     <string name="cq_11_5_prize2_dt_6">猜中开奖的全部5个号即奖90元（胆码+托码≧7个）</string>
+     <string name="cq_11_5_prize2_dt_7">猜中开奖的全部5个号即奖26元（胆码+托码≧8个）</string>
+     <string name="cq_11_5_prize2_dt_8">猜中开奖的全部5个号即奖9元（胆码+托码≧9个）</string>
+      <!--重庆11选五   胆拖 前二直选 -->
+     <string name="cq_11_5_prize2_dt_qe_zux">猜中开奖前2位顺序不限即奖65元</string>
+      <!--重庆11选五 胆拖 前三组选 -->
+     <string name="cq_11_5_prize2_dt_qs_zux">猜中开奖前3位顺序不限即奖195元</string>
+    
     <!-- 快乐十分 -->
     <string name="ten_prize_rx_2">至少选择2个号码投注，命中开奖号码的任意两位即中奖！\n奖金：8元</string>
     <string name="ten_prize_rx_3">至少选择3个号码投注，命中开奖号码的任意三位即中奖！\n奖金：24元</string>

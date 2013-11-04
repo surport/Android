@@ -78,7 +78,11 @@ public class BetQueryInterface {
 			jsonProtocol.put(ProtocolManager.LOTNO, betQueryPojo.getLotno());
 			jsonProtocol.put(ProtocolManager.REQUESTTYPE,
 					betQueryPojo.getType());
-
+			jsonProtocol.put("state",
+					betQueryPojo.getAwardType());
+			jsonProtocol.put("dateType",
+					betQueryPojo.getDateType());
+			
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 

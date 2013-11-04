@@ -338,6 +338,7 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 					String errorCode = jsonObj.getString("error_code");
 					if ("0000".equals(errorCode)) {
 						if (msg.what == 2) {
+							mPageIndex = 0;
 							mQuestionsList.clear();
 							mLocalDataMap.clear();
 						}
@@ -391,7 +392,7 @@ public class RuyiGuessActivity extends Activity   implements OnRefreshListener{
 		} else {
 			maxResult = 10;
 		}
-		String count = String.valueOf(maxResult);
-		Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
+		mItemCount = String.valueOf(maxResult);
+		Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, mItemCount);
 	}
 }

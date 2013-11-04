@@ -57,8 +57,8 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		sensor.stopAction();
-		baseSensor.stopAction();
+//		sensor.stopAction();
+//		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
 	}
 
