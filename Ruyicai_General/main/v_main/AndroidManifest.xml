@@ -1027,12 +1027,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.ruyicai.activity.buy.nmk3.Nmk3DiffActivity"
+            android:name="com.ruyicai.activity.buy.nmk3.Nmk3ThreeDiffActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
             <activity
-            android:name="com.ruyicai.activity.buy.nmk3.Nmk2DiffActivity"
+            android:name="com.ruyicai.activity.buy.nmk3.Nmk3TwoDiffActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>

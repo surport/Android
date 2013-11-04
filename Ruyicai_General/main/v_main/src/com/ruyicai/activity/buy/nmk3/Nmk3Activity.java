@@ -33,13 +33,14 @@ import com.ruyicai.util.PublicMethod;
 public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 	private int lesstime = 0;
 	public static String batchCode;
-	private String[] titles = { "和值", "三不同", "二不同", "三同号", "二同号", "三连号" };
+	private String[] titles = { "和值", "三不同", "二不同", "三同号", "二同号" };
 	/** modify by pengcx 20130517 start */
-	private String[] topTitles = { "快三--和值", "快三--三不同", "快三--二不同", "快三--三同号", "快三--二同号", "快三--三连号" };
+	private String[] topTitles = { "快三--和值", "快三--三不同", "快三--二不同", "快三--三同号",
+			"快三--二同号" };
 	/** modify by pengcx 20130517 end */
-	private Class[] allId = { Nmk3HeZhiActivity.class, Nmk3DiffActivity.class,
-			Nmk2DiffActivity.class, Nmk3ThreeSameActivty.class,
-			Nmk3TwoSameActivty.class, Nmk3ThreeLinkActivity.class };
+	private Class[] allId = { Nmk3HeZhiActivity.class,
+			Nmk3ThreeDiffActivity.class, Nmk3TwoDiffActivity.class,
+			Nmk3ThreeSameActivty.class, Nmk3TwoSameActivty.class };
 	private boolean isFirst = true;
 
 	public AddView addView = new AddView(this);

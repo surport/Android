@@ -40,7 +40,7 @@ public class JCPrizePermutationandCombination {
 	 * 
 	 * @param list
 	 *            含有每场比赛各种赛况赔率的list列表
-	 * @param num
+	 * @param threeDiffBallNums
 	 *            最小中奖的中奖场数
 	 * @return 最小中奖金额
 	 */
@@ -71,7 +71,7 @@ public class JCPrizePermutationandCombination {
 	 * 
 	 * @param list
 	 *            含有每场比赛各种赛况赔率的list列表
-	 * @param num
+	 * @param threeDiffBallNums
 	 *            最小中奖的中奖场数
 	 * @return 最小中奖金额
 	 */

@@ -10,6 +10,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.util.PublicMethod;
 
@@ -150,6 +151,18 @@ public class AreaNum {
 	 */
 	public void init() {
 		textTitle.setText(textTtitle);
+	}
+	public void init(int type) {
+		textTitle.setText(textTtitle);
+		if (type == ZixuanAndJiXuan.NMK3_HEZHI
+				|| type == ZixuanAndJiXuan.NMK3_DIFF_THREE
+				|| type == ZixuanAndJiXuan.NMK3_DIFF_TWO
+				|| type == ZixuanAndJiXuan.NMK3_THREESAME
+				|| type == ZixuanAndJiXuan.NMK3_TWOSAME_FU
+				|| type == ZixuanAndJiXuan.NMK3_TWOSAME_DAN) {
+			textTitle.setTextSize(14);
+			textTitle.setTextColor(Color.WHITE);
+		}
 	}
 
 	public void removeView() {
