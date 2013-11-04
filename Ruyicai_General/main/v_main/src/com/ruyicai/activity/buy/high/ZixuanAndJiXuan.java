@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
@@ -681,6 +682,261 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 
 		}
+	}
+
+	/**
+	 * 创建重庆11选5不可滑动直选页面
+	 * 
+	 * @param areaNum
+	 * @param code
+	 * @param type
+	 * @param isTen
+	 */
+	public void createViewCQ(AreaNum areaNum[], CodeInterface code, int type,
+			int id, boolean isMiss) {
+		sensor.stopAction();
+		isJiXuan = false;
+		isMove = false;
+		this.code = code;
+		buyview.removeAllViews();
+		if (missView.get(id) == null) {
+			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View zhixuanview = inflater.inflate(R.layout.ssczhixuan_new_green,
+					null);
+			latestLotteryList = (ListView) zhixuanview
+					.findViewById(R.id.buy_zixuan_latest_lottery);
+			initZixuanView(zhixuanview);
+			initViewItem(areaNum, zhixuanview, isMiss, type);
+			initBotm(zhixuanview);
+			missView.put(id, new HighItemView(zhixuanview, areaNum, addView,
+					null, editZhuma));
+			refreshView(type, id);
+			zixuanLayout = (LinearLayout) zhixuanview
+					.findViewById(R.id.sszhixuan_layout);
+		} else {
+			refreshView(type, id);
+		}
+	}
+
+	/**
+	 * 初始化重庆11选五选区
+	 * 
+	 * @param areaNums
+	 * @param isTen
+	 * @param zhixuanview
+	 * @param isMiss
+	 * @param type
+	 */
+	private void initViewItem(AreaNum[] areaNums, View zhixuanview,
+			boolean isMiss, int type) {
+		iScreenWidth = PublicMethod.getDisplayWidth(this);
+		int tableLayoutIds[] = { R.id.buy_zixuan_table_one,
+				R.id.buy_zixuan_table_two, R.id.buy_zixuan_table_third,
+				R.id.buy_zixuan_table_four, R.id.buy_zixuan_table_five };
+		int textViewIds[] = { R.id.buy_zixuan_text_one,
+				R.id.buy_zixuan_text_two, R.id.buy_zixuan_text_third,
+				R.id.buy_zixuan_text_four, R.id.buy_zixuan_text_five };
+		int textViewTishiIds[] = { R.id.buy_zixuan_tishi_text_one,
+				R.id.buy_zixuan_tishi_text_two,
+				R.id.buy_zixuan_tishi_text_third,
+				R.id.buy_zixuan_tishi_text_four,
+				R.id.buy_zixuan_tishi_text_five };
+		int linearViewIds[] = { R.id.buy_zixuan_linear_one,
+				R.id.buy_zixuan_linear_two, R.id.buy_zixuan_linear_third,
+				R.id.buy_zixuan_linear_four, R.id.buy_zixuan_linear_five };
+
+		// 初始化选区
+		for (int i = 0; i < areaNums.length; i++) {
+			areaNums[i].initView(tableLayoutIds[i], textViewIds[i],
+					linearViewIds[i], textViewTishiIds[i], zhixuanview);
+			AreaNum areaNum = areaNums[i];
+			if (i != 0) {
+				areaNum.aIdStart = areaNums[i - 1].areaNum
+						+ areaNums[i - 1].aIdStart;
+			}
+			areaNums[i].table = makeBallTableCQ(areaNums[i].tableLayout,
+					iScreenWidth, areaNum.areaNum, areaNum.ballResId,
+					areaNum.aIdStart, areaNum.aBallViewText, this, this, isTen,
+					null, isMiss, type, i, areaNum.area);
+			areaNums[i].init();
+			areaNums[i].initTishi();
+			if (!TextUtils.isEmpty(areaNums[i].textTtitle)) {
+				areaNums[i].initTextColor(Color.WHITE,
+						getResources().getColor(R.color.cq_11_5_text_color));
+				areaNums[i].initTextBg(R.drawable.tips_bg, 0);
+			}
+			Button btn = new Button(this);
+			Button btnDw = new Button(this);
+			if (areaNum.isJxBtn) {
+				btn.setVisibility(Button.VISIBLE);
+				btnDw.setVisibility(Button.VISIBLE);
+				areaNum.jixuanBtn = new JiXuanBtn(areaNum.isRed, btn, btnDw,
+						areaNum.chosenBallSum, this, view, areaNum.table,
+						areaNum.areaMin, i);
+			} else {
+				btn.setVisibility(Button.GONE);
+				btnDw.setVisibility(Button.GONE);
+				areaNum.jixuanBtn = new JiXuanBtn(areaNum.isRed, btn, btnDw,
+						areaNum.chosenBallSum, this, view, areaNum.table,
+						areaNum.areaMin, i);
+			}
+			if (areaNum.isSensor) {
+				this.areaNums = areaNums;
+			}
+
+		}
+	}
+
+	/**
+	 * 创建重庆11选5BallTable
+	 * 
+	 * @param LinearLayoutaParentView
+	 *            上一级Layout
+	 * @param int aLayoutId 当前BallTable的LayoutId
+	 * @param int aFieldWidth BallTable区域的宽度（如屏幕宽度）
+	 * @param int aBallNum 小球个数
+	 * @param int aBallViewWidth 小球视图的宽度（图片宽度）
+	 * @param int[] aResId 小球图片Id
+	 * @param int aIdStart 小球Id起始数值
+	 * @return BallTable
+	 */
+	public BallTable makeBallTableCQ(TableLayout tableLayout, int aFieldWidth,
+			int aBallNum, int[] aResId, int aIdStart, int aBallViewText,
+			Context context, OnClickListener onclick, boolean isTen,
+			List<String> missValues, boolean isMiss, int type, int area,
+			int[] areaNum) {
+
+		TableLayout tabble = tableLayout;
+		BallTable iBallTable = new BallTable(aIdStart, context);
+		int iFieldWidth = aFieldWidth;// 屏幕宽度
+		int scrollBarWidth = 4;
+		int maxNum = areaNum[zuidazhi(areaNum)];
+		int nmk3HezhiMargin = PublicMethod.getPxInt(8, context);
+		int iBallViewWidth = (iFieldWidth - scrollBarWidth - (maxNum - 1)
+				* nmk3HezhiMargin)
+				/ maxNum + 5;// 设置球的宽度
+		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)
+				* maxNum) / 2;
+
+		int iBallViewNo = 0;
+		int[] rankInt = null;
+		if (missValues != null) {
+			rankInt = rankList(missValues);
+		}
+		int iBallViewHeight = iBallViewWidth;// 设置球的高度
+		String[][] nmk3ThreeSameStrs = { { "1", "2", "3", "4", "5" },
+				{ "6", "7", "8", "9", "10", "11" } };// 设置球上面显示的文字
+
+		for (int i = 0; i < areaNum.length; i++) {
+			TableRow tableRowText = new TableRow(context);
+			TableRow tableRow = new TableRow(context);
+			tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
+			tableRowText.setGravity(Gravity.CENTER_HORIZONTAL);
+			for (int col = 0; col < areaNum[i]; col++) {
+				String iStrTemp = nmk3ThreeSameStrs[i][col];
+				/**
+				 * 开始画小球
+				 */
+				OneBallView tempBallView = PaindBall(aIdStart + iBallViewNo,
+						iBallViewWidth, iBallViewHeight, iStrTemp, aResId,
+						onclick);
+				iBallTable.addBallView(tempBallView);
+				TableRow.LayoutParams lp = new TableRow.LayoutParams();
+				TableRow.LayoutParams lpMiss = new TableRow.LayoutParams();
+				if (col == 0) {
+					lp.setMargins(0, 10, 2, 1);
+				} else if (col == areaNum[i]) {
+					lp.setMargins(2, 10, 0, 1);
+				} else {
+					lp.setMargins(2, 10, 2, 1);
+				}
+				lpMiss.setMargins(1, 1, 1, 1);
+				tableRow.addView(tempBallView, lp);
+				if (isMiss) {
+					/**
+					 * 开始画遗漏值
+					 */
+					TextView textView = PaindMiss(missValues, iBallViewNo,
+							rankInt);
+					tableRowText.addView(textView, lpMiss);
+					iBallTable.textList.add(textView);
+				}
+				iBallViewNo++;
+			}
+			tabble.addView(tableRow, new TableLayout.LayoutParams(
+					PublicConst.FP, PublicConst.WC));
+			tabble.addView(tableRowText, new TableLayout.LayoutParams(
+					PublicConst.WC, PublicConst.WC));
+		}
+		return iBallTable;
+	}
+
+	/**
+	 * 计算数组最大值的下标
+	 * 
+	 * @param a
+	 * @return
+	 */
+	private int zuidazhi(int[] a) {
+		int max = a[0];
+		int dex = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] > max) {
+				max = a[i];
+				dex = i;
+			}
+			if (i == a.length - 1) {
+				return dex;
+			}
+		}
+		return 0;
+	}
+
+	/**
+	 * 画球
+	 * 
+	 * @param ballId小球ID
+	 * @param iBallViewWidth小球宽度
+	 * @param iBallViewHeight小球高度
+	 * @param iStrTemp小球上显示的文字
+	 * @param aResId小球颜色ID
+	 * @param onclick小球点击事件
+	 */
+	private OneBallView PaindBall(int ballId, int iBallViewWidth,
+			int iBallViewHeight, String iStrTemp, int[] aResId,
+			OnClickListener onclick) {
+		OneBallView tempBallView = new OneBallView(context);
+		tempBallView.setId(ballId);// 设置小球ID
+		tempBallView
+				.initBall(iBallViewWidth, iBallViewHeight, iStrTemp, aResId);// 设置小球属性
+		tempBallView.setOnClickListener(onclick);// 小球点击监听
+		return tempBallView;
+	}
+
+	/**
+	 * 画遗漏值
+	 * 
+	 * @param missValues遗漏值数据
+	 * @param iBallViewNo
+	 * @param rankInt
+	 * @return
+	 */
+	private TextView PaindMiss(List<String> missValues, int iBallViewNo,
+			int[] rankInt) {
+		TextView textView = new TextView(context);
+		textView.setBackgroundColor(Color.WHITE);
+		if (missValues != null) {
+			String missValue = missValues.get(iBallViewNo);
+			textView.setText(missValue);
+			if (rankInt[0] == Integer.parseInt(missValue)
+					|| rankInt[1] == Integer.parseInt(missValue)) {
+				textView.setTextColor(Color.RED);
+			}
+		} else {
+			textView.setText("0");
+		}
+		textView.setGravity(Gravity.CENTER);
+		return textView;
 	}
 
 	/**
@@ -1707,7 +1963,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		String text = textSumMoney(areaNums, iProgressBeishu);
 		showBetMoney(v);
 		if (getParent() == null) {
-			((Dlc) this).showBetInfo(text);
+			if (Constants.LOTNO_CQ_ELVEN_FIVE.equals(lotno)) {
+			} else {
+				((Dlc) this).showBetInfo(text);
+			}
 		} else {
 			((BuyActivityGroup) getParent()).showBetInfo(text);
 		}
