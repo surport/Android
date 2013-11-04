@@ -285,6 +285,8 @@
     <string name="share">分享</string>
     <string name="sharetotencentweibo">分享到腾讯微博</string>
     <string name="sharetosinaweibo">分享到新浪微博</string>
+    <string name="sharetoweixin">分享到微信</string>
+    <string name="sharetopengyouquan">分享到朋友圈</string>
     <string name="sharetorenren">分享到腾讯微博</string>
     <string name="sharetosms">短信分享</string>
     <string name="renrenaccout">腾讯微博账号设置</string>

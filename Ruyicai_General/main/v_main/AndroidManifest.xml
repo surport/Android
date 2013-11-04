@@ -976,6 +976,13 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name="com.third.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:exported="true">
+        </activity>
 
         <!-- 彩种提醒广播接受者 -->
         <receiver

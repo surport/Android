@@ -24,11 +24,34 @@
     android:layout_width="300dp" 
     android:layout_height="wrap_content" 
     android:text="@string/sharetotencentweibo"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
+    />
+
+<Button  
+    android:id="@+id/toweixin"
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/sharetoweixin"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
+    />
+
+<Button  
+    android:id="@+id/topengyouquan"
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/sharetopengyouquan"
     android:layout_marginBottom="20dp"
     android:background="@drawable/share_btn"
     android:textSize="20sp"
     android:textColor="@color/text_press_selector"
     />
+
 
 <Button 
     android:id="@+id/tocancel" 
