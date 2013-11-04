@@ -7,11 +7,11 @@ import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
-import com.ruyicai.activity.buy.nmk3.Nmk2DiffActivity;
-import com.ruyicai.activity.buy.nmk3.Nmk3DiffActivity;
 import com.ruyicai.activity.buy.nmk3.Nmk3HeZhiActivity;
+import com.ruyicai.activity.buy.nmk3.Nmk3ThreeDiffActivity;
 import com.ruyicai.activity.buy.nmk3.Nmk3ThreeLinkActivity;
 import com.ruyicai.activity.buy.nmk3.Nmk3ThreeSameActivty;
+import com.ruyicai.activity.buy.nmk3.Nmk3TwoDiffActivity;
 import com.ruyicai.activity.buy.nmk3.Nmk3TwoSameActivty;
 import com.ruyicai.activity.buy.nmk3.NmkAnimation;
 import com.ruyicai.jixuan.Balls;
@@ -224,7 +224,7 @@ public class JiXuanBtn {
 			    ballViewVector.removeAllElements();
 				activity.showEditText();
 			}
-		}else if(activity instanceof Nmk3DiffActivity){
+		}else if(activity instanceof Nmk3ThreeDiffActivity){
 			if(animation.flag){
 			    activity.again(areaId);
 			    int[] iBallId = table.randomChooseId(choseNum);
@@ -248,7 +248,7 @@ public class JiXuanBtn {
 		        ballViewVector.removeAllElements();
 			    activity.showEditText();
 			}
-		}else if(activity instanceof Nmk2DiffActivity){
+		}else if(activity instanceof Nmk3TwoDiffActivity){
 			if(animation.flag){
 			    activity.again(areaId);
 			    int[] iBallId = table.randomChooseId(choseNum);
