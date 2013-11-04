@@ -60,6 +60,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.cq11x5.HistoryNumberView;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
@@ -305,6 +306,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	// 缓存需要左右滑动的视图群的列表容器
 	public List<BuyViewItemMiss> itemViewArray;
 	protected ListView latestLotteryList;
+	protected HistoryNumberView simulateSelectNumberView;
 
 	/**
 	 * 创建可滑动直选页面
@@ -703,6 +705,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View zhixuanview = inflater.inflate(R.layout.ssczhixuan_new_green,null);
 			latestLotteryList = (ListView) zhixuanview.findViewById(R.id.buy_zixuan_latest_lottery);
+			simulateSelectNumberView = (HistoryNumberView) zhixuanview.findViewById(R.id.simulate_selectnumber_view);
 			initZixuanView(zhixuanview);
 			initViewItem(areaNum, zhixuanview, isMiss, type);
 			initBotm(zhixuanview);
@@ -802,7 +805,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		int scrollBarWidth = 4;
 		int maxNum = areaNum[zuidazhi(areaNum)];
 		int nmk3HezhiMargin = PublicMethod.getPxInt(8, context);
-		int iBallViewWidth = (iFieldWidth - scrollBarWidth - (maxNum - 1)* nmk3HezhiMargin) / maxNum + 5;// 设置球的宽度
+		int iBallViewWidth = (iFieldWidth - scrollBarWidth - (maxNum - 1)* nmk3HezhiMargin) / maxNum+3;// 设置球的宽度
 		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)* maxNum) / 2;
 
 		int iBallViewNo = 0;
@@ -834,13 +837,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				} else {
 					lp.setMargins(2, 10, 2, 1);
 				}
-				lpMiss.setMargins(1, 1, 1, 1);
+				lpMiss.setMargins(0, 1,0, 1);
 				tableRow.addView(tempBallView, lp);
 				if (isMiss) {
 					/**
 					 * 开始画遗漏值
 					 */
-					TextView textView = PaindMiss(missValues, iBallViewNo,rankInt);
+					TextView textView = PaindMiss(missValues, iBallViewNo,rankInt,R.drawable.cq_11_5_miss_bg);
 					tableRowText.addView(textView, lpMiss);
 					iBallTable.textList.add(textView);
 				}
@@ -899,10 +902,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 * @param rankInt
 	 * @return
 	 */
-	private TextView PaindMiss(List<String> missValues, int iBallViewNo,
-			int[] rankInt) {
+	private TextView PaindMiss(List<String> missValues, int iBallViewNo,int[] rankInt,int textbg) {
 		TextView textView = new TextView(context);
-		textView.setBackgroundColor(Color.WHITE);
+		textView.setBackgroundResource(textbg);
 		if (missValues != null) {
 			String missValue = missValues.get(iBallViewNo);
 			textView.setText(missValue);

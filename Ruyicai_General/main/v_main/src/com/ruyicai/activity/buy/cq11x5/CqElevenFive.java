@@ -74,7 +74,6 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private int itemId=0;
 	private int checkedId;
 	public AddView addView = new AddView(this);
-	private HistoryNumberView simulateSelectNumberView;
 	//...end
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -91,9 +90,6 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 		action();
 		setTitle("任选二");
 		
-		//...miqingqiang
-		latestLotteryList.setVisibility(View.GONE);
-		simulateSelectNumberView = (HistoryNumberView) findViewById(R.id.simulate_selectnumber_view);
 	}
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -328,6 +324,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			areaNums[0] = new AreaNum(cqArea, 3, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
 		}
 		createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
+		setBottonView();
 	}
 	/**
 	 * 创建胆拖界面
@@ -373,6 +370,25 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码 选2-10个", false, true, true);
 		}
 		createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
+		 setBottonView();
+	}
+	/**
+	 * 设置底部显示
+	 */
+	private void setBottonView(){
+		if(state.equals("PT_QZ1")
+				||state.equals("PT_QZ2")
+				||state.equals("PT_QZ3")
+				||state.equals("PT_ZU2")
+				||state.equals("PT_ZU3")
+				||state.equals("DT_ZU2")
+				||state.equals("DT_ZU3")){
+			latestLotteryList.setVisibility(View.VISIBLE);
+			simulateSelectNumberView.setVisibility(View.GONE);
+		}else {
+			latestLotteryList.setVisibility(View.GONE);
+			simulateSelectNumberView.setVisibility(View.VISIBLE);
+		}
 	}
 	/**
 	 * 事件处理
