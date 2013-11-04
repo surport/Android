@@ -56,10 +56,12 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -3198,5 +3200,14 @@ public class PublicMethod {
 		View dialogView = getView(context);
 		mProgressdialog.getWindow().setContentView(dialogView);
 		return mProgressdialog;
+	}
+	
+	public static PopupWindow createPopupWindow(Context context, String[] info,
+			int count) {
+		LayoutInflater inflate = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LinearLayout layout = (LinearLayout) inflate.inflate(R.layout.buy_join__window, null);
+		GridView GridView = (GridView) layout.findViewById(R.id.gridView);
+		GridView.setNumColumns(count);
+		return null;
 	}
 }
