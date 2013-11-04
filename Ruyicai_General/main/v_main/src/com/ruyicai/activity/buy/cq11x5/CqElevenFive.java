@@ -55,7 +55,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			"PT_QZ1", "PT_QZ2", "PT_QZ3", "PT_ZU2", "PT_ZU3" };// 普通类型
 	protected String dt_types[] = { "DT_R2", "DT_R3", "DT_R4", "DT_R5", "DT_R6", "DT_R7", "DT_R8",
 			"DT_ZU2", "DT_ZU3" };// 胆拖类型
-	public static String state = "PT_R2";// 当前类型
+	public static String state;// 当前类型
 	int lesstime;// 剩余时间
 	public static String batchCode;// 期号
 	private boolean isRun = true;
@@ -65,8 +65,6 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private PopupWindow popupWindow;
 	private Button returnBtn;
 	private int lottypeIndex = 0;
-	RWSharedPreferences shellRW;
-	private int position=0;
 	private static final String PT="pt";//普通
 	private static final String DT="dt";//胆拖
 	private int tag=1;
@@ -84,6 +82,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 		layoutMain = inflater.inflate(R.layout.buy_cq_eleven_five_main, null);
 		setContentView(layoutMain);
 		highttype = "CQ_ELEVEN_FIVE";
+		state = "PT_R2";
 		initView();
 		setIssue(lotno);
 		action();
@@ -280,31 +279,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private void createViewPT(int id){
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
-		if(state.equals("PT_R2")){
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 2, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_R3")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 3, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_R4")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 4, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_R5")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 5, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_R6")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 6, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_R7")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 7, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_R8")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 8, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_QZ1")) {
-			areaNums = new AreaNum[1];
-			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
-		}else if (state.equals("PT_QZ2")) {
+		if (state.equals("PT_QZ2")) {
 			areaNums = new AreaNum[2];
 			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "万位","", false, true, true);
 			areaNums[1] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "千位","", false, true, true);
@@ -313,66 +288,54 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "万位","", false, true, true);
 			areaNums[1] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "千位","", false, true, true);
 			areaNums[2] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "百位","", false, true, true);
+		}else if(state.equals("PT_QZ1")){
+			areaNums = new AreaNum[1];
+			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
 		}else if (state.equals("PT_ZU2")) {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 2, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
 		}else if (state.equals("PT_ZU3")) {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 3, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
+		} else {
+			areaNums = new AreaNum[1];
+			areaNums[0] = new AreaNum(cqArea, itemId+2, 11, BallResId, 0, 1,Color.RED, "","", false, true, true);
 		}
 		createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
-		setBottonView();
+		setBottomView();
 	}
 	/**
 	 * 创建胆拖界面
+	 *
 	 */
+	int[] dtNum={1,2,3,4,5,6,7,1,2};// 胆拖选区最大小球数
+	private static final String dtTPrompt="我认为可能出的号码  选2-10个";//拖码投注提示
+	//胆码投注提示
+	private String dtDPrompt(int a){
+		String str="";
+		if(state.equals("DT_R2")
+				||state.equals("DT_ZU2")){
+			str="我认为必出的号码   选1个";
+		}else if (state.equals("DT_ZU3")) {
+			str="我认为必出的号码   至少选1个，最多2个";
+		}else {
+			str="我认为必出的号码   至少选1个，最多"+(itemId+1)+"个";
+		}
+		return str;
+	}
 	private void createViewDT(int id){
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
-		if(state.equals("DT_R2")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 1, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   选1个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if(state.equals("DT_R3")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 2, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多2个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if(state.equals("DT_R4")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 3, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多3个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 3, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if(state.equals("DT_R5")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 4, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多4个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if(state.equals("DT_R6")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 5, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多5个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if(state.equals("DT_R7")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 6, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多6个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if(state.equals("DT_R8")){
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 7, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多7个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码  选2-10个", false, true, true);
-		}else if (state.equals("DT_ZU2")) {
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码    选1个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码    选2-10个", false, true, true);
-		}else if (state.equals("DT_ZU3")) {
-			areaNums = new AreaNum[2];
-			areaNums[0] = new AreaNum(cqArea, 1, 2, BallResId, 0, 1,Color.RED, "胆码","我认为必出的号码   至少选1个，最多2个", false, true, true);
-			areaNums[1] = new AreaNum(cqArea, 2, 10, BallResId, 0, 1,Color.RED, "拖码","我认为可能出的号码 选2-10个", false, true, true);
-		}
+		areaNums = new AreaNum[2];
+		areaNums[0] = new AreaNum(cqArea, 1, dtNum[itemId], BallResId, 0, 1,Color.RED, "胆码",dtDPrompt(itemId), false, true, true);
+		areaNums[1] = new AreaNum(cqArea, 10, 10, BallResId, 0, 1,Color.RED, "拖码",dtTPrompt, false, true, true);
 		createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
-		 setBottonView();
+		setBottomView();
 	}
 	/**
 	 * 设置底部显示
 	 */
-	private void setBottonView(){
+	private void setBottomView(){
 		if(state.equals("PT_QZ1")
 				||state.equals("PT_QZ2")
 				||state.equals("PT_QZ3")
