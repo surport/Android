@@ -74,6 +74,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private int itemId=0;
 	private int checkedId;
 	public AddView addView = new AddView(this);
+	private HistoryNumberView simulateSelectNumberView;
 	//...end
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +90,10 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 		setIssue(lotno);
 		action();
 		setTitle("任选二");
+		
+		//...miqingqiang
+		latestLotteryList.setVisibility(View.GONE);
+		simulateSelectNumberView = (HistoryNumberView) findViewById(R.id.simulate_selectnumber_view);
 	}
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
