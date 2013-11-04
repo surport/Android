@@ -304,7 +304,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	protected ViewPager mGallery;
 	// 缓存需要左右滑动的视图群的列表容器
 	public List<BuyViewItemMiss> itemViewArray;
-	private ListView latestLotteryList;
+	protected ListView latestLotteryList;
 
 	/**
 	 * 创建可滑动直选页面
