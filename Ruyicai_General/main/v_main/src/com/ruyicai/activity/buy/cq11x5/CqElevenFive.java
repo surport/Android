@@ -55,6 +55,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 			"PT_QZ1", "PT_QZ2", "PT_QZ3", "PT_ZU2", "PT_ZU3" };// 普通类型
 	protected String dt_types[] = { "DT_R2", "DT_R3", "DT_R4", "DT_R5", "DT_R6", "DT_R7", "DT_R8",
 			"DT_ZU2", "DT_ZU3" };// 胆拖类型
+	protected int nums[] = { 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 2, 3 };// 单式机选个数
 	public static String state;// 当前类型
 	int lesstime;// 剩余时间
 	public static String batchCode;// 期号
@@ -67,10 +68,11 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private int lottypeIndex = 0;
 	private static final String PT="pt";//普通
 	private static final String DT="dt";//胆拖
-	private int tag=1;
+	private int tag=1;//1普通，2胆拖
 	private int itemId=0;
 	private int checkedId;
 	public AddView addView = new AddView(this);
+	public boolean isJiXuan = false;
 	//...end
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -111,7 +113,82 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	@Override
 	public int getZhuShu() {
 		// TODO Auto-generated method stub
-		return 0;
+		int zhushu = 0;
+		if (isJiXuan) {
+			zhushu = balls.size() * iProgressBeishu;
+		} else if (tag==2) {
+			int dan = areaNums[0].table.getHighlightBallNums();
+			int tuo = areaNums[1].table.getHighlightBallNums();
+			zhushu = (int) getDTZhuShu(dan, tuo, iProgressBeishu);
+		} else {
+			if (state.equals("PT_QZ2")) {//普通前二组选
+				zhushu = getzhushuQ2(areaNums[0].table.getHighlightStr(),
+						areaNums[1].table.getHighlightStr()) * iProgressBeishu;
+			} else if (state.equals("PT_QZ3")) {//普通前三组选
+				zhushu = getzhushuQ3(areaNums[0].table.getHighlightStr(),
+						areaNums[1].table.getHighlightStr(),
+						areaNums[2].table.getHighlightStr())
+						* iProgressBeishu;
+			} else {
+				int ballNums = areaNums[0].table.getHighlightBallNums();
+				zhushu = (int) PublicMethod.zuhe(nums[itemId], ballNums)* iProgressBeishu;
+			}
+		}
+		return zhushu;
+	}
+	/**
+	 * 复式玩法注数计算方法
+	 * 
+	 * @param int aRedBalls 红球个数
+	 * 
+	 * @return long 注数
+	 */
+	protected long getDTZhuShu(int dan, int tuo, int iProgressBeishu) {
+		long ssqZhuShu = 0L;
+		if (dan > 0 && tuo > 0) {
+			ssqZhuShu += (PublicMethod.zuhe(nums[itemId] - dan, tuo) * iProgressBeishu);
+		}
+		return ssqZhuShu;
+	}
+	/**
+	 * 前二直选玩法注数计算方法
+	 * @param wan
+	 * @param qian
+	 * @return
+	 */
+	public int getzhushuQ2(String[] wan, String[] qian) {
+		int zhushu = 0;
+		for (int i = 0; i < wan.length; i++) {
+			for (int j = 0; j < qian.length; j++) {
+				if (!wan[i].equals(qian[j])) {
+					zhushu++;
+				}
+			}
+		}
+		return zhushu;
+	}
+	/**
+	 * 前三直选玩法注数计算方法
+	 * @param wan
+	 * @param qian
+	 * @param bai
+	 * @return
+	 */
+	public int getzhushuQ3(String[] wan, String[] qian, String[] bai) {
+		int zhushu = 0;
+		for (int i = 0; i < wan.length; i++) {
+			for (int j = 0; j < qian.length; j++) {
+				if (!wan[i].equals(qian[j])) {
+					for (int k = 0; k < bai.length; k++) {
+						if (!bai[k].equals(qian[j]) && !bai[k].equals(wan[i])) {
+							zhushu++;
+
+						}
+					}
+				}
+			}
+		}
+		return zhushu;
 	}
 
 	@Override
