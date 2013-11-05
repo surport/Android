@@ -264,12 +264,19 @@
                         android:cacheColorHint="@color/transparent"
                         android:divider="@null"
                         android:listSelector="@color/transparent" />
-                    
                 </LinearLayout>
-                <LinearLayout
+
+                <Button
+                    android:id="@+id/buy_choose_history_list"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:paddingTop="10dp" >
+                    android:layout_height="10dip"
+                    android:background="@drawable/choose_button_down" >
+                </Button>
+
+                <LinearLayout
+                    android:id="@+id/buy_choose_history_listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
 
                     <HorizontalScrollView
                         android:layout_width="wrap_content"
