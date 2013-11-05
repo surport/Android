@@ -217,9 +217,13 @@ public class AreaNum {
 	public void initTishi() {
 		texViewTishiTitle.setText(textViewTishi);
 	}
-	public void initTextColor(int textTitleColor,int texViewTishiTitleColor){
-		textTitle.setTextColor(textTitleColor);
-		texViewTishiTitle.setTextColor(texViewTishiTitleColor);
+	public void initTextColor(int textTitleColor,int textTishiColor){
+		if(textTitleColor!=0){
+			textTitle.setTextColor(textTitleColor);
+		}
+		if(textTishiColor!=0){
+			texViewTishiTitle.setTextColor(textTishiColor);
+		}
 	}
 	public void initTextBg(int textViewBg,int textViewTishiBg){
 		if(textViewBg!=0){

@@ -1,11 +1,6 @@
 package com.ruyicai.activity.notice;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
