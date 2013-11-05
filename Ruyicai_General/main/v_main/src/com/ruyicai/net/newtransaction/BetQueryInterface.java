@@ -79,7 +79,7 @@ public class BetQueryInterface {
 			jsonProtocol.put(ProtocolManager.REQUESTTYPE,
 					betQueryPojo.getType());
 			jsonProtocol.put("state",
-					betQueryPojo.getAwardType());
+					betQueryPojo.getState());
 			jsonProtocol.put("dateType",
 					betQueryPojo.getDateType());
 			

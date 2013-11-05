@@ -11,9 +11,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,17 +24,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
-import com.ruyicai.activity.common.CustomPopWindow;
-import com.ruyicai.activity.usercenter.InquiryAdapter.OnChickItem;
 import com.ruyicai.activity.usercenter.detail.Betdetail;
 import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.constant.Constants;
@@ -47,7 +39,6 @@ import com.ruyicai.net.newtransaction.BetDetailsInterface;
 import com.ruyicai.net.newtransaction.BetQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.util.CheckUtil;
-import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -56,14 +47,7 @@ import com.umeng.analytics.MobclickAgent;
  * @author Administrator
  * 
  */
-public class BetQueryActivity extends Activity implements HandlerMsg {
-	private LinearLayout usecenerLinear;
-	private TextView titleTextView;
-	private LinearLayout kind;// 按彩种查询
-//	private String lotno = "";
-	private boolean isbetkindall = false;// 下拉框选择查询全部彩种，默认为fasle,点击一次变为true;
-	
-	String jsonString;
+public class BetQueryActivity extends InquiryParentActivity implements HandlerMsg {
 	final String BATCHCODE = "batchCode", LOTMUTI = "lotMulti",
 			ORDERTIME = "orderTime", PRIZEAMT = "prizeAmt",
 			prizeState = "prizeState", WINCODE = "winCode",
@@ -71,93 +55,7 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			LOTNAME = "lotName", PLAY = "play", BET_CODE = "orderInfo";
 	final String ISREPEATBUY = "isRepeatBuy";
 	MyHandler touzhuhandler = new MyHandler(this);
-	private final int DIALOG1_KEY = 0;
-	ListView queryinfolist;
-	private String userno;
-	
-//	private int typekind = 0;
-	Context context = this;
-	ProgressDialog dialog;
-	String jsonobject = null;
 	BetAdapter adapter;
-	View view;
-	ProgressBar progressbar;
-	boolean isfirst = false;
-	
-	/**
-	 * 用于存放各个彩种的总页数
-	 */
-	private int[] mTotalPageArray = new int[18];
-	
-	/**
-	 * 用于存放各个彩种的当前页的索引
-	 */
-	private int[] mPageIndexArray = new int[18];
-	
-	/**
-	 * 用于存放各个彩种的当前数据
-	 */
-	private ArrayList[] mListArray = new ArrayList[18];
-	
-	/**
-	 * 彩种数组
-	 */
-	private String[] mLotnoArray = null;
-	
-	/**
-	 * 所有状态数组
-	 */
-	private String[] mStateArray = null;
-	
-	/**
-	 * 所有时间数组
-	 */
-	private String[] mTimeArray = null;
-	
-	/**
-	 * 按彩种显示按钮
-	 */
-	private Button mLotnoBtn = null;
-	
-	/**
-	 * 按中奖状态显示按钮
-	 */
-	private Button mAwardStateBtn = null;
-	
-	/**
-	 * 按时间显示按钮
-	 */
-	private Button mTimeBtn = null;
-	
-	/**
-	 * 当前按彩种查询索引
-	 */
-	private int mCurrentLotnoIndex = 0;
-	
-	/**
-	 * 当前按中奖状态查询索引
-	 */
-	private int mCurrentAwardStateIndex = 0;
-	
-	/**
-	 * 当前按时间查询索引
-	 */
-	private int mCurrentTiemIndex = 0;
-	
-	/**
-	 * 全部彩种、全部状态、全部时间的切换窗口
-	 */
-	private CustomPopWindow mPopupWindow = null;
-	
-	/**
-	 * 中奖状态查询请求参数数组
-	 */
-	private String[] mAwardStateType = {"0","1","2","3","4"};
-	
-	/**
-	 * 按时间查询请求参数数组
-	 */
-	private String[] mTimeType = {"","1","2","3","4"};
 	
 	/**
 	 * 彩种编号数组
@@ -168,6 +66,11 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 			Constants.LOTNO_QXC, Constants.LOTNO_PL3, Constants.LOTNO_PL5, 
 			Constants.LOTNO_eleven, Constants.LOTNO_ten, Constants.LOTNO_ZC, 
 			Constants.LOTNO_JCL, Constants.LOTNO_JCZ, Constants.LOTNO_BJ_SINGLE};
+	
+	/**
+	 * 中奖状态查询请求参数数组
+	 */
+	protected String[] mAwardStateType = {"0","1","2","3","4"};
 
 	/**
 	 * 创建pojo类实例存放请求参数
@@ -177,160 +80,51 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.usercenter_mainlayoutold);
-		RWSharedPreferences shellRW = new RWSharedPreferences(this, "addInfo");
-		userno = shellRW.getStringValue("userno");
-		mBetQueryPojo.setUserno(userno);
+		mBetQueryPojo.setUserno(mUserNo);
 		mBetQueryPojo.setMaxresult("10");
 		mBetQueryPojo.setType("betList");
-		initView();
 		getInfo();
-		isfirst = true;
-	}
-	
-	private void initView() {
+		mTitleTextView.setText(R.string.usercenter_bettingDetails);
 		mLotnoArray = getResources().getStringArray(R.array.lotno_list);
 		mStateArray = getResources().getStringArray(R.array.award_state_list);
-		mTimeArray = getResources().getStringArray(R.array.time_state_list);
-		titleTextView = (TextView) findViewById(R.id.usercenter_mainlayou_text_title);
-		titleTextView.setText(R.string.usercenter_bettingDetails);
-		mLotnoBtn = (Button) findViewById(R.id.lotno_change_state_title);
-		mLotnoBtn.setText(mLotnoArray[0]);
-		mAwardStateBtn = (Button) findViewById(R.id.award_change_state_title);
 		mAwardStateBtn.setText(mStateArray[0]);
-		mTimeBtn = (Button) findViewById(R.id.time_change_state_title);
-		mTimeBtn.setText(mTimeArray[0]);
-		StateChangeClickListener clickListener = new StateChangeClickListener();
-		mLotnoBtn.setOnClickListener(clickListener);
-		mAwardStateBtn.setOnClickListener(clickListener);
-		mTimeBtn.setOnClickListener(clickListener);
-		usecenerLinear = (LinearLayout) findViewById(R.id.usercenterContent);
-		usecenerLinear.addView(initLinearView());
-	}
-	
-	private class StateChangeClickListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			PopOnItemChick popClick = new PopOnItemChick();
-			switch (v.getId()) {
-			case R.id.lotno_change_state_title:
-				mPopupWindow = new CustomPopWindow(BetQueryActivity.this,
-						mLotnoArray, 3, popClick, R.id.lotno_change_state_title);
-				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_left);
-				mPopupWindow.setItemSelect(mCurrentLotnoIndex);
-				break;
-			case R.id.award_change_state_title:
-				mPopupWindow = new CustomPopWindow(BetQueryActivity.this,
-						mStateArray, 4, popClick, R.id.award_change_state_title);
-				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_center);
-				mPopupWindow.setItemSelect(mCurrentAwardStateIndex);
-				break;
-			case R.id.time_change_state_title:
-				mPopupWindow = new CustomPopWindow(BetQueryActivity.this,
-						mTimeArray, 4, popClick, R.id.time_change_state_title);
-				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_right);
-				mPopupWindow.setItemSelect(mCurrentTiemIndex);
-				break;
-			}
-			mPopupWindow.showAsDropDown(v);
-		}
-	}
-
-	private View initLinearView() {
-		LayoutInflater inflate = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View viewlist = (LinearLayout) inflate.inflate(
-				R.layout.usercenter_listview_layout, null);
-		queryinfolist = (ListView) viewlist
-				.findViewById(R.id.usercenter_listview_queryinfo);
-		LayoutInflater mInflater = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		view = mInflater.inflate(R.layout.lookmorebtn, null);
-		progressbar = (ProgressBar) view.findViewById(R.id.getmore_progressbar);
-		queryinfolist.addFooterView(view);
-		view.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				view.setEnabled(false);
-				addmore();
-			}
-		});
-		if (mListArray[0] == null) {
-			mListArray[0] = new ArrayList();
-		}
-		initListView(queryinfolist, mListArray[0]);
-		return viewlist;
+		mLotnoBtn.setText(mLotnoArray[0]);
 	}
 
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				Toast.makeText(BetQueryActivity.this, (String) msg.obj,
 						Toast.LENGTH_LONG).show();
 				break;
 			case 1:
 				encodejson((String) msg.obj);
 				if (getNewPage() == 0) {
-					if (dialog != null) {
-						dialog.dismiss();
-					}
-					selecttypelist();
+					initListView();
 				} else {
 					adapter.notifyDataSetChanged();
 				}
 
 				break;
 			case 2:
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				Toast.makeText(BetQueryActivity.this, (String) msg.obj,
 						Toast.LENGTH_LONG).show();
 				if (mListArray[mCurrentLotnoIndex] != null) {
 					mListArray[mCurrentLotnoIndex].clear();
 				}
-				selecttypelist();
+				initListView();
 				break;
 			case 3:
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				detailsErrorCode(detailJson((BetQueryInfo) msg.obj));
-
 				break;
 			}
+			dismiss();
 		}
 	};
 
-	private void setNewPage(int page) {
-		mPageIndexArray[mCurrentLotnoIndex] = page;
-	}
-
-	private int getNewPage() {
-		return mPageIndexArray[mCurrentLotnoIndex];
-	}
-
-	private void setAllPage(int page) {
-		mTotalPageArray[mCurrentLotnoIndex] = page;
-	}
-
-	private int getAllPage() {
-		return mTotalPageArray[mCurrentLotnoIndex];
-	}
-
-	public void selecttypelist() {
-		initListView(queryinfolist, mListArray[mCurrentLotnoIndex]);
-	}
-
 	public void getInfo() {
-		jsonobject = this.getIntent().getStringExtra("betjson");
+		String jsonobject = this.getIntent().getStringExtra("betjson");
 		if (jsonobject == null || jsonobject.equals("")) {
 			Intent intent = getIntent();
 			String type = intent.getStringExtra("lotno");
@@ -356,21 +150,25 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	 */
 	Handler thandler = new Handler();
 
-	private void netting(final int pageindex) {
-		progressbar.setVisibility(ProgressBar.VISIBLE);
+	@Override
+	protected void netting(final int pageindex) {
+		mProgressbar.setVisibility(ProgressBar.VISIBLE);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				mBetQueryPojo.setLotno(mLotnoNoArray[mCurrentLotnoIndex]);
+				mBetQueryPojo.setState(mAwardStateType[mCurrentAwardStateIndex]);
+				mBetQueryPojo.setDateType(mTimeType[mCurrentTiemIndex]);
 				mBetQueryPojo.setPageindex(String.valueOf(pageindex));
 				Message msg = handler.obtainMessage();
-				jsonString = BetQueryInterface.getInstance().betQuery(
+				String jsonString = BetQueryInterface.getInstance().betQuery(
 						mBetQueryPojo);
 				thandler.post(new Runnable() {
 
 					@Override
 					public void run() {
-						progressbar.setVisibility(View.INVISIBLE);
-						view.setEnabled(true);
+						mProgressbar.setVisibility(View.INVISIBLE);
+						mView.setEnabled(true);
 					}
 				});
 				try {
@@ -399,32 +197,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 				}
 			}
 		}).start();
-	}
-
-	private void getWinDataNet(final int pageindex) {
-		showDialog(0);
-		netting(pageindex);
-	}
-
-	private void addmore() {
-		int pageIndex = getNewPage();
-		int allpagenum = getAllPage();
-		isfirst = false;
-		pageIndex++;
-		if (pageIndex < allpagenum) {
-			netting(pageIndex);
-		} else {
-			progressbar.setVisibility(View.INVISIBLE);
-			pageIndex = allpagenum - 1;
-			view.setEnabled(true);
-			Toast.makeText(BetQueryActivity.this,
-					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
-		}
-	}
-
-	private void initListView(ListView listview, List list) {
-		adapter = new BetAdapter(context, list);
-		listview.setAdapter(adapter);
 	}
 
 	public void encodejson(String json) {
@@ -665,20 +437,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		}
 	}
 
-	protected Dialog onCreateDialog(int id) {
-		dialog = new ProgressDialog(this);
-		switch (id) {
-		case DIALOG1_KEY: {
-			dialog.setTitle(R.string.usercenter_netDialogTitle);
-			dialog.setMessage(getString(R.string.usercenter_netDialogRemind));
-			dialog.setIndeterminate(true);
-			dialog.setCancelable(true);
-			return dialog;
-		}
-		}
-		return dialog;
-	}
-
 	private void noBuyAgain(Button a, TextView qihao, boolean isRepeatBuy,
 			int isJC) {
 		if (isRepeatBuy == false) {
@@ -732,9 +490,8 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				dialog.dismiss();
+				mProgressDialog.dismiss();
 			}
-
 		});
 		t.start();
 	}
@@ -746,7 +503,6 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 	 * @return
 	 */
 	public BetQueryInfo detailJson(BetQueryInfo betQueryinfo) {
-
 		try {
 			JSONObject winprizejsonobj = new JSONObject(betQueryinfo.getJson());
 			JSONObject winprizejsonstring = winprizejsonobj
@@ -799,43 +555,24 @@ public class BetQueryActivity extends Activity implements HandlerMsg {
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 	
-	public class PopOnItemChick implements OnChickItem {
+//	@Override
+//	protected void getData(int type) {
+//		if (mListArray[mCurrentLotnoIndex] == null) {
+//			mListArray[mCurrentLotnoIndex] = new ArrayList();
+//		}
+//		if ((R.id.lotno_change_state_title == type)
+//				&& (mListArray[mCurrentLotnoIndex].size() > 0)) {
+//			initListView();
+//		} else {
+//			showDialog(0);
+//			netting(0);
+//		}
+//	}
 
-		@Override
-		public void onChickItem(int position, int type) {
-			if (mPopupWindow != null && mPopupWindow.isShowing()) {
-				mPopupWindow.dismiss();
-			}
-			switch (type) {
-			case R.id.lotno_change_state_title:
-				isbetkindall = true;
-				mCurrentLotnoIndex = position;
-				mLotnoBtn.setText(mLotnoArray[mCurrentLotnoIndex]);
-				break;
-
-			case R.id.award_change_state_title:
-				mCurrentAwardStateIndex = position;
-				mAwardStateBtn.setText(mStateArray[position]);
-				break;
-
-			case R.id.time_change_state_title:
-				mCurrentTiemIndex = position;
-				mTimeBtn.setText(mTimeArray[position]);
-				break;
-			}
-			mBetQueryPojo.setLotno(mLotnoNoArray[mCurrentLotnoIndex]);
-			mBetQueryPojo.setAwardType(mAwardStateType[mCurrentAwardStateIndex]);
-			mBetQueryPojo.setDateType(mTimeType[mCurrentTiemIndex]);
-			if (mListArray[position] == null) {
-				mListArray[position] = new ArrayList();
-			}
-			if ((R.id.lotno_change_state_title == type)
-					&& (mListArray[position].size() > 0)) {
-				selecttypelist();
-			} else {
-				getWinDataNet(0);
-			}
-		}
+	@Override
+	protected void initListView() {
+		adapter = new BetAdapter(this, mListArray[mCurrentLotnoIndex]);
+		mListView.setAdapter(adapter);
 	}
 	
 }
