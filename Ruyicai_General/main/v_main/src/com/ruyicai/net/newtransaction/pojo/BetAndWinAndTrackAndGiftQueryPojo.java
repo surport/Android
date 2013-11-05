@@ -23,7 +23,7 @@ public class BetAndWinAndTrackAndGiftQueryPojo {
 	private String lotno = "";
 	private String type = "";
 	private String dateType = "";
-	private String awardType = "";
+	private String state = "";
 
 	public String getType() {
 		return type;
@@ -101,12 +101,12 @@ public class BetAndWinAndTrackAndGiftQueryPojo {
 		this.dateType = dateType;
 	}
 
-	public String getAwardType() {
-		return awardType;
+	public String getState() {
+		return state;
 	}
 
-	public void setAwardType(String awardType) {
-		this.awardType = awardType;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }

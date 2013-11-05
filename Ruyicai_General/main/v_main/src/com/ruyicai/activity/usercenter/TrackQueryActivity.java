@@ -5,39 +5,24 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.R.integer;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.method.DigitsKeyListener;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.high.HghtOrderdeail;
@@ -46,17 +31,13 @@ import com.ruyicai.activity.buy.miss.OrderDetails;
 import com.ruyicai.activity.buy.miss.AddViewMiss.CodeInfoMiss;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.usercenter.detail.Trackdetail;
+import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.activity.usercenter.info.TrackQueryInfo;
-import com.ruyicai.activity.usercenter.info.TrackQueryInfo2;
-import com.ruyicai.code.ssq.SsqZiZhiXuanCode;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
-import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.BetAndGiftInterface;
 import com.ruyicai.net.newtransaction.CancelTrackInterface;
-import com.ruyicai.net.newtransaction.GetLotNohighFrequency;
-import com.ruyicai.net.newtransaction.GiftQueryInterface;
-import com.ruyicai.net.newtransaction.SoftwareUpdateInterface;
+import com.ruyicai.net.newtransaction.TrackQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.util.CheckUtil;
@@ -69,17 +50,11 @@ import com.umeng.analytics.MobclickAgent;
  * 
  * @author miao
  */
-public class TrackQueryActivity extends Activity implements HandlerMsg {
-
-	private LinearLayout usecenerLinear;
-	private Button returnButton;
-	private TextView titleTextView;
+public class TrackQueryActivity extends InquiryParentActivity implements HandlerMsg {
 	/**add by yejc 20130509 start*/
 	public static final String FLAG_FROM_TRACK_QUERY = "flag_from_track_query";
 	/**add by yejc 20130509 end*/
 
-	String jsonString;
-	String jsontrack;
 	final String BETCODE = "betCode", BATCHNUM = "batchNum",
 			ORDERTIME = "orderTime", ID = "id", LOTNO = "lotNo",
 			LOTNAME = "lotName", AMOUNT = "amount", LASTNUM = "lastNum",
@@ -88,84 +63,69 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			PRIZEEND = "prizeEnd", ISBUY = "isRepeatBuy",
 			BET_CODE = "bet_code", LOTMULTI = "lotMulti",
 			ONEAMOUNT = "oneAmount", BETNUM = "betNum";
-	private final int DIALOG1_KEY = 0;
-	AlertDialog remindCancleDialog;
 	private String phonenum, sessionid, userno;
-	List<TrackQueryInfo> windatalist = new ArrayList<TrackQueryInfo>();
-	List<TrackQueryInfo2> tracklist = new ArrayList<TrackQueryInfo2>();
-
-	Context context = this;
-	ProgressDialog dialog;
-	String jsonobject;
-	int allPage;
-	int pageindex;
-	ListView queryinfolist;
-	boolean isfirst = false, isCancleTrackNet = false;
+	boolean isCancleTrackNet = false;
 	WinPrizeAdapter adapter;
-	View view;
-	ProgressBar progressbar;
-	private MyHandler touzhuhandler = new MyHandler(this);
-	private Dialog continueDialog = null;
 	public static boolean isRefresh = false;
-	private final int MAX_AMT = 10000000;
+	
+	/**
+	 * 彩种编号数组
+	 */
+	private String[] mLotnoNoArray = {"", Constants.LOTNO_SSQ, Constants.LOTNO_FC3D, 
+			Constants.LOTNO_11_5,Constants.LOTNO_GD115, Constants.LOTNO_NMK3,
+			Constants.LOTNO_DLT, Constants.LOTNO_SSC, Constants.LOTNO_QLC,
+			Constants.LOTNO_QXC, Constants.LOTNO_PL3, Constants.LOTNO_PL5, 
+			Constants.LOTNO_eleven, Constants.LOTNO_ten};
+	
+	protected String[] mStateType = {"","0","3","2"};
+	
+	
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mTitleTextView.setText(R.string.usercenter_trackNumberInquiry);
+		mLotnoArray = getResources().getStringArray(R.array.track_lotno_list);
+		mStateArray = getResources().getStringArray(R.array.track_state_list);
+		mAwardStateBtn.setText(mStateArray[0]);
+		mLotnoBtn.setText(mLotnoArray[0]);
+
+		// 获取并解析Json数据
+		String jsonobject = this.getIntent().getStringExtra("trackjson");
+		encodejson(jsonobject);
+	}
+	
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				Toast.makeText(TrackQueryActivity.this, (String) msg.obj,
 						Toast.LENGTH_LONG).show();
 				break;
 			case 1:
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				encodejson((String) msg.obj);
-				adapter.notifyDataSetChanged();
+				if (getNewPage() == 0) {
+					initListView();
+				} else {
+					adapter.notifyDataSetChanged();
+				}
 				break;
 			case 2:
-				if (dialog != null) {
-					dialog.dismiss();
-				}
 				Toast.makeText(TrackQueryActivity.this, (String) msg.obj,
 						Toast.LENGTH_SHORT).show();
 				cancleTrackError000000();
 				break;
+				
+			case 3:
+				Toast.makeText(TrackQueryActivity.this, (String) msg.obj,
+						Toast.LENGTH_SHORT).show();
+				if (mListArray[mCurrentLotnoIndex] != null) {
+					mListArray[mCurrentLotnoIndex].clear();
+				}
+				initListView();
+				break;
 			}
+			dismiss();
 		}
 	};
-
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.usercenter_mainlayoutold);
-
-		returnButton = (Button) findViewById(R.id.layout_usercenter_img_return);
-		returnButton.setBackgroundResource(R.drawable.returnselecter);
-		returnButton.setText(R.string.returnlastpage);
-		initReturn();
-
-		// 设置追号查询
-		titleTextView = (TextView) findViewById(R.id.usercenter_mainlayou_text_title);
-		titleTextView.setText(R.string.usercenter_trackNumberInquiry);
-
-		// 获取并解析Json数据
-		jsonobject = this.getIntent().getStringExtra("trackjson");
-		encodejson(jsonobject);
-
-		isfirst = true;
-		initLinear();
-	}
-
-	protected void initReturn() {
-		returnButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				finish();
-			}
-		});
-	}
 
 	private void initPojo() {
 		RWSharedPreferences shellRW = new RWSharedPreferences(this, "addInfo");
@@ -176,11 +136,12 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 
 	final Handler tHandler = new Handler();
 
-	private void netting(final int pageindex) {
+	@Override
+	protected void netting(final int pageindex) {
 		tHandler.post(new Runnable() {
 			@Override
 			public void run() {
-				progressbar.setVisibility(ProgressBar.VISIBLE);
+				mProgressbar.setVisibility(ProgressBar.VISIBLE);
 			}
 		});
 
@@ -195,15 +156,18 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 				winQueryPojo.setPageindex(String.valueOf(pageindex));
 				winQueryPojo.setMaxresult("10");
 				winQueryPojo.setType("track");
+				winQueryPojo.setLotno(mLotnoNoArray[mCurrentLotnoIndex]);
+				winQueryPojo.setState(mStateType[mCurrentAwardStateIndex]);
+				winQueryPojo.setDateType(mTimeType[mCurrentTiemIndex]);
 				isCancleTrackNet = false;
 				Message msg = new Message();
-				jsonString = GiftQueryInterface.getInstance().giftQuery(
+				String jsonString = TrackQueryInterface.getInstance().trackQuery(
 						winQueryPojo);
 				tHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						progressbar.setVisibility(ProgressBar.INVISIBLE);
-						view.setEnabled(true);
+						mProgressbar.setVisibility(ProgressBar.INVISIBLE);
+						mView.setEnabled(true);
 					}
 				});
 				try {
@@ -211,8 +175,13 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 					String errcode = aa.getString(ERROR_CODE);
 					String message = aa.getString(MESSAGE);
 					if (errcode.equals("0000")) {
+						setNewPage(pageindex);
 						msg.what = 1;
 						msg.obj = jsonString;
+						handler.sendMessage(msg);
+					} else if (errcode.equals("0047")) {
+						msg.what = 3;
+						msg.obj = message;
 						handler.sendMessage(msg);
 					} else {
 						msg.what = 0;
@@ -220,56 +189,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 						handler.sendMessage(msg);
 					}
 				} catch (Exception e) {
-				}
-			}
-		}).start();
-	}
-
-	private void nettingContinue(final int pageindex) {
-		tHandler.post(new Runnable() {
-			@Override
-			public void run() {
-				progressbar.setVisibility(ProgressBar.VISIBLE);
-			}
-		});
-
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				initPojo();
-				BetAndWinAndTrackAndGiftQueryPojo winQueryPojo = new BetAndWinAndTrackAndGiftQueryPojo();
-				winQueryPojo.setUserno(userno);
-				winQueryPojo.setSessionid(sessionid);
-				winQueryPojo.setPhonenum(phonenum);
-				winQueryPojo.setPageindex(String.valueOf(pageindex));
-				winQueryPojo.setMaxresult("10");
-				winQueryPojo.setType("track");
-				isCancleTrackNet = false;
-				Message msg = new Message();
-				jsonString = GiftQueryInterface.getInstance().giftQuery(
-						winQueryPojo);
-				tHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						progressbar.setVisibility(ProgressBar.INVISIBLE);
-						view.setEnabled(true);
-					}
-				});
-				try {
-					JSONObject aa = new JSONObject(jsonString);
-					String errcode = aa.getString(ERROR_CODE);
-					String message = aa.getString(MESSAGE);
-					if (errcode.equals("0000")) {
-						windatalist.clear();
-						msg.what = 1;
-						msg.obj = jsonString;
-						handler.sendMessage(msg);
-					} else {
-						msg.what = 0;
-						msg.obj = message;
-						handler.sendMessage(msg);
-					}
-				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}).start();
@@ -280,84 +200,9 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		showDialog(DIALOG1_KEY);
 		new Thread(new Runnable() {
 			public void run() {
-				nettingContinue(pageindex);
+				netting(pageindex);
 			}
 		}).start();
-	}
-
-	private void initLinear() {
-		// 向用户中心的内容布局中添加具体内容视图
-		usecenerLinear = (LinearLayout) findViewById(R.id.usercenterContent);
-		usecenerLinear.addView(initLinearView());
-	}
-
-	/**
-	 * 初始化布局内容的显示
-	 * 
-	 * @return 内容布局视图
-	 */
-	private View initLinearView() {
-		// 从内容布局中获取ListView，并初始化ListView的显示
-		LayoutInflater inflate = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = (LinearLayout) inflate.inflate(
-				R.layout.usercenter_listview_layout, null);
-		queryinfolist = (ListView) view
-				.findViewById(R.id.usercenter_listview_queryinfo);
-		initListView(queryinfolist, windatalist);
-
-		return view;
-	}
-
-	/**
-	 * 初始化列表
-	 */
-	private void addmore() {
-		isfirst = false;
-		pageindex++;
-		if (pageindex < allPage) {
-
-			netting(pageindex);
-		} else {
-			pageindex = allPage - 1;
-			progressbar.setVisibility(view.INVISIBLE);
-			queryinfolist.removeFooterView(view);
-			Toast.makeText(TrackQueryActivity.this,
-					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
-		}
-	}
-
-	public void initList() {
-		initListView(queryinfolist, windatalist);
-	}
-
-	/**
-	 * 初始化内容列表的显示
-	 * 
-	 * @param listview
-	 *            ListView对象
-	 * @param list
-	 */
-	private void initListView(ListView listview, List list) {
-		adapter = new WinPrizeAdapter(this, windatalist);
-		LayoutInflater mInflater = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		view = mInflater.inflate(R.layout.lookmorebtn, null);
-		progressbar = (ProgressBar) view.findViewById(R.id.getmore_progressbar);
-		listview.addFooterView(view);
-		// 数据源
-		listview.setAdapter(adapter);
-		view.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				// TODO Auto-generated method stub
-				view.setEnabled(false);
-				addmore();
-
-			}
-		});
 	}
 
 	private AlertDialog cancleTrackDialog(final String id) {
@@ -440,9 +285,16 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 	public void encodejson(String json) {
 		try {
 			JSONObject winprizejsonobj = new JSONObject(json);
-			allPage = Integer.parseInt(winprizejsonobj.getString("totalPage"));
+			int allPage = Integer.parseInt(winprizejsonobj.getString("totalPage"));
+			setAllPage(allPage);
 			String winprizejsonstring = winprizejsonobj.getString("result");
 			JSONArray winprizejson = new JSONArray(winprizejsonstring);
+			if (mListArray[mCurrentLotnoIndex] == null) {
+				mListArray[mCurrentLotnoIndex] = new ArrayList<BetQueryInfo>();
+			}
+			if (getNewPage() == 0) {
+				mListArray[mCurrentLotnoIndex].clear();
+			}
 			for (int i = 0; i < winprizejson.length(); i++) {
 				try {
 					TrackQueryInfo winPrizeQueryinfo = new TrackQueryInfo();
@@ -480,15 +332,13 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 							.getString(BETNUM));
 					winPrizeQueryinfo.setRemainderAmount(winprizejson
 							.getJSONObject(i).getString("remainderAmount"));
-					windatalist.add(winPrizeQueryinfo);
+					mListArray[mCurrentLotnoIndex].add(winPrizeQueryinfo);
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		} catch (JSONException e) {
-			try {
-				JSONObject winprizejson = new JSONObject(json);
-			} catch (JSONException e1) {
-			}
+			e.printStackTrace();
 		}
 	}
 
@@ -618,20 +468,6 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		}
 	}
 
-	protected Dialog onCreateDialog(int id) {
-		dialog = new ProgressDialog(this);
-		switch (id) {
-		case DIALOG1_KEY: {
-			dialog.setTitle(R.string.usercenter_netDialogTitle);
-			dialog.setMessage(getString(R.string.usercenter_netDialogRemind));
-			dialog.setIndeterminate(true);
-			dialog.setCancelable(true);
-			return dialog;
-		}
-		}
-		return dialog;
-	}
-
 	/**
 	 * 格式化state串，将state串设置颜色付值给TextView
 	 * 
@@ -739,8 +575,8 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 
 	private BetAndGiftPojo betPojo = new BetAndGiftPojo();
 
-	private void initBetPojo(/*String zhuma, */String issue, String lotMulti,
-			/*String lotno,*/ String amount, /*String oneAmount,*/ TrackQueryInfo info) {
+	private void initBetPojo(String issue, String lotMulti,
+			String amount, TrackQueryInfo info) {
 		initPojo();
 		betPojo.setPhonenum(phonenum);
 		betPojo.setSessionid(sessionid);
@@ -780,8 +616,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 				issue + "期\n\n");
 		continueStr.append(getString(R.string.continue_amt)).append(
 				amount + "元\n\n");
-		initBetPojo(/*info.getBetTouCode(), */issueNum, beishu, /*info.getLotno(),*/
-				oneAmt + "00", /*info.getOneAmount(),*/ info);// 初始化投注信息
+		initBetPojo(issueNum, beishu, oneAmt + "00", info);// 初始化投注信息
 		continueInfoDialog("\n" + continueStr, issue);
 	}
 
@@ -825,7 +660,6 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 		continueDialogInfo.show();
 		continueDialogInfo.getWindow().setContentView(view);
 		return continueDialogInfo;
-
 	}
 
 	/**
@@ -852,45 +686,12 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 						msg.obj = message;
 						handler.sendMessage(msg);
 					}
-					;
-
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
-
 		});
 		t.start();
-	}
-
-	/**
-	 * 格式化state串，将state串设置颜色付值给TextView
-	 * 
-	 * @param text
-	 *            TextView
-	 * @param state
-	 */
-	private String formatTrackState(String state, String lastnum) {
-		String formatState = "";
-		int stateInt = 0;
-		stateInt = Integer.parseInt(state);
-		switch (stateInt) {
-		case 0:
-			if (lastnum.equals("0")) {
-				formatState = getString(R.string.usercenter_str_hasClosedNoParentheses);
-			} else {
-				formatState = this
-						.getString(R.string.usercenter_str_runningNoParentheses);
-			}
-			break;
-		case 2:
-			formatState = getString(R.string.usercenter_str_hasCancledNoParentheses);
-			break;
-		case 3:
-			formatState = getString(R.string.usercenter_str_hasClosedNoParentheses);
-			break;
-		}
-		return formatState;
 	}
 
 	/**
@@ -898,7 +699,7 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 	 */
 	private void cancleTrackError000000() {
 		isCancleTrackNet = true;
-		pageindex = 0;
+		setNewPage(0);
 		trackQueryNet(0);
 	}
 
@@ -930,5 +731,11 @@ public class TrackQueryActivity extends Activity implements HandlerMsg {
 			cancleTrackError000000();
 		}
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
+	}
+
+	@Override
+	protected void initListView() {
+		adapter = new WinPrizeAdapter(this, mListArray[mCurrentLotnoIndex]);
+		mListView.setAdapter(adapter);
 	}
 }
