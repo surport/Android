@@ -73,7 +73,7 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 	private int checkedId;
 	public AddView addView = new AddView(this);
 
-	private HistoryNumberView simulateSelectNumberView;
+	
 	private HistoryNumberActivity test;
 	public boolean isJiXuan = false;
 
@@ -96,7 +96,6 @@ public class CqElevenFive extends ZixuanAndJiXuan {
 		
 		//...miqingqiang
 		latestLotteryList.setVisibility(View.GONE);
-		simulateSelectNumberView = (HistoryNumberView) findViewById(R.id.simulate_selectnumber_view);
 		test=new HistoryNumberActivity(this);
 
 	}

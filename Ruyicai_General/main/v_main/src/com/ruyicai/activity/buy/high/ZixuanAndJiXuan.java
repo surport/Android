@@ -720,7 +720,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			zixuanLayout = (LinearLayout) zhixuanview
 					.findViewById(R.id.sszhixuan_layout);
 			//...miqingqiang start
-			historyBtn=(Button)findViewById(R.id.buy_choose_history_list);
+			simulateSelectNumberView = (HistoryNumberView)zhixuanview. findViewById(R.id.simulate_selectnumber_view);
+			historyBtn=(Button)zhixuanview.findViewById(R.id.buy_choose_history_list);
 			listView=(LinearLayout)zhixuanview.findViewById(R.id.buy_choose_history_listview);
 			historyBtn.setOnClickListener(new OnClickListener(){
 
