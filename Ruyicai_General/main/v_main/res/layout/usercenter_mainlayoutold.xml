@@ -59,11 +59,12 @@
     </LinearLayout>
     
     <!-- 状态切换栏 -->
-      <LinearLayout
+      <LinearLayout android:id="@+id/usercenter_join_layout"
         android:layout_width="fill_parent"
         android:layout_height="40dip"
         android:background="@drawable/jc_team_select_button_bg"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/lotno_change_state"

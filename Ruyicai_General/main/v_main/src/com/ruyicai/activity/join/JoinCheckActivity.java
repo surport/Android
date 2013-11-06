@@ -3,47 +3,47 @@
  */
 package com.ruyicai.activity.join;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
-
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.common.CustomPopWindow;
+import com.ruyicai.activity.usercenter.InquiryParentActivity;
+import com.ruyicai.activity.usercenter.InquiryAdapter.OnChickItem;
 import com.ruyicai.activity.usercenter.detail.Hemaidetail;
+import com.ruyicai.activity.usercenter.info.BetQueryInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
@@ -59,38 +59,118 @@ import com.umeng.analytics.MobclickAgent;
  * @author Administrator
  * 
  */
-public class JoinCheckActivity extends Activity implements HandlerMsg {
-	private List<JoinCheck> list;/* 列表适配器的数据源 */
-	private final static String INFO = "INFO";
-	private int allPage, allpagefollow;
-	private int newPage = 0, newpagefollow = 0;// 当前页从0开始f
-	Button imgUp, imgDown;
-	private ProgressDialog progressdialog;
-	MyHandler handler = new MyHandler(this);// 自定义handler
+public class JoinCheckActivity extends InquiryParentActivity {
 	String phonenum, sessionid, userno;
-	Vector<JoinCheck> checkInfosall = new Vector<JoinCheck>();
-	Vector<JoinFollow> checkInfofollow = new Vector<JoinFollow>();
 	private LayoutInflater mInflater = null;
 	private LinearLayout usecenercheck, usecenerLinearfollow;
 	int[] linearId = { R.id.joincheck_query, R.id.joinfollow_query_ };
 	private String[] titles = { "合买查询", "跟单查询" };
-	private int joinType;
+	private int joinType = 0;
 	JSONObject json;
 	JoinCheckAdapter adapter;
 	JoinFollowAdapter adapter2;
-	ProgressBar progressbar;
-	ProgressDialog dialog;
 	TabHost mTabHost;
-	ListView listview;
-	View view;
 	boolean isfollowfirst = true;
 	boolean isrefresh = false;
+	
+	/**
+	 * 用于存放合买各个彩种的当前数据
+	 */
+	protected ArrayList[] mJoinListArray = new ArrayList[12];
+	
+	/**
+	 * 用于存放跟单各个彩种的当前数据
+	 */
+	protected ArrayList[] mFollowListArray = new ArrayList[12];
+	
+	/**
+	 * 用于存放合买各个彩种的总页数
+	 */
+	protected int[] mJoinTotalPageArray = new int[12];
+	
+	/**
+	 * 用于存放合买各个彩种的当前页的索引
+	 */
+	protected int[] mJoinPageIndexArray = new int[12];
+	
+	/**
+	 * 用于存放跟单各个彩种的总页数
+	 */
+	protected int[] mFollowTotalPageArray = new int[12];
+	
+	/**
+	 * 用于存放跟单各个彩种的当前页的索引
+	 */
+	protected int[] mFollowPageIndexArray = new int[12];
+	
+	
+	/**
+	 * 当前合买按彩种查询索引
+	 */
+	protected int mJoinCurrentLotnoIndex = 0;
+
+	/**
+	 * 当前合买按时间查询索引
+	 */
+	protected int mJoinCurrentTiemIndex = 0;
+	
+	/**
+	 * 当前跟单按彩种查询索引
+	 */
+	protected int mFollowCurrentLotnoIndex = 0;
+
+	/**
+	 * 当前跟单按时间查询索引
+	 */
+	protected int mFollowCurrentTiemIndex = 0;
+	
+	/**
+	 * 彩种数组
+	 */
+	private String[] mLotnoNoArray = {"", Constants.LOTNO_SSQ, Constants.LOTNO_FC3D, 
+			Constants.LOTNO_DLT, Constants.LOTNO_QLC, Constants.LOTNO_QXC, 
+			Constants.LOTNO_PL3, Constants.LOTNO_PL5, Constants.LOTNO_ZC, 
+			Constants.LOTNO_JCL, Constants.LOTNO_JCZ, Constants.LOTNO_BJ_SINGLE};
+	
+	/**
+	 * 按彩种显示按钮
+	 */
+	protected Button mSubLotnoBtn = null;
+	
+	/**
+	 * 按时间显示按钮
+	 */
+	protected Button mSubTimeBtn = null;
+	
+	private int mClickType = 0;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.join_check_layout);
+		usecenercheck = (LinearLayout)findViewById(R.id.joincheck_query);
+		usecenerLinearfollow = (LinearLayout)findViewById(R.id.joinfollow_query_);
+		mLotnoArray = getResources().getStringArray(R.array.join_lotno_list);
+		mMainView = initLinearView();
+		LinearLayout layout = (LinearLayout)mMainView.findViewById(R.id.usercenter_join_layout);
+		layout.setVisibility(View.VISIBLE);
+		StateChangeClickListener clickListener = new StateChangeClickListener();
+		mSubLotnoBtn = (Button)mMainView.findViewById(R.id.lotno_change_state_title);
+		mSubLotnoBtn.setText(mLotnoArray[0]);
+		mSubLotnoBtn.setOnClickListener(clickListener);
+		
+		mSubTimeBtn = (Button)mMainView.findViewById(R.id.time_change_state_title);
+		mSubTimeBtn.setText(mTimeArray[0]);
+		mSubTimeBtn.setOnClickListener(clickListener);
+		usecenercheck.addView(mMainView);
+		mListView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				detailDalog(position);
+			}
+
+		});
 		initUserInfo();
 		joinCheckNet();
 		init();
@@ -121,26 +201,22 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	 */
 	TabHost.OnTabChangeListener giftTabChangedListener = new TabHost.OnTabChangeListener() {
 		public void onTabChanged(String tabId) {
-			for (int i = 0; i < titles.length; i++) {
-				if (tabId.equals(titles[0])) {
-					joinType = 0;
-					if (checkInfosall.size() != 0) {
-						initLinear(usecenercheck, R.id.joincheck_query,
-								initLinearView());
-					}
+			if (tabId.equals(titles[0])) {
+				joinType = 0;
+				mSubLotnoBtn.setText(mLotnoArray[mJoinCurrentLotnoIndex]);
+				mSubTimeBtn.setText(mTimeArray[mJoinCurrentTiemIndex]);
+				initListView();
+				initLinear();
+			} else if (tabId.equals(titles[1])) {
+				joinType = 1;
+				mSubLotnoBtn.setText(mLotnoArray[mFollowCurrentLotnoIndex]);
+				mSubTimeBtn.setText(mTimeArray[mFollowCurrentTiemIndex]);
+				if (isfollowfirst) {
+					joinCheckNet();
 				} else {
-					joinType = 1;
-					if (isfollowfirst) {
-						joinfollowNet();
-						break;
-					} else {
-						if (checkInfofollow.size() != 0) {
-							initLinear(usecenerLinearfollow,
-									R.id.joinfollow_query_,
-									initLinearViewfollow());
-						}
-					}
+					initListView();
 				}
+				initLinear();
 			}
 		}
 	};
@@ -163,29 +239,19 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 		mTabHost.addTab(tabSpec);
 	}
 
-	@SuppressWarnings("static-access")
-	private void getMore() {
-		if (joinType == 0) {
-			newPage++;
-			if (newPage < allPage) {
-				netting();
-			} else {
-				newPage = allPage - 1;
-				progressbar.setVisibility(view.INVISIBLE);
-				Toast.makeText(JoinCheckActivity.this, "已至尾页",
-						Toast.LENGTH_SHORT).show();
-			}
-		} else if (joinType == 1) {
-			newpagefollow++;
-			if (newpagefollow < allpagefollow) {
-				nettingfollow();
-			} else {
-				newpagefollow = allpagefollow - 1;
-				progressbar.setVisibility(view.INVISIBLE);
-				Toast.makeText(JoinCheckActivity.this, "已至尾页",
-						Toast.LENGTH_SHORT).show();
-			}
+	protected void addmore() {
+		int pageIndex = getNewPage();
+		int allPage = getAllPage();
+		pageIndex++;
+		if (pageIndex < allPage) {
+			joinCheckNet();
+		} else {
+			pageIndex = allPage - 1;
+			mProgressbar.setVisibility(View.INVISIBLE);
+			Toast.makeText(JoinCheckActivity.this, "已至尾页",
+					Toast.LENGTH_SHORT).show();
 		}
+		setNewPage(pageIndex);
 	}
 
 	/**
@@ -194,7 +260,14 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	public void setValue() {
 		try {
 			JSONArray array = json.getJSONArray("result");
-			allPage = Integer.parseInt(json.getString("totalPage"));
+			int allPage = Integer.parseInt(json.getString("totalPage"));
+			setAllPage(allPage);
+			if (mJoinListArray[mJoinCurrentLotnoIndex] == null) {
+				mJoinListArray[mJoinCurrentLotnoIndex] = new ArrayList<BetQueryInfo>();
+			}
+			if (getNewPage() == 0) {
+				mJoinListArray[mJoinCurrentLotnoIndex].clear();
+			}
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject obj = array.getJSONObject(i);
 				JoinCheck checkInfo = new JoinCheck();
@@ -207,12 +280,10 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 				checkInfo.setDisplayState(obj.getString("displayState"));
 				checkInfo.setBuyTime(obj.getString("buyTime"));
 				checkInfo.setPrizeState(obj.getString("prizeState"));
-
-				checkInfosall.add(checkInfo);
-
+				mJoinListArray[mJoinCurrentLotnoIndex].add(checkInfo);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -222,7 +293,14 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	public void setValueFollow() {
 		try {
 			JSONArray array = json.getJSONArray("result");
-			allpagefollow = Integer.parseInt(json.getString("totalPage"));
+			int allPage = Integer.parseInt(json.getString("totalPage"));
+			setAllPage(allPage);
+			if (mFollowListArray[mFollowCurrentLotnoIndex] == null) {
+				mFollowListArray[mFollowCurrentLotnoIndex] = new ArrayList<BetQueryInfo>();
+			}
+			if (getNewPage() == 0) {
+				mFollowListArray[mFollowCurrentLotnoIndex].clear();
+			}
 			for (int i = 0; i < array.length(); i++) {
 				JoinFollow checkInfo = new JoinFollow();
 				JSONObject obj = array.getJSONObject(i);
@@ -282,14 +360,12 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 						e.printStackTrace();
 					}
 				} catch (Exception e) {
-
+					e.printStackTrace();
 				}
-
-				checkInfofollow.add(checkInfo);
-
+				mFollowListArray[mFollowCurrentLotnoIndex].add(checkInfo);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -297,7 +373,7 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	 * 合买详情框
 	 */
 	public void detailDalog(int position) {
-		JoinCheck info = (JoinCheck) checkInfosall.get(position);
+		JoinCheck info = (JoinCheck) mJoinListArray[mJoinCurrentLotnoIndex].get(position);
 		Intent intent = new Intent(JoinCheckActivity.this, Hemaidetail.class);
 		intent.putExtra("caseLotId", info.getCaseLotId());
 		intent.putExtra("lotno", info.getLotName());
@@ -366,87 +442,40 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 	}
 
-	/**
-	 * 初始化LinearLayout,为TabHost下的LinearLayout添加View
-	 * 
-	 * @param linear
-	 *            要初始化的LinearLayout
-	 * @param linearid
-	 *            LinearLayout对应的Id
-	 * @param view
-	 *            要添加的View
-	 */
-	private void initLinear(LinearLayout linear, int linearid, View view) {
-		linear = (LinearLayout) findViewById(linearid);
-		linear.removeAllViews();
-		linear.addView(view);
-	}
-
-	private View initLinearView() {
-		LayoutInflater inflate = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View viewlist = (LinearLayout) inflate.inflate(
-				R.layout.usercenter_listview_layout, null);
-		listview = (ListView) viewlist
-				.findViewById(R.id.usercenter_listview_queryinfo);
-		view = mInflater.inflate(R.layout.lookmorebtn, null);
-		progressbar = (ProgressBar) view.findViewById(R.id.getmore_progressbar);
-		listview.addFooterView(view);
-		view.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				view.setEnabled(false);
-				getMore();
-			}
-		});
-		initListView();
-		OnItemClickListener clickListener = new OnItemClickListener() {
-
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				detailDalog(position);
-			}
-
-		};
-		listview.setOnItemClickListener(clickListener);
-		listview.setDividerHeight(1);
-		return viewlist;
-	}
-
-	private View initLinearViewfollow() {
-		LayoutInflater inflate = (LayoutInflater) this
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View viewlist = (LinearLayout) inflate.inflate(
-				R.layout.usercenter_listview_layout, null);
-		listview = (ListView) viewlist
-				.findViewById(R.id.usercenter_listview_queryinfo);
-		view = mInflater.inflate(R.layout.lookmorebtn, null);
-		progressbar = (ProgressBar) view.findViewById(R.id.getmore_progressbar);
-		listview.addFooterView(view);
-		view.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				view.setEnabled(false);
-				getMore();
-			}
-		});
-		initListView();
-		return viewlist;
-	}
-
-	private void initListView() {
+	private void initLinear() {
 		if (joinType == 0) {
-			adapter = new JoinCheckAdapter(this, checkInfosall);
-			listview.setAdapter(adapter);
+			if (usecenerLinearfollow.getChildCount() > 0) {
+				usecenerLinearfollow.removeAllViews();
+			}
+			if (usecenercheck.getChildCount() == 0) {
+				usecenercheck.addView(mMainView);
+			}
 		} else if (joinType == 1) {
-			adapter2 = new JoinFollowAdapter(this, checkInfofollow);
-			listview.setAdapter(adapter2);
+			if (usecenercheck.getChildCount() > 0) {
+				usecenercheck.removeAllViews();
+			}
+			if (usecenerLinearfollow.getChildCount() == 0) {
+				usecenerLinearfollow.addView(mMainView);
+			}
 		}
+	}
 
+	protected void initListView() {
+		if (joinType == 0) {
+			if (adapter == null) {
+				adapter = new JoinCheckAdapter(this, mJoinListArray[mJoinCurrentLotnoIndex]);
+			} else {
+				adapter.setList(mJoinListArray[mJoinCurrentLotnoIndex]);
+			}
+			mListView.setAdapter(adapter);
+		} else if (joinType == 1) {
+			if (adapter2 == null) {
+				adapter2 = new JoinFollowAdapter(this, mFollowListArray[mFollowCurrentLotnoIndex]);
+			} else {
+				adapter2.setList(mFollowListArray[mFollowCurrentLotnoIndex]);
+			}
+			mListView.setAdapter(adapter2);
+		}
 	}
 
 	/**
@@ -456,36 +485,37 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 		private LayoutInflater mInflater; // 扩充主列表布局
 		private List<JoinCheck> mList;
+		int index;
 
 		public JoinCheckAdapter(Context context, List<JoinCheck> list) {
 			mInflater = LayoutInflater.from(context);
 			mList = list;
-
+		}
+		
+		public void setList(List<JoinCheck> list) {
+			mList = list;
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
+			if (mList == null) {
+				return 0;
+			}
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
-		int index;
-
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			JoinCheck info = (JoinCheck) mList.get(position);
@@ -572,39 +602,39 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	 * 用户中心的适配器
 	 */
 	public class JoinFollowAdapter extends BaseAdapter {
-
 		private LayoutInflater mInflater; // 扩充主列表布局
 		private List<JoinFollow> mList;
+		int index;
 
 		public JoinFollowAdapter(Context context, List<JoinFollow> list) {
 			mInflater = LayoutInflater.from(context);
 			mList = list;
-
+		}
+		
+		public void setList(List<JoinFollow> list) {
+			mList = list;
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
+			if (mList == null) {
+				return 0;
+			}
 			return mList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return mList.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return position;
 		}
 
-		int index;
-
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
 			index = position;
 			ViewHolder holder = null;
 			final JoinFollow info = (JoinFollow) mList.get(position);
@@ -664,7 +694,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						Intent intent = new Intent(JoinCheckActivity.this,
 								JoinModifyActivity.class);
 						intent.putExtra(JoinInfoActivity.USER_NO,
@@ -692,7 +721,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 					@Override
 					public void onClick(View v) {
-						// TODO Auto-generated method stub
 						Intent intent = new Intent(JoinCheckActivity.this,
 								JoinDingActivity.class);
 						intent.putExtra(JoinInfoActivity.USER_NO,
@@ -717,7 +745,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					detaiDalogfollow(info);
 				}
 			});
@@ -735,7 +762,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 			Button detail;
 			Button channelaggin;
 			ImageView imageView;
-
 		}
 	}
 
@@ -777,70 +803,51 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	}
 
 	private void netting() {
-		if (progressbar != null) {
-			progressbar.setVisibility(ProgressBar.VISIBLE);
+		if (mProgressbar != null) {
+			mProgressbar.setVisibility(ProgressBar.VISIBLE);
 		}
 		final Handler tHandler = new Handler();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				String str = "00";
-				str = QueryJoinCheckInterface.queryLotJoinCheck(userno,
-						phonenum, "" + newPage, Constants.PAGENUM);
-				tHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						if (progressbar != null) {
-							progressbar.setVisibility(ProgressBar.INVISIBLE);
-							view.setEnabled(true);
-						}
-						if (dialog != null) {
-							dialog.dismiss();
-						}
-					}
-				});
-				try {
-					json = new JSONObject(str);
-					String msg = json.getString("message");
-					String error = json.getString("error_code");
-					handler.handleMsg(error, msg);
-				} catch (JSONException e) {
-					e.printStackTrace();
+				if (joinType == 0) {
+					str = QueryJoinCheckInterface.queryLotJoinCheck(userno,
+							phonenum, "" + getNewPage(), Constants.PAGENUM
+							, mLotnoNoArray[mJoinCurrentLotnoIndex], mTimeType[mJoinCurrentTiemIndex]);
+				} else if (joinType == 1){
+					str = QueryJoinFollowInterface.queryLotJoinfollow(userno,
+							phonenum, "" + getNewPage(), Constants.PAGENUM, 
+							mLotnoNoArray[mFollowCurrentLotnoIndex], mTimeType[mFollowCurrentTiemIndex]);
 				}
-			}
-		}).start();
-	}
-
-	private void nettingfollow() {
-		if (progressbar != null) {
-			progressbar.setVisibility(ProgressBar.VISIBLE);
-		}
-		final Handler tHandler = new Handler();
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				String str = "00";
-				str = QueryJoinFollowInterface.queryLotJoinfollow(userno,
-						phonenum, "" + newpagefollow, "10");
+				
 				tHandler.post(new Runnable() {
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
-						if (progressbar != null) {
-							progressbar.setVisibility(ProgressBar.INVISIBLE);
-							view.setEnabled(true);
+						if (mProgressbar != null) {
+							mProgressbar.setVisibility(ProgressBar.INVISIBLE);
+							mView.setEnabled(true);
 						}
-						if (dialog != null) {
-							dialog.dismiss();
-						}
+						dismiss();
 					}
 				});
 				try {
 					json = new JSONObject(str);
-					String msg = json.getString("message");
+					String message = json.getString("message");
 					String error = json.getString("error_code");
-					handler.handleMsg(error, msg);
+					Message msg = mHandler.obtainMessage();
+					if ("0000".equals(error)) {
+						msg.what = 1;
+					} else if ("0047".equals(error)) {
+						msg.what = 2;
+					} else {
+						msg.what = 3;
+					}
+					if (joinType == 1) {
+						isfollowfirst = false;
+					}
+					msg.obj = message;
+					mHandler.sendMessage(msg);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
@@ -851,87 +858,30 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	/**
 	 * 联网查询
 	 */
-
 	public void joinCheckNet() {
-		if (newPage == 0) {
-			showDialog(0);
-		}
-		netting();
-	}
-
-	/**
-	 * 联网查询
-	 */
-
-	public void joinfollowNet() {
-		if (newpagefollow == 0) {
-			showDialog(0);
-		}
-		nettingfollow();
-	}
-
-	/**
-	 * 网络连接框
-	 */
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case 0: {
-			dialog = new ProgressDialog(this);
-			dialog.setMessage("网络连接中...");
-			dialog.setIndeterminate(true);
-			return dialog;
-		}
-		}
-		return null;
-	}
-
-	/**
-	 * 取消网络连接框
-	 */
-	public void dismissDialog() {
-		// TODO Auto-generated method stub
-		progressdialog.dismiss();
-	}
-
-	class CheckInfo {
-
-		public CheckInfo() {
-
-		}
-	}
-
-	// TODO Auto-generated method stub
-	public void errorCode_0000() {
 		if (joinType == 0) {
-			setValue();
-			if (newPage == 0) {
-				// initList();
-				initLinear(usecenercheck, R.id.joincheck_query,
-						initLinearView());
+			if (mJoinListArray[mJoinCurrentLotnoIndex] == null) {
+				mJoinListArray[mJoinCurrentLotnoIndex] = new ArrayList();
+			}
+			if ((R.id.lotno_change_state_title == mClickType)
+					&& (mJoinListArray[mJoinCurrentLotnoIndex].size() > 0)) {
+				initListView();
 			} else {
-				adapter.notifyDataSetChanged();
+				showDialog(0);
+				netting();
 			}
 		} else if (joinType == 1) {
-			setValueFollow();
-			isfollowfirst = false;
-			if (newpagefollow == 0) {
-				initLinear(usecenerLinearfollow, R.id.joinfollow_query_,
-						initLinearViewfollow());
+			if (mFollowListArray[mFollowCurrentLotnoIndex] == null) {
+				mFollowListArray[mFollowCurrentLotnoIndex] = new ArrayList();
+			}
+			if ((R.id.lotno_change_state_title == mClickType)
+					&& (mFollowListArray[mFollowCurrentLotnoIndex].size() > 0)) {
+				initListView();
 			} else {
-				adapter2.notifyDataSetChanged();
+				showDialog(0);
+				netting();
 			}
 		}
-
-	}
-
-	public void errorCode_000000() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public Context getContext() {
-		// TODO Auto-generated method stub
-		return this;
 	}
 
 	class JoinCheck {
@@ -1050,7 +1000,6 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 	}
 
 	class JoinFollow {
-
 		public String starter = "";
 		public String crown = "0";// 皇冠
 		public String grayCrown = "0";
@@ -1255,22 +1204,184 @@ public class JoinCheckActivity extends Activity implements HandlerMsg {
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MobclickAgent.onPause(this);// BY贺思明 2012-7-24
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		if (isrefresh) {
-			newpagefollow = 0;
-			allpagefollow = 0;
-			checkInfofollow.clear();
-			joinfollowNet();
+//			newpagefollow = 0;
+//			allpagefollow = 0;
+			for (int i = 0; i < mFollowListArray.length; i++) {
+				if (mFollowListArray[i] != null ) {
+					mFollowListArray[i].clear();
+				}
+			}
+			joinCheckNet();
 			isrefresh = false;
 		}
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
+
+	@Override
+	protected void netting(int index) {}
+	
+	protected void setNewPage(int page) {
+		if (joinType == 0) {
+			mJoinPageIndexArray[mJoinCurrentLotnoIndex] = page;
+		} else if (joinType == 1) {
+			mFollowPageIndexArray[mFollowCurrentLotnoIndex] = page;
+		}
+	}
+
+	protected int getNewPage() {
+		if (joinType == 0) {
+			return mJoinPageIndexArray[mJoinCurrentLotnoIndex];
+		} else if (joinType == 1) {
+			return mFollowPageIndexArray[mFollowCurrentLotnoIndex];
+		}
+		return 0;
+	}
+
+	protected void setAllPage(int page) {
+		if (joinType == 0) {
+			mJoinTotalPageArray[mJoinCurrentLotnoIndex] = page;
+		} else if (joinType == 1) {
+			mFollowTotalPageArray[mFollowCurrentLotnoIndex] = page;
+		}
+		
+	}
+
+	protected int getAllPage() {
+		if (joinType == 0) {
+			return mJoinTotalPageArray[mJoinCurrentLotnoIndex];
+		} else if (joinType == 1) {
+			return mFollowTotalPageArray[mFollowCurrentLotnoIndex];
+		}
+		return 0;
+	}
+	
+	public class StateChangeClickListener implements View.OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			PopOnItemChick popClick = new PopOnItemChick();
+			switch (v.getId()) {
+			case R.id.lotno_change_state_title:
+				mPopupWindow = new CustomPopWindow(JoinCheckActivity.this,
+						mLotnoArray, 3, popClick, R.id.lotno_change_state_title);
+				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_left);
+				if (joinType == 0) {
+					mPopupWindow.setItemSelect(mJoinCurrentLotnoIndex);
+				} else if (joinType == 1) {
+					mPopupWindow.setItemSelect(mFollowCurrentLotnoIndex);
+				}
+				break;
+				
+			case R.id.time_change_state_title:
+				mPopupWindow = new CustomPopWindow(JoinCheckActivity.this,
+						mTimeArray, 4, popClick, R.id.time_change_state_title);
+				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_right);
+				if (joinType == 0) {
+					mPopupWindow.setItemSelect(mJoinCurrentTiemIndex);
+				} else if (joinType == 1) {
+					mPopupWindow.setItemSelect(mFollowCurrentTiemIndex);
+				}
+				break;
+			}
+			mPopupWindow.showAsDropDown(v);
+		}
+	}
+	
+	public class PopOnItemChick implements OnChickItem {
+
+		@Override
+		public void onChickItem(int position, int type) {
+			if (mPopupWindow != null && mPopupWindow.isShowing()) {
+				mPopupWindow.dismiss();
+			}
+			mClickType = type;
+			switch (type) {
+			case R.id.lotno_change_state_title:
+				if (joinType == 0) {
+					mJoinCurrentLotnoIndex = position;
+				} else if (joinType == 1) {
+					mFollowCurrentLotnoIndex = position;
+				}
+				mSubLotnoBtn.setText(mLotnoArray[position]);
+				break;
+
+			case R.id.time_change_state_title:
+				if (joinType == 0) {
+					mJoinCurrentTiemIndex = position;
+				} else if (joinType == 1) {
+					mFollowCurrentTiemIndex = position;
+				}
+				mSubTimeBtn.setText(mTimeArray[position]);
+				break;
+			}
+			joinCheckNet();
+		}
+	}
+	
+	Handler mHandler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				success();
+				break;
+
+			case 2:
+				noRecords();
+				Toast.makeText(JoinCheckActivity.this, (String)msg.obj, Toast.LENGTH_SHORT).show();
+				break;
+				
+			case 3:
+				Toast.makeText(JoinCheckActivity.this, (String)msg.obj, Toast.LENGTH_SHORT).show();
+				break;
+			}
+		}
+	};
+	
+	private void success() {
+		if (joinType == 0) {
+			setValue();
+			if (getNewPage() == 0) {
+				initLinear();
+				initListView();
+			} else {
+				adapter.notifyDataSetChanged();
+			}
+		} else if (joinType == 1) {
+			setValueFollow();
+			if (getNewPage() == 0) {
+				initLinear();
+				initListView();
+			} else {
+				adapter2.notifyDataSetChanged();
+			}
+		}
+	}
+	
+	private void noRecords() {
+		if (joinType == 0) {
+			if (adapter != null) {
+				adapter.setList(null);
+			}
+			mListView.setAdapter(adapter);
+		} else if (joinType == 1) {
+			if (adapter2 != null) {
+				adapter2.setList(null);
+			}
+			mListView.setAdapter(adapter2);
+		}
+	}
+	
+	
+	
 }

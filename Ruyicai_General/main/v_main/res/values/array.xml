@@ -200,6 +200,21 @@
 		<item>广东快乐十分</item>
     </string-array>
     
+    <string-array name="join_lotno_list">
+        <item>所有彩种</item>
+        <item>双色球</item>
+        <item>福彩3D</item>
+        <item>大乐透</item>
+        <item>七乐彩</item>
+        <item>七星彩</item>
+        <item>排列三</item>
+        <item>排列五</item>
+        <item>足彩</item>
+        <item>竞彩篮球</item>
+        <item>竞彩足球</item>
+        <item>北京单场</item>
+    </string-array>
+    
     <string-array name="award_state_list">
         <item>全部状态</item>
         <item>未开奖</item>

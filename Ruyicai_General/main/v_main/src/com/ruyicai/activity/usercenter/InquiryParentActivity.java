@@ -131,6 +131,11 @@ public abstract class  InquiryParentActivity extends Activity {
 	protected View mView = null;
 	
 	/**
+	 * 界面详情View
+	 */
+	protected View mMainView = null;
+	
+	/**
 	 * 进度条
 	 */
 	protected ProgressBar mProgressbar = null;
@@ -152,10 +157,13 @@ public abstract class  InquiryParentActivity extends Activity {
 		mIsFirst = true;
 		RWSharedPreferences shellRW = new RWSharedPreferences(this, "addInfo");
 		mUserNo = shellRW.getStringValue("userno");
+		mMainView = initLinearView();
 		initView();
 	}
 	
 	protected void initView() {
+		LinearLayout layout = (LinearLayout) findViewById(R.id.usercenter_join_layout);
+		layout.setVisibility(View.VISIBLE);
 		mTimeArray = getResources().getStringArray(R.array.time_state_list);
 		mTitleTextView = (TextView) findViewById(R.id.usercenter_mainlayou_text_title);
 		mLotnoBtn = (Button) findViewById(R.id.lotno_change_state_title);
@@ -167,10 +175,10 @@ public abstract class  InquiryParentActivity extends Activity {
 		mAwardStateBtn.setOnClickListener(clickListener);
 		mTimeBtn.setOnClickListener(clickListener);
 		mUsecenerLinear = (LinearLayout) findViewById(R.id.usercenterContent);
-		mUsecenerLinear.addView(initLinearView());
+		mUsecenerLinear.addView(mMainView);
 	}
 	
-	private View initLinearView() {
+	protected View initLinearView() {
 		LayoutInflater inflate = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View viewlist = (LinearLayout) inflate.inflate(
 				R.layout.usercenter_listview_layout, null);
@@ -196,7 +204,7 @@ public abstract class  InquiryParentActivity extends Activity {
 		return viewlist;
 	}
 	
-	private void addmore() {
+	protected void addmore() {
 		int pageIndex = getNewPage();
 		int allpagenum = getAllPage();
 		mIsFirst = false;
@@ -316,5 +324,4 @@ public abstract class  InquiryParentActivity extends Activity {
 			mProgressDialog.dismiss();
 		}
 	}
-	
 }
