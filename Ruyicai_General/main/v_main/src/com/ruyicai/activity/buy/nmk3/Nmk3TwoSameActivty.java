@@ -42,6 +42,10 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		radioId = checkedId;
+		if(scrollView != null){
+			scrollView.smoothScrollBy(0, 0);
+		}
+		
 		onCheckAction(checkedId);
 		((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
 				iProgressBeishu));

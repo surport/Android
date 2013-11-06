@@ -9,21 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
-
         <LinearLayout
-            android:id="@+id/sscchildtype"
-            android:layout_width="fill_parent"
-            android:layout_height="45dip"
-            android:layout_marginTop="10dip"
-            android:gravity="center"
-            android:visibility="gone" >
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/buyview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/sscchildtype"
+                android:layout_width="fill_parent"
+                android:layout_height="45dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center"
+                android:visibility="gone" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buyview"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
         </LinearLayout>
 
         <FrameLayout

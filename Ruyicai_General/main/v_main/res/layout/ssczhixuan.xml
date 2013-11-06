@@ -33,6 +33,7 @@
         android:layout_height="fill_parent" >
 
         <ScrollView
+            android:id="@+id/activitygroup_scrollview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:fadeScrollbars="false"

@@ -63,6 +63,7 @@
     <!-- nmk3   Listitem -->
        <color name="nmk3_latest_lottery_list_one">#157800</color>
     <color name="nmk3_latest_lottery_list_two">#126800</color>
+    <color name="nmk3_loss_value_max">#ffa800</color>
     
     <color name="nmk3_text_color">#ffa800</color>
     <color name="Inquiry_text_color">#dd6300</color>

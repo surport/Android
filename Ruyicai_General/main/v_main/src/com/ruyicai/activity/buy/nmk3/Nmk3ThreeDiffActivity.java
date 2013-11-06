@@ -234,8 +234,8 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 		switch (checkedId) {
 		case 0:
 			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"三不同号单选：猜3个相同的号码，奖金40元！", false, true);
-			areaNums[1] = new AreaNum(1, 1, 1, 1, BallResId, 0, 1, Color.RED, "三不同号通选：123,234,345,456任一开出即中10元！",
+					"三不同号单选：猜开奖的3个号码，奖金40元！", false, true);
+			areaNums[1] = new AreaNum(1, 1, 1, 1, BallResId, 0, 1, Color.RED, "三连号通选：123,234,345,456任一开出即中10元！",
 					false, true);
 			break;
 		}

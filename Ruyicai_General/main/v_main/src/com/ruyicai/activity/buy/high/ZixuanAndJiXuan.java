@@ -48,6 +48,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -172,6 +173,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	float startY;
 	protected LinearLayout childtypes;
 	protected View layoutMain;
+	public ScrollView scrollView;
 	
 	protected LinearLayout zixuanLayout;
 	
@@ -375,6 +377,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			refreshView(type, id);
 			/**add by yejc 20131008 start*/
 			if (Constants.LOTNO_NMK3.equals(lotno)) {
+				scrollView = (ScrollView) zhixuanview.findViewById(R.id.activitygroup_scrollview);
 				LinearLayout nmk3TitleLayout  = (LinearLayout)zhixuanview.findViewById(R.id.nmk3_play_title_layout);
 				nmk3TitleLayout.setVisibility(View.VISIBLE);
 				LinearLayout zhumaLayout  = (LinearLayout)zhixuanview.findViewById(R.id.zhuma_introduction);
@@ -437,6 +440,15 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 								NoticeActivityGroup.class);
 						intent.putExtra("position", 0);
 						startActivity(intent);
+					}
+				});
+				
+				ImageView jiXuanBtn = (ImageView) findViewById(R.id.nmk3_jixuan);
+				jiXuanBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						baseSensor.action();
 					}
 				});
 				
@@ -2003,7 +2015,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 						textView.setText(missValue);
 						if (rankInt[0] == Integer.parseInt(missValue)
 								|| rankInt[1] == Integer.parseInt(missValue)) {
-							textView.setTextColor(Color.RED);
+							textView.setTextColor(getResources().getColor(
+									R.color.nmk3_loss_value_max));
 						}
 					} else {
 						textView.setText("0");
