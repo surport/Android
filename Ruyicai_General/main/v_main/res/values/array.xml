@@ -183,12 +183,36 @@
         <item>北京单场</item>
     </string-array>
     
+    <string-array name="track_lotno_list">
+        <item>所有彩种</item>
+        <item>双色球</item>
+        <item>福彩3D</item>
+        <item>江西11选5</item>
+        <item>广东11选5</item>
+        <item>快三</item>
+        <item>大乐透</item>
+        <item>时时彩</item>
+        <item>七乐彩</item>
+        <item>七星彩</item>
+        <item>排列三</item>
+        <item>排列五</item>
+        <item>十一运夺金</item>
+		<item>广东快乐十分</item>
+    </string-array>
+    
     <string-array name="award_state_list">
         <item>全部状态</item>
         <item>未开奖</item>
         <item>未中奖</item>
         <item>中奖</item>
         <item>撤单</item>
+    </string-array>
+    
+    <string-array name="track_state_list">
+        <item>全部状态</item>
+        <item>进行中</item>
+        <item>已追完</item>
+        <item>取消</item>
     </string-array>
     
     <string-array name="time_state_list">

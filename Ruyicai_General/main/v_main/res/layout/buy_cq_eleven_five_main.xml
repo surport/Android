@@ -94,7 +94,8 @@
                 android:text="至少选择2个号码"
                 android:textColor="@color/white"
                 android:layout_toLeftOf="@+id/layout_main_text_time"
-                android:textSize="13sp" >
+                android:textSize="13sp"
+                android:visibility="gone" >
             </TextView>
 
             <TextView

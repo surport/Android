@@ -312,7 +312,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	// 缓存需要左右滑动的视图群的列表容器
 	public List<BuyViewItemMiss> itemViewArray;
 	protected ListView latestLotteryList;
+
+	protected Button historyBtn;
+	protected boolean historyFlag=false;
+	protected LinearLayout listView;
 	protected HistoryNumberView simulateSelectNumberView;
+
 
 	/**
 	 * 创建可滑动直选页面
@@ -778,10 +783,35 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			initBotm(zhixuanview);
 			missView.put(id, new HighItemView(zhixuanview, areaNum, addView,null, editZhuma));
 			refreshView(type, id);
-			zixuanLayout = (LinearLayout) zhixuanview.findViewById(R.id.sszhixuan_layout);
+
+			zixuanLayout = (LinearLayout) zhixuanview
+					.findViewById(R.id.sszhixuan_layout);
+			//...miqingqiang start
+			simulateSelectNumberView = (HistoryNumberView)zhixuanview. findViewById(R.id.simulate_selectnumber_view);
+			historyBtn=(Button)zhixuanview.findViewById(R.id.buy_choose_history_list);
+			listView=(LinearLayout)zhixuanview.findViewById(R.id.buy_choose_history_listview);
+			historyBtn.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(!historyFlag){
+						listView.setVisibility(View.GONE);
+						historyBtn.setBackgroundResource(R.drawable.choose_button_up);
+						historyFlag=true;
+					}else{
+						listView.setVisibility(View.VISIBLE);
+						historyBtn.setBackgroundResource(R.drawable.choose_button_down);
+						historyFlag=false;
+					}
+				}});
+			//...end
+
 		} else {
 			refreshView(type, id);
 		}
+		historyBtn=(Button)findViewById(R.id.buy_choose_history_list);
+		
 	}
 
 	/**
