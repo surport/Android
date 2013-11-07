@@ -175,4 +175,16 @@ public class CheckUtil {
 		}
 
 	}
+	
+	/**
+	 * 验证手机号
+	 * @param paramString
+	 * @return
+	 */
+	public static boolean checkPhoneNumber(String phoneNumber) {
+		String regExp = "^13[0-9]{1}[0-9]{8}$|15[0125689]{1}[0-9]{8}$|18[0-3,5-9]{1}[0-9]{8}$";
+		Pattern p = Pattern.compile(regExp);
+		Matcher m = p.matcher(phoneNumber);
+		return m.matches();
+	}
 }

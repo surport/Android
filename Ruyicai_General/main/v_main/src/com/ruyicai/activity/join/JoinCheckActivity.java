@@ -838,10 +838,10 @@ public class JoinCheckActivity extends InquiryParentActivity {
 					Message msg = mHandler.obtainMessage();
 					if ("0000".equals(error)) {
 						msg.what = 1;
-					} else if ("0047".equals(error)) {
+					} /*else if ("0047".equals(error)) {
 						msg.what = 2;
-					} else {
-						msg.what = 3;
+					}*/ else {
+						msg.what = 2;
 					}
 					if (joinType == 1) {
 						isfollowfirst = false;
@@ -1338,10 +1338,6 @@ public class JoinCheckActivity extends InquiryParentActivity {
 
 			case 2:
 				noRecords();
-				Toast.makeText(JoinCheckActivity.this, (String)msg.obj, Toast.LENGTH_SHORT).show();
-				break;
-				
-			case 3:
 				Toast.makeText(JoinCheckActivity.this, (String)msg.obj, Toast.LENGTH_SHORT).show();
 				break;
 			}
