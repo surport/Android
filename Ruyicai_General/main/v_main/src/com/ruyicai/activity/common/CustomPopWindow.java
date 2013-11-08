@@ -7,6 +7,7 @@ import com.ruyicai.activity.usercenter.InquiryAdapter.OnChickItem;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -38,7 +39,7 @@ public class CustomPopWindow{
 		mPopupWindow.setTouchable(true);
 		mPopupWindow.setOutsideTouchable(true);
 		mPopupWindow.update();
-		mPopupWindow.setBackgroundDrawable(new BitmapDrawable()); //添加触摸小时
+		mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
 	}
 	
 //	private View getView(Context context, String[] info, int count) {
@@ -50,6 +51,10 @@ public class CustomPopWindow{
 //		gridView.setAdapter(mAdapter);
 //		return layout;
 //	}
+	
+	public PopupWindow getPopupWindow() {
+		return mPopupWindow;
+	}
 	
 	public void setBackground(int resid) {
 		mMainLayout.setBackgroundResource(resid);

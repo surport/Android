@@ -23,6 +23,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -1278,6 +1279,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				} else if (joinType == 1) {
 					mPopupWindow.setItemSelect(mFollowCurrentLotnoIndex);
 				}
+				mSubLotnoBtn.setTextColor(mOrangeColor);
 				break;
 				
 			case R.id.time_change_state_title:
@@ -1289,9 +1291,22 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				} else if (joinType == 1) {
 					mPopupWindow.setItemSelect(mFollowCurrentTiemIndex);
 				}
+				mSubTimeBtn.setTextColor(mOrangeColor);
 				break;
 			}
 			mPopupWindow.showAsDropDown(v);
+			mPopupWindow.getPopupWindow().setTouchInterceptor(new View.OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+						mPopupWindow.dismiss();
+						setTextColor();
+						return true;
+					}
+					return false;
+				}
+			});
 		}
 	}
 	
@@ -1301,6 +1316,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 		public void onChickItem(int position, int type) {
 			if (mPopupWindow != null && mPopupWindow.isShowing()) {
 				mPopupWindow.dismiss();
+				setTextColor();
 			}
 			mClickType = type;
 			switch (type) {
@@ -1324,6 +1340,11 @@ public class JoinCheckActivity extends InquiryParentActivity {
 			}
 			joinCheckNet();
 		}
+	}
+	
+	protected void setTextColor() {
+		mSubTimeBtn.setTextColor(mBlackColor);
+		mSubLotnoBtn.setTextColor(mBlackColor);
 	}
 	
 	Handler mHandler = new Handler(){
