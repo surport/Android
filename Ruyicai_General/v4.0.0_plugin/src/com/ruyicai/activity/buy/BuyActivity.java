@@ -201,7 +201,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 		initLights();
 		// initGallery();
 		initImgView();
-		isShortcut();	
+		//isShortcut();	
 	}
 	/**
 	 * 设置计算屏幕上放置彩种个数
