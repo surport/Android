@@ -283,11 +283,11 @@ public class NmkAnimation {
 		nmk_ShaiZi2.clearAnimation();
 		// anim3.stop();
 		nmk_ShaiZi3.clearAnimation();
-		int[] array = new int[] { R.drawable.s1, R.drawable.s2, R.drawable.s3,
-				R.drawable.s4, R.drawable.s5, R.drawable.s6 };
-		//point1 = (int) (Math.random() * 6);
-		//point2 = (int) (Math.random() * 6);
-		//point3 = (int) (Math.random() * 6);
+		int[] array = new int[] { R.drawable.p1, R.drawable.p2, R.drawable.p3,
+				R.drawable.p4 };
+		point1 = (int) (Math.random() * 4);
+		point2 = (int) (Math.random() * 4);
+		point3 = (int) (Math.random() * 4);
 		nmk_ShaiZi1.setBackgroundResource(array[point1]);
 		nmk_ShaiZi2.setBackgroundResource(array[point2]);
 		nmk_ShaiZi3.setBackgroundResource(array[point3]);
