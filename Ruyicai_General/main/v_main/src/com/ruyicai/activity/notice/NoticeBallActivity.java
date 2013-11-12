@@ -502,6 +502,15 @@ public class NoticeBallActivity extends Activity {
 			layout.addView(ballRedView);
 			hScrollView.setPadding(0, 0, 0, 0);
 			break;
+		case NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW:
+			// 重庆11选5
+			ballRedView = new NoticeBallView(this);
+			list = getSubInfoForListView(Constants.LOTNO_CQ_ELVEN_FIVE);
+			ballRedView.initNoticeBall(list.size(), 11, 1, list, isRed,
+					"cq-11-5", 1 * NoticeMainActivity.SCALE);
+			layout.addView(ballRedView);
+			hScrollView.setPadding(0, 0, 0, 0);
+			break;
 		case NoticeActivityGroup.ID_SUB_TWENTY_LISTVIEW:
 			ballRedView = new NoticeBallView(this);
 			list = getSubInfoForListView(Constants.LOTNO_22_5);
@@ -2509,6 +2518,45 @@ public class NoticeBallActivity extends Activity {
 					}
 					_list.add(tempObj);
 					Constants.nmk3List.add(tempObj);
+				}
+			}
+		}else if (lotno.equals(Constants.LOTNO_CQ_ELVEN_FIVE)) {
+			// 重庆11选5
+			try {
+				JSONObject jsonObjectByLotno = getJSONByLotno(
+						Constants.LOTNO_CQ_ELVEN_FIVE, "100");
+				JSONArray jsonArrayByLotno = jsonObjectByLotno
+						.getJSONArray("result");
+				if (jsonArrayByLotno != null && jsonArrayByLotno.length() > 0) {
+					NoticeMainActivity.isFirstNotice = false;
+					_list.clear();
+					Constants.cq11x5List.clear();
+					for (int i = 0; i < jsonArrayByLotno.length(); i++) {
+						JSONObject jsonObject = (JSONObject) jsonArrayByLotno
+								.get(i);
+						_list.add(jsonObject);
+						Constants.cq11x5List.add(jsonObject);
+					}
+				}
+			} catch (Exception e) {
+				// 获取重庆11选5数据出现异常
+				e.printStackTrace();
+			} finally {
+				// 判断是否已经从网络上获取到了数据
+				if (_list == null || _list.size() == 0) {
+					// 没数据,初始化点数居
+					JSONObject tempObj = new JSONObject();
+					for (int i = 0; i < 5; i++) {
+						try {
+							tempObj.put("lotno", "");
+							tempObj.put("winno", "00000000000000");
+							tempObj.put("date", "");
+						} catch (JSONException e) {
+
+						}
+					}
+					_list.add(tempObj);
+					Constants.cq11x5List.add(tempObj);
 				}
 			}
 		}

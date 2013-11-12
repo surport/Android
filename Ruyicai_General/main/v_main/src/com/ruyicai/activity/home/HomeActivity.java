@@ -627,7 +627,7 @@ public class HomeActivity extends Activity {
 	
 	private String iGameName[] = { "hmdt", Constants.RYJCLABEL, "ssq", "fc3d", "qlc", "cjdlt",
 			"pl3", "pl5", "qxc", "22-5", "ssc", "11-5", "11-ydj", "zjjh",
-			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame","cqelvenfive" }; // 8.9
+			"gd-11-5", "zc", "jcz", "jcl", "gd-10", "nmk3", "beijingsinglegame","cq-11-5" }; // 8.9
 
 
 	private void checkCaizhongSetting() {

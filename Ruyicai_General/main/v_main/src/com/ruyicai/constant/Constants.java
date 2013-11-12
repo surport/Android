@@ -117,6 +117,7 @@ public class Constants {
 	public static List<JSONObject> gd115List = new ArrayList<JSONObject>();
 	public static List<JSONObject> gd10List = new ArrayList<JSONObject>();
 	public static List<JSONObject> nmk3List = new ArrayList<JSONObject>();
+	public static List<JSONObject> cq11x5List = new ArrayList<JSONObject>();
 	public static String noticeJcz = "";
 	public static String noticeJcl = "";
 
@@ -142,6 +143,7 @@ public class Constants {
 	public static JSONObject gd115Json = null;
 	public static JSONObject gd10Json = null;
 	public static JSONObject nmk3Json = null;
+	public static JSONObject cq11x5Json = null;
 
 	public static JSONObject todayjosn = null;
 	// 用户反馈

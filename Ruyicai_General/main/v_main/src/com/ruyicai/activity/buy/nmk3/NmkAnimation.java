@@ -156,8 +156,8 @@ public class NmkAnimation {
 		count = 0;
 		// 加载帧动画
 		creatAnimation();
-		// 加载声音
-		mediaPlay();
+//		// 加载声音
+//		mediaPlay();
 		// 骰子花篮抖动
 		basketShake();
 	}

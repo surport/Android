@@ -1846,6 +1846,8 @@ public class PublicMethod {
 				title = "北京单场";
 			} else if (type.equals(Constants.LOTNO_ZC)) {
 				title = "足彩";
+			}else if(type.equals(Constants.LOTNO_CQ_ELVEN_FIVE)){
+				title = "重庆11选5";
 			}else {
 				title = "所有彩种";
 			}

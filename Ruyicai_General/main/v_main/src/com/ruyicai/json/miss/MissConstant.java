@@ -70,5 +70,12 @@ public class MissConstant {
 	public static final String NMK3_TWOSAME_FU="F47107MV_30";//二同号复选
 	public static final String NMK3_THREESAME_TONG="F47107MV_40";//三同号通选
 	public static final String NMK3_THREE_LINK_TONG="F47107MV_50";//三连号通选
+	
+	public static final String CQ11X5_PT_Q1_Z = "T01016MV_Q1";
+	public static final String CQ11X5_PT_Q2_Z = "T01016MV_Q2";
+	public static final String CQ11X5_PT_Q2_ZU = "T01016MV_Q2Z";
+	public static final String CQ11X5_PT_Q3_Z = "T01016MV_Q3";
+	public static final String CQ11X5_PT_Q3_ZU = "T01016MV_Q3Z";
+	public static final String CQ11X5_PT_RX = "T01016MV_RX";
 
 }

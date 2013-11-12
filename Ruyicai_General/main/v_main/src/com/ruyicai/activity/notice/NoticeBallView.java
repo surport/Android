@@ -737,7 +737,7 @@ public class NoticeBallView extends View {
 			}
 			return allNums;
 		} else if (iGameType.equalsIgnoreCase("11-5")
-				|| iGameType.equalsIgnoreCase("11-ydj")) {
+				|| iGameType.equalsIgnoreCase("11-ydj") || iGameType.equals("cq-11-5")) {
 
 			int[] allNums = new int[5];
 			for (int i = 0; i < 5; i++) {

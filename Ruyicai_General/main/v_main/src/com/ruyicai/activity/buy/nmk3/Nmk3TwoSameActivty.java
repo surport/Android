@@ -265,9 +265,9 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			highttype = "NMK3-TWOSAME-DAN";
 			areaNums = new AreaNum[2];
 			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"单选：选择同号和不同号的组合，奖金80元！\n同号:", false, true);
+					"单选：选择同号和不同号的组合，奖金80元！\n同号:", false, true,true);
 			areaNums[1] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"不同号：", false, true);
+					"不同号：", false, true,true);
 			break;
 		}
 		return areaNums;
