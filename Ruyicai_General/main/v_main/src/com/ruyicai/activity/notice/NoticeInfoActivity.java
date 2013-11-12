@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -167,6 +168,11 @@ public class NoticeInfoActivity extends Activity {
 	private void initList() {
 		noticePrizesTitle = (TextView) findViewById(R.id.notice_prizes_single_specific_title_id);
 		listview = (ListView) findViewById(R.id.notice_prizes_single_specific_listview);
+		RelativeLayout.LayoutParams rl=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+		rl.setMargins(0, 0, 0,0);
+		listview.setLayoutParams(rl);
+		
 		mInflater = LayoutInflater.from(this);
 		addMoreView = mInflater.inflate(R.layout.lookmorebtn, null);
 		progressbar = (ProgressBar) addMoreView
