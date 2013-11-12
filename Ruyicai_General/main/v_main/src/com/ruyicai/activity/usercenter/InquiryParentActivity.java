@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -131,11 +132,20 @@ public abstract class  InquiryParentActivity extends Activity {
 	protected View mView = null;
 	
 	/**
+	 * 界面详情View
+	 */
+	protected View mMainView = null;
+	
+	/**
 	 * 进度条
 	 */
 	protected ProgressBar mProgressbar = null;
 	
 	protected boolean mIsFirst = false;
+	
+	protected int mOrangeColor = 0;
+	
+	protected int mBlackColor = 0;
 	
 //	protected String mSubType = "";
 	
@@ -149,13 +159,18 @@ public abstract class  InquiryParentActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.usercenter_mainlayoutold);
+		mOrangeColor = getResources().getColor(R.color.Inquiry_text_color);
+		mBlackColor = getResources().getColor(R.color.black);
 		mIsFirst = true;
 		RWSharedPreferences shellRW = new RWSharedPreferences(this, "addInfo");
 		mUserNo = shellRW.getStringValue("userno");
+		mMainView = initLinearView();
 		initView();
 	}
 	
 	protected void initView() {
+		LinearLayout layout = (LinearLayout) findViewById(R.id.usercenter_join_layout);
+		layout.setVisibility(View.VISIBLE);
 		mTimeArray = getResources().getStringArray(R.array.time_state_list);
 		mTitleTextView = (TextView) findViewById(R.id.usercenter_mainlayou_text_title);
 		mLotnoBtn = (Button) findViewById(R.id.lotno_change_state_title);
@@ -167,10 +182,10 @@ public abstract class  InquiryParentActivity extends Activity {
 		mAwardStateBtn.setOnClickListener(clickListener);
 		mTimeBtn.setOnClickListener(clickListener);
 		mUsecenerLinear = (LinearLayout) findViewById(R.id.usercenterContent);
-		mUsecenerLinear.addView(initLinearView());
+		mUsecenerLinear.addView(mMainView);
 	}
 	
-	private View initLinearView() {
+	protected View initLinearView() {
 		LayoutInflater inflate = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View viewlist = (LinearLayout) inflate.inflate(
 				R.layout.usercenter_listview_layout, null);
@@ -196,7 +211,7 @@ public abstract class  InquiryParentActivity extends Activity {
 		return viewlist;
 	}
 	
-	private void addmore() {
+	protected void addmore() {
 		int pageIndex = getNewPage();
 		int allpagenum = getAllPage();
 		mIsFirst = false;
@@ -223,21 +238,36 @@ public abstract class  InquiryParentActivity extends Activity {
 						mLotnoArray, 3, popClick, R.id.lotno_change_state_title);
 				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_left);
 				mPopupWindow.setItemSelect(mCurrentLotnoIndex);
+				mLotnoBtn.setTextColor(mOrangeColor);
 				break;
 			case R.id.award_change_state_title:
 				mPopupWindow = new CustomPopWindow(InquiryParentActivity.this,
 						mStateArray, 4, popClick, R.id.award_change_state_title);
 				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_center);
 				mPopupWindow.setItemSelect(mCurrentAwardStateIndex);
+				mAwardStateBtn.setTextColor(mOrangeColor);
 				break;
 			case R.id.time_change_state_title:
 				mPopupWindow = new CustomPopWindow(InquiryParentActivity.this,
 						mTimeArray, 4, popClick, R.id.time_change_state_title);
 				mPopupWindow.setBackground(R.drawable.inquiry_state_bg_right);
 				mPopupWindow.setItemSelect(mCurrentTiemIndex);
+				mTimeBtn.setTextColor(mOrangeColor);
 				break;
 			}
 			mPopupWindow.showAsDropDown(v);
+			mPopupWindow.getPopupWindow().setTouchInterceptor(new View.OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
+						mPopupWindow.dismiss();
+						setTextColor();
+						return true;
+					}
+					return false;
+				}
+			});
 		}
 	}
 	
@@ -247,6 +277,7 @@ public abstract class  InquiryParentActivity extends Activity {
 		public void onChickItem(int position, int type) {
 			if (mPopupWindow != null && mPopupWindow.isShowing()) {
 				mPopupWindow.dismiss();
+				setTextColor();
 			}
 			switch (type) {
 			case R.id.lotno_change_state_title:
@@ -266,6 +297,12 @@ public abstract class  InquiryParentActivity extends Activity {
 			}
 			getData(type);
 		}
+	}
+	
+	protected void setTextColor() {
+		mLotnoBtn.setTextColor(mBlackColor);
+		mAwardStateBtn.setTextColor(mBlackColor);
+		mTimeBtn.setTextColor(mBlackColor);
 	}
 	
 	protected void getData(int type) {
@@ -316,5 +353,4 @@ public abstract class  InquiryParentActivity extends Activity {
 			mProgressDialog.dismiss();
 		}
 	}
-	
 }

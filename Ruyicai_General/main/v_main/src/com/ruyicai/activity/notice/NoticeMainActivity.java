@@ -2,8 +2,10 @@ package com.ruyicai.activity.notice;
 
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -27,22 +29,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.jc.score.lq.JcLqScoreActivity;
 import com.ruyicai.activity.buy.jc.score.zq.JcScoreActivity;
 import com.ruyicai.activity.common.PullRefreshListView;
 import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
 import com.ruyicai.constant.Constants;
-import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.dialog.ExitDialogFactory;
 import com.ruyicai.net.newtransaction.NoticeWinInterface;
 import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
-import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
 
 /**

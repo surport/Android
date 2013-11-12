@@ -227,9 +227,9 @@ public class OneBallView extends ImageView {
 			float width = Float.valueOf(Constants.SCREEN_WIDTH);
 			float textSize;
 			if (width > 480) {
-				textSize = 24 * (width / Float.valueOf(480));
+				textSize = 22 * (width / Float.valueOf(480));
 			} else {
-				textSize = 26 * (width / Float.valueOf(480));
+				textSize = 24 * (width / Float.valueOf(480));
 			}
 			p.setTextSize(textSize);
 

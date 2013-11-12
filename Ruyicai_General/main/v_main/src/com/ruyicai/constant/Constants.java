@@ -271,7 +271,7 @@ public class Constants {
 	public static final String CQELVENFIVE = "cqelvenfive";
 
 	/** add by fansm 20130515 start */
-	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, { LOTNO_RUYI_GUESS, RYJCLABEL },
+	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, /*{ LOTNO_RUYI_GUESS, RYJCLABEL },*/
 			{ LOTNO_SSQ, SSQLABEL }, { LOTNO_DLT, DLTLABEL },
 			{ LOTNO_FC3D, FC3DLABEL }, { LOTNO_11_5, DLCLABEL },
 			{ LOTNO_SSC, SSCLABEL }, { LOTNO_JCZ, JCZLABEL },

@@ -141,13 +141,7 @@ public class CheckUtil {
 	 * 检查彩种是否即将发售情况
 	 */
 	public static boolean isWillSale(String lotno,RWSharedPreferences shellRW) {
-		if (lotno.equals(Constants.NMK3LABEL)
-					&& shellRW.getStringValue(Constants.NMK3WILLSALES).equals("true")) {
-			return true;
-		}  else if (lotno.equals(Constants.BDLABEL)
-				&& shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
-			return true;
-	    } 
+ 
         return false;
 	}
 	
@@ -174,5 +168,17 @@ public class CheckUtil {
 			return str;
 		}
 
+	}
+	
+	/**
+	 * 验证手机号
+	 * @param paramString
+	 * @return
+	 */
+	public static boolean checkPhoneNumber(String phoneNumber) {
+		String regExp = "^13[0-9]{1}[0-9]{8}$|15[0125689]{1}[0-9]{8}$|18[0-3,5-9]{1}[0-9]{8}$";
+		Pattern p = Pattern.compile(regExp);
+		Matcher m = p.matcher(phoneNumber);
+		return m.matches();
 	}
 }

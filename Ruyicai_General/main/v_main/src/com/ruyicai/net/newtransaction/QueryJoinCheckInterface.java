@@ -34,7 +34,7 @@ public class QueryJoinCheckInterface {
 	 * 查询参与合买的方法
 	 */
 	public static String queryLotJoinCheck(String userno, String phonenum,
-			String newPage, String maxresult) {
+			String newPage, String maxresult, String lotno, String type) {
 
 		JSONObject jsonProtocol = ProtocolManager.getInstance()
 				.getDefaultJsonProtocol();
@@ -44,6 +44,9 @@ public class QueryJoinCheckInterface {
 			jsonProtocol.put(ProtocolManager.MAXRESULT, maxresult);
 			jsonProtocol.put(ProtocolManager.PAGEINDEX, newPage);
 			jsonProtocol.put(ProtocolManager.USERNO, userno);
+			
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put("dateType", type);
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

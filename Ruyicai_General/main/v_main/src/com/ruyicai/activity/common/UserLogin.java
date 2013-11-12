@@ -918,6 +918,9 @@ public class UserLogin extends Activity implements TextWatcher {
 				if (phoneNum.length() != 11) {
 					Toast.makeText(getBaseContext(), "手机号必须为11位！",
 							Toast.LENGTH_LONG).show();
+				} else if (!CheckUtil.checkPhoneNumber(phoneNum)) {
+					Toast.makeText(getBaseContext(), "您输入的手机号不正确！",
+							Toast.LENGTH_LONG).show();
 				} else if (passwordLength < 6 || passwordLength > 16) {
 					Toast.makeText(getBaseContext(), "密码必须为6~16位！",
 							Toast.LENGTH_LONG).show();

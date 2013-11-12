@@ -25,7 +25,7 @@ public class QueryJoinFollowInterface {
 	 * 查询参与合买的方法
 	 */
 	public static String queryLotJoinfollow(String userno, String phonenum,
-			String newPage, String maxresult) {
+			String newPage, String maxresult, String lotno, String type) {
 
 		JSONObject jsonProtocol = ProtocolManager.getInstance()
 				.getDefaultJsonProtocol();
@@ -36,6 +36,9 @@ public class QueryJoinFollowInterface {
 			jsonProtocol.put(ProtocolManager.PAGEINDEX, newPage);
 			jsonProtocol.put(ProtocolManager.REQUESTTYPE, "selectAutoJoin");
 			jsonProtocol.put(ProtocolManager.PHONE_NUM, phonenum);
+			
+			jsonProtocol.put(ProtocolManager.LOTNO, lotno);
+			jsonProtocol.put("dateType", type);
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

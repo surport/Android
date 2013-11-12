@@ -113,7 +113,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	private MessageUpdateReceiver newsUpdateReceiver = null;
 	private boolean isReSetNews = true;
 	
-	private int[] imageViews = { R.drawable.ico_buy, R.drawable.ruyi_guess_icon, R.drawable.ico_double,
+	private int[] imageViews = { R.drawable.ico_buy, /*R.drawable.ruyi_guess_icon,*/ R.drawable.ico_double,
 			R.drawable.ico_super, R.drawable.ico_3d, R.drawable.ico_115,
 			R.drawable.ico_timec, R.drawable.icon_jc, R.drawable.nmk3_ico,
 			R.drawable.ico_eleven, R.drawable.ico_expert, R.drawable.gd_eleven,
@@ -123,12 +123,12 @@ public class BuyActivity extends Activity implements OnClickListener {
 			R.drawable.beijingsinglegame_ico,R.drawable.elven_five_ico};
 
 	
-	private String[] imageTitle = { "合买大厅", "如意竞猜", "双色球", "大乐透", "福彩3D", "江西11选5",
+	private String[] imageTitle = { "合买大厅", /*"如意竞猜",*/ "双色球", "大乐透", "福彩3D", "江西11选5",
 			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
 			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" ,"重庆11选五"};
 
 
-	private final Class[] cla = { JoinInfoActivity.class, RuyiGuessActivity.class, 
+	private final Class[] cla = { JoinInfoActivity.class, /*RuyiGuessActivity.class,*/ 
 			Ssq.class, Dlt.class,
 			Fc3d.class, Dlc.class, Ssc.class, ZqMainActivity.class,
 			Nmk3Activity.class, Eleven.class, ExpertActivity.class,
@@ -798,30 +798,30 @@ public class BuyActivity extends Activity implements OnClickListener {
 				String lotno = caizhongSettingList.get(i).get("lotno");
 				
 				/**add by yejc 20131030 start*/
-				JSONObject jsonobj;
-				try {
-					jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
-					RWSharedPreferences shellRW = new RWSharedPreferences(
-							BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
-					if (jsonobj == null && lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
-						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
-								Constants.CAIZHONG_CLOSE);
-						shellRW.putStringValue(Constants.RYJCLABEL,
-								Constants.CAIZHONG_CLOSE);
-						caizhongSetting = Constants.CAIZHONG_CLOSE;
-					} else if (lotno.equals(Constants.LOTNO_RUYI_GUESS)){
-						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
-								Constants.CAIZHONG_OPEN);
-						if (!(Constants.CAIZHONG_CLOSE.equals(shellRW.getStringValue(Constants.RYJC_LAST_STATE)))) {
-							shellRW.putStringValue(Constants.RYJCLABEL,
-									Constants.CAIZHONG_OPEN);
-							caizhongSetting = Constants.CAIZHONG_OPEN;
-						}
-						
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+//				JSONObject jsonobj;
+//				try {
+//					jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+//					RWSharedPreferences shellRW = new RWSharedPreferences(
+//							BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
+//					if (jsonobj == null && lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
+//						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
+//								Constants.CAIZHONG_CLOSE);
+//						shellRW.putStringValue(Constants.RYJCLABEL,
+//								Constants.CAIZHONG_CLOSE);
+//						caizhongSetting = Constants.CAIZHONG_CLOSE;
+//					} else if (lotno.equals(Constants.LOTNO_RUYI_GUESS)){
+//						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
+//								Constants.CAIZHONG_OPEN);
+//						if (!(Constants.CAIZHONG_CLOSE.equals(shellRW.getStringValue(Constants.RYJC_LAST_STATE)))) {
+//							shellRW.putStringValue(Constants.RYJCLABEL,
+//									Constants.CAIZHONG_OPEN);
+//							caizhongSetting = Constants.CAIZHONG_OPEN;
+//						}
+//						
+//					}
+//				} catch (JSONException e) {
+//					e.printStackTrace();
+//				}
 				/**add by yejc 20131030 end*/
 				
 				if (caizhongSetting.equals(Constants.CAIZHONG_OPEN)) {
@@ -891,7 +891,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 						if (lotno.equals(Constants.LOTNO_SSQ) || lotno.equals(Constants.LOTNO_QLC)
 								|| lotno.equals(Constants.LOTNO_DLT) || lotno.equals(Constants.LOTNO_FC3D)
 								|| lotno.equals(Constants.LOTNO_PL3) || lotno.equals(Constants.LOTNO_PL5)
-								|| lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
+								/*|| lotno.equals(Constants.LOTNO_RUYI_GUESS)*/) {
 							try {
 								//String josn = Constants.todayjosn.getString(lotno);
 								//JSONObject jsonobj = new JSONObject(josn);
