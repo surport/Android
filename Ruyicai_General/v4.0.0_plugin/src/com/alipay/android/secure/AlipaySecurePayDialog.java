@@ -47,7 +47,6 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.account_alipay_secure_recharge_dialog);
 		initTextViewContent();
-
 		accountTitleTextView = (TextView) findViewById(R.id.accountTitle_text);
 		accountTitleTextView.setText("支付宝安全支付");
 
