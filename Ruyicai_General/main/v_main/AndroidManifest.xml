@@ -1056,7 +1056,7 @@
         </activity>
         <!-- 重庆11选5 -->
         <activity
-            android:name="com.ruyicai.activity.buy.cq11x5.CqElevenFive"
+            android:name="com.ruyicai.activity.buy.cq11x5.Cq11Xuan5"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
         <!-- 北京单场您的订单 -->

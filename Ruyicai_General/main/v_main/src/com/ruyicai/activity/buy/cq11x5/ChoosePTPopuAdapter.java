@@ -20,7 +20,6 @@ public class ChoosePTPopuAdapter extends BaseAdapter {
 
 	public ChoosePTPopuAdapter(Context context, OnChickItem onChickItem,
 			List<String> listResource) {
-		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.onChickItem = onChickItem;
 		this.listResource = listResource;
@@ -28,25 +27,21 @@ public class ChoosePTPopuAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return listResource.size();
 	}
 
 	@Override
 	public Object getItem(int arg0) {
-		// TODO Auto-generated method stub
 		return listResource.get(arg0);
 	}
 
 	@Override
 	public long getItemId(int arg0) {
-		// TODO Auto-generated method stub
 		return arg0;
 	}
 
 	@Override
 	public View getView(final int pisition, View arg1, ViewGroup arg2) {
-		// TODO Auto-generated method stub
 		View view = LayoutInflater.from(context).inflate(R.layout.popu_item,
 				null);
 		Button chickBtn = (Button) view.findViewById(R.id.itemBtn);
@@ -54,7 +49,6 @@ public class ChoosePTPopuAdapter extends BaseAdapter {
 		chickBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				onChickItem.onChickItem(v, pisition, listResource.get(pisition));
 			}
 		});

@@ -63,6 +63,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.cq11x5.Cq11Xuan5;
 import com.ruyicai.activity.buy.cq11x5.HistoryNumberView;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
@@ -593,7 +594,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		List<List> missList = missView.get(id).getMissList();
 		for (int i = 0; i < areaNums.length; i++) {
 			int index = 0;
-			if (highttype.equals("SSC")) {
+			if (highttype.equals("SSC") || highttype.equals("CQ11X5_PT_QZ2")
+					|| highttype.equals("CQ11X5_PT_QZ3")) {
 				index = areaNums.length - 1 - i;
 			} else if (highttype.equals("DLC")
 					|| highttype.equals("NMK3_TWO_SAME_DAN")) {
@@ -2616,6 +2618,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				Balls ball = ballOne.createBalls();
 				balls.add(ball);
 			}
+
 			createTable(zhumaView);
 		}
 	}

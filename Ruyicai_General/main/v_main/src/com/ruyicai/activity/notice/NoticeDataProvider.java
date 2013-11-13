@@ -235,6 +235,20 @@ public class NoticeDataProvider {
 				e.printStackTrace();
 			}
 		}
+		// 添加：重庆11选5
+		if (shellRW.getStringValue("cq-11-5").toString()
+				.equals(Constants.CAIZHONG_OPEN)) {
+			try {
+				map = new HashMap<String, Object>();
+				map.put(LOTTERYTYPE, "cq-11-5");
+				map.put(WINNINGNUM, Constants.cq11x5Json.get("winCode"));
+				map.put(DATE, Constants.cq11x5Json.getString("openTime"));
+				map.put(ISSUE, Constants.cq11x5Json.get("batchCode"));
+				list.add(map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 四种玩法 胜负彩/任选9/六场半/进球彩 合成足彩只要在彩种设置里关闭足彩 下面四种就都不显示了
 		if (shellRW.getStringValue("zc").toString()
 				.equals(Constants.CAIZHONG_OPEN)) {
@@ -286,6 +300,7 @@ public class NoticeDataProvider {
 			}
 		}
 		/**add by yejc 20130506 end*/
+		
 		return list;
 	}
 }

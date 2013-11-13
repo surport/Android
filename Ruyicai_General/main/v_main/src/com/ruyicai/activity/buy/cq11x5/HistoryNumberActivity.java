@@ -74,7 +74,7 @@ public class HistoryNumberActivity {
 		simulateSelectNumberView = (HistoryNumberView)activity. findViewById(R.id.simulate_selectnumber_view);
 	}
 
-	private void getDataFromInternet() {
+	void getDataFromInternet() {
 		prizeInfosList = new ArrayList<PrizeInfo>();
 
 		msg = new Message();

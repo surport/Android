@@ -1846,6 +1846,8 @@ public class PublicMethod {
 				title = "北京单场";
 			} else if (type.equals(Constants.LOTNO_ZC)) {
 				title = "足彩";
+			}else if(type.equals(Constants.LOTNO_CQ_ELVEN_FIVE)){
+				title = "重庆11选5";
 			}else {
 				title = "所有彩种";
 			}
@@ -2089,10 +2091,6 @@ public class PublicMethod {
 		if (type != null) {
 			if (type.equals(Constants.LOTNO_22_5)) {
 				closeKeyName = Constants.TWENTYBEL;
-			} else if (type.equals(Constants.LOTNO_NMK3)) {
-				closeKeyName = Constants.NMK3LABEL;
-			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
-				closeKeyName = Constants.BDLABEL;
 			}
 		}
 		return closeKeyName;
@@ -2979,17 +2977,7 @@ public class PublicMethod {
 	public static String getMessageByLoto(Context mContext,
 			RWSharedPreferences shellRW, String lotno) {
 		String message = "";
-		if (lotno.equals(Constants.NMK3LABEL)) {
-			if (shellRW.getStringValue(Constants.NMK3WILLSALES).equals("true")) {
-				message = mContext.getResources().getString(
-						R.string.nmk3willSaleMessage);
-			}
-		} else if (lotno.equals(Constants.BDLABEL)) {
-			if (shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
-				message = mContext.getResources().getString(
-						R.string.bdwillSaleMessage);
-			}
-		} else if (lotno.equals(Constants.TWENTYBEL)) {
+        if (lotno.equals(Constants.TWENTYBEL)) {
 			if (shellRW.getStringValue(Constants.TWENCLOSED).equals("true")) {
 				message = mContext.getResources().getString(
 						R.string.twentyClosedMessage);
