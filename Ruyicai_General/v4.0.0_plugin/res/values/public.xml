@@ -3259,5 +3259,6 @@
 <public type="style" name="style_jc_text_title" id="0x7f08001b" />
 <public type="style" name="textSize16" id="0x7f080011" />
 <public type="style" name="touzhuTextstyle" id="0x7f080010" />
+<public type="id" name="hangqing" id="0x7f0b0510" />
 
 </resources>
