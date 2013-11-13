@@ -209,67 +209,31 @@ public class JiXuanBtn {
 		layoutView.setGravity(Gravity.CENTER_VERTICAL);
 		return startNum;
 	}
+	
+	int[] iBallId;
+	
+	public void setSelectBall() {
+		for (int i = 0; i < iBallId.length; i++) {
+			activity.isBallTable(iBallId[i]);
+		}
+		ballViewVector.removeAllElements();
+		activity.showEditText();
+	}
 
 	public void dialogOnclick() {
-		if(activity instanceof Nmk3HeZhiActivity){
-			if(animation.flag){
+		if (activity instanceof Nmk3HeZhiActivity
+				|| activity instanceof Nmk3ThreeDiffActivity
+				|| activity instanceof Nmk3ThreeSameActivty
+				|| activity instanceof Nmk3TwoDiffActivity
+				|| activity instanceof Nmk3TwoSameActivty) {
+			if (animation.flag) {
 				activity.again(areaId);
-				int[] iBallId = table.randomChooseId(choseNum);
-			    for (int i = 0; i < iBallId.length; i++) {
-					activity.isBallTable(iBallId[i]);
-					ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
+				iBallId = table.randomChooseId(choseNum);
+				for (int i = 0; i < iBallId.length; i++) {
+					ballViewVector.add((OneBallView) table.getBallViews().get(
+							iBallId[i]));
 				}
-			    initAnimation(ballViewVector);
-			    ballViewVector.removeAllElements();
-				activity.showEditText();
-			}
-		}else if(activity instanceof Nmk3ThreeDiffActivity){
-			if(animation.flag){
-			    activity.again(areaId);
-			    int[] iBallId = table.randomChooseId(choseNum);
-		        for (int i = 0; i < iBallId.length; i++) {
-				    activity.isBallTable(iBallId[i]);
-				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
-			    }
-		        initAnimation(ballViewVector);
-		        ballViewVector.removeAllElements();
-			    activity.showEditText();
-			}
-		}else if(activity instanceof Nmk3ThreeSameActivty){
-			if(animation.flag){
-			    activity.again(areaId);
-			    int[] iBallId = table.randomChooseId(choseNum);
-		        for (int i = 0; i < iBallId.length; i++) {
-				    activity.isBallTable(iBallId[i]);
-				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
-			    }
-		        initAnimation(ballViewVector);
-		        ballViewVector.removeAllElements();
-			    activity.showEditText();
-			}
-		}else if(activity instanceof Nmk3TwoDiffActivity){
-			if(animation.flag){
-			    activity.again(areaId);
-			    int[] iBallId = table.randomChooseId(choseNum);
-		        for (int i = 0; i < iBallId.length; i++) {
-				    activity.isBallTable(iBallId[i]);
-				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
-			    }
-		        initAnimation(ballViewVector);
-		        ballViewVector.removeAllElements();
-			    activity.showEditText();
-			}
-		}else if(activity instanceof Nmk3TwoSameActivty){
-			if(animation.flag){
-			    activity.again(areaId);
-			    int[] iBallId = table.randomChooseId(choseNum);
-		        for (int i = 0; i < iBallId.length; i++) {
-				    activity.isBallTable(iBallId[i]);
-				    ballViewVector.add((OneBallView) table.getBallViews().get(iBallId[i]));
-			    }
-		        initAnimation(ballViewVector);
-		        ballViewVector.removeAllElements();
-			    activity.showEditText();
+				initAnimation(ballViewVector, this);
 			}
 		}
 		else{
@@ -293,18 +257,20 @@ public class JiXuanBtn {
 	
 	/**
 	 * 摇骰子动画
+	 * @param jiXuanBtn 
+	 * @param activity2 
 	 * @param table2 
 	 */
-	private void initAnimation(Vector<OneBallView> ballViewVector){
+	private void initAnimation(Vector<OneBallView> ballViewVector, JiXuanBtn jiXuanBtn){
 		ImageView huaLanView=(ImageView)activity.findViewById(R.id.nmk_shaizihualan);
 	    ImageView shaiZiFirst=(ImageView)activity.findViewById(R.id.nmk_shaizi1);
 	    ImageView shaiZiSecond=(ImageView)activity.findViewById(R.id.nmk_shaizi2);
 	    ImageView shaiZiThird=(ImageView)activity.findViewById(R.id.nmk_shaizi3);
 		huaLanView.setVisibility(View.VISIBLE);
 		if(activity instanceof Nmk3HeZhiActivity){
-			animation =new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView,1,1,1);
+			animation =new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView,1,1,1);
 		}else{
-			animation=new NmkAnimation(activity, shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView);
+			animation=new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView);
 
 		}
 	}
