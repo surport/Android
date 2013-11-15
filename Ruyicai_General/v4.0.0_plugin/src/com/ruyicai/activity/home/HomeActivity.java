@@ -143,6 +143,16 @@ public class HomeActivity extends Activity {
 				}
 				turnActivity();
 				break;
+				case 7:
+				try {
+					JSONObject jsonObjectOther = (JSONObject) msg.obj;
+					String message = jsonObjectOther.getString("message");
+					Toast.makeText(HomeActivity.this, message, Toast.LENGTH_SHORT).show();
+					finish();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+					break;
 			}
 
 		}
@@ -229,7 +239,7 @@ public class HomeActivity extends Activity {
 		String imageId = shellRW.getStringValue("imageId");
 		if (bitmap == null || errorCode.equals("") || errorCode.equals("false")) {
 			Resources r = this.getResources();
-			InputStream is = r.openRawResource(R.drawable.cp1);
+			InputStream is = r.openRawResource(R.drawable.cp2);
 			BitmapDrawable bmpDraw = new BitmapDrawable(is);
 			bitmap = bmpDraw.getBitmap();
 		}
