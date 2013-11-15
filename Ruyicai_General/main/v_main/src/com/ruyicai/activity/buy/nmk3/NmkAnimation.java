@@ -3,6 +3,7 @@ package com.ruyicai.activity.buy.nmk3;
 import java.util.Vector;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.pojo.OneBallView;
 
 import android.app.Activity;
@@ -33,7 +34,7 @@ public class NmkAnimation {
 	private int point1, point2, point3; // 随机骰子点数
 	private Activity activity;
 	public static boolean flag = true;
-	
+	private JiXuanBtn jixuanbtn;
 
 	/**
 	 * @param activity当前显示的Activity
@@ -63,6 +64,7 @@ public class NmkAnimation {
 	}
 	
 	/**
+	 * @param jiXuanBtn 
 	 * @param activity当前显示的Activity
 	 * @param view1第一个骰子
 	 * @param view2第二个骰子
@@ -70,12 +72,13 @@ public class NmkAnimation {
 	 * @param ballViewVector 需要移动到的view集合
 	 * @param view7骰子花篮
 	 */
-	public NmkAnimation(Activity activity, ImageView view1, ImageView view2,
+	public NmkAnimation(Activity activity, JiXuanBtn jiXuanBtn, ImageView view1, ImageView view2,
 			ImageView view3, Vector<OneBallView> ballViewVector,
 			ImageView view4) {
 		this.nmk_ShaiZi1=view1;
 		this.nmk_ShaiZi2=view2;
 		this.nmk_ShaiZi3=view3;
+		this.jixuanbtn = jiXuanBtn;
 		if(ballViewVector.size()==1){
 			this.nmk_MoveToView1=ballViewVector.elementAt(0);
 			this.nmk_MoveToView2=ballViewVector.elementAt(0);
@@ -101,7 +104,8 @@ public class NmkAnimation {
 	}
 	
 	/**
-	* @param activity当前显示的Activity
+	* @param jiXuanBtn2 
+	 * @param activity当前显示的Activity
 	 * @param view1第一个骰子
 	 * @param view2第二个骰子
 	 * @param view3第三个骰子
@@ -111,12 +115,13 @@ public class NmkAnimation {
 	 * @param numSecond 第二个筛子点数
 	 * @param numThird 第三个筛子点数
 	 */
-	public NmkAnimation(Activity activity, ImageView view1, ImageView view2,
+	public NmkAnimation(Activity activity, JiXuanBtn jiXuanBtn2, ImageView view1, ImageView view2,
 			ImageView view3, Vector<OneBallView> ballViewVector,
 			ImageView view4,int numFirst,int numSecond,int numThird) {
 		this.nmk_ShaiZi1=view1;
 		this.nmk_ShaiZi2=view2;
 		this.nmk_ShaiZi3=view3;
+		this.jixuanbtn = jiXuanBtn2;
 		if(ballViewVector.size()==1){
 			this.nmk_MoveToView1=ballViewVector.elementAt(0);
 			this.nmk_MoveToView2=ballViewVector.elementAt(0);
@@ -344,6 +349,8 @@ public class NmkAnimation {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				jixuanbtn.setSelectBall();
 			}
 		});
 	}
