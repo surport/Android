@@ -268,7 +268,7 @@ public class Constants {
 	public static final String GDLABEL = "gd-11-5";
 	public static final String ZCLABEL = "zc";
 	public static final String RYJCLABEL = "ruyiguess";
-	public static final String CQELVENFIVE = "cqelvenfive";
+	public static final String CQELVENFIVE = "cq-11-5";
 
 	/** add by fansm 20130515 start */
 	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, /*{ LOTNO_RUYI_GUESS, RYJCLABEL },*/
