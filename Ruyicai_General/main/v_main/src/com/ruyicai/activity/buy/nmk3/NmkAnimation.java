@@ -5,8 +5,10 @@ import java.util.Vector;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.pojo.OneBallView;
+import com.ruyicai.util.RuyicaiActivityManager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -25,7 +27,9 @@ import android.widget.ImageView;
  */
 public class NmkAnimation {
 
-	private ImageView nmk_ShaiZi1, nmk_ShaiZi2, nmk_ShaiZi3;
+	private ImageView nmk_ShaiZi1;
+	private ImageView nmk_ShaiZi2;
+	private ImageView nmk_ShaiZi3;
 	private ImageView nmk_MoveToView1,nmk_MoveToView2,nmk_MoveToView3;
 	private ImageView nmk_ShaiZiHuaLan;
 	private MediaPlayer mediaPlayer;
@@ -86,7 +90,7 @@ public class NmkAnimation {
 		}
 		if(ballViewVector.size()==2){
 			this.nmk_MoveToView1=ballViewVector.elementAt(0);
-			this.nmk_MoveToView2=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(1);
 			this.nmk_MoveToView3=ballViewVector.elementAt(1);
 		}
 		if(ballViewVector.size()==3){
@@ -97,51 +101,9 @@ public class NmkAnimation {
 		
 		this.nmk_ShaiZiHuaLan=view4;
 		this.activity = activity;
-		if(flag){
-			flag=false;
-		    initAnimation();
-		}
-	}
-	
-	/**
-	* @param jiXuanBtn2 
-	 * @param activity当前显示的Activity
-	 * @param view1第一个骰子
-	 * @param view2第二个骰子
-	 * @param view3第三个骰子
-	 * @param ballViewVector 需要移动到的view集合
-	 * @param view7骰子花篮
-	 * @param numFirst 第一个筛子点数
-	 * @param numSecond 第二个筛子点数
-	 * @param numThird 第三个筛子点数
-	 */
-	public NmkAnimation(Activity activity, JiXuanBtn jiXuanBtn2, ImageView view1, ImageView view2,
-			ImageView view3, Vector<OneBallView> ballViewVector,
-			ImageView view4,int numFirst,int numSecond,int numThird) {
-		this.nmk_ShaiZi1=view1;
-		this.nmk_ShaiZi2=view2;
-		this.nmk_ShaiZi3=view3;
-		this.jixuanbtn = jiXuanBtn2;
-		if(ballViewVector.size()==1){
-			this.nmk_MoveToView1=ballViewVector.elementAt(0);
-			this.nmk_MoveToView2=ballViewVector.elementAt(0);
-			this.nmk_MoveToView3=ballViewVector.elementAt(0);
-		}
-		if(ballViewVector.size()==2){
-			this.nmk_MoveToView1=ballViewVector.elementAt(0);
-			this.nmk_MoveToView2=ballViewVector.elementAt(0);
-			this.nmk_MoveToView3=ballViewVector.elementAt(1);
-		}
-		if(ballViewVector.size()==3){
-			this.nmk_MoveToView1=ballViewVector.elementAt(0);
-			this.nmk_MoveToView2=ballViewVector.elementAt(1);
-			this.nmk_MoveToView3=ballViewVector.elementAt(2);
-		}
-		this.point1=numFirst;
-		this.point2=numSecond;
-		this.point3=numThird;
-		this.nmk_ShaiZiHuaLan=view4;
-		this.activity = activity;
+		Intent intent=new Intent(this.activity,TransParentActivity.class);
+		activity.startActivityForResult(intent,1);
+		
 		if(flag){
 			flag=false;
 		    initAnimation();
@@ -161,7 +123,7 @@ public class NmkAnimation {
 		count = 0;
 		// 加载帧动画
 		creatAnimation();
-//		// 加载声音
+		// 加载声音
 //		mediaPlay();
 		// 骰子花篮抖动
 		basketShake();
@@ -269,7 +231,13 @@ public class NmkAnimation {
 				view.clearAnimation();
 				view.layout(left, top, left + width, top + height);
 				count++; // 计数器的功能保证骰子滚动一个来回
-				if (count <= 3) {
+				int num;
+				if(isTwoDiffActivity()){
+					num=2;
+				}else{
+					num=3;
+				}
+				if (count <= num) {
 					transView(-p1, -p2, -p3, -p4, view);
 				} else {
 					randomImageViewBG();
@@ -295,8 +263,11 @@ public class NmkAnimation {
 		point3 = (int) (Math.random() * 4);
 		nmk_ShaiZi1.setBackgroundResource(array[point1]);
 		nmk_ShaiZi2.setBackgroundResource(array[point2]);
-		nmk_ShaiZi3.setBackgroundResource(array[point3]);
+		if(!isTwoDiffActivity()){
+			nmk_ShaiZi3.setBackgroundResource(array[point3]);
+		}
 		scaleAnimation();
+		
 	}
 
 	/**
@@ -351,6 +322,8 @@ public class NmkAnimation {
 				}
 				
 				jixuanbtn.setSelectBall();
+				
+				activity.finishActivity(1);
 			}
 		});
 	}
@@ -409,10 +382,13 @@ public class NmkAnimation {
 				transView(0, (int) ((-200) * Math.random()), 0,
 						(int) ((-50) * Math.random()), nmk_ShaiZi2);
 
-				nmk_ShaiZi3.setBackgroundDrawable(anim3);
-				anim3.start();
-				transView(0, (int) (100 * Math.random()), 0,
-						(int) (-100 * Math.random()), nmk_ShaiZi3);
+				if(!isTwoDiffActivity()){
+					nmk_ShaiZi3.setBackgroundDrawable(anim3);
+					anim3.start();
+					transView(0, (int) (100 * Math.random()), 0,
+							(int) (-100 * Math.random()), nmk_ShaiZi3);
+				}
+				
 			}
 		});
 	}
@@ -421,9 +397,28 @@ public class NmkAnimation {
 	 * 骰子从花篮中飞出
 	 */
 	private void enlargeAnimation() {
-		enlargeSclaeAnimation(nmk_ShaiZi1);
-		enlargeSclaeAnimation(nmk_ShaiZi2);
-		enlargeSclaeAnimation(nmk_ShaiZi3);
+		
+		if(isTwoDiffActivity()){
+			enlargeSclaeAnimation(nmk_ShaiZi1);
+			enlargeSclaeAnimation(nmk_ShaiZi2);
+		}else{
+			enlargeSclaeAnimation(nmk_ShaiZi1);
+			enlargeSclaeAnimation(nmk_ShaiZi2);
+			enlargeSclaeAnimation(nmk_ShaiZi3);
+		}
+		
+	}
+	
+	/**
+	 * 判断是不是二不同玩法
+	 * @return
+	 */
+	private boolean isTwoDiffActivity(){
+		if(activity instanceof Nmk3TwoDiffActivity){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

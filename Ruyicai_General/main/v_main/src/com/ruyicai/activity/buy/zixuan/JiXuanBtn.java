@@ -219,6 +219,25 @@ public class JiXuanBtn {
 		ballViewVector.removeAllElements();
 		activity.showEditText();
 	}
+	
+	/**
+	 * 快三中不同的玩法选择不同数目的随机数
+	 * @return
+	 */
+	private int chooseRandomNum(){
+		if(activity instanceof Nmk3HeZhiActivity
+				||activity instanceof Nmk3ThreeSameActivty
+				||activity instanceof Nmk3TwoSameActivty){
+			choseNum=1;
+		}
+		if(activity instanceof Nmk3ThreeDiffActivity){
+			choseNum=3;
+		}
+		if(activity instanceof Nmk3TwoDiffActivity){
+			choseNum=2;
+		}
+		return choseNum;
+	}
 
 	public void dialogOnclick() {
 		if (activity instanceof Nmk3HeZhiActivity
@@ -228,7 +247,7 @@ public class JiXuanBtn {
 				|| activity instanceof Nmk3TwoSameActivty) {
 			if (animation.flag) {
 				activity.again(areaId);
-				iBallId = table.randomChooseId(choseNum);
+				iBallId = table.randomChooseId(chooseRandomNum());
 				for (int i = 0; i < iBallId.length; i++) {
 					ballViewVector.add((OneBallView) table.getBallViews().get(
 							iBallId[i]));
@@ -267,12 +286,11 @@ public class JiXuanBtn {
 	    ImageView shaiZiSecond=(ImageView)activity.findViewById(R.id.nmk_shaizi2);
 	    ImageView shaiZiThird=(ImageView)activity.findViewById(R.id.nmk_shaizi3);
 		huaLanView.setVisibility(View.VISIBLE);
-		if(activity instanceof Nmk3HeZhiActivity){
-			animation =new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView,1,1,1);
-		}else{
-			animation=new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView);
-
+		if(chooseRandomNum()==2){
+			shaiZiThird.setVisibility(View.INVISIBLE);
 		}
+		animation=new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView);
+
 	}
 
 	public void onclickText() {
