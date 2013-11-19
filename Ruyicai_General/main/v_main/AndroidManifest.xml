@@ -1048,6 +1048,13 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.nmk3.TransParentActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent"
+            android:screenOrientation="portrait" >
+        </activity>
+        
         <!-- 北京单场 -->
         <activity
             android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity"
