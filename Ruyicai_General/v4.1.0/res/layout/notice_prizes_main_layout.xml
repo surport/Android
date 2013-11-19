@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 开奖公告页面列表选项视图 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_luck_bg"
+    android:orientation="horizontal"
+    android:paddingBottom="10dip"
+    android:paddingLeft="5dip"
+    android:paddingTop="10dip" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="70sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- 彩种图标 -->
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="6dip"
+            android:paddingLeft="7sp" >
+        </ImageView>
+        <!-- 彩种名称 -->
+
+        <TextView
+            android:id="@+id/notice_prizes_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/notice_prizes"
+            android:singleLine="false"
+            android:textColor="#333333"
+            android:textSize="14sp" >
+        </TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/notice_prizes_main_btn_score"
+        style="@style/YonghuFankuiBtn"
+        android:layout_width="90sp"
+        android:layout_height="45sp"
+        android:layout_gravity="center_vertical"
+        android:text="即时比分"
+        android:visibility="gone" >
+    </Button>
+
+    <Button
+        android:id="@+id/notice_prizes_main_btn_jc"
+        style="@style/YonghuFankuiBtn"
+        android:layout_width="135sp"
+        android:layout_height="45sp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10sp"
+        android:text="查看比赛结果"
+        android:visibility="gone" >
+    </Button>
+
+    <RelativeLayout
+        android:id="@+id/notice_prizes_relative"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@+id/icon"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:paddingTop="8dip" >
+
+            <TextView
+                android:id="@+id/notice_prizes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="开奖日期"
+                android:textColor="@color/black"
+                android:textSize="13dip"
+                android:typeface="serif"
+                android:visibility="visible" >
+            </TextView>
+
+            <!-- 开奖日期 -->
+
+            <TextView
+                android:id="@+id/notice_prizes_dateAndTimeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_toRightOf="@+id/notice_prizes"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="13dip"
+                android:typeface="serif"
+                android:visibility="visible" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/notice_prezes_lotteryNameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginLeft="20dip"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="13dip"
+                android:typeface="serif"
+                android:visibility="gone" >
+            </TextView>
+
+            <!-- 期号 -->
+
+            <TextView
+                android:id="@+id/notice_prizes_issueId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="5dip"
+                android:paddingRight="5dip"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/black"
+                android:textSize="13dip"
+                android:typeface="serif"
+                android:visibility="visible" >
+            </TextView>
+        </RelativeLayout>
+
+        <!-- 号码球布局 -->
+
+        <LinearLayout
+            android:id="@+id/ball_linearlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="2dip"
+            android:layout_marginRight="2dip" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

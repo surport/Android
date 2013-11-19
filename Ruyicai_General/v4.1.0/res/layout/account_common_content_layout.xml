@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/alipay_secure_ok"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:layout_marginTop="15dip"
+        android:background="@drawable/loginselecter"
+        android:gravity="center"
+        android:text="确 定"
+        android:textColor="@color/white"
+        android:textSize="18sp" >
+    </Button>
+    
+    <LinearLayout android:id="@+id/alipay_secure_ok_alipay_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dip"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/alipay_secure_ok_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/alipay_secure_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:background="@drawable/free_get_glod_bottom"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:padding="5dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dip" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/account_recharge_warning" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/account_warning_text"
+                android:textColor="@color/account_warning_text_color" />
+        </LinearLayout>
+
+        <WebView
+            android:id="@+id/alipay_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        
+    </LinearLayout>
+
+</LinearLayout>
