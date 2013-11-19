@@ -38,8 +38,8 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 		lotno = Constants.LOTNO_NMK3;
 		highttype = "NMK3-DIFFER-THREE";
 		lotnoStr=Constants.LOTNO_NMK3;
-		BallResId[0] = R.drawable.nmk3_normal;
-		BallResId[1] = R.drawable.nmk3_click;
+		BallResId[0] = R.drawable.changbtn_normal;
+		BallResId[1] = R.drawable.changbtn_click;
 		//设置单选按钮
 		childtype = new String[] { "直选" };
 		init();

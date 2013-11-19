@@ -24,6 +24,8 @@ import android.widget.RadioGroup;
 public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	int threeSameBallZhuShu;
 	int threeSameTongBallZhuShu;
+	int[] BallResId1;
+	int[] BallResId2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,10 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		lotno = Constants.LOTNO_NMK3;
 		highttype = "NMK3-SAME-THREE";
 		childtype = new String[] { "直选" };
-		BallResId[0] = R.drawable.nmk3_hezhi_normal;
-		BallResId[1] = R.drawable.nmk3_hezhi_click;
+//		BallResId[0] = R.drawable.nmk3_hezhi_normal;
+//		BallResId[1] = R.drawable.nmk3_hezhi_click;
+		BallResId1=new int[]{R.drawable.nmk3_hezhi_normal,R.drawable.nmk3_hezhi_click};
+		BallResId2=new int[]{R.drawable.changbtn_normal,R.drawable.changbtn_click};
 		init();
 		//来自2013-10-16徐培松 start
 		childtypes.setVisibility(View.GONE);
@@ -224,9 +228,9 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		areaNums = new AreaNum[2];
 		switch (checkedId) {
 		case 0:
-			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
+			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId1, 0, 1, Color.RED,
 					"三同号单选：猜3个相同的号码，奖金240元！", false, true);
-			areaNums[1] = new AreaNum(1, 1, 1, 1, BallResId, 0, 1, Color.RED,
+			areaNums[1] = new AreaNum(1, 1, 1, 1, BallResId2, 0, 1, Color.RED,
 					"三同号通选：任意一个三同号开出，即中40元！", false, true);
 			break;
 		}
