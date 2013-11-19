@@ -134,7 +134,7 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 		String numbersPart = getNumbersPart();
 		String endFlagPart = "^";
 
-		if (radioId == 0 && getZhuShu() == 1) {
+		if (radioId == 0 && getThreeDiffZhuShu() == 1) {
 			zhuMa = playMethodPart + mutiplePart + numbersPart + endFlagPart;
 		} else {
 			zhuMa = playMethodPart + mutiplePart + numberNumsPart + numbersPart
@@ -201,7 +201,7 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 
 	private String getPlayMethodPart() {
 		String playMethod = "";
-		if (getZhuShu() > 1) {
+		if (getThreeDiffZhuShu() > 1) {
 			playMethod = "63";
 		} else {
 			playMethod = "00";
