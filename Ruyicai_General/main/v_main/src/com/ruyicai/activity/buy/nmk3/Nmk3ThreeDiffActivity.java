@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyActivityGroup;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
@@ -52,6 +53,7 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		//页面启动之后，由于RadioGroup自动调用监听方法，进行页面的初始化显示
 		 onCheckAction(checkedId);
+		 ((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums, iProgressBeishu));
 	}
 
 	@Override
@@ -64,9 +66,18 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		return "";
+		int zhuShu = getZhuShu();
+//		if (threeDiffBallNums < 3) {
+//			return "还需要选择" + (3 - threeDiffBallNums) + "个球";
+//		}
+		return "您以选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 	}
-
+	/**
+	 * 设置投注金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+	}
 	@Override
 	public String isTouzhu() {
 		if (getZhuShu() == 0) {
