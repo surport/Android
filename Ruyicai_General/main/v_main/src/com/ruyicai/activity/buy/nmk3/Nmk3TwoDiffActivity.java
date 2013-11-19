@@ -54,9 +54,19 @@ public class Nmk3TwoDiffActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		return "";
+		int zhuShu = getZhuShu();
+		if (zhuShu == 0) {
+			return "请选择投注号码";
+		} else {
+			return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
+		}
 	}
-
+	/**
+	 * 设置投注金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+	}
 	@Override
 	public String isTouzhu() {
 		if (getZhuShu() == 0) {
