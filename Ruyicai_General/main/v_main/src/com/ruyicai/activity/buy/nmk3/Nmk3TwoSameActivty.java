@@ -256,7 +256,7 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			 isMissNet(new Nmk3MissJson(), MissConstant.NMK3_TWOSAME_FU, false);// 获取遗漏值
 			break;
 		case 1:
-			highttype="NMK3_TWO_SAME_DAN";
+			highttype="NMK3_TWOSAME_DAN";
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_TWOSAME_DAN,
 					true, checkedId, true);
 			 isMissNet(new Nmk3MissJson(), MissConstant.NMK3_TWO_DAN, false);// 获取遗漏值
