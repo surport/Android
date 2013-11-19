@@ -298,9 +298,9 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.jc_main_list_item_text_team_id);
 				holder.team = (TextView) convertView
 						.findViewById(R.id.jc_main_list_item_text_team);
-				holder.home = (TextView) convertView
-						.findViewById(R.id.jc_main_list_item_text_team_name1);
 				holder.away = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_team_name1);
+				holder.home = (TextView) convertView
 						.findViewById(R.id.jc_main_list_item_text_team_name2);
 				holder.letPoint = (TextView) convertView
 						.findViewById(R.id.jclangqiu_rangfen);
@@ -310,10 +310,10 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.jc_main_list_item_text_score);
 				holder.daxiaoscore=(TextView) convertView
 						.findViewById(R.id.beidan_banquanchang);
-				holder.homescore = (TextView) convertView
+				holder.awayscore = (TextView) convertView
 						.findViewById(R.id.jc_main_li_bifen_zu);
 				
-				holder.awayscore = (TextView) convertView
+				holder.homescore = (TextView) convertView
 						.findViewById(R.id.jc_main_li_bifen_ke);
 				convertView.setTag(holder);
 			}else{

@@ -39,6 +39,7 @@ import android.widget.PopupWindow.OnDismissListener;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
+import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
 import com.ruyicai.activity.notice.NoticeBeijingSingleActivity.JcInfoAdapter.ViewHolder;
 import com.ruyicai.activity.notice.NoticeMenuAdapter.OnClickItem;
 import com.ruyicai.constant.Constants;
@@ -80,6 +81,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private RelativeLayout relateive_date,relativelayout03;
 	private PopupWindow popupwindow;
 	private NoticeMenuAdapter noticeMenuAdapter;
+	private ImageView right_sanjiao;
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
 		super.onCreate(savedInstanceState);
@@ -112,11 +114,11 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	 * 跳转到分析界面
 	 */
 	public void trunExplain(String event, String home, String away) {
-		//Intent intent = new Intent(context, JcExplainActivity.class);
-		//intent.putExtra("event", event);
-		//intent.putExtra("home", home);
-		//intent.putExtra("away", away);
-		//startActivity(intent);
+//		Intent intent = new Intent(context, JcExplainActivity.class);
+//		intent.putExtra("event", event);
+//		intent.putExtra("home", home);
+//		intent.putExtra("away", away);
+//		startActivity(intent);
 	}
 
 	public String getEvent(String type, JsonBeanInfo info) {
@@ -361,7 +363,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				holder.awayscore = (TextView) convertView
 						.findViewById(R.id.jc_main_li_bifen_ke);
 				
-				
+				holder.right_sanjiao=(ImageView)convertView.
+						findViewById(R.id.notice_prizes_single_specific_img);
 				convertView.setTag(holder);	
 			}else{
 				holder=(ViewHolder) convertView.getTag();
@@ -374,8 +377,9 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			    holder.letPoint.setVisibility(View.VISIBLE);
 				if(info.getLetPoint().startsWith("+")){
 					holder.letPoint.setTextColor(Color.RED);
+					holder.letPoint.setText("("+info.getLetPoint()+")");
 				}
-				holder.letPoint.setText("("+info.getLetPoint()+")");
+					holder.letPoint.setText("("+info.getLetPoint()+")");
 			}
 			holder.teamId.setText(info.getTeamId());
 			holder.result.setText(info.getResult());
@@ -384,6 +388,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				holder.awayscore.setText(info.getGuestScore());
 				
 			}
+			
+			holder.right_sanjiao.setVisibility(View.INVISIBLE);
 			convertView.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -409,6 +415,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			ImageView imageView;
 			TextView homescore;
 			TextView awayscore;
+			ImageView right_sanjiao;
 		}
 	}
 
