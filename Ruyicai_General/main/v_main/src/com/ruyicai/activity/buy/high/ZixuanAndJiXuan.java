@@ -403,6 +403,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				addBtn.setBackgroundResource(R.drawable.nmk3_buy_add_selector);
 				betBtn.setBackgroundResource(R.drawable.nmk3_bet_selector);
 				betBtn.setText("");
+				textTitle.setVisibility(View.GONE);
 				CheckBox lossCheckBox = (CheckBox) zhixuanview
 						.findViewById(R.id.louzhi_check);
 				lossCheckBox

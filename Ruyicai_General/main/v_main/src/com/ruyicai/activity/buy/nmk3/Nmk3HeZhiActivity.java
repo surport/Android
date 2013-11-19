@@ -54,6 +54,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 //		sensor.stopAction();
 //		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setTextColor(Color.BLACK);
 	}
 
 	@Override
@@ -66,6 +67,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 	 */
 	public void showEditText(){
 		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+		showEditTitle(NULL);
 	}
 	@Override
 	public String isTouzhu() {
