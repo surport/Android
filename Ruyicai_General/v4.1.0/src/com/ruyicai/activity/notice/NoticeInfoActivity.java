@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,7 +72,7 @@ public class NoticeInfoActivity extends Activity {
 	private final int LISTSSQ = 0, LIST3D = 1, LISTQLC = 2, LISTPL3 = 3,
 			LISTDLT = 4, LISTSSC = 5, LIST115 = 6, LISTSFC = 7, LISTRX9 = 8,
 			LISTLCB = 9, LISTJQC = 10, LISTPL5 = 11, LISTQXC = 12,
-			LISTYDJ = 13, LISTTWENTY = 14, LISTTEN = 15, ZC = 16, NMK3 = 19;
+			LISTYDJ = 13, LISTTWENTY = 14, LISTTEN = 15, ZC = 16, NMK3 = 19,CQ11X5=20;
 	List<Map<String, Object>> adpterlist = new ArrayList<Map<String, Object>>();; // zlm
 																					// 8.9
 																					// 添加排列三、超级大乐透
@@ -167,6 +168,11 @@ public class NoticeInfoActivity extends Activity {
 	private void initList() {
 		noticePrizesTitle = (TextView) findViewById(R.id.notice_prizes_single_specific_title_id);
 		listview = (ListView) findViewById(R.id.notice_prizes_single_specific_listview);
+		RelativeLayout.LayoutParams rl=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+				RelativeLayout.LayoutParams.WRAP_CONTENT);
+		rl.setMargins(0, 0, 0,0);
+		listview.setLayoutParams(rl);
+		
 		mInflater = LayoutInflater.from(this);
 		addMoreView = mInflater.inflate(R.layout.lookmorebtn, null);
 		progressbar = (ProgressBar) addMoreView
@@ -194,7 +200,8 @@ public class NoticeInfoActivity extends Activity {
 				|| lotno.equals(Constants.LOTNO_eleven)
 				|| lotno.equals(Constants.LOTNO_GD115)
 				|| lotno.equals(Constants.LOTNO_ten)
-				|| lotno.equals(Constants.LOTNO_NMK3)) {
+				|| lotno.equals(Constants.LOTNO_NMK3)
+				|| lotno.equals(Constants.LOTNO_CQ_ELVEN_FIVE)) {
 			// 如果是高频彩，返回高频率彩的适配器
 			return new HightSubEfficientAdapter(this, str, adpterlist);
 		} else {
@@ -278,6 +285,10 @@ public class NoticeInfoActivity extends Activity {
 		case NoticeActivityGroup.ID_SUB_NMK3_LISTVIEW:
 			Lotno = Constants.LOTNO_NMK3;
 			lotType = NMK3;// 内蒙快三
+			break;
+		case NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW:
+			Lotno = Constants.LOTNO_CQ_ELVEN_FIVE;
+			lotType = CQ11X5;// 内蒙快三
 			break;
 		}
 	}

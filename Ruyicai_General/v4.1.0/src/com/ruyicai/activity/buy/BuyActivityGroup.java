@@ -28,7 +28,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +49,7 @@ import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.util.PublicMethod;
 import com.ruyicai.util.RWSharedPreferences;
 import com.umeng.analytics.MobclickAgent;
+import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;;
 
 /**
  * @author Administrator
@@ -66,6 +69,7 @@ public class BuyActivityGroup extends ActivityGroup {
 	protected RelativeLayout relativeLayout;
 	protected RelativeLayout relativeLayout1;
 	protected TextView topTitle;
+	private TextView[] titleTextViews;
 	protected PopupWindow popupwindow;
 	protected TextView lastcode;
 	protected Button refreshBtn;
@@ -114,6 +118,20 @@ public class BuyActivityGroup extends ActivityGroup {
 		// 监听tab切换事件
 		mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String tabId) {
+				if (lotNo == Constants.LOTNO_NMK3) {
+					((ZixuanAndJiXuan)getCurrentActivity()).scrollView.smoothScrollTo(0, 0);
+					for(int tab_i = 0; tab_i < titleTextViews.length; tab_i++){
+						if(titleTextViews[tab_i] != null){
+							if(tab_i == mTabHost.getCurrentTab()){
+								titleTextViews[tab_i].setTextColor(Color.WHITE);
+							}else{
+								titleTextViews[tab_i].setTextColor(Color.BLACK);
+							}
+							
+						}
+					}
+					
+				}
 				betInfoTextView.setText("请选择投注号码");
 				for (int i = 0; i < titles.length; i++) {
 					if (tabId.equals(titles[i])) {
@@ -696,7 +714,17 @@ public class BuyActivityGroup extends ActivityGroup {
 				.findViewById(R.id.layout_nav_item);
 		topTitle = (TextView) indicatorTab
 				.findViewById(R.id.layout_nav_icon_title);
-		img.setBackgroundResource(R.drawable.tab_buy_selector);
+		titleTextViews[index] = topTitle;
+		if (Constants.LOTNO_NMK3.equals(lotNo)) {
+			if (index != (titles.length-1)) {
+				RelativeLayout relative = (RelativeLayout) indicatorTab
+						.findViewById(R.id.RelativeLayout01);
+				relative.setPadding(0, 0, PublicMethod.getPxInt(3, this), 0);
+			}
+			img.setBackgroundResource(R.drawable.nmk3_tab_buy_selector);
+		} else {
+			img.setBackgroundResource(R.drawable.tab_buy_selector);
+		}
 		topTitle.setText(titles[index]);
 		Intent intent = new Intent(BuyActivityGroup.this, allId[index]);
 		intent.putExtra("index", index);
@@ -894,6 +922,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		this.titles = titles;
 		this.topTitles = topTitles;
 		this.allId = allId;
+		titleTextViews = new TextView[titles.length];
 		for (int i = 0; i < titles.length; i++) {
 			addTab(i);
 		}

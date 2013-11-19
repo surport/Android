@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -12,6 +14,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicMethod;
@@ -22,18 +26,21 @@ import com.ruyicai.util.PublicMethod;
  * @author PengCX
  * 
  */
-public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
+public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChangeListener{
 
+	protected int BallResId[] = { R.drawable.nmk3_hezhi_normal, R.drawable.nmk3_hezhi_click };
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setAddView(((Nmk3Activity) getParent()).addView);
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "直选" };
-		setContentView(R.layout.sscbuyview);
 		highttype = "NMK3-HE";
 		init();
+		//来自2013-10-16徐培松 start
 		childtypes.setVisibility(View.GONE);
+		zixuanLayout.setBackgroundResource(R.color.transparent);
+		//。。。end
 
 	}
 
@@ -41,25 +48,17 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		onCheckAction(checkedId);
 	}
-
 	@Override
 	protected void onResume() {
 		super.onResume();
-		sensor.stopAction();
-		baseSensor.stopAction();
+//		sensor.stopAction();
+//		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		// 显示投注注数和投注金额的提示
-		int zhuShu = getZhuShu();
-
-		if (zhuShu == 0) {
-			return "请选择投注号码";
-		} else {
-			return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
-		}
+		return "";
 	}
 
 	@Override
@@ -167,9 +166,11 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	public void onCheckAction(int checkedId) {
 		switch (checkedId) {
 		case 0:
+			lotnoStr=Constants.LOTNO_NMK3;
 			initArea();
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_HEZHI, true,
-					checkedId, false);
+					checkedId, true);
+			isMissNet(new Nmk3MissJson(), MissConstant.NMK3_HEZHI, false);// 获取遗漏值
 			break;
 		}
 	}
@@ -179,8 +180,7 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 	 */
 	public AreaNum[] initArea() {
 		areaNums = new AreaNum[1];
-		areaNums[0] = new AreaNum(14, 10, 1, 14, BallResId, 0, 4, Color.RED,
-				"", false, true);
+		areaNums[0] = new AreaNum(14, 7, 1, 14, BallResId, 0, 4, Color.RED,"猜开奖号码相加的和，奖金9-80元！", false, true);
 		return areaNums;
 	}
 
@@ -199,33 +199,33 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 		String numbers = ((OneBallView) v).getiShowString();
 		String prompt = null;
 		if (numbers.equals("4")) {
-			prompt = "奖金80元";
+			prompt = "此和值的奖金为80元";
 		} else if (numbers.equals("5")) {
-			prompt = "奖金40元";
+			prompt = "此和值的奖金为40元";
 		} else if (numbers.equals("6")) {
-			prompt = "奖金25元";
+			prompt = "此和值的奖金为25元";
 		} else if (numbers.equals("7")) {
-			prompt = "奖金16元";
+			prompt = "此和值的奖金为16元";
 		} else if (numbers.equals("8")) {
-			prompt = "奖金12元";
+			prompt = "此和值的奖金为12元";
 		} else if (numbers.equals("9")) {
-			prompt = "奖金10元";
+			prompt = "此和值的奖金为10元";
 		} else if (numbers.equals("10")) {
-			prompt = "奖金9元";
+			prompt = "此和值的奖金为9元";
 		} else if (numbers.equals("11")) {
-			prompt = "奖金9元";
+			prompt = "此和值的奖金为9元";
 		} else if (numbers.equals("12")) {
-			prompt = "奖金10元";
+			prompt = "此和值的奖金为10元";
 		} else if (numbers.equals("13")) {
-			prompt = "奖金12元";
+			prompt = "此和值的奖金为12元";
 		} else if (numbers.equals("14")) {
-			prompt = "奖金16元";
+			prompt = "此和值的奖金为16元";
 		} else if (numbers.equals("15")) {
-			prompt = "奖金25元";
+			prompt = "此和值的奖金为25元";
 		} else if (numbers.equals("16")) {
-			prompt = "奖金40元";
+			prompt = "此和值的奖金为40元";
 		} else if (numbers.equals("17")) {
-			prompt = "奖金80元";
+			prompt = "此和值的奖金为80元";
 		}
 
 		if (toast == null) {
@@ -236,5 +236,10 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan {
 			toast.setText(prompt);
 			toast.show();
 		}
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		System.out.println(isChecked);
 	}
 }

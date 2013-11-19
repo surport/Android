@@ -2,6 +2,7 @@ package com.ruyicai.activity.buy.nmk3;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -9,6 +10,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicMethod;
 
@@ -18,7 +21,7 @@ import com.ruyicai.util.PublicMethod;
  * @author PengCX
  * 
  */
-public class Nmk3DiffActivity extends ZixuanAndJiXuan {
+public class Nmk3TwoDiffActivity extends ZixuanAndJiXuan {
 	int num;
 
 	@Override
@@ -26,44 +29,32 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		setAddView(((Nmk3Activity) getParent()).addView);
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_NMK3;
-		childtype = new String[] { "三不同号", "二不同号" };
+		childtype = new String[] { "直选" };
 		BallResId[0] = R.drawable.nmk3_normal;
 		BallResId[1] = R.drawable.nmk3_click;
-		setContentView(R.layout.sscbuyview);
+		highttype = "NMK3-DIFFER-TWO";
 		init();
+		//2013-10-18徐培松
+		childtypes.setVisibility(View.GONE);
+		zixuanLayout.setBackgroundResource(R.color.transparent);
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
-		radioId = checkedId;
 		onCheckAction(checkedId);
-		((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
-				iProgressBeishu));
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		sensor.stopAction();
-		baseSensor.stopAction();
+//		sensor.stopAction();
+//		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		int zhuShu = getZhuShu();
-
-		if (highttype.equals("NMK3-DIFFER-THREE")) {
-			if (num < 3) {
-				return "还需要选择" + (3 - num) + "个球";
-			}
-		} else {
-			if (num < 2) {
-				return "还需要选择" + (2 - num) + "个球";
-			}
-		}
-
-		return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
+		return "";
 	}
 
 	@Override
@@ -81,17 +72,9 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 	public int getZhuShu() {
 		num = areaNums[0].table.getHighlightBallNums();
 		int zhuShu = 0;
-
-		if (highttype.equals("NMK3-DIFFER-THREE")) {
-			if (num >= 3) {
-				zhuShu = zuHe(num, 3);
-			}
-		} else {
-			if (num >= 2) {
-				zhuShu = zuHe(num, 2);
-			}
+		if (num >= 2) {
+			zhuShu = zuHe(num, 2);
 		}
-
 		return zhuShu;
 	}
 
@@ -106,14 +89,9 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		String numberNumsPart = getNumberNumsPart();
 		String numbersPart = getNumbersPart();
 		String endFlagPart = "^";
-
-		if (radioId == 0 && getZhuShu() == 1) {
-			zhuMa = playMethodPart + mutiplePart + numbersPart + endFlagPart;
-		} else {
-			zhuMa = playMethodPart + mutiplePart + numberNumsPart + numbersPart
-					+ endFlagPart;
-		}
-
+		
+		zhuMa = playMethodPart + mutiplePart + numberNumsPart + numbersPart
+				+ endFlagPart;
 		return zhuMa;
 	}
 
@@ -121,36 +99,26 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 		StringBuffer numbersPart = new StringBuffer();
 		int[] areaNumbers = areaNums[0].table.getHighlightBallNOs();
 
-		if (radioId == 0) {
-			for (int number_i = 0; number_i < areaNumbers.length; number_i++) {
-				String numberString = PublicMethod
-						.getZhuMa(areaNumbers[number_i]);
-				numbersPart.append(numberString);
+		for (int number_i = 0; number_i < areaNumbers.length; number_i++) {
+			String numberString = "";
+			if (getZhuShu() > 1) {
+				numberString = PublicMethod.getZhuMa(areaNumbers[number_i]);
+			} else {
+				numberString = String.valueOf(areaNumbers[number_i]);
 			}
-		} else {
-			for (int number_i = 0; number_i < areaNumbers.length; number_i++) {
-				String numberString = "";
-				if (getZhuShu() > 1) {
-					numberString = PublicMethod.getZhuMa(areaNumbers[number_i]);
-				} else {
-					numberString = String.valueOf(areaNumbers[number_i]);
-				}
-
-				numbersPart.append(numberString);
-			}
+			numbersPart.append(numberString);
 		}
 
 		return numbersPart.toString();
 	}
 
 	private String getNumberNumsPart() {
-		if (radioId == 1 && getZhuShu() == 1) {
+		if (getZhuShu() == 1) {
 			return "01";
 		} else {
 			return PublicMethod.getZhuMa(areaNums[0].table
 					.getHighlightBallNOs().length);
 		}
-
 	}
 
 	private String getMutiplePart() {
@@ -159,28 +127,14 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 
 	private String getPlayMethodPart() {
 		String playMethod = "";
-		if (radioId == 0) {
-			if (getZhuShu() > 1) {
-				playMethod = "63";
-			} else {
-				playMethod = "00";
-			}
+		if (getZhuShu() > 1) {
+			playMethod = "21";
 		} else {
-			if (getZhuShu() > 1) {
-				playMethod = "21";
-			} else {
-				playMethod = "20";
-			}
-
+			playMethod = "20";
 		}
-
 		return playMethod;
 	}
 
-	@Override
-	public String getZhuma(Balls ball) {
-		return null;
-	}
 
 	@Override
 	public void touzhuNet() {
@@ -194,35 +148,24 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCheckAction(int checkedId) {
-		initArea(checkedId);
-
+		lotnoStr=Constants.LOTNO_NMK3;
 		switch (checkedId) {
 		case 0:
-			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_THREE,
-					true, checkedId, false);
-			break;
-		case 1:
+			initArea(checkedId);
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_DIFF_TWO, true,
-					checkedId, false);
-			break;
+					checkedId, true);
+			// 获取遗漏值
+			isMissNet(new Nmk3MissJson(), MissConstant.NMK3_THREE_TWO, false);
 		}
 	}
 
 	public AreaNum[] initArea(int checkedId) {
 		areaNums = new AreaNum[1];
-
 		switch (checkedId) {
 		case 0:
-			highttype = "NMK3-DIFFER-THREE";
-			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"", false, true);
-			break;
-		case 1:
 			highttype = "NMK3-DIFFER-TWO";
-			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"", false, true);
+			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,"猜开奖号码两个指定的不同号码，奖金8元！", false, true);
 			break;
-
 		}
 
 		return areaNums;
@@ -263,11 +206,12 @@ public class Nmk3DiffActivity extends ZixuanAndJiXuan {
 	 */
 	void setLotoNoAndType(CodeInfo codeInfo) {
 		codeInfo.setLotoNo(Constants.LOTNO_NMK3);
-		if (radioId == 0) {
-			codeInfo.setTouZhuType("different_three");
-		} else if (radioId == 1) {
-			codeInfo.setTouZhuType("different_two");
-		}
+		codeInfo.setTouZhuType("different_two");
+	}
+
+	@Override
+	public String getZhuma(Balls ball) {
+		return null;
 	}
 
 }

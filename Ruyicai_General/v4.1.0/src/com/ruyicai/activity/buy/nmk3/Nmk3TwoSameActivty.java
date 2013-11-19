@@ -2,6 +2,7 @@ package com.ruyicai.activity.buy.nmk3;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RadioGroup;
 
 import com.palmdream.RuyicaiAndroid.R;
@@ -9,6 +10,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.PublicMethod;
 
@@ -28,15 +31,21 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 		super.onCreate(savedInstanceState);
 		lotno = Constants.LOTNO_NMK3;
 		childtype = new String[] { "复选", "单选" };
-		BallResId[0] = R.drawable.nmk3_normal;
-		BallResId[1] = R.drawable.nmk3_click;
-		setContentView(R.layout.sscbuyview);
+		BallResId[0] = R.drawable.nmk3_hezhi_normal;
+		BallResId[1] = R.drawable.nmk3_hezhi_click;
 		init();
+		//来自2013-10-16徐培松 start
+		zixuanLayout.setBackgroundResource(R.color.transparent);
+		//。。。end
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		radioId = checkedId;
+		if(scrollView != null){
+			scrollView.smoothScrollBy(0, 0);
+		}
+		
 		onCheckAction(checkedId);
 		((Nmk3Activity) getParent()).showBetInfo(textSumMoney(areaNums,
 				iProgressBeishu));
@@ -45,31 +54,14 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		sensor.stopAction();
-		baseSensor.stopAction();
+//		sensor.stopAction();
+//		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		int zhuShu = getZhuShu();
-		String promptString = null;
-
-		if (zhuShu == 0) {
-			promptString = "请选择投注号码";
-		} else {
-			promptString = "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
-		}
-
-		if (!highttype.equals("NMK3-TWOSAME-FU")) {
-			if (sameNum == 0) {
-				promptString = "请选择投注号码";
-			} else if (diffNum == 0) {
-				promptString = "您还差一个“不同号”";
-			}
-		}
-
-		return promptString;
+		return "";
 	}
 
 	@Override
@@ -242,19 +234,23 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCheckAction(int checkedId) {
+		
 		initArea(checkedId);
-
+		lotnoStr=Constants.LOTNO_NMK3;
 		switch (checkedId) {
 		case 0:
-
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_TWOSAME_FU,
-					true, checkedId, false);
+					true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), MissConstant.NMK3_TWOSAME_FU, false);// 获取遗漏值
 			break;
 		case 1:
+			highttype="NMK3_TWO_SAME_DAN";
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_TWOSAME_DAN,
-					true, checkedId, false);
+					true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), MissConstant.NMK3_TWO_DAN, false);// 获取遗漏值
 			break;
 		}
+		zixuanLayout.setBackgroundResource(R.color.transparent);
 	}
 
 	public AreaNum[] initArea(int checkedId) {
@@ -263,15 +259,15 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			highttype = "NMK3-TWOSAME-FU";
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"", false, true);
+					" 复选：猜开奖中两个指定的相同号码，奖金15元！", false, true);
 			break;
 		case 1:
 			highttype = "NMK3-TWOSAME-DAN";
 			areaNums = new AreaNum[2];
 			areaNums[0] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"同号:", false, true);
+					"单选：选择同号和不同号的组合，奖金80元！\n同号:", false, true,true);
 			areaNums[1] = new AreaNum(6, 4, 1, 6, BallResId, 0, 1, Color.RED,
-					"不同号：", false, true);
+					"不同号：", false, true,true);
 			break;
 		}
 		return areaNums;

@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
+import com.ruyicai.activity.buy.cq11x5.Cq11Xuan5;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
@@ -448,6 +449,9 @@ public class BettingSuccessActivity extends Activity {
 								.equals(lotnoString)) {
 					intent = new Intent(BettingSuccessActivity.this,
 							BeiJingSingleGameActivity.class);
+				} else if (lotnoString.equals(Constants.LOTNO_CQ_ELVEN_FIVE)) {
+					intent = new Intent(BettingSuccessActivity.this,
+							Cq11Xuan5.class);
 				}
 			}
 			/** modify by pengcx 20130723 end */

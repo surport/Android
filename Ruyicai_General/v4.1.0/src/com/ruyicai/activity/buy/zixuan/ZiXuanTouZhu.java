@@ -276,6 +276,17 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			long amount = zhuShu *200 * iProgressBeishu;
 			betAndGift.setAmount(String.valueOf(amount));
 			betAndGift.setZhushu(String.valueOf(zhuShu));
+			/**add by yejc 20131028 start*/
+			StringBuffer buf = new StringBuffer();
+			buf.append(betAndGift.getBetCode());
+			buf.append("_");
+			buf.append("" + iProgressBeishu);
+			buf.append("_");
+			buf.append("200");
+			buf.append("_");
+			buf.append(String.valueOf(zhuShu *200));
+			betAndGift.setBet_code(buf.toString());
+			/**add by yejc 20131028 end*/
 		}
 		touZhuNet();
 	}
@@ -352,14 +363,11 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
-
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -537,7 +545,7 @@ public class ZiXuanTouZhu extends TouzhuBaseActivity implements HandlerMsg,
 					alertExit(getString(R.string.buy_alert_exit_detail_other));
 				} else if(HghtOrderdeail.fromInt == Constants.SEND_FROM_SIMULATE){
 					finish();
-				} else {
+				}else {
 					alertExit(getString(R.string.buy_alert_exit_detail));
 				}
 			} else {

@@ -46,6 +46,8 @@ public class OneBallView extends ImageView {
 	private int iShowStringY = 0;
 	private int color = Color.WHITE;
 	private Context context;
+	
+	private boolean isTextTranslate;//是否小球文字透明
 
 	public String getiShowString() {
 		return iShowString;
@@ -85,6 +87,8 @@ public class OneBallView extends ImageView {
 		if (initColor == 1) {
 			this.textcolor[0] = Color.WHITE;
 			this.textcolor[1] = Color.WHITE;
+		}else if(initColor == 2){
+			isTextTranslate =  true;
 		}
 
 	}
@@ -223,9 +227,9 @@ public class OneBallView extends ImageView {
 			float width = Float.valueOf(Constants.SCREEN_WIDTH);
 			float textSize;
 			if (width > 480) {
-				textSize = 18 * (width / Float.valueOf(480));
-			} else {
 				textSize = 22 * (width / Float.valueOf(480));
+			} else {
+				textSize = 24 * (width / Float.valueOf(480));
 			}
 			p.setTextSize(textSize);
 
@@ -275,6 +279,7 @@ public class OneBallView extends ImageView {
 		Matrix matrix;
 		switch (aResId) {
 		case R.drawable.grey:
+		case R.drawable.nmk3_hezhi_normal:
 			if (bitmap == null) {
 				bitmap = new BitmapDrawable(is).getBitmap();
 				Constants.grey = bitmap;
@@ -293,6 +298,7 @@ public class OneBallView extends ImageView {
 			bitmap = Constants.grey;
 			break;
 		case R.drawable.red:
+		case R.drawable.nmk3_hezhi_click:
 			if (bitmap == null) {
 				bitmap = new BitmapDrawable(is).getBitmap();
 				Constants.red = bitmap;
@@ -367,6 +373,23 @@ public class OneBallView extends ImageView {
 			}
 			bitmap = Constants.red_long;
 			break;
+			default :
+				if (bitmap == null) {
+					bitmap = new BitmapDrawable(is).getBitmap();
+					Constants.grey_long = bitmap;
+				}
+				width = bitmap.getWidth();
+				height = bitmap.getHeight();
+				sw = ((float) iWidth) / width;
+				sh = ((float) iHeight) / height;
+				matrix = new Matrix();
+				matrix.postScale(sw, sh);
+				if (sw != 1 && sh != 1) {
+					bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+							matrix, true);
+					Constants.grey_long = bitmap;
+				}
+				bitmap = Constants.grey_long;
 		}
 
 		return bitmap;
@@ -388,6 +411,10 @@ public class OneBallView extends ImageView {
 			p.setColor(Color.BLACK);
 		} else {
 			p.setColor((textcolor[iShowId]));
+		}
+		
+		if(isTextTranslate){
+			p.setColor(Color.TRANSPARENT);
 		}
 		canvas.drawText(iShowString, iShowStringX, iShowStringY, p);
 	}

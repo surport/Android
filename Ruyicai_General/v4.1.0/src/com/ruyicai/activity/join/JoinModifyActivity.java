@@ -14,10 +14,12 @@ import com.ruyicai.util.PublicMethod;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +42,21 @@ public class JoinModifyActivity extends JoinDingActivity {
 		String stateStr = "";
 		String times = "";
 		String amt = "";
+		
+		TextView tv_left_baifenbi = (TextView) findViewById(R.id.tv_left_baifenbi);
+		TextView tv_left_jine = (TextView) findViewById(R.id.tv_left_jine);
+		TextView tv_top_baifenbi = (TextView) findViewById(R.id.tv_top_baifenbi);
+		TextView tv_top_jine = (TextView) findViewById(R.id.tv_top_jine);
+		tv_left_baifenbi.setVisibility(View.VISIBLE);
+		tv_left_jine.setVisibility(View.VISIBLE);
+		tv_top_baifenbi.setVisibility(View.GONE);
+		tv_top_jine.setVisibility(View.GONE);
+		LinearLayout ll_two_jine = (LinearLayout) findViewById(R.id.ll_two_baifenbi);//
 		TextView titleText = (TextView) findViewById(R.id.ding_text_title);
+		LinearLayout ll_two_layout = (LinearLayout) findViewById(R.id.radio_two_layout);//
+		LinearLayout ll_jine = (LinearLayout) findViewById(R.id.ll_jinge);
+		ImageView iv = (ImageView) findViewById(R.id.iv_both_between_line);///
+		LinearLayout ll_both = (LinearLayout) findViewById(R.id.ll_both_jine_and_baifenbi);///
 		LinearLayout layoutNum1 = (LinearLayout) findViewById(R.id.ding_group1_layout_num);
 		LinearLayout layoutNum2 = (LinearLayout) findViewById(R.id.ding_group2_layout_num);
 		TextView timeText = (TextView) findViewById(R.id.ding_text_time_id);
@@ -49,9 +65,16 @@ public class JoinModifyActivity extends JoinDingActivity {
 		Button cancelText = (Button) findViewById(R.id.ding_btn_chedan);
 		layoutNum1.setVisibility(View.GONE);
 		layoutNum2.setVisibility(View.GONE);
+		iv.setVisibility(View.GONE);////
+		ll_both.setGravity(Gravity.CENTER_HORIZONTAL);///
+		ll_jine.setGravity(Gravity.CENTER_HORIZONTAL);///
+		ll_two_layout.setGravity(Gravity.CENTER_HORIZONTAL);///
+		ll_two_jine.setGravity(Gravity.CENTER_HORIZONTAL);///
 		timeText.setVisibility(View.VISIBLE);
 		stateText.setVisibility(View.VISIBLE);
 		numText.setVisibility(View.VISIBLE);
+		
+		
 		titleText.setText(getString(R.string.ding_modify_title));
 		Intent intent = getIntent();
 		dingId = intent.getStringExtra("id");

@@ -70,6 +70,11 @@ public class TrackQueryInterface {
 			jsonProtocol.put(ProtocolManager.LOTNO, trackQueryPojo.getLotno());
 			jsonProtocol.put(ProtocolManager.PHONE_NUM,
 					trackQueryPojo.getPhonenum());
+			
+			jsonProtocol.put("state",
+					trackQueryPojo.getState());
+			jsonProtocol.put("dateType",
+					trackQueryPojo.getDateType());
 
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());

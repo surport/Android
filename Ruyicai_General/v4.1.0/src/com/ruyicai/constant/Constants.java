@@ -27,15 +27,15 @@ public class Constants {
 	public static String TAG = "RUYICAI";
 	/* Add by fansm 20130412 end */
 
-	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-//	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
+//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
 //	public static String LOT_SERVER = "http://192.168.0.118:80/lotserver/RuyicaiServlet";// 测试线
 	/**
 	 * mMode参数解释：
 	 * "00" - 启动银联正式环境
 	 * "01" - 连接银联测试环境
 	 */
-    public static String BANCK_Mode = "00";
+    public static String BANCK_Mode = "01";
 	/**
 	 * 彩种设置
 	 * 
@@ -117,6 +117,7 @@ public class Constants {
 	public static List<JSONObject> gd115List = new ArrayList<JSONObject>();
 	public static List<JSONObject> gd10List = new ArrayList<JSONObject>();
 	public static List<JSONObject> nmk3List = new ArrayList<JSONObject>();
+	public static List<JSONObject> cq11x5List = new ArrayList<JSONObject>();
 	public static String noticeJcz = "";
 	public static String noticeJcl = "";
 
@@ -142,6 +143,7 @@ public class Constants {
 	public static JSONObject gd115Json = null;
 	public static JSONObject gd10Json = null;
 	public static JSONObject nmk3Json = null;
+	public static JSONObject cq11x5Json = null;
 
 	public static JSONObject todayjosn = null;
 	// 用户反馈
@@ -191,6 +193,7 @@ public class Constants {
 	public static final String LOTNO_JC = "J00001"; // 竞彩
 	public static final String LOTNO_NMK3 = "F47107";// 内蒙快三
 	public static final String LOTNO_BJ_SINGLE = "BD";// 北京单场
+	public static final String LOTNO_CQ_ELVEN_FIVE = "T01016";// 重庆11选五
 
 	public static final String LOTNO_ZC = "ZC"; // 进球彩
 	public static final String LOTNO_JQC = "T01005"; // 进球彩
@@ -265,9 +268,10 @@ public class Constants {
 	public static final String GDLABEL = "gd-11-5";
 	public static final String ZCLABEL = "zc";
 	public static final String RYJCLABEL = "ruyiguess";
+	public static final String CQELVENFIVE = "cqelvenfive";
 
 	/** add by fansm 20130515 start */
-	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, { LOTNO_RUYI_GUESS, RYJCLABEL },
+	public static String[][] lotnoNameList = { { "hmdt", "hmdt" }, /*{ LOTNO_RUYI_GUESS, RYJCLABEL },*/
 			{ LOTNO_SSQ, SSQLABEL }, { LOTNO_DLT, DLTLABEL },
 			{ LOTNO_FC3D, FC3DLABEL }, { LOTNO_11_5, DLCLABEL },
 			{ LOTNO_SSC, SSCLABEL }, { LOTNO_JCZ, JCZLABEL },
@@ -277,7 +281,7 @@ public class Constants {
 			{ LOTNO_22_5, TWENTYBEL }, { LOTNO_PL5, PL5LABEL },
 			{ LOTNO_QXC, QXCLABEL }, { LOTNO_ZC, ZCLABEL },
 			{ LOTNO_JCL, "jcl" }, { LOTNO_ten, "gd-10" },
-			{ LOTNO_BJ_SINGLE, BDLABEL } };
+			{ LOTNO_BJ_SINGLE, BDLABEL },{ LOTNO_CQ_ELVEN_FIVE, CQELVENFIVE } };
 	/** add by fansm 20130515 end */
 
 	/**

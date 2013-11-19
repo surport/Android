@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONObject;
+
+import com.ruyicai.constant.Constants;
 import com.umeng.analytics.MobclickAgent;
 import android.os.Bundle;
 import android.view.View;
@@ -216,6 +218,14 @@ public class NoticeRedBallActivity extends NoticeBallActivity implements
 			ballRedView = new NoticeBallView(this);
 			ballRedView.initNoticeBall(list.size(), 6, 1, list, isRed, "nmk3",
 					1 * NoticeMainActivity.SCALE);
+			layout.addView(ballRedView);
+			hScrollView.setPadding(0, 0, 0, 0);
+			break;
+		case NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW:
+			// 重庆11选5
+			ballRedView = new NoticeBallView(this);
+			ballRedView.initNoticeBall(list.size(), 11, 1, list, isRed,
+					"cq-11-5", 1 * NoticeMainActivity.SCALE);
 			layout.addView(ballRedView);
 			hScrollView.setPadding(0, 0, 0, 0);
 			break;

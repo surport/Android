@@ -13,11 +13,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -25,10 +23,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -228,6 +224,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 					
 					@Override
 					public void onClick(View v) {
+						
 						searchWindow.dismiss();
 						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);  
 						imm.hideSoftInputFromWindow(view.getWindowToken(), 0); 

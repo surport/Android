@@ -444,15 +444,10 @@ public class Controller {
 						message.obj = jsonObject;
 						handler.sendMessage(message);
 					}else{
-						final String message = jsonObject.getString("message");
-						handler.post(new Runnable() {
-							
-							@Override
-							public void run() {
-								Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
-							}
-						});
-						
+						Message message = new Message();
+						message.what = 7;
+						message.obj = jsonObject;
+						handler.sendMessage(message);
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();

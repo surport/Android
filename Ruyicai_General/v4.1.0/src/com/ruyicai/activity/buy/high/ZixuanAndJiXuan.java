@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
@@ -36,14 +37,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -56,6 +63,8 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
+import com.ruyicai.activity.buy.cq11x5.Cq11Xuan5;
+import com.ruyicai.activity.buy.cq11x5.HistoryNumberView;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
 import com.ruyicai.activity.buy.miss.MainViewPagerAdapter;
@@ -66,6 +75,7 @@ import com.ruyicai.activity.buy.ssq.BettingSuccessActivity;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.code.CodeInterface;
 import com.ruyicai.code.ssc.OneStarCode;
 import com.ruyicai.constant.Constants;
@@ -77,6 +87,7 @@ import com.ruyicai.jixuan.SscBalls;
 import com.ruyicai.json.miss.MissConstant;
 import com.ruyicai.json.miss.MissJson;
 import com.ruyicai.net.newtransaction.MissInterface;
+import com.ruyicai.net.newtransaction.NMK3MissInterface;
 import com.ruyicai.net.newtransaction.PrizeInfoInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndGiftPojo;
 import com.ruyicai.pojo.AreaNum;
@@ -121,14 +132,15 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public final static int TIME = 5 * 60000;// 获取期号线程刷新时间单位是分
 	private final static String ERROR_WIN = "0000";
 
-	public final static int NMK3_HEZHI = 10;
-	public final static int NMK3_THREESAME_TONG = 11;
-	public final static int NMK3_THREESAME_DAN = 12;
-	public final static int NMK3_TWOSAME_FU = 13;
-	public final static int NMK3_TWOSAME_DAN = 14;
-	public final static int NMK3_DIFF_THREE = 15;
-	public final static int NMK3_DIFF_TWO = 16;
-	public final static int NMK3_THREE_LINK = 17;
+	public final static int NMK3_HEZHI = 10;//和值
+	public final static int NMK3_THREESAME = 18;//三同通选
+	public final static int NMK3_THREESAME_TONG = 11;//三同通选
+	public final static int NMK3_THREESAME_DAN = 12;//三同单选
+	public final static int NMK3_TWOSAME_FU = 13;//二同复选
+	public final static int NMK3_TWOSAME_DAN = 14;//二同单选
+	public final static int NMK3_DIFF_THREE = 15;//三不同
+	public final static int NMK3_DIFF_TWO = 16;//二不同
+	public final static int NMK3_THREE_LINK = 17;//三连号
 
 	int iZhuShu;
 	int zhushuforshouyi;
@@ -162,6 +174,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	float startY;
 	protected LinearLayout childtypes;
 	protected View layoutMain;
+	public ScrollView scrollView;
+	
+	protected LinearLayout zixuanLayout;
+	
 	protected void setAddView(AddView addView) {
 		this.addView = addView;
 	}
@@ -233,7 +249,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		for (int i = 0; i < childtype.length; i++) {
 			RadioButton radio = new RadioButton(this);
 			radio.setText(childtype[i]);
-			radio.setTextColor(Color.BLACK);
+			radio.setTextColor(Color.WHITE);
 			radio.setId(i);
 			radio.setTextSize(14);
 			radio.setButtonDrawable(R.drawable.radio_select);
@@ -296,7 +312,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	protected ViewPager mGallery;
 	// 缓存需要左右滑动的视图群的列表容器
 	public List<BuyViewItemMiss> itemViewArray;
-	private ListView latestLotteryList;
+	protected ListView latestLotteryList;
+
+	protected Button historyBtn;
+	protected boolean historyFlag=false;
+	protected LinearLayout listView;
+	protected HistoryNumberView simulateSelectNumberView;
+
 
 	/**
 	 * 创建可滑动直选页面
@@ -341,7 +363,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	 * @param type
 	 * @param isTen
 	 */
-	public void createView(AreaNum areaNum[], CodeInterface code, int type,
+	public void createView(final AreaNum areaNum[], CodeInterface code, int type,
 			boolean isTen, int id, boolean isMiss) {
 		sensor.stopAction();
 		isJiXuan = false;
@@ -359,6 +381,85 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			missView.put(id, new HighItemView(zhixuanview, areaNum, addView,
 					null, editZhuma));
 			refreshView(type, id);
+			/**add by yejc 20131008 start*/
+			if (Constants.LOTNO_NMK3.equals(lotno)) {
+				scrollView = (ScrollView) zhixuanview.findViewById(R.id.activitygroup_scrollview);
+				LinearLayout nmk3TitleLayout  = (LinearLayout)zhixuanview.findViewById(R.id.nmk3_play_title_layout);
+				nmk3TitleLayout.setVisibility(View.VISIBLE);
+				LinearLayout zhumaLayout  = (LinearLayout)zhixuanview.findViewById(R.id.zhuma_introduction);
+				zhumaLayout.setVisibility(View.GONE);
+				LinearLayout benNumLayout  = (LinearLayout)zhixuanview.findViewById(R.id.buy_activity_bottom_layout);
+				benNumLayout.setVisibility(View.GONE);
+				zixuanLayout = (LinearLayout)zhixuanview.findViewById(R.id.sszhixuan_layout);
+//				zixuanLayout.setBackgroundResource(R.drawable.nmk3_bg);//来自2013-10-16徐培松
+				RelativeLayout bottomLayout = (RelativeLayout)zhixuanview.findViewById(R.id.buy_zixuan_relativelayout);
+				bottomLayout.setBackgroundResource(R.drawable.nmk3_bottom_bg);
+				Button addBtn = (Button)zhixuanview.findViewById(R.id.buy_zixuan_img_add);
+				Button betBtn = (Button)zhixuanview.findViewById(R.id.buy_zixuan_img_touzhu);
+				addBtn.setBackgroundResource(R.drawable.nmk3_buy_add_selector);
+				betBtn.setBackgroundResource(R.drawable.nmk3_bet_selector);
+				betBtn.setText("");
+				CheckBox lossCheckBox = (CheckBox) zhixuanview
+						.findViewById(R.id.louzhi_check);
+				lossCheckBox
+						.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+							@Override
+							public void onCheckedChanged(
+									CompoundButton buttonView, boolean isChecked) {
+								if (!isChecked) {
+									for (int area_i = 0; area_i < areaNum.length; area_i++) {
+										int rowNum = areaNum[area_i].tableLayout
+												.getChildCount();
+										for (int row_j = 0; row_j < rowNum; row_j++) {
+											if(row_j % 2 != 0){
+												areaNum[area_i].tableLayout
+												.getChildAt(row_j)
+												.setVisibility(View.GONE);
+											}
+										}
+									}
+
+								} else {
+									for (int area_i = 0; area_i < areaNum.length; area_i++) {
+										int rowNum = areaNum[area_i].tableLayout
+												.getChildCount();
+										for (int row_j = 0; row_j < rowNum; row_j++) {
+											if(row_j % 2 != 0){
+												areaNum[area_i].tableLayout
+												.getChildAt(row_j)
+												.setVisibility(View.VISIBLE);
+											}
+										}
+									}
+								}
+							}
+						});
+				
+				ImageView zouShiTu = (ImageView) findViewById(R.id.nmk3_zoushitu);
+				zouShiTu.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_NMK3_LISTVIEW;
+						Intent intent = new Intent(ZixuanAndJiXuan.this,
+								NoticeActivityGroup.class);
+						intent.putExtra("position", 0);
+						startActivity(intent);
+					}
+				});
+				
+				ImageView jiXuanBtn = (ImageView) findViewById(R.id.nmk3_jixuan);
+				jiXuanBtn.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						baseSensor.action();
+					}
+				});
+				
+			}
+			/**add by yejc 20131008 end*/		
 		} else {
 			refreshView(type, id);
 		}
@@ -493,9 +594,11 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		List<List> missList = missView.get(id).getMissList();
 		for (int i = 0; i < areaNums.length; i++) {
 			int index = 0;
-			if (highttype.equals("SSC")) {
+			if (highttype.equals("SSC") || highttype.equals("CQ11X5_PT_QZ2")
+					|| highttype.equals("CQ11X5_PT_QZ3")) {
 				index = areaNums.length - 1 - i;
-			} else if (highttype.equals("DLC")) {
+			} else if (highttype.equals("DLC")
+					|| highttype.equals("NMK3_TWO_SAME_DAN")) {
 				index = i;
 			}
 			if (missList.size() > 0 && missList.size() > index && !isDanTuo) {
@@ -533,7 +636,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					iScreenWidth, areaNum.areaNum, areaNum.ballResId,
 					areaNum.aIdStart, areaNum.aBallViewText, this, this, isTen,
 					null, isMiss, type, i);
-			areaNums[i].init();
+			areaNums[i].init(type);
 
 		}
 	}
@@ -633,7 +736,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					iScreenWidth, areaNum.areaNum, areaNum.ballResId,
 					areaNum.aIdStart, areaNum.aBallViewText, this, this, isTen,
 					null, isMiss, type, i);
-			areaNums[i].init();
+			areaNums[i].init(type);
+	
 			Button btn = new Button(this);
 			Button btnDw = new Button(this);
 			if (areaNum.isJxBtn) {
@@ -654,6 +758,263 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 
 		}
+	}
+
+	/**
+	 * 创建重庆11选5不可滑动直选页面
+	 * 
+	 * @param areaNum
+	 * @param code
+	 * @param type
+	 * @param isTen
+	 */
+	public void createViewCQ(AreaNum areaNum[], CodeInterface code, int type,
+			int id, boolean isMiss) {
+		sensor.stopAction();
+		isJiXuan = false;
+		isMove = false;
+		this.code = code;
+		buyview.removeAllViews();
+		if (missView.get(id) == null) {
+			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View zhixuanview = inflater.inflate(R.layout.ssczhixuan_new_green,null);
+			latestLotteryList = (ListView) zhixuanview.findViewById(R.id.buy_zixuan_latest_lottery);
+			simulateSelectNumberView = (HistoryNumberView) zhixuanview.findViewById(R.id.simulate_selectnumber_view);
+			initZixuanView(zhixuanview);
+			initViewItem(areaNum, zhixuanview, isMiss, type);
+			initBotm(zhixuanview);
+			missView.put(id, new HighItemView(zhixuanview, areaNum, addView,null, editZhuma));
+			refreshView(type, id);
+
+			zixuanLayout = (LinearLayout) zhixuanview
+					.findViewById(R.id.sszhixuan_layout);
+			//...miqingqiang start
+			simulateSelectNumberView = (HistoryNumberView)zhixuanview. findViewById(R.id.simulate_selectnumber_view);
+			historyBtn=(Button)zhixuanview.findViewById(R.id.buy_choose_history_list);
+			listView=(LinearLayout)zhixuanview.findViewById(R.id.buy_choose_history_listview);
+			historyBtn.setOnClickListener(new OnClickListener(){
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if(!historyFlag){
+						listView.setVisibility(View.GONE);
+						historyBtn.setBackgroundResource(R.drawable.choose_button_up);
+						historyFlag=true;
+					}else{
+						listView.setVisibility(View.VISIBLE);
+						historyBtn.setBackgroundResource(R.drawable.choose_button_down);
+						historyFlag=false;
+					}
+				}});
+			//...end
+
+		} else {
+			refreshView(type, id);
+		}
+		historyBtn=(Button)findViewById(R.id.buy_choose_history_list);
+		
+	}
+
+	/**
+	 * 初始化重庆11选五选区
+	 * 
+	 * @param areaNums
+	 * @param isTen
+	 * @param zhixuanview
+	 * @param isMiss
+	 * @param type
+	 */
+	private void initViewItem(AreaNum[] areaNums, View zhixuanview,boolean isMiss, int type) {
+		iScreenWidth = PublicMethod.getDisplayWidth(this);
+		int tableLayoutIds[] = { R.id.buy_zixuan_table_one,
+				R.id.buy_zixuan_table_two, R.id.buy_zixuan_table_third,
+				R.id.buy_zixuan_table_four, R.id.buy_zixuan_table_five };
+		int textViewIds[] = { R.id.buy_zixuan_text_one,
+				R.id.buy_zixuan_text_two, R.id.buy_zixuan_text_third,
+				R.id.buy_zixuan_text_four, R.id.buy_zixuan_text_five };
+		int textViewTishiIds[] = { R.id.buy_zixuan_tishi_text_one,
+				R.id.buy_zixuan_tishi_text_two,
+				R.id.buy_zixuan_tishi_text_third,
+				R.id.buy_zixuan_tishi_text_four,
+				R.id.buy_zixuan_tishi_text_five };
+		int linearViewIds[] = { R.id.buy_zixuan_linear_one,
+				R.id.buy_zixuan_linear_two, R.id.buy_zixuan_linear_third,
+				R.id.buy_zixuan_linear_four, R.id.buy_zixuan_linear_five };
+
+		// 初始化选区
+		for (int i = 0; i < areaNums.length; i++) {
+			areaNums[i].initView(tableLayoutIds[i], textViewIds[i],linearViewIds[i], textViewTishiIds[i], zhixuanview);
+			AreaNum areaNum = areaNums[i];
+			if (i != 0) {
+				areaNum.aIdStart = areaNums[i - 1].areaNum+ areaNums[i - 1].aIdStart;
+			}
+			areaNums[i].table = makeBallTableCQ(areaNums[i].tableLayout,
+					iScreenWidth, areaNum.areaNum, areaNum.ballResId,
+					areaNum.aIdStart, areaNum.aBallViewText, this, this, isTen,
+					null, isMiss, type, i, areaNum.area);
+			areaNums[i].init();
+			areaNums[i].initTishi();
+			if (!TextUtils.isEmpty(areaNums[i].textTtitle)) {
+				if(Constants.LOTNO_CQ_ELVEN_FIVE.equals(lotno)){
+					areaNums[i].initTextColor(Color.WHITE,getResources().getColor(R.color.cq_11_5_text_color));
+					areaNums[i].initTextBg(R.drawable.tips_bg, 0);
+				}
+			}
+			Button btn = new Button(this);
+			Button btnDw = new Button(this);
+			if (areaNum.isJxBtn) {
+				btn.setVisibility(Button.VISIBLE);
+				btnDw.setVisibility(Button.VISIBLE);
+				areaNum.jixuanBtn = new JiXuanBtn(areaNum.isRed, btn, btnDw,areaNum.chosenBallSum, this, view, areaNum.table,areaNum.areaMin, i);
+			} else {
+				btn.setVisibility(Button.GONE);
+				btnDw.setVisibility(Button.GONE);
+				areaNum.jixuanBtn = new JiXuanBtn(areaNum.isRed, btn, btnDw,areaNum.chosenBallSum, this, view, areaNum.table,areaNum.areaMin, i);
+			}
+			if (areaNum.isSensor) {
+				this.areaNums = areaNums;
+			}
+
+		}
+	}
+
+	/**
+	 * 创建重庆11选5BallTable
+	 * 
+	 * @param LinearLayoutaParentView
+	 *            上一级Layout
+	 * @param int aLayoutId 当前BallTable的LayoutId
+	 * @param int aFieldWidth BallTable区域的宽度（如屏幕宽度）
+	 * @param int aBallNum 小球个数
+	 * @param int aBallViewWidth 小球视图的宽度（图片宽度）
+	 * @param int[] aResId 小球图片Id
+	 * @param int aIdStart 小球Id起始数值
+	 * @return BallTable
+	 */
+	public BallTable makeBallTableCQ(TableLayout tableLayout, int aFieldWidth,
+			int aBallNum, int[] aResId, int aIdStart, int aBallViewText,
+			Context context, OnClickListener onclick, boolean isTen,
+			List<String> missValues, boolean isMiss, int type, int area,
+			int[] areaNum) {
+
+		TableLayout tabble = tableLayout;
+		BallTable iBallTable = new BallTable(aIdStart, context);
+		int iFieldWidth = aFieldWidth;// 屏幕宽度
+		int scrollBarWidth = 4;
+		int maxNum = areaNum[zuidazhi(areaNum)];
+		int nmk3HezhiMargin = PublicMethod.getPxInt(8, context);
+		int iBallViewWidth = (iFieldWidth - scrollBarWidth - (maxNum - 1)* nmk3HezhiMargin) / maxNum+3;// 设置球的宽度
+		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)* maxNum) / 2;
+
+		int iBallViewNo = 0;
+		int[] rankInt = null;
+		if (missValues != null) {
+			rankInt = rankList(missValues);
+		}
+		int iBallViewHeight = iBallViewWidth;// 设置球的高度
+		String[][] nmk3ThreeSameStrs = { { "1", "2", "3", "4", "5" },{ "6", "7", "8", "9", "10", "11" } };// 设置球上面显示的文字
+
+		for (int i = 0; i < areaNum.length; i++) {
+			TableRow tableRowText = new TableRow(context);
+			TableRow tableRow = new TableRow(context);
+			tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
+			tableRowText.setGravity(Gravity.CENTER_HORIZONTAL);
+			for (int col = 0; col < areaNum[i]; col++) {
+				String iStrTemp = nmk3ThreeSameStrs[i][col];
+				/**
+				 * 开始画小球
+				 */
+				OneBallView tempBallView = PaindBall(aIdStart + iBallViewNo,iBallViewWidth, iBallViewHeight, iStrTemp, aResId,onclick);
+				iBallTable.addBallView(tempBallView);
+				TableRow.LayoutParams lp = new TableRow.LayoutParams();
+				TableRow.LayoutParams lpMiss = new TableRow.LayoutParams();
+				if (col == 0) {
+					lp.setMargins(0, 10, 2, 1);
+				} else if (col == areaNum[i]) {
+					lp.setMargins(2, 10, 0, 1);
+				} else {
+					lp.setMargins(2, 10, 2, 1);
+				}
+				lpMiss.setMargins(0, 1,0, 1);
+				tableRow.addView(tempBallView, lp);
+				if (isMiss) {
+					/**
+					 * 开始画遗漏值
+					 */
+					TextView textView = PaindMiss(missValues, iBallViewNo,rankInt,R.drawable.cq_11_5_miss_bg);
+					tableRowText.addView(textView, lpMiss);
+					iBallTable.textList.add(textView);
+				}
+				iBallViewNo++;
+			}
+			tabble.addView(tableRow, new TableLayout.LayoutParams(PublicConst.FP, PublicConst.WC));
+			tabble.addView(tableRowText, new TableLayout.LayoutParams(PublicConst.WC, PublicConst.WC));
+		}
+		return iBallTable;
+	}
+
+	/**
+	 * 计算数组最大值的下标
+	 * 
+	 * @param a
+	 * @return
+	 */
+	private int zuidazhi(int[] a) {
+		int max = a[0];
+		int dex = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] > max) {
+				max = a[i];
+				dex = i;
+			}
+			if (i == a.length - 1) {
+				return dex;
+			}
+		}
+		return 0;
+	}
+
+	/**
+	 * 画球
+	 * 
+	 * @param ballId小球ID
+	 * @param iBallViewWidth小球宽度
+	 * @param iBallViewHeight小球高度
+	 * @param iStrTemp小球上显示的文字
+	 * @param aResId小球颜色ID
+	 * @param onclick小球点击事件
+	 */
+	private OneBallView PaindBall(int ballId, int iBallViewWidth,int iBallViewHeight, String iStrTemp, int[] aResId,OnClickListener onclick) {
+		OneBallView tempBallView = new OneBallView(context);
+		tempBallView.setId(ballId);// 设置小球ID
+		tempBallView.initBall(iBallViewWidth, iBallViewHeight, iStrTemp, aResId);// 设置小球属性
+		tempBallView.setOnClickListener(onclick);// 小球点击监听
+		return tempBallView;
+	}
+
+	/**
+	 * 画遗漏值
+	 * 
+	 * @param missValues遗漏值数据
+	 * @param iBallViewNo
+	 * @param rankInt
+	 * @return
+	 */
+	private TextView PaindMiss(List<String> missValues, int iBallViewNo,int[] rankInt,int textbg) {
+		TextView textView = new TextView(context);
+		textView.setBackgroundResource(textbg);
+		if (missValues != null) {
+			String missValue = missValues.get(iBallViewNo);
+			textView.setText(missValue);
+			if (rankInt[0] == Integer.parseInt(missValue) || rankInt[1] == Integer.parseInt(missValue)) {
+				textView.setTextColor(Color.RED);
+			}
+		} else {
+			textView.setText("0");
+		}
+		textView.setGravity(Gravity.CENTER);
+		return textView;
 	}
 
 	/**
@@ -772,66 +1133,209 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	}
 
 	public void getCodeInfo(AddView addView) {
-		// 创建投注信息对象，包括金额和注数属性
-		int zhuShu = getZhuShu();
-		CodeInfo codeInfo = addView.initCodeInfo(getAmt(zhuShu), zhuShu);
-		setLotoNoAndType(codeInfo);
+		//快三三不同号的购彩信息获取
+		if ("NMK3-DIFFER-THREE".equals(highttype)
+				|| "NMK3-SAME-THREE".equals(highttype)) {
+			//三不同号
+			int threeDiffZhuShu = getThreeDiffZhuShu();
+			if (threeDiffZhuShu > 0) {
+				CodeInfo codeInfo = addView.initCodeInfo(
+						getAmt(threeDiffZhuShu), threeDiffZhuShu);
+				setLotoNoAndType(codeInfo);
 
-		String lotoNo = codeInfo.getLotoNo();
-		String touzhuType = codeInfo.getTouZhuType();
+				String lotoNo = codeInfo.getLotoNo();
+				String touzhuType = codeInfo.getTouZhuType();
 
-		code.setZHmiss(false);
-		// 设置投注信息的注码，用于与后台投注
-		codeInfo.setTouZhuCode(getZhuma());
+				code.setZHmiss(false);
+				// 设置投注信息的注码，用于与后台投注
+				codeInfo.setTouZhuCode(getZhuma());
+				// 设置投注信息类的注码，用户客户端显示
+				boolean isFirst = true;
+				int[] codes = areaNums[0].table.getHighlightBallNOs();
+				hightballs = codes.length;
+				String codeStr = "";
+				if (isFirst) {
+					if (lotoNo.equals(Constants.LOTNO_SSC)) {
+						if (touzhuType.equals("1start")) {
+							codeStr = "-,-,-,-,";
+						} else if (touzhuType.equals("2start_zhixuan")) {
+							codeStr = "-,-,-,";
+						} else if (touzhuType.equals("3start")) {
+							codeStr = "-,-,";
+						}
+					}
+					isFirst = false;
+				}
 
-		// 设置投注信息类的注码，用户客户端显示
-		boolean isFirst = true;
-		for (AreaNum areaNum : areaNums) {
-			int[] codes = areaNum.table.getHighlightBallNOs();
-			hightballs = codes.length;
-			String codeStr = "";
-			if (isFirst) {
-				if (lotoNo.equals(Constants.LOTNO_SSC)) {
-					if (touzhuType.equals("1start")) {
-						codeStr = "-,-,-,-,";
-					} else if (touzhuType.equals("2start_zhixuan")) {
-						codeStr = "-,-,-,";
-					} else if (touzhuType.equals("3start")) {
-						codeStr = "-,-,";
+				for (int i = 0; i < codes.length; i++) {
+					String code = String.valueOf(codes[i]);
+
+					if (lotoNo.equals(Constants.LOTNO_NMK3)) {
+						if (touzhuType.equals("hezhi")
+								|| touzhuType.equals("different_three")
+								|| touzhuType.equals("different_two")) {
+							code = PublicMethod.getZhuMa(codes[i]);
+						} else if (touzhuType.equals("threesame_tong")) {
+							code = "111,222,333,444,555,666";
+						} else if (touzhuType.equals("twosame_fu")) {
+							code = code + "*";
+						} else if (touzhuType.equals("threelink")) {
+							code = "123,234,345,456";
+						}
+					}
+
+					codeStr += code;
+					if (i != codes.length - 1
+							&& (!lotoNo.equals(Constants.LOTNO_SSC)
+									|| touzhuType.equals("2start_zuxuan") || touzhuType
+										.equals("2start_hezhi"))) {
+						codeStr += ",";
 					}
 				}
-				isFirst = false;
+				codeInfo.addAreaCode(codeStr, areaNums[0].textColor);
+				// 将选择的注码加入号码篮中
+				addView.addCodeInfo(codeInfo);
 			}
 
-			for (int i = 0; i < codes.length; i++) {
-				String code = String.valueOf(codes[i]);
+			//三连号
+			int threeLinkZhuShu = getThreeLinkZhuShu();
+			if (threeLinkZhuShu > 0) {
+				CodeInfo codeInfo = addView.initCodeInfo(
+						getAmt(threeLinkZhuShu), threeLinkZhuShu);
+				setLotoNoAndType2(codeInfo);
 
-				if (lotoNo.equals(Constants.LOTNO_NMK3)) {
-					if (touzhuType.equals("hezhi")
-							|| touzhuType.equals("different_three")
-							|| touzhuType.equals("different_two")) {
-						code = PublicMethod.getZhuMa(codes[i]);
-					} else if (touzhuType.equals("threesame_tong")) {
-						code = "111,222,333,444,555,666";
-					} else if (touzhuType.equals("twosame_fu")) {
-						code = code + "*";
-					} else if (touzhuType.equals("threelink")) {
-						code = "123,234,345,456";
+				String lotoNo = codeInfo.getLotoNo();
+				String touzhuType = codeInfo.getTouZhuType();
+
+				code.setZHmiss(false);
+				// 设置投注信息的注码，用于与后台投注
+				codeInfo.setTouZhuCode(getZhuma2());
+
+				// 设置投注信息类的注码，用户客户端显示
+				boolean isFirst = true;
+				int[] codes = areaNums[1].table.getHighlightBallNOs();
+				hightballs = codes.length;
+				String codeStr = "";
+				if (isFirst) {
+					if (lotoNo.equals(Constants.LOTNO_SSC)) {
+						if (touzhuType.equals("1start")) {
+							codeStr = "-,-,-,-,";
+						} else if (touzhuType.equals("2start_zhixuan")) {
+							codeStr = "-,-,-,";
+						} else if (touzhuType.equals("3start")) {
+							codeStr = "-,-,";
+						}
+					}
+					isFirst = false;
+				}
+
+				for (int i = 0; i < codes.length; i++) {
+					String code = String.valueOf(codes[i]);
+
+					if (lotoNo.equals(Constants.LOTNO_NMK3)) {
+						if (touzhuType.equals("hezhi")
+								|| touzhuType.equals("different_three")
+								|| touzhuType.equals("different_two")) {
+							code = PublicMethod.getZhuMa(codes[i]);
+						} else if (touzhuType.equals("threesame_tong")) {
+							code = "111,222,333,444,555,666";
+						} else if (touzhuType.equals("twosame_fu")) {
+							code = code + "*";
+						} else if (touzhuType.equals("threelink")) {
+							code = "123,234,345,456";
+						}
+					}
+
+					codeStr += code;
+					if (i != codes.length - 1
+							&& (!lotoNo.equals(Constants.LOTNO_SSC)
+									|| touzhuType.equals("2start_zuxuan") || touzhuType
+										.equals("2start_hezhi"))) {
+						codeStr += ",";
 					}
 				}
-
-				codeStr += code;
-				if (i != codes.length - 1
-						&& (!lotoNo.equals(Constants.LOTNO_SSC)
-								|| touzhuType.equals("2start_zuxuan") || touzhuType
-									.equals("2start_hezhi"))) {
-					codeStr += ",";
-				}
+				codeInfo.addAreaCode(codeStr, areaNums[1].textColor);
+				// 将选择的注码加入号码篮中
+				addView.addCodeInfo(codeInfo);
 			}
-			codeInfo.addAreaCode(codeStr, areaNum.textColor);
+		} else {
+			// 创建投注信息对象，包括金额和注数属性
+			int zhuShu = getZhuShu();
+			CodeInfo codeInfo = addView.initCodeInfo(getAmt(zhuShu), zhuShu);
+			setLotoNoAndType(codeInfo);
+
+			String lotoNo = codeInfo.getLotoNo();
+			String touzhuType = codeInfo.getTouZhuType();
+
+			code.setZHmiss(false);
+			// 设置投注信息的注码，用于与后台投注
+			codeInfo.setTouZhuCode(getZhuma());
+
+			// 设置投注信息类的注码，用户客户端显示
+			boolean isFirst = true;
+			for (AreaNum areaNum : areaNums) {
+				int[] codes = areaNum.table.getHighlightBallNOs();
+				hightballs = codes.length;
+				String codeStr = "";
+				if (isFirst) {
+					if (lotoNo.equals(Constants.LOTNO_SSC)) {
+						if (touzhuType.equals("1start")) {
+							codeStr = "-,-,-,-,";
+						} else if (touzhuType.equals("2start_zhixuan")) {
+							codeStr = "-,-,-,";
+						} else if (touzhuType.equals("3start")) {
+							codeStr = "-,-,";
+						}
+					}
+					isFirst = false;
+				}
+
+				for (int i = 0; i < codes.length; i++) {
+					String code = String.valueOf(codes[i]);
+
+					if (lotoNo.equals(Constants.LOTNO_NMK3)) {
+						if (touzhuType.equals("hezhi")
+								|| touzhuType.equals("different_three")
+								|| touzhuType.equals("different_two")) {
+							code = PublicMethod.getZhuMa(codes[i]);
+						} else if (touzhuType.equals("threesame_tong")) {
+							code = "111,222,333,444,555,666";
+						} else if (touzhuType.equals("twosame_fu")) {
+							code = code + "*";
+						} else if (touzhuType.equals("threelink")) {
+							code = "123,234,345,456";
+						}
+					}
+
+					codeStr += code;
+					if (i != codes.length - 1
+							&& (!lotoNo.equals(Constants.LOTNO_SSC)
+									|| touzhuType.equals("2start_zuxuan") || touzhuType
+										.equals("2start_hezhi"))) {
+						codeStr += ",";
+					}
+				}
+				codeInfo.addAreaCode(codeStr, areaNum.textColor);
+			}
+			// 将选择的注码加入号码篮中
+			addView.addCodeInfo(codeInfo);
 		}
-		// 将选择的注码加入号码篮中
-		addView.addCodeInfo(codeInfo);
+	}
+
+	void setLotoNoAndType2(CodeInfo codeInfo) {
+		
+	}
+
+	String getZhuma2() {
+		return "";
+	}
+
+	int getThreeLinkZhuShu() {
+		return -1;
+	}
+
+	int getThreeDiffZhuShu() {
+		return -1;
 	}
 
 	/**
@@ -1400,16 +1904,28 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			viewNumPerLine = 10;
 		}
 
-		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
-				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
+		if ((type == NMK3_THREESAME && area == 0) || type == NMK3_TWOSAME_FU
+				|| type == NMK3_TWOSAME_DAN || (type == NMK3_DIFF_THREE && area == 0)
 				|| type == NMK3_DIFF_TWO) {
-			viewNumPerLine = 4;
+			viewNumPerLine = 6;//来自2013-10-17徐培松    每行显示的最大个数
+		} else if (type == NMK3_HEZHI) {
+			viewNumPerLine = 7;
 		}
 
 		int iFieldWidth = aFieldWidth;
 		int scrollBarWidth = 6;
-		int iBallViewWidth = (iFieldWidth - scrollBarWidth) / viewNumPerLine
-				- 2;
+		
+		int nmk3HezhiMargin = PublicMethod.getPxInt(8, context);
+		int nmk3HezhiMarginTop = PublicMethod.getPxInt(3, context);
+		int iBallViewWidth = 0;
+		if (type == NMK3_HEZHI||(type == NMK3_THREESAME && area == 0)){ //add by yejc 20130929
+			iBallViewWidth = (iFieldWidth - scrollBarWidth - 7*nmk3HezhiMargin) / viewNumPerLine- 2;
+		} else if(type == NMK3_TWOSAME_FU||type == NMK3_TWOSAME_DAN||(type == NMK3_DIFF_THREE && area == 0)||type == NMK3_DIFF_TWO||(type == NMK3_THREESAME && area == 0)){
+			iBallViewWidth = (iFieldWidth - scrollBarWidth - 6*nmk3HezhiMargin) / viewNumPerLine-2;
+		}else {
+			iBallViewWidth = (iFieldWidth - scrollBarWidth) / viewNumPerLine- 2;
+		}
+		
 		int lineNum = iBallNum / viewNumPerLine;
 		int lastLineViewNum = iBallNum % viewNumPerLine;
 		int margin = (iFieldWidth - scrollBarWidth - (iBallViewWidth + 2)
@@ -1421,7 +1937,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		}
 
 		int iBallViewHeight = iBallViewWidth;
-		if (type == NMK3_THREESAME_TONG || type == NMK3_THREE_LINK) {
+		if ((type == NMK3_THREESAME && area == 1) || type == NMK3_THREE_LINK || (type == NMK3_DIFF_THREE && area == 1)) {
 			viewNumPerLine = 1;
 			lineNum = 1;
 			iBallViewWidth = (iFieldWidth - scrollBarWidth) / 3;
@@ -1437,14 +1953,30 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		String[] nmk3ThreeSameStrs = { "111", "222", "333", "444", "555", "666" };
 		String[] nmk3TwoSameStrs = { "11*", "22*", "33*", "44*", "55*", "66*" };
 		String[] nmk3TwoSameDanStrs = { "11", "22", "33", "44", "55", "66" };
-		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
-				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
-				|| type == NMK3_DIFF_TWO) {
-			/** add by pengcx 20130718 start */
-			int screenHeight = PublicMethod.getDisplayHeight(context);
-			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
-			/** add by pengcx 20130718 end */
-		}
+		int[][] nmk3DifBg={
+				{R.drawable.one_normal,R.drawable.one_click},
+				{R.drawable.two_normal,R.drawable.two_click},
+				{R.drawable.three_normal,R.drawable.three_click},
+				{R.drawable.four_normal,R.drawable.four_click},
+				{R.drawable.five_normal,R.drawable.five_click},
+				{R.drawable.six_normal,R.drawable.six_click}
+			};
+//		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
+//				|| type == NMK3_TWOSAME_DAN || type == NMK3_DIFF_THREE
+//				|| type == NMK3_DIFF_TWO) {
+//			/** add by pengcx 20130718 start */
+//			int screenHeight = PublicMethod.getDisplayHeight(context);
+//			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
+//			/** add by pengcx 20130718 end */
+//		}
+		//2013-10-17徐培松
+//		if (type == NMK3_THREESAME_DAN || type == NMK3_TWOSAME_FU
+//				|| type == NMK3_TWOSAME_DAN ) {
+//			/** add by pengcx 20130718 start */
+//			int screenHeight = PublicMethod.getDisplayHeight(context);
+//			iBallViewHeight = (int) ((screenHeight / 800.0f) * 35.0f);
+//			/** add by pengcx 20130718 end */
+//		}
 
 		for (int row = 0; row < lineNum; row++) {
 			TableRow tableRow = new TableRow(context);
@@ -1452,46 +1984,88 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 			for (int col = 0; col < viewNumPerLine; col++) {
 				String iStrTemp = setTemp(aBallViewText, iBallViewNo, col);
-				if (type == NMK3_THREESAME_TONG) {
+				if (type == NMK3_THREESAME && area == 1) {
 					iStrTemp = "三同号通选";
-				} else if (type == NMK3_THREE_LINK) {
+				} else if (type == NMK3_THREE_LINK || (type == NMK3_DIFF_THREE && area == 1)) {
 					iStrTemp = "三连号通选";
-				} else if (type == NMK3_THREESAME_DAN) {
+				} else if (type == NMK3_THREESAME && area == 0) {
 					iStrTemp = nmk3ThreeSameStrs[col];
 				} else if (type == NMK3_TWOSAME_FU) {
 					iStrTemp = nmk3TwoSameStrs[col];
 				} else if (type == NMK3_TWOSAME_DAN && area == 0) {
 					iStrTemp = nmk3TwoSameDanStrs[col];
 				}
-				OneBallView tempBallView = new OneBallView(context);
-				tempBallView.setId(aIdStart + iBallViewNo);
-				tempBallView.initBall(iBallViewWidth, iBallViewHeight,
-						iStrTemp, aResId);
+				
+				
+				OneBallView tempBallView = null;
+				//徐培松start
+				if((type==NMK3_DIFF_THREE && area == 0)||type==NMK3_DIFF_TWO){
+					tempBallView =new  OneBallView(context,2);
+					tempBallView.setId(aIdStart + iBallViewNo);
+					tempBallView.initBall(iBallViewWidth,iBallViewHeight,iStrTemp, nmk3DifBg[col],R.color.transparent);
+				}else {
+					tempBallView =new  OneBallView(context);
+					tempBallView.setId(aIdStart + iBallViewNo);
+					tempBallView.initBall(iBallViewWidth, iBallViewHeight,iStrTemp, aResId);
+				}
+				//end
 				tempBallView.setOnClickListener(onclick);
 				iBallTable.addBallView(tempBallView);
 
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
+				//来自2013-10-17徐培松start
+//				TableRow.LayoutParams lp2 = new TableRow.LayoutParams();
+//				lp2.setMargins(0, nmk3HezhiMargin, 0, nmk3HezhiMargin);
+				//...end
 				if (col == 0) {
 					lp.setMargins(margin, 1, 1, 1);
 				} else if (col == viewNumPerLine - 1) {
 					lp.setMargins(1, 1, margin + scrollBarWidth + 1, 1);
-				} else
+				} else {
 					lp.setMargins(1, 1, 1, 1);
+				}
+				
+				if (type == NMK3_HEZHI||type == NMK3_TWOSAME_DAN || type == NMK3_TWOSAME_FU|| (type == NMK3_THREESAME && area == 0)||(type == NMK3_DIFF_THREE && area == 0)||type == NMK3_DIFF_TWO) {
+					if (col != (viewNumPerLine - 1)) {
+						lp.setMargins(nmk3HezhiMargin, nmk3HezhiMarginTop, 0, nmk3HezhiMargin);
+					} else {
+						lp.setMargins(nmk3HezhiMargin, nmk3HezhiMarginTop, nmk3HezhiMargin, nmk3HezhiMargin);
+					}
+				}
 				tableRow.addView(tempBallView, lp);
 				if (isMiss) {
 					TextView textView = new TextView(context);
+					//来自2013-10-17徐培松
+					if (lotno == Constants.LOTNO_NMK3) {
+						textView.setTextColor(Color.WHITE);
+						textView.setBackgroundResource(R.drawable.miss_bg);
+					}else {
+						textView.setBackgroundColor(Color.WHITE);
+					}
 					if (missValues != null) {
 						String missValue = missValues.get(iBallViewNo);
 						textView.setText(missValue);
 						if (rankInt[0] == Integer.parseInt(missValue)
 								|| rankInt[1] == Integer.parseInt(missValue)) {
-							textView.setTextColor(Color.RED);
+							textView.setTextColor(getResources().getColor(
+									R.color.nmk3_loss_value_max));
 						}
 					} else {
 						textView.setText("0");
 					}
 					textView.setGravity(Gravity.CENTER);
-					tableRowText.addView(textView, lp);
+					//来自2013-10-17徐培松start
+					if((type==NMK3_THREESAME && area == 1)||type==NMK3_THREE_LINK || (type == NMK3_DIFF_THREE && area == 1)){
+						tableRowText.addView(textView,lp);
+					}else {
+//						if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
+//							tableRowText.addView(textView,lp2);
+//						}else {
+//							tableRowText.addView(textView);
+//						}
+						tableRowText.addView(textView);
+					}
+					//...end
 					iBallTable.textList.add(textView);
 				}
 				iBallViewNo++;
@@ -1506,7 +2080,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			TableRow tableRowText = new TableRow(context);
 			for (int col = 0; col < lastLineViewNum; col++) {
 				String iStrTemp = setTemp(aBallViewText, iBallViewNo, col);
-				if (type == NMK3_THREESAME_DAN) {
+				if (type == NMK3_THREESAME && area == 0) {
 					iStrTemp = nmk3ThreeSameStrs[4 + col];
 				} else if (type == NMK3_TWOSAME_FU) {
 					iStrTemp = nmk3TwoSameStrs[4 + col];
@@ -1516,8 +2090,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 				OneBallView tempBallView = new OneBallView(context);
 				tempBallView.setId(aIdStart + iBallViewNo);
-				tempBallView.initBall(iBallViewWidth, iBallViewHeight,
-						iStrTemp, aResId);
+				//徐培松start
+				if(type==NMK3_DIFF_THREE||type==NMK3_DIFF_TWO){
+					tempBallView.initBall(iBallViewWidth, iBallViewHeight,iStrTemp, nmk3DifBg[nmk3DifBg.length-lastLineViewNum+col-1]);
+				}else {
+					tempBallView.initBall(iBallViewWidth, iBallViewHeight,iStrTemp, aResId);
+				}
+				//end
 				tempBallView.setOnClickListener(onclick);
 				iBallTable.addBallView(tempBallView);
 				TableRow.LayoutParams lp = new TableRow.LayoutParams();
@@ -1528,6 +2107,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				tableRow.addView(tempBallView, lp);
 				if (isMiss) {
 					TextView textView = new TextView(context);
+					//来自2013-10-17徐培松
+					textView.setBackgroundColor(Color.WHITE);
 					if (missValues != null) {
 						String missValue = missValues.get(iBallViewNo);
 						textView.setText(missValue);
@@ -1539,7 +2120,13 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 						textView.setText("0");
 					}
 					textView.setGravity(Gravity.CENTER);
-					tableRowText.addView(textView, lp);
+					//来自2013-10-17徐培松start
+					if((type==NMK3_THREESAME && area == 1)||type==NMK3_THREE_LINK || (type == NMK3_DIFF_THREE && area == 1)){
+						tableRowText.addView(textView,lp);
+					}else {
+						tableRowText.addView(textView);
+					}
+					//...end
 					iBallTable.textList.add(textView);
 				}
 				iBallViewNo++;
@@ -1598,7 +2185,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		String text = textSumMoney(areaNums, iProgressBeishu);
 		showBetMoney(v);
 		if (getParent() == null) {
-			((Dlc) this).showBetInfo(text);
+			if (Constants.LOTNO_CQ_ELVEN_FIVE.equals(lotno)) {
+			} else {
+				((Dlc) this).showBetInfo(text);
+			}
 		} else {
 			((BuyActivityGroup) getParent()).showBetInfo(text);
 		}
@@ -1669,7 +2259,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			BallTable ballTable = areaNums[j].table;
 			int[] zhuMa = ballTable.getHighlightBallNOs();
 			if (j != 0) {
-				if (highttype.equals("NMK3-TWOSAME-DAN")) {
+				if ("NMK3-TWOSAME-DAN".equals(highttype)) {
 					zhumas += "#";
 				} else {
 					zhumas += " | ";
@@ -2028,6 +2618,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				Balls ball = ballOne.createBalls();
 				balls.add(ball);
 			}
+
 			createTable(zhumaView);
 		}
 	}
@@ -2079,7 +2670,14 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 			@Override
 			public void run() {
-				str = MissInterface.getInstance().betMiss(lotnoStr, sellWay);
+				if (sellWay.contains(";")) {
+					str = NMK3MissInterface.getInstance().betMiss(lotnoStr,
+							sellWay);
+				} else {
+					str = MissInterface.getInstance()
+							.betMiss(lotnoStr, sellWay);
+				}
+
 				try {
 					JSONObject obj = new JSONObject(str);
 					String msg = obj.getString("message");
@@ -2225,8 +2823,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 
 	public void showBetInfo(String text) {
 		if (getParent() != null) {
-			((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums,
-					iProgressBeishu));
+			((BuyActivityGroup) getParent()).showBetInfo(textSumMoney(areaNums,iProgressBeishu));
 		}
 	}
 
@@ -2319,13 +2916,33 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 
 			holder.winningNumber.setText(winCodeString);
-
-			if (position % 2 == 0) {
-				convertView
-						.setBackgroundResource(R.color.latest_lottery_list_one);
+			
+			
+			//来自2013-10-17徐培松  －－－>>>latestlottery_listitem布局
+			if (lotno == Constants.LOTNO_NMK3) {
+				holder.issue.setTextColor(getResources().getColor(R.color.white));
+				holder.winningNumber.setTextColor(getResources().getColor(R.color.white));
+				if (position % 2 == 0) {
+					convertView
+							.setBackgroundResource(R.color.nmk3_latest_lottery_list_one);//0x157800
+				} else {
+					convertView
+							.setBackgroundResource(R.color.nmk3_latest_lottery_list_two);//0x126800
+				}
 			} else {
-				convertView
-						.setBackgroundResource(R.color.latest_lottery_list_two);
+				if (Constants.LOTNO_CQ_ELVEN_FIVE.equals(lotno)) {
+					holder.issue.setTextColor(getResources().getColor(
+							R.color.cq_11_5_text_color));
+					holder.winningNumber.setTextColor(getResources().getColor(
+							R.color.cq_11_5_text_color));
+				}
+				if (position % 2 == 0) {
+					convertView
+							.setBackgroundResource(R.color.latest_lottery_list_one);
+				} else {
+					convertView
+							.setBackgroundResource(R.color.latest_lottery_list_two);
+				}
 			}
 
 			return convertView;

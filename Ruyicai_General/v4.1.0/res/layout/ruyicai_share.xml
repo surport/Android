@@ -123,6 +123,91 @@
        android:layout_height="wrap_content"
        android:layout_marginRight="10dp"
        android:src="@drawable/litt" />
+     
+     
+     <RelativeLayout
+        android:id="@+id/tableRow_sharetoweixin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/img_weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/weixin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/img_sina"
+            android:gravity="left|center_vertical"
+            android:text="@string/sharetoweixin"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/xiangyou" />
+    </RelativeLayout>
+     
+    <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginRight="10dp"
+       android:src="@drawable/litt" />
+     
+    <RelativeLayout
+        android:id="@+id/tableRow_sharetopengyouquan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/img_pengyouquan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/pengyouquan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/img_sina"
+            android:gravity="left|center_vertical"
+            android:text="@string/sharetopengyouquan"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/xiangyou" />
+    </RelativeLayout>
+     
+     <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginRight="10dp"
+       android:src="@drawable/litt" /> 
+    
+    
+     
+     
     <RelativeLayout
         android:id="@+id/tableRow_sharetomsg"
         android:layout_width="fill_parent"

@@ -72,6 +72,7 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
+import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -109,7 +110,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	int pageindex = 0;
 	int allpage = 0;
 	JoinCanyuadpter adapter;
-	RWSharedPreferences shellRW;
+	RWSharedPreferences shellRW,RW;
 	// private Renren renren;
 	String token, expires_in;
 	private boolean issharemove = false;
@@ -137,7 +138,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	private TextView dDianji, dDianjiNeiRong, dDianJiFangAn;
 
 	private PopupWindow popupWindow;
-	private Button toshare, tosinaweibo, totengxunweibo, tocancel;
+	private Button toshare, tosinaweibo, totengxunweibo,toweixin,topeingyouquan, tocancel;
 
 	private TextView renGouZhan, baoDiZhan, shengYuKe, baoDiKe;
 
@@ -175,7 +176,7 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 	 */
 	public void init() {
 		textView8 = (TextView) findViewById(R.id.textView8);
-
+		RW=new RWSharedPreferences(this, "shareweixin");
 		TextView title = (TextView) findViewById(R.id.join_detail_text_title);
 		// title.append("-"+PublicMethod.toLotno(lotno));
 		Button imgRetrun = (Button) findViewById(R.id.join_detail_img_return);
@@ -411,6 +412,8 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 		View contentView=getLayoutInflater().inflate(R.layout.share_popwindow, null);
 		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
 		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		toweixin=(Button) contentView.findViewById(R.id.toweixin);
+		topeingyouquan=(Button) contentView.findViewById(R.id.topengyouquan);
 		tocancel=(Button) contentView.findViewById(R.id.tocancel);
 		
 		
@@ -439,6 +442,24 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 				}
 			}
 		});
+		toweixin.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toWeiXin();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		topeingyouquan.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toPengYouQuan();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
 		tocancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -458,6 +479,24 @@ public class JoinDetailActivity extends Activity implements HandlerMsg {
 			isSinaTiaoZhuan = true;
 			initAccessToken(token, expires_in);
 		}
+	}
+	
+	protected void toPengYouQuan() {
+		RW.putStringValue("weixin_pengyou", "topengyouquan");
+		Intent intent = new Intent(JoinDetailActivity.this,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",getShareContent());
+		startActivity(intent);
+		
+	}
+
+	protected void toWeiXin() {
+		RW.putStringValue("weixin_pengyou", "toweixin");
+		Intent intent = new Intent(JoinDetailActivity.this,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",getShareContent());
+		startActivity(intent);	
+		
 	}
 
 	public void tenoauth() {

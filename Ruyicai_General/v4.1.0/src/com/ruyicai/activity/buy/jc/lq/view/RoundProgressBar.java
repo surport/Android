@@ -1,6 +1,5 @@
 package com.ruyicai.activity.buy.jc.lq.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -121,7 +120,6 @@ public class RoundProgressBar extends View {
 		mTypedArray.recycle();
 	}
 
-	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);

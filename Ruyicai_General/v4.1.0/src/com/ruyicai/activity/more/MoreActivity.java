@@ -57,6 +57,7 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
+import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -87,7 +88,7 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	String textStr;
 	ProgressDialog pBar;
 	boolean[] isOrderPrize = new boolean[8];
-	RWSharedPreferences shellRW;
+	RWSharedPreferences shellRW,RW;
 	LogOutDialog logOutDialog;
 
 	String token, expires_in;
@@ -103,11 +104,12 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	Button auto_jixuan_set;// 机选设置
 	Button is_sharetorenren, is_sharetosinaweibo;// 微博账号设置
 	String oauthCallback = "null";
-	RelativeLayout sharerenren, sharesina, sharetecent, sharetomsg;// 分享界面的几个RelativeLayout
+	RelativeLayout sharerenren, sharesina, sharetecent, sharetoweixin,sharetopengyouquan,sharetomsg;// 分享界面的几个RelativeLayout
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		shellRW = new RWSharedPreferences(MoreActivity.this, "addInfo");
+		RW=new RWSharedPreferences(MoreActivity.this,"shareweixin");
 		orderPrizeDialog = new OrderPrizeDiaog(shellRW, MoreActivity.this);
 		context = this;
 		tenoAuth = new OAuthV1(oauthCallback);
@@ -171,10 +173,14 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		sharesina = (RelativeLayout) findViewById(R.id.tableRow_sharetosina);
 		sharetecent = (RelativeLayout) findViewById(R.id.tableRow_sharetotecent);
 		sharerenren = (RelativeLayout) findViewById(R.id.tableRow_sharetorenren);
+		sharetoweixin = (RelativeLayout) findViewById(R.id.tableRow_sharetoweixin);
+		sharetopengyouquan = (RelativeLayout) findViewById(R.id.tableRow_sharetopengyouquan);
 		sharetomsg = (RelativeLayout) findViewById(R.id.tableRow_sharetomsg);
 		sharesina.setOnClickListener(moreActivityListener);
 		sharetecent.setOnClickListener(moreActivityListener);
 		sharerenren.setOnClickListener(moreActivityListener);
+		sharetoweixin.setOnClickListener(moreActivityListener);
+		sharetopengyouquan.setOnClickListener(moreActivityListener);
 		sharetomsg.setOnClickListener(moreActivityListener);
 	}
 
@@ -191,6 +197,12 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 				break;
 			case R.id.tableRow_sharetorenren:
 				tenoauth();
+				break;
+			case R.id.tableRow_sharetoweixin:
+				shareToWeiXin();
+				break;
+			case R.id.tableRow_sharetopengyouquan:
+				shareToPengyouquan();
 				break;
 			case R.id.tableRow_sharetomsg:
 				shareToMsg();
@@ -821,5 +833,21 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 		Constants.source = "3";
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
+	}
+	
+	private void shareToWeiXin() {
+		RW.putStringValue("weixin_pengyou", "toweixin");
+		Intent intent = new Intent(MoreActivity.this,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",Constants.shareContent);
+		startActivity(intent);	
+	}
+	
+	protected void shareToPengyouquan() {
+		RW.putStringValue("weixin_pengyou", "topengyouquan");
+		Intent intent = new Intent(MoreActivity.this,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",Constants.shareContent);
+		startActivity(intent);
 	}
 }

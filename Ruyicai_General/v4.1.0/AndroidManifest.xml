@@ -976,6 +976,13 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name="com.third.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:exported="true">
+        </activity>
 
         <!-- 彩种提醒广播接受者 -->
         <receiver
@@ -1027,7 +1034,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.ruyicai.activity.buy.nmk3.Nmk3DiffActivity"
+            android:name="com.ruyicai.activity.buy.nmk3.Nmk3ThreeDiffActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+            <activity
+            android:name="com.ruyicai.activity.buy.nmk3.Nmk3TwoDiffActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
@@ -1036,12 +1048,24 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.ruyicai.activity.buy.nmk3.TransParentActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent"
+            android:screenOrientation="portrait" >
+        </activity>
+        
         <!-- 北京单场 -->
         <activity
             android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 重庆11选5 -->
+        <activity
+            android:name="com.ruyicai.activity.buy.cq11x5.Cq11Xuan5"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" />
         <!-- 北京单场您的订单 -->
         <activity
             android:name="com.ruyicai.activity.buy.beijing.BeiJingSingleGameIndentActivity"

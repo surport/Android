@@ -461,7 +461,7 @@ public class FootBallMainActivity extends Activity {
 						.show();
 				break;
 			case 1:
-				isViewShowState[mPlayIndex] = false;//add by yejc 20131029
+				isViewShowState[mPlayIndex] = false;
 				initList();
 				isShowState[mPlayIndex] = true;
 				dismissDialog();
@@ -687,7 +687,9 @@ public class FootBallMainActivity extends Activity {
 		betPojo.setPhonenum(phonenum);
 		betPojo.setSessionid(sessionid);
 		betPojo.setUserno(userno);
-		betPojo.setBet_code(mFootBallAdapters[mPlayIndex].getZhuMa());
+		String zhuMa = mFootBallAdapters[mPlayIndex].getZhuMa();
+		betPojo.setBet_code(zhuMa);
+		betPojo.setBetCode(zhuMa);
 		betPojo.setLotno(mLotnoArray[mPlayIndex]);
 		betPojo.setBatchnum("1");
 		betPojo.setBatchcode(currentIssue);
@@ -695,6 +697,7 @@ public class FootBallMainActivity extends Activity {
 		betPojo.setBettype("bet");
 		betPojo.setAmount(mFootBallAdapters[mPlayIndex].getZhuShu() * 200 + "");
 		betPojo.setZhushu(mFootBallAdapters[mPlayIndex].getZhuShu() + "");
+		betPojo.setIsSellWays("1");
 	}
 	
 	public void beginTouZhu() {

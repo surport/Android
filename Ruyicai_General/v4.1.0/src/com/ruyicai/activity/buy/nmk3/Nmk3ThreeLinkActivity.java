@@ -10,6 +10,8 @@ import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.jixuan.Balls;
+import com.ruyicai.json.miss.MissConstant;
+import com.ruyicai.json.miss.Nmk3MissJson;
 import com.ruyicai.pojo.AreaNum;
 
 /**
@@ -31,7 +33,10 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 		BallResId[1] = R.drawable.nmk3_click;
 		highttype = "NMK3-THREE-LINK";
 		init();
+		//来自2013-10-16徐培松 start
 		childtypes.setVisibility(View.GONE);
+		zixuanLayout.setBackgroundResource(R.color.transparent);
+		//。。。end
 	}
 
 	@Override
@@ -50,7 +55,6 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
 		int zhuShu = getZhuShu();
-
 		if (zhuShu == 0) {
 			return "请选择投注号码";
 		} else {
@@ -126,11 +130,14 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 
 	@Override
 	public void onCheckAction(int checkedId) {
+		lotnoStr=Constants.LOTNO_NMK3;
+		sellWay = MissConstant.NMK3_THREE_LINK_TONG;
 		switch (checkedId) {
 		case 0:
 			initArea();
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_THREE_LINK,
-					true, checkedId, false);
+					true, checkedId, true);
+			 isMissNet(new Nmk3MissJson(), sellWay, false);// 获取遗漏值
 			break;
 		}
 	}

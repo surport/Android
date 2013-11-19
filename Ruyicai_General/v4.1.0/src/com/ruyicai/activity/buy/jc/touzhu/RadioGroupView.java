@@ -599,7 +599,7 @@ public class RadioGroupView {
 	/**
 	 * 根据选则的球队计算单选按钮数
 	 * 
-	 * @param num
+	 * @param threeDiffBallNums
 	 * @return
 	 */
 	public int getNum(int teamNum, boolean isDan, boolean isBeiJing) {
@@ -700,7 +700,7 @@ public class RadioGroupView {
 	/**
 	 * 根据设胆数隐藏按钮数
 	 * 
-	 * @param num
+	 * @param threeDiffBallNums
 	 * @return
 	 */
 	public int getDanNum(int teamNum, boolean isDan, boolean isBeiJing) {

@@ -7,10 +7,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
@@ -19,6 +22,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -36,6 +40,7 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
+import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -62,6 +67,11 @@ public abstract class LotnoDetailView {
 	String tencent_access_token_secret;
 	private OAuthV1 tenoAuth;
 	public static String shareString = "";
+	private Button notice_detail_btn, tosinaweibo, totengxunweibo,toweixin,topeingyouquan, tocancel;
+	private PopupWindow popupWindow;
+	private RWSharedPreferences RW;
+	private RelativeLayout parent;
+	
 
 	public LotnoDetailView(Activity context, String lotno, String batchcode,
 			ProgressDialog progress, Handler handler, boolean isDialog) {
@@ -118,6 +128,22 @@ public abstract class LotnoDetailView {
 	 * 分享
 	 * **/
 	public void initfenxianglayout() {
+		
+		RW=new RWSharedPreferences(context, "shareweixin");
+		initSharePopWindow();	
+		notice_detail_btn = (Button)view.findViewById(R.id.notice_detail_btn);
+		parent = (RelativeLayout) view.findViewById(R.id.relativetopone);
+		notice_detail_btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				initSharePopWindow();
+				if (popupWindow != null) {
+					popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+				}
+			}
+		});
+		
+	/*	
 		wangyi = (ImageButton) view.findViewById(R.id.join_detail_img_buy2);
 		xinlang = (ImageButton) view.findViewById(R.id.join_detail_img_buy3);
 		wangyi.setOnClickListener(new OnClickListener() {
@@ -212,6 +238,7 @@ public abstract class LotnoDetailView {
 
 			}
 		});
+		*/
 	}
 
 	private void setFenXiangLayoutPosition(int leftMargin) {
@@ -220,6 +247,87 @@ public abstract class LotnoDetailView {
 		lp.setMargins(leftMargin, 0, 0, 0);
 		fenxianglayout.setLayoutParams(lp);
 	}
+	
+	private void initSharePopWindow() {
+		View contentView=context.getLayoutInflater().inflate(R.layout.share_popwindow, null);
+		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		toweixin=(Button) contentView.findViewById(R.id.toweixin);
+		topeingyouquan=(Button) contentView.findViewById(R.id.topengyouquan);
+		tocancel=(Button) contentView.findViewById(R.id.tocancel);
+		
+		
+   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
+   			ViewGroup.LayoutParams.WRAP_CONTENT);
+   	    popupWindow.setFocusable(true);
+   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
+   	    //popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
+   	   
+   	    tosinaweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				oauthOrShare();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+				
+			}
+		});
+		totengxunweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tenoauth();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		toweixin.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toWeiXin();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		topeingyouquan.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toPengYouQuan();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		tocancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+	}
+	
+	protected void toPengYouQuan() {
+		RW.putStringValue("weixin_pengyou", "topengyouquan");
+		Intent intent = new Intent(context,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",getShareString());
+		context.startActivity(intent);
+		
+	}
+
+	protected void toWeiXin() {
+		RW.putStringValue("weixin_pengyou", "toweixin");
+		Intent intent = new Intent(context,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",getShareString());
+		context.startActivity(intent);	
+		
+	}
+	
 
 	/**
 	 * 分享

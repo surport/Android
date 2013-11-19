@@ -56,10 +56,12 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -312,7 +314,7 @@ public class PublicMethod {
 	}
 
 	public static void myOutLog(String tag, String msg) {
-//		Log.e(tag, msg);
+		Log.e(tag, msg);
 	}
 
 	/* Modify by fansm 20130412 start */
@@ -1844,6 +1846,8 @@ public class PublicMethod {
 				title = "北京单场";
 			} else if (type.equals(Constants.LOTNO_ZC)) {
 				title = "足彩";
+			}else if(type.equals(Constants.LOTNO_CQ_ELVEN_FIVE)){
+				title = "重庆11选5";
 			}else {
 				title = "所有彩种";
 			}
@@ -2087,10 +2091,6 @@ public class PublicMethod {
 		if (type != null) {
 			if (type.equals(Constants.LOTNO_22_5)) {
 				closeKeyName = Constants.TWENTYBEL;
-			} else if (type.equals(Constants.LOTNO_NMK3)) {
-				closeKeyName = Constants.NMK3LABEL;
-			} else if (type.equals(Constants.LOTNO_BJ_SINGLE)) {
-				closeKeyName = Constants.BDLABEL;
 			}
 		}
 		return closeKeyName;
@@ -2977,17 +2977,7 @@ public class PublicMethod {
 	public static String getMessageByLoto(Context mContext,
 			RWSharedPreferences shellRW, String lotno) {
 		String message = "";
-		if (lotno.equals(Constants.NMK3LABEL)) {
-			if (shellRW.getStringValue(Constants.NMK3WILLSALES).equals("true")) {
-				message = mContext.getResources().getString(
-						R.string.nmk3willSaleMessage);
-			}
-		} else if (lotno.equals(Constants.BDLABEL)) {
-			if (shellRW.getStringValue(Constants.BDWILLSATES).equals("true")) {
-				message = mContext.getResources().getString(
-						R.string.bdwillSaleMessage);
-			}
-		} else if (lotno.equals(Constants.TWENTYBEL)) {
+        if (lotno.equals(Constants.TWENTYBEL)) {
 			if (shellRW.getStringValue(Constants.TWENCLOSED).equals("true")) {
 				message = mContext.getResources().getString(
 						R.string.twentyClosedMessage);
@@ -3198,5 +3188,45 @@ public class PublicMethod {
 		View dialogView = getView(context);
 		mProgressdialog.getWindow().setContentView(dialogView);
 		return mProgressdialog;
+	}
+	
+	public static PopupWindow createPopupWindow(Context context, String[] info,
+			int count) {
+		LayoutInflater inflate = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LinearLayout layout = (LinearLayout) inflate.inflate(R.layout.buy_join__window, null);
+		GridView GridView = (GridView) layout.findViewById(R.id.gridView);
+		GridView.setNumColumns(count);
+		return null;
+	}
+	
+	
+	public static String getWeek(int i){
+		String week="星期";
+		switch (i) {
+		case 1:
+			week+="一";
+			break;
+		case 2:
+			week+="二";
+			break;
+		case 3:
+			week+="三";
+			break;
+		case 4:
+			week+="四";
+			break;
+		case 5:
+			week+="五";
+			break;
+		case 6:
+			week+="六";
+			break;
+		case 7:
+			week+="日";
+			break;
+		default :
+			break;
+		}
+		return week;
 	}
 }

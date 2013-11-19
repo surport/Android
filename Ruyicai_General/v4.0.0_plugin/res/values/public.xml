@@ -3260,5 +3260,7 @@
 <public type="style" name="textSize16" id="0x7f080011" />
 <public type="style" name="touzhuTextstyle" id="0x7f080010" />
 <public type="id" name="hangqing" id="0x7f0b0510" />
+<public type="drawable" name="cp2" id="0x7f020241" />
+<public type="drawable" name="back_hangqing" id="0x7f020242" />
 
 </resources>

@@ -11,6 +11,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,13 +33,14 @@ import com.ruyicai.util.PublicMethod;
 public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 	private int lesstime = 0;
 	public static String batchCode;
-	private String[] titles = { "和值", "三同号", "二同号", "不同号", "三连号" };
+	private String[] titles = { "和值", "三不同", "二不同", "三同号", "二同号" };
 	/** modify by pengcx 20130517 start */
-	private String[] topTitles = { "快三", "快三", "快三", "快三", "快三", "快三" };
+	private String[] topTitles = { "快三--和值", "快三--三不同", "快三--二不同", "快三--三同号",
+			"快三--二同号" };
 	/** modify by pengcx 20130517 end */
 	private Class[] allId = { Nmk3HeZhiActivity.class,
-			Nmk3ThreeSameActivty.class, Nmk3TwoSameActivty.class,
-			Nmk3DiffActivity.class, Nmk3ThreeLinkActivity.class };
+			Nmk3ThreeDiffActivity.class, Nmk3TwoDiffActivity.class,
+			Nmk3ThreeSameActivty.class, Nmk3TwoSameActivty.class };
 	private boolean isFirst = true;
 
 	public AddView addView = new AddView(this);
@@ -54,8 +58,34 @@ public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 		setIssue();
 		refreshBtn.setVisibility(View.VISIBLE);
 		relativeLayout1.setVisibility(View.GONE);
-		betInfoTextView.setVisibility(View.VISIBLE);
+		initSubViews();
+		// betInfoTextView.setVisibility(View.VISIBLE);
 	}
+
+	/** add by yejc 20130928 start **/
+	private void initSubViews() {
+		int padding = PublicMethod.getPxInt(8, this);
+		LinearLayout linearLayout = (LinearLayout) findViewById(R.id.LinearLayout0000);
+		linearLayout.setBackgroundResource(R.drawable.nmk3_bg);
+		RelativeLayout titleLayout = (RelativeLayout) findViewById(R.id.main_buy_title);
+		titleLayout.setBackgroundResource(R.drawable.nmk3_head_bg);
+		TextView textView = (TextView) findViewById(R.id.bet_info);
+		textView.setVisibility(View.GONE);
+		relativeLayout.setBackgroundResource(R.drawable.nmk3_title_bar);
+		relativeLayout.setPadding(0, padding, 0, padding);
+		LinearLayout line = (LinearLayout) findViewById(R.id.LinearLayout02);
+		line.setBackgroundResource(R.color.transparent);
+		padding = PublicMethod.getPxInt(5, this);
+		LinearLayout layout = (LinearLayout) findViewById(R.id.LinearLayout01);
+		layout.setBackgroundResource(R.drawable.nmk3_change_paly_bg);
+		layout.setPadding(padding, padding, padding, padding);
+		TabWidget tabWidget = (TabWidget) findViewById(android.R.id.tabs);
+		tabWidget.setBackgroundResource(R.drawable.nmk3_change_paly_bg_white);
+		padding = PublicMethod.getPxInt(2, this);
+		tabWidget.setPadding(padding, padding, padding, padding);
+	}
+
+	/** add by yejc 20130928 end **/
 
 	private void updateAddMissViewNum() {
 		addView.updateTextNum();
@@ -71,17 +101,12 @@ public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				String error_code = "00";
 				String re = "";
-				String message = "";
 				batchCode = "";
-				re = GetLotNohighFrequency.getInstance().getInfo(
-						Constants.LOTNO_NMK3);
+				re = GetLotNohighFrequency.getInfo(Constants.LOTNO_NMK3);
 				if (!re.equalsIgnoreCase("")) {
 					try {
 						JSONObject obj = new JSONObject(re);
-						message = obj.getString("message");
-						error_code = obj.getString("error_code");
 						lesstime = Integer.valueOf(obj
 								.getString("time_remaining"));
 						batchCode = obj.getString("batchcode");
@@ -90,12 +115,13 @@ public class Nmk3Activity extends BuyActivityGroup implements HandlerMsg {
 								sscHandler.post(new Runnable() {
 									public void run() {
 										issue.setText("第" + batchCode + "期");
-										time.setText("剩余时间:"
+										time.setText("距开奖还有:"
 												+ PublicMethod
 														.isTen(lesstime / 60)
-												+ ":"
+												+ "分"
 												+ PublicMethod
-														.isTen(lesstime % 60));
+														.isTen(lesstime % 60)
+												+ "秒");
 									}
 								});
 								Thread.sleep(1000);

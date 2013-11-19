@@ -1,6 +1,7 @@
 package com.ruyicai.activity.notice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,28 +14,36 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.PopupWindow.OnDismissListener;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
 import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
+import com.ruyicai.activity.buy.jc.zq.ZqMainActivity;
+import com.ruyicai.activity.notice.NoticeMenuAdapter.OnClickItem;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
 import com.ruyicai.handler.MyHandler;
 import com.ruyicai.net.newtransaction.NoticeJcInfo;
+import com.ruyicai.util.PublicMethod;
 import com.umeng.analytics.MobclickAgent;
 
 public class NoticeJcActivity extends Activity implements HandlerMsg {
@@ -46,7 +55,6 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private String[] /*dateShow = {}, */dateNet = {};// dateShow为显示用的日期数组
 													// ，dateNet为联网上传用的日期格式数组
 	private Button reBtn;
-	private LinearLayout playLinear;
 	private Button playBtn;
 	private String playMethodType  = Constants.LOTNO_JCZQ;
 	private int bachCodeIndex = 0;
@@ -57,6 +65,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
     		Constants.LOTNO_JCZQ_BQC/*, 
     		Constants.LOTNO_JCZQ_HUN*/};
     private String[] playTypeText = {"胜平负","让球胜平负","总进球数","比分","半全场"/*,"混合投注"*/};
+    private String[]zqtitleName={"竞足胜平负","竞足让球胜平负","竞足总进球数","竞足比分","竞足半全场"};
 
 	private int initViewState = 1;// 设置初始化竞彩查询date的状态，当initViewState =
 									// OTHER_JC_NOTICE时，不再初始化日期数组
@@ -64,6 +73,15 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private final int FIRST_JC_NOTICE = 1;// 初次进入竞彩开奖查询的（点击竞彩查询进入页面）
 	private final int OTHER_JC_NOTICE = 2;// 点击日期刷新（）
 	private Context context;
+	private Button jc_notice_img_return,jc_notice_date_sort,go_jc_touzhu;
+	private GridView menu_gridview;
+	private RelativeLayout relateive_date,relativelayout03;
+	private PopupWindow popupwindow;
+	private NoticeMenuAdapter noticeMenuAdapter;
+	private TextView title,dateshow,xinqishow;
+	private RelativeLayout  relativelayout_center;
+	private JsonBeanInfo itemInfo;
+	private JSONObject jsonItem;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -115,15 +133,18 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 		// 返回主列表
 		/**add by yejc 20130529 start*/
 		((Button)findViewById(R.id.notice_prizes_single_specific_main_returnID)).setVisibility(View.GONE);
-		playLinear = (LinearLayout)findViewById(R.id.notice_beijing_single_item_play);
-		playLinear.setVisibility(View.VISIBLE);
-		playBtn = (Button) findViewById(R.id.buy_lq_main_btn_type);
-		playBtn.setText(playTypeText[0]);
-		playBtn.setOnClickListener(new OnClickListener() {
-			
+		relateive_date=(RelativeLayout) findViewById(R.id.relateive_date);
+		relateive_date.setVisibility(View.VISIBLE);
+		dateshow=(TextView) findViewById(R.id.dateshow);
+		xinqishow=(TextView) findViewById(R.id.xinqi);  //星期
+		relativelayout03=(RelativeLayout) findViewById(R.id.relativelayout03);
+		relativelayout03.setVisibility(View.VISIBLE);
+		go_jc_touzhu=(Button) findViewById(R.id.go_jc_touzhu);
+		go_jc_touzhu.setText("竞彩足球投注");
+		go_jc_touzhu.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showPlayDialog();
+			   startActivity(new Intent(NoticeJcActivity.this,ZqMainActivity.class));	
 			}
 		});
 		/**add by yejc 20130529 end*/
@@ -135,6 +156,34 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			reBtn.setClickable(true);
 		}
 		reBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showBatchcodesDialog();
+			}
+		});
+		
+		
+		/*
+		 * 竞彩开奖公告标题
+		 */
+		
+		 title = (TextView) findViewById(R.id.jc_notice_text_title);
+		 title.setText(zqtitleName[0]);
+		jc_notice_img_return = (Button) findViewById(R.id.jc_notice_img_return);
+		jc_notice_date_sort=(Button) findViewById(R.id.jc_notice_date_sort);
+		relativelayout_center=(RelativeLayout) findViewById(R.id.relativelayout_center);
+		//jc_returnLayout=(RelativeLayout)findViewById(R.id.jc_returnLayout);
+		//title.setText(PublicMethod.toLotno(lotno));
+		jc_notice_img_return.setBackgroundResource(R.drawable.notice_top_down);
+		// ImageView的返回事件
+		relativelayout_center.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onCreateMenuPopWindow();
+			}
+		});
+		
+		jc_notice_date_sort.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showBatchcodesDialog();
@@ -235,44 +284,51 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			index = position;
 			final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
-			convertView = mInflater.inflate(R.layout.notice_beijing_single_listview_item,
-					null);
-			final ViewHolder holder = new ViewHolder();
-			holder.teamId = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_id);
-			holder.team = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team);
-			holder.home = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_name1);
-			holder.away = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_team_name2);
-			holder.letPoint = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_vs);
-			holder.result = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_jieguo);
-			holder.score = (TextView) convertView
-					.findViewById(R.id.jc_main_list_item_text_score);
-			holder.sp = (TextView) convertView
-					.findViewById(R.id.notice_beijing_single_item_odds);
-			convertView.setTag(holder);
+			ViewHolder holder;
+			if(convertView==null){
+				convertView = mInflater.inflate(R.layout.jc_notice_list_item,
+						null);
+				holder = new ViewHolder();
+				holder.teamId = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_team_id);
+				holder.team = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_team);
+				holder.home = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_team_name1);
+				holder.away = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_team_name2);
+				holder.letPoint = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_vs);
+				holder.result = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_jieguo);
+				holder.score = (TextView) convertView
+						.findViewById(R.id.jc_main_list_item_text_score);
+				holder.homescore = (TextView) convertView
+						.findViewById(R.id.jc_main_li_bifen_zu);
+				holder.awayscore = (TextView) convertView
+						.findViewById(R.id.jc_main_li_bifen_ke);
+				convertView.setTag(holder);
+			}else{
+				holder=(ViewHolder) convertView.getTag();
+			}
+			holder.team.setText(info.getTeam());
+			holder.teamId.setText(info.getTeamId());
+			holder.result.setText(info.getResult());
+			holder.home.setText(info.getHome());
+			holder.away.setText(info.getAway());
 			
-			holder.sp.setVisibility(View.GONE);
-			holder.team.append(info.getTeam());
-			holder.teamId.append(info.getTeamId());
-			holder.result.append(info.getResult());
-			holder.home.append(info.getHome()+"(主)");
-			holder.away.append(info.getAway()+"(客)");
 			if (Constants.LOTNO_JCZQ_RQSPF.equals(playMethodType)) {
-				if (!"".equals(info.getLetPoint())) {
-					holder.letPoint.setText(info.getLetPoint());
-					holder.letPoint.setTextColor(Color.BLUE);
+				holder.letPoint.setVisibility(View.VISIBLE);
+				if (!"".equals(info.getLetPoint()) && info.getLetPoint().startsWith("+")) {
+						holder.letPoint.setTextColor(Color.RED);
 				}
+				holder.letPoint.setText("("+info.getLetPoint()+")");
 			} else if (Constants.LOTNO_JCZQ.equals(playMethodType)) {
 				holder.letPoint.setText("0");
 			}
+			holder.homescore.setText(info.getHomeScore());
+			holder.awayscore.setText(info.getGuestScore());
 			
-			String score = "("+info.getHomeHalfScore()+":"+info.getGuestHalfScore()+")"+info.getHomeScore()+":"+info.getGuestScore();
-			holder.score.append(score);
 			
 			convertView.setOnClickListener(new OnClickListener() {
 
@@ -294,6 +350,8 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			TextView result;
 			TextView score;
 			TextView sp;
+			TextView homescore;
+			TextView awayscore;
 		}
 	}
 
@@ -326,6 +384,8 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 				itemInfo.setGuestHalfScore(jsonItem.getString("guestHalfScore"));
 				
 				list.add(itemInfo);
+				xinqishow.setText(PublicMethod.getWeek(Integer.parseInt(jsonItem.getString("weekId"))));
+
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -355,6 +415,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private void formatDate(String dateStr) {
 		dateNet = (dateStr.replaceAll("-", "")).split(";");
 		reBtn.setText(dateNet[0]);
+		dateshow.setText(new StringBuffer(dateNet[0]).insert(4, "年").insert(7, "月").insert(10, "日"));
 	}
 
 	private void showBatchcodesDialog() {
@@ -364,7 +425,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
 						bachCodeIndex = which;
-						reBtn.setText(dateNet[which]);
+						dateshow.setText(new StringBuffer(dateNet[which]).insert(4, "年").insert(7, "月").insert(10, "日"));
 						initViewState = OTHER_JC_NOTICE;
 						notiecJcNet(dateNet[which]);
 					}
@@ -397,5 +458,48 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	protected void onResume() {
 		super.onResume();
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
+	}
+	
+	private void onCreateMenuPopWindow(){
+		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View popupView = (LinearLayout) inflate.inflate(R.layout.notice_menu_window, null);
+		menu_gridview = (GridView) popupView.findViewById(R.id.notice_gridView);
+		String[] str=getResources().getStringArray(R.array.jc_wanfa);
+		List<String> jc_data = Arrays.asList(str);
+	    noticeMenuAdapter=new NoticeMenuAdapter(this,new OnItemListener(),jc_data);
+		menu_gridview.setAdapter(noticeMenuAdapter);
+		
+		
+		
+		popupwindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+		popupwindow.setFocusable(true);
+		popupwindow.setOutsideTouchable(true);
+		popupwindow.update();
+		popupwindow.setBackgroundDrawable(new BitmapDrawable());
+		popupwindow.showAsDropDown(jc_notice_img_return);
+		
+		popupwindow.setOnDismissListener(new OnDismissListener() {
+			@Override
+			public void onDismiss() {
+                if(popupwindow.isShowing() && popupwindow!=null){
+                	jc_notice_img_return.setBackgroundResource(R.drawable.notice_top_down);
+                }				
+			}
+		});
+	}
+	
+	public class OnItemListener implements OnClickItem{
+		@Override
+		public void onChickItem(View view, int position) {
+			noticeMenuAdapter.setItemSelect(position);
+			noticeMenuAdapter.notifyDataSetInvalidated();
+			title.setText(zqtitleName[position]);
+			playMethodType = playType[position];
+			if (dateNet.length > bachCodeIndex) {
+				notiecJcNet(dateNet[bachCodeIndex]);
+			}
+			popupwindow.dismiss();
+		}
+		
 	}
 }
