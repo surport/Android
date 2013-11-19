@@ -61,7 +61,12 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 			return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
 		}
 	}
-
+	/**
+	 * 设置投注金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+	}
 	@Override
 	public String isTouzhu() {
 		if (getZhuShu() == 0) {

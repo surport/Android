@@ -58,9 +58,15 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		return "";
+		int zhuShu = getZhuShu();
+		return "您以选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 	}
-
+	/**
+	 * 设置投注金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+	}
 	@Override
 	public String isTouzhu() {
 		// 点击号码篮后触发判断投注的合法性
