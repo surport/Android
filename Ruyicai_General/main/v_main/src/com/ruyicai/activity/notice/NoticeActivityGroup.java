@@ -3,20 +3,38 @@ package com.ruyicai.activity.notice;
 import android.app.ActivityGroup;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.notice.LotnoDetail.LotnoDetailView;
+import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
+import com.tencent.weibo.oauthv1.OAuthV1;
+import com.tencent.weibo.oauthv1.OAuthV1Client;
+import com.tencent.weibo.webview.OAuthV1AuthorizeWebView;
+import com.third.share.ShareActivity;
+import com.third.share.Token;
+import com.third.share.Weibo;
+import com.third.share.WeiboDialogListener;
+import com.third.tencent.TencentShareActivity;
+import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
@@ -68,7 +86,19 @@ public class NoticeActivityGroup extends ActivityGroup {
 	Handler hanler = new Handler();
 	Long upordown = 0L;
 	boolean isPosition;
-
+	private Button notice_share;
+	private OAuthV1 tenoAuth;
+	private PopupWindow popupWindow;
+	private RWSharedPreferences RW;
+	private LinearLayout parent;
+	private Button  tosinaweibo, totengxunweibo,toweixin,topeingyouquan, tocancel;
+    String token, expires_in;
+	
+	String tencent_token;
+	String tencent_access_token_secret;
+	private RWSharedPreferences shellRW;
+	private boolean isSinaTiaoZhuan = true;
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -78,6 +108,10 @@ public class NoticeActivityGroup extends ActivityGroup {
 		tabWidget = mTabHost.getTabWidget();
 		mTabHost.setup(getLocalActivityManager());
 		mInflater = LayoutInflater.from(this);
+		
+		initSharePopWindow();
+		RW=new RWSharedPreferences(context, "shareweixin");
+		parent = (LinearLayout)findViewById(R.id.notice_linear);
 		mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String tabId) {
 				for (int i = 0; i < titles.length; i++) {
@@ -88,6 +122,11 @@ public class NoticeActivityGroup extends ActivityGroup {
 						} else {
 							imgIcon.setVisibility(View.GONE);
 						}
+						if(tabId.equals(PRIZE)){
+							notice_share.setVisibility(View.VISIBLE);
+						}else{
+							notice_share.setVisibility(View.GONE);
+						}
 						return;
 					}
 				}
@@ -97,7 +136,7 @@ public class NoticeActivityGroup extends ActivityGroup {
 		initView();
 		setScale();
 		initView(LOTNO);
-
+		shellRW = new RWSharedPreferences(context, "addInfo");
 	}
 
 	protected void onResume() {
@@ -173,6 +212,21 @@ public class NoticeActivityGroup extends ActivityGroup {
 				imgIcon.setBackgroundResource(imageid[upordown.intValue() % 2]);
 			}
 		});
+		
+		
+		notice_share=(Button) findViewById(R.id.notice_share);
+		notice_share.setVisibility(View.VISIBLE);
+		tenoAuth = new OAuthV1("null");
+		tenoAuth.setOauthConsumerKey(Constants.kAppKey);
+		tenoAuth.setOauthConsumerSecret(Constants.kAppSecret);
+	    notice_share.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (popupWindow != null) {
+				popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+			}
+		}
+	});
 	}
 
 	/**
@@ -392,6 +446,177 @@ public class NoticeActivityGroup extends ActivityGroup {
 	 */
 	public void setTextTop(int size) {
 		topTitle.setTextSize(size);
+	}
+	
+	private void initSharePopWindow() {
+		View contentView=NoticeActivityGroup.this.getLayoutInflater().inflate(R.layout.share_popwindow, null);
+		tosinaweibo=(Button) contentView.findViewById(R.id.tosinaweibo);
+		totengxunweibo=(Button) contentView.findViewById(R.id.totengxunweibo);
+		toweixin=(Button) contentView.findViewById(R.id.toweixin);
+		topeingyouquan=(Button) contentView.findViewById(R.id.topengyouquan);
+		tocancel=(Button) contentView.findViewById(R.id.tocancel);
+		
+		
+   	    popupWindow=new PopupWindow(contentView, ViewGroup.LayoutParams.FILL_PARENT,   //得到pop对象,并设置该pop的样子和宽高
+   			ViewGroup.LayoutParams.WRAP_CONTENT);
+   	    popupWindow.setFocusable(true);
+   	    popupWindow.setBackgroundDrawable(new BitmapDrawable());//当点击空白处时，pop会关掉
+   	    //popupWindow.setAnimationStyle(R.style.share_animation);//通过此方法从styles.xml中得到pop的进入和退出效果	
+   	   
+   	    tosinaweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				oauthOrShare();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+				
+			}
+		});
+		totengxunweibo.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tenoauth();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		toweixin.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toWeiXin();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		topeingyouquan.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				toPengYouQuan();
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+		tocancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (popupWindow != null && popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			}
+		});
+	}
+	
+	protected void tenoauth() {
+		tencent_token = shellRW.getStringValue("tencent_token");
+		tencent_access_token_secret = shellRW
+				.getStringValue("tencent_access_token_secret");
+		if (tencent_token.equals("") && tencent_access_token_secret.equals("")) {
+			try {
+				tenoAuth = OAuthV1Client.requestToken(tenoAuth);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			Intent intent = new Intent(context, OAuthV1AuthorizeWebView.class);// 创建Intent，使用WebView让用户授权
+			intent.putExtra("oauth", tenoAuth);
+			NoticeActivityGroup.this.startActivityForResult(intent, 1);
+		} else {
+			tenoAuth.setOauthToken(tencent_token);
+			tenoAuth.setOauthTokenSecret(tencent_access_token_secret);
+			Intent intent = new Intent(NoticeActivityGroup.this, TencentShareActivity.class);
+			intent.putExtra("tencent", LotnoDetailView.shareString);
+			intent.putExtra("oauth", tenoAuth);
+			NoticeActivityGroup.this.startActivity(intent);
+		}
+	}
+	
+	
+
+	protected void toPengYouQuan() {
+		RW.putStringValue("weixin_pengyou", "topengyouquan");
+		Intent intent = new Intent(NoticeActivityGroup.this,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",LotnoDetailView.shareString);
+		NoticeActivityGroup.this.startActivity(intent);
+		
+	}
+   
+	protected void toWeiXin() {
+		RW.putStringValue("weixin_pengyou", "toweixin");
+		Intent intent = new Intent(NoticeActivityGroup.this,
+				WXEntryActivity.class);
+		intent.putExtra("sharecontent",LotnoDetailView.shareString);
+		NoticeActivityGroup.this.startActivity(intent);	
+	}
+	
+	/**
+	 * 分享
+	 * **/
+	private void oauthOrShare() {
+		token = shellRW.getStringValue("token");
+		expires_in = shellRW.getStringValue("expires_in");
+		if (token.equals("")) {
+			oauth();
+		} else {
+			isSinaTiaoZhuan = true;
+			initAccessToken(token, expires_in);
+		}
+	}
+	
+	private void oauth() {
+
+		Weibo weibo = Weibo.getInstance();
+		weibo.setupConsumerConfig(Constants.CONSUMER_KEY,
+				Constants.CONSUMER_SECRET);
+		// Oauth2.0
+		// 隐式授权认证方式
+		weibo.setRedirectUrl(Constants.CONSUMER_URL);// 此处回调页内容应该替换为与appkey对应的应用回调页
+		// 对应的应用回调页可在开发者登陆新浪微博开发平台之后，
+		// 进入我的应用--应用详情--应用信息--高级信息--授权设置--应用回调页进行设置和查看，
+		// 应用回调页不可为空
+		weibo.authorize(NoticeActivityGroup.this, new AuthDialogListener());
+	}
+
+	
+	class AuthDialogListener implements WeiboDialogListener {
+
+		@Override
+		public void onComplete(Bundle values) {
+			PublicMethod.myOutLog("token111",
+					"zhiqiande" + shellRW.getStringValue("token"));
+			PublicMethod.myOutLog("onComplete", "12131321321321");
+			String token = values.getString("access_token");
+			PublicMethod.myOutLog("token", token);
+			String expires_in = values.getString("expires_in");
+			shellRW.putStringValue("token", token);
+			shellRW.putStringValue("expires_in", expires_in);
+			initAccessToken(token, expires_in);
+		}
+		@Override
+		public void onCancel() {
+			Toast.makeText(context.getApplicationContext(), "Auth cancel",
+					Toast.LENGTH_LONG).show();
+		}
+}
+	
+	private void initAccessToken(String token, String expires_in) {
+		Token accessToken = new Token(token, Weibo.getAppSecret());
+		accessToken.setExpiresIn(expires_in);
+		Weibo.getInstance().setAccessToken(accessToken);
+		share2weibo("");
+		if (isSinaTiaoZhuan) {
+			Intent intent = new Intent();
+			intent.setClass(context, ShareActivity.class);
+			context.startActivity(intent);
+		}
+	}
+	private void share2weibo(String content) {
+		Weibo weibo = Weibo.getInstance();
+		weibo.share2weibo(NoticeActivityGroup.this, weibo.getAccessToken().getToken(), weibo
+				.getAccessToken().getSecret(), content, "");
 	}
 
 }
