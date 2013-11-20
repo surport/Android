@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.palmdream.RuyicaiAndroid.wxapi.WXEntryActivity;
 import com.ruyicai.activity.common.OrderPrizeDiaog;
 import com.ruyicai.activity.home.HomeActivity;
 import com.ruyicai.activity.introduce.PhotoActivity;
@@ -57,7 +58,6 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
-import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**
