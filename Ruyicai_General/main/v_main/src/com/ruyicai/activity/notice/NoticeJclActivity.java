@@ -81,6 +81,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	private NoticeMenuAdapter noticeMenuAdapter;
 	private TextView title,dateshow,xinqishow;
 	private RelativeLayout  relativelayout_center;
+	private int itemId=0;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -503,11 +504,14 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
                 }				
 			}
 		});
+		noticeMenuAdapter.setItemSelect(itemId);
+		noticeMenuAdapter.notifyDataSetInvalidated();
 	}
 	
 	public class OnItemListener implements OnClickItem{
 		@Override
 		public void onChickItem(View view, int position) {
+			itemId=position;
 			noticeMenuAdapter.setItemSelect(position);
 			noticeMenuAdapter.notifyDataSetInvalidated();
 			title.setText(titleName[position]);

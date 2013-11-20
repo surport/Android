@@ -56,14 +56,10 @@ import android.widget.Button;
 				}
 			});
 			
-			if(index==-1){
-				btn.setBackgroundResource(R.drawable.normal_notice);
+			if(index==position){
+				btn.setBackgroundResource(R.drawable.click_notice);
 			}else{
-				if(index==position){
-					btn.setBackgroundResource(R.drawable.click_notice);
-				}else{
-					btn.setBackgroundResource(R.drawable.normal_notice);
-				}
+				btn.setBackgroundResource(R.drawable.normal_notice);
 			}
 			return view;
 		}

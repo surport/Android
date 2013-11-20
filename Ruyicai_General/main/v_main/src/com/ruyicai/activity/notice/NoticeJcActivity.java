@@ -82,6 +82,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private RelativeLayout  relativelayout_center;
 	private JsonBeanInfo itemInfo;
 	private JSONObject jsonItem;
+	private int itemId=0;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -490,11 +491,14 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
                 }				
 			}
 		});
+		noticeMenuAdapter.setItemSelect(itemId);
+		noticeMenuAdapter.notifyDataSetInvalidated();
 	}
 	
 	public class OnItemListener implements OnClickItem{
 		@Override
 		public void onChickItem(View view, int position) {
+			itemId=position;
 			noticeMenuAdapter.setItemSelect(position);
 			noticeMenuAdapter.notifyDataSetInvalidated();
 			title.setText(zqtitleName[position]);

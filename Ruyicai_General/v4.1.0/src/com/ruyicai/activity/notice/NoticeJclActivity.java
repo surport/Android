@@ -81,6 +81,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	private NoticeMenuAdapter noticeMenuAdapter;
 	private TextView title,dateshow,xinqishow;
 	private RelativeLayout  relativelayout_center;
+	private int itemId=0;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -483,8 +484,6 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	    noticeMenuAdapter=new NoticeMenuAdapter(this,new OnItemListener(),jcl_data);
 		menu_gridview.setAdapter(noticeMenuAdapter);
 		
-		
-		
 		popupwindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
 		popupwindow.setFocusable(true);
 		popupwindow.setOutsideTouchable(true);
@@ -500,11 +499,15 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
                 }				
 			}
 		});
+		
+		noticeMenuAdapter.setItemSelect(itemId);
+		noticeMenuAdapter.notifyDataSetInvalidated();
 	}
 	
 	public class OnItemListener implements OnClickItem{
 		@Override
 		public void onChickItem(View view, int position) {
+			itemId=position;
 			noticeMenuAdapter.setItemSelect(position);
 			noticeMenuAdapter.notifyDataSetInvalidated();
 			title.setText(titleName[position]);

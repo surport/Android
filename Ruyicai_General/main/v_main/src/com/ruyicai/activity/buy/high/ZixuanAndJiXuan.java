@@ -21,6 +21,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -38,7 +39,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -48,9 +48,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -63,7 +63,6 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
 import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.BuyActivityGroup;
-import com.ruyicai.activity.buy.cq11x5.Cq11Xuan5;
 import com.ruyicai.activity.buy.cq11x5.HistoryNumberView;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.miss.BuyViewItemMiss;
@@ -118,6 +117,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public String lotno, sellWay = MissConstant.SSC_5X_ZX;
 	public String highttype;
 	public int type;
+	public int cqtype=0;
 	public final static int NULL = 0;
 	public final static int ONE = 1;
 	public final static int TWO = 2;
@@ -141,6 +141,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public final static int NMK3_DIFF_THREE = 15;//三不同
 	public final static int NMK3_DIFF_TWO = 16;//二不同
 	public final static int NMK3_THREE_LINK = 17;//三连号
+	
+	public final static int CQ_QY = 20;//前一直选
+	public final static int CQ_QE = 21;//前二直选
+	public final static int CQ_QS = 22;//前三直选
 
 	int iZhuShu;
 	int zhushuforshouyi;
@@ -603,7 +607,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					|| highttype.equals("CQ11X5_PT_QZ3")) {
 				index = areaNums.length - 1 - i;
 			} else if (highttype.equals("DLC")
-					|| highttype.equals("NMK3_TWO_SAME_DAN")) {
+					|| highttype.equals("NMK3_TWOSAME_DAN")) {
 				index = i;
 			}
 			if (missList.size() > 0 && missList.size() > index && !isDanTuo) {
@@ -2215,7 +2219,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				nBallId = iBallId;
 				iBallId = iBallId - areaNums[i].areaNum;
 				if (iBallId < 0) {
-					if (highttype.equals("NMK3-TWOSAME-DAN")) {
+					if (highttype.equals("NMK3_TWOSAME_DAN")) {
 						if (i == 0) {
 							if (areaNums[i + 1].table.ballViewVector.get(
 									nBallId).getShowId() == 1) {
@@ -2912,17 +2916,33 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			if (lotno == Constants.LOTNO_NMK3) {
 				winCodeString = PublicMethod.formatNMK3Num(latestLotteryList
 						.get(position).getWinCode(), 2);
+				holder.winningNumber.setText(winCodeString);
 			} else if (lotno == Constants.LOTNO_SSC) {
 				winCodeString = PublicMethod.formatSSCNum(latestLotteryList
 						.get(position).getWinCode(), 1);
-			} else {
+				holder.winningNumber.setText(winCodeString);
+			} else if (lotno == Constants.LOTNO_CQ_ELVEN_FIVE) {
+				winCodeString = PublicMethod.formatNum(latestLotteryList.get(position).getWinCode(), 2);
+				holder.issue.setTextColor(getResources().getColor(R.color.cq_11_5_text_color));
+				SpannableStringBuilder builder =null;  
+				if(type==CQ_QY){
+					builder=setTextColors(0,3,3,winCodeString.length(),winCodeString);
+					holder.winningNumber.setText(builder); 
+				}else if(type==CQ_QE){
+					builder=setTextColors(0,6,6,winCodeString.length(),winCodeString);
+					holder.winningNumber.setText(builder); 
+				}else if(type==CQ_QS){
+					builder=setTextColors(0,9,9,winCodeString.length(),winCodeString);
+					holder.winningNumber.setText(builder); 
+				}else {
+					holder.winningNumber.setTextColor(getResources().getColor(R.color.cq_11_5_text_color));
+					holder.winningNumber.setText(winCodeString); 
+				}
+			}else {
 				winCodeString = PublicMethod.formatNum(
 						latestLotteryList.get(position).getWinCode(), 2);
+				holder.winningNumber.setText(winCodeString);
 			}
-
-			holder.winningNumber.setText(winCodeString);
-			
-			
 			//来自2013-10-17徐培松  －－－>>>latestlottery_listitem布局
 			if (lotno == Constants.LOTNO_NMK3) {
 				holder.issue.setTextColor(getResources().getColor(R.color.white));
@@ -2935,12 +2955,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 							.setBackgroundResource(R.color.nmk3_latest_lottery_list_two);//0x126800
 				}
 			} else {
-				if (Constants.LOTNO_CQ_ELVEN_FIVE.equals(lotno)) {
-					holder.issue.setTextColor(getResources().getColor(
-							R.color.cq_11_5_text_color));
-					holder.winningNumber.setTextColor(getResources().getColor(
-							R.color.cq_11_5_text_color));
-				}
 				if (position % 2 == 0) {
 					convertView
 							.setBackgroundResource(R.color.latest_lottery_list_one);
@@ -2958,8 +2972,15 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		public TextView issue;
 		public TextView winningNumber;
 	}
+	private SpannableStringBuilder setTextColors(int startOne,int endOne,int startTwo,int endTwo,String winCodeString){
+		SpannableStringBuilder builder = new SpannableStringBuilder(winCodeString);  
+		ForegroundColorSpan redSpan = new ForegroundColorSpan(getResources().getColor(R.color.red));  
+		ForegroundColorSpan whiteSpan = new ForegroundColorSpan(getResources().getColor(R.color.cq_11_5_text_color));
+		builder.setSpan(redSpan, startOne, endOne, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);  
+		builder.setSpan(whiteSpan, startTwo,endTwo, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+		return builder;
+	}
 }
-
 class LatestLotteryInfo {
 	private String batchCode;
 	private String winCode;
