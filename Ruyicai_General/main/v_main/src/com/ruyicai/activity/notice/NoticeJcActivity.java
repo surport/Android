@@ -321,8 +321,12 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 				holder.letPoint.setVisibility(View.VISIBLE);
 				if (!"".equals(info.getLetPoint()) && info.getLetPoint().startsWith("+")) {
 						holder.letPoint.setTextColor(Color.RED);
+						holder.letPoint.setText("("+info.getLetPoint()+")");
+				}else{
+					holder.letPoint.setText("("+info.getLetPoint()+")");
+					holder.letPoint.setTextColor(getResources().getColor(R.color.green_jc));
 				}
-				holder.letPoint.setText("("+info.getLetPoint()+")");
+				
 			} else if (Constants.LOTNO_JCZQ.equals(playMethodType)) {
 				holder.letPoint.setText("0");
 			}

@@ -81,7 +81,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private RelativeLayout relateive_date,relativelayout03;
 	private PopupWindow popupwindow;
 	private NoticeMenuAdapter noticeMenuAdapter;
-	private ImageView right_sanjiao;
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
 		super.onCreate(savedInstanceState);
@@ -373,13 +372,15 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			holder.team.setText(info.getTeam());
 			holder.home.setText(info.getHome());
 			holder.away.setText(info.getAway());
-			if (!"".equals(info.getLetPoint()) && !"0".equals(info.getLetPoint())) {
+			if (!"".equals(info.getLetPoint())) {
 			    holder.letPoint.setVisibility(View.VISIBLE);
 				if(info.getLetPoint().startsWith("+")){
 					holder.letPoint.setTextColor(Color.RED);
 					holder.letPoint.setText("("+info.getLetPoint()+")");
-				}
+				}else if(info.getLetPoint().startsWith("-")){
+					holder.letPoint.setTextColor(getResources().getColor(R.color.green_jc));
 					holder.letPoint.setText("("+info.getLetPoint()+")");
+				}
 			}
 			holder.teamId.setText(info.getTeamId());
 			holder.result.setText(info.getResult());
@@ -445,6 +446,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				itemInfo.setHome(jsonItem.getString("homeTeam"));
 				itemInfo.setAway(jsonItem.getString("guestTeam"));
 				list.add(itemInfo);
+
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
