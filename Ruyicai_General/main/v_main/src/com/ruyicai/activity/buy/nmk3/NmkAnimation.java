@@ -380,7 +380,7 @@ public class NmkAnimation {
 				nmk_ShaiZi2.setBackgroundDrawable(anim2);
 				anim2.start();
 				transView(0, (int) ((-200) * Math.random()), 0,
-						(int) ((-50) * Math.random()), nmk_ShaiZi2);
+						(int) ((100) * Math.random()), nmk_ShaiZi2);
 
 				if(!isTwoDiffActivity()){
 					nmk_ShaiZi3.setBackgroundDrawable(anim3);

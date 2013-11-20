@@ -567,25 +567,30 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			areaNums = new AreaNum[2];
 			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "万位","", false, true, false);
 			areaNums[1] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "千位","", false, true, false);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QE,id, true);
 		}else if (state.equals("PT_QZ3")) {
 			areaNums = new AreaNum[3];
 			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "万位","", false, true, false);
 			areaNums[1] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "千位","", false, true, false);
 			areaNums[2] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "百位","", false, true, false);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QS,id, true);
 		}else if(state.equals("PT_QZ1")){
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QY,id, true);
 		}else if (state.equals("PT_ZU2")) {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 2, 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
 		}else if (state.equals("PT_ZU3")) {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 3, 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
 		} else {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, nums[itemId], 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
 		}
-		createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
 		setBottomView();
 	}
 	/**

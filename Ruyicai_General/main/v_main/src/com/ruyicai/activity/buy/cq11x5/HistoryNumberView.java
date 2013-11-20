@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -22,10 +23,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.cq11x5.HistoryNumberActivity.PrizeInfo;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.util.PublicMethod;
 
 /**
  * 自定义模拟选号控件类:使用Row,NumberRow,SelectRow,Cell,NumberCell,
@@ -37,9 +40,9 @@ import com.ruyicai.constant.Constants;
 public class HistoryNumberView extends View {
 	private static final String TAG = "SimulateSelectNumberView";
 
-	private static final float STANDARD_SCREEN_HEIGHT = 1000.0f;
+//	private static final float STANDARD_SCREEN_HEIGHT = 1000.0f;
 	// 控件缩放比例值
-	private float ratio;
+	private static float ratio;
 
 	static Paint paint;
 
@@ -76,9 +79,16 @@ public class HistoryNumberView extends View {
 
 		invalidate();
 	}
+	
+	private Activity activity;
+	private int screenWith;
 
 	public HistoryNumberView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		//获取屏幕宽度
+		this.activity=(Activity) context;
+		screenWith = PublicMethod.getDisplayWidth(activity);
+//		Toast.makeText(activity, screenWith+"", Toast.LENGTH_SHORT).show();
 
 		setViewAttributes();
 
@@ -100,8 +110,8 @@ public class HistoryNumberView extends View {
 				R.drawable.notice_center_grey, NumberCell.cellWidth,
 				NumberRow.rowHight);
 		LotteryNumberCell.redBallBitmap = getBitmapFromResource(
-				R.drawable.notice_ball_red, NumberCell.cellWidth,
-				NumberRow.rowHight);
+				R.drawable.notice_ball_red, (NumberCell.cellWidth-16*ratio),
+				(NumberRow.rowHight-16*ratio));
 		LotteryNumberCell.blueBallBitmap = getBitmapFromResource(
 				R.drawable.notice_ball_blue, NumberCell.cellWidth,
 				NumberRow.rowHight);
@@ -124,8 +134,8 @@ public class HistoryNumberView extends View {
 				R.drawable.choose_detail, NumberCell.cellWidth, SelectRow.rowHight);
 	}
 
-	private Bitmap getBitmapFromResource(int resourceId, int desWidth,
-			int desHeight) {
+	private Bitmap getBitmapFromResource(int resourceId, float f,
+			float g) {
 		Resources resources = getContext().getResources();
 
 		InputStream inputStream = resources.openRawResource(resourceId);
@@ -136,8 +146,8 @@ public class HistoryNumberView extends View {
 		int bitmapWidth = bitmap.getWidth();
 		int bitmapHeight = bitmap.getHeight();
 
-		float scaleWidth = ((float) desWidth) / bitmapWidth;
-		float scaleHeight = ((float) desHeight) / bitmapHeight;
+		float scaleWidth = ((float) f) / bitmapWidth;
+		float scaleHeight = ((float) g) / bitmapHeight;
 
 		matrix.postScale(scaleWidth, scaleHeight);
 		bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmapWidth, bitmapHeight,
@@ -169,6 +179,21 @@ public class HistoryNumberView extends View {
 	 */
 	private float caculateRatio() {
 		int height = Constants.SCREEN_HEIGHT;
+		//机型适配
+		float STANDARD_SCREEN_HEIGHT=0;
+		if(screenWith==320){
+			STANDARD_SCREEN_HEIGHT=1150;
+		}else if(screenWith==480){
+			STANDARD_SCREEN_HEIGHT=1280;
+		}else if(screenWith==720){
+			STANDARD_SCREEN_HEIGHT=1360;
+		}else if(screenWith==800){
+			STANDARD_SCREEN_HEIGHT=1250;
+		}else if(screenWith==1080){
+			STANDARD_SCREEN_HEIGHT=1380;
+		}else{
+			STANDARD_SCREEN_HEIGHT=1200;
+		}
 
 		float ratio = height / STANDARD_SCREEN_HEIGHT;
 
@@ -299,6 +324,9 @@ public class HistoryNumberView extends View {
 				Cell chileCell = chileRow.getRowCells().get(colum_i);
 
 				if (chileCell instanceof BatchCodeCell) {
+					if(row_i==3){
+						((BatchCodeCell) chileCell).onDrawBatchCode(canvas);
+					}
 					if (row_i != 0) {
 						((BatchCodeCell) chileCell).onDrawBatchCode(canvas);
 					}
@@ -743,7 +771,7 @@ public class HistoryNumberView extends View {
 
 			// 绘制小球
 			if (type == Cell.RED_BALL) {
-				canvas.drawBitmap(redBallBitmap, alignLeft, alignTop, null);
+				canvas.drawBitmap(redBallBitmap, (alignLeft+8*ratio), (alignTop+8*ratio), null);
 			} 
 
 			// 绘制球号

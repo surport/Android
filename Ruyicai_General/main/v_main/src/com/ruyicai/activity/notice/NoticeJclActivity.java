@@ -328,11 +328,14 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 			holder.away.setText(info.getAway());
 			if (Constants.LOTNO_JCLQ_RF.equals(playMethodType)) {
 				holder.letPoint.setVisibility(View.VISIBLE);
+				
 				if (!"".equals(info.getLetPoint()) && info.getLetPoint().startsWith("+")) {
 						holder.letPoint.setTextColor(Color.RED);
+						holder.letPoint.setText(info.getLetPoint());
+				}else{
+					holder.letPoint.setTextColor(getResources().getColor(R.color.green_jc));
+					holder.letPoint.setText(info.getLetPoint());
 				}
-				holder.letPoint.setText(info.getLetPoint());
-				
 			} else if(Constants.LOTNO_JCLQ_DXF.equals(playMethodType)) {
 				holder.daxiaoscore.setVisibility(View.VISIBLE);
 				if (!"".equals(info.getBasePoint())) {

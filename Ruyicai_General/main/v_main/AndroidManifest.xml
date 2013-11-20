@@ -978,7 +978,7 @@
         </activity>
         
         <activity
-            android:name="com.third.wxapi.WXEntryActivity"
+            android:name="com.palmdream.RuyicaiAndroid.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:exported="true">
