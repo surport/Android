@@ -53,6 +53,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 //		sensor.stopAction();
 //		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setTextColor(Color.BLACK);
 	}
 
 	@Override
@@ -69,6 +70,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	 */
 	public void showEditText(){
 		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+		showEditTitle(NULL);
 	}
 	@Override
 	public String isTouzhu() {
@@ -91,6 +93,10 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		//返回总注数
 		return threeSameBallZhuShu + threeSameTongBallZhuShu;
 	}
+	
+	public int getThreeSameBallZhuShu(){
+		return threeSameBallZhuShu;
+	}
 
 	@Override
 	public String getZhuma() {
@@ -104,7 +110,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		String numbersPart = getNumbersPart();
 		String endFlagPart = "^";
 
-		if (getZhuShu() > 1) {
+		if (getThreeSameBallZhuShu() > 1) {
 			zhuMa = playMethodPart + mutiplePart + numberNumsPart + numbersPart
 					+ endFlagPart;
 		} else {
@@ -191,7 +197,7 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 	private String getPlayMethodPart() {
 		String playMethodPart = "";
 
-		if (getZhuShu() > 1) {
+		if (getThreeSameBallZhuShu() > 1) {
 			playMethodPart = "81";
 		} else {
 			playMethodPart = "02";

@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView.BufferType;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -54,13 +55,25 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 //		sensor.stopAction();
 //		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setTextColor(Color.BLACK);
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		return "";
+		int zhuShu = getZhuShu();
+		if (zhuShu == 0) {
+			return "请选择投注号码";
+		} else {
+			return "您已选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
+		}
 	}
-
+	/**
+	 * 投注注数和金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+		showEditTitle(NULL);
+	}
 	@Override
 	public String isTouzhu() {
 		// 点击号码篮后触发判断投注的合法性

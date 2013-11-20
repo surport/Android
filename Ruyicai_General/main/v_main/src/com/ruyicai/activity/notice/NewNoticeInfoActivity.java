@@ -754,7 +754,7 @@ public class NewNoticeInfoActivity extends Activity {
 
 				Intent intent = new Intent(NewNoticeInfoActivity.this,
 						TencentShareActivity.class);
-				intent.putExtra("tencent", LotnoDetailView.shareString);
+				intent.putExtra("tencent", lotnoDetailView.getShareString());
 				intent.putExtra("oauth", tenoAuth);
 				startActivity(intent);
 			}

@@ -249,7 +249,11 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		for (int i = 0; i < childtype.length; i++) {
 			RadioButton radio = new RadioButton(this);
 			radio.setText(childtype[i]);
-			radio.setTextColor(Color.WHITE);
+			if(lotno==Constants.LOTNO_NMK3){
+				radio.setTextColor(Color.WHITE);
+			}else {
+				radio.setTextColor(Color.BLACK);
+			}
 			radio.setId(i);
 			radio.setTextSize(14);
 			radio.setButtonDrawable(R.drawable.radio_select);
@@ -389,7 +393,8 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				LinearLayout zhumaLayout  = (LinearLayout)zhixuanview.findViewById(R.id.zhuma_introduction);
 				zhumaLayout.setVisibility(View.GONE);
 				LinearLayout benNumLayout  = (LinearLayout)zhixuanview.findViewById(R.id.buy_activity_bottom_layout);
-				benNumLayout.setVisibility(View.GONE);
+				benNumLayout.setBackgroundResource(R.drawable.nmk3_title_bar);
+//				benNumLayout.setVisibility(View.GONE);
 				zixuanLayout = (LinearLayout)zhixuanview.findViewById(R.id.sszhixuan_layout);
 //				zixuanLayout.setBackgroundResource(R.drawable.nmk3_bg);//来自2013-10-16徐培松
 				RelativeLayout bottomLayout = (RelativeLayout)zhixuanview.findViewById(R.id.buy_zixuan_relativelayout);
@@ -399,6 +404,9 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				addBtn.setBackgroundResource(R.drawable.nmk3_buy_add_selector);
 				betBtn.setBackgroundResource(R.drawable.nmk3_bet_selector);
 				betBtn.setText("");
+				//shatr
+				textTitle.setVisibility(View.GONE);
+				//end
 				CheckBox lossCheckBox = (CheckBox) zhixuanview
 						.findViewById(R.id.louzhi_check);
 				lossCheckBox

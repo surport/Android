@@ -50,6 +50,7 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 		sensor.stopAction();
 		baseSensor.stopAction();
 		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setTextColor(Color.BLACK);
 	}
 
 	@Override
@@ -58,10 +59,16 @@ public class Nmk3ThreeLinkActivity extends ZixuanAndJiXuan {
 		if (zhuShu == 0) {
 			return "请选择投注号码";
 		} else {
-			return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
+			return "您已选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 		}
 	}
-
+	/**
+	 * 投注注数和金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+		showEditTitle(NULL);
+	}
 	@Override
 	public String isTouzhu() {
 		if (getZhuShu() == 0) {

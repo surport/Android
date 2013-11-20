@@ -527,7 +527,7 @@ public class NoticeActivityGroup extends ActivityGroup {
 			tenoAuth.setOauthToken(tencent_token);
 			tenoAuth.setOauthTokenSecret(tencent_access_token_secret);
 			Intent intent = new Intent(NoticeActivityGroup.this, TencentShareActivity.class);
-			intent.putExtra("tencent", LotnoDetailView.shareString);
+			intent.putExtra("tencent", ((NewNoticeInfoActivity)getCurrentActivity()).lotnoDetailView.getShareString());
 			intent.putExtra("oauth", tenoAuth);
 			NoticeActivityGroup.this.startActivity(intent);
 		}
@@ -539,16 +539,18 @@ public class NoticeActivityGroup extends ActivityGroup {
 		RW.putStringValue("weixin_pengyou", "topengyouquan");
 		Intent intent = new Intent(NoticeActivityGroup.this,
 				WXEntryActivity.class);
-		intent.putExtra("sharecontent",LotnoDetailView.shareString);
+		;
+		intent.putExtra("sharecontent",((NewNoticeInfoActivity)getCurrentActivity()).lotnoDetailView.getShareString());
 		NoticeActivityGroup.this.startActivity(intent);
 		
 	}
    
 	protected void toWeiXin() {
 		RW.putStringValue("weixin_pengyou", "toweixin");
+		
 		Intent intent = new Intent(NoticeActivityGroup.this,
 				WXEntryActivity.class);
-		intent.putExtra("sharecontent",LotnoDetailView.shareString);
+		intent.putExtra("sharecontent",((NewNoticeInfoActivity)getCurrentActivity()).lotnoDetailView.getShareString());
 		NoticeActivityGroup.this.startActivity(intent);	
 	}
 	
@@ -606,7 +608,7 @@ public class NoticeActivityGroup extends ActivityGroup {
 		Token accessToken = new Token(token, Weibo.getAppSecret());
 		accessToken.setExpiresIn(expires_in);
 		Weibo.getInstance().setAccessToken(accessToken);
-		share2weibo("");
+		share2weibo(((NewNoticeInfoActivity)getCurrentActivity()).lotnoDetailView.getShareString());
 		if (isSinaTiaoZhuan) {
 			Intent intent = new Intent();
 			intent.setClass(context, ShareActivity.class);
