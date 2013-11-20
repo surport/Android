@@ -115,7 +115,16 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	}
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
-		return "";
+		int zhuShu = getZhuShu();
+		return "您以选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
+	}
+	
+	/**
+	 * 设置投注金额提示
+	 */
+	public void showEditText(){
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
+		showEditTitle(NULL);
 	}
 	
 	/**
@@ -385,6 +394,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 					&& !state.equals("PT_ZU2") && !state.equals("PT_ZU3")) {
 				test = new HistoryNumberActivity(this);
 			}
+			showEditText();
 			break;
 		default:
 			break;

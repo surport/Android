@@ -797,6 +797,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			simulateSelectNumberView = (HistoryNumberView)zhixuanview. findViewById(R.id.simulate_selectnumber_view);
 			historyBtn=(Button)zhixuanview.findViewById(R.id.buy_choose_history_list);
 			listView=(LinearLayout)zhixuanview.findViewById(R.id.buy_choose_history_listview);
+			textTitle.setVisibility(View.GONE);
 			historyBtn.setOnClickListener(new OnClickListener(){
 
 				@Override

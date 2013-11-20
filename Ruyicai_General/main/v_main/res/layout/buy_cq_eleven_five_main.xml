@@ -104,7 +104,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:paddingLeft="4dip"
-                android:text="至少选择2个号码 猜中开奖的任意2个号即奖6元"
+                android:text="猜中开奖的任意2个号即奖6元"
                 android:textColor="@color/cq_11_5_text_color"
                 android:textSize="13sp" >
             </TextView>
@@ -114,7 +114,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="4.0dip"
                 android:layout_toLeftOf="@+id/cq11xuan5_miss_checkbox"
                 android:text="遗漏"
                 android:textColor="@color/cq_11_5_text_color"
@@ -127,7 +126,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="4.0dip"
                 android:checked="true"
                 android:button="@drawable/chongqing_yilou_selector" />
         </RelativeLayout>
