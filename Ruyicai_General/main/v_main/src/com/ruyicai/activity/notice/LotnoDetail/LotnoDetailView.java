@@ -27,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.palmdream.RuyicaiAndroid.wxapi.WXEntryActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.net.newtransaction.NoticePrizeDetailInterface;
 import com.ruyicai.util.JsonTools;
@@ -40,7 +41,6 @@ import com.third.share.Token;
 import com.third.share.Weibo;
 import com.third.share.WeiboDialogListener;
 import com.third.tencent.TencentShareActivity;
-import com.third.wxapi.WXEntryActivity;
 import com.umeng.analytics.MobclickAgent;
 
 /**

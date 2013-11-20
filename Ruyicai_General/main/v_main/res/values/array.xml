@@ -181,6 +181,7 @@
         <item>竞彩篮球</item>
         <item>竞彩足球</item>
         <item>北京单场</item>
+        <item>重庆11选5</item>
     </string-array>
     
     <string-array name="track_lotno_list">
@@ -198,6 +199,7 @@
         <item>排列五</item>
         <item>十一运夺金</item>
 		<item>广东快乐十分</item>
+		<item>重庆11选5</item>
     </string-array>
     
     <string-array name="join_lotno_list">
@@ -234,7 +236,6 @@
         <item>全部时间</item>
         <item>最近1个月</item>
         <item>最近2个月</item>
-        <item>最近3个月</item>
         <item>最近1周</item>
     </string-array>
     
