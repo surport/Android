@@ -52,7 +52,7 @@
                 android:layout_height="100dip"
                 android:layout_gravity="center"
                 android:layout_marginLeft="-100px"
-                android:layout_marginTop="-150px" />
+                android:layout_marginTop="-120px" />
 
             <ImageView
                 android:id="@+id/nmk_shaizi2"
@@ -60,7 +60,7 @@
                 android:layout_height="100dip"
                 android:layout_gravity="center"
                 android:layout_marginLeft="100px"
-                android:layout_marginTop="-150px" />
+                android:layout_marginTop="-120px" />
 
             <ImageView
                 android:id="@+id/nmk_shaizi3"
