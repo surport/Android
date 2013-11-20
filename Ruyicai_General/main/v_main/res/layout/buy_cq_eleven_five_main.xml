@@ -58,8 +58,20 @@
                 android:background="@drawable/nmk3_jixuan"
                 android:paddingLeft="3dip"
                 android:paddingRight="3dip">
+            </Button><!-- 走势图按钮 -->
+
+            <Button
+                android:id="@+id/cq11xuan5_zoushitu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/cq11xuan5_jisuan_button"
+                android:background="@drawable/nmk3_zoushitu"
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip" >
             </Button>
-			<!-- 投注提示信息 -->
+<!-- 投注提示信息 -->
             <TextView
                 android:id="@+id/last_batchcode_textlable_red"
                 android:layout_width="wrap_content"

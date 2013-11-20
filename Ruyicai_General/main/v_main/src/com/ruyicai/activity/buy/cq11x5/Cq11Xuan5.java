@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import com.ruyicai.activity.buy.cq11x5.ChoosePTPopuAdapter.OnChickItem;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
+import com.ruyicai.activity.notice.NoticeActivityGroup;
 import com.ruyicai.code.cq11xuan5.Cq11xuan5Code;
 import com.ruyicai.code.cq11xuan5.Cq11xuan5DanTuoCode;
 import com.ruyicai.constant.Constants;
@@ -58,6 +60,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	private TextView endTimeTextView;
 	/**机选按钮*/
 	private Button jixuanButton;
+	private Button zoushiButton;
 	/**彩票信息栏*/
 	private RelativeLayout lotteryinfoRelativeLayout;
 	/**选号按钮图片*/
@@ -408,6 +411,18 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		titleBarTextView = (TextView) findViewById(R.id.cq11xuan5_title_textview);
 		playMethodTextView = (TextView) findViewById(R.id.cq11xuan5_palymethod_textview);
 		endTimeTextView = (TextView) findViewById(R.id.cq11xuan5_endtime_textview);
+		zoushiButton = (Button) findViewById(R.id.cq11xuan5_zoushitu_button);
+		zoushiButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW;
+				Intent intent = new Intent(Cq11Xuan5.this,
+						NoticeActivityGroup.class);
+				intent.putExtra("position", 0);
+				startActivity(intent);
+			}
+		});
 		jixuanButton = (Button) findViewById(R.id.cq11xuan5_jisuan_button);
 		jixuanButton.setOnClickListener(new OnClickListener() {
 			
