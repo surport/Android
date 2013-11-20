@@ -42,7 +42,7 @@ public class HistoryNumberView extends View {
 
 //	private static final float STANDARD_SCREEN_HEIGHT = 1000.0f;
 	// 控件缩放比例值
-	private float ratio;
+	private static float ratio;
 
 	static Paint paint;
 
@@ -110,8 +110,8 @@ public class HistoryNumberView extends View {
 				R.drawable.notice_center_grey, NumberCell.cellWidth,
 				NumberRow.rowHight);
 		LotteryNumberCell.redBallBitmap = getBitmapFromResource(
-				R.drawable.notice_ball_red, (NumberCell.cellWidth-8),
-				(NumberRow.rowHight-8));
+				R.drawable.notice_ball_red, (NumberCell.cellWidth-16*ratio),
+				(NumberRow.rowHight-16*ratio));
 		LotteryNumberCell.blueBallBitmap = getBitmapFromResource(
 				R.drawable.notice_ball_blue, NumberCell.cellWidth,
 				NumberRow.rowHight);
@@ -134,8 +134,8 @@ public class HistoryNumberView extends View {
 				R.drawable.choose_detail, NumberCell.cellWidth, SelectRow.rowHight);
 	}
 
-	private Bitmap getBitmapFromResource(int resourceId, int desWidth,
-			int desHeight) {
+	private Bitmap getBitmapFromResource(int resourceId, float f,
+			float g) {
 		Resources resources = getContext().getResources();
 
 		InputStream inputStream = resources.openRawResource(resourceId);
@@ -146,8 +146,8 @@ public class HistoryNumberView extends View {
 		int bitmapWidth = bitmap.getWidth();
 		int bitmapHeight = bitmap.getHeight();
 
-		float scaleWidth = ((float) desWidth) / bitmapWidth;
-		float scaleHeight = ((float) desHeight) / bitmapHeight;
+		float scaleWidth = ((float) f) / bitmapWidth;
+		float scaleHeight = ((float) g) / bitmapHeight;
 
 		matrix.postScale(scaleWidth, scaleHeight);
 		bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmapWidth, bitmapHeight,
@@ -771,7 +771,7 @@ public class HistoryNumberView extends View {
 
 			// 绘制小球
 			if (type == Cell.RED_BALL) {
-				canvas.drawBitmap(redBallBitmap, (alignLeft+4), (alignTop+3), null);
+				canvas.drawBitmap(redBallBitmap, (alignLeft+8*ratio), (alignTop+8*ratio), null);
 			} 
 
 			// 绘制球号
