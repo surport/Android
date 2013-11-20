@@ -83,7 +83,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	private static final String PT="pt";//普通
 	private static final String DT="dt";//胆拖
 	private String showMessage = "";
-	private int itemId=0;
+	private int itemId=3;
 	private int checkedId;
 	public AddView addView = new AddView(this);
 
@@ -100,12 +100,13 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		layoutMain = inflater.inflate(R.layout.buy_cq_eleven_five_main, null);
 		setContentView(layoutMain);
 		highttype = "CQ_ELEVEN_FIVE";
-		state = "PT_R2";
+		state = "PT_R5";
 		initShow();
 		setIssue(lotno);
 		lotnoStr = lotno;
 		action();
-		setTitle("任选二");
+		setTitle("任选五");
+		setDtBetPrompt(3);
 		latestLotteryList.setVisibility(View.GONE);
 	}
 	@Override
