@@ -284,6 +284,8 @@ public class High_Frequencyrevenue_Recovery extends Activity implements HandlerM
 			title.setText("广东快乐十分-收益率追号");
 		}else if(lotnostr.equals(Constants.LOTNO_NMK3)){
 			title.setText("快三-收益率追号");
+		}else if(lotnostr.equals(Constants.LOTNO_CQ_ELVEN_FIVE)){
+			title.setText("重庆11选5-收益率追号");
 		}
 		ListView shouyilist = (ListView) v.findViewById(R.id.shouyilist);
 		Yieldadapter adapter = new Yieldadapter(
