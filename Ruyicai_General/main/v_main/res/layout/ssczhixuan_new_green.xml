@@ -349,7 +349,7 @@
                 android:ellipsize="none"
                 android:paddingRight="3dip"
                 android:singleLine="true"
-                android:textColor="@color/red"
+                android:textColor="@color/black"
                 android:textSize="13dip" >
             </EditText>
         </LinearLayout>
