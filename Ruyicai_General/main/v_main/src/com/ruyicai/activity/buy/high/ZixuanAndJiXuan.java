@@ -613,10 +613,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			}
 			if (missList.size() > 0 && missList.size() > index && !isDanTuo) {
 				PublicMethod.setMissText(areaNums[i].table.textList,
-						missList.get(index));
+						missList.get(index),highttype,context);
 			} else if (missList.size() > 0) {
 				PublicMethod.setMissText(areaNums[i].table.textList,
-						missList.get(0));
+						missList.get(0),highttype,context);
 			}
 		}
 	}
@@ -803,6 +803,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			simulateSelectNumberView = (HistoryNumberView)zhixuanview. findViewById(R.id.simulate_selectnumber_view);
 			historyBtn=(Button)zhixuanview.findViewById(R.id.buy_choose_history_list);
 			listView=(LinearLayout)zhixuanview.findViewById(R.id.buy_choose_history_listview);
+			textTitle.setVisibility(View.GONE);
 			historyBtn.setOnClickListener(new OnClickListener(){
 
 				@Override
@@ -1019,7 +1020,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			String missValue = missValues.get(iBallViewNo);
 			textView.setText(missValue);
 			if (rankInt[0] == Integer.parseInt(missValue) || rankInt[1] == Integer.parseInt(missValue)) {
-				textView.setTextColor(Color.RED);
+				textView.setTextColor(Color.BLUE);
 			}
 		} else {
 			textView.setText("0");

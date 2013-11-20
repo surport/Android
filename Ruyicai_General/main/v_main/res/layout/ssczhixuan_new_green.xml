@@ -306,8 +306,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/buy_zixuan_relativelayout"
             android:background="@drawable/buy_zhuma_bg"
-            android:gravity="center_vertical"
-            android:visibility="gone" >
+            android:gravity="center_vertical" >
 
             <TextView
                 android:id="@+id/buy_zixuan_text_sum_money"

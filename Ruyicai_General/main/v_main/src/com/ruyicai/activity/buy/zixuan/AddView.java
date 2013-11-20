@@ -17,6 +17,7 @@ import android.R.integer;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.SpannableStringBuilder;
@@ -178,7 +179,6 @@ public class AddView {
 		xuanhao.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				dialog.dismiss();
-				updateTextNum();
 			}
 		});
 
@@ -188,7 +188,6 @@ public class AddView {
 		touzhu.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				dialog.dismiss();
-				updateTextNum();
 				if (codeList.size() > 0) {
 					if (zJActivity != null) {
 						if (isZiXuan) {
@@ -213,6 +212,14 @@ public class AddView {
 			}
 		});
 		updateInfoText();
+		
+		dialog.setOnDismissListener(new OnDismissListener() {
+			
+			@Override
+			public void onDismiss(DialogInterface dialog) {
+				updateTextNum();
+			}
+		});
 	}
 
 	private void isZiXuan() {

@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -147,13 +149,11 @@ public class AddViewMiss {
 		xuanhao.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				dialog.dismiss();
-				updateTextNum();
 			}
 		});
 		touzhu.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				dialog.dismiss();
-				updateTextNum();
 				if (codeList.size() > 0) {
 					if (zJActivity != null) {
 						if (isZiXuan) {
@@ -175,6 +175,13 @@ public class AddViewMiss {
 							context.getString(R.string.buy_add_dialog_toast_msg),
 							Toast.LENGTH_SHORT).show();
 				}
+			}
+		});
+		dialog.setOnDismissListener(new OnDismissListener() {
+			
+			@Override
+			public void onDismiss(DialogInterface dialog) {
+				updateTextNum();
 			}
 		});
 		updateInfoText();

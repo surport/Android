@@ -54,6 +54,7 @@ import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
+import android.webkit.WebView.HitTestResult;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -1153,6 +1154,48 @@ public class PublicMethod {
 
 	/**
 	 * 遗漏值赋值
+	 * 
+	 * @param highttype
+	 */
+	public static void setMissText(List<TextView> textList,
+			List<String> missValues, String highttype, Context context) {
+		int[] rankInt = null;
+		if (missValues != null) {
+			rankInt = rankList(missValues);
+		}
+		for (int i = 0; i < textList.size(); i++) {
+			String missValue = missValues.get(i);
+			textList.get(i).setText(missValue);
+			if (rankInt[0] == Integer.parseInt(missValue)
+					|| rankInt[1] == Integer.parseInt(missValue)) {
+				if (highttype.equals("CQ_ELEVEN_FIVE")
+						|| highttype.equals("CQ11X5_PT_QZ1")
+						|| highttype.equals("CQ11X5_PT_QZ2")
+						|| highttype.equals("CQ11X5_PT_QZ3")) {
+					textList.get(i).setTextColor(
+							context.getResources().getColor(
+									R.color.cq_11_5_hot_miss));
+				} else {
+					textList.get(i).setTextColor(Color.RED);
+				}
+
+			} else {
+				if (highttype.equals("CQ_ELEVEN_FIVE")
+						|| highttype.equals("CQ11X5_PT_QZ1")
+						|| highttype.equals("CQ11X5_PT_QZ2")
+						|| highttype.equals("CQ11X5_PT_QZ3")) {
+					textList.get(i).setTextColor(
+							context.getResources().getColor(
+									R.color.cq_11_5_coll_miss));
+				}
+			}
+		}
+	}
+
+	/**
+	 * 遗漏值赋值
+	 * 
+	 * @param highttype
 	 */
 	public static void setMissText(List<TextView> textList,
 			List<String> missValues) {
