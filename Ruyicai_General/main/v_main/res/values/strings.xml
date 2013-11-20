@@ -1061,7 +1061,7 @@
      <string name="cq_11_5_prize2_rx_7">猜中开奖的全部5个号即奖26元</string>
      <string name="cq_11_5_prize2_rx_8">猜中开奖的全部5个号即奖9元</string>
         <!--重庆11选五  普通 前一 -->
-     <string name="cq_11_5_prize2_pt_qy">至少选择1个号码 猜中开奖的第一位即奖13元</string>
+     <string name="cq_11_5_prize2_pt_qy">猜中开奖的第一位即奖13元</string>
      <!--重庆11选五  普通 前二直选 -->
      <string name="cq_11_5_prize2_pt_qe_zhix">猜中与开奖前2位一一对应即奖130元</string>
        <!--重庆11选五  普通 前二组选 -->

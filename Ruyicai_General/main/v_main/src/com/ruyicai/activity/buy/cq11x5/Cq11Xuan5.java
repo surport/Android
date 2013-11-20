@@ -873,6 +873,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			popupWindow.dismiss();
 			setPtBetPrompt(position);
 			action();
+			controlShowMiss(missCheckBox.isChecked());
 		}
 			
 	}
@@ -897,6 +898,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			popupWindow.dismiss();
 			setDtBetPrompt(position);
 			action();
+			controlShowMiss(missCheckBox.isChecked());
 		}
 	}
 	
