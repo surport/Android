@@ -82,25 +82,20 @@ public class HistoryNumberActivity {
 
 		new Thread(new Runnable() {
 			public void run() {
-
-				JSONObject prizeInfoJsonObject = getLossValueFromIntent();
+				Log.i("cq11x5", "prizeinfo");
+				PrizeInfoInterface prizeInfoInterface = PrizeInfoInterface
+						.getInstance();
+				JSONObject prizeInfoJsonObject = prizeInfoInterface.getNoticePrizeInfo(
+						Constants.LOTNO_CQ_ELVEN_FIVE, String.valueOf(pageIndex),
+						String.valueOf(maxResult));
+				Log.i("cq11x5", prizeInfoJsonObject.toString());
 				analyzeJsonPrizeInfo(prizeInfoJsonObject);
 
 				handler.sendMessage(msg);
 			}
 		}).start();
 	}
-
-	private JSONObject getLossValueFromIntent() {
-		PrizeInfoInterface prizeInfoInterface = PrizeInfoInterface
-				.getInstance();
-		JSONObject prizeInfoJsonObject = prizeInfoInterface.getNoticePrizeInfo(
-				Constants.LOTNO_SSQ, String.valueOf(pageIndex),
-				String.valueOf(maxResult));
-
-		return prizeInfoJsonObject;
-	}
-
+	
 	private void analyzeJsonPrizeInfo(JSONObject prizeInfoJsonObject) {
 		try {
 			String messageString = prizeInfoJsonObject.getString("message");
@@ -146,7 +141,7 @@ public class HistoryNumberActivity {
 
 		private List<Integer> winRedCodes;
 //		private List<Integer> winBlueCodes;
-		private static final int WINCODE_SIZE = 7;
+		private static final int WINCODE_SIZE = 5;
 		
 		public String getBatchCode() {
 			return batchCode;
@@ -159,12 +154,7 @@ public class HistoryNumberActivity {
 		public void setWinCodes(String winCode) {
 			for (int i = 0; i < WINCODE_SIZE; i++) {
 				String childCode = winCode.substring(i * 2, i * 2 + 2);
-				if (i == WINCODE_SIZE - 1) {
-//					winBlueCodes.add(Integer.valueOf(childCode));
-				} else {
-					winRedCodes.add(Integer.valueOf(childCode));
-				}
-
+				winRedCodes.add(Integer.valueOf(childCode));
 			}
 		}
 

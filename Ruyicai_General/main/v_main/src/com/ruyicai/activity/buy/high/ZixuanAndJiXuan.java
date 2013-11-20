@@ -326,6 +326,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	protected boolean historyFlag=false;
 	protected LinearLayout listView;
 	protected HistoryNumberView simulateSelectNumberView;
+	protected Button buy_choose_history_list;
 
 
 	/**
@@ -789,6 +790,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			View zhixuanview = inflater.inflate(R.layout.ssczhixuan_new_green,null);
 			latestLotteryList = (ListView) zhixuanview.findViewById(R.id.buy_zixuan_latest_lottery);
 			simulateSelectNumberView = (HistoryNumberView) zhixuanview.findViewById(R.id.simulate_selectnumber_view);
+			buy_choose_history_list=(Button)zhixuanview.findViewById(R.id.buy_choose_history_list);
 			initZixuanView(zhixuanview);
 			initViewItem(areaNum, zhixuanview, isMiss, type);
 			initBotm(zhixuanview);
@@ -2907,7 +2909,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				batchCodeString.append("第").append(batchCode.substring(0, 8))
 						.append("期");
 			} else {
-				batchCodeString.append("第").append(batchCode.substring(0, 8))
+				batchCodeString.append(batchCode.substring(0, 8))
 						.append("-").append(batchCode.substring(8)).append("期");
 			}
 
