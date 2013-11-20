@@ -582,11 +582,11 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		}else if (state.equals("PT_ZU2")) {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 2, 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
-			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QE,id, true);
 		}else if (state.equals("PT_ZU3")) {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, 3, 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
-			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QS,id, true);
 		} else {
 			areaNums = new AreaNum[1];
 			areaNums[0] = new AreaNum(cqArea, nums[itemId], 11, BallResId, 0, 1,Color.RED, "","", false, true, false);
@@ -620,7 +620,14 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		areaNums[0] = new AreaNum(cqArea, 1, dtNum[itemId], BallResId, 0, 1,Color.RED, "胆码",dtDPrompt(itemId), false, true, true);
 		areaNums[1] = new AreaNum(cqArea, 10, 10, BallResId, 0, 1,Color.RED, "拖码",dtTPrompt, false, true, true);
 		baseSensor.stopAction();
-		createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
+		if(state.equals("DT_ZU2")){
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QE,id, true);
+		}else if(state.equals("DT_ZU3")){
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.CQ_QS,id, true);
+		}else{
+			createViewCQ(areaNums, sscCode, ZixuanAndJiXuan.NULL,id, true);
+		}
+		
 		setBottomView();
 	}
 	/**
