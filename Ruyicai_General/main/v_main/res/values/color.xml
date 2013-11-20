@@ -70,4 +70,7 @@
     
     <color name="cq_11_5_text_color">#007811</color>
     <color name="green_jc">#18855D</color>
+    
+    <color name="cq_11_5_hot_miss">#d18f57</color>
+    <color name="cq_11_5_coll_miss">#727290</color>
 </resources>
