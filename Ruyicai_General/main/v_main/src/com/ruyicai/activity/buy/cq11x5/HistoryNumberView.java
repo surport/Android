@@ -110,8 +110,8 @@ public class HistoryNumberView extends View {
 				R.drawable.notice_center_grey, NumberCell.cellWidth,
 				NumberRow.rowHight);
 		LotteryNumberCell.redBallBitmap = getBitmapFromResource(
-				R.drawable.notice_ball_red, (NumberCell.cellWidth-16*ratio),
-				(NumberRow.rowHight-16*ratio));
+				R.drawable.notice_ball_red, (NumberCell.cellWidth-8*ratio),
+				(NumberRow.rowHight-8*ratio));
 		LotteryNumberCell.blueBallBitmap = getBitmapFromResource(
 				R.drawable.notice_ball_blue, NumberCell.cellWidth,
 				NumberRow.rowHight);
@@ -203,7 +203,7 @@ public class HistoryNumberView extends View {
 	private void initViewPaint() {
 		paint = new Paint();
 
-		paint.setTextSize(20 * ratio);
+		paint.setTextSize(30 * ratio);
 		paint.setColor(Color.BLACK);
 		paint.setTextAlign(Align.CENTER);
 		paint.setAntiAlias(true);
@@ -355,11 +355,11 @@ public class HistoryNumberView extends View {
 	protected static String formatNumberToTwoPlace(int number) {
 		String formatString = null;
 
-		if (number < 10) {
-			formatString = "0" + number;
-		} else {
+//		if (number < 10) {
+//			formatString = "0" + number;
+//		} else {
 			formatString = String.valueOf(number);
-		}
+//		}
 
 		return formatString;
 	}
@@ -655,7 +655,9 @@ public class HistoryNumberView extends View {
 		}
 
 		public void onDrawBatchCode(Canvas canvas) {
-			canvas.drawText(batchCode+"期", textAlignLeft, textAlignTop, paint);
+			String childCode = batchCode.substring(8, batchCode.length());
+			System.out.println("childCode......="+childCode);
+			canvas.drawText(childCode+"期", textAlignLeft, textAlignTop, paint);
 		}
 
 		// add by zhangkaikai for the color of qihao is baise bug
@@ -771,7 +773,7 @@ public class HistoryNumberView extends View {
 
 			// 绘制小球
 			if (type == Cell.RED_BALL) {
-				canvas.drawBitmap(redBallBitmap, (alignLeft+8*ratio), (alignTop+8*ratio), null);
+				canvas.drawBitmap(redBallBitmap, (alignLeft+4*ratio), (alignTop+4*ratio), null);
 			} 
 
 			// 绘制球号

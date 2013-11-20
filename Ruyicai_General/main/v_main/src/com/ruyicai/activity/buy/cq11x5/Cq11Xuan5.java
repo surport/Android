@@ -625,6 +625,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 				||state.equals("DT_ZU3")){
 			latestLotteryList.setVisibility(View.VISIBLE);
 			simulateSelectNumberView.setVisibility(View.GONE);
+			buy_choose_history_list.setVisibility(View.GONE);
 		}else {
 			latestLotteryList.setVisibility(View.GONE);
 			simulateSelectNumberView.setVisibility(View.VISIBLE);
