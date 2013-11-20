@@ -125,7 +125,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 	
 	private String[] imageTitle = { "合买大厅", /*"如意竞猜",*/ "双色球", "大乐透", "福彩3D", "江西11选5",
 			"时时彩", "竞彩足球", "快三", "11运夺金", "专家荐号", "广东11选5", "排列三", "七乐彩",
-			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" ,"重庆11选五"};
+			"22选5", "排列五", "七星彩", "足彩", "竞彩篮球", "广东快乐十分", "北京单场" ,"重庆11选5"};
 
 
 	private final Class[] cla = { JoinInfoActivity.class, /*RuyiGuessActivity.class,*/ 
