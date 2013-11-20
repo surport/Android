@@ -65,7 +65,8 @@ public class BetQueryActivity extends InquiryParentActivity implements HandlerMs
 			Constants.LOTNO_DLT, Constants.LOTNO_SSC, Constants.LOTNO_QLC,
 			Constants.LOTNO_QXC, Constants.LOTNO_PL3, Constants.LOTNO_PL5, 
 			Constants.LOTNO_eleven, Constants.LOTNO_ten, Constants.LOTNO_ZC, 
-			Constants.LOTNO_JCL, Constants.LOTNO_JCZ, Constants.LOTNO_BJ_SINGLE};
+			Constants.LOTNO_JCL, Constants.LOTNO_JCZ, Constants.LOTNO_BJ_SINGLE,
+			Constants.LOTNO_CQ_ELVEN_FIVE};
 	
 	/**
 	 * 中奖状态查询请求参数数组
