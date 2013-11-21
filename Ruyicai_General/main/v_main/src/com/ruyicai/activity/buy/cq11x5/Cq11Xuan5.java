@@ -15,8 +15,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,15 +31,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BuyGameDialog;
 import com.ruyicai.activity.buy.cq11x5.ChooseDTPopuAdapter.OnDtChickItem;
 import com.ruyicai.activity.buy.cq11x5.ChoosePTPopuAdapter.OnChickItem;
 import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.activity.buy.zixuan.AddView;
 import com.ruyicai.activity.buy.zixuan.AddView.CodeInfo;
+import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.notice.NoticeActivityGroup;
+import com.ruyicai.activity.usercenter.BetQueryActivity;
 import com.ruyicai.code.cq11xuan5.Cq11xuan5Code;
 import com.ruyicai.code.cq11xuan5.Cq11xuan5DanTuoCode;
 import com.ruyicai.constant.Constants;
+import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.jixuan.Balls;
 import com.ruyicai.jixuan.DlcRxBalls;
 import com.ruyicai.json.miss.CQ11X5MissJson;
@@ -47,6 +53,7 @@ import com.ruyicai.pojo.AreaNum;
 import com.ruyicai.util.CheckUtil;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 
 public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	/** 标题栏*/
@@ -83,6 +90,11 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	private MyGridView mGridViewFirst,mGridViewSecond;
 	private PopupWindow popupWindow;
 	private Button returnBtn;
+	private BuyGameDialog gameDialog;
+    private Button imgIcon;
+    private PopupWindow popupwindow;
+    private String lotNo=Constants.LOTNO_CQ_ELVEN_FIVE;
+    private Handler gameHandler=new Handler();
 	private int lottypeIndex = 0;
 	private static final String PT="pt";//普通
 	private static final String DT="dt";//胆拖
@@ -426,6 +438,26 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			}
 		});
 		jixuanButton = (Button) findViewById(R.id.cq11xuan5_jisuan_button);
+		
+		imgIcon=(Button) findViewById(R.id.layout_main_img_return);
+		returnBtn=(Button) findViewById(R.id.refresh_code);
+		returnBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				test = new HistoryNumberActivity(Cq11Xuan5.this);
+			}
+		});
+		
+		imgIcon.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				createDialog();
+			}
+		});
+		
+		
 		jixuanButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -441,14 +473,22 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 				controlShowMiss(isChecked);
 			}
 		});
-		titleBarRelativeLayout = (RelativeLayout) findViewById(R.id.cq11xuan5_title_relativelayout);
-		titleBarRelativeLayout.setOnClickListener(new OnClickListener() {
-
+//		titleBarRelativeLayout = (RelativeLayout) findViewById(R.id.cq11xuan5_title_relativelayout);
+//		titleBarRelativeLayout.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				showPlayMethodMenuDialog();
+//			}
+//		});
+		
+		titleBarTextView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				showPlayMethodMenuDialog();
 			}
 		});
+		
 	}
 	
 	private void controlShowMiss(boolean isChecked) {
@@ -841,7 +881,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.update();
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
-		popupWindow.showAsDropDown(titleBarRelativeLayout);
+		popupWindow.showAsDropDown(titleBarTextView);
 		
 		if(playMethodTag==1){
 			showMenuAdapterFirst.setItemSelect(itemId);
@@ -915,4 +955,122 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			codeInfo.setTouZhuType("dantuo");
 		}
 	}
+	
+	/**
+	 * 创建下拉列表
+	 */
+	private void createDialog() {
+		LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View popupView = (LinearLayout) inflate.inflate(
+				R.layout.buy_group_window, null);
+		// 如果是双色球，在popupwindow中添加模拟选号选项
+		popupwindow = new PopupWindow(popupView, LayoutParams.FILL_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		popupwindow.setTouchable(true); // 设置PopupWindow可触摸
+		popupwindow.setOutsideTouchable(true);
+		popupView.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+					popupwindow = null;
+				}
+				return false;
+			}
+		});
+		popupwindow.showAsDropDown(imgIcon);
+		// 玩法介绍
+		final LinearLayout layoutGame = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout1);
+		layoutGame.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				layoutGame.setBackgroundResource(R.drawable.buy_group_layout_b);
+				if (gameDialog == null) {
+					gameDialog = new BuyGameDialog(Cq11Xuan5.this, lotNo, gameHandler);
+				}
+				gameDialog.showDialog();
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+			}
+		});
+
+		// 历史开奖
+		final LinearLayout layoutHosity = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout2);
+		layoutHosity.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				layoutHosity
+						.setBackgroundResource(R.drawable.buy_group_layout_b);
+				
+				// 跳转到重庆11-5子列表中
+				if (lotNo == Constants.LOTNO_CQ_ELVEN_FIVE) {
+					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW;
+					Intent intent = new Intent(Cq11Xuan5.this,NoticeActivityGroup.class);
+					intent.putExtra("position", 1);
+					startActivity(intent);
+				}
+				
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+			}
+
+		});
+
+		// 投注查询
+		final LinearLayout layoutQuery = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout4);
+		layoutQuery.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RWSharedPreferences shellRW = new RWSharedPreferences(Cq11Xuan5.this,
+						"addInfo");
+				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
+				if (userno == null || userno.equals("")) {
+					Intent intentSession = new Intent(Cq11Xuan5.this, UserLogin.class);
+					startActivity(intentSession);
+				} else {
+					Intent intent = new Intent(Cq11Xuan5.this,
+							BetQueryActivity.class);
+					intent.putExtra("lotno", lotNo);
+					startActivity(intent);
+				}
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+				}
+			}
+
+		});
+		final LinearLayout layoutParentLuck = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_one_layout3);
+		final LinearLayout layoutPicture = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_layout6);
+		final LinearLayout layoutParentPicture = (LinearLayout) popupView
+				.findViewById(R.id.buy_group_one_layout6);
+
+			layoutParentPicture.setVisibility(View.VISIBLE);
+			layoutPicture.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					layoutPicture
+							.setBackgroundResource(R.drawable.buy_group_layout_b);
+					// 跳转到重庆11-5子列表中
+					if (lotNo == Constants.LOTNO_CQ_ELVEN_FIVE) {
+						NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW;
+						Intent intent = new Intent(Cq11Xuan5.this,NoticeActivityGroup.class);
+						intent.putExtra("position",0);
+						startActivity(intent);
+					}
+					if (popupwindow != null && popupwindow.isShowing()) {
+						popupwindow.dismiss();
+					}
+				}
+
+			});
+			layoutParentLuck.setVisibility(LinearLayout.GONE);
+	}
+	
 }
