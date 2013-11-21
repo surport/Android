@@ -109,7 +109,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		lotnoStr = lotno;
 		action();
 		setTitle("任选五");
-		setDtBetPrompt(3);
+		setPtBetPrompt(3);
 		latestLotteryList.setVisibility(View.GONE);
 	}
 	@Override
@@ -748,6 +748,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		default:
 			break;
 		}
+		jixuanButton.setVisibility(View.VISIBLE);
 	}
 	/**
 	 * 胆拖投注提示
@@ -788,6 +789,8 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		default:
 			break;
 		}
+		
+		jixuanButton.setVisibility(View.GONE);
 	}
 	/**
 	 * 设置标题
