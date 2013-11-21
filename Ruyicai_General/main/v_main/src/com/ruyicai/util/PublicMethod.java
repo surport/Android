@@ -73,6 +73,7 @@ import android.widget.Toast;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.DirectPayActivity;
+import com.ruyicai.activity.buy.cq11x5.Cq11Xuan5;
 import com.ruyicai.activity.buy.dlc.Dlc;
 import com.ruyicai.activity.buy.dlt.Dlt;
 import com.ruyicai.activity.buy.eleven.Eleven;
@@ -689,6 +690,8 @@ public class PublicMethod {
 				|| lotNo.equals(Constants.LOTNO_JCLQ_SFC)
 				|| lotNo.equals(Constants.LOTNO_JCLQ_DXF)) {
 			intent = new Intent(context, LqMainActivity.class);
+		}else if(lotNo.equals(Constants.LOTNO_CQ_ELVEN_FIVE)){
+			intent = new Intent(context,Cq11Xuan5.class);
 		}
 
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
