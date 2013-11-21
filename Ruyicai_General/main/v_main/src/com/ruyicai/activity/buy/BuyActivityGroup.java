@@ -157,8 +157,12 @@ public class BuyActivityGroup extends ActivityGroup {
 
 	public void getInfo() {
 		Intent intent = getIntent();
-		int position = intent.getIntExtra("position", 0);
-		setTab(position);
+		boolean isPosition = intent.getBooleanExtra("isPosition", false);
+		if(isPosition){
+			int position = intent.getIntExtra("position", 0);
+			setTab(position);
+		}
+	
 	}
 
 	public void setLotno(String lotno) {
