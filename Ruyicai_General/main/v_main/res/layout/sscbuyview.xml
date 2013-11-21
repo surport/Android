@@ -50,17 +50,16 @@
                 android:id="@+id/nmk_shaizi1"
                 android:layout_width="100dip"
                 android:layout_height="100dip"
-                android:layout_gravity="center"
-                android:layout_marginLeft="-100px"
-                android:layout_marginTop="-120px" />
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="120px" />
 
             <ImageView
                 android:id="@+id/nmk_shaizi2"
                 android:layout_width="100dip"
                 android:layout_height="100dip"
-                android:layout_gravity="center"
-                android:layout_marginLeft="100px"
-                android:layout_marginTop="-120px" />
+                android:layout_gravity="right"
+                android:layout_marginRight="50px"
+                android:layout_marginTop="120px" />
 
             <ImageView
                 android:id="@+id/nmk_shaizi3"
