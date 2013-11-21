@@ -82,13 +82,11 @@ public class HistoryNumberActivity {
 
 		new Thread(new Runnable() {
 			public void run() {
-				Log.i("cq11x5", "prizeinfo");
 				PrizeInfoInterface prizeInfoInterface = PrizeInfoInterface
 						.getInstance();
 				JSONObject prizeInfoJsonObject = prizeInfoInterface.getNoticePrizeInfo(
 						Constants.LOTNO_CQ_ELVEN_FIVE, String.valueOf(pageIndex),
 						String.valueOf(maxResult));
-				Log.i("cq11x5", prizeInfoJsonObject.toString());
 				analyzeJsonPrizeInfo(prizeInfoJsonObject);
 
 				handler.sendMessage(msg);
