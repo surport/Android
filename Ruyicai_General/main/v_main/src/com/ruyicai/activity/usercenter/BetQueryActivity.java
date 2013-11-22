@@ -135,6 +135,7 @@ public class BetQueryActivity extends InquiryParentActivity implements HandlerMs
 				for (int i = 0; i < mLotnoNoArray.length; i++) {
 					if(type.equals(mLotnoNoArray[i])){
 						mCurrentLotnoIndex = i;
+						getData(0);
 						return;
 					}
 				}
