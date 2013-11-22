@@ -3,6 +3,7 @@ package com.ruyicai.activity.buy.nmk3;
 import java.util.Vector;
 
 import com.palmdream.RuyicaiAndroid.R;
+import com.ruyicai.activity.buy.BaseActivity;
 import com.ruyicai.activity.buy.zixuan.JiXuanBtn;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.RuyicaiActivityManager;
@@ -19,6 +20,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 
 /**
  * @author 秘青强
@@ -39,6 +41,8 @@ public class NmkAnimation {
 	private Activity activity;
 	public static boolean flag = true;
 	private JiXuanBtn jixuanbtn;
+	private int i;
+	private int[] iHighlightBallId;
 
 	/**
 	 * @param activity当前显示的Activity
@@ -101,6 +105,51 @@ public class NmkAnimation {
 		
 		this.nmk_ShaiZiHuaLan=view4;
 		this.activity = activity;
+		((ZixuanAndJiXuan)activity).toTrans = true;
+		Intent intent=new Intent(this.activity,TransParentActivity.class);
+		activity.startActivityForResult(intent,1);
+		
+		if(flag){
+			flag=false;
+		    initAnimation();
+		}
+	}
+	
+	public NmkAnimation(Activity activity, JiXuanBtn jiXuanBtn, ImageView view1, ImageView view2,
+			ImageView view3, Vector<OneBallView> ballViewVector,
+			ImageView view4,int i,int[] iHighlightBallId) {
+		this.nmk_ShaiZi1=view1;
+		this.nmk_ShaiZi2=view2;
+		this.nmk_ShaiZi3=view3;
+		this.i = i;
+		this.iHighlightBallId = iHighlightBallId;
+		this.jixuanbtn = jiXuanBtn;
+		if(ballViewVector.size()==1){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(0);
+			this.nmk_MoveToView3=ballViewVector.elementAt(0);
+		}
+		if(ballViewVector.size()==2){
+			if(((ZixuanAndJiXuan)activity).highttype.equals("NMK3-TWOSAME-DAN")){
+				this.nmk_MoveToView1=ballViewVector.elementAt(0);
+				this.nmk_MoveToView2=ballViewVector.elementAt(0);
+				this.nmk_MoveToView3=ballViewVector.elementAt(1);
+			}else{
+				this.nmk_MoveToView1=ballViewVector.elementAt(0);
+				this.nmk_MoveToView2=ballViewVector.elementAt(1);
+				this.nmk_MoveToView3=ballViewVector.elementAt(1);
+			}
+		
+		}
+		if(ballViewVector.size()==3){
+			this.nmk_MoveToView1=ballViewVector.elementAt(0);
+			this.nmk_MoveToView2=ballViewVector.elementAt(1);
+			this.nmk_MoveToView3=ballViewVector.elementAt(2);
+		}
+		
+		this.nmk_ShaiZiHuaLan=view4;
+		this.activity = activity;
+		((ZixuanAndJiXuan)activity).toTrans = true;
 		Intent intent=new Intent(this.activity,TransParentActivity.class);
 		activity.startActivityForResult(intent,1);
 		
@@ -276,7 +325,7 @@ public class NmkAnimation {
 	 * @param view
 	 *            当前动画所处的ImageView
 	 */
-	private void reduceScaleAnimation(ImageView view1,ImageView view2) {
+	private void reduceScaleAnimation(final ImageView view1,ImageView view2) {
 		// 缩放动画
 		Animation scaleAnimation = new ScaleAnimation(1.0f, 0f, 1.0f, 0f);
 		scaleAnimation.setDuration(1000);
@@ -319,11 +368,26 @@ public class NmkAnimation {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+				}	
+				
+				if(view1 == nmk_ShaiZi1){
+					if (activity instanceof Nmk3TwoSameActivty
+							&& ((Nmk3TwoSameActivty) activity).highttype
+									.equals("NMK3-TWOSAME-DAN")) {
+						activity.finishActivity(1);
+						((BaseActivity) activity).setAllBall(0,
+								iHighlightBallId);
+						((BaseActivity) activity).setAllBall(1,
+								iHighlightBallId);
+						((ZixuanAndJiXuan) activity).toTrans = false;
+					} else {
+						activity.finishActivity(1);
+						jixuanbtn.setSelectBall();
+						((ZixuanAndJiXuan) activity).toTrans = false;
+					}
+
 				}
-				
-				jixuanbtn.setSelectBall();
-				
-				activity.finishActivity(1);
+			
 			}
 		});
 	}

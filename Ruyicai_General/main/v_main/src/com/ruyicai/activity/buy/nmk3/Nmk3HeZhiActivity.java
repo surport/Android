@@ -53,14 +53,14 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 		super.onResume();
 //		sensor.stopAction();
 //		baseSensor.stopAction();
-		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
 		editZhuma.setTextColor(Color.BLACK);
 	}
 
 	@Override
 	public String textSumMoney(AreaNum[] areaNum, int iProgressBeishu) {
 		int zhuShu = getZhuShu();
-		return "您以选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
+		return "您已选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 	}
 	/**
 	 * 设置投注金额提示
@@ -237,12 +237,17 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 		}
 
 		if (toast == null) {
-			toast = Toast.makeText(this, prompt, Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-			toast.show();
+			if(((OneBallView) v).getShowId() == 1){
+				toast = Toast.makeText(this, prompt, Toast.LENGTH_LONG);
+				toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+				toast.show();
+			}
+			
 		} else {
-			toast.setText(prompt);
-			toast.show();
+			if(((OneBallView) v).getShowId() == 1){
+				toast.setText(prompt);
+				toast.show();
+			}
 		}
 	}
 

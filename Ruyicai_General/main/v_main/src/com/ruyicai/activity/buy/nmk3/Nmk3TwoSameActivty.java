@@ -56,7 +56,7 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 		super.onResume();
 //		sensor.stopAction();
 //		baseSensor.stopAction();
-		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
 		editZhuma.setTextColor(Color.BLACK);
 	}
 
@@ -66,7 +66,7 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 		if (zhuShu == 0) {
 			return "请选择投注号码";
 		} else {
-			return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
+			return "您已选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 		}
 	}
 	/**
@@ -256,7 +256,7 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			 isMissNet(new Nmk3MissJson(), MissConstant.NMK3_TWOSAME_FU, false);// 获取遗漏值
 			break;
 		case 1:
-			highttype="NMK3_TWOSAME_DAN";
+			highttype="NMK3-TWOSAME-DAN";
 			createView(areaNums, sscCode, ZixuanAndJiXuan.NMK3_TWOSAME_DAN,
 					true, checkedId, true);
 			 isMissNet(new Nmk3MissJson(), MissConstant.NMK3_TWO_DAN, false);// 获取遗漏值

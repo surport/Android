@@ -81,7 +81,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private RelativeLayout relateive_date,relativelayout03;
 	private PopupWindow popupwindow;
 	private NoticeMenuAdapter noticeMenuAdapter;
-	private int index=0;
+    private int index=0;
+	private int menupostion  = -1;
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
 		super.onCreate(savedInstanceState);
@@ -210,6 +211,9 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		}
 		
 	    noticeMenuAdapter=new NoticeMenuAdapter(this,new OnItemListener(),beidan_data);
+	    if(menupostion != -1){
+			noticeMenuAdapter.setItemSelect(menupostion);
+		}
 		menu_gridview.setAdapter(noticeMenuAdapter);
 		
 		popupwindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
@@ -218,7 +222,6 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		popupwindow.update();
 		popupwindow.setBackgroundDrawable(new BitmapDrawable());
 		popupwindow.showAsDropDown(jc_notice_img_return);
-		
 		popupwindow.setOnDismissListener(new OnDismissListener() {
 			@Override
 			public void onDismiss() {
@@ -234,7 +237,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	public class OnItemListener implements OnClickItem{
 		@Override
 		public void onChickItem(View view, int position) {
-			index=position;
+            index=position;
+			menupostion = position;
 			noticeMenuAdapter.setItemSelect(position);
 			noticeMenuAdapter.notifyDataSetInvalidated();
 			title.setText(titlename[position]);

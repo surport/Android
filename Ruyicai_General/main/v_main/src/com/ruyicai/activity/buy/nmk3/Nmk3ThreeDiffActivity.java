@@ -61,7 +61,7 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 		super.onResume();
 //		sensor.stopAction();
 //		baseSensor.stopAction();
-		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
 		editZhuma.setTextColor(Color.BLACK);
 	}
 
@@ -71,7 +71,7 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 //		if (threeDiffBallNums < 3) {
 //			return "还需要选择" + (3 - threeDiffBallNums) + "个球";
 //		}
-		return "您以选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
+		return "您已选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 	}
 	/**
 	 * 设置投注金额提示

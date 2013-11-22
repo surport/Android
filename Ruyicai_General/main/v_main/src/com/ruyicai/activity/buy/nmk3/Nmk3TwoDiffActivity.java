@@ -49,7 +49,7 @@ public class Nmk3TwoDiffActivity extends ZixuanAndJiXuan {
 		super.onResume();
 //		sensor.stopAction();
 //		baseSensor.stopAction();
-		editZhuma.setText(R.string.please_choose_number);
+		editZhuma.setText(textSumMoney(areaNums, iProgressBeishu));
 		editZhuma.setTextColor(Color.BLACK);
 	}
 
@@ -59,7 +59,7 @@ public class Nmk3TwoDiffActivity extends ZixuanAndJiXuan {
 		if (zhuShu == 0) {
 			return "请选择投注号码";
 		} else {
-			return "共" + zhuShu + "注，共" + zhuShu * 2 + "元";
+			return "你已选择了" + zhuShu + "注，共" + zhuShu * 2 + "元";
 		}
 	}
 	/**
