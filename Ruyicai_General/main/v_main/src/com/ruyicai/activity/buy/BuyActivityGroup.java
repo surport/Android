@@ -948,6 +948,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		this.titles = titles;
 		this.topTitles = topTitles;
 		this.allId = allId;
+		titleTextViews = new TextView[titles.length];
 		for (int i = 0; i < titles.length; i++) {
 			addTab(i);
 			setTextTop(size);
