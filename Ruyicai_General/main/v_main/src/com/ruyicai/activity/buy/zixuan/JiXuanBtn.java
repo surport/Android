@@ -61,6 +61,7 @@ public class JiXuanBtn {
 	private NmkAnimation animation;
 	OneBallView oneBallView;
 	private Vector<OneBallView> ballViewVector = new Vector<OneBallView>();
+	private static Vector<OneBallView> ballViewVector2 = new Vector<OneBallView>();
 
 	public JiXuanBtn(boolean isRed, Button jxBtn, Button jxDwBtn, int sizeNum,
 			BaseActivity activity, View view, BallTable table, int areaMin,
@@ -228,7 +229,11 @@ public class JiXuanBtn {
 		if(activity instanceof Nmk3HeZhiActivity
 				||activity instanceof Nmk3ThreeSameActivty
 				||activity instanceof Nmk3TwoSameActivty){
-			choseNum=1;
+			if(((ZixuanAndJiXuan)activity).highttype.equals("NMK3-TWOSAME-DAN")){
+				choseNum = 2;
+			}else{
+				choseNum=1;
+			}	
 		}
 		if(activity instanceof Nmk3ThreeDiffActivity){
 			choseNum=3;
@@ -292,12 +297,41 @@ public class JiXuanBtn {
 		animation=new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView);
 
 	}
+	
+	private void initAnimation(Vector<OneBallView> ballViewVector, JiXuanBtn jiXuanBtn,int i,int[] iHighlightBallId,BaseActivity activity){
+		ImageView huaLanView=(ImageView)activity.findViewById(R.id.nmk_shaizihualan);
+	    ImageView shaiZiFirst=(ImageView)activity.findViewById(R.id.nmk_shaizi1);
+	    ImageView shaiZiSecond=(ImageView)activity.findViewById(R.id.nmk_shaizi2);
+	    ImageView shaiZiThird=(ImageView)activity.findViewById(R.id.nmk_shaizi3);
+		huaLanView.setVisibility(View.VISIBLE);
+		if(chooseRandomNum()==2){
+			shaiZiThird.setVisibility(View.INVISIBLE);
+		}
+		animation=new NmkAnimation(activity, jiXuanBtn,shaiZiFirst, shaiZiSecond, shaiZiThird, ballViewVector,huaLanView,i,iHighlightBallId);
 
-	public void onclickText() {
+	}
+
+	public void onclickText(int i,int[] iHighlightBallId) {
 		activity.showEditText();
+		if(!(activity instanceof Nmk3TwoSameActivty)){
+			activity.setAllBall(i, iHighlightBallId);
+		}
 		if (activity instanceof Dlc) {
 			((Dlc) activity).showBetInfo("");
 		} else if (activity instanceof ZixuanAndJiXuan) {
+			if (activity instanceof Nmk3TwoSameActivty) {
+				if (animation.flag) {
+					activity.again(areaId);
+					if(i == 0){
+						ballViewVector2.clear();
+					}
+					ballViewVector2.add((OneBallView) table.getBallViews().get(
+							iHighlightBallId[i]));
+					if(i == 1){
+						initAnimation(ballViewVector2, this,i,iHighlightBallId,activity);
+					}	
+				}
+			}
 			((ZixuanAndJiXuan) activity).showBetInfo("");
 		} else {
 			activity.changeTextSumMoney();

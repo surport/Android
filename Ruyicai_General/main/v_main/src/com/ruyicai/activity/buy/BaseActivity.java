@@ -121,10 +121,10 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 							.getRandomsWithoutCollision(areaNums.length, 0,
 									areaNums[0].areaNum - 1);
 					for (int i = 0; i < areaNums.length; i++) {
-						areaNums[i].table.clearAllHighlights();
-						areaNums[i].table.changeBallState(
-								areaNums[i].chosenBallSum, iHighlightBallId[i]);
-						areaNums[i].jixuanBtn.onclickText();
+						if (areaNums[i].jixuanBtn != null) {
+							areaNums[i].jixuanBtn.onclickText(i,iHighlightBallId);
+						}
+						
 					}
 				} else {
 					for (int i = 0; i < areaNums.length; i++) {
@@ -136,5 +136,11 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 			}
 		}
 
+	}
+	
+	public void setAllBall(int i, int[] iHighlightBallId) {
+		areaNums[i].table.clearAllHighlights();
+		areaNums[i].table.changeBallState(areaNums[i].chosenBallSum,
+				iHighlightBallId[i]);
 	}
 }
