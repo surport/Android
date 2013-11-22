@@ -81,6 +81,7 @@ import com.ruyicai.activity.buy.fc3d.Fc3d;
 import com.ruyicai.activity.buy.gdeleven.GdEleven;
 import com.ruyicai.activity.buy.jc.lq.LqMainActivity;
 import com.ruyicai.activity.buy.jc.zq.ZqMainActivity;
+import com.ruyicai.activity.buy.nmk3.Nmk3Activity;
 import com.ruyicai.activity.buy.pl3.PL3;
 import com.ruyicai.activity.buy.pl5.PL5;
 import com.ruyicai.activity.buy.qlc.Qlc;
@@ -692,6 +693,8 @@ public class PublicMethod {
 			intent = new Intent(context, LqMainActivity.class);
 		}else if(lotNo.equals(Constants.LOTNO_CQ_ELVEN_FIVE)){
 			intent = new Intent(context,Cq11Xuan5.class);
+		}else if(lotNo.equals(Constants.LOTNO_NMK3)){
+			intent = new Intent(context,Nmk3Activity.class);
 		}
 
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
