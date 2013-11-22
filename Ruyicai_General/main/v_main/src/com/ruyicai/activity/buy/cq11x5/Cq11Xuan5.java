@@ -622,6 +622,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	private void createViewPT(int id){
 		iProgressBeishu = 1;
 		iProgressQishu = 1;
+		baseSensor.startAction();
 		if (state.equals("PT_QZ2")) {
 			areaNums = new AreaNum[2];
 			areaNums[0] = new AreaNum(cqArea, 1, 11, BallResId, 0, 1,Color.RED, "万位","", false, true, false);
