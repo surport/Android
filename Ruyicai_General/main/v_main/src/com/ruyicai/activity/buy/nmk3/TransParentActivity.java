@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.ApplicationAddview;
+import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 import com.ruyicai.util.RuyicaiActivityManager;
 
 import android.app.Activity;

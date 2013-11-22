@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import com.ruyicai.activity.buy.high.ZixuanAndJiXuan;
 
 /**
  * @author 秘青强
@@ -101,6 +102,7 @@ public class NmkAnimation {
 		
 		this.nmk_ShaiZiHuaLan=view4;
 		this.activity = activity;
+		((ZixuanAndJiXuan)activity).toTrans = true;
 		Intent intent=new Intent(this.activity,TransParentActivity.class);
 		activity.startActivityForResult(intent,1);
 		
@@ -276,7 +278,7 @@ public class NmkAnimation {
 	 * @param view
 	 *            当前动画所处的ImageView
 	 */
-	private void reduceScaleAnimation(ImageView view1,ImageView view2) {
+	private void reduceScaleAnimation(final ImageView view1,ImageView view2) {
 		// 缩放动画
 		Animation scaleAnimation = new ScaleAnimation(1.0f, 0f, 1.0f, 0f);
 		scaleAnimation.setDuration(1000);
@@ -319,11 +321,14 @@ public class NmkAnimation {
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+				}	
+				
+				if(view1 == nmk_ShaiZi1){
+					activity.finishActivity(1);
+					jixuanbtn.setSelectBall();
+					((ZixuanAndJiXuan)activity).toTrans = false;
 				}
-				
-				jixuanbtn.setSelectBall();
-				
-				activity.finishActivity(1);
+			
 			}
 		});
 	}

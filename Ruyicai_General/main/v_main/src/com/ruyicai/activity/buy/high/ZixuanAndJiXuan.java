@@ -1502,6 +1502,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	public Vector<Balls> balls = new Vector();
 	protected Balls ballOne;
 	public Toast toastjixuan;
+	public boolean toTrans;
 
 	public void createviewmechine(Balls balles, int id) {
 		isJiXuan = true;
@@ -2578,10 +2579,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (!toLogin) {
+		if (!toLogin && !toTrans) {
 			again();
-			sensor.stopAction();
 		}
+		sensor.stopAction();
 	}
 
 	protected void onStop() {
