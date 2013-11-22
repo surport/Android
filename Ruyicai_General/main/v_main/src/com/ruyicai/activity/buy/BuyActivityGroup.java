@@ -94,7 +94,7 @@ public class BuyActivityGroup extends ActivityGroup {
 
 	/** add by yejc 20130422 start */
 	protected TextView betInfoTextView;
-
+	private RWSharedPreferences rw;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -106,6 +106,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		setContentView(R.layout.buy_main_group);
 		relativeLayout1 = (RelativeLayout) findViewById(R.id.last_batchcode);
 		context = this;
+		rw=new RWSharedPreferences(this,"addInfo");
 		isFromTrackQuery = getIntent().getBooleanExtra(
 				TrackQueryActivity.FLAG_FROM_TRACK_QUERY, false);
 		mTabHost = (TabHost) findViewById(R.id.tab_host);
@@ -196,6 +197,7 @@ public class BuyActivityGroup extends ActivityGroup {
 		lastCodeTxt = (TextView) findViewById(R.id.last_batchcode_textlable);
 		refreshBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				rw.putBooleanValue("isShowDialog",true);
 				if (getCurrentActivity() instanceof com.ruyicai.activity.buy.high.ZixuanAndJiXuan) {
 					((com.ruyicai.activity.buy.high.ZixuanAndJiXuan) getCurrentActivity())
 							.initLatestLotteryList();

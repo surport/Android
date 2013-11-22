@@ -620,5 +620,37 @@ public class NoticeActivityGroup extends ActivityGroup {
 		weibo.share2weibo(NoticeActivityGroup.this, weibo.getAccessToken().getToken(), weibo
 				.getAccessToken().getSecret(), content, "");
 	}
+     
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 1) {
+			if (resultCode == OAuthV1AuthorizeWebView.RESULT_CODE) {
+				// 从返回的Intent中获取验证码
+				tenoAuth = (OAuthV1) data.getExtras().getSerializable("oauth");
+				try {
+					tenoAuth = OAuthV1Client.accessToken(tenoAuth);
+					/*
+					 * 注意：此时oauth中的Oauth_token和Oauth_token_secret将发生变化，用新获取到的
+					 * 已授权的access_token和access_token_secret替换之前存储的未授权的request_token
+					 * 和request_token_secret.
+					 */
+					tencent_token = tenoAuth.getOauthToken();
+					tencent_access_token_secret = tenoAuth
+							.getOauthTokenSecret();
+					shellRW.putStringValue("tencent_token", tencent_token);
+					shellRW.putStringValue("tencent_access_token_secret",
+							tencent_access_token_secret);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 
+				Intent intent = new Intent(NoticeActivityGroup.this,
+						TencentShareActivity.class);
+				intent.putExtra("tencent", ((NewNoticeInfoActivity)getCurrentActivity()).lotnoDetailView.getShareString());
+				intent.putExtra("oauth", tenoAuth);
+				startActivity(intent);
+			}
+		}
+	}
 }

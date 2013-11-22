@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -89,7 +90,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	private boolean isRun = true;
 	private MyGridView mGridViewFirst,mGridViewSecond;
 	private PopupWindow popupWindow;
-	private Button returnBtn;
+	private Button refreshBtn;
 	private BuyGameDialog gameDialog;
     private Button imgIcon;
     private PopupWindow popupwindow;
@@ -102,7 +103,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	private int itemId=3;
 	private int checkedId;
 	public AddView addView = new AddView(this);
-
+    private ProgressDialog progressdialog;
 	
 	private HistoryNumberActivity test;
 	public boolean isJiXuan = false;
@@ -411,7 +412,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			if (!state.equals("PT_QZ2") && !state.equals("PT_QZ3")
 					&& !state.equals("PT_QZ1") && !state.equals("PT_ZU2")
 					&& !state.equals("PT_ZU2") && !state.equals("PT_ZU3")) {
-				test = new HistoryNumberActivity(this);
+				test = new HistoryNumberActivity(this,progressdialog);
 			}
 			showEditText();
 			break;
@@ -440,12 +441,13 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 		jixuanButton = (Button) findViewById(R.id.cq11xuan5_jisuan_button);
 		
 		imgIcon=(Button) findViewById(R.id.layout_main_img_return);
-		returnBtn=(Button) findViewById(R.id.refresh_code);
-		returnBtn.setOnClickListener(new OnClickListener() {
+		refreshBtn=(Button) findViewById(R.id.refresh_code);
+		refreshBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				test = new HistoryNumberActivity(Cq11Xuan5.this);
+				showDialog();
+				test = new HistoryNumberActivity(Cq11Xuan5.this,progressdialog);
 			}
 		});
 		
@@ -840,9 +842,9 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 	 */
 	private void setTitle(String titleType){
 		if(playMethodTag==1){
-			titleBarTextView.setText(TITLE+"--"+titleType+"--普通");
+			titleBarTextView.setText(TITLE+"-"+titleType+"-普通");
 		}else if (playMethodTag==2) {
-			titleBarTextView.setText(TITLE+"--"+titleType+"--胆拖");
+			titleBarTextView.setText(TITLE+"-"+titleType+"-胆拖");
 		}
 	}
 	@Override
@@ -1072,5 +1074,13 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			});
 			layoutParentLuck.setVisibility(LinearLayout.GONE);
 	}
-	
+	private void showDialog() {
+		if (progressdialog == null) {
+			progressdialog = new ProgressDialog(this);
+		}
+		progressdialog.show();
+		progressdialog.setCancelable(false);
+		View dialogView = PublicMethod.getView(this);
+		progressdialog.getWindow().setContentView(dialogView);
+	}
 }

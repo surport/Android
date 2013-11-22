@@ -81,6 +81,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private RelativeLayout relateive_date,relativelayout03;
 	private PopupWindow popupwindow;
 	private NoticeMenuAdapter noticeMenuAdapter;
+	private int index=0;
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
 		super.onCreate(savedInstanceState);
@@ -226,11 +227,14 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
                 }				
 			}
 		});
+		noticeMenuAdapter.setItemSelect(index);
+		noticeMenuAdapter.notifyDataSetInvalidated();
 	}
 	
 	public class OnItemListener implements OnClickItem{
 		@Override
 		public void onChickItem(View view, int position) {
+			index=position;
 			noticeMenuAdapter.setItemSelect(position);
 			noticeMenuAdapter.notifyDataSetInvalidated();
 			title.setText(titlename[position]);

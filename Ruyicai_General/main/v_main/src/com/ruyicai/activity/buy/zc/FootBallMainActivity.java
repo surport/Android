@@ -704,6 +704,9 @@ public class FootBallMainActivity extends Activity {
 		if (mFootBallAdapters[mPlayIndex] == null) {
 			return;
 		}
+		if("5".equals(mFootBallAdapters[mPlayIndex].mIssueState)){
+			return;
+		}
 		int iZhuShu = mFootBallAdapters[mPlayIndex].getZhuShu();// 注数是注数*倍数的结果
 		RWSharedPreferences pre = new RWSharedPreferences(this, "addInfo");
 		String sessionid = pre.getStringValue("sessionid");

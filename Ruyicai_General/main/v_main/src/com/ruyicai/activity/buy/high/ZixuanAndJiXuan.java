@@ -94,6 +94,7 @@ import com.ruyicai.pojo.BallTable;
 import com.ruyicai.pojo.OneBallView;
 import com.ruyicai.util.PublicConst;
 import com.ruyicai.util.PublicMethod;
+import com.ruyicai.util.RWSharedPreferences;
 import com.ruyicai.util.SensorActivity;
 
 public abstract class ZixuanAndJiXuan extends BaseActivity implements
@@ -179,7 +180,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	protected LinearLayout childtypes;
 	protected View layoutMain;
 	public ScrollView scrollView;
-	
+	private RWSharedPreferences rw;
 	protected LinearLayout zixuanLayout;
 	
 	protected void setAddView(AddView addView) {
@@ -194,7 +195,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		setContentView(R.layout.sscbuyview);
 		Constants.type = "hight";
 		childtype = new String[] { "直选", "机选" };
-
+		rw=new RWSharedPreferences(this,"addInfo");
 	}
 
 	/**
@@ -269,6 +270,22 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 		// 将单选按钮组添加到布局中
 		childtypes.addView(group);
 
+	}
+	
+	private void showDialog() {
+		if (progressdialog == null) {
+			progressdialog = new ProgressDialog(this);
+		}
+		progressdialog.show();
+		progressdialog.setCancelable(false);
+		View dialogView = PublicMethod.getView(this);
+		progressdialog.getWindow().setContentView(dialogView);
+	}
+	
+	private void dismissDialog() {
+		if (progressdialog != null && progressdialog.isShowing()) {
+			progressdialog.dismiss();
+		}
 	}
 
 	/**
@@ -525,6 +542,12 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 	}
 
 	public void initLatestLotteryList() {
+		
+		if(rw.getBooleanValue("isShowDialog")){
+			showDialog();
+			rw.putBooleanValue("isShowDialog",false);
+		}
+		
 		final Handler handler = new Handler();
 		new Thread(new Runnable() {
 
@@ -560,6 +583,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 									latestLotteryList.setAdapter(listAdapter);
 									setListViewHeightBasedOnChildren(latestLotteryList);
 								}
+								dismissDialog();
 							}
 						});
 

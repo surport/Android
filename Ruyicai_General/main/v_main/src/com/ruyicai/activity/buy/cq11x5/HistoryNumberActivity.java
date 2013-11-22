@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,13 +42,14 @@ public class HistoryNumberActivity {
 	private Bundle bundle;
 	
 	private Activity activity;
-	
-	public HistoryNumberActivity(Activity activity){
+	private ProgressDialog progressDialog;
+	public HistoryNumberActivity(Activity activity,ProgressDialog progressDialog){
 		this.activity=activity;
 		
 		initScreenShow();
 
 		getDataFromInternet();
+		this.progressDialog=progressDialog;
 	}
 
 	private Handler handler = new Handler() {
@@ -63,6 +65,9 @@ public class HistoryNumberActivity {
 
 			case GET_PRIZEINFO_SUCCESS:
 				simulateSelectNumberView.setPrizeInfos(prizeInfosList);
+				if(progressDialog!=null && progressDialog.isShowing()){
+					progressDialog.dismiss();
+				}
 				break;
 			}
 
@@ -88,7 +93,6 @@ public class HistoryNumberActivity {
 						Constants.LOTNO_CQ_ELVEN_FIVE, String.valueOf(pageIndex),
 						String.valueOf(maxResult));
 				analyzeJsonPrizeInfo(prizeInfoJsonObject);
-
 				handler.sendMessage(msg);
 			}
 		}).start();

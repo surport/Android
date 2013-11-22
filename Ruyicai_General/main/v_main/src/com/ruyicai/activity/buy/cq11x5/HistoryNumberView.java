@@ -656,7 +656,7 @@ public class HistoryNumberView extends View {
 
 		public void onDrawBatchCode(Canvas canvas) {
 			String childCode = batchCode.substring(8, batchCode.length());
-			System.out.println("childCode......="+childCode);
+			paint.setColor(Color.BLACK);
 			canvas.drawText(childCode+"期", textAlignLeft, textAlignTop, paint);
 		}
 

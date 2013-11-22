@@ -117,7 +117,7 @@ public class Dlc extends ZixuanAndJiXuan {
 	private boolean isFirst = true;
 	public AddView addView = new AddView(this);
 	private Controller controller = null;
-	
+	private RWSharedPreferences rw;
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
@@ -142,6 +142,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		betInfo.setVisibility(View.VISIBLE);
 		MobclickAgent.onEvent(this, "jiangxi11xuan5"); // BY贺思明 点击首页的“江西11选5”图标
 		MobclickAgent.onEvent(this, "gaopingoucaijiemian ");// BY贺思明 高频购彩页面
+		rw=new RWSharedPreferences(this,"addInfo");
 	}
 
 	
@@ -252,6 +253,7 @@ public class Dlc extends ZixuanAndJiXuan {
 		refreshBtn.setVisibility(View.VISIBLE);
 		refreshBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				rw.putBooleanValue("isShowDialog",true);
 				initLatestLotteryList();
 			}
 		});
