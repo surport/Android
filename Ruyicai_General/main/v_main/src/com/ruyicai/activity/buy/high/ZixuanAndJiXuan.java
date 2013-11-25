@@ -277,7 +277,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 			progressdialog = new ProgressDialog(this);
 		}
 		progressdialog.show();
-		progressdialog.setCancelable(false);
+		progressdialog.setCancelable(true);
 		View dialogView = PublicMethod.getView(this);
 		progressdialog.getWindow().setContentView(dialogView);
 	}
