@@ -659,6 +659,7 @@ public class HistoryNumberView extends View {
 			paint.setColor(Color.BLACK);
 			canvas.drawText(childCode+"期", textAlignLeft, textAlignTop, paint);
 		}
+		
 
 		// add by zhangkaikai for the color of qihao is baise bug
 		public void onDrawBathCode(Canvas canvas, Paint paint) {

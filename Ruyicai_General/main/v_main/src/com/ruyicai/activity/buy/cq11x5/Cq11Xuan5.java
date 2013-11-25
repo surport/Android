@@ -1080,7 +1080,7 @@ public class Cq11Xuan5 extends ZixuanAndJiXuan {
 			progressdialog = new ProgressDialog(this);
 		}
 		progressdialog.show();
-		progressdialog.setCancelable(false);
+		progressdialog.setCancelable(true);
 		View dialogView = PublicMethod.getView(this);
 		progressdialog.getWindow().setContentView(dialogView);
 	}
