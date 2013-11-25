@@ -1372,6 +1372,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				initLinear();
 				initListView();
 			} else {
+				adapter.setList(mJoinListArray[mJoinCurrentLotnoIndex]);
 				adapter.notifyDataSetChanged();
 			}
 		} else if (joinType == 1) {
@@ -1380,6 +1381,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				initLinear();
 				initListView();
 			} else {
+				adapter2.setList(mFollowListArray[mFollowCurrentLotnoIndex]);
 				adapter2.notifyDataSetChanged();
 			}
 		}
