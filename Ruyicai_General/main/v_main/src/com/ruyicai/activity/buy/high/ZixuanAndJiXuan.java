@@ -632,7 +632,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					|| highttype.equals("CQ11X5_PT_QZ3")) {
 				index = areaNums.length - 1 - i;
 			} else if (highttype.equals("DLC")
-					|| highttype.equals("NMK3_TWOSAME_DAN")) {
+					|| highttype.equals("NMK3-TWOSAME-DAN")) {
 				index = i;
 			}
 			if (missList.size() > 0 && missList.size() > index && !isDanTuo) {
@@ -2247,7 +2247,7 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				nBallId = iBallId;
 				iBallId = iBallId - areaNums[i].areaNum;
 				if (iBallId < 0) {
-					if (highttype.equals("NMK3_TWOSAME_DAN")) {
+					if (highttype.equals("NMK3-TWOSAME-DAN")) {
 						if (i == 0) {
 							if (areaNums[i + 1].table.ballViewVector.get(
 									nBallId).getShowId() == 1) {
