@@ -40,6 +40,7 @@ import com.ruyicai.net.newtransaction.BetQueryInterface;
 import com.ruyicai.net.newtransaction.pojo.BetAndWinAndTrackAndGiftQueryPojo;
 import com.ruyicai.util.CheckUtil;
 import com.umeng.analytics.MobclickAgent;
+import com.umpay.creditcard.android.cu;
 
 /**
  * 投注查询联网
@@ -92,6 +93,10 @@ public class BetQueryActivity extends InquiryParentActivity implements HandlerMs
 		mLotnoBtn.setText(mLotnoArray[0]);
 	}
 
+	protected void onStart() {
+		super.onStart();
+		mLotnoBtn.setText(mLotnoArray[mCurrentLotnoIndex]);
+	};
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
