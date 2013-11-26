@@ -238,6 +238,18 @@ public class HomeActivity extends Activity {
 		String errorCode = shellRW.getStringValue("errorCode");
 		String imageId = shellRW.getStringValue("imageId");
 		if (bitmap == null || errorCode.equals("") || errorCode.equals("false")) {
+			
+			float screenWith = PublicMethod.getDisplayWidth(HomeActivity.this);
+			 float screenHight=PublicMethod.getDisplayHeight(HomeActivity.this);
+				
+				if((screenWith==480  && screenHight==854) || (screenWith==800 && screenHight==1280)
+						 || (screenWith==480 && screenHight==800)){
+					Resources r = this.getResources();
+					InputStream is = r.openRawResource(R.drawable.ruyicaikaiji);
+					BitmapDrawable bmpDraw = new BitmapDrawable(is);
+					bitmap = bmpDraw.getBitmap();
+				}
+			
 			Resources r = this.getResources();
 			InputStream is = r.openRawResource(R.drawable.cp2);
 			BitmapDrawable bmpDraw = new BitmapDrawable(is);
