@@ -133,6 +133,7 @@ public class FeedbackListActivity extends Activity {
 	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
 	List<SystemInfoBean> infoList;
 	OperatingDataBases operatingDb;
+	private boolean isFirstMessage = true;
 	/**add by yejc 20130419 end*/
 
 	@Override
@@ -353,26 +354,30 @@ public class FeedbackListActivity extends Activity {
 	}
 
 	private void initListViewAfterNet(JSONArray feedarray) {
-		feedList.clear();
-		for (int i = 0; i < feedarray.length(); i++) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			JSONObject item;
-			try {
-				item = feedarray.getJSONObject(i);
-				String state = item.getString("readState");
-				if (state.equals("0")) {
-					String id = item.getString("id");
-					msgReadStateId += id + ",";
+		if(isFirstMessage){
+			feedList.clear();
+			for (int i = 0; i < feedarray.length(); i++) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				JSONObject item;
+				try {
+					item = feedarray.getJSONObject(i);
+					String state = item.getString("readState");
+					if (state.equals("0")) {
+						String id = item.getString("id");
+						msgReadStateId += id + ",";
+					}
+					map.put("createTime", item.getString(CREATETIME));
+					map.put("reply", item.getString(REPLY));
+					map.put("content", item.getString(CONTENT));
+					map.put("id", item.getString("id"));
+				} catch (JSONException e) {
+					e.printStackTrace();
 				}
-				map.put("createTime", item.getString(CREATETIME));
-				map.put("reply", item.getString(REPLY));
-				map.put("content", item.getString(CONTENT));
-				map.put("id", item.getString("id"));
-			} catch (JSONException e) {
-				e.printStackTrace();
+				feedList.add(map);
 			}
-			feedList.add(map);
+			isFirstMessage = false;
 		}
+		
 		if (!msgReadStateId.equals("")) {
 			msgReadStateId = msgReadStateId.substring(0,
 					msgReadStateId.length() - 1);
