@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:paddingLeft="@dimen/upomp_lthj_tableLayout_pad_left" 
+  			android:paddingRight="@dimen/upomp_lthj_tableLayout_pad_right"
+  			android:paddingTop="@dimen/upomp_lthj_tableLayout_pad_top"
+  			android:paddingBottom="@dimen/upomp_lthj_tableLayout_pad_bottom">
+   <TextView android:id="@id/upomp_lthj_bankListTextView" style="@style/upomp_lthj_layout_width_height_fw" 
+   		android:textColor="@drawable/upomp_lthj_black" android:text="银行卡列表" 
+   		android:textSize="@dimen/upomp_lthj_textView_bold_font_size"  android:gravity="center"
+   		android:layout_marginBottom="@dimen/upomp_lthj_tableLayout_pad_bottom"/>
+   <TextView android:id="@id/upomp_lthj_bandcardtile" style="@style/upomp_lthj_layout_width_height_fw" 
+   		android:textColor="@drawable/upomp_lthj_black" android:text="您已关联的银行卡：" 
+   		android:textSize="@dimen/upomp_lthj_textview_font_size" 
+   		android:layout_marginBottom="@dimen/upomp_lthj_tableLayout_pad_bottom"/>
+   <LinearLayout android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_ff" android:layout_weight="1.0"
+   		android:gravity="center_vertical">
+	   <TextView android:id="@id/upomp_lthj_bankListContentTextView" style="@style/upomp_lthj_layout_width_height_fw" 
+	   	android:textColor="@drawable/upomp_lthj_black" android:text="您还没有关联银行卡！"  android:textSize="@dimen/upomp_lthj_textview_font_size" 
+	   		android:gravity="center" android:visibility="gone"/>
+	   <ListView android:id="@id/upomp_lthj_bankNewListView" style="@style/upomp_lthj_layout_width_height_ff"
+	   	 android:dividerHeight="0dip" android:divider="@drawable/upomp_lthj_white"/>
+   </LinearLayout>
+   <Button android:id="@id/upomp_lthj_bankNewButton" android:text="添加银行卡"  style="@style/upomp_lthj_button_single" />
+	<LinearLayout 
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:background="@drawable/upomp_lthj_corner_round_all" 
+			android:orientation="vertical"
+			android:paddingLeft="@dimen/upomp_lthj_prompt_hint_margin_left" 
+				android:paddingRight="@dimen/upomp_lthj_prompt_hint_margin_right" 
+				android:paddingBottom="@dimen/upomp_lthj_prompt_hint_margin_bottom">
+			<ImageView android:src="@drawable/upomp_lthj_friend_tip" style="@style/upomp_lthj_layout_width_height_ww"
+				android:layout_alignParentTop="true"/>"
+		<TextView android:id="@id/upomp_lthj_bankManageMessageTextView"
+			 style="@style/upomp_lthj_layout_width_height_fw"  
+			android:text="@string/upomp_lthj_bankmanage_prompt" 
+			android:textColor="@android:color/darker_gray"
+			/>
+	</LinearLayout>
+</LinearLayout> -->
+<LinearLayout android:id="@id/upomp_lthj_accounttitle" android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/upomp_lthj_layout_width_height_ff" android:background="@drawable/upomp_lthj_bg_main">
+  	<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+		style="@style/upomp_lthj_layout_width_height_ff" 
+		android:paddingLeft="@dimen/upomp_lthj_tableLayout_pad_left"
+		 android:paddingRight="@dimen/upomp_lthj_tableLayout_pad_right" 
+				android:paddingTop="@dimen/upomp_lthj_tableLayout_pad_top"
+				android:paddingBottom="@dimen/upomp_lthj_tableLayout_pad_bottom">
+		<!-- <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+			<TextView style="@style/upomp_lthj_textView_bold" android:text="@string/upomp_lthj_trade_title" android:textSize="@dimen/upomp_lthj_textView_bold_font_size"  android:gravity="center"/>
+		</LinearLayout> -->
+		<LinearLayout android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_ff" android:layout_weight="1.0">
+			<LinearLayout android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_fw"
+				 android:background="@drawable/upomp_lthj_corner_round_all" android:padding="1.0dip">
+				<LinearLayout android:orientation="horizontal" style="@style/upomp_lthj_tablerow"
+				 android:background="@drawable/upomp_lthj_corner_round_top_blue" android:layout_width="fill_parent" android:layout_height="wrap_content">
+				 	<TextView android:text="银行卡列表"  android:textColor="#ffffff" style="@style/upomp_lthj_layout_width_height_ww" android:textSize="@dimen/upomp_lthj_textview_font_size"/>
+				 	<LinearLayout android:orientation="vertical" style="@style/upomp_lthj_layout_width_height_fw" android:gravity="right|center_vertical">
+				 		<Button android:id="@id/upomp_lthj_refreshBtn" android:background="@drawable/upomp_lthj_refresh" style="@style/upomp_lthj_layout_width_height_ww"/>
+				 	</LinearLayout>
+				</LinearLayout>
+				<ListView android:id="@id/upomp_lthj_bankNewListView" style="@style/upomp_lthj_layout_width_height_ff"
+		   		 />
+		   		 <TextView android:id="@id/upomp_lthj_bankListContentTextView" 
+		   		 	style="@style/upomp_lthj_layout_width_height_ff"   android:gravity="center"                          
+	   				android:textColor="@drawable/upomp_lthj_black" android:text="您还没有关联银行卡！" 
+	   				 android:layout_marginTop="@dimen/upomp_lthj_sign_textview_marginTop"
+	   				android:layout_marginBottom="@dimen/upomp_lthj_sign_textview_marginBottom" android:textSize="@dimen/upomp_lthj_textview_font_size"
+	   			  />
+			</LinearLayout>
+		</LinearLayout>
+		<TextView style="@style/upomp_lthj_layout_width_height_ww"/>
+		<LinearLayout 
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:background="@drawable/upomp_lthj_corner_round_all" 
+			android:orientation="vertical"
+			android:paddingLeft="@dimen/upomp_lthj_prompt_hint_margin_left" 
+				android:paddingRight="@dimen/upomp_lthj_prompt_hint_margin_right" 
+				android:paddingBottom="@dimen/upomp_lthj_prompt_hint_margin_bottom">
+			<ImageView android:src="@drawable/upomp_lthj_friend_tip" style="@style/upomp_lthj_layout_width_height_ww"
+				android:layout_alignParentTop="true"/>"
+			<TextView android:id="@id/upomp_lthj_bankManageMessageTextView"
+				 style="@style/upomp_lthj_layout_width_height_fw"  
+				android:text="@string/upomp_lthj_bankmanage_prompt" 
+				android:textColor="@android:color/darker_gray"
+				/>
+		</LinearLayout>
+		<LinearLayout style="@style/upomp_lthj_layout_width_height_fw" android:paddingTop="@dimen/upomp_lthj_buttons_tab_pad_top"
+			android:orientation="vertical"  android:gravity="center">
+			<Button android:id="@id/upomp_lthj_bankNewButton" android:textColor="@drawable/upomp_lthj_white" android:background="@drawable/upomp_lthj_ok" style="@style/upomp_lthj_button_single" android:text="添加银行卡"  />
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
+		<!-- 
+		<TableLayout android:orientation="vertical"
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:gravity="center" android:shrinkColumns="1" android:background="@drawable/upomp_lthj_corner_round_all"
+			android:padding="1.0dip"
+			>
+			<TableRow
+			style="@style/upomp_lthj_tablerow"
+  				 android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_top_blue">
+				<TextView  style="@style/upomp_lthj_layout_width_height_fw" 
+				android:text="银行卡列表" android:gravity="center_vertical" android:textColor="#ffffff"
+					android:layout_span="2"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+  			<TableRow  style="@style/upomp_lthj_tablerow"
+  				 android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="商户名称  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantName"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+  			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="订单编号  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantOrderId"  style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>   
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>  
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="应付金额  "  style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_pay_money_tv" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical"  android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="交易时间  " style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_orderTime" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_while">
+				<TextView android:text="交易币种  " style="@style/upomp_lthj_textView_title"/>
+				<TextView style="@style/upomp_lthj_textView_title_left"
+					android:text="人民币"/>
+			</TableRow>
+			<View android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@drawable/upomp_lthj_line"/>
+			<TableRow  style="@style/upomp_lthj_tablerow"
+				android:gravity="center_vertical" android:background="@drawable/upomp_lthj_corner_round_bottom">
+				<TextView android:text="交易种类  " style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantDesc" style="@style/upomp_lthj_textView_title_left"
+					android:text="直接消费"/>
+			</TableRow>
+			 <TableRow  android:layout_width="fill_parent" android:layout_height="wrap_content"
+			>
+				<TextView android:text="商品描述    " style="@style/upomp_lthj_textView_title"/>
+				<TextView android:id="@id/upomp_lthj_merchantDesc" style="@style/upomp_lthj_textView_title_left"/>
+			</TableRow>
+		</TableLayout>	 
+			<TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@id/upomp_lthj_trade_info_textview"
+						style="@style/upomp_lthj_textView_info"/> 
+		<TextView style="@style/upomp_lthj_layout_width_height_fw" />
+		<LinearLayout 
+			style="@style/upomp_lthj_layout_width_height_fw"
+			android:background="@drawable/upomp_lthj_corner_round_all" 
+			android:orientation="vertical"
+			android:paddingLeft="@dimen/upomp_lthj_prompt_hint_margin_left" 
+				android:paddingRight="@dimen/upomp_lthj_prompt_hint_margin_right" 
+				android:paddingBottom="@dimen/upomp_lthj_prompt_hint_margin_bottom">
+			<ImageView android:src="@drawable/upomp_lthj_friend_tip" style="@style/upomp_lthj_layout_width_height_ww"
+				android:layout_alignParentTop="true"/>"
+			<TextView style="@style/upomp_lthj_layout_width_height_fw"  
+				android:text="@string/upomp_lthj_trade_prompt" 
+				android:textColor="@android:color/darker_gray"
+				/>
+		</LinearLayout>
+		<TextView style="@style/upomp_lthj_layout_width_height_fw" />
+		<RelativeLayout style="@style/upomp_lthj_layout_width_height_fw"
+			android:orientation="horizontal"
+			android:gravity="center">
+				<Button android:id="@id/upomp_lthj_button_cancel" style="@style/upomp_lthj_button_cancle_single" 
+					android:text="@string/upomp_lthj_trade_button_cancel"/>
+				<Button android:id="@id/upomp_lthj_button_ok" style="@style/upomp_lthj_button_ok_single" 
+					android:text="@string/upomp_lthj_trade_button_ok"/>
+		</RelativeLayout>-->

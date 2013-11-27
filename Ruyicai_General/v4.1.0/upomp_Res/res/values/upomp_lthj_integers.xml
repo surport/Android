@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="upomp_lthj_widget_content_max_lines">2</integer>
+    <integer name="upomp_lthj_emotion_colnum">6</integer>
+    <integer name="upomp_lthj_check_version_interval">86400000</integer>
+    <integer name="upomp_lthj_speed_test_interval">86400000</integer>
+    <integer name="upomp_lthj_title_bar_pb_w">54</integer>
+    <integer name="upomp_lthj_title_bar_pb_h">44</integer>
+</resources>

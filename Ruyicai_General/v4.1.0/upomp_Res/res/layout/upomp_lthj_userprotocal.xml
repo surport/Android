@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/upomp_lthj_layout_width_height_ff" android:background="@drawable/upomp_lthj_bg_main">
+	<RelativeLayout android:orientation="vertical" android:gravity="right|center_vertical" style="@style/upomp_lthj_layout_width_height_fw"  android:background="@drawable/upomp_lthj_logo_bar">
+		<Button android:id="@id/upomp_lthj_mainbackbutton" style="@style/upomp_lthj_layout_width_height_ww" android:background="@drawable/upomp_lthj_top_back_button" android:textColor="@drawable/upomp_lthj_black"
+			 android:gravity="center" android:layout_marginRight="10.0dip" android:text="返回"/>
+	</RelativeLayout>
+	<ListView android:id="@android:id/list" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:layout_marginLeft="5.0dip" 
+		android:layout_marginTop="8.0dip" 
+		android:layout_marginRight="5.0dip" 
+		android:divider="#8B8B00"  
+		android:dividerHeight="0.0dip"  
+		android:cacheColorHint="#00000000" />
+</LinearLayout>
+

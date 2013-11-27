@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>                  
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.unionpay.upomp.lthj.plugin.ui"                                                                                                                                         
+	android:versionCode="1" android:versionName="1.0">                                                                                                                                         
+ 	<application android:icon="@drawable/upomp_lthj_icon" android:label="@string/upomp_lthj_app_name"> 
+		<activity android:name="com.unionpay.upomp.lthj.plugin.ui.MainActivity" android:label="@string/upomp_lthj_app_name" 
+		 android:screenOrientation="portrait">                                                                                                          
+			<intent-filter>                                                                                                                                                                                                                                                                              
+				<!-- <action android:name="android.intent.action.MAIN" />                                   
+				<category android:name="android.intent.category.LAUNCHER" />   -->               
+				<action android:name="com.unionpay.upomp.lthj.android.appstock.plugin" /> 
+  				<category android:name="android.intent.category.DEFAULT" />    
+			</intent-filter>                                                                                                                                          
+		</activity>                                                                                                        
+		<activity android:name="com.unionpay.upomp.lthj.plugin.ui.IndexActivity" android:launchMode="singleInstance" android:screenOrientation="portrait"></activity>                                                                                
+		<activity android:name="com.unionpay.upomp.lthj.plugin.ui.TradeManagerActivity" android:launchMode="singleInstance"  android:screenOrientation="portrait" >
+		</activity>   
+		<activity android:name="com.unionpay.upomp.lthj.plugin.ui.AccountManagerActivity" android:launchMode="singleInstance"  android:screenOrientation="portrait" >
+		</activity>      
+		<activity android:name="com.unionpay.upomp.lthj.plugin.ui.BankManagerActivity" android:launchMode="singleInstance" android:screenOrientation="portrait" >
+		</activity> 
+		<activity android:name="com.unionpay.upomp.lthj.plugin.ui.UserProtocalActivity" android:screenOrientation="portrait" >
+		</activity>                                 
+ 	</application>                                                                                               
+	<!-- <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission> -->
+	
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.DELETE_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.DELETE_CACHE_FILES"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+	
+	<uses-sdk android:minSdkVersion="4" /> 
+</manifest>
+

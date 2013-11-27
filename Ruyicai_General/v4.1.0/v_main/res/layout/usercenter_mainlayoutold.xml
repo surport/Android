@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- miao用户中心的布局文件 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_buy_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:id="@+id/usercenter_mainlayou_text_title"
+            style="@style/UserTitleTextLeft"
+            android:text="@string/yonghuzhongxin" />
+
+        <Button
+            android:id="@+id/layout_usercenter_img_return"
+            android:layout_width="100dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/returnselecter"
+            android:text="@string/backtohomepage"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+            android:visibility="invisible" >
+        </Button>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/betkind"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="5sp"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10sp"
+            android:text="按彩种查询："
+            android:textColor="@color/black"
+            android:textSize="17dip" >
+        </TextView>
+
+        <Spinner
+            android:id="@+id/bet_kind_spinner"
+            android:layout_width="160sp"
+            android:layout_height="50sp"
+            android:layout_below="@+id/buy_jc_main_listview"
+            android:prompt="@string/betkind" >
+        </Spinner>
+    </LinearLayout>
+    
+    <!-- 状态切换栏 -->
+      <LinearLayout android:id="@+id/usercenter_join_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="@drawable/jc_team_select_button_bg"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/lotno_change_state"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/lotno_change_state_title"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dip"
+                android:src="@drawable/jc_game_select" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/award_change_state"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/award_change_state_title"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dip"
+                android:src="@drawable/jc_game_select" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/time_change_state"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/time_change_state_title"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dip"
+                android:src="@drawable/jc_game_select" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 填充内容视图 -->
+    <LinearLayout
+        android:id="@+id/usercenterContent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+</LinearLayout>

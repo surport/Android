@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/linearLayout"
+        android:background="#ffffff"
+        android:paddingBottom="70sp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dip"
+                android:paddingLeft="10dip"
+                android:paddingTop="10dip" >
+
+                <LinearLayout
+                    android:id="@+id/alert_dialog_touzhu_linear_qihao_beishu"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            style="@style/touzhuTextstyle"
+                            android:text="彩种：" />
+
+                        <TextView
+                            android:id="@+id/alert_dialog_touzhu_textview_caizhong"
+                            style="@style/touzhuTextstyle" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            style="@style/touzhuTextstyle"
+                            android:text="@string/usercenter_bettingDetails_issue" />
+
+                        <TextView
+                            android:id="@+id/alert_dialog_touzhu_textview_qihao"
+                            style="@style/touzhuTextstyle" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/alert_dialog_touzhu_text_zhuma_title"
+                        style="@style/touzhuTextstyle"
+                        android:paddingTop="10dip"
+                        android:text="@string/zhuma" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:paddingTop="10dip" >
+
+                        <TextView
+                            android:id="@+id/alert_dialog_touzhu_text_zhuma"
+                            style="@style/touzhuTextstyle"
+                            android:layout_width="230dip" />
+
+                        <Button
+                            android:id="@+id/alert_dialog_touzhu_btn_look_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="18sp"
+                            android:background="@drawable/xiangyou"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" >
+                        </Button>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/beishulayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingRight="2dp"
+                        android:paddingTop="10dip" >
+
+                        <TextView
+                            android:id="@+id/buy_zixuan_text_beishu_title"
+                            style="@style/touzhuTextstyle"
+                            android:text="@string/meiqibeishu" />
+
+                        <ImageButton
+                            android:id="@+id/buy_zixuan_img_subtract_beishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:src="@drawable/subtractselecter" />
+
+                        <SeekBar
+                            android:id="@+id/buy_zixuan_seek_beishu"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="130dip"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:max="10000"
+                            android:maxHeight="6dip"
+                            android:minHeight="6dip"
+                            android:paddingLeft="15dip"
+                            android:paddingRight="15dip"
+                            android:progress="1"
+                            android:progressDrawable="@drawable/seekbar_style"
+                            android:thumb="@drawable/thumb"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/buy_zixuan_text_beishu"
+                            android:layout_width="75dip"
+                            android:layout_height="40dip"
+                            android:layout_marginTop="2dip"
+                            android:numeric="integer"
+                            android:singleLine="true" >
+                        </EditText>
+
+                        <ImageButton
+                            android:id="@+id/buy_zixuan_img_add_beishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/buy_zixuan_linear_progress"
+                            android:background="#00000000"
+                            android:src="@drawable/addselecter" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/bettingDetails_maxMutiple_one"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            style="@style/touzhuTextstyle"
+                            android:text="注数：" />
+
+                        <TextView
+                            android:id="@+id/alert_dialog_touzhu_textview_zhushu"
+                            style="@style/touzhuTextstyle" >
+                        </TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/buy_zixuan_linear_toggle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dip"
+                        android:visibility="gone" >
+
+                        <ToggleButton
+                            android:id="@+id/dlt_zhuijia"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:background="@drawable/dlt_zhuijia_toggle_button"
+                            android:textOff=""
+                            android:textOn="" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="10sp"
+                            android:text="@string/dlt_zhuijia_text"
+                            android:textColor="#DC143C"
+                            android:textSize="16dip"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/gift_text_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10sp"
+                        android:text="@string/gift_to_phone"
+                        android:textColor="@color/black" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/gift_edit_phone"
+                            android:layout_width="220sp"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="none"
+                            android:hint="@string/gift_to_phone_hint"
+                            android:text=""
+                            android:textSize="15sp" >
+                        </EditText>
+
+                        <ImageButton
+                            android:id="@+id/gift_img_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="#00000000"
+                            android:paddingLeft="9sp"
+                            android:src="@drawable/gift_phone_selector" >
+                        </ImageButton>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/gift_text_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gift_to_language"
+                        android:textColor="@color/black" >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/gift_edit_language"
+                            android:layout_width="220sp"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="none"
+                            android:hint="@string/gift_to_language_hint"
+                            android:text=""
+                            android:textSize="15sp" >
+                        </EditText>
+
+                        <ImageButton
+                            android:id="@+id/gift_img_language"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="#00000000"
+                            android:paddingLeft="9sp"
+                            android:src="@drawable/gift_language_selector" >
+                        </ImageButton>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/alert_litte" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:layout_marginTop="5dip"
+                android:background="@drawable/buy_zhuma_bg"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/alert_dialog_touzhu_text_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" >
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70sp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buy_bot_bg" >
+
+        <Button
+            android:id="@+id/alert_dialog_touzhu_button_cancel"
+            android:layout_width="120dip"
+            android:layout_height="40sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18sp"
+            android:background="@drawable/loginselecter"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/alert_dialog_touzhu_button_ok"
+            android:layout_width="120dip"
+            android:layout_height="40sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18sp"
+            android:background="@drawable/loginselecter"
+            android:text="@string/ok"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>

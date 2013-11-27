@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/share_popwindow"
+    android:gravity="center_horizontal"
+    android:background="#5E656B"
+    >
+<Button  
+    android:id="@+id/tosinaweibo"
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/sharetosinaweibo"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
+    />
+
+<Button  
+    android:id="@+id/totengxunweibo"
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/sharetotencentweibo"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
+    />
+
+<Button  
+    android:id="@+id/toweixin"
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/sharetoweixin"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
+    />
+
+<Button  
+    android:id="@+id/topengyouquan"
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/sharetopengyouquan"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/share_btn"
+    android:textSize="20sp"
+    android:textColor="@color/text_press_selector"
+    />
+
+
+<Button 
+    android:id="@+id/tocancel" 
+    android:layout_width="300dp" 
+    android:layout_height="wrap_content" 
+    android:text="@string/cancle"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/share_btn_cancel"
+    android:textSize="20sp"
+    android:textColor="@android:color/white"
+    />
+</LinearLayout>

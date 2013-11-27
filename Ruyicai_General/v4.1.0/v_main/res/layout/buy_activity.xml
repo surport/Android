@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/buy_bg" >
+
+    <LinearLayout
+        android:id="@+id/notice_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:background="@drawable/gundongbg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+        
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/buy_notice_icon"
+            android:layout_marginLeft="20dip"
+            android:layout_gravity="center_vertical"/>
+
+        <ViewFlipper
+            android:id="@+id/notice_other_flipper"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:flipInterval="3000" >
+
+            <TextView
+                android:id="@+id/notice_other_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="@color/home_alert_color"
+                android:textSize="15sp" />
+        </ViewFlipper>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notice_layout"
+        android:layout_gravity="center" >
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/buy_activity_light_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/layout4_top"
+        android:gravity="center_horizontal"
+        android:paddingBottom="10sp" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout4_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/main_ico_bg"
+        android:gravity="center_horizontal"
+        android:paddingBottom="7dip"
+        android:paddingTop="5dip" >
+
+        <Button
+            android:id="@+id/mainpage_usercenter"
+            style="@style/HomeThreeBtn"
+            android:layout_marginTop="3dip"
+            android:text="@string/lottery_info" >
+        </Button>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/mainpage_help"
+                style="@style/HomeThreeBtn"
+                android:layout_marginLeft="6sp"
+                android:layout_marginTop="3dip"
+                android:text="@string/action_center" >
+            </Button>
+
+            <TextView
+                android:id="@+id/tv_warming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dip"
+                android:background="@drawable/quan"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/mainpage_luck_sign"
+            style="@style/HomeThreeBtn"
+            android:layout_marginTop="3dip"
+            android:text="@string/luckey_choose" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>

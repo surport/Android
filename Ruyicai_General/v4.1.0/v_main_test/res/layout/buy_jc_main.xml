@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingTop="5sp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10sp"
+            android:text="过关方式："
+            android:textColor="@color/black"
+            android:textSize="17dip" >
+        </TextView>
+
+        <Spinner
+            android:id="@id/buy_jc_main_spinner"
+            android:layout_width="120sp"
+            android:layout_height="40sp"
+            android:layout_below="@id/buy_jc_main_listview"
+            android:prompt="@string/jc_spinner_title" >
+        </Spinner>
+
+        <TextView
+            android:id="@id/buy_jc_main_text_title"
+            style="@style/textSize16"
+            android:paddingLeft="5sp"
+            android:text="@string/jclq_title">        
+        </TextView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ListView
+            android:id="@id/buy_jc_main_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="90sp"
+            android:background="@drawable/list_bg_white"
+            android:divider="#d2d2d2"
+            android:dividerHeight="0dip"
+            android:fadingEdge="none"
+            android:scrollingCache="false" >
+        </ListView>
+
+        <LinearLayout
+            android:id="@id/LinearLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/buy_zixuan_relativelayout"
+            android:background="@drawable/buy_zhuma_bg"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@id/buy_zixuan_text_sum_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15dip"
+                android:visibility="gone" >
+            </TextView>
+
+            <TextView
+                android:id="@id/buy_zixuan_text_title_shu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" | "
+                android:textColor="@color/black"
+                android:textSize="13dip"
+                android:visibility="gone" >
+            </TextView>
+
+            <TextView
+                android:id="@id/buy_zixuan_text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已选:"
+                android:textColor="@color/black"
+                android:textSize="15dip" >
+            </TextView>
+
+            <EditText
+                android:id="@id/buy_zixuan_edit_zhuma"
+                android:layout_width="wrap_content"
+                android:layout_height="27dip"
+                android:background="@null"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:ellipsize="none"
+                android:paddingRight="3dip"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="13dip" >
+            </EditText>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@id/buy_zixuan_relativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="60sp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buy_bot_bg" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@id/buy_zixuan_linear_progress_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="20dip" >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <ImageButton
+                            android:id="@id/buy_zixuan_img_subtract_beishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:paddingTop="20dip"
+                            android:src="@drawable/subtractselecter" />
+
+                        <LinearLayout
+                            android:id="@id/buy_zixuan_linear_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            layout_toRightOf="@id/buy_zixuan_img_subtract_beishu"
+                            android:orientation="vertical"
+                            android:paddingLeft="15dip"
+                            android:paddingRight="15dip" >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="horizontal" >
+
+                                <TextView
+                                    android:id="@id/buy_zixuan_text_beishu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@id/buy_zixuan_text_beishu_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/mbeishu"
+                                    android:textColor="@color/black" />
+                            </LinearLayout>
+
+                            <SeekBar
+                                android:id="@id/buy_zixuan_seek_beishu"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="130dip"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:max="10000"
+                                android:maxHeight="6dip"
+                                android:minHeight="6dip"
+                                android:paddingLeft="15dip"
+                                android:paddingRight="15dip"
+                                android:progress="1"
+                                android:progressDrawable="@drawable/seekbar_style"
+                                android:thumb="@drawable/thumb" />
+                        </LinearLayout>
+
+                        <ImageButton
+                            android:id="@id/buy_zixuan_img_add_beishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/buy_zixuan_linear_progress"
+                            android:background="#00000000"
+                            android:paddingTop="20dip"
+                            android:src="@drawable/addselecter" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/buy_zixuan_linear_progress_all"
+                    android:orientation="vertical"
+                    android:paddingTop="20dip" >
+
+                    <ImageButton
+                        android:id="@id/buy_zixuan_img_touzhu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:src="@drawable/imageselecter" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 中奖查询列表子选项布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/usercenter_winprize_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="3" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:paddingLeft="5dp" >
+
+        <!-- 彩种名称 -->
+
+        <TextView
+            android:id="@+id/usercenter_winprize_lotteryname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout android:id="@+id/usercenter_winprize_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <!-- 期号 -->
+
+                    <TextView
+                        android:id="@+id/usercenter_winprize_prizeqihao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/usercenter_winprize_qihao"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <!-- 兑奖标识：未开奖 -->
+
+                    <TextView
+                        android:id="@+id/usercenter_winprize_prizemoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:textColor="@color/black"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <!-- 认购 -->
+
+                <TextView
+                    android:id="@+id/usercenter_winprize_paymoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <!-- 认购时间 -->
+
+                <TextView
+                    android:id="@+id/usercenter_winprize_ordertime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <!-- 预计奖金 -->
+
+                <TextView
+                    android:id="@+id/usercenter_winprize_predictmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_weight="1"
+                android:gravity="right|bottom" >
+
+                <Button
+                    android:id="@+id/usercenter_winprize_buyagain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/usercenter_selector_buyagain" />
+
+                <Button
+                    android:id="@+id/usercenter_winprize_querydetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/usercenter_winprize_buyagain"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/usercenter_selector_lookdetails" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
