@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/notice_detail_background"
+    android:scrollbars="vertical"
+    android:id="@+id/relativetopone" >
+
+    <RelativeLayout
+        android:id="@+id/notice_detail_title"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/hongse"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="开奖详情"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffffff"
+            android:textSize="20sp"
+            android:typeface="serif" />
+
+        <Button
+            android:id="@+id/notice_return_main"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/returnselecter"
+            android:text="返回列表"
+            android:textColor="#FFFFFFFF"
+            android:visibility="invisible" />
+        
+        <Button
+            android:id="@+id/notice_detail_btn"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dip"
+            android:background="@drawable/share_bt_selector" >
+        </Button>
+        
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/notice_detail_title" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" >
+
+            <LinearLayout
+                android:id="@+id/notice_detail_2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/notice_detail_title"
+                android:layout_margin="5dp"
+                android:background="@drawable/usercenter_bg"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/prizedetail_batchcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="双色球 第2012025期"
+                    android:textColor="#ff000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/prizedetail_prizeData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="开奖日期：2012-02-25"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/prizedetail_numball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/prizedetail_totalsellmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="本期销售总金额：6666,8888,999元"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/prizedetail_prizepoolmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="当前奖池总金额：600000000000"
+                    android:textColor="#ff000000"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <TableLayout
+                android:id="@+id/notiece_tablelayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/notice_detail_2" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/notice_detail_background"
+                    android:gravity="center_vertical"
+                    android:text="中奖详情"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_title" >
+
+                        <TextView
+                            style="@style/prize_detail_textview_left"
+                            android:text="@string/prizedetail_prizename" />
+
+                        <TextView
+                            style="@style/prize_detail_textview_center"
+                            android:text="@string/prizedetail_prizenum" />
+
+                        <TextView
+                            style="@style/prize_detail_textview_right"
+                            android:text="@string/prizedetail_eachprizeamt" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename1"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum1"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney1"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename2"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum2"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney2"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename3"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum3"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney3"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename4"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum4"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney4"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename5"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum5"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney5"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename6"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum6"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney6"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout style="@style/prize_detail_linear_item" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename7"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum7"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney7"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear8"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename8"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum8"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney8"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear9"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename9"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum9"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney9"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear10"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename10"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum10"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney10"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear11"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename11"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum11"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney11"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear12"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename12"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum12"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney12"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear13"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename13"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum13"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney13"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear14"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename14"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum14"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney14"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear15"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename15"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum15"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney15"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:id="@+id/notice_detail_linear16"
+                        style="@style/prize_detail_linear_item_after8" >
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizename16"
+                            style="@style/prize_detail_textview_left" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizenum16"
+                            style="@style/prize_detail_textview_center" />
+
+                        <TextView
+                            android:id="@+id/prizedetail_prizemoney16"
+                            style="@style/prize_detail_textview_right" />
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/notiece_tablelayout"
+                android:gravity="center"
+                android:background="@drawable/noticebg" >
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" 
+                    android:text="去双色球投注"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:id="@+id/tobet"
+                    android:background="@drawable/noticebutton"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout0000"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="50dip"
+        android:paddingLeft="10dip" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout10"
+            android:layout_width="320dip"
+            android:layout_height="wrap_content"
+            android:background="@drawable/fenxiangbg"
+            android:orientation="horizontal" 
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/join_detail_img_buy2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="60dip"
+                android:background="#00000000"
+                android:src="@drawable/renrenfenxiang" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/join_detail_img_buy3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="#00000000"
+                android:src="@drawable/xinlangfenxiang" >
+            </ImageButton>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
