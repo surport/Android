@@ -27,8 +27,8 @@ public class Constants {
 	public static String TAG = "RUYICAI";
 	/* Add by fansm 20130412 end */
 
-//	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
-	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
+	public static String LOT_SERVER = "http://www.ruyicai.com/lotserver/RuyicaiServlet";// 正式线
+//	public static String LOT_SERVER = "http://202.43.152.173:8099/lotserver/RuyicaiServlet";// 测试线
 //	public static String LOT_SERVER = "http://192.168.0.118:80/lotserver/RuyicaiServlet";// 测试线
 	/**
 	 * mMode参数解释：
