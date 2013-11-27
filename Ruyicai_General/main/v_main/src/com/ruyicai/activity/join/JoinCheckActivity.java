@@ -245,14 +245,15 @@ public class JoinCheckActivity extends InquiryParentActivity {
 		int allPage = getAllPage();
 		pageIndex++;
 		if (pageIndex < allPage) {
+			setNewPage(pageIndex);
 			joinCheckNet();
 		} else {
 			pageIndex = allPage - 1;
+			setNewPage(pageIndex);
 			mProgressbar.setVisibility(View.INVISIBLE);
 			Toast.makeText(JoinCheckActivity.this, "已至尾页",
 					Toast.LENGTH_SHORT).show();
 		}
-		setNewPage(pageIndex);
 	}
 
 	/**
@@ -869,6 +870,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				initListView();
 			} else {
 				showDialog(0);
+				setNewPage(0);
 				netting();
 			}
 		} else if (joinType == 1) {
@@ -880,6 +882,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				initListView();
 			} else {
 				showDialog(0);
+				setNewPage(0);
 				netting();
 			}
 		}
