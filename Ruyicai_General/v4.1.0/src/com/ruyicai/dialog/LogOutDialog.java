@@ -74,6 +74,10 @@ public class LogOutDialog extends BaseDialog {
 			/**add by yejc 20131028 end*/
 			
 			shellRW.putStringValue("userno", "");
+			shellRW.putStringValue("zfbtruename", "");
+			shellRW.putStringValue("zfbid", "");
+			shellRW.putStringValue("banktruename", "");
+			shellRW.putStringValue("bankid", "");
 			shellRW.putBooleanValue(ShellRWConstants.AUTO_LOGIN, false);
 			shellRW.putStringValue(ShellRWConstants.RANDOMNUMBER, "");
 			MobclickAgent.onEvent(activity, "zhuxiao"); // 在用户中心点击“注销”按钮的:
