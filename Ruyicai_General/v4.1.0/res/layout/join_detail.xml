@@ -722,7 +722,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="点击箭头查看方案详情"
+                    android:text="点击箭头了解参与人员详情"
                     android:textColor="@color/black"
                     android:textSize="15dip" >
                 </TextView>
