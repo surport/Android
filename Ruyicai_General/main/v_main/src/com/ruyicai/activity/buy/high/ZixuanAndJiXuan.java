@@ -632,7 +632,10 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 					|| highttype.equals("CQ11X5_PT_QZ3")) {
 				index = areaNums.length - 1 - i;
 			} else if (highttype.equals("DLC")
-					|| highttype.equals("NMK3-TWOSAME-DAN")) {
+					|| highttype.equals("NMK3-TWOSAME-DAN")
+					|| highttype.equals("NMK3-DIFFER-THREE")
+					|| highttype.equals("NMK3-SAME-THREE")) {
+
 				index = i;
 			}
 			if (missList.size() > 0 && missList.size() > index && !isDanTuo) {
