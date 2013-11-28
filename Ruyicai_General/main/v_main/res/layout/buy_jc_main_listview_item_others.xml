@@ -43,7 +43,7 @@
                     android:background="@color/jc_main_background_color"
                     android:gravity="center"
                     android:textColor="@color/jc_odds_text_color"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <View

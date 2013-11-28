@@ -3278,4 +3278,10 @@ public class PublicMethod {
 		}
 		return week;
 	}
+
+	public static String getTime(String date) {
+		int index = date.indexOf(":");
+		date = date.substring(0, index - 2);
+		return date;
+	}
 }

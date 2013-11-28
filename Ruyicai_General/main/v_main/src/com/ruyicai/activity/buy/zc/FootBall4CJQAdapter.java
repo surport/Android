@@ -71,15 +71,15 @@ public class FootBall4CJQAdapter extends FootBall6CBAdapter {
 			divider.setVisibility(View.GONE);
 		}
 		gameName.setText(mTeamList.get(position).getLeagueName());
-		String tiem = mTeamList.get(position).getTeamId() + "\n"
-				+ PublicMethod.getEndTime(mTeamList.get(position).getDate())
-				+ " (赛)";
+		final TeamInfo info = mTeamList.get(position);
+		String tiem = info.getTeamId() + "\n"
+				+ PublicMethod.getTime(info.getDate()) + "\n"
+				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
 		gameDate.setText(tiem);
 		homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		textVS.setText("VS");
 		guestTeam.setText(mTeamList.get(position).getGuestTeam());
 		btnDan.setVisibility(View.GONE);
-		final TeamInfo info = mTeamList.get(position);
 		// 每次滑动判断是否打开，如果打开则显示
 		if (info.buttonIsOpen) {
 			showLayout(layout, position, info, btnBet);
