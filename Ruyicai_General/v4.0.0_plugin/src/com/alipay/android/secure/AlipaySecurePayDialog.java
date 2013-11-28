@@ -122,11 +122,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		}
 
 	}
-
 	private void getOrderInfo() {
-		(new Handler()).post(new Runnable() {
-
-			@Override
+		new Thread() {
 			public void run() {
 				RWSharedPreferences shellRW = new RWSharedPreferences(
 						AlipaySecurePayDialog.this,
@@ -139,6 +136,7 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					isOnClick = true;
 					return;
 				} 
+				// TODO Auto-generated method stub
 				String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
 				String alipaysecure = AlipaySecurePayInterface.getInstance()
 						.alipaySecurePay(rechargenum, userno, phonenum);
@@ -166,8 +164,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-			}
-		});
+			};
+		}.start();
 	}
 
 	private Handler mHandler = new Handler() {
