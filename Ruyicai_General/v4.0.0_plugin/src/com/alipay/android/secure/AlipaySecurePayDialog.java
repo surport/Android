@@ -220,6 +220,7 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 								AlipaySecurePayDialog.this, null, "正在支付",
 								false, true);
 					}
+					break;
 				}
 
 				super.handleMessage(msg);
