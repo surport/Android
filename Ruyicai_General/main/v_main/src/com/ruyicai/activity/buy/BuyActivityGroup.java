@@ -781,7 +781,7 @@ public class BuyActivityGroup extends ActivityGroup {
 				strb.insert(8, ",");
 				strb.insert(11, ",");
 				strb.insert(14, ",");
-				strb.insert(17, ",");
+				strb.insert(18, ",");
 				builder.append(strb);
 				ForegroundColorSpan span_RED = new ForegroundColorSpan(
 						Color.RED);
