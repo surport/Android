@@ -126,9 +126,7 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	}
 
 	private void getOrderInfo() {
-		(new Handler()).post(new Runnable() {
-
-			@Override
+		new Thread() {
 			public void run() {
 				RWSharedPreferences shellRW = new RWSharedPreferences(
 						AlipaySecurePayDialog.this,
@@ -169,8 +167,8 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-			}
-		});
+			};
+		}.start();
 	}
 
 	private Handler mHandler = new Handler() {
