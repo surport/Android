@@ -92,6 +92,7 @@ public class FootBallRX9Adapter extends FootBallSFAdapter{
 		}
 		copyHolder.gameName.setText(info.getLeagueName());
 		String tiem = info.getTeamId() + "\n"
+				+ PublicMethod.getTime(info.getDate()) + "\n"
 				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
 		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(info.getHomeTeam());

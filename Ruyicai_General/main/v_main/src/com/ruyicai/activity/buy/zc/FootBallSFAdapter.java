@@ -90,9 +90,9 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 			copyHolder.divider.setVisibility(View.GONE);
 		}
 		copyHolder.gameName.setText(info.getLeagueName());
-		String tiem = info.getTeamId() + "\n"+
-				PublicMethod.getEndTime(info.getDate()) 
-				+ " (赛)";
+		String tiem = info.getTeamId() + "\n"
+				+ PublicMethod.getTime(info.getDate()) + "\n"
+				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
 		copyHolder.gameDate.setText(tiem);
 		copyHolder.homeTeam.setText(info.getHomeTeam());
 		copyHolder.homeOdds.setText(info.getHomeOdds());
