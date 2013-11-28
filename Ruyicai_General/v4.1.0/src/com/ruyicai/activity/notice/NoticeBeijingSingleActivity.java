@@ -83,6 +83,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private NoticeMenuAdapter noticeMenuAdapter;
     private int index=0;
 	private int menupostion  = -1;
+	private int defaultIndex;
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
 		super.onCreate(savedInstanceState);
@@ -436,6 +437,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
 				dateStr = jsonObj.getString("batchCodeSelect");
+				defaultIndex = Integer.valueOf(jsonObj.getString("defaultIndex"));
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -487,7 +489,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		dateShow = dateStr.split(";");
 		reBtn.setText(dateShow[0]);
 		dateNet = (dateStr.replaceAll("-", "")).split(";");
-		dateshow.setText(new StringBuffer(dateNet[0]).insert(4, "年").insert(7, "月").insert(10, "日"));
+		dateshow.setText(new StringBuffer(dateNet[defaultIndex - 1]).insert(4, "年").insert(7, "月").insert(10, "日"));
 	}
 
 	private void showBatchcodesDialog() {
