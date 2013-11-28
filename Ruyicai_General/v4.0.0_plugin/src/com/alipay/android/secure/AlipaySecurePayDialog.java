@@ -216,7 +216,7 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 		try {
 			if (mProgress != null) {
 				mProgress.dismiss();
-				mProgress = null;
+				//mProgress = null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -237,7 +237,9 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	public void onDestroy() {
 		super.onDestroy();
 		try {
-			mProgress.dismiss();
+			if(mProgress!=null){
+				mProgress.dismiss();
+			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
