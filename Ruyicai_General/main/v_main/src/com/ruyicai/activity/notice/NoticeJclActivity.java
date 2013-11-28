@@ -425,7 +425,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 					public void onClick(DialogInterface dialog, int which) {
 						/* User clicked so do some stuff */
 						bachCodeIndex = which;
-						dateshow.setText(new StringBuffer(dateNet[0]).insert(4, "年").insert(7, "月").insert(10, "日"));
+						dateshow.setText(new StringBuffer(dateNet[which]).insert(4, "年").insert(7, "月").insert(10, "日"));
 						initViewState = OTHER_JC_NOTICE;
 						notiecJcNet(dateNet[which]);
 					}
