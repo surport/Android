@@ -168,12 +168,9 @@ public class InternetUtils {
 			try {
 				post.setURI(new URI(url));
 				response = hc.execute(post);
-			} catch (URISyntaxException e) {
-				e.printStackTrace();
-			} catch (ClientProtocolException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				//e.printStackTrace();
+				return "{error_code:0,message:"+e.getMessage()+"}";
 			}
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode == 200) {
