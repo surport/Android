@@ -3,8 +3,8 @@
     xmlns:android_custom="http://schemas.android.com/apk/res/com.palmdream.RuyicaiAndroid"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability= "blocksDescendants" 
-    android:background="@drawable/buy_ruyiguess_item_bg" >
+    android:background="@drawable/buy_ruyiguess_item_bg"
+    android:descendantFocusability="blocksDescendants" >
 
     <RelativeLayout
         android:id="@+id/join_info_item_topLayout"
@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:textColor="@color/black"
-            android:text="足球竞猜" />
+            android:text="足球竞猜"
+            android:textColor="@color/black" />
 
         <com.ruyicai.activity.buy.jc.lq.view.RoundProgressBar
             android:id="@+id/roundProgressBar"
@@ -29,10 +29,10 @@
             android_custom:roundColor="#D1D1D1"
             android_custom:roundProgressColor="@android:color/black"
             android_custom:roundWidth="8dip"
-            android_custom:text_textSize="12sp"
-            android_custom:text_textColor="#D1D1D1"
             android_custom:textColor="#D1D1D1"
-            android_custom:textSize="14sp" />
+            android_custom:textSize="14sp"
+            android_custom:text_textColor="#D1D1D1"
+            android_custom:text_textSize="12sp" />
 
         <TextView
             android:id="@+id/join_info_item_baodiTxt"
@@ -40,14 +40,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/roundProgressBar"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="2.0dip"
+            android:background="@drawable/join_iten_shape_text"
+            android:gravity="center"
             android:paddingLeft="3.0dip"
             android:paddingRight="3.0dip"
-            android:gravity="center"
-            android:background="@drawable/join_iten_shape_text"
-            android:layout_marginTop="2.0dip"
+            android:text="保100%"
             android:textColor="@color/white"
-            android:textSize="12sp"
-            android:text="保100%" />
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -83,24 +83,14 @@
                 android:text="123456"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/join_info_item_text_ding"
-                android:layout_width="30dip"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/join_info_item_dingzhiImgBtn"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/join_info_item_text_faqiren"
-                android:textColor="#d89300" >
-            </TextView>
-
             <Button
                 android:id="@+id/join_info_item_dingzhiImgBtn"
                 android:layout_width="80.0dip"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/jc_lq_dx_bj"
                 android:layout_marginTop="1.0dip"
-                android:focusable = "false" 
+                android:background="@drawable/jc_lq_dx_bj"
+                android:focusable="false"
                 android:text="定制跟单" />
         </RelativeLayout>
 
@@ -124,7 +114,7 @@
                 android:layout_height="28dip"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/zhanji"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
             </LinearLayout>
         </RelativeLayout>
 
@@ -230,5 +220,14 @@
         android:layout_marginLeft="5.0dip"
         android:layout_marginRight="10.0dip"
         android:src="@drawable/xiangyou" />
+
+    <TextView
+        android:id="@+id/join_info_item_text_ding"
+        android:layout_width="30dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/join_info_item_text_faqiren"
+        android:textColor="#d89300" >
+    </TextView>
 
 </RelativeLayout>

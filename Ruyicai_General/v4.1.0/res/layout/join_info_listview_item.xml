@@ -83,16 +83,6 @@
                 android:text="123456"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/join_info_item_text_ding"
-                android:layout_width="30dip"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/join_info_item_dingzhiImgBtn"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/join_info_item_text_faqiren"
-                android:textColor="#d89300" >
-            </TextView>
-
             <Button
                 android:id="@+id/join_info_item_dingzhiImgBtn"
                 android:layout_width="80.0dip"
@@ -231,4 +221,12 @@
         android:layout_marginRight="10.0dip"
         android:src="@drawable/xiangyou" />
 
+    <TextView
+        android:id="@+id/join_info_item_text_ding"
+        android:layout_width="30dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/join_info_item_text_faqiren"
+        android:textColor="#d89300" >
+    </TextView>
 </RelativeLayout>
