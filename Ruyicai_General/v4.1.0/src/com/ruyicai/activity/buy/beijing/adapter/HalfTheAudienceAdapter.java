@@ -151,16 +151,23 @@ public class HalfTheAudienceAdapter extends ParentAdapter {
 		TextView leagueTextView = (TextView) itemView
 				.findViewById(R.id.game_name);
 		leagueTextView.setText(halfTheAudienceAgainstInformation.getLeague());
+		TextView gameNumTextView = (TextView) itemView.findViewById(R.id.game_num);
 		// 比赛时间
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
-		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号:")
-				.append(halfTheAudienceAgainstInformation.getTeamId())
-				.append("\n")
-				.append(PublicMethod.getEndTime(halfTheAudienceAgainstInformation.getEndTime())).append("(截)");
-		
-		gameDateTextView.setText(gameDate);
+		TextView gameTimeTextView = (TextView) itemView.findViewById(R.id.game_time);
+		String num = halfTheAudienceAgainstInformation.getTeamId();
+		String date = PublicMethod.getTime(halfTheAudienceAgainstInformation.getEndTime());
+		String time = PublicMethod.getEndTime(halfTheAudienceAgainstInformation.getEndTime()) + " "
+				+ "(截)";
+//		StringBuffer gameDate = new StringBuffer();
+//		gameDate.append("编号:")
+//				.append(halfTheAudienceAgainstInformation.getTeamId())
+//				.append("\n")
+//				.append(PublicMethod.getEndTime(halfTheAudienceAgainstInformation.getEndTime())).append("(截)");
+		gameNumTextView.setText(num);
+		gameDateTextView.setText(date);
+		gameTimeTextView.setText(time);
 		// 主队
 		TextView homeTeamTextView = (TextView) itemView
 				.findViewById(R.id.home_team_name);

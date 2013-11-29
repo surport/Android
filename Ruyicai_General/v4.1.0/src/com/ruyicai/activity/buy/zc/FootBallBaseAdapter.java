@@ -97,6 +97,8 @@ public abstract class FootBallBaseAdapter extends BaseAdapter {
 	protected class ViewHolder {
 		View divider;
 		TextView gameName;
+		TextView gameNum;
+		TextView gameTime;
 		TextView gameDate;
 		TextView homeTeam;
 		TextView homeOdds;

@@ -294,8 +294,10 @@ public class HunHeZqView extends JcMainView {
 					R.layout.buy_jc_main_listview_item_others, null);
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
+			TextView gameNum = (TextView) convertView.findViewById(R.id.game_num);
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
+			TextView gameTime = (TextView) convertView.findViewById(R.id.game_time);
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 
@@ -308,10 +310,16 @@ public class HunHeZqView extends JcMainView {
 			final Button btnDan = (Button) convertView
 					.findViewById(R.id.game_dan);
 			gameName.setText(info.getTeam());
-			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
-					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+			String num = info.getTeamId();
+			String date = PublicMethod.getTime(info.getTimeEnd());
+			String time = PublicMethod.getEndTime(info.getTimeEnd()) + " "
 					+ "(截)";
+//			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
+//					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+//					+ "(截)";
+			gameNum.setText(num);
 			gameDate.setText(date);
+			gameTime.setText(time);
 			homeTeam.setText(info.getHome());
 
 			gameName.setOnClickListener(new View.OnClickListener() {

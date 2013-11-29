@@ -31,18 +31,45 @@
                 android:background="@drawable/jc_game_name_bg"
                 android:gravity="center"
                 android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/game_date"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="42dip"
                 android:background="@color/jc_main_background_color"
-                android:gravity="center"
-                android:textColor="@color/jc_odds_text_color"
-                android:textSize="10sp" />
-        </LinearLayout>
+                android:orientation="vertical" 
+                 android:gravity="center">
+                <TextView
+                    android:id="@+id/game_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="aaa"
+                    android:lines="1"
+                    android:textColor="@color/jc_odds_text_color"
+                    android:textSize="10sp" />
 
-        <View
+                <TextView
+                    android:id="@+id/game_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="bbb"
+                    android:lines="1"
+                    android:textColor="@color/jc_odds_text_color"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/game_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="ccc"
+                     android:lines="1"
+                    android:textColor="@color/jc_odds_text_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+		<View
             android:layout_width="1dip"
             android:layout_height="match_parent"
             android:background="@color/zc_sfc_divider" />

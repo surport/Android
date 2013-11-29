@@ -173,7 +173,7 @@ public class NmkAnimation {
 		// 加载帧动画
 		creatAnimation();
 		// 加载声音
-//		mediaPlay();
+		mediaPlay();
 		// 骰子花篮抖动
 		basketShake();
 	}
