@@ -5,6 +5,7 @@ import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.zc.pojo.TeamInfo;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.util.PublicMethod;
+import com.umpay.creditcard.android.cp;
 
 import android.content.Context;
 import android.view.View;
@@ -55,8 +56,11 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 					.findViewById(R.id.jc_main_divider_up);
 			holder.gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
+			holder.gameNum = (TextView) convertView.findViewById(R.id.game_num);
 			holder.gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
+			holder.gameTime = (TextView) convertView.findViewById(R.id.game_time);
+			holder.gameTime.setVisibility(View.VISIBLE);
 			holder.homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 			holder.homeOdds = (TextView) convertView
@@ -90,10 +94,15 @@ public class FootBallSFAdapter extends FootBallBaseAdapter{
 			copyHolder.divider.setVisibility(View.GONE);
 		}
 		copyHolder.gameName.setText(info.getLeagueName());
-		String tiem = info.getTeamId() + "\n"
-				+ PublicMethod.getTime(info.getDate()) + "\n"
-				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
-		copyHolder.gameDate.setText(tiem);
+		String num = info.getTeamId();
+		String date =PublicMethod.getTime(info.getDate());
+		String time = PublicMethod.getEndTime(info.getDate()) + "(赛)";
+//		String tiem = info.getTeamId() + "\n"
+//				+ PublicMethod.getTime(info.getDate()) + "\n"
+//				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
+		copyHolder.gameNum.setText(num);
+		copyHolder.gameDate.setText(date);
+		copyHolder.gameTime.setText(time);
 		copyHolder.homeTeam.setText(info.getHomeTeam());
 		copyHolder.homeOdds.setText(info.getHomeOdds());
 		copyHolder.textVS.setText("VS");

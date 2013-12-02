@@ -79,6 +79,19 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 			}
 		}
 	}
+	
+	public void closeMediaPlayer(){
+		if (areaNums != null) {
+			for (int i = 0; i < areaNums.length; i++) {
+				if (areaNums[i].jixuanBtn != null && areaNums[i].isSensor
+						&& isJixuan == true) {
+					if(areaNums[i].jixuanBtn.animation != null){
+						areaNums[i].jixuanBtn.animation.closeMediaPlayer();
+					}
+				}
+			}
+		}
+	}
 
 	@Override
 	protected void onResume() {

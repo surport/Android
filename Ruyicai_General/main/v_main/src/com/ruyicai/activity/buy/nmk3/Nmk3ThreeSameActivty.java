@@ -271,4 +271,11 @@ public class Nmk3ThreeSameActivty extends ZixuanAndJiXuan {
 		codeInfo.setLotoNo(Constants.LOTNO_NMK3);
 		codeInfo.setTouZhuType("threesame_tong");
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeMediaPlayer();
+		NmkAnimation.flag = true;
+	}
 }

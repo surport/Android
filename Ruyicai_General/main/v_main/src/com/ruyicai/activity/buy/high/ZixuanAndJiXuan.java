@@ -2694,8 +2694,6 @@ public abstract class ZixuanAndJiXuan extends BaseActivity implements
 				getMissNet(missJson, sellWay, isZHMiss);
 			}
 		}
-		Log.e("missView.get(radioId).isMissNet", ""
-				+ missView.get(radioId).isMissNet);
 	}
 
 	/**

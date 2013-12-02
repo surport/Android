@@ -54,7 +54,10 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter {
 				R.layout.buy_jc_main_listview_item_others, null);
 		View divider = (View) convertView.findViewById(R.id.jc_main_divider_up);
 		TextView gameName = (TextView) convertView.findViewById(R.id.game_name);
+		TextView gameNum = (TextView) convertView.findViewById(R.id.game_num);
 		TextView gameDate = (TextView) convertView.findViewById(R.id.game_date);
+		TextView gameTime = (TextView) convertView.findViewById(R.id.game_time);
+		gameTime.setVisibility(View.VISIBLE);
 		TextView homeTeam = (TextView) convertView
 				.findViewById(R.id.home_team_name);
 		TextView textVS = (TextView) convertView.findViewById(R.id.game_vs);
@@ -75,10 +78,16 @@ public class FootBall6CBAdapter extends FootBallBaseAdapter {
 		}
 		gameName.setText(mTeamList.get(position).getLeagueName());
 		final TeamInfo info = mTeamList.get(position);
-		String tiem = info.getTeamId() + "\n"
-				+ PublicMethod.getTime(info.getDate()) + "\n"
-				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
-		gameDate.setText(tiem);
+		String num = info.getTeamId();
+		String date =PublicMethod.getTime(info.getDate());
+		String time = PublicMethod.getEndTime(info.getDate()) + "(赛)";
+//		String tiem = info.getTeamId() + "\n"
+//				+ PublicMethod.getTime(info.getDate()) + "\n"
+//				+ PublicMethod.getEndTime(info.getDate()) + " (赛)";
+//		gameDate.setText(tiem);
+		gameNum.setText(num);
+		gameDate.setText(date);
+		gameTime.setText(time);
 		homeTeam.setText(mTeamList.get(position).getHomeTeam());
 		textVS.setText("VS");
 		guestTeam.setText(mTeamList.get(position).getGuestTeam());
