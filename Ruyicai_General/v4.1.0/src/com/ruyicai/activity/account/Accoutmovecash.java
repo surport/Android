@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -34,7 +35,6 @@ public class Accoutmovecash extends Activity {
 	public static final String TITLE = "title";
 	public static final String URL = "url";
 	private TextView textView;
-	Handler handler = new Handler();
 	String titleStr = "银行转账";
 	String iFileName = "accoutchangecash.html";
 
@@ -84,21 +84,52 @@ public class Accoutmovecash extends Activity {
 	private void initTextViewContent() {
 		progressdialog = UserCenterDialog.onCreateDialog(this);
 		progressdialog.show();
-		JSONObject jsonObject = getJSONByLotno();
-		try {
-			String conten = jsonObject.get("content").toString();
-			textView.setText(conten);
-			if (progressdialog != null) {
-				progressdialog.dismiss();
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		getJSONByLotno();
+//		JSONObject jsonObject = getJSONByLotno();
+//		try {
+//			String conten = jsonObject.get("content").toString();
+//			textView.setText(conten);
+//			if (progressdialog != null) {
+//				progressdialog.dismiss();
+//			}
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
 	}
 
-	private static JSONObject getJSONByLotno() {
-		JSONObject jsonObjectByLotno = RechargeDescribeInterface.getInstance()
-				.rechargeDescribe("bankTransferChargeDescription");
-		return jsonObjectByLotno;
+	private void getJSONByLotno() {
+		new Thread() {
+			public void run() {
+
+				JSONObject jsonObject = RechargeDescribeInterface.getInstance()
+						.rechargeDescribe("bankTransferChargeDescription");
+				try {
+					String conten = jsonObject.get("content").toString();
+					Message message = mHandler.obtainMessage();
+					message.what = 1;
+					message.obj = conten;
+					message.sendToTarget();
+				} catch (JSONException e) {
+					Message message = mHandler.obtainMessage();
+					message.sendToTarget();
+					e.printStackTrace();
+				}
+			};
+		}.start();
 	}
+	private Handler mHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			switch (msg.what) {
+				case 1: 
+				textView.setText((String)msg.obj);
+				default:
+					if (progressdialog != null) {
+						progressdialog.dismiss();
+					}
+				//super.handleMessage(msg);
+			}
+		}
+	};
 }
