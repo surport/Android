@@ -145,16 +145,24 @@ public class UpDownSingleDoubleAdapter extends ParentAdapter {
 				.findViewById(R.id.game_name);
 		leagueTextView
 				.setText(upDownSingleDoubleAgainstInformation.getLeague());
+		TextView gameNumTextView = (TextView) itemView.findViewById(R.id.game_num);
 		// 比赛时间
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
-		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号:")
-				.append(upDownSingleDoubleAgainstInformation.getTeamId())
-				.append("\n")
-				.append(PublicMethod.getEndTime(upDownSingleDoubleAgainstInformation.getEndTime()))
-				.append("(截)");
-		gameDateTextView.setText(gameDate);
+		TextView gameTimeTextView = (TextView) itemView.findViewById(R.id.game_time);
+		String num = upDownSingleDoubleAgainstInformation.getTeamId();
+		String date = PublicMethod.getTime(upDownSingleDoubleAgainstInformation.getEndTime());
+		String time = PublicMethod.getEndTime(upDownSingleDoubleAgainstInformation.getEndTime()) + " "
+				+ "(截)";
+//		StringBuffer gameDate = new StringBuffer();
+//		gameDate.append("编号:")
+//				.append(upDownSingleDoubleAgainstInformation.getTeamId())
+//				.append("\n")
+//				.append(PublicMethod.getEndTime(upDownSingleDoubleAgainstInformation.getEndTime()))
+//				.append("(截)");
+		gameNumTextView.setText(num);
+		gameDateTextView.setText(date);
+		gameTimeTextView.setText(time);
 		// 主队
 		TextView homeTeamTextView = (TextView) itemView
 				.findViewById(R.id.home_team_name);

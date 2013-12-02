@@ -209,9 +209,10 @@ public class SfView extends JcMainView {
 			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
+			TextView gameNum = (TextView) convertView.findViewById(R.id.game_num);
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
-
+			TextView gameTime = (TextView) convertView.findViewById(R.id.game_time);
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 			final TextView homeOdds = (TextView) convertView
@@ -236,9 +237,14 @@ public class SfView extends JcMainView {
 					.findViewById(R.id.guest_layout);
 
 			gameName.setText(info.getTeam());
-			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
-					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
+			String num = info.getTeamId();
+			String date = PublicMethod.getTime(info.getTimeEnd());
+			String time = PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
+//			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
+//					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " " + "(截)";
+			gameNum.setText(num);
 			gameDate.setText(date);
+			gameTime.setText(time);
 			homeTeam.setText(info.getAway() + "(客)");
 
 			final boolean isB_DX = (type == B_DX);

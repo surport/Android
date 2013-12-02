@@ -173,7 +173,7 @@ public class NmkAnimation {
 		// 加载帧动画
 		creatAnimation();
 		// 加载声音
-//		mediaPlay();
+		mediaPlay();
 		// 骰子花篮抖动
 		basketShake();
 	}
@@ -360,16 +360,7 @@ public class NmkAnimation {
 				nmk_ShaiZi1.setBackgroundColor(Color.TRANSPARENT);
 				nmk_ShaiZi2.setBackgroundColor(Color.TRANSPARENT);
 				nmk_ShaiZi3.setBackgroundColor(Color.TRANSPARENT);
-
-				// 关闭声音
-				try {
-					if (mediaPlayer != null) {
-						mediaPlayer.stop();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}	
-				
+				closeMediaPlayer();
 				if(view1 == nmk_ShaiZi1){
 					if (activity instanceof Nmk3TwoSameActivty
 							&& ((Nmk3TwoSameActivty) activity).highttype
@@ -390,6 +381,12 @@ public class NmkAnimation {
 			
 			}
 		});
+	}
+	
+	public void closeMediaPlayer(){
+		if (mediaPlayer != null) {
+			mediaPlayer.stop();
+		}
 	}
 	
 	/**

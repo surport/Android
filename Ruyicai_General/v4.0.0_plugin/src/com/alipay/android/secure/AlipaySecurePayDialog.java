@@ -123,21 +123,21 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 
 	}
 	private void getOrderInfo() {
+		RWSharedPreferences shellRW = new RWSharedPreferences(
+				AlipaySecurePayDialog.this,
+				ShellRWConstants.SHAREPREFERENCESNAME);
+		final String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
+		final String phonenum = shellRW
+				.getStringValue(ShellRWConstants.PHONENUM);
+		String accountnumstr = accountnum.getText().toString();
+		if (PublicMethod.isRecharge(accountnumstr, AlipaySecurePayDialog.this)) {
+			isOnClick = true;
+			return;
+		} 
+		// TODO Auto-generated method stub
+		final String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
 		new Thread() {
 			public void run() {
-				RWSharedPreferences shellRW = new RWSharedPreferences(
-						AlipaySecurePayDialog.this,
-						ShellRWConstants.SHAREPREFERENCESNAME);
-				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
-				String phonenum = shellRW
-						.getStringValue(ShellRWConstants.PHONENUM);
-				String accountnumstr = accountnum.getText().toString();
-				if (PublicMethod.isRecharge(accountnumstr, AlipaySecurePayDialog.this)) {
-					isOnClick = true;
-					return;
-				} 
-				// TODO Auto-generated method stub
-				String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
 				String alipaysecure = AlipaySecurePayInterface.getInstance()
 						.alipaySecurePay(rechargenum, userno, phonenum);
 				try {
@@ -187,13 +187,13 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 						int iresultEnd = strRet.indexOf("};memo=");
 						resultStatus = strRet.substring(iresultStart,
 								iresultEnd);
-						String memo = "memo=";
-						int imemoStart = strRet.indexOf("memo=");
+						String memo = "memo={";
+						int imemoStart = strRet.indexOf("memo={");
 						imemoStart += memo.length();
-						int imemoEnd = strRet.indexOf(";result=");
+						int imemoEnd = strRet.indexOf("};result=");
 						memo = strRet.substring(imemoStart, imemoEnd);
 						if (resultStatus.equals("9000")) {
-							memo = "{充值成功}";
+							memo = "充值成功";
 						}
 						BaseHelper.showDialog(AlipaySecurePayDialog.this, "提示",
 								memo, R.drawable.info);

@@ -126,23 +126,21 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 	}
 
 	private void getOrderInfo() {
-		(new Handler()).post(new Runnable() {
-
-			@Override
+		RWSharedPreferences shellRW = new RWSharedPreferences(
+				AlipaySecurePayDialog.this,
+				ShellRWConstants.SHAREPREFERENCESNAME);
+		final String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
+		final String phonenum = shellRW
+				.getStringValue(ShellRWConstants.PHONENUM);
+		String accountnumstr = accountnum.getText().toString();
+		if (PublicMethod.isRecharge(accountnumstr, AlipaySecurePayDialog.this)) {
+			isOnClick = true;
+			return;
+		} 
+		// TODO Auto-generated method stub
+		final String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
+		new Thread() {
 			public void run() {
-				RWSharedPreferences shellRW = new RWSharedPreferences(
-						AlipaySecurePayDialog.this,
-						ShellRWConstants.SHAREPREFERENCESNAME);
-				String userno = shellRW.getStringValue(ShellRWConstants.USERNO);
-				String phonenum = shellRW
-						.getStringValue(ShellRWConstants.PHONENUM);
-				String accountnumstr = accountnum.getText().toString();
-				if (PublicMethod.isRecharge(accountnumstr, AlipaySecurePayDialog.this)) {
-					isOnClick = true;
-					return;
-				} 
-				// TODO Auto-generated method stub
-				String rechargenum = Integer.parseInt(accountnumstr) * 100 + "";
 				String alipaysecure = AlipaySecurePayInterface.getInstance()
 						.alipaySecurePay(rechargenum, userno, phonenum);
 				try {
@@ -150,27 +148,31 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 					String error_code = json.getString("error_code");
 					if (error_code.equals("0000")) {
 						String info = json.getString("value");
-						MobileSecurePayer msp = new MobileSecurePayer();
-						boolean bRet = msp.pay(info, mHandler, AlixId.RQF_PAY,
-								AlipaySecurePayDialog.this);
-
-						if (bRet) {
-							// show the progress bar to indicate that we have
-							// started
-							// paying.
-							closeProgress();
-							mProgress = BaseHelper.showProgress(
-									AlipaySecurePayDialog.this, null, "正在支付",
-									false, true);
-						}
+						Message message = mHandler.obtainMessage();
+						message.what = AlixId.RETURN_PAY;
+						message.obj = info;
+						message.sendToTarget();
+//						MobileSecurePayer msp = new MobileSecurePayer();
+//						boolean bRet = msp.pay(info, mHandler, AlixId.RQF_PAY,
+//								AlipaySecurePayDialog.this);
+//
+//						if (bRet) {
+//							// show the progress bar to indicate that we have
+//							// started
+//							// paying.
+//							closeProgress();
+//							mProgress = BaseHelper.showProgress(
+//									AlipaySecurePayDialog.this, null, "正在支付",
+//									false, true);
+//						}
 					} else {
 						AlipaySecurePayDialog.this.finish();
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-			}
-		});
+			};
+		}.start();
 	}
 
 	private Handler mHandler = new Handler() {
@@ -206,6 +208,22 @@ public class AlipaySecurePayDialog extends Activity implements OnClickListener {
 								strRet, R.drawable.info);
 					}
 				}
+					break;
+				case AlixId.RETURN_PAY:
+					MobileSecurePayer msp = new MobileSecurePayer();
+					String info = (String)msg.obj;
+					boolean bRet = msp.pay(info, mHandler, AlixId.RQF_PAY,
+							AlipaySecurePayDialog.this);
+
+					if (bRet) {
+						// show the progress bar to indicate that we have
+						// started
+						// paying.
+						closeProgress();
+						mProgress = BaseHelper.showProgress(
+								AlipaySecurePayDialog.this, null, "正在支付",
+								false, true);
+					}
 					break;
 				}
 

@@ -298,4 +298,11 @@ public class Nmk3TwoSameActivty extends ZixuanAndJiXuan {
 			codeInfo.setTouZhuType("twosame_dan");
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeMediaPlayer();
+		NmkAnimation.flag = true;
+	}
 }

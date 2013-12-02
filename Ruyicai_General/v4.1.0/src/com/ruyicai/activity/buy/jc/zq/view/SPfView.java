@@ -226,9 +226,11 @@ public class SPfView extends JcMainView {
 			}
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
+			TextView gateNum = (TextView) convertView.findViewById(R.id.game_num);
+			
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
-
+			TextView gameTime = (TextView) convertView.findViewById(R.id.game_time);
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 			final TextView homeOdds = (TextView) convertView
@@ -253,10 +255,16 @@ public class SPfView extends JcMainView {
 					.findViewById(R.id.guest_layout);
 			
 			gameName.setText(info.getTeam());
-			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
-					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+			String num = info.getTeamId();
+			String date = PublicMethod.getTime(info.getTimeEnd());
+			String time = PublicMethod.getEndTime(info.getTimeEnd()) + " "
 					+ "(截)";
+//			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
+//					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+//					+ "(截)";
+			gateNum.setText(num);
 			gameDate.setText(date);
+			gameTime.setText(time);
 			homeTeam.setText(info.getHome());
 
 			if (isRQSPF) {

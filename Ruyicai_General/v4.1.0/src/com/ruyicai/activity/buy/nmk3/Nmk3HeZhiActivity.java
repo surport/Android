@@ -255,4 +255,11 @@ public class Nmk3HeZhiActivity extends ZixuanAndJiXuan implements OnCheckedChang
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		System.out.println(isChecked);
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeMediaPlayer();
+		NmkAnimation.flag = true;
+	}
 }

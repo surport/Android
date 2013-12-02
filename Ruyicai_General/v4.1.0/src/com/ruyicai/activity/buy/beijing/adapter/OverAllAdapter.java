@@ -181,14 +181,21 @@ public class OverAllAdapter extends ParentAdapter {
 				.findViewById(R.id.game_name);
 		leagueTextView.setText(overAllAgainstInformation.getLeague());
 
+		TextView gameNumTextView = (TextView) itemView.findViewById(R.id.game_num);
 		// 比赛时间
 		TextView gameDateTextView = (TextView) itemView
 				.findViewById(R.id.game_date);
-		StringBuffer gameDate = new StringBuffer();
-		gameDate.append("编号:").append(overAllAgainstInformation.getTeamId())
-				.append("\n").append(PublicMethod.getEndTime(overAllAgainstInformation.getEndTime()))
-				.append("(截)");
-		gameDateTextView.setText(gameDate);
+		TextView gameTimeTextView = (TextView) itemView.findViewById(R.id.game_time);
+		String num = overAllAgainstInformation.getTeamId();
+		String date = PublicMethod.getTime(overAllAgainstInformation.getEndTime());
+		String time = PublicMethod.getEndTime(overAllAgainstInformation.getEndTime()) + " "
+				+ "(截)";
+//		gameDate.append("编号:").append(overAllAgainstInformation.getTeamId())
+//				.append("\n").append(PublicMethod.getEndTime(overAllAgainstInformation.getEndTime()))
+//				.append("(截)");
+		gameNumTextView.setText(num);
+		gameDateTextView.setText(date);
+		gameTimeTextView.setText(time);
 
 		// 主队
 		final TextView homeTeamTextView = (TextView) itemView
