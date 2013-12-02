@@ -378,8 +378,7 @@ public class MoreActivity extends Activity implements ReturnPage, HandlerMsg,
 	protected List<Map<String, Object>> getListForMoreAdapter() {
 
 		String[] titles = { getString(R.string.phone_kefu_title),
-				getString(R.string.menu_help),
-				getString(R.string.menu_checkupdate),getString(R.string.share),
+				getString(R.string.menu_help),getString(R.string.share),
 				getString(R.string.menu_feedback),
 				getString(R.string.menu_about), getString(R.string.settings),
 				getString(R.string.ruyihelper_about) };
