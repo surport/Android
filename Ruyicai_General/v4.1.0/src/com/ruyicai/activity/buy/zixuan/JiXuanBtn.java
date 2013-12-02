@@ -58,7 +58,7 @@ public class JiXuanBtn {
 	BaseActivity activity;
 	
 	//...2013.10.30秘青强
-	private NmkAnimation animation;
+	public NmkAnimation animation;
 	OneBallView oneBallView;
 	private Vector<OneBallView> ballViewVector = new Vector<OneBallView>();
 	private static Vector<OneBallView> ballViewVector2 = new Vector<OneBallView>();

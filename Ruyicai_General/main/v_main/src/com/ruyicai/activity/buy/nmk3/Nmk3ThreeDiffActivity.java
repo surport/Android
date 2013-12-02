@@ -298,4 +298,11 @@ public class Nmk3ThreeDiffActivity extends ZixuanAndJiXuan {
 		codeInfo.setLotoNo(Constants.LOTNO_NMK3);
 		codeInfo.setTouZhuType("threelink");
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeMediaPlayer();
+		NmkAnimation.flag = true;
+	}
 }
