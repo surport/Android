@@ -82,6 +82,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	private TextView title,dateshow,xinqishow;
 	private RelativeLayout  relativelayout_center;
 	private int itemId=0;
+	private int defaultIndex;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -378,7 +379,9 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 		ArrayList<JsonBeanInfo> list = new ArrayList<JsonBeanInfo>();
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
-				dateStr = jsonObj.getString("date");
+				dateStr = jsonObj.getString("dateSelect");
+				defaultIndex = Integer.valueOf(jsonObj.getString("defaultIndex"));
+				bachCodeIndex=defaultIndex-1;
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -415,7 +418,7 @@ public class NoticeJclActivity extends Activity implements HandlerMsg {
 	private void formatDate(String dateStr) {
 		dateNet = (dateStr.replaceAll("-", "")).split(";");
 		reBtn.setText(dateNet[0]);
-		dateshow.setText(new StringBuffer(dateNet[0]).insert(4, "年").insert(7, "月").insert(10, "日"));
+		dateshow.setText(new StringBuffer(dateNet[defaultIndex - 1]).insert(4, "年").insert(7, "月").insert(10, "日"));
 	}
 
 	private void showBatchcodesDialog() {
