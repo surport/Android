@@ -1,4 +1,4 @@
-package com.ruyicai.constant;
+﻿package com.ruyicai.constant;
 
 import java.util.ArrayList;
 import java.util.List;

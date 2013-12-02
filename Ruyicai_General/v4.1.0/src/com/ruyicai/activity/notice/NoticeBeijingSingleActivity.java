@@ -381,12 +381,12 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			holder.team.setText(info.getTeam());
 			holder.home.setText(info.getHome());
 			holder.away.setText(info.getAway());
-			if (!"".equals(info.getLetPoint())) {
+			if (Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS.equals(playMethodType)) {
 			    holder.letPoint.setVisibility(View.VISIBLE);
 				if(info.getLetPoint().startsWith("+")){
 					holder.letPoint.setTextColor(Color.RED);
 					holder.letPoint.setText("("+info.getLetPoint()+")");
-				}else if(info.getLetPoint().startsWith("-")){
+				}else{
 					holder.letPoint.setTextColor(getResources().getColor(R.color.green_jc));
 					holder.letPoint.setText("("+info.getLetPoint()+")");
 				}
@@ -438,6 +438,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			if (initViewState == FIRST_JC_NOTICE) {
 				dateStr = jsonObj.getString("batchCodeSelect");
 				defaultIndex = Integer.valueOf(jsonObj.getString("defaultIndex"));
+				bachCodeIndex=defaultIndex-1;
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
