@@ -286,7 +286,7 @@ public class JcScoreListActivity extends Activity {
 				info.setRed(json.getString("red"));
 				info.setYellow(json.getString("yellow"));
 				info.setMatchStateMemo(json.getString("matchStateMemo"));
-				info.setState(json.getString("matchState"));
+				info.setMatchState(json.getString("matchState"));
 				/**add by yejc 20130826 start*/
 				if(json.has("progressedTime")) {
 					info.setProgressedTime(json.getString("progressedTime"));
@@ -429,7 +429,7 @@ public class JcScoreListActivity extends Activity {
 			holder.hTeam.setText(info.gethTeam());
 			/**add by yejc 20130807 start*/
 			if (tabIndex == 2) {
-				String state = info.getState();
+				String state = info.getMatchState();
 				if ("1".equals(state) || 
 						"3".equals(state) || "4".equals(state)) {
 					if ("jclq".equals(playType)) {
@@ -631,6 +631,15 @@ public class JcScoreListActivity extends Activity {
 		private String matchStateMemo = "";
 		private String remainTime = "";
 		private String progressedTime = "";
+		private String matchState = "";
+
+		public String getMatchState() {
+			return matchState;
+		}
+
+		public void setMatchState(String matchState) {
+			this.matchState = matchState;
+		}
 
 		public String getMatchStateMemo() {
 			return matchStateMemo;

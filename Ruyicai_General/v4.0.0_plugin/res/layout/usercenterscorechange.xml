@@ -78,11 +78,8 @@
         android:paddingTop="20dip"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:paddingLeft="5dip"
-        android:paddingRight="5dip"
         android:id="@id/scoredicribtion"
-        android:visibility="invisible"
-        android:layout_width="fill_parent" android:text="@string/scroechange"
+        android:layout_width="fill_parent" android:text="@string/scroechange_other"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -337,6 +337,7 @@
     <string name="usercenter_buyAgain">再买一次</string>
     <string name="usercenter_changePWD">密码修改</string>
     <string name="scroechange">注:1000积分可兑换1元购彩金(请输入1000的倍数),存入您的如意彩账户</string>
+    <string name="scroechange_other">500积分可兑换1元彩金(请输入500的倍数),存入你的如意彩账户</string>
     <string name="str_getmore">获取更多</string>
     <string name="usercenter_mymessage">在线留言</string>
     <string name="usercenter_submitfeedback">提交反馈</string>
