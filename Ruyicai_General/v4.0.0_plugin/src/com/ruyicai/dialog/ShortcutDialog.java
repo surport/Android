@@ -22,7 +22,7 @@ public class ShortcutDialog extends BaseDialog {
 
 	@Override
 	public void onOkButton() {
-		addShortcut();
+		//addShortcut();
 	}
 
 	@Override
