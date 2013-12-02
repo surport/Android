@@ -11,7 +11,6 @@ import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.util.RWSharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 public class JcLqScoreListActivity extends JcScoreListActivity {
 
@@ -48,7 +47,7 @@ public class JcLqScoreListActivity extends JcScoreListActivity {
 				info.setJson(json);
 				info.setTeamName(json.getString("sclassName"));
 				info.sethTeam(json.getString("guestTeam"));
-				info.setState(json.getString("matchState"));
+				info.setState(json.getString("stateMemo"));
 				info.setTime(json.getString("matchTime"));
 				info.setvTeam(json.getString("homeTeam"));
 				info.setEvent(json.getString("event"));
@@ -61,6 +60,7 @@ public class JcLqScoreListActivity extends JcScoreListActivity {
 				if (json.has("remainTime")) {
 					info.setRemainTime(json.getString("remainTime"));
 				}
+				info.setMatchState(json.getString("matchState"));
 				try {
 					int homeInt = Integer.parseInt(info.getHomeScore());
 					int guestInt = Integer.parseInt(info.getGuestScore());
