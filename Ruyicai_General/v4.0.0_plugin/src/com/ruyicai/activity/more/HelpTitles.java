@@ -147,10 +147,13 @@ public class HelpTitles extends Activity {
 			result = (JSONArray) jsonObject.get("result");
 			for (int i = 0; i < result.length(); i++) {
 				JSONObject obj = result.getJSONObject(i);
-				map = new HashMap<String, String>();
-				map.put("id", obj.getString("id").toString());
-				map.put("title", obj.getString("title").toString());
-				titleList.add(map);
+				if((!(obj.getString("id").toString().equals("1")) && (!(obj.getString("id").toString().equals("55"))))){
+					map = new HashMap<String, String>();
+					map.put("id", obj.getString("id").toString());
+					map.put("title", obj.getString("title").toString());
+					titleList.add(map);
+				}
+				
 			}
 		}
 	}

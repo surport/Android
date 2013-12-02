@@ -328,10 +328,11 @@ public class UserScoreActivity extends Activity {
 		Button ok = (Button) view.findViewById(R.id.change);
 		TextView scroecontent = (TextView) view
 				.findViewById(R.id.scoredicribtion);
-		if (description != null && !description.equals("")) {
-			scroecontent.setText(description);
-			scroecontent.setVisibility(View.VISIBLE);
-		}
+//		if (description != null && !description.equals("")) {
+//			System.out.println("description: "+description);
+//			scroecontent.setText(description);
+//			scroecontent.setVisibility(View.VISIBLE);
+//		}
 		ok.setOnClickListener(new OnClickListener() {
 
 			@Override
