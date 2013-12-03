@@ -505,6 +505,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		email = shellRW.getStringValue("email");
 		/** add by pengcx 20130604 end */
 		mobileid = shellRW.getStringValue("mobileid");
+		userno = shellRW.getStringValue(ShellRWConstants.USERNO);
 		if (sessionid == null || sessionid.equals("")) {
 			Intent intentSession = new Intent(this, UserLogin.class);
 			startActivityForResult(intentSession, 0);
