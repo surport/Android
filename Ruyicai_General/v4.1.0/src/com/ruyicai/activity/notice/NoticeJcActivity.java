@@ -309,6 +309,8 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.jc_main_li_bifen_zu);
 				holder.awayscore = (TextView) convertView
 						.findViewById(R.id.jc_main_li_bifen_ke);
+				holder.halfscore = (TextView) convertView
+						.findViewById(R.id.beidan_banquanchang);
 				convertView.setTag(holder);
 			}else{
 				holder=(ViewHolder) convertView.getTag();
@@ -331,6 +333,10 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 				
 			} else if (Constants.LOTNO_JCZQ.equals(playMethodType)) {
 				holder.letPoint.setText("0");
+			}else if(Constants.LOTNO_JCZQ_BQC.equals(playMethodType)){
+				holder.halfscore.setVisibility(View.VISIBLE);
+				holder.halfscore.setTextColor(Color.BLACK);
+				holder.halfscore.setText("("+info.getHomeHalfScore()+":"+info.getGuestHalfScore()+")");
 			}
 			holder.homescore.setText(info.getHomeScore());
 			holder.awayscore.setText(info.getGuestScore());
@@ -358,6 +364,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			TextView sp;
 			TextView homescore;
 			TextView awayscore;
+			TextView halfscore;
 		}
 	}
 
