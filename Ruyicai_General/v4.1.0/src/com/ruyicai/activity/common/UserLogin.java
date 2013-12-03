@@ -735,9 +735,11 @@ public class UserLogin extends Activity implements TextWatcher {
 						mobileid = json.getString("mobileid");
 						name = json.getString("name");
 						if (isAutoLogin.equals("1")) {
-							randomNumber = json.getString("randomNumber");
-							shellRW.putStringValue(
-									ShellRWConstants.RANDOMNUMBER, randomNumber);
+							if (json.has("randomNumber")) {
+								randomNumber = json.getString("randomNumber");
+								shellRW.putStringValue(
+										ShellRWConstants.RANDOMNUMBER, randomNumber);
+							}
 						} else {
 							shellRW.putBooleanValue(
 									ShellRWConstants.AUTO_LOGIN, false);
