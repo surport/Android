@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,8 +38,6 @@ import android.widget.PopupWindow.OnDismissListener;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.beijing.BeiJingSingleGameActivity;
 import com.ruyicai.activity.buy.commonBean.JsonBeanInfo;
-import com.ruyicai.activity.buy.jc.explain.zq.JcExplainActivity;
-import com.ruyicai.activity.notice.NoticeBeijingSingleActivity.JcInfoAdapter.ViewHolder;
 import com.ruyicai.activity.notice.NoticeMenuAdapter.OnClickItem;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.handler.HandlerMsg;
@@ -66,7 +63,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	private final int OTHER_JC_NOTICE = 2;// 点击日期刷新（）
 	private Context context;
     private String playMethodType  = "";
-    private int bachCodeIndex = 0;
+    private int bachCodeIndex = 0;     //日期下标索引
     
     private String[] playType = {Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS, 
     		Constants.LOTNO_BEIJINGSINGLEGAME_TOTALGOALS, 
@@ -158,7 +155,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			
 			@Override
 			public void onClick(View v) {
-				showPlayDialog();
+				//showPlayDialog();
 			}
 		});
 		if (dateShow.length == 0) {
@@ -238,7 +235,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 	public class OnItemListener implements OnClickItem{
 		@Override
 		public void onChickItem(View view, int position) {
-            index=position;
+			index=position;
 			menupostion = position;
 			noticeMenuAdapter.setItemSelect(position);
 			noticeMenuAdapter.notifyDataSetInvalidated();
@@ -343,7 +340,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			index = position;
-			
+			final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
 			ViewHolder holder;
 			if(convertView==null){
 				convertView = mInflater.inflate(R.layout.jc_notice_list_item,null);
@@ -373,20 +370,22 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				
 				holder.right_sanjiao=(ImageView)convertView.
 						findViewById(R.id.notice_prizes_single_specific_img);
+				
+				holder.halfscore = (TextView) convertView
+						.findViewById(R.id.beidan_banquanchang);
 				convertView.setTag(holder);	
 			}else{
 				holder=(ViewHolder) convertView.getTag();
 			}
-		final JsonBeanInfo info = (JsonBeanInfo) mList.get(position);
 			holder.team.setText(info.getTeam());
 			holder.home.setText(info.getHome());
 			holder.away.setText(info.getAway());
-			if (!"".equals(info.getLetPoint())) {
+			if (Constants.LOTNO_BEIJINGSINGLEGAME_WINTIELOSS.equals(playMethodType)) {
 			    holder.letPoint.setVisibility(View.VISIBLE);
 				if(info.getLetPoint().startsWith("+")){
 					holder.letPoint.setTextColor(Color.RED);
 					holder.letPoint.setText("("+info.getLetPoint()+")");
-				}else if(info.getLetPoint().startsWith("-")){
+				}else{
 					holder.letPoint.setTextColor(getResources().getColor(R.color.green_jc));
 					holder.letPoint.setText("("+info.getLetPoint()+")");
 				}
@@ -397,6 +396,11 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				holder.homescore.setText(info.getHomeScore());
 				holder.awayscore.setText(info.getGuestScore());
 				
+			}
+			if(Constants.LOTNO_BEIJINGSINGLEGAME_HALFTHEAUDIENCE.equals(playMethodType)){
+				holder.halfscore.setVisibility(View.VISIBLE);
+				holder.halfscore.setTextColor(Color.BLACK);
+				holder.halfscore.setText("("+info.getHomeHalfScore()+":"+info.getGuestHalfScore()+")");
 			}
 			
 			holder.right_sanjiao.setVisibility(View.INVISIBLE);
@@ -426,6 +430,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			TextView homescore;
 			TextView awayscore;
 			ImageView right_sanjiao;
+			TextView halfscore;
 		}
 	}
 
@@ -438,6 +443,7 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 			if (initViewState == FIRST_JC_NOTICE) {
 				dateStr = jsonObj.getString("batchCodeSelect");
 				defaultIndex = Integer.valueOf(jsonObj.getString("defaultIndex"));
+				bachCodeIndex = defaultIndex-1;
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -449,7 +455,8 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 				itemInfo.setResult(jsonItem.getString("matchResult"));
 				itemInfo.setHomeScore(jsonItem.getString("homeScore"));
 				itemInfo.setGuestScore(jsonItem.getString("guestScore"));
-				
+				itemInfo.setHomeHalfScore(jsonItem.getString("homeHalfScore"));
+				itemInfo.setGuestHalfScore(jsonItem.getString("guestHalfScore"));
 				//itemInfo.setTimeEnd(jsonItem.getString("time"));
 				itemInfo.setLetPoint(jsonItem.getString("letPoint"));
 				itemInfo.setPeiLv(jsonItem.getString("peiLv"));
@@ -508,20 +515,20 @@ public class NoticeBeijingSingleActivity extends Activity implements HandlerMsg 
 		batchCodedialog.show();
 	}
 	
-	private void showPlayDialog() {
-		AlertDialog batchCodedialog = new AlertDialog.Builder(
-				NoticeBeijingSingleActivity.this).setItems(playTypeText,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-						playBtn.setText(playTypeText[which]);
-						playMethodType = playType[which];
-						if (dateNet.length > bachCodeIndex) {
-							noticeBeijingSingleNet(dateNet[bachCodeIndex]);
-						}
-					}
-				}).create();
-		batchCodedialog.show();
-	}
+//	private void showPlayDialog() {
+//		AlertDialog batchCodedialog = new AlertDialog.Builder(
+//				NoticeBeijingSingleActivity.this).setItems(playTypeText,
+//				new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int which) {
+//						playBtn.setText(playTypeText[which]);
+//						playMethodType = playType[which];
+//						if (dateNet.length > bachCodeIndex) {
+//							noticeBeijingSingleNet(dateNet[bachCodeIndex]);
+//						}
+//					}
+//				}).create();
+//		batchCodedialog.show();
+//	}
 
 	@Override
 	protected void onPause() {

@@ -83,6 +83,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private JsonBeanInfo itemInfo;
 	private JSONObject jsonItem;
 	private int itemId=0;
+	private int defaultIndex;
 
 	public void onCreate(Bundle savedInstanceState) {
 		// RuyicaiActivityManager.getInstance().addActivity(this);
@@ -308,6 +309,8 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 						.findViewById(R.id.jc_main_li_bifen_zu);
 				holder.awayscore = (TextView) convertView
 						.findViewById(R.id.jc_main_li_bifen_ke);
+				holder.halfscore = (TextView) convertView
+						.findViewById(R.id.beidan_banquanchang);
 				convertView.setTag(holder);
 			}else{
 				holder=(ViewHolder) convertView.getTag();
@@ -330,6 +333,10 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 				
 			} else if (Constants.LOTNO_JCZQ.equals(playMethodType)) {
 				holder.letPoint.setText("0");
+			}else if(Constants.LOTNO_JCZQ_BQC.equals(playMethodType)){
+				holder.halfscore.setVisibility(View.VISIBLE);
+				holder.halfscore.setTextColor(Color.BLACK);
+				holder.halfscore.setText("("+info.getHomeHalfScore()+":"+info.getGuestHalfScore()+")");
 			}
 			holder.homescore.setText(info.getHomeScore());
 			holder.awayscore.setText(info.getGuestScore());
@@ -357,6 +364,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			TextView sp;
 			TextView homescore;
 			TextView awayscore;
+			TextView halfscore;
 		}
 	}
 
@@ -367,7 +375,9 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 		ArrayList<JsonBeanInfo> list = new ArrayList<JsonBeanInfo>();
 		try {
 			if (initViewState == FIRST_JC_NOTICE) {
-				dateStr = jsonObj.getString("date");
+				dateStr = jsonObj.getString("dateSelect");
+				defaultIndex = Integer.valueOf(jsonObj.getString("defaultIndex"));
+				bachCodeIndex=defaultIndex-1;
 				formatDate(dateStr);
 			}
 			JSONArray jsonArray = jsonObj.getJSONArray("result");
@@ -420,7 +430,7 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 	private void formatDate(String dateStr) {
 		dateNet = (dateStr.replaceAll("-", "")).split(";");
 		reBtn.setText(dateNet[0]);
-		dateshow.setText(new StringBuffer(dateNet[0]).insert(4, "年").insert(7, "月").insert(10, "日"));
+		dateshow.setText(new StringBuffer(dateNet[defaultIndex - 1]).insert(4, "年").insert(7, "月").insert(10, "日"));
 	}
 
 	private void showBatchcodesDialog() {

@@ -60,6 +60,7 @@ public class JcLqScoreListActivity extends JcScoreListActivity {
 				if (json.has("remainTime")) {
 					info.setRemainTime(json.getString("remainTime"));
 				}
+				info.setMatchState(json.getString("matchState"));
 				try {
 					int homeInt = Integer.parseInt(info.getHomeScore());
 					int guestInt = Integer.parseInt(info.getGuestScore());

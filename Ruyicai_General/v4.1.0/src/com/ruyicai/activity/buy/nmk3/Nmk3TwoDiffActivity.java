@@ -225,5 +225,11 @@ public class Nmk3TwoDiffActivity extends ZixuanAndJiXuan {
 	public String getZhuma(Balls ball) {
 		return null;
 	}
-
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeMediaPlayer();
+		NmkAnimation.flag = true;
+	}
 }

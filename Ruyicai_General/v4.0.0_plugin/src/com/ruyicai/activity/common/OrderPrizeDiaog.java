@@ -14,6 +14,7 @@ import com.ruyicai.util.RWSharedPreferences;
 public class OrderPrizeDiaog {
 	private RWSharedPreferences shellRW;
 	private Context context;
+	private boolean isSelect=false;
 
 	public OrderPrizeDiaog(RWSharedPreferences shellRW, Context context) {
 		this.shellRW = shellRW;
@@ -44,15 +45,19 @@ public class OrderPrizeDiaog {
 							public void onClick(DialogInterface dialog,
 									int whichButton, boolean isChecked) {
 								/* User clicked on a check box do some stuff */
+								isSelect=isChecked;
+								
 							}
 						})
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						/* User clicked Yes so do some stuff */
-						Toast.makeText(context, "操作成功，如意彩将向您发送彩种开奖消息",
-								Toast.LENGTH_SHORT).show();
-						saveOrderPrize();
-						startPrizeService();// 点击确定就开启Service
+						if(isSelect){
+							Toast.makeText(context, "操作成功，如意彩将向您发送彩种开奖消息",
+									Toast.LENGTH_SHORT).show();
+							saveOrderPrize();
+							startPrizeService();// 点击确定就开启Service
+						}
 					}
 				}).create();
 	}

@@ -228,11 +228,12 @@ public class BFView extends JcMainView {
 			} else {
 				divider.setVisibility(View.GONE);
 			}
+			TextView gameNum = (TextView) convertView.findViewById(R.id.game_num);
 			TextView gameName = (TextView) convertView
 					.findViewById(R.id.game_name);
 			TextView gameDate = (TextView) convertView
 					.findViewById(R.id.game_date);
-
+			TextView gameTime = (TextView) convertView.findViewById(R.id.game_time);
 			final TextView homeTeam = (TextView) convertView
 					.findViewById(R.id.home_team_name);
 			final TextView guestTeam = (TextView) convertView
@@ -245,10 +246,16 @@ public class BFView extends JcMainView {
 					.findViewById(R.id.game_dan);
 
 			gameName.setText(info.getTeam());
-			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
-					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+			String num = info.getTeamId();
+			String date = PublicMethod.getTime(info.getTimeEnd());
+			String time = PublicMethod.getEndTime(info.getTimeEnd()) + " "
 					+ "(截)";
+//			String date = getWeek(info.getWeeks()) + " " + info.getTeamId()
+//					+ "\n" + PublicMethod.getEndTime(info.getTimeEnd()) + " "
+//					+ "(截)";
+			gameNum.setText(num);
 			gameDate.setText(date);
+			gameTime.setText(time);
 			homeTeam.setText(info.getHome());
 
 			guestTeam.setText(info.getAway());
