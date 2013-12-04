@@ -1292,7 +1292,7 @@
     <string name="account_exchange_gold_fail">请输入正确彩金码才能兑换彩金</string>
     <string name="buy_ruyi_guess">如意竞猜</string>
     <string name="buy_ruyi_guess_item_integral">"积分奖励:"</string>
-    <string name="buy_ruyi_guess_item_integral_two">"积分奖励:\n%1$s"</string>
+    <string name="buy_ruyi_guess_item_integral_two">"奖池积分:\n%1$s"</string>
     <string name="buy_ruyi_guess_item_time">"竞猜:"</string>
     <string name="buy_ruyi_guess_submit_result">"提交竞猜结果"</string>
     <string name="buy_ruyi_guess_success">"参与成功"</string>
@@ -1305,8 +1305,14 @@
     <string name="buy_ruyi_guess_right">"判断正确"</string>
     <string name="buy_ruyi_guess_right_answer">"本题正确答案:"</string>
     <string name="buy_ruyi_guess_answer">"答案:"</string>
+    <string name="buy_ruyi_guess_myscore">"我的积分:"</string>
     <string name="buy_ruyi_guess_go_work">"立即去竞猜"</string>
     <string name="buy_ruyi_guess_no_record">"无记录"</string>
+    <string name="buy_ruyi_guess_remain_time">"%1$s\n截止时间"</string>
+    <string name="buy_ruyi_guess_participate_people">"%1$s\n参与人次"</string>
+    <string name="buy_ruyi_guess_my_score">"%1$s\n我的积分"</string>
+    <string name="buy_ruyi_guess_throw_score">"%1$s\n投入积分"</string>
+    <string name="buy_ruyi_guess_item_prizepool_score">"奖池积分:%1$s"</string>
     <string name="buy_ruyi_guess_please_select">"至少选择一个题目！"</string>
     <string name="buy_ruyi_guess_close_info">"此功能暂停使用！"</string>
     <string name="nmk3_yilou_text">遗漏</string>  

@@ -3248,6 +3248,10 @@ public class PublicMethod {
 		return null;
 	}
 	
+	public static String formatString(Context context, int resId, String args) {
+		return String.format(context.getResources().getString(resId), args);
+	}
+	
 	
 	public static String getWeek(int i){
 		String week="星期";

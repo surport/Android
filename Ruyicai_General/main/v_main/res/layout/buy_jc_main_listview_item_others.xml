@@ -36,42 +36,14 @@
                     android:gravity="center"
                     android:textColor="@android:color/black" />
 
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="42dip"
-                android:background="@color/jc_main_background_color"
-                android:gravity="center"
-                android:orientation="vertical" >
-                <TextView
-                    android:id="@+id/game_num"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="aaa"
-                    android:lines="1"
-                    android:textColor="@color/jc_odds_text_color"
-                    android:textSize="10sp" />
-
                 <TextView
                     android:id="@+id/game_date"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="42dip"
+                    android:background="@color/jc_main_background_color"
                     android:gravity="center"
-                    android:text="bbb"
-                    android:lines="1"
                     android:textColor="@color/jc_odds_text_color"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/game_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="ccc"
-                     android:lines="1"
-                    android:textColor="@color/jc_odds_text_color"
-                    android:textSize="10sp" />
-            </LinearLayout>
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <View

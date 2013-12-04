@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="150dip">
+    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/guess_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="150dip">
+    </android.support.v4.view.ViewPager>
+    
+    <com.ruyicai.activity.buy.guess.view.MyViewFilper
+        android:id="@+id/guess_viewflipper"
+        android:layout_width="fill_parent"
+        android:layout_height="150dip"
+        android:flipInterval="1000"
+        android:inAnimation="@anim/push_left_in"
+        android:outAnimation="@anim/push_left_out"
+        android:persistentDrawingCache="animation"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/guess_image_indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dip">
+    </LinearLayout>
+
+</RelativeLayout>

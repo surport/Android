@@ -1,17 +1,17 @@
 package com.ruyicai.activity.buy.guess;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.guess.bean.ItemDetailInfoBean;
-import com.ruyicai.activity.common.PullRefreshListView;
-import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
+import com.ruyicai.activity.buy.guess.bean.ItemOptionBean;
+import com.ruyicai.activity.buy.guess.view.RectangularProgressBar;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.util.PublicMethod;
 import android.app.Activity;
@@ -20,79 +20,199 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListener{
-
-	/** 问题的标题 */
+/***
+ * @author yejc
+ *
+ */
+public class RuyiGuessDetailActivity extends Activity{
+	
+	/**
+	 * 竞猜标题
+	 */
 	private String mTitle = "";
-	/** 问题详情 */
+	
+	/** 
+	 * 问题详情 
+	 */
 	private String mDetail = "";
-	/** 竞猜Id */
+	
+	/** 
+	 * 我的积分
+	 */
+	private String mScore = "";
+	
+	/** 
+	 * 我投入的积分
+	 */
+	private int mThrowScore = 200;
+	
+	/** 
+	 * 竞猜Id 
+	 */
 	private String mId = "";
-	/** 用户名 */
+	
+	/** 
+	 * 用户名 
+	 */
 	private String mUserNo = "";
-	/** 竞彩是否截止 */
+	
+	/**
+	 * 竞猜选项ID
+	 */
+	private String mOptionId = "";
+	
+	/**
+	 * 少于一分钟的秒数
+	 */
+	private long mLessSecond = 0L;
+	
+	/**
+	 * 竞彩截止的剩余秒数
+	 */
+	private long mRemainSecond = 0L;
+	
+	/**
+	 * 竞彩的参与人数
+	 */
+	private long mParticiptePeopleCount = 0L;
+	
+	/**
+	 * 是否參加了竞彩
+	 */
+	private boolean mIsSelected = false;
+	
+	/** 
+	 * 竞彩是否截止
+	 */
 	private boolean mIsEnd = false;
-	/** 是否从我的竞猜进入 */
+	
+	/** 
+	 * 是否从我的竞猜进入
+	 */
 	private boolean mIsMySelected = false;
-	/** 参与成功标识 */
+	
+	/** 
+	 * 参与成功标识 
+	 */
 	private boolean mIsSuccess = false;
-	/** 当前列表显示了多少页数据 */
-	private int mPageIndex = 0;
-//	private boolean mIsFirst = true;
-//	private int mTotalPage = 0; //服务器端总共有多少页数据
-	private int mPadValue = 0;
-	private LayoutInflater mInflater = null;
-	private LinearLayout[] mLinearLayouts = null;
-	/** 参与成功对话框 */
-	private Dialog mDialog = null;
-	private ProgressDialog mProgressdialog = null;
-	/** 问题描述 */
+	
+	/**
+	 * 倒计时的线程是否继续运行
+	 */
+	private boolean mIsRun = true;
+	
+	/** 
+	 * 竞猜是否正确
+	 */
+	private boolean mIsGuessCorrect = false;
+	
+	/** 
+	 * 问题描述 
+	 */
 	private TextView mDescription = null;
-//	private View mFooterView = null;
-	/**自定义listview 用于下拉刷新*/
-	private PullRefreshListView mPullListView = null;
+	
+	/**
+	 * 动态添加选项布局
+	 */
+	private LinearLayout mDynamicLayout = null;
+	
+	/**
+	 * 参与人次
+	 */
+	private TextView mParticipatePeopleTV = null;
+	
+	/**
+	 * 奖池积分
+	 */
+	private TextView mPrizePoolScoreTV = null;
+	
+	/**
+	 * 我的积分
+	 */
+	private TextView mMyScoreTV = null;
+	
+	/**
+	 * 投入的积分
+	 */
+	private TextView mThrowScoreTV = null;
+	
+	/**
+	 * 竞猜剩余时间
+	 */
+	private TextView mRemainTimeTV = null;
+	
+	/**
+	 * 参与状态
+	 */
+	private TextView mParticipateStateTV = null;
+	
+	/**
+	 * 参与状态
+	 */
+	private ImageView mAwardIconIV = null;
+	
+	/**
+	 * 答案
+	 */
+	private TextView mAnswerTV = null;
+	
+	/**
+	 * 用于倒计时的线程池
+	 */
+	private ScheduledExecutorService mScheduledExecutorService = null;
+	
+	/**
+	 * 投入积分SeekBar
+	 */
+	private SeekBar mScoreSeekBar = null;
+	
+	/**
+	 * 减少投入积分按钮
+	 */
+	private ImageButton mSubtractScoreBtn = null;
+	
+	/**
+	 * 增加投入积分按钮
+	 */
+	private ImageButton mAddScoreBtn = null;
+	
+	/** 
+	 * 提交竞猜信息按钮 
+	 */
 	private Button mSubmitBtn = null;
-	private MessageHandler mHandler = new MessageHandler();
-	private List<ItemDetailInfoBean> mQuestionsList = new ArrayList<ItemDetailInfoBean>();
-	/** 存放所要提交的参与问题 */
-	private Map<Integer, String[]> mInfoMap = new HashMap<Integer, String[]>();
-	private ListViewAdapter mAdapter = new ListViewAdapter();
-	/** 问题前的序号 */
-	private String[] mTitleSerial = {"A", "B", "C", "D", "E", "F", "G", "H",
-	        "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-	        "V", "W", "X", "Y", "Z"};
-//	private String[] mTitleSerial = {"A", "B", "C", "D", "E", "F", "G", "H",
-//	        "I", "J"};
-	/** 选项控件的索引 */
-	private int mViewIndex = 0;
-	/** 存放问题序号的map */
-	private Map<Integer, String> mAnswerMap = new HashMap<Integer, String>();
-	/** 保存参与的题目状态 */
-	private Map<Integer, String[]> mLocalDataMap = new HashMap<Integer, String[]>();
-	/** 记录可以参加竞猜的题目数量 */
-	private int mNoSelectedCount = 0;
+	
+	private LayoutInflater mInflater = null;
 
+	private ProgressDialog mProgressdialog = null;
+	
+	private MessageHandler mHandler = new MessageHandler();
+	
+	private ItemDetailInfoBean mDetailInfoBean = new ItemDetailInfoBean();
+	
+	private int[] mProgressBarColor = {R.color.ruyi_guess_progress_red_color,
+			R.color.ruyi_guess_progress_oragne_color,
+			R.color.ruyi_guess_progress_yellow_color,};
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,42 +220,70 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.buy_ruyiguess_detail);
 		mInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mPadValue = PublicMethod.getPxInt(15, this);
 		Intent intent = getIntent();
 		mUserNo = intent.getStringExtra(RuyiGuessActivity.USER_NO);
 		mId = intent.getStringExtra(RuyiGuessActivity.ITEM_ID);
 		mTitle = intent.getStringExtra(RuyiGuessActivity.TITLE);
 		mIsEnd = intent.getBooleanExtra(RuyiGuessActivity.ISEND, false);
 		mIsMySelected = intent.getBooleanExtra(RuyiGuessActivity.MYSELECTED, false);
-		mProgressdialog = PublicMethod.creageProgressDialog(this);
-		Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 		initView();
+		mProgressdialog = PublicMethod.creageProgressDialog(this);
+		Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", 0);
 	}
 	
 	private void initView(){
 		TextView title = (TextView)findViewById(R.id.ruyi_guess_item_subtitle);
-		mDescription = (TextView)findViewById(R.id.ruyi_guess_item_description);
 		title.setText(mTitle);
-		mPullListView = (PullRefreshListView)findViewById(R.id.ruyi_guess_listview);
-//		mListView = (ListView)findViewById(R.id.ruyi_guess_listview);
-//		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-//		mListView.addFooterView(mFooterView);
-//		mFooterView.setVisibility(View.GONE);
-//		mFooterView.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				addmore();
-//			}
-//		});
-//		mListView.setAdapter(mAdapter);
-		mPullListView.setAdapter(mAdapter);
-		mPullListView.setonRefreshListener(this);
-		mPullListView.setShowState(false);
+		mPrizePoolScoreTV = (TextView)findViewById(R.id.ruyi_guess_item_prizepool_score);
+		mDescription = (TextView)findViewById(R.id.ruyi_guess_item_description);
+		mDynamicLayout = (LinearLayout)findViewById(R.id.ruyi_guess_itme_layout);
+		mParticipatePeopleTV = (TextView)findViewById(R.id.ruyi_guess_item_participate_people);
+		mThrowScoreTV = (TextView)findViewById(R.id.ruyi_guess_item_throw_score);
+		mMyScoreTV = (TextView)findViewById(R.id.ruyi_guess_item_my_score);;
+		mRemainTimeTV = (TextView)findViewById(R.id.ruyi_guess_item_time);
+		mParticipateStateTV = (TextView)findViewById(R.id.ruyi_guess_item_participate_stateing);
+		mAwardIconIV = (ImageView)findViewById(R.id.ruyi_guess_detail_item_state);
+		mAnswerTV = (TextView)findViewById(R.id.ruyi_guess_item_answer);
+		mScoreSeekBar = (SeekBar)findViewById(R.id.ruyi_guess_seekbar);
+		mScoreSeekBar.setOnSeekBarChangeListener(new MySeekBar());
+		mSubtractScoreBtn = (ImageButton)findViewById(R.id.ruyi_guess_seekbar_subtract);
+		mSubtractScoreBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (mScoreSeekBar != null) {
+					int progress = mScoreSeekBar.getProgress();
+					if (progress > 0) {
+						mThrowScore = progress*100 + 200 - 100;
+						mScoreSeekBar.setProgress(progress - 1);
+					}
+					setMyThrowScore();
+				}
+			}
+		});
+		
+		mAddScoreBtn = (ImageButton)findViewById(R.id.ruyi_guess_seekbar_add);
+		mAddScoreBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (mScoreSeekBar != null) {
+					int progress = mScoreSeekBar.getProgress();
+					mThrowScore = progress*100 + 200;
+					if (progress == mScoreSeekBar.getMax()) {
+						mThrowScore = 2000;
+					} else {
+						mThrowScore = mThrowScore + 100;
+						mScoreSeekBar.setProgress(progress + 1);
+					}
+					setMyThrowScore();
+				}
+			}
+		});
 
 		mSubmitBtn = (Button)findViewById(R.id.ruyi_guess_submit);
 		if (mIsMySelected) {
-			setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_go_work);
+			setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_go_work, true);
 			mSubmitBtn.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
@@ -151,492 +299,27 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 					finish();
 				}
 			});
-		} else {
-			if (mIsEnd) {
-				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end);
-			}
 		}
 	}
 	
-//	private void setMoreViewState() {
-//		if(mTotalPage > 1 && mIsFirst) {
-//			mIsFirst = false;
-//			mFooterView.setVisibility(View.VISIBLE);
-//		}
-//	}
-	
-	private void setSubmitState(boolean isSubmit, boolean isItemEnd) {
-		if (!mIsMySelected) {
-			if (isSubmit) {
-				setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_submit_result);
-				mSubmitBtn.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						if (mSubmitBtn.getText().toString()
-								.equals(getResources()
-										.getString(R.string.buy_ruyi_guess_btn_participate))) {
-							return;
-						}
-						if (mInfoMap.size() > 0) {
-							mProgressdialog = PublicMethod
-									.creageProgressDialog(RuyiGuessDetailActivity.this);
-							Controller.getInstance(RuyiGuessDetailActivity.this)
-									.sendDateToService(mHandler, mUserNo, mId, getSelectedInfo());
-						} else {
-							Toast.makeText(RuyiGuessDetailActivity.this, 
-									R.string.buy_ruyi_guess_please_select, 
-									Toast.LENGTH_SHORT).show();
-						}
-					}
-				});
-			} else {
-				if (isItemEnd) {
-					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end);
-				} else {
-					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
-				}
-			}
-		}
-	}
-	
-	private void setSubmitBtnState(int picResId, int textResId) {
-		mSubmitBtn.setVisibility(View.VISIBLE);
-		mSubmitBtn.setBackgroundResource(picResId);
-		mSubmitBtn.setText(textResId);
-		mSubmitBtn.setPadding(mPadValue, 0, mPadValue, 0);
-	}
-
-	
-//	/**
-//	 * 获取更多数据
-//	 */
-//	private void addmore() {
-//		mPageIndex++;
-//		if (mPageIndex > mTotalPage - 1) {
-//			mPageIndex = mTotalPage - 1;
-//			mFooterView.setVisibility(View.GONE);
-//			mIsFirst = true;
-//			Toast.makeText(this,
-//					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
-//		} else {
-//			mProgressdialog = PublicMethod.creageProgressDialog(this);
-//			if (mIsMySelected) {
-//				Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "1", mPageIndex);
-//			} else {
-//				Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
-//			}
-//		}
-//	}
-	
-	/**
-	 * 获取选择的竞猜信息
-	 * @return
-	 */
-	private String getSelectedInfo() {
-		Iterator<Integer> iterator = mInfoMap.keySet().iterator();
-		StringBuffer buffer = new StringBuffer();
-		while (iterator.hasNext()) {
-			String[] info = mInfoMap.get(iterator.next());
-			buffer.append(info[1]);
-			buffer.append("_");
-			buffer.append(info[0]);
-			buffer.append("!");
-		}
-		String strInfo = buffer.toString();
-		if (strInfo.length() > 0) {
-//			mInfoMap.clear();
-			return strInfo.substring(0, strInfo.length()-1);
-		} 
-		return "";
-	}
-	
-	/**
-	 * 创建参与成功对话框
-	 */
-	private void createDialog() {
-		mDialog = new AlertDialog.Builder(this).create();
-		View view = LayoutInflater.from(this)
-				.inflate(R.layout.buy_ruyiguess_success_dialog, null);
-		Button okBtn = (Button)view.findViewById(R.id.ruyi_guess_ok);
-		okBtn.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if(mDialog != null && mDialog.isShowing()) {
-					mDialog.dismiss();
-				}
-			}
-		});
-		mDialog.show();
-		mDialog.getWindow().setContentView(view);
-	}
-	
-	private void dismissDialog() {
-		if (mProgressdialog != null && mProgressdialog.isShowing()) {
-			mProgressdialog.dismiss();
-		}
-	}
-	
-	private class ListViewAdapter extends BaseAdapter {
-		
-		@Override
-		public int getCount() {
-			if (mQuestionsList != null) {
-				return mQuestionsList.size();
-			} else {
-				return 0;
-			}
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return mQuestionsList.get(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ItemDetailInfoBean info = mQuestionsList.get(position);
-			ViewHolder holder;
-			if (convertView == null) {
-				convertView = mInflater.inflate(
-						R.layout.buy_ruyiguess_detail_listview_item, null);
-				holder = new ViewHolder();
-				holder.integral = (TextView) convertView
-						.findViewById(R.id.ruyi_guess_item_integral);
-				holder.title = (TextView) convertView
-						.findViewById(R.id.ruyi_guess_item_title);
-				holder.time = (TextView) convertView
-						.findViewById(R.id.ruyi_guess_item_time);
-				holder.participate = (TextView) convertView
-						.findViewById(R.id.ruyi_guess_item_participate);
-				holder.layout = (LinearLayout) convertView
-						.findViewById(R.id.ruyi_guess_itme_layout);
-				holder.icon = (ImageView) convertView
-						.findViewById(R.id.ruyi_guess_item_icon);
-				holder.state = (ImageView) convertView
-						.findViewById(R.id.ruyi_guess_detail_item_state);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-			int titleId = position + 1;
-			holder.title.setText(titleId+"、"+info.getQuestion());
-			
-			String awardStr = getResources().getString(R.string.buy_ruyi_guess_item_integral);
-			String award = "";
-			
-			//动态添加竞猜问题
-			createDynamicView(holder.layout, position, info.isSelected(), info.getEndState());
-			
-			if ("1".equals(info.getEndState())) { //如果竞猜已经截止
-				if (info.isSelected()) { //我选择的
-					if ("1".equals(info.getCorrect())) {//未开奖或没选择的时候为空;选择的时候(0:错误;1:正确)
-						holder.icon.setImageResource(R.drawable.buy_ruyi_guess_right);
-						holder.participate.setText(R.string.buy_ruyi_guess_right);
-						holder.icon.setVisibility(View.VISIBLE);
-						holder.participate.setVisibility(View.VISIBLE);
-					} else if ("0".equals(info.getCorrect())){
-						holder.icon.setImageResource(R.drawable.buy_ruyi_guess_error);
-						holder.participate.setText(R.string.buy_ruyi_guess_error);
-						holder.icon.setVisibility(View.VISIBLE);
-						holder.participate.setVisibility(View.VISIBLE);
-					} else {
-						holder.icon.setVisibility(View.GONE);
-						holder.participate.setVisibility(View.GONE);
-					}
-					holder.state.setBackgroundResource(R.drawable.ruyiguess_participate);
-				} else {
-					holder.participate.setVisibility(View.GONE);
-					holder.icon.setVisibility(View.GONE);
-					holder.state.setBackgroundResource(R.drawable.ruyiguess_stop);
-				}
-				
-				//如果答案不为空设置相应状态
-				if (!"".equals(info.getAnswer())/* && !"null".equals(info.getAnswer())*/) {
-					String str = "";
-					if (info.isSelected()) {
-						str = getResources().getString(
-								R.string.buy_ruyi_guess_answer);
-					} else {
-						str = getResources().getString(
-								R.string.buy_ruyi_guess_right_answer);
-					}
-					String answer = "";
-					if (mAnswerMap.containsKey(position)) {
-						answer = mAnswerMap.get(position);
-					}
-					SpannableString span = getSpannableString(
-							str + answer, str.length(),
-							str.length() + answer.length());
-					holder.time.setText(span);
-				} else {
-					String timeStr = getResources().getString(
-							R.string.buy_ruyi_guess_lottery);
-					SpannableString timeSpan = getSpannableString(
-							timeStr + info.getDrawTime(), timeStr.length(),
-							timeStr.length() + info.getDrawTime().length());
-					holder.time.setText(timeSpan);
-				}
-				
-				//奖励积分
-				if ("1".equals(info.getCorrect())) {
-					award = "+"+info.getAward();
-				} else {
-					award = info.getAward();
-				}
-				
-				holder.layout.setBackgroundResource(R.drawable.buy_ruyi_guess_item_center_gray);
-			} else {
-				if (info.isSelected()) {//我选择的
-					holder.state.setBackgroundResource(R.drawable.ruyiguess_participate);
-					String timeStr = getResources().getString(
-							R.string.buy_ruyi_guess_lottery);
-					SpannableString timeSpan = getSpannableString(
-							timeStr + info.getDrawTime(), timeStr.length(),
-							timeStr.length() + info.getDrawTime().length());
-					holder.time.setText(timeSpan);
-					holder.layout.setBackgroundResource(R.drawable.buy_ruyi_guess_item_center_gray);
-				} else {
-					//参与完成后相应的问题改变状态
-					if (mIsSuccess && mLocalDataMap.containsKey(position)) {
-						holder.state.setBackgroundResource(R.drawable.ruyiguess_participate);
-						String timeStr = getResources().getString(
-								R.string.buy_ruyi_guess_lottery);
-						SpannableString timeSpan = getSpannableString(timeStr
-								+ info.getDrawTime(), timeStr.length(),
-								timeStr.length() + info.getDrawTime().length());
-						holder.time.setText(timeSpan);
-						holder.layout.setBackgroundResource(R.drawable.buy_ruyi_guess_item_center_gray);
-					} else {
-						holder.state.setBackgroundResource(getResources().getColor(R.color.transparent));
-						String timeStr = getResources().getString(
-									R.string.buy_ruyi_guess_stop);
-						SpannableString timeSpan = getSpannableString(
-								timeStr + info.getEndTime(), timeStr.length(),
-								timeStr.length() + info.getEndTime().length());
-						holder.time.setText(timeSpan);
-						holder.layout.setBackgroundResource(R.drawable.buy_ruyi_guess_item_center);
-					}
-				}
-				
-				award = info.getAward();
-				holder.participate.setVisibility(View.GONE);
-				holder.icon.setVisibility(View.GONE);
-			}
-			int value = PublicMethod.getPxInt(10, RuyiGuessDetailActivity.this);
-			holder.layout.setPadding(value, value, value, value);
-			
-			SpannableString awardSpan = getSpannableString(
-					awardStr+award, awardStr.length(),
-					awardStr.length() + award.length());
-			holder.integral.setText(awardSpan);
-			
-			return convertView;
-		}
-		
-		class ViewHolder {
-			TextView integral; //显示积分
-			TextView title; //题目
-			TextView time;//时间或答案
-			TextView participate; //答案是否正确
-			ImageView icon;//答案是否正确图标
-			ImageView state;//参与状态图标
-			LinearLayout layout;
-		}
+	private void setMyThrowScore() {
+		String score = String.valueOf(mThrowScore);
+		String scoreString = PublicMethod.formatString(this, R.string.buy_ruyi_guess_throw_score, 
+				score);
+		SpannableString scoreSpan = getSpannableString(
+				scoreString, 0, score.length());
+		mThrowScoreTV.setText(scoreSpan);
 	}
 	
 	private SpannableString getSpannableString(String text, int start, int end) {
 		SpannableString span = new SpannableString(text);
-		span.setSpan(new ForegroundColorSpan(Color.RED),
+		span.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Inquiry_text_color)),
 				start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		return span;
 	}
 	
-	/**
-	 * 动态创建选项视图
-	 * @param layout 选项的父布局
-	 * @param position 在listview中的位置
-	 * @param isSelected 是否选择题目
-	 * @param endState 结束状态
-	 */
-	private void createDynamicView(LinearLayout layout, int position, 
-			boolean isSelected, String endState) {
-		layout.removeAllViews();
-		String[][] options = mQuestionsList.get(position).getOptions();
-		if (options !=null && options.length > 0) {
-			int length = options.length; //选项的个数
-			mLinearLayouts = new LinearLayout[length];
-			int lineNum = 2;// 每行个数
-			int lastNum = length % lineNum;// 最后一行个数
-			int line = 1;// 行数
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.FILL_PARENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT);
-			params.gravity = Gravity.CENTER;
-			mViewIndex = 0;
-			if (length >= lineNum) {
-				line = length / lineNum;
-				for (int i = 0; i < line; i++) {
-					LinearLayout layoutOne = addLine(lineNum, i, mLinearLayouts, 
-							lineNum, options, position, isSelected, endState);
-					layout.addView(layoutOne, params);
-				}
-				if (lastNum > 0) {
-					LinearLayout layoutOne = addLine(lastNum, line, mLinearLayouts, 
-							lineNum, options, position, isSelected, endState);
-					layout.addView(layoutOne, params);
-				}
-			} else {
-				LinearLayout layoutOne = addLine(length, 0, mLinearLayouts, 
-						lineNum, options, position, isSelected, endState);
-				layout.addView(layoutOne, params);
-			}
-		}
-	}
 	
-	/**
-	 * 添加一行
-	 * @param lastNum 每行的数量
-	 * @param line 行数
-	 * @param layouts 
-	 * @param lineNum 最后一行的数量
-	 * @param options
-	 * @param position 在listview中的位置
-	 * @param isSelected 是否选择题目
-	 * @param endState 结束状态 1：结束； 0：为结束
-	 * @return
-	 */
-	private LinearLayout addLine(int lastNum, int line, final LinearLayout[] layouts,
-			int lineNum, String[][] options, final int position, final boolean isSelected,
-			String endState) {
-		LinearLayout layoutOne = new LinearLayout(this);
-		for (int j = 0; j < lastNum; j++) {
-			int index = line * lineNum + j;
-			LinearLayout itemLayout = (LinearLayout)mInflater.inflate(
-					R.layout.buy_ruyiguess_dynamic_layout, null);
-			TextView icon = (TextView)itemLayout.findViewById(R.id.ruyi_guess_dynamic_icon);
-			icon.setTag(options[index][0]);
-			
-			String info[] = null;
-			if (mLocalDataMap.containsKey(position)) {
-				info = (String[])(mLocalDataMap.get(position));
-			} 
-			TextView text = (TextView)itemLayout.findViewById(R.id.ruyi_guess_dynamic_text);
-			TextView number = (TextView)itemLayout.findViewById(R.id.ruyi_guess_dynamic_number);
-			number.setText(mTitleSerial[mViewIndex]+" ");
-			if ((options[index][0]).equals(mQuestionsList.get(position).getAnswer())) {
-				mAnswerMap.put(position, mTitleSerial[mViewIndex]);
-			}
-			text.setText(options[index][1]);
-			mViewIndex ++;
-			layouts[index] = itemLayout;
-			
-			if (isSelected || mIsEnd || ("1".equals(endState))) {
-				itemLayout.setClickable(false);
-				text.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-				number.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-				if ((info != null && (info[0]).equals(options[index][0]))
-						|| "1".equals(options[index][2])) {
-					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
-				} else {
-					icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
-				}
-			} else {
-				if (mIsSuccess && mLocalDataMap.containsKey(position)) {
-					itemLayout.setClickable(false);
-					text.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-					number.setTextColor(getResources().getColor(R.color.ruyi_guess_end_text_color));
-					if (info != null 
-							&& (info[0]).equals(options[index][0])) {
-						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
-					} else {
-						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
-					}
-				} else {
-					if (info != null 
-							&& (info[0]).equals(options[index][0])) {
-						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
-					} else {
-						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
-					}
-					text.setTextColor(getResources().getColor(R.color.black));
-					number.setTextColor(getResources().getColor(R.color.black));
-					itemLayout.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							TextView icon = (TextView)v.findViewById(R.id.ruyi_guess_dynamic_icon);
-							String[] info = new String[2];
-							info[0] = (String)icon.getTag();
-							info[1] = mQuestionsList.get(position).getId();
-							if ("true".equals((String)v.getTag())) {
-								icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
-								mInfoMap.remove(position);
-								mLocalDataMap.remove(position);
-								v.setTag("false");
-							} else {
-								for (int i = 0; i < layouts.length; i++) {
-									TextView tv = (TextView)layouts[i].findViewById(R.id.ruyi_guess_dynamic_icon);
-									tv.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
-									layouts[i].setTag("false");
-								}
-								v.setTag("true");
-								icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
-								mInfoMap.put(position, info);
-								mLocalDataMap.put(position, info);
-							}
-						}
-					});
-				}
-				
-			}
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.FILL_PARENT,
-					LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-			params.gravity = Gravity.LEFT;
-			if (j%2 == 1) {
-				int value = PublicMethod.getPxInt(6, this);
-				itemLayout.setPadding(2*value, value, value, value);
-			}
-			itemLayout.setLayoutParams(params);
-			layoutOne.addView(itemLayout);
-			if (lastNum == 1) {
-				LinearLayout emptyLayout = new LinearLayout(this); 
-				emptyLayout.setLayoutParams(params);
-				layoutOne.addView(emptyLayout);
-			}
-		}
-		return layoutOne;
-	}
-	
-	
-//	/***
-//	 * RadioGroup 方式创建动态视图
-//	 * @param group
-//	 * @param position
-//	 */
-//	private void addViewForRadioGroup(RadioGroup group, int position){
-//		group.removeAllViews();
-//		String[][] options = mQuestionsList.get(position).getOptions();
-//		for(int i=0; i<options.length; i++) { 
-////			RadioButton button = (RadioButton)mInflater.inflate(
-////					R.layout.buy_ruyiguess_radio_button_layout, null);
-//		    RadioButton button = new RadioButton(this);
-//		    button.setText(options[i][1]);
-//		    button.setButtonDrawable(new ColorDrawable(Color.TRANSPARENT));  
-//		    button.setCompoundDrawablesWithIntrinsicBounds(
-//		    		getResources().getDrawable(R.drawable.radio_select), null, null, null);
-//		    button.setTextColor(getResources().getColor(R.color.black));
-//		    group.addView(button);  
-//		}  
-//	}
-	
-	private class MessageHandler extends Handler {
+	class MessageHandler extends Handler {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -656,28 +339,15 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 						String errorCode = jsonObj.getString("error_code");
 						if ("0000".equals(errorCode)) {
 							mIsSuccess = true;
-							mNoSelectedCount = mNoSelectedCount - mInfoMap.size();
-							if (mNoSelectedCount == 0) {
-								setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate);
-							}
-							mInfoMap.clear();
-//							mLocalDataMap.clear();
-							mAdapter.notifyDataSetChanged();
+							mParticiptePeopleCount = 0L;
+							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
+							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", 0);
+//							setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
+//							setParticipateStateForView();
+//							createDynamicView();
 							createDialog();
 						} else {
 							mIsSuccess = false;
-//							Iterator<Integer> iterator = mInfoMap.keySet().iterator();
-//							while (iterator.hasNext()) {
-//								int index = iterator.next();
-//								if (mLocalDataMap.containsKey(index)) {
-//									mLocalDataMap.remove(index);
-//								}
-//							}
-//							mInfoMap.clear();
-//							mAdapter.notifyDataSetChanged();
-//							//如果提交竞猜结果失败，有可能是提交的题目已截止。需要再次请求后台刷新状态。
-//							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
-//							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
 							String message = jsonObj.getString("message");
 							Toast.makeText(RuyiGuessDetailActivity.this, message, Toast.LENGTH_SHORT).show();
 						}
@@ -689,6 +359,14 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		}
 	}
 	
+	private void setParticipateStateForView() {
+		if (mIsSelected || mIsSuccess) {
+			mParticipateStateTV.setVisibility(View.VISIBLE);
+		}
+		mSubtractScoreBtn.setClickable(false);
+		mAddScoreBtn.setClickable(false);
+	}
+	
 	/**
 	 * 解析json串
 	 * @param data json串
@@ -698,62 +376,63 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 			JSONObject jsonObj = new JSONObject(data);
 			String errorCode = jsonObj.getString("error_code");
 			if ("0000".equals(errorCode)) {
-				mInfoMap.clear();
-				mLocalDataMap.clear();
-				mQuestionsList.clear();
-				mNoSelectedCount = 0;
-				mDetail = jsonObj.getJSONObject("quiz").getString("detail");
-				mDescription.setText(mDetail);
+				JSONObject quizObject = jsonObj.getJSONObject("quiz");
+				mDetail = quizObject.getString("detail");
+				mScore = quizObject.getString("score");
 				JSONArray jsonArray = jsonObj.getJSONArray("result");
-//				mTotalPage = Integer.valueOf(jsonObj.getString("totalPage").trim());//
-				boolean isSubmit = false;
-				boolean isItemEnd = true;
-				for (int i = 0; i < jsonArray.length(); i++) {
-					boolean isAdd = false;
-					ItemDetailInfoBean info = new ItemDetailInfoBean();
-					JSONObject itemObj = jsonArray.getJSONObject(i);
-					info.setId(itemObj.getString("id"));
-					info.setQuestion(itemObj.getString("question"));
-					info.setAward(itemObj.getString("award"));
-					info.setDrawTime(itemObj.getString("drawTime"));
-					info.setEndTime(itemObj.getString("endTime"));
-					info.setEndState(itemObj.getString("isEnd"));
-					info.setAnswer(itemObj.getString("answerId"));
-					info.setCorrect(itemObj.getString("correct"));
-					JSONArray optionsArray = itemObj.getJSONArray("options");
-					String[][] options = new String[optionsArray.length()][3];
-					for (int j = 0; j < optionsArray.length(); j++) {
-						JSONObject item = optionsArray.getJSONObject(j);
-						options[j][0] = item.getString("id");
-						options[j][1] = item.getString("option");
-						options[j][2] = item.getString("selected");
-						if ("1".equals(item.getString("selected"))) {
-							isAdd = true;
-							info.setSelected(true);
+				JSONObject itemObj = jsonArray.getJSONObject(0);
+				mDetailInfoBean.setId(itemObj.getString("id"));
+				mDetailInfoBean.setQuestion(itemObj.getString("question"));
+				mDetailInfoBean.setAnswerId(itemObj.getString("answerId"));
+				mDetailInfoBean.setRemainTime(itemObj.getString("time_remaining"));
+				mDetailInfoBean.setPrizePoolScore(itemObj.getString("prizePoolScore"));
+				JSONArray optionsArray = itemObj.getJSONArray("options");
+				List<ItemOptionBean> optionList = new ArrayList<ItemOptionBean>();
+				for (int j = 0; j < optionsArray.length(); j++) {
+					ItemOptionBean optionsBean = new ItemOptionBean();
+					JSONObject item = optionsArray.getJSONObject(j);
+					String optionId = item.getString("id");
+					optionsBean.setId(optionId);
+					String selected = item.getString("isSelected");
+					if ("1".equals(selected)) {
+						mIsSelected = true;
+						String remainTime = itemObj.getString("time_remaining");
+						//当满足竞猜结束、 剩余时间为0、答案公布这些条件后才显示答案
+						if (optionId.equals(itemObj.getString("answerId"))
+								&& ("".equals(remainTime) || ("0".equals(remainTime)))
+								&& mIsEnd) {
+							mIsGuessCorrect = true;
 						}
 					}
-					if ("0".equals(itemObj.getString("isEnd"))) {
-						if (!isAdd) {
-							isSubmit = true;
-							mNoSelectedCount++;
-						}
-						isItemEnd = false;
+					if (optionId.equals(itemObj.getString("answerId"))) {
+						mDetailInfoBean.setAnswer(item.getString("option"));
 					}
 					
-					info.setOptions(options);
-					if (mIsMySelected) {
-						if (isAdd) {
-							mQuestionsList.add(info);
-						}
-					} else {
-						mQuestionsList.add(info);
+					optionsBean.setIsSelected(selected);
+					optionsBean.setOption(item.getString("option"));
+					String participants = item.getString("participants");
+					try {
+						Long count = Long.parseLong(participants);
+						mParticiptePeopleCount = mParticiptePeopleCount + count;
+					} catch(NumberFormatException e) {
+						e.printStackTrace();
 					}
-					
+					optionsBean.setParticipants(participants);
+					String payScore = item.getString("payScore");
+					if (!"".equals(payScore) && !"0".equals(payScore)) {
+						try {
+							mThrowScore = Integer.parseInt(payScore);
+						} catch(NumberFormatException e) {
+							e.printStackTrace();
+						}
+					}
+					optionsBean.setPayScore(item.getString("payScore"));
+					optionList.add(optionsBean);
 				}
-				mAdapter.notifyDataSetChanged();
-//				mPullListView.onRefreshComplete();
-//				setMoreViewState();
-				setSubmitState(isSubmit, isItemEnd);
+				mDetailInfoBean.setOptionList(optionList);
+				setInfoForView();
+				createDynamicView();
+				setSubmitState();
 			} else {
 				String message = jsonObj.getString("message");
 				Toast.makeText(RuyiGuessDetailActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -761,8 +440,214 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} finally {
-			mPullListView.onRefreshComplete();
 			dismissDialog();
+		}
+	}
+	
+	private void setInfoForView() {
+		mDescription.setText(mDetail);
+		mPrizePoolScoreTV.setText(PublicMethod.formatString(this, R.string.buy_ruyi_guess_item_prizepool_score, 
+				mDetailInfoBean.getPrizePoolScore()));
+		mParticipatePeopleTV.setText(PublicMethod.formatString(this, R.string.buy_ruyi_guess_participate_people, 
+				String.valueOf(mParticiptePeopleCount)));
+		int progress = (mThrowScore - 200)/100;
+		if (progress > 0) {
+			mScoreSeekBar.setProgress(progress);
+		}
+		String remainTime = mDetailInfoBean.getRemainTime();
+		if (!"".equals(remainTime) && !"0".equals(remainTime)) {
+			Long time = 0L;
+			try {
+				time = Long.parseLong(remainTime);
+			} catch(NumberFormatException e) {
+				e.printStackTrace();
+			}
+			setRemainTime(time);
+			mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+			mScheduledExecutorService.execute(new RemainTiemRunnable());
+		} else {
+			mRemainTimeTV.setText(PublicMethod.formatString(this, R.string.buy_ruyi_guess_remain_time, " "));
+		}
+		
+		if (mIsGuessCorrect) {
+			mAwardIconIV.setVisibility(View.VISIBLE);
+		}
+		
+		if (mIsEnd && !"".equals(mDetailInfoBean.getAnswer())
+				&& (!"".equals(mDetailInfoBean.getRemainTime())
+						|| !"0".equals(mDetailInfoBean.getRemainTime()))) {
+			mAnswerTV.setVisibility(View.VISIBLE);
+			mAnswerTV.setText("答案:"+mDetailInfoBean.getAnswer());
+		}
+		
+		mMyScoreTV.setText(PublicMethod.formatString(this, R.string.buy_ruyi_guess_my_score, mScore));
+		setMyThrowScore();
+	}
+	
+	/**
+	 * 动态创建选项视图
+	 */
+	private void createDynamicView() {
+		mDynamicLayout.removeAllViews();
+		List<ItemOptionBean> options = mDetailInfoBean.getOptionList();
+		if (options != null && options.size() > 0) {
+			int length = options.size(); // 选项的个数
+			final View[] mViews = new View[length];
+			for (int i = 0; i < length; i++) {
+				View itemLayout = (View) mInflater.inflate(
+						R.layout.buy_ruyiguess_progressbar, null);
+				mViews[i] = itemLayout;
+				mDynamicLayout.addView(itemLayout);
+				TextView number = (TextView) itemLayout
+						.findViewById(R.id.ruyi_guess_dynamic_number);
+				TextView icon = (TextView) itemLayout
+						.findViewById(R.id.ruyi_guess_dynamic_icon);
+				icon.setTag(options.get(i).getId());
+				TextView text = (TextView) itemLayout
+						.findViewById(R.id.ruyi_guess_dynamic_text);
+				text.setText(options.get(i).getOption());
+				RectangularProgressBar progress = (RectangularProgressBar) itemLayout
+						.findViewById(R.id.ruyi_guess_progressbar);
+				String participants = options.get(i).getParticipants();
+				if ("".equals(participants) || "0".equals(participants)) {
+					progress.init(getResources().getColor(mProgressBarColor[i % 3]), 0f);
+					number.setText("0%");
+				} else {
+					Long people = 0L;
+					float percentage = 0f;
+					try {
+						people = Long.parseLong(participants);
+					} catch(NumberFormatException e) {
+						e.printStackTrace();
+					}
+					if (people > 0) {
+						percentage = (float)people / (float)mParticiptePeopleCount;
+						DecimalFormat df = new DecimalFormat("0.000");// 格式化小数，不足的补0
+						percentage = Float.valueOf(df.format(percentage));
+						progress.init(getResources().getColor(mProgressBarColor[i % 3]), percentage);
+					}
+					number.setText(percentage*100 + "%");
+				}
+				
+				if (mIsEnd || mIsSelected || mIsSuccess) {
+					itemLayout.setClickable(false);
+					if ("1".equals(options.get(i).getIsSelected())
+							 || mOptionId.equals(options.get(i).getId())) {
+						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
+					} else {
+						icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_gray);
+					}
+				} else {
+					itemLayout.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							TextView icon = (TextView) v
+									.findViewById(R.id.ruyi_guess_dynamic_icon);
+							if ("true".equals((String) v.getTag())) {
+								icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
+								mOptionId = "";
+								v.setTag("false");
+							} else {
+								for (int i = 0; i < mViews.length; i++) {
+									TextView tv = (TextView) mViews[i]
+											.findViewById(R.id.ruyi_guess_dynamic_icon);
+									tv.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_normal);
+									mViews[i].setTag("false");
+								}
+								mOptionId = (String) icon.getTag();
+								v.setTag("true");
+								icon.setBackgroundResource(R.drawable.buy_ruyi_guess_radio_selected);
+							}
+						}
+					});
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 设置提交按钮的状态
+	 */
+	private void setSubmitState() {
+		if (!mIsMySelected) {
+			if (mIsEnd) {
+				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end, false);
+				setParticipateStateForView();
+			} else {
+				if (mIsSelected) {
+					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
+					setParticipateStateForView();
+				} else {
+					setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_submit_result, true);
+					mSubmitBtn.setOnClickListener(new View.OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							if ("".equals(mOptionId)) {
+								Toast.makeText(RuyiGuessDetailActivity.this, 
+										R.string.buy_ruyi_guess_please_select, 
+										Toast.LENGTH_SHORT).show();
+							} else {
+								mProgressdialog = PublicMethod
+										.creageProgressDialog(RuyiGuessDetailActivity.this);
+								Controller.getInstance(RuyiGuessDetailActivity.this)
+										.sendDateToService(mHandler, mUserNo, mId, getSubmitInfo());
+							}
+						}
+					});
+				}
+			}
+		}
+	}
+	
+	private void setSubmitBtnState(int picResId, int textResId, boolean isClickable) {
+		mSubmitBtn.setClickable(isClickable);
+		mSubmitBtn.setVisibility(View.VISIBLE);
+		mSubmitBtn.setBackgroundResource(picResId);
+		mSubmitBtn.setText(textResId);
+	}
+	
+	/**
+	 * 参与竞猜信息
+	 * @return
+	 */
+	private String getSubmitInfo() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(mDetailInfoBean.getId());
+		buffer.append("_");
+		buffer.append(mOptionId);
+		buffer.append("_");
+		buffer.append(String.valueOf(mThrowScore));
+		return buffer.toString();
+	}
+	
+	/**
+	 * 创建参与成功对话框
+	 */
+	private void createDialog() {
+		final Dialog mDialog = new AlertDialog.Builder(this).create();
+		View view = LayoutInflater.from(this)
+				.inflate(R.layout.buy_ruyiguess_success_dialog, null);
+		Button okBtn = (Button)view.findViewById(R.id.ruyi_guess_ok);
+		okBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(mDialog != null && mDialog.isShowing()) {
+					mDialog.dismiss();
+				}
+			}
+		});
+		mDialog.show();
+		mDialog.getWindow().setContentView(view);
+	}
+	
+	/**
+	 * 关闭联网对话框
+	 */
+	private void dismissDialog() {
+		if (mProgressdialog != null && mProgressdialog.isShowing()) {
+			mProgressdialog.dismiss();
 		}
 	}
 
@@ -777,9 +662,134 @@ public class RuyiGuessDetailActivity extends Activity  implements OnRefreshListe
 	}
 
 	@Override
-	public void onRefresh() {
-		mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
-		Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", mPageIndex);
+	protected void onDestroy() {
+		super.onDestroy();
+		if (mScheduledExecutorService != null
+				&& !mScheduledExecutorService.isShutdown()) {
+			mScheduledExecutorService.shutdown();
+		}
+	}
+	
+	private class RemainTiemRunnable implements Runnable {
+
+		@Override
+		public void run() {
+			while (mIsRun) {
+				int sleep = 60 * 1000;
+				if (mLessSecond > 0 && mLessSecond < 60) {
+					sleep = (int)mLessSecond * 1000;
+					mLessSecond = 0;
+				}
+				try {
+					Thread.sleep(sleep);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				try {
+					Long time = Long.parseLong(mDetailInfoBean.getRemainTime());
+					mRemainSecond = time - sleep/1000;
+				} catch(NumberFormatException e) {
+					e.printStackTrace();
+				}
+				
+				runOnUiThread(new Runnable() {
+					public void run() {
+						mDetailInfoBean.setRemainTime(String.valueOf(mRemainSecond));
+						setRemainTime(mRemainSecond);
+					}
+				});
+				if (!(mRemainSecond > 0)) {
+					mIsRun = false;
+				}
+			}
+		}
+	}
+	
+	private void setRemainTime(long time) {
+		String remainTime = formatLongToString(time);
+		String timeString = PublicMethod.formatString(this, 
+				R.string.buy_ruyi_guess_remain_time, remainTime);
+		SpannableString timeSpan = getSpannableString(
+				timeString, 0, remainTime.length());
+		mRemainTimeTV.setText(timeSpan);
+	}
+	
+	public String formatLongToString(long time) {
+		if (!(time > 0)) {
+			return "";
+		}
+		StringBuffer buffer = new StringBuffer();
+		int day = 0;
+		int hour = 0;
+		long minute = 0;
+		if (time > 60) {
+			minute = time / 60;
+			time = time % 60;
+			if (time > 0) {
+				minute = minute + 1;
+				mLessSecond = time;
+			}
+		} else if (time > 0 && time <= 60) {
+			minute = 1;
+		}
+
+		if (minute > 0) {
+			buffer.append("剩");
+		} else {
+			return "";
+		}
+
+		if (minute >= 60) {
+			hour = (int) (minute / 60);
+			minute = minute % 60;
+		}
+
+		if (hour >= 24) {
+			day = hour / 24;
+			hour = hour % 24;
+		}
+
+		if (day > 0) {
+			buffer.append(day).append("天");
+		}
+
+		if (hour > 0) {
+			buffer.append(hour).append("时");
+		} else {
+			if (day > 0) {
+				buffer.append("0").append("时");
+			}
+		}
+
+		if (minute > 0) {
+			buffer.append(minute).append("分");
+		} else {
+			buffer.append("0").append("分");
+		}
+		return buffer.toString();
+	}
+	
+	private class MySeekBar implements OnSeekBarChangeListener {
+
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			if (mIsEnd || mIsSelected || mIsSuccess) {
+				int sbProgress = (mThrowScore - 200)/100;
+				seekBar.setProgress(sbProgress);
+			} else {
+				mThrowScore = progress*100 + 200;
+				setMyThrowScore();
+			}
+		}
+
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+		}
+
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+		}
 	}
 
 }

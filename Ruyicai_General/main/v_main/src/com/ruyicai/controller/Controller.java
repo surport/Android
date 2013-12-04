@@ -489,6 +489,24 @@ public class Controller {
 		}).start();
 	}
 	
+	/**
+	 * 获取竞猜图片列表
+	 * @param handler
+	 * @param userno
+	 */
+	public void getRuyiGuessImage(final Handler handler, final int type) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				String result = RuyiGuessInterface.getInstance().getRuyiGuessImageList();
+				Message msg = new Message();
+				msg.what = type;
+				msg.obj = result;
+				handler.sendMessage(msg);
+			}
+		}).start();
+	}
+	
 	
 	/**
 	 * 获取竞猜详情列表
