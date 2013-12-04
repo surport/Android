@@ -212,7 +212,7 @@ public class InternetUtils {
 			}
 		} catch (Exception e) {
 
-			return "{error_code:0,message:网络异常}";
+			return "{error_code:0,message:"+e.getMessage()+"}";
 		}
 
 	}
