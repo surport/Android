@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res/com.palmdream.RuyicaiAndroid"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/buy_ruyiguess_item_bg"
+    android:descendantFocusability="blocksDescendants" >
+
+    <RelativeLayout
+        android:id="@+id/join_info_item_topLayout"
+        android:layout_width="90.0dip"
+        android:layout_height="95.0dip" >
+
+        <TextView
+            android:id="@+id/join_info_item_text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="足球竞猜"
+            android:textColor="@color/black" />
+
+        <com.ruyicai.activity.buy.jc.lq.view.RoundProgressBar
+            android:id="@+id/roundProgressBar"
+            android:layout_width="55dip"
+            android:layout_height="55dip"
+            android:layout_below="@+id/join_info_item_text_name"
+            android:layout_centerHorizontal="true"
+            android_custom:roundColor="#D1D1D1"
+            android_custom:roundProgressColor="@android:color/black"
+            android_custom:roundWidth="8dip"
+            android_custom:textColor="#D1D1D1"
+            android_custom:textSize="14sp"
+            android_custom:text_textColor="#D1D1D1"
+            android_custom:text_textSize="12sp" />
+
+        <TextView
+            android:id="@+id/join_info_item_baodiTxt"
+            android:layout_width="50.0dip"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/roundProgressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2.0dip"
+            android:background="@drawable/join_iten_shape_text"
+            android:gravity="center"
+            android:paddingLeft="3.0dip"
+            android:paddingRight="3.0dip"
+            android:text="保100%"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/join_info_item_bottonImg"
+        android:layout_toRightOf="@+id/join_info_item_topLayout"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/join_info_item_text_headImg"
+                android:layout_width="28.0dip"
+                android:layout_height="28.0dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:src="@drawable/account_recharge_userico" />
+
+            <TextView
+                android:id="@+id/join_info_item_text_faqiren"
+                android:layout_width="wrap_content"
+                android:layout_height="28dip"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/join_info_item_text_headImg"
+                android:paddingLeft="10dip"
+                android:paddingTop="5dip"
+                android:text="123456"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/join_info_item_dingzhiImgBtn"
+                android:layout_width="80.0dip"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="1.0dip"
+                android:background="@drawable/jc_lq_dx_bj"
+                android:focusable="false"
+                android:text="定制跟单" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="match_parent"
+            android:layout_height="28dip"
+            android:paddingTop="5dip" >
+
+            <TextView
+                android:id="@+id/zhanji"
+                android:layout_width="wrap_content"
+                android:layout_height="28dip"
+                android:layout_centerVertical="true"
+                android:text="战绩："
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/join_info_item_linear_star"
+                android:layout_width="70dip"
+                android:layout_height="28dip"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/zhanji"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.0dip"
+            android:background="@color/zc_sfc_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:id="@+id/join_info_item_layout_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="方案总额"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/join_info_item_text_all_amt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingTop="5dip"
+                    android:textColor="@color/red" >
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/join_info_item_layout_center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="剩余金额"
+                    android:textColor="@color/black" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/join_info_item_text_atm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="5dip"
+                    android:textColor="@color/red" >
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/join_info_item_layout_right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1.0"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="至少认购"
+                    android:textColor="@color/black" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/join_info_item_lestbuyTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dip"
+                    android:text=""
+                    android:textColor="@color/red" >
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/join_info_item_bottonImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="10.0dip"
+        android:src="@drawable/xiangyou" />
+
+    <TextView
+        android:id="@+id/join_info_item_text_ding"
+        android:layout_width="30dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/join_info_item_text_faqiren"
+        android:textColor="#d89300" >
+    </TextView>
+
+</RelativeLayout>

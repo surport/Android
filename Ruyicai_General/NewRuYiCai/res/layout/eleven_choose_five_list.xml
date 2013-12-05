@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/jc_play_select_background"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20.0dip" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dip"
+                android:layout_alignRight="@+id/show_allBtn"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="12dip"
+                android:background="@color/zc_sfc_divider" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dip"
+                android:layout_alignLeft="@+id/show_allBtn"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="12dip"
+                android:background="@color/zc_sfc_divider" />
+
+            <TextView
+                android:id="@+id/show_allBtn"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="#EEF0F1"
+                android:gravity="center"
+                android:text="普通"
+                android:textSize="20sp" />
+
+            <com.ruyicai.activity.buy.cq11x5.MyGridView
+                android:id="@+id/chooseviewfirst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/show_allBtn"
+                android:layout_marginTop="5.0dip"
+                android:horizontalSpacing="5.0dip"
+                android:numColumns="3"
+                android:verticalSpacing="5.0dip" >
+            </com.ruyicai.activity.buy.cq11x5.MyGridView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dip"
+                android:layout_alignRight="@+id/show_allBtn1"
+                android:layout_below="@+id/chooseviewfirst"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="12dip"
+                android:background="@color/zc_sfc_divider" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0dip"
+                android:layout_alignLeft="@+id/show_allBtn1"
+                android:layout_below="@+id/chooseviewfirst"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="12dip"
+                android:background="@color/zc_sfc_divider" />
+
+            <TextView
+                android:id="@+id/show_allBtn1"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chooseviewfirst"
+                android:layout_centerHorizontal="true"
+                android:background="#EEF0F1"
+                android:gravity="center"
+                android:text="胆拖"
+                android:textSize="20sp" />
+
+            <com.ruyicai.activity.buy.cq11x5.MyGridView
+                android:id="@+id/chooseviewsecond"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/show_allBtn1"
+                android:layout_marginTop="5.0dip"
+                android:horizontalSpacing="5.0dip"
+                android:numColumns="3"
+                android:verticalSpacing="5.0dip" >
+            </com.ruyicai.activity.buy.cq11x5.MyGridView>
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

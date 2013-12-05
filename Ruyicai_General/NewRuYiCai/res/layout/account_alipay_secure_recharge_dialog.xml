@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/accountTitle_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dip" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <include layout="@layout/account_common_title_layout" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/free_get_glod_bottom"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/alipay_secure_recharge_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dip"
+                    android:layout_margin="8dip"
+                    android:background="@drawable/account_recharge_input"
+                    android:gravity="center_vertical"
+                    android:hint="@string/account_yin_dna_pay_recharge_value"
+                    android:maxLength="5"
+                    android:numeric="integer"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/umpay_phone_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dip"
+                    android:visibility="gone" >
+
+                    <RadioGroup
+                        android:id="@+id/umpay_recharge_radiogroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/umpay_phone_three"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_select"
+                            android:checked="true"
+                            android:text="@string/umpay_phone_text_moneny_three"
+                            android:textColor="@android:color/black" />
+
+                        <RadioButton
+                            android:id="@+id/umpay_phone_thirty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:button="@drawable/radio_select"
+                            android:text="@string/umpay_phone_text_moneny_thirty"
+                            android:textColor="@android:color/black" />
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/umpay_phone_text_moneny_three_description"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/umpay_phone_text_moneny_thirty_description"
+                            android:textColor="@android:color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/account_common_content_layout" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

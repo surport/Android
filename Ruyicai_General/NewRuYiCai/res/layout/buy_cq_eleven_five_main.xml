@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/topLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <!-- 标题栏 -->
+        <RelativeLayout
+            android:id="@+id/cq11xuan5_title_relativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/nmk3_head_bg" >
+
+            <!-- 彩种标题 -->
+
+            <TextView
+                android:id="@+id/cq11xuan5_title_textview"
+                android:layout_marginLeft="15dp"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/chongqing_toubu_down"
+                android:gravity="center_horizontal"
+                android:paddingLeft="10dip"
+                android:text="Title"
+                android:textColor="@color/white"
+                android:textSize="15sp" >
+            </TextView>
+            
+            
+            <Button
+            android:id="@+id/refresh_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="38dip"
+            android:background="@drawable/refresh_last_code"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+             />
+       <Button
+            android:id="@+id/layout_main_img_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/buy_group_top_icon"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="15dip"
+             />
+            
+        </RelativeLayout>
+        
+        <View 
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/toubu_caizhongshaixuan" />
+
+        <!-- 彩票信息栏 -->
+        <RelativeLayout
+            android:id="@+id/cq11xuan5_lotteryinfo_relativelayout"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/nmk3_head_bg"
+            android:orientation="horizontal" >
+
+            <!-- 摇一摇机选按钮 -->
+            <Button
+                android:id="@+id/cq11xuan5_jisuan_button"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/nmk3_jixuan"
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip">
+            </Button><!-- 走势图按钮 -->
+
+            <Button
+                android:id="@+id/cq11xuan5_zoushitu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/cq11xuan5_jisuan_button"
+                android:background="@drawable/nmk3_zoushitu"
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip" >
+            </Button>
+<!-- 投注提示信息 -->
+            <TextView
+                android:id="@+id/last_batchcode_textlable_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:text="至少选择2个号码"
+                android:textColor="@color/white"
+                android:layout_toLeftOf="@+id/layout_main_text_time"
+                android:textSize="13sp"
+                android:visibility="gone" >
+            </TextView>
+
+            <!-- 截止时间 -->
+            <TextView
+                android:id="@+id/cq11xuan5_endtime_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="5dip"
+                android:text="距离06期截至:3分13秒"
+                android:textColor="@color/white"
+                android:textSize="13sp" >
+            </TextView>
+        </RelativeLayout>
+        <!-- 玩法信息栏 -->
+
+        <RelativeLayout
+            android:id="@+id/touzhu"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="horizontal"
+            android:paddingBottom="2.6dip"
+            android:paddingTop="2.6dip" >
+			<!-- 玩法信息 -->
+            <TextView
+                android:id="@+id/cq11xuan5_palymethod_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="4dip"
+                android:text="猜中开奖的任意2个号即奖6元"
+                android:textColor="@color/cq_11_5_text_color"
+                android:textSize="13sp" >
+            </TextView>
+
+            <!-- 遗漏值 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/cq11xuan5_miss_checkbox"
+                android:text="遗漏"
+                android:textColor="@color/cq_11_5_text_color"
+                android:textSize="13sp" >
+            </TextView>
+
+            <CheckBox
+                android:id="@+id/cq11xuan5_miss_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:checked="true"
+                android:button="@drawable/chongqing_yilou_selector" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/sscchildtype"
+            android:layout_width="fill_parent"
+            android:layout_height="1.0dip"
+            android:background="@drawable/nmk3_head_bg"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buyview"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topLayout" >
+    </LinearLayout>
+
+</RelativeLayout>

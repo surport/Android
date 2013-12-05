@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 投注成功页面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- 标题栏 -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/ssq_bettingsuccess"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </TextView>
+    </RelativeLayout>
+
+    <!-- 投注提示语 -->
+
+    <TextView
+        android:id="@+id/ssq_bettingsuccess_prompt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textColor="@color/red"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical" >
+
+        <!-- 彩种类型 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/touzhuTextstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ssq_bettingsuccess_lotnotype" />
+
+            <TextView
+                android:id="@+id/ssq_bettingsuccess_lottype"
+                style="@style/touzhuTextstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- 余额 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/touzhuTextstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ssq_bettingsuccess_money" />
+
+            <TextView
+                android:id="@+id/ssq_bettingsuccess_amt"
+                style="@style/touzhuTextstyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- 返回投注按钮 -->
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <!-- 返回投注按钮 -->
+
+            <Button
+                android:id="@+id/ssq_bettingsuccess_returnbetting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/loginselecter"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <!-- 投注详情按钮 -->
+
+            <Button
+                android:id="@+id/ssq_bettingsuccess_betdetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/loginselecter"
+                android:text="投注详情"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 发送到邮箱 -->
+
+        <RelativeLayout
+            android:id="@+id/ssq_bettingsuccess_sendtoemail"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/usercenterback"
+            android:visibility="gone" >
+
+            <TextView
+                style="@style/touzhuTextstyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/ssq_bettingsuccess_sentschemetoemail" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="10dip"
+                android:src="@drawable/usercenter_ico_triangle" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

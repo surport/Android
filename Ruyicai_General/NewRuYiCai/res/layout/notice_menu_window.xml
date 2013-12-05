@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="220dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/jc_play_select_background"
+        android:orientation="vertical"
+        android:padding="11dp" >
+
+        <GridView
+            android:id="@+id/notice_gridView"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginTop="15.0dip"
+            android:horizontalSpacing="7.0dip"
+            android:numColumns="2"
+            android:verticalSpacing="9.0dip" >
+        </GridView>
+    </RelativeLayout>
+
+</LinearLayout>

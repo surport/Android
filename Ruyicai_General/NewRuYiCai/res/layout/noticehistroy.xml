@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shouye_top" 
+        android:gravity="center_horizontal|clip_vertical" >
+
+        <TextView
+            android:id="@+id/alert_dialog_touzhu_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dip"
+            android:text="历史开奖"
+            android:textColor="@color/white"
+            android:textSize="25sp" >
+        </TextView>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/noticehistroylist"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/linearLayout"
+        android:background="@drawable/bg" android:paddingBottom="80dip">
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/buttonlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="70sp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/buy_bot_bg" >
+
+        <Button
+            android:id="@+id/alert_dialog_touzhu_button_cancel"
+            android:layout_width="120dip"
+            android:layout_height="40sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18sp"
+            android:background="@drawable/loginselecter"
+            android:text="刷新"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/alert_dialog_touzhu_button_ok"
+            android:layout_width="120dip"
+            android:layout_height="40sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18sp"
+            android:background="@drawable/loginselecter"
+            android:text="@string/ok"
+            android:textColor="@color/white"
+            android:textSize="20sp" >
+        </Button>
+    </RelativeLayout>
+
+</RelativeLayout>
