@@ -108,5 +108,27 @@ public class RuyiGuessInterface {
 		}
 		return result;
 	}
+	
+	/***
+	 * 获取如意竞猜详情列表
+	 * @param userno
+	 * @param pageIndex
+	 * @param maxResult
+	 * @return
+	 */
+	public String getRuyiGuessImageList() {
+		String result = "";
+		try {
+			JSONObject jsonProtocol = ProtocolManager.getInstance()
+					.getDefaultJsonProtocol();
+			jsonProtocol.put(ProtocolManager.COMMAND, "image");
+			jsonProtocol.put(ProtocolManager.REQUESTTYPE, REQUESTTYPE);
+			result = InternetUtils.GetMethodOpenHttpConnectSecurity(
+					Constants.LOT_SERVER, jsonProtocol.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }

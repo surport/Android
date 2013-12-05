@@ -35,7 +35,7 @@ public class Constants {
 	 * "00" - 启动银联正式环境
 	 * "01" - 连接银联测试环境
 	 */
-    public static String BANCK_Mode = "01";
+    public static String BANCK_Mode = "00";
 	/**
 	 * 彩种设置
 	 * 

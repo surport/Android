@@ -1,39 +1,21 @@
 package com.ruyicai.activity.buy.guess.bean;
 
+import java.util.List;
+
 public class ItemDetailInfoBean {
 	private String question = "";
-	private String award = "";
-	private String drawTime = "";
-	private String endTime = "";
+	private String remainTime = "";
+	private String prizePoolScore = "";
 	private String id = "";
-	private String[][] options = null;
-	private String endState = "";
+	private String answerId = "";
 	private String answer = "";
-	private String correct = "";
 	private boolean isSelected = false;
+	private List<ItemOptionBean> optionList= null;
 	public String getQuestion() {
 		return question;
 	}
 	public void setQuestion(String question) {
 		this.question = question;
-	}
-	public String getAward() {
-		return award;
-	}
-	public void setAward(String award) {
-		this.award = award;
-	}
-	public String getDrawTime() {
-		return drawTime;
-	}
-	public void setDrawTime(String drawTime) {
-		this.drawTime = drawTime;
-	}
-	public String[][] getOptions() {
-		return options;
-	}
-	public void setOptions(String[][] options) {
-		this.options = options;
 	}
 	public String getId() {
 		return id;
@@ -41,35 +23,41 @@ public class ItemDetailInfoBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getEndState() {
-		return endState;
-	}
-	public void setEndState(String endState) {
-		this.endState = endState;
-	}
 	public String getAnswer() {
 		return answer;
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public String getCorrect() {
-		return correct;
-	}
-	public void setCorrect(String correct) {
-		this.correct = correct;
-	}
-	public String getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
 	public boolean isSelected() {
 		return isSelected;
 	}
 	public void setSelected(boolean isSelected) {
 		this.isSelected = isSelected;
+	}
+	public String getRemainTime() {
+		return remainTime;
+	}
+	public void setRemainTime(String remainTime) {
+		this.remainTime = remainTime;
+	}
+	public String getPrizePoolScore() {
+		return prizePoolScore;
+	}
+	public void setPrizePoolScore(String prizePoolScore) {
+		this.prizePoolScore = prizePoolScore;
+	}
+	public String getAnswerId() {
+		return answerId;
+	}
+	public void setAnswerId(String answerId) {
+		this.answerId = answerId;
+	}
+	public List<ItemOptionBean> getOptionList() {
+		return optionList;
+	}
+	public void setOptionList(List<ItemOptionBean> optionList) {
+		this.optionList = optionList;
 	}
 	
 }

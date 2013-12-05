@@ -560,12 +560,12 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	private void userCenterDetail() {
 		String str = textStr;
 		// 如意竞猜
-//		if (str.equals("我的竞猜")) {
-//			Intent intent = new Intent(NewUserCenter.this,
-//					RuyiGuessActivity.class);
-//			intent.putExtra(RuyiGuessActivity.JUMP_FLAG, RuyiGuessActivity.JUMP_FLAG);
-//			startActivity(intent);
-//		}
+		if (str.equals("我的竞猜")) {
+			Intent intent = new Intent(NewUserCenter.this,
+					RuyiGuessActivity.class);
+			intent.putExtra(RuyiGuessActivity.JUMP_FLAG, RuyiGuessActivity.JUMP_FLAG);
+			startActivity(intent);
+		}
 		
 		// 代理充值
 		if (str.equals(getString(R.string.user_agency))) {
@@ -1045,9 +1045,9 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 	 * @return
 	 */
 	protected List<Map<String, Object>> getListForAccountAdapter() {
-		String[] titles = { "中奖查询", /*"我的竞猜",*/ "投注查询", "追号查询", "赠送查询", "我的合买", "我的消息" };
+		String[] titles = { "中奖查询", "我的竞猜", "投注查询", "追号查询", "赠送查询", "我的合买", "我的消息" };
 		int[] accountDetailInfoIcons = { R.drawable.zhoangjiangchaxun,
-				/*R.drawable.ruyi_guess_usercenter_icon,*/ R.drawable.touzhujilu, 
+				R.drawable.ruyi_guess_usercenter_icon, R.drawable.touzhujilu, 
 				R.drawable.zhuihaochaxun, R.drawable.zengcaichaxun, 
 				R.drawable.wodehemai, R.drawable.myliuyan };
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(2);
