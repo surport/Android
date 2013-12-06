@@ -30,16 +30,32 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
             
+            <RelativeLayout android:id="@+id/ruyi_guess_answer_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:padding="5dip"
+                android:background="@color/ruyi_guess_progress_answer_color">
+                
+            <TextView android:id="@+id/ruyi_guess_award_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingRight="20dip"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"/>
+            
              <TextView
                 android:id="@+id/ruyi_guess_item_answer"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:gravity="center"
+                android:layout_toLeftOf="@id/ruyi_guess_award_score"
+                android:gravity="left|center_vertical"
                 android:textColor="@android:color/white"
-                android:background="@color/ruyi_guess_progress_gray_color"
-                android:textSize="20sp"
-                android:visibility="gone"/>
+                android:textSize="18sp"/>
+             
+             </RelativeLayout>
             
             </LinearLayout>
 
@@ -73,100 +89,41 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
+                        android:paddingLeft="15dip"
                         android:gravity="center"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/ruyi_guess_item_time"
+                        android:id="@+id/ruyi_guess_item_prizepool_score"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:gravity="center"
+                        android:paddingRight="15dip"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dip"
-                        android:layout_marginRight="5dip"
-                        android:layout_toLeftOf="@id/ruyi_guess_item_time"
-                        android:layout_toRightOf="@id/ruyi_guess_item_participate_people"
-                        android:orientation="horizontal" >
-
-                        <TextView
+                        android:textSize="15sp" />
+                    
+                     <TextView
                             android:id="@+id/ruyi_guess_item_throw_score"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:gravity="center"
+                            android:layout_toLeftOf="@id/ruyi_guess_item_prizepool_score"
+                        android:layout_toRightOf="@id/ruyi_guess_item_participate_people"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:textSize="15sp" />
 
-                        <TextView
+
+                       <!--  <TextView
                             android:id="@+id/ruyi_guess_item_my_score"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:gravity="center"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                            android:textSize="16sp" /> -->
                 </RelativeLayout>
                 
-                <View android:layout_width="fill_parent"
-                        android:layout_height="1dip"
-                        android:background="@color/zc_sfc_divider"/>
-
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip" >
-
-                    <ImageButton
-                        android:id="@+id/ruyi_guess_seekbar_subtract"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="3dip"
-                        android:background="#00000000"
-                        android:src="@drawable/subtractselecter" />
-
-                    <ImageButton
-                        android:id="@+id/ruyi_guess_seekbar_add"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:background="#00000000"
-                        android:layout_marginTop="3dip"
-                        android:src="@drawable/addselecter" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@id/ruyi_guess_seekbar_add"
-                        android:layout_toRightOf="@id/ruyi_guess_seekbar_subtract"
-                        android:orientation="vertical" >
-
-                        <SeekBar
-                            android:id="@+id/ruyi_guess_seekbar"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:max="18"
-                            android:maxHeight="6dip"
-                            android:minHeight="6dip"
-                            android:paddingLeft="10dip"
-                            android:paddingRight="10dip"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/ruyijc_guess_seekbar_style"
-                            android:thumb="@drawable/ruyijc_guess_seekbar_thumb" />
-
-                        <com.ruyicai.activity.buy.guess.view.ScoreTextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="40dip" />
-                    </LinearLayout>
-                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

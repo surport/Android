@@ -40,27 +40,25 @@ public class ScoreTextView extends TextView {
 		mPaint.setColor(Color.BLACK);
 		float width = getWidth();// 组建的宽度
 //		float height = getHeight();// 组建的宽度
-		float constantWidth = width - PublicMethod.getPxInt(20, getContext());
+		float constantWidth = width - PublicMethod.getPxInt(30, getContext());
 		if (constantWidth > 0) {
 			float unit = constantWidth/36;
-			float firstStartX = unit*6 + PublicMethod.getPxInt(10, getContext())
+			float firstStartX = unit*6 + PublicMethod.getPxInt(20, getContext())
 					- mPaint.measureText(mScore[1])/2;
 			
-			float secondStartX = unit*16 + PublicMethod.getPxInt(10, getContext())
+			float secondStartX = unit*16 + PublicMethod.getPxInt(15, getContext())
 					- mPaint.measureText(mScore[2])/2;
 			
-			float thirdStartX = unit*26 + PublicMethod.getPxInt(10, getContext())
+			float thirdStartX = unit*26 + PublicMethod.getPxInt(15, getContext())
 					- mPaint.measureText(mScore[3])/2;
 			
-			float fourthStartX = unit*36 + PublicMethod.getPxInt(2, getContext())
+			float fourthStartX = unit*36 + PublicMethod.getPxInt(10, getContext())
 					- mPaint.measureText(mScore[4])/2;
-//			float firstEndX = unit*11 + PublicMethod.getPxInt(10, getContext());
-//			float firstWidth = firstEndX - firstStartX;
-			canvas.drawText(mScore[0], 10f, 20f, mPaint);
-			canvas.drawText(mScore[1], firstStartX, 20f, mPaint);
-			canvas.drawText(mScore[2], secondStartX, 20f, mPaint);
-			canvas.drawText(mScore[3], thirdStartX, 20f, mPaint);
-			canvas.drawText(mScore[4], fourthStartX, 20f, mPaint);
+			canvas.drawText(mScore[0], 5f, 25f, mPaint);
+			canvas.drawText(mScore[1], firstStartX, 25f, mPaint);
+			canvas.drawText(mScore[2], secondStartX, 25f, mPaint);
+			canvas.drawText(mScore[3], thirdStartX, 25f, mPaint);
+			canvas.drawText(mScore[4], fourthStartX, 25f, mPaint);
 		}
 	}
 }

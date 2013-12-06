@@ -4,11 +4,84 @@
     android:layout_height="fill_parent"
     android:background="@color/jczq_listview_item_bg" >
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/bottom_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/jc_team_select_button_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip">
+
+            <ImageButton
+                android:id="@+id/ruyi_guess_seekbar_subtract"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="3dip"
+                android:background="#00000000"
+                android:src="@drawable/subtractselecter" />
+
+            <ImageButton
+                android:id="@+id/ruyi_guess_seekbar_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="3dip"
+                android:background="#00000000"
+                android:src="@drawable/addselecter" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/ruyi_guess_seekbar_add"
+                android:layout_toRightOf="@id/ruyi_guess_seekbar_subtract"
+                android:orientation="vertical" >
+
+                <SeekBar
+                    android:id="@+id/ruyi_guess_seekbar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:max="18"
+                    android:maxHeight="6dip"
+                    android:minHeight="6dip"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="15dip"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/ruyijc_guess_seekbar_style"
+                    android:thumb="@drawable/ruyijc_guess_seekbar_thumb" />
+
+                <com.ruyicai.activity.buy.guess.view.ScoreTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/ruyi_guess_submit"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:gravity="center"
+            android:layout_marginLeft="15dip"
+            android:layout_marginRight="15dip"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="2dip"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+    
+    <LinearLayout android:layout_above="@id/bottom_layout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:paddingBottom="50dip" >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="fill_parent"
@@ -30,8 +103,8 @@
                 android:id="@+id/ruyi_guess_item_subtitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dip"
                 android:gravity="center_horizontal"
+                android:padding="8dip"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -52,45 +125,25 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:padding="5dip"
+                    android:text="@string/buy_ruyi_guess_btn_participate"
                     android:textColor="@color/ruyi_guess_progress_green_color"
                     android:textSize="16sp"
-                    android:visibility="gone"
-                    android:text="@string/buy_ruyi_guess_btn_participate"/>
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/ruyi_guess_item_prizepool_score"
+                    android:id="@+id/ruyi_guess_item_time"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@id/ruyi_guess_item_participate_stateing"
                     android:padding="5dip"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textColor="@color/ruyi_guess_progress_red_color"
+                    android:textSize="14sp" />
             </RelativeLayout>
         </LinearLayout>
 
         <include layout="@layout/buy_ruyiguess_detail_listview_item" />
-
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="50dip"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/jc_team_select_button_bg"
-        android:gravity="center"
-        android:paddingLeft="15dip"
-        android:paddingRight="15dip" >
-
-        <Button
-            android:id="@+id/ruyi_guess_submit"
-            android:layout_width="fill_parent"
-            android:layout_height="40dip"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:visibility="invisible"/>
-    </LinearLayout>
-    
     <ImageView
         android:id="@+id/ruyi_guess_detail_item_state"
         android:layout_width="wrap_content"
@@ -98,8 +151,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="15dip"
-        android:layout_marginTop="50dip" 
-        android:src="@drawable/guess_jiang"
-        android:visibility="gone"/>
+        android:layout_marginTop="50dip"
+        android:visibility="gone" />
 
 </RelativeLayout>

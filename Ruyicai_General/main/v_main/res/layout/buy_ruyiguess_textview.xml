@@ -10,8 +10,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:padding="8dip"
+            android:paddingTop="5dip"
+            android:paddingBottom="5dip"
+            android:paddingLeft="10dip"
             android:background="@color/ruyi_guess_progress_scarlet_color"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 </LinearLayout>

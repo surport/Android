@@ -6,18 +6,23 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/guess_viewpager"
         android:layout_width="fill_parent"
-        android:layout_height="150dip">
+        android:layout_height="150dip"
+        android:visibility="gone">
     </android.support.v4.view.ViewPager>
     
-    <com.ruyicai.activity.buy.guess.view.MyViewFilper
-        android:id="@+id/guess_viewflipper"
+    <ImageView android:id="@+id/ruyiguess_default_icon"
+        android:layout_width="fill_parent"
+        android:layout_height="150dip"
+        android:src="@drawable/ruyiguess_default_bg"
+        android:scaleType="fitXY"/>
+    
+    <ViewFlipper android:id="@+id/guess_viewflipper"
         android:layout_width="fill_parent"
         android:layout_height="150dip"
         android:flipInterval="1000"
-        android:inAnimation="@anim/push_left_in"
-        android:outAnimation="@anim/push_left_out"
-        android:persistentDrawingCache="animation"
-        android:visibility="gone"/>
+        android:inAnimation="@anim/left_in" 
+        android:outAnimation="@anim/left_out"
+        android:persistentDrawingCache="animation"/>
 
     <LinearLayout
         android:id="@+id/guess_image_indicator"

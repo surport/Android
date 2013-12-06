@@ -1,101 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ruyi_guess_item_layout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:minHeight="90dip"
+    android:orientation="horizontal"
+    android:padding="8dip" >
 
-    <LinearLayout
-        android:id="@+id/ruyi_guess_item_layout"
+    <TextView
+        android:id="@+id/ruyi_guess_item_integral"
+        android:layout_width="75dip"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@drawable/textview_yellow_style"
+        android:textSize="16sp" />
+
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dip"
-        android:background="@drawable/buy_ruyiguess_item_bg"
-        android:minHeight="75dip"
-        android:orientation="horizontal"
-        android:padding="4dip" >
+        android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/ruyi_guess_item_integral"
-            android:layout_width="75dip"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
+        <LinearLayout
+            android:id="@+id/ruyi_guess_item_state_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:orientation="vertical" >
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <LinearLayout
-                android:id="@+id/ruyi_guess_item_state_layout"
+            <TextView
+                android:id="@+id/ruyi_guess_item_participate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/buy_ruyiguess_item_state_green"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:minWidth="65dip"
+                android:paddingLeft="2dip"
+                android:paddingRight="2dip"
+                android:textSize="13sp"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:id="@+id/ruyi_guess_item_participate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buy_ruyiguess_item_state_green"
-                    android:gravity="center"
-                    android:paddingLeft="2dip"
-                    android:paddingRight="2dip"
-                    android:minWidth="65dip"
-                    android:layout_marginRight="3dip"
-                    android:layout_gravity="right"
-                    android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/ruyi_guess_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:layout_marginTop="5dip"
+                android:textColor="@color/ruyi_guess_progress_red_color" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/ruyi_guess_item_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/Inquiry_text_color" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_toLeftOf="@id/ruyi_guess_item_state_layout"
+            android:orientation="vertical" >
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/ruyi_guess_item_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dip"
-                android:layout_marginRight="5dip"
-                android:layout_toLeftOf="@id/ruyi_guess_item_state_layout"
-                android:orientation="vertical" >
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:padding="3dip"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/ruyi_guess_item_title"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="3dip"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/ruyi_guess_item_detail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:padding="3dip"
+                android:textColor="@color/ruyi_guess_end_text_color"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/ruyi_guess_item_detail"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    android:padding="3dip"
-                    android:textColor="@color/ruyi_guess_end_text_color"
-                    android:textSize="15sp" />
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/ruyi_guess_item_stop"
-        android:layout_width="65dip"
-        android:layout_height="65dip"
-        android:scaleType="fitXY"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
-</FrameLayout>
+</LinearLayout>

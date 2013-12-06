@@ -10,6 +10,13 @@ public class ItemDetailInfoBean {
 	private String answerId = "";
 	private String answer = "";
 	private boolean isSelected = false;
+	private String prizeScore = "";
+	public String getPrizeScore() {
+		return prizeScore;
+	}
+	public void setPrizeScore(String prizeScore) {
+		this.prizeScore = prizeScore;
+	}
 	private List<ItemOptionBean> optionList= null;
 	public String getQuestion() {
 		return question;

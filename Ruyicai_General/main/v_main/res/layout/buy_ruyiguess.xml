@@ -15,43 +15,62 @@
         android:textColor="@android:color/white"
         android:textSize="20sp" />
 
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="150dip" >
+
+        <ImageView
+            android:id="@+id/ruyiguess_default_icon"
+            android:layout_width="fill_parent"
+            android:layout_height="150dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/ruyiguess_default_bg" />
+
+        <ViewFlipper
+            android:id="@+id/guess_viewflipper"
+            android:layout_width="fill_parent"
+            android:layout_height="150dip"
+            android:flipInterval="1000"
+            android:inAnimation="@anim/left_in"
+            android:outAnimation="@anim/left_out"
+            android:persistentDrawingCache="animation" />
+
+        <LinearLayout
+            android:id="@+id/guess_image_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="5dip" >
+        </LinearLayout>
+    </FrameLayout>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:background="@color/jczq_listview_item_bg" >
-        
-        <TextView android:id="@+id/ruyi_guest_no_record"
+        android:background="@color/jczq_listview_item_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/ruyi_guest_no_record"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/buy_ruyi_guess_no_record"
-            android:paddingTop="20dip"
             android:gravity="center"
+            android:paddingTop="20dip"
+            android:text="@string/buy_ruyi_guess_no_record"
             android:textSize="28sp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <com.ruyicai.activity.common.PullRefreshListView
             android:id="@+id/ruyi_guess_listview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:cacheColorHint="@android:color/transparent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10dip"
-            android:padding="10dip"
+            android:divider="@color/zc_sfc_divider"
+            android:dividerHeight="1dip"
             android:fadingEdge="none"
             android:listSelector="@android:color/transparent"
             android:scrollbars="none"
             android:scrollingCache="false" />
-        <!-- <ListView
-            android:id="@+id/ruyi_guess_listview"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:cacheColorHint="@android:color/transparent"
-            android:listSelector="@android:color/transparent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="8dip"
-            android:padding="10dip"
-            android:scrollbars="none"/> -->
     </LinearLayout>
 
 </LinearLayout>
