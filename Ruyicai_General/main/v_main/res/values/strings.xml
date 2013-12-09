@@ -1317,6 +1317,7 @@
     <string name="buy_ruyi_guess_item_prizepool_score">"%1$s\n奖池积分"</string>
     <string name="buy_ruyi_guess_please_select">"至少选择一个题目！"</string>
     <string name="buy_ruyi_guess_close_info">"此功能暂停使用！"</string>
-    <string name="nmk3_yilou_text">遗漏</string>  
+    <string name="nmk3_yilou_text">遗漏</string> 
+    <string name="listview_footer_hint_ready">松开载入更多</string>
     
 </resources>

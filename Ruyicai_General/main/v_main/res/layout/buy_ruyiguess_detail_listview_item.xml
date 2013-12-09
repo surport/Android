@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:paddingRight="20dip"
+                android:paddingRight="30dip"
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"/>
@@ -50,6 +50,7 @@
                 android:id="@+id/ruyi_guess_item_answer"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dip"
                 android:layout_toLeftOf="@id/ruyi_guess_award_score"
                 android:gravity="left|center_vertical"
                 android:textColor="@android:color/white"

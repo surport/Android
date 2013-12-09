@@ -4,7 +4,8 @@
     android:layout_height="fill_parent"
     android:background="@color/jczq_listview_item_bg" >
 
-    <LinearLayout android:id="@+id/bottom_layout"
+    <LinearLayout
+        android:id="@+id/bottom_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -15,48 +16,66 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
             android:paddingLeft="10dip"
             android:paddingRight="10dip"
-            android:paddingTop="5dip"
-            android:paddingBottom="5dip">
+            android:paddingTop="5dip" >
 
-            <ImageButton
-                android:id="@+id/ruyi_guess_seekbar_subtract"
+            <LinearLayout
+                android:id="@+id/ruyi_guess_subtract_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="3dip"
-                android:background="#00000000"
-                android:src="@drawable/subtractselecter" />
+                android:layout_height="55dip"
+                android:layout_alignParentLeft="true" >
 
-            <ImageButton
-                android:id="@+id/ruyi_guess_seekbar_add"
+                <ImageButton
+                    android:id="@+id/ruyi_guess_seekbar_subtract"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="#00000000"
+                    android:src="@drawable/subtractselecter" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ruyi_guess_add_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="3dip"
-                android:background="#00000000"
-                android:src="@drawable/addselecter" />
+                android:layout_height="55dip"
+                android:layout_alignParentRight="true" >
+
+                <ImageButton
+                    android:id="@+id/ruyi_guess_seekbar_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="#00000000"
+                    android:src="@drawable/addselecter" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/ruyi_guess_seekbar_add"
-                android:layout_toRightOf="@id/ruyi_guess_seekbar_subtract"
+                android:layout_toLeftOf="@id/ruyi_guess_add_layout"
+                android:layout_toRightOf="@id/ruyi_guess_subtract_layout"
                 android:orientation="vertical" >
 
-                <SeekBar
-                    android:id="@+id/ruyi_guess_seekbar"
+                <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:max="18"
-                    android:maxHeight="6dip"
-                    android:minHeight="6dip"
-                    android:paddingLeft="15dip"
-                    android:paddingRight="15dip"
-                    android:progress="0"
-                    android:progressDrawable="@drawable/ruyijc_guess_seekbar_style"
-                    android:thumb="@drawable/ruyijc_guess_seekbar_thumb" />
+                    android:layout_height="55dip"
+                    android:gravity="center" >
+
+                    <SeekBar
+                        android:id="@+id/ruyi_guess_seekbar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:max="18"
+                        android:maxHeight="6dip"
+                        android:minHeight="6dip"
+                        android:paddingLeft="18dip"
+                        android:paddingRight="18dip"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/ruyijc_guess_seekbar_style"
+                        android:thumb="@drawable/ruyijc_guess_seekbar_thumb" />
+                </LinearLayout>
 
                 <com.ruyicai.activity.buy.guess.view.ScoreTextView
                     android:layout_width="fill_parent"
@@ -68,20 +87,21 @@
             android:id="@+id/ruyi_guess_submit"
             android:layout_width="fill_parent"
             android:layout_height="40dip"
-            android:gravity="center"
+            android:layout_marginBottom="10dip"
             android:layout_marginLeft="15dip"
             android:layout_marginRight="15dip"
-            android:layout_marginBottom="10dip"
             android:layout_marginTop="2dip"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:visibility="invisible" />
     </LinearLayout>
-    
-    <LinearLayout android:layout_above="@id/bottom_layout"
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:layout_above="@id/bottom_layout"
+        android:orientation="vertical" >
 
         <TextView
             android:layout_width="fill_parent"
@@ -127,7 +147,7 @@
                     android:padding="5dip"
                     android:text="@string/buy_ruyi_guess_btn_participate"
                     android:textColor="@color/ruyi_guess_progress_green_color"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:visibility="gone" />
 
                 <TextView

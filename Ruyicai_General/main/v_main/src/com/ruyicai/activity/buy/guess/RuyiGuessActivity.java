@@ -1,8 +1,10 @@
 package com.ruyicai.activity.buy.guess;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,9 +17,9 @@ import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.guess.bean.ItemInfoBean;
 import com.ruyicai.activity.buy.guess.util.RuyiGuessUtil;
-import com.ruyicai.activity.common.PullRefreshListView;
+import com.ruyicai.activity.buy.guess.view.PullRefreshLoadListView;
+import com.ruyicai.activity.buy.guess.view.PullRefreshLoadListView.IXListViewListener;
 import com.ruyicai.activity.common.UserLogin;
-import com.ruyicai.activity.common.PullRefreshListView.OnRefreshListener;
 import com.ruyicai.constant.ShellRWConstants;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.util.PublicMethod;
@@ -37,7 +39,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -50,7 +51,7 @@ import android.widget.ViewFlipper;
  * @author yejc
  *
  */
-public class RuyiGuessActivity extends Activity implements OnRefreshListener, OnGestureListener{
+public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/IXListViewListener, OnGestureListener{
 
 	public final static String ITEM_ID = "itemId";
 	public final static String USER_NO = "userNo";
@@ -58,6 +59,7 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 	public final static String ISEND = "isend";
 	public final static String JUMP_FLAG = "jump_flag";
 	public final static String MYSELECTED = "my_selected";
+	public final static String ISLOTTERY = "islottery";
 	/**用户名*/
 	private String mUserNo = "";
 	/**当前列表显示了多少页数据*/
@@ -70,13 +72,14 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 	private boolean mIsLogin = false;
 	/**true我竞猜过的问题*/
 	private boolean mIsMySelected = false;
-	private boolean mIsFirst = true;
+//	private boolean mIsFirst = true;
 	private LayoutInflater mInflater = null;
 	private ProgressDialog mProgressdialog = null;
 	private RWSharedPreferences mSharedPreferences = null;
 	/**自定义listview 用于下拉刷新*/
-	private PullRefreshListView mPullListView = null;
-	private View mFooterView = null;
+//	private PullRefreshListView mPullListView = null;
+	private PullRefreshLoadListView mPullListView = null;
+//	private View mFooterView = null;
 	private List<ItemInfoBean> mQuestionsList = new ArrayList<ItemInfoBean>();
 	private MessageHandler mHandler = new MessageHandler();
 	private ListViewAdapter mAdapter = new ListViewAdapter();
@@ -135,21 +138,23 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 	private void initView(){
 		mViewFlipper = (ViewFlipper)findViewById(R.id.guess_viewflipper);
 		mDefaultIcon = (ImageView)findViewById(R.id.ruyiguess_default_icon);
-		mPullListView = (PullRefreshListView)findViewById(R.id.ruyi_guess_listview);
-		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-		mFooterView.setBackgroundColor(this.getResources().getColor(R.color.jczq_listview_item_bg));
-		mPullListView.addFooterView(mFooterView);
-		mFooterView.setVisibility(View.GONE);
-		mFooterView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				addmore();
-			}
-		});
+		mPullListView = (PullRefreshLoadListView)findViewById(R.id.ruyi_guess_listview);
+//		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
+//		mFooterView.setBackgroundColor(this.getResources().getColor(R.color.jczq_listview_item_bg));
+//		mPullListView.addFooterView(mFooterView);
+//		mFooterView.setVisibility(View.GONE);
+//		mFooterView.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				addmore();
+//			}
+//		});
 		mPullListView.setAdapter(mAdapter);
-		mPullListView.setonRefreshListener(this);
-		mPullListView.setShowState(false);
+//		mPullListView.setonRefreshListener(this);
+//		mPullListView.setShowState(false);
+		mPullListView.setPullLoadEnable(true);
+		mPullListView.setXListViewListener(this);
 		mPullListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -166,6 +171,7 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 					intent.putExtra(USER_NO, mUserNo);
 					intent.putExtra(TITLE, mQuestionsList.get(mSelectedId).getTitle());
 					intent.putExtra(MYSELECTED, mIsMySelected);
+					intent.putExtra(ISLOTTERY, mQuestionsList.get(mSelectedId).getLotteryState());
 					if ("1".equals(mQuestionsList.get(mSelectedId).getEndState())) {
 						intent.putExtra(ISEND, true);
 					} else {
@@ -178,12 +184,12 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 	}
 	
 	
-	private void setMoreViewState() {
-		if (mTotalPage > 1 && mIsFirst) {
-			mIsFirst = false;
-			mFooterView.setVisibility(View.VISIBLE);
-		}
-	}
+//	private void setMoreViewState() {
+//		if (mTotalPage > 1 && mIsFirst) {
+//			mIsFirst = false;
+//			mFooterView.setVisibility(View.VISIBLE);
+//		}
+//	}
 	
 	private void dismissDialog() {
 		if (mProgressdialog != null && mProgressdialog.isShowing()) {
@@ -198,8 +204,8 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 		mPageIndex++;
 		if (mPageIndex > mTotalPage - 1) {
 			mPageIndex = mTotalPage - 1;
-			mFooterView.setVisibility(View.GONE);
-			mIsFirst = true;
+//			mFooterView.setVisibility(View.GONE);
+//			mIsFirst = true;
 			Toast.makeText(this,
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
 		} else {
@@ -216,7 +222,7 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
-			mIsFirst = true;
+//			mIsFirst = true;
 			if (requestCode == 1000) {//登陆成功后重新加载当前账户的参与状态
 				mPageIndex = 0;
 				mIsLogin = true;
@@ -523,7 +529,8 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 	private void parserJSON(String str, int type) {
 		if (str == null || "".equals(null)) {
 			Toast.makeText(RuyiGuessActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
-			mPullListView.onRefreshComplete();
+//			mPullListView.onRefreshComplete();
+			onLoad();
 			dismissDialog();
 		} else {
 			try {
@@ -561,20 +568,25 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 						mQuestionsList.add(info);
 					}
 					mAdapter.notifyDataSetChanged();
-					setMoreViewState();
+//					setMoreViewState();
 				} else if ("0047".equals(errorCode)) {
 					TextView tv = (TextView) findViewById(R.id.ruyi_guest_no_record);
 					tv.setVisibility(View.VISIBLE);
 					mPullListView.setVisibility(View.GONE);
 				} else {
 					String message = jsonObj.getString("message");
+					if (message == null || "null".equals(message) ||"".equals(message)) {
+						message = "网络异常";
+					}
 					Toast.makeText(RuyiGuessActivity.this, message, Toast.LENGTH_SHORT).show();
 				}
+				onLoad();
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} finally {
 				if (type == 2) {
-					mPullListView.onRefreshComplete();
+//					mPullListView.onRefreshComplete();
+					onLoad();
 				}
 				dismissDialog();
 			}
@@ -718,6 +730,24 @@ public class RuyiGuessActivity extends Activity implements OnRefreshListener, On
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void onLoadMore() {
+		addmore();
+	}
+	
+	private void onLoad() {
+		mPullListView.stopRefresh();
+		mPullListView.stopLoadMore();
+		mPullListView.setRefreshTime(dateToStrLong(new Date(System
+				.currentTimeMillis())));
+	}
+	
+	public String dateToStrLong(java.util.Date dateDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateString = formatter.format(dateDate);
+		return dateString;
 	}
 	
 }

@@ -60,7 +60,7 @@
             android:textSize="28sp"
             android:visibility="gone" />
 
-        <com.ruyicai.activity.common.PullRefreshListView
+        <com.ruyicai.activity.buy.guess.view.PullRefreshLoadListView
             android:id="@+id/ruyi_guess_listview"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

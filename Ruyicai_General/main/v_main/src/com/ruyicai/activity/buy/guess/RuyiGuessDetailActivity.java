@@ -83,6 +83,11 @@ public class RuyiGuessDetailActivity extends Activity{
 	private String mOptionId = "";
 	
 	/**
+	 * 开奖状态
+	 */
+	private String mIsLottery = "";
+	
+	/**
 	 * 少于一分钟的秒数
 	 */
 //	private long mLessSecond = 0L;
@@ -239,6 +244,7 @@ public class RuyiGuessDetailActivity extends Activity{
 		mTitle = intent.getStringExtra(RuyiGuessActivity.TITLE);
 		mIsEnd = intent.getBooleanExtra(RuyiGuessActivity.ISEND, false);
 		mIsMySelected = intent.getBooleanExtra(RuyiGuessActivity.MYSELECTED, false);
+		mIsLottery = intent.getStringExtra(RuyiGuessActivity.ISLOTTERY);
 		initView();
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
 		Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", 0);
@@ -378,12 +384,15 @@ public class RuyiGuessDetailActivity extends Activity{
 		if (mIsSelected || mIsSuccess) {
 			mParticipateStateTV.setVisibility(View.VISIBLE);
 			mParticipateStateTV.setText(R.string.buy_ruyi_guess_btn_participate);
-		} else if (!mIsEnd && mRemainSecond != 0){
+		} else if (!mIsEnd && mRemainSecond > 0){
 			mParticipateStateTV.setVisibility(View.VISIBLE);
 			mParticipateStateTV.setText(R.string.buy_ruyi_guess_btn_doing);
 		}
-		mSubtractScoreBtn.setClickable(false);
-		mAddScoreBtn.setClickable(false);
+		
+		if (mIsSelected || mIsSuccess || mIsEnd || mRemainSecond <= 0) {
+			mSubtractScoreBtn.setClickable(false);
+			mAddScoreBtn.setClickable(false);
+		}
 	}
 	
 	/**
@@ -420,6 +429,7 @@ public class RuyiGuessDetailActivity extends Activity{
 						//当满足竞猜结束、 剩余时间为0、答案公布这些条件后才显示答案
 						if (optionId.equals(itemObj.getString("answerId"))
 								&& ("".equals(remainTime) || ("0".equals(remainTime)))
+								&& "2".equals(mIsLottery)
 								&& mIsEnd) {
 							mIsGuessCorrect = true;
 						}
@@ -510,6 +520,7 @@ public class RuyiGuessDetailActivity extends Activity{
 		}
 		
 		if (mIsEnd && !"".equals(mDetailInfoBean.getAnswer())
+				&& "2".equals(mIsLottery)
 				&& ("".equals(mDetailInfoBean.getRemainTime())
 						|| "0".equals(mDetailInfoBean.getRemainTime()))) {
 			mAnswerLayout.setVisibility(View.VISIBLE);
@@ -620,13 +631,12 @@ public class RuyiGuessDetailActivity extends Activity{
 	 */
 	private void setSubmitState() {
 		if (!mIsMySelected) {
+			setParticipateStateForView();
 			if (mIsEnd) {
 				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end, false);
-				setParticipateStateForView();
 			} else {
 				if (mIsSelected) {
 					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
-					setParticipateStateForView();
 				} else {
 					setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_submit_result, true);
 					mSubmitBtn.setOnClickListener(new View.OnClickListener() {
@@ -855,10 +865,23 @@ public class RuyiGuessDetailActivity extends Activity{
 
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
+			LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) seekBar.getLayoutParams();
+			seekBar.setLayoutParams(layoutParams);
+//			Drawable drawable = null;
+//			if (!(mIsEnd || mIsSelected || mIsSuccess || mRemainSecond == 0)) {
+//				drawable = getResources().getDrawable(R.drawable.ruyijc_sleder2x);
+//			} else {
+//				drawable = getResources().getDrawable(R.drawable.ruyijc_sleder);
+//			}
+//			seekBar.setThumb(drawable);
 		}
 
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
+			LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) seekBar.getLayoutParams();
+			seekBar.setLayoutParams(layoutParams);
+//			Drawable drawable = getResources().getDrawable(R.drawable.ruyijc_sleder);
+//			seekBar.setThumb(drawable);
 		}
 	}
 
