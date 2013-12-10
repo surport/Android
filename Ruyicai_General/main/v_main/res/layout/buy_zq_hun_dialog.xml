@@ -30,12 +30,47 @@
             android:layout_marginRight="50dip"
             android:background="@color/zc_sfc_divider" />
     </RelativeLayout>
+    
+     <LinearLayout android:id="@+id/jc_hun_ok_layout"
+        android:layout_width="300dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="10dip" >
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:text="确 定"
+            android:textColor="@color/white"
+            android:textSize="18sp" >
+        </Button>
+
+        <Button
+            android:id="@+id/canel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/loginselecter"
+            android:gravity="center"
+            android:text="取 消"
+            android:textColor="@color/white"
+            android:textSize="18sp" >
+        </Button>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="300dip"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/main_buy_title"
-        android:paddingBottom="65dip"
+        android:layout_below="@id/main_buy_title"
+        android:layout_above="@id/jc_hun_ok_layout"
+        android:paddingBottom="5dip"
         android:paddingTop="5dip"
         android:scrollbars="vertical" >
 
@@ -635,38 +670,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="300dip"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:padding="10dip" >
-
-        <Button
-            android:id="@+id/ok"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/loginselecter"
-            android:gravity="center"
-            android:text="确 定"
-            android:textColor="@color/white"
-            android:textSize="18sp" >
-        </Button>
-
-        <Button
-            android:id="@+id/canel"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/loginselecter"
-            android:gravity="center"
-            android:text="取 消"
-            android:textColor="@color/white"
-            android:textSize="18sp" >
-        </Button>
-    </LinearLayout>
+   
 
 </RelativeLayout>
