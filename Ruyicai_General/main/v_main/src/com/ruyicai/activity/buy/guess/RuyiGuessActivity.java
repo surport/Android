@@ -42,7 +42,10 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -51,7 +54,7 @@ import android.widget.ViewFlipper;
  * @author yejc
  *
  */
-public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/IXListViewListener, OnGestureListener{
+public class RuyiGuessActivity extends Activity implements IXListViewListener/*, OnGestureListener*/{
 	/**
 	 * 用户名
 	 */
@@ -115,12 +118,12 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 	/**
 	 * 用于自动循环播放logo图片
 	 */
-	private ScheduledExecutorService mScheduledExecutorService;
+	private ScheduledExecutorService mScheduledExecutorService = null;
 	
 	/**
 	 * 用于自动循环播放logo图片的ViewFlipper
 	 */
-	private ViewFlipper mViewFlipper;
+	private ViewFlipper mViewFlipper = null;
 	
 	/**
 	 * 用于存放展示logo的view
@@ -139,7 +142,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 	
 	private ProgressDialog mProgressdialog = null;
 	
-	private GestureDetector mGestureDetector = null;
+//	private GestureDetector mGestureDetector = null;
 	
 	private Context mContext = null;
 	
@@ -155,23 +158,29 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 			R.drawable.textview_orange_style,
 			R.drawable.textview_yellow_style };
 	
+	private int mUnitPadValue = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.buy_ruyiguess);
-		mContext = this;
+		mUnitPadValue = PublicMethod.getPxInt(1, RuyiGuessActivity.this);
 		LOCAL_DIR = LOCAL_DIR + getPackageName() + "/ruyijc/";
-		Controller.getInstance(this).getRuyiGuessImage(mHandler, 3);
+		String jumpFlag = getIntent().getStringExtra(RuyiGuessConstant.JUMP_FLAG);
+		if (RuyiGuessConstant.JUMP_FLAG.equals(jumpFlag)) {
+			mIsMySelected = true;
+		}
+		mContext = this;
 		mInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		mGestureDetector = new GestureDetector(this);
 		readUserInfo();
 		initView();
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
-		if (RuyiGuessConstant.JUMP_FLAG.equals(getIntent().getStringExtra(RuyiGuessConstant.JUMP_FLAG))) {
-			mIsMySelected = true;
+		if (mIsMySelected) {
 			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex, mItemCount);
 		} else {
+//			mGestureDetector = new GestureDetector(this);
+			Controller.getInstance(this).getRuyiGuessImage(mHandler, 3);
 			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex, mItemCount);
 		}
 		Controller.getInstance(this).addActivity(this); //添加到Activity list用于管理
@@ -190,6 +199,10 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 	private void initView(){
 		mViewFlipper = (ViewFlipper)findViewById(R.id.guess_viewflipper);
 		mDefaultIcon = (ImageView)findViewById(R.id.ruyiguess_default_icon);
+		if (mIsMySelected) {
+			mViewFlipper.setVisibility(View.GONE);
+			mDefaultIcon.setVisibility(View.GONE);
+		}
 		mPullListView = (PullRefreshLoadListView)findViewById(R.id.ruyi_guess_listview);
 		mPullListView.setAdapter(mAdapter);
 		mPullListView.setPullLoadEnable(true);
@@ -304,13 +317,30 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 						.findViewById(R.id.ruyi_guess_item_time);
 				holder.participate = (TextView) convertView
 						.findViewById(R.id.ruyi_guess_item_participate);
+				holder.endState = (TextView) convertView
+						.findViewById(R.id.ruyi_myguess_item_participate);
+				holder.divider = (View) convertView
+						.findViewById(R.id.ruyi_guess_divider);
+				holder.itemLayout = (LinearLayout) convertView
+						.findViewById(R.id.ruyi_guess_item_layout);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
+			FrameLayout.LayoutParams params = (LayoutParams) holder.itemLayout.getLayoutParams();
 			
-			holder.integral.setText(PublicMethod.formatString(mContext, 
-					R.string.buy_ruyi_guess_item_integral_two, info.getPrizePoolScore()));
+			if (position == mQuestionsList.size()-1) {
+				holder.divider.setVisibility(View.VISIBLE);
+				params.height = 93 * mUnitPadValue;
+				holder.itemLayout.setLayoutParams(params);
+				holder.itemLayout.setPadding(10*mUnitPadValue, 8*mUnitPadValue, 8*mUnitPadValue, 7*mUnitPadValue);
+			} else {
+				holder.divider.setVisibility(View.GONE);
+				params.height = 90 * mUnitPadValue;
+				holder.itemLayout.setLayoutParams(params);
+				holder.itemLayout.setPadding(10*mUnitPadValue, 8*mUnitPadValue, 8*mUnitPadValue, 4*mUnitPadValue);
+			}
+			
 			holder.title.setText(info.getTitle());
 			holder.detail.setText(info.getDetail());
 			boolean isLottery = false;
@@ -321,37 +351,56 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 			}
 			setTimeStyle(position, info.getTimeRemaining(), holder.time, isLottery);
 			holder.integral.setBackgroundResource(mIconArray[position%3]);
-			if ("0".equals(info.getEndState())) { //竞猜是否结束 0:未结束;1:已结束
-				if (mIsLogin) {
-					if (mLocalDataMap.containsKey(position) 
-							&& mLocalDataMap.get(position)) {
-						holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
-						holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
-					} else {
-						if ("0".equals(info.getParticipate())) { //是否参与竞猜 0:未参与;1:已参与
-							holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
-							holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_green);
-						} else {
+			if (mIsMySelected) {
+				holder.integral.setText(PublicMethod.formatString(mContext, 
+						R.string.buy_ruyi_guess_mythrow_score, info.getPayScore()));
+//				holder.integral.setVisibility(View.GONE);
+				holder.endState.setVisibility(View.VISIBLE);
+				if (isLottery) {
+					holder.endState.setText(R.string.buy_ruyi_guess_open);
+				} else {
+					holder.endState.setText(R.string.buy_ruyi_guess_wait_open);
+				}
+				holder.participate.setVisibility(View.GONE);
+			} else {
+				holder.endState.setVisibility(View.GONE);
+//				holder.integral.setVisibility(View.VISIBLE);
+				holder.participate.setVisibility(View.VISIBLE);
+				holder.integral.setText(PublicMethod.formatString(mContext, 
+						R.string.buy_ruyi_guess_item_integral_two, info.getPrizePoolScore()));
+				if ("0".equals(info.getEndState())) { //竞猜是否结束 0:未结束;1:已结束
+					if (mIsLogin) {
+						if (mLocalDataMap.containsKey(position) 
+								&& mLocalDataMap.get(position)) {
 							holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
 							holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
+						} else {
+							if ("0".equals(info.getParticipate())) { //是否参与竞猜 0:未参与;1:已参与
+								holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
+								holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_green);
+							} else {
+								holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
+								holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
+							}
 						}
-					}
-				} else {
-					holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
-					holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_green);
-				}
-			} else {
-				holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
-				if (mIsLogin) {
-					if ("0".equals(info.getParticipate())) { //是否参与竞猜 0:未参与;1:已参与
-						holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
 					} else {
-						holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
+						holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
+						holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_green);
 					}
 				} else {
-					holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
+					holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
+					if (mIsLogin) {
+						if ("0".equals(info.getParticipate())) { //是否参与竞猜 0:未参与;1:已参与
+							holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
+						} else {
+							holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
+						}
+					} else {
+						holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
+					}
 				}
 			}
+			
 			return convertView;
 		}
 		
@@ -361,6 +410,9 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 			TextView detail; //竞猜题目详情
 			TextView time; //竞猜剩余时间
 			TextView participate; //参与状态
+			TextView endState; //待公布、已公布状态
+			View divider;
+			LinearLayout itemLayout;
 		}
 		
 		public void clearData() {
@@ -381,6 +433,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 		private void setTimeStyle(final int position, Long time, 
 				final TextView timeTv, boolean isLottery) {
 			if (time > 0) {
+				timeTv.setVisibility(View.VISIBLE);
 				if (!remainTimeMap.containsKey(position)) {
 					remainTimeMap.put(position, time);
 					timeTv.setText(formatLongToString(position, time));
@@ -401,14 +454,18 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 				}
 				timeTv.setTextColor(getResources().getColor(R.color.ruyi_guess_progress_red_color));
 			} else {
-				if (isLottery) {
-					timeTv.setText("已开奖");
-					timeTv.setTextColor(getResources().getColor(R.color.ruyi_guess_progress_red_color));
+				if (mIsMySelected) {
+					timeTv.setVisibility(View.GONE);
 				} else {
-					timeTv.setText("待公布");
-					timeTv.setTextColor(getResources().getColor(R.color.ruyi_guess_progress_green_color));
+					timeTv.setVisibility(View.VISIBLE);
+					if (isLottery) {
+						timeTv.setText(R.string.buy_ruyi_guess_open);
+						timeTv.setTextColor(getResources().getColor(R.color.ruyi_guess_progress_red_color));
+					} else {
+						timeTv.setText(R.string.buy_ruyi_guess_wait_open);
+						timeTv.setTextColor(getResources().getColor(R.color.ruyi_guess_progress_green_color));
+					}
 				}
-				
 			}
 		}
 		
@@ -416,7 +473,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 			
 			TextView timeTv;
 			int position;
-			public TimeThread(TextView timeTv, int position/*, Handler handler*/) {
+			public TimeThread(TextView timeTv, int position) {
 				this.timeTv = timeTv;
 				this.position = position;
 			}
@@ -567,6 +624,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 						info.setParticipate(itemObj.getString("isParticipate"));//竞猜参与状态 0:未参与;1:已参与
 						info.setPrizePoolScore(itemObj.getString("prizePoolScore"));//竞猜奖池积分
 						info.setEndState(itemObj.getString("isEnd"));//竞猜是否截止 0:未结束;1:已结束
+						info.setPayScore(itemObj.getString("payScore"));  //我的投入
 						info.setLotteryState(itemObj.getString("state"));//竞猜开奖状态 0:未开奖;1:开奖中;2:已开奖
 						String remainTime = itemObj.getString("time_remaining").trim();//竞猜剩余时间
 						try {
@@ -670,7 +728,11 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 			maxResult = 10;
 		}
 		mItemCount = String.valueOf(maxResult);
-		Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, mItemCount);
+		if (mIsMySelected) {
+			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "1", 0, mItemCount);
+		} else {
+			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, mItemCount);
+		}
 	}
 	
 	@Override
@@ -696,52 +758,6 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 		}
 	}
 	
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		return mGestureDetector.onTouchEvent(event);
-	}
-
-	@Override
-	public boolean onDown(MotionEvent e) {
-		return false;
-	}
-
-	@Override
-	public void onShowPress(MotionEvent e) {
-	}
-
-	@Override
-	public boolean onSingleTapUp(MotionEvent e) {
-		return false;
-	}
-
-	@Override
-	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-			float distanceY) {
-		return false;
-	}
-
-	@Override
-	public void onLongPress(MotionEvent e) {
-	}
-
-	@Override
-	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-			float velocityY) {
-		if(e1.getX()-e2.getX()>120){
-			mViewFlipper.setInAnimation(mContext, R.anim.left_in);
-			mViewFlipper.setOutAnimation(mContext, R.anim.left_out);
-			mViewFlipper.showNext();//向右滑动
-			return true;
-		}else if(e1.getX()-e2.getX()<-120){
-			mViewFlipper.setInAnimation(mContext, R.anim.right_in);
-			mViewFlipper.setOutAnimation(mContext, R.anim.right_out);
-			mViewFlipper.showPrevious();//向左滑动
-			return true;
-		}
-		return false;
-	}
-
 	@Override
 	public void onLoadMore() {
 		addmore();
@@ -773,4 +789,58 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 				new Date(System.currentTimeMillis())));
 	}
 	
+	/**
+	 * 手滑上边的logo图片。 如果需要开启此功能去掉下面注释掉的代码即可 
+	 */
+	/***************************start****************************/
+//	@Override
+//	public boolean onTouchEvent(MotionEvent event) {
+//		if (mGestureDetector != null) {
+//			return mGestureDetector.onTouchEvent(event);
+//		}
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean onDown(MotionEvent e) {
+//		return false;
+//	}
+//
+//	@Override
+//	public void onShowPress(MotionEvent e) {
+//	}
+//
+//	@Override
+//	public boolean onSingleTapUp(MotionEvent e) {
+//		return false;
+//	}
+//
+//	@Override
+//	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+//			float distanceY) {
+//		return false;
+//	}
+//
+//	@Override
+//	public void onLongPress(MotionEvent e) {
+//	}
+//
+//	@Override
+//	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+//			float velocityY) {
+//		if(e1.getX()-e2.getX()>120){
+//			mViewFlipper.setInAnimation(mContext, R.anim.left_in);
+//			mViewFlipper.setOutAnimation(mContext, R.anim.left_out);
+//			mViewFlipper.showNext();//向右滑动
+//			return true;
+//		}else if(e1.getX()-e2.getX()<-120){
+//			mViewFlipper.setInAnimation(mContext, R.anim.right_in);
+//			mViewFlipper.setOutAnimation(mContext, R.anim.right_out);
+//			mViewFlipper.showPrevious();//向左滑动
+//			return true;
+//		}
+//		return false;
+//	}
+	/***************************end****************************/
+
 }

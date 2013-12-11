@@ -117,7 +117,7 @@ public class RuyiGuessDetailActivity extends Activity{
 	/** 
 	 * 是否从我的竞猜进入
 	 */
-	private boolean mIsMySelected = false;
+//	private boolean mIsMySelected = false;
 	
 	/** 
 	 * 参与成功标识 
@@ -137,7 +137,7 @@ public class RuyiGuessDetailActivity extends Activity{
 	/** 
 	 * 是否点击了+、—图标来滑动seekbar 
 	 */
-//	private boolean mIsThumbMove = false;
+	private boolean mIsThumbMove = false;
 	
 	/** 
 	 * 问题描述 
@@ -252,7 +252,7 @@ public class RuyiGuessDetailActivity extends Activity{
 		mId = intent.getStringExtra(RuyiGuessConstant.ITEM_ID);
 		mTitle = intent.getStringExtra(RuyiGuessConstant.TITLE);
 		mIsEnd = intent.getBooleanExtra(RuyiGuessConstant.ISEND, false);
-		mIsMySelected = intent.getBooleanExtra(RuyiGuessConstant.MYSELECTED, false);
+//		mIsMySelected = intent.getBooleanExtra(RuyiGuessConstant.MYSELECTED, false);
 		mIsLottery = intent.getStringExtra(RuyiGuessConstant.ISLOTTERY);
 		initView();
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
@@ -287,7 +287,7 @@ public class RuyiGuessDetailActivity extends Activity{
 					int progress = mScoreSeekBar.getProgress();
 					if (progress > 0) {
 						mThrowScore = progress*100 + 200 - 100;
-//						mIsThumbMove = true;
+						mIsThumbMove = true;
 						mScoreSeekBar.setProgress(progress - 1);
 					}
 					setMyThrowScore();
@@ -307,7 +307,7 @@ public class RuyiGuessDetailActivity extends Activity{
 						mThrowScore = 2000;
 					} else {
 						mThrowScore = mThrowScore + 100;
-//						mIsThumbMove = true;
+						mIsThumbMove = true;
 						mScoreSeekBar.setProgress(progress + 1);
 					}
 					setMyThrowScore();
@@ -316,24 +316,24 @@ public class RuyiGuessDetailActivity extends Activity{
 		});
 
 		mSubmitBtn = (Button)findViewById(R.id.ruyi_guess_submit);
-		if (mIsMySelected) {
-			setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_go_work, true);
-			mSubmitBtn.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					List<Activity> activityList = Controller.getInstance(RuyiGuessDetailActivity.this).getActivityList();
-					for (int i = 0; i < activityList.size(); i++) {
-						Activity activity = activityList.get(i);
-						activity.finish();
-					}
-					Intent intent = new Intent(RuyiGuessDetailActivity.this,
-							RuyiGuessActivity.class);
-					startActivity(intent);
-					finish();
-				}
-			});
-		}
+//		if (mIsMySelected) {
+//			setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_go_work, true);
+//			mSubmitBtn.setOnClickListener(new View.OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View v) {
+//					List<Activity> activityList = Controller.getInstance(RuyiGuessDetailActivity.this).getActivityList();
+//					for (int i = 0; i < activityList.size(); i++) {
+//						Activity activity = activityList.get(i);
+//						activity.finish();
+//					}
+//					Intent intent = new Intent(RuyiGuessDetailActivity.this,
+//							RuyiGuessActivity.class);
+//					startActivity(intent);
+//					finish();
+//				}
+//			});
+//		}
 	}
 	
 	private void setMyThrowScore() {
@@ -645,7 +645,7 @@ public class RuyiGuessDetailActivity extends Activity{
 	 * 设置提交按钮的状态
 	 */
 	private void setSubmitState() {
-		if (!mIsMySelected) {
+//		if (!mIsMySelected) {
 			setParticipateStateForView();
 			if (mIsSelected) {
 				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
@@ -683,7 +683,7 @@ public class RuyiGuessDetailActivity extends Activity{
 					});
 				}
 			}
-		}
+//		}
 	}
 	
 	private void setSubmitBtnState(int picResId, int textResId, boolean isClickable) {
@@ -750,7 +750,7 @@ public class RuyiGuessDetailActivity extends Activity{
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (mIsSuccess && !mIsMySelected 
+		if (mIsSuccess /*&& !mIsMySelected*/ 
 				&& keyCode == KeyEvent.KEYCODE_BACK) {
 			setResult(RESULT_OK);
 		}
@@ -898,11 +898,12 @@ public class RuyiGuessDetailActivity extends Activity{
 			} else {
 				mThrowScore = progress*100 + 200;
 				setMyThrowScore();
-				setThumState(true);
-//				if (mIsThumbMove) {
-//					mIsThumbMove = false;
-//					setThumbState();
-//				}
+				if (mIsThumbMove) {
+					mIsThumbMove = false;
+					setThumState(false);
+				} else {
+					setThumState(true);
+				}
 			}
 		}
 

@@ -65,14 +65,14 @@ public class CustomThumbDrawable extends Drawable {
 			BitmapDrawable drawable = (BitmapDrawable)mContext.getResources().getDrawable(mDrawables[1]);
 			Bitmap bitmap = drawable.getBitmap();
 			int bitWidth = bitmap.getWidth();
-			canvas.drawBitmap(drawable.getBitmap(), width - bitWidth/2, 0, paint);
+			canvas.drawBitmap(bitmap, width - bitWidth/2, 0, paint);
 			float textWidth = paint.measureText(mScore)/2;
-			canvas.drawText(mScore, width - textWidth, (height*2)/3, paint);
+			canvas.drawText(mScore, width - textWidth, (height)/2, paint);
 		} else {
 			BitmapDrawable drawable = (BitmapDrawable)mContext.getResources().getDrawable(mDrawables[0]);
 			Bitmap bitmap = drawable.getBitmap();
 			int bitWidth = bitmap.getWidth();
-			canvas.drawBitmap(bitmap, width - bitWidth/2, 2, paint);
+			canvas.drawBitmap(bitmap, width - bitWidth/2, 0, paint);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class CustomThumbDrawable extends Drawable {
 					mDrawables[0]);
 		}
 		Bitmap bitmap = drawable.getBitmap();
-		return bitmap.getHeight()+10;
+		return bitmap.getHeight();
 	}
 
 	@Override

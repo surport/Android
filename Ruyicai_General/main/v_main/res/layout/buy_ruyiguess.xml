@@ -17,7 +17,7 @@
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="150dip" >
+        android:layout_height="wrap_content" >
 
         <ImageView
             android:id="@+id/ruyiguess_default_icon"
@@ -65,7 +65,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:cacheColorHint="@android:color/transparent"
-            android:divider="@color/zc_sfc_divider"
+            android:divider="@color/transparent"
             android:dividerHeight="1dip"
             android:fadingEdge="none"
             android:listSelector="@android:color/transparent"
