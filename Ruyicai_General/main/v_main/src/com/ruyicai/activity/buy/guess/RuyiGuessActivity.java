@@ -1,7 +1,6 @@
 package com.ruyicai.activity.buy.guess;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -16,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.guess.bean.ItemInfoBean;
+import com.ruyicai.activity.buy.guess.util.RuyiGuessConstant;
 import com.ruyicai.activity.buy.guess.util.RuyiGuessUtil;
 import com.ruyicai.activity.buy.guess.view.PullRefreshLoadListView;
 import com.ruyicai.activity.buy.guess.view.PullRefreshLoadListView.IXListViewListener;
@@ -52,56 +52,108 @@ import android.widget.ViewFlipper;
  *
  */
 public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/IXListViewListener, OnGestureListener{
-
-	public final static String ITEM_ID = "itemId";
-	public final static String USER_NO = "userNo";
-	public final static String TITLE = "title";
-	public final static String ISEND = "isend";
-	public final static String JUMP_FLAG = "jump_flag";
-	public final static String MYSELECTED = "my_selected";
-	public final static String ISLOTTERY = "islottery";
-	/**用户名*/
+	/**
+	 * 用户名
+	 */
 	private String mUserNo = "";
-	/**当前列表显示了多少页数据*/
+	
+	/**
+	 * 当前列表显示了多少页数据
+	 */
 	private int mPageIndex = 0;
-	/**服务器端总共有多少页数据*/
+	
+	/**
+	 * 服务器端总共有多少页数据
+	 */
 	private int mTotalPage = 0;
-	/**选择的竞猜Id*/
+	
+	/**
+	 * 选择的竞猜Id
+	 */
 	private int mSelectedId = 0;
-	/**是否登陆*/
+	
+	/**
+	 * 是否登陆
+	 */
 	private boolean mIsLogin = false;
-	/**true我竞猜过的问题*/
+	
+	/**
+	 * true我竞猜过的问题
+	 */
 	private boolean mIsMySelected = false;
-//	private boolean mIsFirst = true;
-	private LayoutInflater mInflater = null;
-	private ProgressDialog mProgressdialog = null;
-	private RWSharedPreferences mSharedPreferences = null;
-	/**自定义listview 用于下拉刷新*/
-//	private PullRefreshListView mPullListView = null;
+	
+	/**
+	 * 自定义listview 用于下拉刷新
+	 */
 	private PullRefreshLoadListView mPullListView = null;
-//	private View mFooterView = null;
+	
+	/**
+	 * 存放竞猜问题的list
+	 */
 	private List<ItemInfoBean> mQuestionsList = new ArrayList<ItemInfoBean>();
+	
+	/**
+	 * 把参与题目的状态保存到map中，不用再去请求后台来改变当前页面的显示状态状态
+	 */
+	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
+	
+	/**
+	 * 分页请求的题目数、默认是10条
+	 */
+	private String mItemCount = "10";
+	
+	/**
+	 * 用于存放图片的地址
+	 */
+	private List<String> mImageUrlList = new ArrayList<String>();
+	
+	/**
+	 * 用于存放图片的名字
+	 */
+	private List<String> mImageNameList = new ArrayList<String>();
+	
+	/**
+	 * 用于自动循环播放logo图片
+	 */
+	private ScheduledExecutorService mScheduledExecutorService;
+	
+	/**
+	 * 用于自动循环播放logo图片的ViewFlipper
+	 */
+	private ViewFlipper mViewFlipper;
+	
+	/**
+	 * 用于存放展示logo的view
+	 */
+	private List<View> mViewList = new ArrayList<View>();
+	
+	/**
+	 * 用于存放下载图片的路径
+	 */
+	private String LOCAL_DIR = "/ruyicai/";
+	
+	/**
+	 * 当图片没有下载完成时显示的默认图片
+	 */
+	private ImageView mDefaultIcon = null;
+	
+	private ProgressDialog mProgressdialog = null;
+	
+	private GestureDetector mGestureDetector = null;
+	
+	private Context mContext = null;
+	
+	private LayoutInflater mInflater = null;
+	
+	private RWSharedPreferences mSharedPreferences = null;
+	
 	private MessageHandler mHandler = new MessageHandler();
+	
 	private ListViewAdapter mAdapter = new ListViewAdapter();
-//	private String[] mStateArray = {"参与竞猜", "已参与"};
+	
 	private int[] mIconArray = { R.drawable.textview_red_style,
 			R.drawable.textview_orange_style,
 			R.drawable.textview_yellow_style };
-	/**把参与题目的状态保存到map中，不用再去请求后台来改变当前页面的显示状态状态*/
-	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
-	
-	private String mItemCount = "10";
-//	private boolean mIsRun = true;
-	
-	private ScheduledExecutorService mScheduledExecutorService;
-	private ViewFlipper mViewFlipper;
-	private List<String> mImageUrlList = new ArrayList<String>();
-	private List<String> mImageNameList = new ArrayList<String>();
-	private List<View> mViewList = new ArrayList<View>();
-	private String LOCAL_DIR = "/ruyicai/";
-	private ImageView mDefaultIcon = null;
-	private GestureDetector mGestureDetector = null;
-	private Context mContext = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +168,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 		readUserInfo();
 		initView();
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
-		if (JUMP_FLAG.equals(getIntent().getStringExtra(JUMP_FLAG))) {
+		if (RuyiGuessConstant.JUMP_FLAG.equals(getIntent().getStringExtra(RuyiGuessConstant.JUMP_FLAG))) {
 			mIsMySelected = true;
 			Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex, mItemCount);
 		} else {
@@ -139,20 +191,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 		mViewFlipper = (ViewFlipper)findViewById(R.id.guess_viewflipper);
 		mDefaultIcon = (ImageView)findViewById(R.id.ruyiguess_default_icon);
 		mPullListView = (PullRefreshLoadListView)findViewById(R.id.ruyi_guess_listview);
-//		mFooterView = mInflater.inflate(R.layout.lookmorebtn, null);
-//		mFooterView.setBackgroundColor(this.getResources().getColor(R.color.jczq_listview_item_bg));
-//		mPullListView.addFooterView(mFooterView);
-//		mFooterView.setVisibility(View.GONE);
-//		mFooterView.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				addmore();
-//			}
-//		});
 		mPullListView.setAdapter(mAdapter);
-//		mPullListView.setonRefreshListener(this);
-//		mPullListView.setShowState(false);
 		mPullListView.setPullLoadEnable(true);
 		mPullListView.setXListViewListener(this);
 		mPullListView.setOnItemClickListener(new OnItemClickListener() {
@@ -167,62 +206,26 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 					Intent intent = new Intent(RuyiGuessActivity.this,
 							RuyiGuessDetailActivity.class);
 					mSelectedId = arg2 - mPullListView.getHeaderViewsCount();
-					intent.putExtra(ITEM_ID, mQuestionsList.get(mSelectedId).getId());
-					intent.putExtra(USER_NO, mUserNo);
-					intent.putExtra(TITLE, mQuestionsList.get(mSelectedId).getTitle());
-					intent.putExtra(MYSELECTED, mIsMySelected);
-					intent.putExtra(ISLOTTERY, mQuestionsList.get(mSelectedId).getLotteryState());
+					intent.putExtra(RuyiGuessConstant.ITEM_ID, mQuestionsList.get(mSelectedId).getId());
+					intent.putExtra(RuyiGuessConstant.USER_NO, mUserNo);
+					intent.putExtra(RuyiGuessConstant.TITLE, mQuestionsList.get(mSelectedId).getTitle());
+					intent.putExtra(RuyiGuessConstant.MYSELECTED, mIsMySelected);
+					intent.putExtra(RuyiGuessConstant.ISLOTTERY, mQuestionsList.get(mSelectedId).getLotteryState());
 					if ("1".equals(mQuestionsList.get(mSelectedId).getEndState())) {
-						intent.putExtra(ISEND, true);
+						intent.putExtra(RuyiGuessConstant.ISEND, true);
 					} else {
-						intent.putExtra(ISEND, false);
+						intent.putExtra(RuyiGuessConstant.ISEND, false);
 					}
 					startActivityForResult(intent, 1001);
 				}
 			}
 		});
 	}
-	
-	
-//	private void setMoreViewState() {
-//		if (mTotalPage > 1 && mIsFirst) {
-//			mIsFirst = false;
-//			mFooterView.setVisibility(View.VISIBLE);
-//		}
-//	}
-	
-	private void dismissDialog() {
-		if (mProgressdialog != null && mProgressdialog.isShowing()) {
-			mProgressdialog.dismiss();
-		}
-	}
-	
-	/**
-	 * 获取更多数据
-	 */
-	private void addmore() {
-		mPageIndex++;
-		if (mPageIndex > mTotalPage - 1) {
-			mPageIndex = mTotalPage - 1;
-//			mFooterView.setVisibility(View.GONE);
-//			mIsFirst = true;
-			Toast.makeText(this,
-					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
-		} else {
-			mProgressdialog = PublicMethod.creageProgressDialog(this);
-			if (mIsMySelected) {
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex, mItemCount);
-			} else {
-				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex, mItemCount);
-			}
-		}
-	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
-//			mIsFirst = true;
 			if (requestCode == 1000) {//登陆成功后重新加载当前账户的参与状态
 				mPageIndex = 0;
 				mIsLogin = true;
@@ -239,23 +242,30 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 	}
 
 	private class ListViewAdapter extends BaseAdapter {
-		/**存放剩余秒数*/
+		/**
+		 * 存放剩余秒数
+		 */
 		Map<Integer, Long> remainTimeMap = Collections.synchronizedMap(new HashMap<Integer, Long>());
 		
-		/**存放是否计时完成的状态*/
+		/**
+		 * 存放是否计时完成的状态
+		 */
 		Map<Integer, Boolean> flagMap = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
 		
-		/**存放计时线程*/
+		/**
+		 * 存放计时线程
+		 */
 		Map<Integer, Thread> threadMap = Collections.synchronizedMap(new HashMap<Integer, Thread>());
 		
-		/**存放少于一分钟的秒数*/
+		/**
+		 * 存放少于一分钟的秒数
+		 */
 		Map<Integer, Long> lessMinuteMap = Collections.synchronizedMap(new HashMap<Integer, Long>());
 		
-		/**存放少于一分钟的秒数的状态*/
+		/**
+		 * 存放少于一分钟的秒数的状态
+		 */
 		Map<Integer, Boolean> lessMinuteFlagMap = Collections.synchronizedMap(new HashMap<Integer, Boolean>());
-		public ListViewAdapter() {
-			
-		}
 
 		@Override
 		public int getCount() {
@@ -402,7 +412,7 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 			}
 		}
 		
-		class TimeThread extends Thread {
+		private class TimeThread extends Thread {
 			
 			TextView timeTv;
 			int position;
@@ -418,8 +428,9 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 					flag = flagMap.get(position);
 				}
 				while (flag) {
-					if (!(remainTimeMap.containsKey(position))
-							&& !(flagMap.containsKey(position))) {
+					if (remainTimeMap == null || 
+							(!(remainTimeMap.containsKey(position))
+							&& !(flagMap.containsKey(position)))) {
 						return;
 					}
 					long currentTime = remainTimeMap.get(position);
@@ -529,7 +540,6 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 	private void parserJSON(String str, int type) {
 		if (str == null || "".equals(null)) {
 			Toast.makeText(RuyiGuessActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
-//			mPullListView.onRefreshComplete();
 			onLoad();
 			dismissDialog();
 		} else {
@@ -568,7 +578,6 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 						mQuestionsList.add(info);
 					}
 					mAdapter.notifyDataSetChanged();
-//					setMoreViewState();
 				} else if ("0047".equals(errorCode)) {
 					TextView tv = (TextView) findViewById(R.id.ruyi_guest_no_record);
 					tv.setVisibility(View.VISIBLE);
@@ -585,11 +594,16 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 				e.printStackTrace();
 			} finally {
 				if (type == 2) {
-//					mPullListView.onRefreshComplete();
 					onLoad();
 				}
 				dismissDialog();
 			}
+		}
+	}
+	
+	private void dismissDialog() {
+		if (mProgressdialog != null && mProgressdialog.isShowing()) {
+			mProgressdialog.dismiss();
 		}
 	}
 	
@@ -632,6 +646,14 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 				}
 				mDefaultIcon.setVisibility(View.GONE);
 				mViewFlipper.setVisibility(View.VISIBLE);
+				if (mScheduledExecutorService == null) {
+					mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+					mScheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 5, TimeUnit.SECONDS);
+				} else {
+					if (mScheduledExecutorService.isShutdown()) {
+						mScheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 5, TimeUnit.SECONDS);
+					}
+				}
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -652,19 +674,8 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 	}
 	
 	@Override
-	protected void onStart() {
-		mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
-		mScheduledExecutorService.scheduleAtFixedRate(new ScrollTask(), 1, 5, TimeUnit.SECONDS);
-//		mScheduledExecutorService.execute(new ScrollTask());
-//		mScheduledExecutorService.submit(new ScrollTask());
-		super.onStart();
-	}
-	
-	
-	
-	@Override
-	protected void onStop() {
-		super.onStop();
+	protected void onDestroy() {
+		super.onDestroy();
 		if (mScheduledExecutorService != null && !mScheduledExecutorService.isShutdown()) {
 			mScheduledExecutorService.shutdown();
 		}
@@ -685,7 +696,6 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 		}
 	}
 	
-
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		return mGestureDetector.onTouchEvent(event);
@@ -737,17 +747,30 @@ public class RuyiGuessActivity extends Activity implements /*OnRefreshListener*/
 		addmore();
 	}
 	
+	/**
+	 * 获取更多数据
+	 */
+	private void addmore() {
+		mPageIndex++;
+		if (mPageIndex > mTotalPage - 1) {
+			mPageIndex = mTotalPage - 1;
+			Toast.makeText(this,
+					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
+		} else {
+			mProgressdialog = PublicMethod.creageProgressDialog(this);
+			if (mIsMySelected) {
+				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "1", mPageIndex, mItemCount);
+			} else {
+				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 1, "0", mPageIndex, mItemCount);
+			}
+		}
+	}
+	
 	private void onLoad() {
 		mPullListView.stopRefresh();
 		mPullListView.stopLoadMore();
-		mPullListView.setRefreshTime(dateToStrLong(new Date(System
-				.currentTimeMillis())));
-	}
-	
-	public String dateToStrLong(java.util.Date dateDate) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String dateString = formatter.format(dateDate);
-		return dateString;
+		mPullListView.setRefreshTime(PublicMethod.dateToStrLong(
+				new Date(System.currentTimeMillis())));
 	}
 	
 }

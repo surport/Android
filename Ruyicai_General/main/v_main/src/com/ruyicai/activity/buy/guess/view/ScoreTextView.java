@@ -54,11 +54,11 @@ public class ScoreTextView extends TextView {
 			
 			float fourthStartX = unit*36 + PublicMethod.getPxInt(10, getContext())
 					- mPaint.measureText(mScore[4])/2;
-			canvas.drawText(mScore[0], 5f, 25f, mPaint);
-			canvas.drawText(mScore[1], firstStartX, 25f, mPaint);
-			canvas.drawText(mScore[2], secondStartX, 25f, mPaint);
-			canvas.drawText(mScore[3], thirdStartX, 25f, mPaint);
-			canvas.drawText(mScore[4], fourthStartX, 25f, mPaint);
+			canvas.drawText(mScore[0], 5f, 20f, mPaint);
+			canvas.drawText(mScore[1], firstStartX, 20f, mPaint);
+			canvas.drawText(mScore[2], secondStartX, 20f, mPaint);
+			canvas.drawText(mScore[3], thirdStartX, 20f, mPaint);
+			canvas.drawText(mScore[4], fourthStartX, 20f, mPaint);
 		}
 	}
 }

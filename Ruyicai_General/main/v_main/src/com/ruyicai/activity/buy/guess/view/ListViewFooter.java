@@ -23,7 +23,6 @@ public class ListViewFooter extends LinearLayout {
 	private Context mContext;
 
 	private View mContentView;
-//	private View mProgressBar;
 	private TextView mHintView;
 
 	public ListViewFooter(Context context) {
@@ -38,16 +37,14 @@ public class ListViewFooter extends LinearLayout {
 
 	public void setState(int state) {
 		mHintView.setVisibility(View.INVISIBLE);
-//		mProgressBar.setVisibility(View.INVISIBLE);
-		if (state == STATE_READY) {
-			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText(R.string.listview_footer_hint_ready);
-		} else if (state == STATE_LOADING) {
-//			mProgressBar.setVisibility(View.VISIBLE);
-		} else {
-			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText(R.string.get_more);
-		}
+//		if (state == STATE_READY) {
+//			mHintView.setVisibility(View.VISIBLE);
+//			mHintView.setText(R.string.listview_footer_hint_ready);
+//		} else if (state == STATE_LOADING) {
+//		} else {
+//			mHintView.setVisibility(View.VISIBLE);
+//			mHintView.setText(R.string.get_more);
+//		}
 	}
 
 	public void setBottomMargin(int height) {
@@ -70,7 +67,6 @@ public class ListViewFooter extends LinearLayout {
 	 */
 	public void normal() {
 		mHintView.setVisibility(View.VISIBLE);
-//		mProgressBar.setVisibility(View.GONE);
 	}
 
 	/**
@@ -78,7 +74,6 @@ public class ListViewFooter extends LinearLayout {
 	 */
 	public void loading() {
 		mHintView.setVisibility(View.GONE);
-//		mProgressBar.setVisibility(View.VISIBLE);
 	}
 
 	/**
@@ -110,7 +105,6 @@ public class ListViewFooter extends LinearLayout {
 				android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
-//		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
 		mHintView = (TextView) moreView
 				.findViewById(R.id.xlistview_footer_hint_textview);
 	}

@@ -37,6 +37,7 @@ import android.widget.Toast;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.account.AccountListActivity;
 import com.ruyicai.activity.buy.guess.RuyiGuessActivity;
+import com.ruyicai.activity.buy.guess.util.RuyiGuessConstant;
 import com.ruyicai.activity.common.UserLogin;
 import com.ruyicai.activity.join.JoinCheckActivity;
 import com.ruyicai.activity.more.FeedBack;
@@ -563,7 +564,7 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		if (str.equals("我的竞猜")) {
 			Intent intent = new Intent(NewUserCenter.this,
 					RuyiGuessActivity.class);
-			intent.putExtra(RuyiGuessActivity.JUMP_FLAG, RuyiGuessActivity.JUMP_FLAG);
+			intent.putExtra(RuyiGuessConstant.JUMP_FLAG, RuyiGuessConstant.JUMP_FLAG);
 			startActivity(intent);
 		}
 		

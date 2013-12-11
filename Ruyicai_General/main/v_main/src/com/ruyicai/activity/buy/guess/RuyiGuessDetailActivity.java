@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import com.palmdream.RuyicaiAndroid.R;
 import com.ruyicai.activity.buy.guess.bean.ItemDetailInfoBean;
 import com.ruyicai.activity.buy.guess.bean.ItemOptionBean;
+import com.ruyicai.activity.buy.guess.util.RuyiGuessConstant;
+import com.ruyicai.activity.buy.guess.view.CustomThumbDrawable;
 import com.ruyicai.activity.buy.guess.view.RectangularProgressBar;
 import com.ruyicai.controller.Controller;
 import com.ruyicai.util.PublicMethod;
@@ -133,6 +135,11 @@ public class RuyiGuessDetailActivity extends Activity{
 	private boolean mIsGuessCorrect = false;
 	
 	/** 
+	 * 是否点击了+、—图标来滑动seekbar 
+	 */
+//	private boolean mIsThumbMove = false;
+	
+	/** 
 	 * 问题描述 
 	 */
 	private TextView mDescription = null;
@@ -217,6 +224,8 @@ public class RuyiGuessDetailActivity extends Activity{
 	 */
 	private Button mSubmitBtn = null;
 	
+	private CustomThumbDrawable mThumbDrawable = null;
+	
 	private LayoutInflater mInflater = null;
 
 	private ProgressDialog mProgressdialog = null;
@@ -239,12 +248,12 @@ public class RuyiGuessDetailActivity extends Activity{
 		setContentView(R.layout.buy_ruyiguess_detail);
 		mInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		Intent intent = getIntent();
-		mUserNo = intent.getStringExtra(RuyiGuessActivity.USER_NO);
-		mId = intent.getStringExtra(RuyiGuessActivity.ITEM_ID);
-		mTitle = intent.getStringExtra(RuyiGuessActivity.TITLE);
-		mIsEnd = intent.getBooleanExtra(RuyiGuessActivity.ISEND, false);
-		mIsMySelected = intent.getBooleanExtra(RuyiGuessActivity.MYSELECTED, false);
-		mIsLottery = intent.getStringExtra(RuyiGuessActivity.ISLOTTERY);
+		mUserNo = intent.getStringExtra(RuyiGuessConstant.USER_NO);
+		mId = intent.getStringExtra(RuyiGuessConstant.ITEM_ID);
+		mTitle = intent.getStringExtra(RuyiGuessConstant.TITLE);
+		mIsEnd = intent.getBooleanExtra(RuyiGuessConstant.ISEND, false);
+		mIsMySelected = intent.getBooleanExtra(RuyiGuessConstant.MYSELECTED, false);
+		mIsLottery = intent.getStringExtra(RuyiGuessConstant.ISLOTTERY);
 		initView();
 		mProgressdialog = PublicMethod.creageProgressDialog(this);
 		Controller.getInstance(this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", 0);
@@ -266,6 +275,8 @@ public class RuyiGuessDetailActivity extends Activity{
 		mAwardScoreTV = (TextView)findViewById(R.id.ruyi_guess_award_score);
 		mAnswerLayout = (RelativeLayout)findViewById(R.id.ruyi_guess_answer_layout);
 		mScoreSeekBar = (SeekBar)findViewById(R.id.ruyi_guess_seekbar);
+		mThumbDrawable = new CustomThumbDrawable(this);
+		mScoreSeekBar.setThumb(mThumbDrawable);
 		mScoreSeekBar.setOnSeekBarChangeListener(new MySeekBar());
 		mSubtractScoreBtn = (ImageButton)findViewById(R.id.ruyi_guess_seekbar_subtract);
 		mSubtractScoreBtn.setOnClickListener(new View.OnClickListener() {
@@ -276,6 +287,7 @@ public class RuyiGuessDetailActivity extends Activity{
 					int progress = mScoreSeekBar.getProgress();
 					if (progress > 0) {
 						mThrowScore = progress*100 + 200 - 100;
+//						mIsThumbMove = true;
 						mScoreSeekBar.setProgress(progress - 1);
 					}
 					setMyThrowScore();
@@ -295,6 +307,7 @@ public class RuyiGuessDetailActivity extends Activity{
 						mThrowScore = 2000;
 					} else {
 						mThrowScore = mThrowScore + 100;
+//						mIsThumbMove = true;
 						mScoreSeekBar.setProgress(progress + 1);
 					}
 					setMyThrowScore();
@@ -324,7 +337,12 @@ public class RuyiGuessDetailActivity extends Activity{
 	}
 	
 	private void setMyThrowScore() {
-		String score = String.valueOf(mThrowScore);
+		String score = "";
+		if (!mIsSelected && (mIsEnd || mRemainSecond <= 0)) {
+			score = "0";
+		} else {
+			score = String.valueOf(mThrowScore);
+		}
 		String scoreString = PublicMethod.formatString(this, R.string.buy_ruyi_guess_throw_score, 
 				score);
 		SpannableString scoreSpan = getSpannableString(
@@ -363,9 +381,6 @@ public class RuyiGuessDetailActivity extends Activity{
 							mParticiptePeopleCount = 0L;
 							mProgressdialog = PublicMethod.creageProgressDialog(RuyiGuessDetailActivity.this);
 							Controller.getInstance(RuyiGuessDetailActivity.this).getRuyiGuessDetailList(mHandler, mUserNo, mId, "0", 0);
-//							setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
-//							setParticipateStateForView();
-//							createDynamicView();
 							createDialog();
 						} else {
 							mIsSuccess = false;
@@ -392,6 +407,9 @@ public class RuyiGuessDetailActivity extends Activity{
 		if (mIsSelected || mIsSuccess || mIsEnd || mRemainSecond <= 0) {
 			mSubtractScoreBtn.setClickable(false);
 			mAddScoreBtn.setClickable(false);
+			mScoreSeekBar.setThumb(getResources().getDrawable(R.drawable.ruyijc_sleder));
+		} else {
+			mScoreSeekBar.setThumb(getResources().getDrawable(R.drawable.ruyijc_guess_seekbar_thumb));
 		}
 	}
 	
@@ -530,10 +548,7 @@ public class RuyiGuessDetailActivity extends Activity{
 			} else {
 				mAwardScoreTV.setText("积分: +"+mDetailInfoBean.getPrizeScore());
 			}
-			
 		}
-		
-//		mMyScoreTV.setText(PublicMethod.formatString(this, R.string.buy_ruyi_guess_my_score, mScore));
 		setMyThrowScore();
 	}
 	
@@ -632,20 +647,31 @@ public class RuyiGuessDetailActivity extends Activity{
 	private void setSubmitState() {
 		if (!mIsMySelected) {
 			setParticipateStateForView();
-			if (mIsEnd) {
-				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end, false);
+			if (mIsSelected) {
+				setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
 			} else {
-				if (mIsSelected) {
-					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_participate, false);
+				if (mIsEnd) {
+					setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end, false);
 				} else {
 					setSubmitBtnState(R.drawable.loginselecter, R.string.buy_ruyi_guess_submit_result, true);
 					mSubmitBtn.setOnClickListener(new View.OnClickListener() {
 
 						@Override
 						public void onClick(View v) {
+							int score = 0;
+							try {
+								score = Integer.parseInt(mScore);
+							} catch(Exception e) {
+								e.printStackTrace();
+							}
+							
 							if ("".equals(mOptionId)) {
 								Toast.makeText(RuyiGuessDetailActivity.this, 
 										R.string.buy_ruyi_guess_please_select, 
+										Toast.LENGTH_SHORT).show();
+							} else if (mThrowScore > score) {
+								Toast.makeText(RuyiGuessDetailActivity.this, 
+										R.string.buy_ruyi_guess_no_participate, 
 										Toast.LENGTH_SHORT).show();
 							} else {
 								mProgressdialog = PublicMethod
@@ -696,6 +722,17 @@ public class RuyiGuessDetailActivity extends Activity{
 				if(mDialog != null && mDialog.isShowing()) {
 					mDialog.dismiss();
 				}
+			}
+		});
+		Button backBtn = (Button)view.findViewById(R.id.ruyi_guess_back);
+		backBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (mIsSuccess) {
+					setResult(RESULT_OK);
+				}
+				finish();
 			}
 		});
 		mDialog.show();
@@ -786,6 +823,7 @@ public class RuyiGuessDetailActivity extends Activity{
 			setSubmitBtnState(R.drawable.buy_ruyiguess_item_gray, R.string.buy_ruyi_guess_btn_end, false);
 			setParticipateStateForView();
 			createDynamicView();
+			setMyThrowScore();
 		}
 	}
 	
@@ -860,29 +898,58 @@ public class RuyiGuessDetailActivity extends Activity{
 			} else {
 				mThrowScore = progress*100 + 200;
 				setMyThrowScore();
+				setThumState(true);
+//				if (mIsThumbMove) {
+//					mIsThumbMove = false;
+//					setThumbState();
+//				}
 			}
 		}
 
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
-			LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) seekBar.getLayoutParams();
-			seekBar.setLayoutParams(layoutParams);
-//			Drawable drawable = null;
-//			if (!(mIsEnd || mIsSelected || mIsSuccess || mRemainSecond == 0)) {
-//				drawable = getResources().getDrawable(R.drawable.ruyijc_sleder2x);
-//			} else {
-//				drawable = getResources().getDrawable(R.drawable.ruyijc_sleder);
-//			}
-//			seekBar.setThumb(drawable);
+			if (!(mIsEnd || mIsSelected || mIsSuccess || mRemainSecond == 0)) {
+				setThumState(true);
+			}
 		}
 
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) seekBar.getLayoutParams();
-			seekBar.setLayoutParams(layoutParams);
-//			Drawable drawable = getResources().getDrawable(R.drawable.ruyijc_sleder);
-//			seekBar.setThumb(drawable);
+			if (!(mIsEnd || mIsSelected || mIsSuccess || mRemainSecond == 0)) {
+				setThumState(false);
+			}
 		}
 	}
+	
+	private void setThumState(boolean flag) {
+		LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) mScoreSeekBar.getLayoutParams();
+		mScoreSeekBar.setLayoutParams(layoutParams);
+		if (flag) {
+			mThumbDrawable.setScore(String.valueOf(mThrowScore));
+		}
+		mThumbDrawable.setIsShowText(flag);
+		mScoreSeekBar.setThumb(mThumbDrawable);
+	}
+	
+	/**
+	 * 点击+、-时thumb放大显示
+	 */
+//	private void setThumbState() {
+//		new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					Thread.sleep(300);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//				runOnUiThread(new Runnable() {
+//					public void run() {
+//						setThumState(false);
+//					}
+//				});
+//			}
+//		}).start();
+//	}
 
 }

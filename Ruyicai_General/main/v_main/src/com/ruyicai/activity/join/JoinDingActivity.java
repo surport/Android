@@ -714,7 +714,7 @@ public class JoinDingActivity extends Activity {
 			}
 		} else {
 			if (percentEdit.getText().toString().equals("")
-					|| percentNumEdit.getText().toString().equals("")) {
+					|| ((percentNumEdit.getText().toString().equals("")) && !(this instanceof JoinModifyActivity))) {
 				Toast.makeText(context, "输入框不能为空", Toast.LENGTH_SHORT).show();
 				isNull = true;
 			} else {

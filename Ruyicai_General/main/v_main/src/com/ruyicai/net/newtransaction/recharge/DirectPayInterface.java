@@ -60,6 +60,20 @@ public class DirectPayInterface {
 			jsonProtocol.put(ProtocolManager.CARDTYPE, "0300");
 			jsonProtocol.put(ProtocolManager.BANKACCOUNT, "4");
 
+			if (Constants.LOTNO_JCZQ.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCZQ_RQSPF.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCZQ_ZQJ.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCZQ_BF.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCZQ_BF.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCZQ_BQC.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCZQ_HUN.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCLQ.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCLQ_RF.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCLQ_SFC.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCLQ_DXF.equals(betAndGift.getLotno())
+					|| Constants.LOTNO_JCLQ_HUN.equals(betAndGift.getLotno())) {
+				jsonProtocol.put("expectPrizeAmt", betAndGift.getPredictMoney());
+			}
 			return InternetUtils.GetMethodOpenHttpConnectSecurity(
 					Constants.LOT_SERVER, jsonProtocol.toString());
 		} catch (JSONException e) {
