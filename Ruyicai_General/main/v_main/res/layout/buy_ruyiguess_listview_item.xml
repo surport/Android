@@ -6,9 +6,8 @@
     <LinearLayout
         android:id="@+id/ruyi_guess_item_layout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="88dip"
         android:layout_marginTop="3dip"
-        android:minHeight="90dip"
         android:orientation="horizontal"
         android:paddingBottom="4dip"
         android:paddingLeft="8dip"
@@ -101,19 +100,13 @@
         android:layout_height="1dip"
         android:layout_marginTop="3dip"
         android:background="@color/zc_sfc_divider" />
-    
-    <!-- <LinearLayout android:id="@+id/ruyi_guess_divider"
-        android:layout_width="fill_parent"
-        android:layout_height="3dip"
-        android:layout_gravity="bottom"> -->
 
-    <View android:id="@+id/ruyi_guess_divider"
+    <View
+        android:id="@+id/ruyi_guess_divider"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:layout_gravity="bottom"
         android:background="@color/zc_sfc_divider" />
-    
-  <!--   </LinearLayout> -->
 
     <TextView
         android:id="@+id/ruyi_myguess_item_participate"

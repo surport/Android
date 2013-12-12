@@ -767,6 +767,9 @@ public class RuyiGuessDetailActivity extends Activity{
 		}
 	}
 	
+	/**
+	 * 倒计时线程 
+	 */
 	private class RemainTiemRunnable implements Runnable {
 
 		@Override
@@ -827,6 +830,9 @@ public class RuyiGuessDetailActivity extends Activity{
 		}
 	}
 	
+	/**
+	 * 格式化剩余时间 
+	 */
 	public String formatLongToString(long time) {
 		if (!(time > 0)) {
 			return "";
@@ -922,6 +928,9 @@ public class RuyiGuessDetailActivity extends Activity{
 		}
 	}
 	
+	/**
+	 * 在滑动 seekbar时 thumb放大显示 
+	 */
 	private void setThumState(boolean flag) {
 		LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) mScoreSeekBar.getLayoutParams();
 		mScoreSeekBar.setLayoutParams(layoutParams);
@@ -933,7 +942,8 @@ public class RuyiGuessDetailActivity extends Activity{
 	}
 	
 	/**
-	 * 点击+、-时thumb放大显示
+	 * 点击+、-时 seekbar thumb放大显示 
+	 * 如果需要次功能放开代码
 	 */
 //	private void setThumbState() {
 //		new Thread(new Runnable() {

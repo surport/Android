@@ -32,6 +32,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -158,14 +159,14 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 			R.drawable.textview_orange_style,
 			R.drawable.textview_yellow_style };
 	
-	private int mUnitPadValue = 0;
+//	private int mUnitPadValue = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.buy_ruyiguess);
-		mUnitPadValue = PublicMethod.getPxInt(1, RuyiGuessActivity.this);
+//		mUnitPadValue = PublicMethod.getPxInt(1, RuyiGuessActivity.this);
 		LOCAL_DIR = LOCAL_DIR + getPackageName() + "/ruyijc/";
 		String jumpFlag = getIntent().getStringExtra(RuyiGuessConstant.JUMP_FLAG);
 		if (RuyiGuessConstant.JUMP_FLAG.equals(jumpFlag)) {
@@ -328,15 +329,15 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 				holder = (ViewHolder) convertView.getTag();
 			}
 			FrameLayout.LayoutParams params = (LayoutParams) holder.itemLayout.getLayoutParams();
-			
+			int mUnitPadValue = PublicMethod.getPxInt(1, RuyiGuessActivity.this);
 			if (position == mQuestionsList.size()-1) {
 				holder.divider.setVisibility(View.VISIBLE);
-				params.height = 93 * mUnitPadValue;
+				params.height = PublicMethod.getPxInt(93, RuyiGuessActivity.this);
 				holder.itemLayout.setLayoutParams(params);
 				holder.itemLayout.setPadding(10*mUnitPadValue, 8*mUnitPadValue, 8*mUnitPadValue, 7*mUnitPadValue);
 			} else {
 				holder.divider.setVisibility(View.GONE);
-				params.height = 90 * mUnitPadValue;
+				params.height = PublicMethod.getPxInt(90, RuyiGuessActivity.this);
 				holder.itemLayout.setLayoutParams(params);
 				holder.itemLayout.setPadding(10*mUnitPadValue, 8*mUnitPadValue, 8*mUnitPadValue, 4*mUnitPadValue);
 			}
@@ -349,17 +350,22 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 			} else {
 				isLottery = false;
 			}
-			setTimeStyle(position, info.getTimeRemaining(), holder.time, isLottery);
+			Log.i("yejc", "=====position="+position+"========info.getTimeRemaining()="+info.getTimeRemaining());
+			setTimeStyle(position, info.getTimeRemaining(), holder.time, isLottery, holder.endState, info);
 			holder.integral.setBackgroundResource(mIconArray[position%3]);
 			if (mIsMySelected) {
 				holder.integral.setText(PublicMethod.formatString(mContext, 
 						R.string.buy_ruyi_guess_mythrow_score, info.getPayScore()));
-//				holder.integral.setVisibility(View.GONE);
-				holder.endState.setVisibility(View.VISIBLE);
 				if (isLottery) {
+					holder.endState.setVisibility(View.VISIBLE);
 					holder.endState.setText(R.string.buy_ruyi_guess_open);
 				} else {
-					holder.endState.setText(R.string.buy_ruyi_guess_wait_open);
+					if (info.getTimeRemaining() > 0) {
+						holder.endState.setVisibility(View.GONE);
+					} else {
+						holder.endState.setText(R.string.buy_ruyi_guess_wait_open);
+						holder.endState.setVisibility(View.VISIBLE);
+					}
 				}
 				holder.participate.setVisibility(View.GONE);
 			} else {
@@ -431,7 +437,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 		}
 		
 		private void setTimeStyle(final int position, Long time, 
-				final TextView timeTv, boolean isLottery) {
+				final TextView timeTv, boolean isLottery, TextView state, ItemInfoBean info) {
 			if (time > 0) {
 				timeTv.setVisibility(View.VISIBLE);
 				if (!remainTimeMap.containsKey(position)) {
@@ -439,7 +445,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 					timeTv.setText(formatLongToString(position, time));
 					flagMap.put(position, true);
 					if (!threadMap.containsKey(position)) {
-						threadMap.put(position, new TimeThread(timeTv, position));
+						threadMap.put(position, new TimeThread(timeTv, state, position, info));
 						Thread thread = threadMap.get(position);
 						if (!(thread.isAlive())) {
 							thread.start();
@@ -472,10 +478,14 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 		private class TimeThread extends Thread {
 			
 			TextView timeTv;
+			TextView mState;
 			int position;
-			public TimeThread(TextView timeTv, int position) {
+			ItemInfoBean mInfo;
+			public TimeThread(TextView timeTv, TextView state, int position, ItemInfoBean info) {
 				this.timeTv = timeTv;
 				this.position = position;
+				this.mState = state;
+				this.mInfo = info;
 			}
 
 			@Override
@@ -485,12 +495,15 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 					flag = flagMap.get(position);
 				}
 				while (flag) {
-					if (remainTimeMap == null || 
-							(!(remainTimeMap.containsKey(position))
-							&& !(flagMap.containsKey(position)))) {
-						return;
+					long currentTime = 0L;
+					synchronized (remainTimeMap) {
+						if (remainTimeMap == null || 
+								(!(remainTimeMap.containsKey(position))
+								&& !(flagMap.containsKey(position)))) {
+							return;
+						}
+						currentTime = remainTimeMap.get(position);
 					}
-					long currentTime = remainTimeMap.get(position);
 					if (currentTime > 0) {
 						int sleep = 60 * 1000;
 						if (lessMinuteFlagMap.containsKey(position) && lessMinuteFlagMap.get(position)) {
@@ -515,7 +528,24 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 						runOnUiThread(new Runnable() {
 							public void run() {
 								if ((flagMap.containsKey(position))) {
-									timeTv.setText(formatLongToString(position, remainTimeMap.get(position)));
+									mInfo.setTimeRemaining(remainTimeMap.get(position));
+									String timeStr = formatLongToString(position, remainTimeMap.get(position));
+									if (mIsMySelected) {
+										if ("".equals(timeStr)) {
+											mState.setVisibility(View.VISIBLE);
+											mState.setText(R.string.buy_ruyi_guess_wait_open);
+											timeTv.setVisibility(View.GONE);
+										} else {
+											timeTv.setText(timeStr);
+											timeTv.setVisibility(View.VISIBLE);
+											mState.setVisibility(View.GONE);
+										}
+									} else {
+										timeTv.setText(timeStr);
+										timeTv.setVisibility(View.VISIBLE);
+										mState.setVisibility(View.GONE);
+									}
+									
 									mAdapter.notifyDataSetChanged();
 								}
 							}
