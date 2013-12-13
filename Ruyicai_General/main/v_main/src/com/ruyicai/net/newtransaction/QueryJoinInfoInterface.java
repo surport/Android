@@ -56,7 +56,7 @@ public class QueryJoinInfoInterface {
 			jsonProtocol.put(ProtocolManager.TYPE, "querycaselot");
 			jsonProtocol.put(ProtocolManager.ORDERBY, orderBy);
 			jsonProtocol.put(ProtocolManager.ORDERDIR, orderDir);
-			jsonProtocol.put(ProtocolManager.BATCHCODE, batchcode);
+			jsonProtocol.put(ProtocolManager.BATCHCODE, "");
 			jsonProtocol.put(ProtocolManager.STATE, "");
 			Log.v("bet", jsonProtocol.toString());
 

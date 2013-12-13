@@ -1,61 +1,121 @@
 package com.ruyicai.activity.buy.guess.bean;
 
 public class ItemInfoBean {
+	/**
+	 * 竞猜ID
+	 */
 	private String id = "";
+
+	/**
+	 * 题目
+	 */
 	private String title = "";
-	private String award = "";
-	private String startTime = "";
-	private String endTime = "";
+
+	/**
+	 * 题目详情
+	 */
+	private String detail = "";
+
+	/**
+	 * 结束状态
+	 */
 	private String participate = "";
+
+	/**
+	 * 结束状态 
+	 */
 	private String endState = "";
-	private String allDraw = "";
+
+	/**
+	 * 开奖状态
+	 */
+	private String lotteryState = "";
+
+	/**
+	 * 剩余秒数
+	 */
+	private Long timeRemaining = 0L;
+
+	/**
+	 * 奖池积分
+	 */
+	private String prizePoolScore = "";
+
+	/**
+	 * 我投入的积分
+	 */
+	private String payScore = "";
+
+	public String getPayScore() {
+		return payScore;
+	}
+
+	public void setPayScore(String payScore) {
+		this.payScore = payScore;
+	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getAward() {
-		return award;
+
+	public String getDetail() {
+		return detail;
 	}
-	public void setAward(String award) {
-		this.award = award;
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-	public String getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
+
 	public String getParticipate() {
 		return participate;
 	}
+
 	public void setParticipate(String participate) {
 		this.participate = participate;
 	}
+
 	public String getEndState() {
 		return endState;
 	}
+
 	public void setEndState(String endState) {
 		this.endState = endState;
 	}
-	public String getAllDraw() {
-		return allDraw;
+
+	public String getLotteryState() {
+		return lotteryState;
 	}
-	public void setAllDraw(String allDraw) {
-		this.allDraw = allDraw;
+
+	public void setLotteryState(String lotteryState) {
+		this.lotteryState = lotteryState;
 	}
-	
+
+	public Long getTimeRemaining() {
+		return timeRemaining;
+	}
+
+	public void setTimeRemaining(Long timeRemaining) {
+		this.timeRemaining = timeRemaining;
+	}
+
+	public String getPrizePoolScore() {
+		return prizePoolScore;
+	}
+
+	public void setPrizePoolScore(String prizePoolScore) {
+		this.prizePoolScore = prizePoolScore;
+	}
+
 }

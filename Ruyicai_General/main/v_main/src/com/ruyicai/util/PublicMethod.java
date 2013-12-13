@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -3248,6 +3249,10 @@ public class PublicMethod {
 		return null;
 	}
 	
+	public static String formatString(Context context, int resId, String args) {
+		return String.format(context.getResources().getString(resId), args);
+	}
+	
 	
 	public static String getWeek(int i){
 		String week="星期";
@@ -3283,5 +3288,11 @@ public class PublicMethod {
 		int index = date.indexOf(":");
 		date = date.substring(0, index - 2);
 		return date;
+	}
+	
+	public static String dateToStrLong(java.util.Date dateDate) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String dateString = formatter.format(dateDate);
+		return dateString;
 	}
 }

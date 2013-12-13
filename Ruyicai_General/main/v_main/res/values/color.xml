@@ -58,6 +58,18 @@
     <color name="ruyi_guess_title_text_bg">#faf0ee</color>
     <color name="ruyi_guess_item_bg">#F0F0E6</color>
     
+    <color name="ruyi_guess_progress_scarlet_color">#77120d</color>
+    <color name="ruyi_guess_progress_color_first">#EE5400</color>
+    <color name="ruyi_guess_progress_color_second">#FAD117</color>
+    <color name="ruyi_guess_progress_color_third">#96BB15</color>
+    <color name="ruyi_guess_progress_color_fourth">#D43131</color>
+    <color name="ruyi_guess_progress_color_fifth">#E68D00</color>
+    <color name="ruyi_guess_progress_green_color">#57a100</color>
+    <color name="ruyi_guess_progress_gray_color">#565756</color>
+    <color name="ruyi_guess_progress_bg_color">#414141</color>
+    <color name="ruyi_guess_progress_red_color">#d43131</color>
+    <color name="ruyi_guess_progress_answer_color">#C03030</color>
+    
      <color name="join_info_listitem_green">#0a950e</color>
     <color name="join_info_listitem_red">#e00000</color>
     <!-- nmk3   Listitem -->

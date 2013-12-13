@@ -870,7 +870,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				initListView();
 			} else {
 				showDialog(0);
-				setNewPage(0);
+				setNewPage(mJoinPageIndexArray[mJoinCurrentLotnoIndex]);
 				netting();
 			}
 		} else if (joinType == 1) {
@@ -882,7 +882,7 @@ public class JoinCheckActivity extends InquiryParentActivity {
 				initListView();
 			} else {
 				showDialog(0);
-				setNewPage(0);
+				setNewPage(mFollowPageIndexArray[mFollowCurrentLotnoIndex]);
 				netting();
 			}
 		}

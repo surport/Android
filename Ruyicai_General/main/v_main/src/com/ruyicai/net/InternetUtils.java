@@ -170,12 +170,9 @@ public class InternetUtils {
 			try {
 				post.setURI(new URI(url));
 				response = hc.execute(post);
-			} catch (URISyntaxException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (ClientProtocolException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				return "{error_code:0,message:"+e.getMessage()+"}";
 			}
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode == 200) {
@@ -215,7 +212,7 @@ public class InternetUtils {
 			}
 		} catch (Exception e) {
 
-			return "{error_code:0,message:网络异常}";
+			return "{error_code:0,message:"+e.getMessage()+"}";
 		}
 
 	}

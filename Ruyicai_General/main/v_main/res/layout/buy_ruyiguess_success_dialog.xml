@@ -50,9 +50,20 @@
         android:padding="10dip" >
 
         <Button
+            android:id="@+id/ruyi_guess_back"
+            android:layout_width="wrap_content"
+            android:layout_height="40dip"
+            android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"
+            android:gravity="center"
+            android:text="@string/buy_ruyi_guess_back"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+        
+        <Button
             android:id="@+id/ruyi_guess_ok"
             android:layout_width="wrap_content"
             android:layout_height="40dip"
+            android:layout_marginLeft="8dip"
             android:background="@drawable/usercenter_lookdetaildialog_closebtn_selector"
             android:gravity="center"
             android:text="@string/buy_ruyi_guess_ok"
