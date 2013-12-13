@@ -797,32 +797,6 @@ public class BuyActivity extends Activity implements OnClickListener {
 						.get("caizhongSetting");
 				String lotno = caizhongSettingList.get(i).get("lotno");
 				
-				/**add by yejc 20131030 start*/
-				JSONObject jsonobj;
-				try {
-					jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
-					RWSharedPreferences shellRW = new RWSharedPreferences(
-							BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
-					if (jsonobj == null && lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
-						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
-								Constants.CAIZHONG_CLOSE);
-						shellRW.putStringValue(Constants.RYJCLABEL,
-								Constants.CAIZHONG_CLOSE);
-						caizhongSetting = Constants.CAIZHONG_CLOSE;
-					} else if (lotno.equals(Constants.LOTNO_RUYI_GUESS)){
-						shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
-								Constants.CAIZHONG_OPEN);
-						if (!(Constants.CAIZHONG_CLOSE.equals(shellRW.getStringValue(Constants.RYJC_LAST_STATE)))) {
-							shellRW.putStringValue(Constants.RYJCLABEL,
-									Constants.CAIZHONG_OPEN);
-							caizhongSetting = Constants.CAIZHONG_OPEN;
-						}
-						
-					}
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				/**add by yejc 20131030 end*/
 				
 				if (caizhongSetting.equals(Constants.CAIZHONG_OPEN)) {
 					newMap = new HashMap<String, String>();

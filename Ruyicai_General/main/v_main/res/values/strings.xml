@@ -1322,6 +1322,8 @@
     <string name="buy_ruyi_guess_close_info">"此功能暂停使用！"</string>
     <string name="nmk3_yilou_text">遗漏</string> 
     <string name="listview_footer_hint_ready">松开载入更多</string>
+    <string name="listview_footer_up_pull">上拉载入更多</string>
+    <string name="ruyi_guess_loading">正在加载...</string>
     <string name="buy_ruyi_guess_wait_open">"待公布"</string>
     <string name="buy_ruyi_guess_open">"已开奖"</string>
     

@@ -865,26 +865,26 @@ public class JoinCheckActivity extends InquiryParentActivity {
 			if (mJoinListArray[mJoinCurrentLotnoIndex] == null) {
 				mJoinListArray[mJoinCurrentLotnoIndex] = new ArrayList();
 			}
-			if ((R.id.lotno_change_state_title == mClickType)
-					&& (mJoinListArray[mJoinCurrentLotnoIndex].size() > 0)) {
-				initListView();
-			} else {
+//			if ((R.id.lotno_change_state_title == mClickType)
+//					&& (mJoinListArray[mJoinCurrentLotnoIndex].size() > 0)) {
+//				initListView();
+//			} else {
 				showDialog(0);
 				setNewPage(mJoinPageIndexArray[mJoinCurrentLotnoIndex]);
 				netting();
-			}
+//			}
 		} else if (joinType == 1) {
 			if (mFollowListArray[mFollowCurrentLotnoIndex] == null) {
 				mFollowListArray[mFollowCurrentLotnoIndex] = new ArrayList();
 			}
-			if ((R.id.lotno_change_state_title == mClickType)
-					&& (mFollowListArray[mFollowCurrentLotnoIndex].size() > 0)) {
-				initListView();
-			} else {
+//			if ((R.id.lotno_change_state_title == mClickType)
+//					&& (mFollowListArray[mFollowCurrentLotnoIndex].size() > 0)) {
+//				initListView();
+//			} else {
 				showDialog(0);
 				setNewPage(mFollowPageIndexArray[mFollowCurrentLotnoIndex]);
 				netting();
-			}
+//			}
 		}
 	}
 

@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="5dip" >
+    android:padding="5dip" 
+    android:background="@color/grey_little">
 
     <com.ruyicai.activity.buy.guess.view.RectangularProgressBar
         android:id="@+id/ruyi_guess_progressbar"
@@ -16,7 +17,8 @@
         android:layout_height="wrap_content"
         android:padding="6dip"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" 
+        android:background="@color/transparent">
 
         <TextView
             android:id="@+id/ruyi_guess_dynamic_icon"

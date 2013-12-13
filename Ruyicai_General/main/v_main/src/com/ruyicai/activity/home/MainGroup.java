@@ -119,6 +119,7 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		initNum();
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main_group);
+		createUpdateDialog();
 		shellRW = new RWSharedPreferences(MainGroup.this, "addInfo");
 		orderPrizeDialog = new OrderPrizeDiaog(shellRW, MainGroup.this);// 开奖订阅
 		isAutoLogin = shellRW.getBooleanValue(ShellRWConstants.AUTO_LOGIN);
@@ -677,6 +678,18 @@ public class MainGroup extends ActivityGroup implements MyDialogListener {
 		if ("0".equals(Constants.currentTab)) {
 			mTabHost.setCurrentTab(0);
 			Constants.currentTab = "";
+		}
+	}
+	
+	
+	private void createUpdateDialog() {
+		if (HomeActivity.softwareErrorCode.equals("true")) {
+			MainUpdate update = new MainUpdate(MainGroup.this,
+					new Handler(), HomeActivity.softwareurl,
+					HomeActivity.softwaremessageStr,
+					HomeActivity.softwaretitle);
+			update.showDialog();
+			update.createMyDialog();
 		}
 	}
 	

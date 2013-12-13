@@ -277,6 +277,8 @@ public class RuyiGuessDetailActivity extends Activity{
 		mScoreSeekBar = (SeekBar)findViewById(R.id.ruyi_guess_seekbar);
 		mThumbDrawable = new CustomThumbDrawable(this);
 		mScoreSeekBar.setThumb(mThumbDrawable);
+//		LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) mScoreSeekBar.getLayoutParams();
+//		mScoreSeekBar.setLayoutParams(layoutParams);
 		mScoreSeekBar.setOnSeekBarChangeListener(new MySeekBar());
 		mSubtractScoreBtn = (ImageButton)findViewById(R.id.ruyi_guess_seekbar_subtract);
 		mSubtractScoreBtn.setOnClickListener(new View.OnClickListener() {
@@ -407,10 +409,12 @@ public class RuyiGuessDetailActivity extends Activity{
 		if (mIsSelected || mIsSuccess || mIsEnd || mRemainSecond <= 0) {
 			mSubtractScoreBtn.setClickable(false);
 			mAddScoreBtn.setClickable(false);
-			mScoreSeekBar.setThumb(getResources().getDrawable(R.drawable.ruyijc_sleder));
-		} else {
+//			mScoreSeekBar.setThumb(getResources().getDrawable(R.drawable.ruyijc_sleder));
+		} /*else {
 			mScoreSeekBar.setThumb(getResources().getDrawable(R.drawable.ruyijc_guess_seekbar_thumb));
-		}
+		}*/
+//		LinearLayout.LayoutParams layoutParams= (LinearLayout.LayoutParams) mScoreSeekBar.getLayoutParams();
+//		mScoreSeekBar.setLayoutParams(layoutParams);
 	}
 	
 	/**
@@ -582,6 +586,8 @@ public class RuyiGuessDetailActivity extends Activity{
 				RectangularProgressBar progress = (RectangularProgressBar) itemLayout
 						.findViewById(R.id.ruyi_guess_progressbar);
 				String participants = options.get(i).getParticipants();
+				progress.setWillNotDraw(false);
+//				progress.postInvalidate();
 				if ("".equals(participants) || "0".equals(participants)) {
 					progress.init(getResources().getColor(mProgressBarColor[i % 5]), 0f);
 					number.setText("0%");

@@ -309,13 +309,13 @@ public abstract class  InquiryParentActivity extends Activity {
 		if (mListArray[mCurrentLotnoIndex] == null) {
 			mListArray[mCurrentLotnoIndex] = new ArrayList();
 		}
-		if ((R.id.lotno_change_state_title == type)
-				&& (mListArray[mCurrentLotnoIndex].size() > 0)) {
-			initListView();
-		} else {
+//		if ((R.id.lotno_change_state_title == type)
+//				&& (mListArray[mCurrentLotnoIndex].size() > 0)) {
+//			initListView();
+//		} else {
 			showDialog(0);
 			netting(0);
-		}
+//		}
 	}
 	
 	protected Dialog onCreateDialog(int id) {

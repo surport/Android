@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -20,14 +21,11 @@ public class RectangularProgressBar extends View {
 	private Paint mPaint = null;
 
 	/**
-	 * 最大进度
-	 */
-	private float mMax = 1;
-
-	/**
 	 * 当前进度
 	 */
 	private float mProgress = 0;
+	
+	private int mColor = 0;
 
 	public RectangularProgressBar(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
@@ -39,8 +37,10 @@ public class RectangularProgressBar extends View {
 	
 	public void init(int color, float progress) {
 		mProgress = progress;
+		mColor = color;
 		mPaint = new Paint();
 		mPaint.setColor(color);
+		postInvalidate();
 	}
 
 	@Override
@@ -57,6 +57,7 @@ public class RectangularProgressBar extends View {
 		path.lineTo(pWidth, height);
 		path.close(); // 使这些点构成封闭的多边形
 		canvas.drawPath(path, mPaint);
+		Log.i("yejc", "============mColor="+mColor);
 	}
 
 
@@ -69,22 +70,8 @@ public class RectangularProgressBar extends View {
 		return mProgress;
 	}
 
-	/**
-	 * 设置进度，此为线程安全控件，由于考虑多线的问题，需要同步 刷新界面调用postInvalidate()能在非UI线程刷新
-	 * 
-	 * @param progress
-	 */
-	public synchronized void setProgress(float progress) {
-		if (progress < 0) {
-			throw new IllegalArgumentException("progress not less than 0");
-		}
-		if (progress > mMax) {
-			progress = mMax;
-		}
-		if (progress <= mMax) {
-			this.mProgress = progress;
-			postInvalidate();
-		}
-	}
+//	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//		setMeasuredDimension(getWidth(), getHeight());
+//	}
 
 }

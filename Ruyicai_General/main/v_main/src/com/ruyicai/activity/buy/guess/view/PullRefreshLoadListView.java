@@ -18,7 +18,6 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -39,6 +38,7 @@ public class PullRefreshLoadListView extends ListView implements OnScrollListene
 	// when disable pull refresh.
 	private RelativeLayout mHeaderViewContent;
 	private TextView mHeaderTimeView;
+	private TextView mFooterTimeView;
 	private int mHeaderViewHeight; // header view's height
 	private boolean mEnablePullRefresh = true;
 	private boolean mPullRefreshing = false; // is refreashing.
@@ -100,6 +100,9 @@ public class PullRefreshLoadListView extends ListView implements OnScrollListene
 
 		// init footer view
 		mFooterView = new ListViewFooter(context);
+//		mFooterTimeView = (TextView) mFooterView
+//				.findViewById(R.id.xlistview_header_time);
+		mFooterTimeView = mFooterView.getHeaderTimeView();
 
 		// init header height
 		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(
@@ -193,6 +196,7 @@ public class PullRefreshLoadListView extends ListView implements OnScrollListene
 	 */
 	public void setRefreshTime(String time) {
 		mHeaderTimeView.setText(time);
+		mFooterTimeView.setText("最近更新："+time);
 	}
 
 	private void invokeOnScrolling() {
@@ -205,7 +209,7 @@ public class PullRefreshLoadListView extends ListView implements OnScrollListene
 	private void updateHeaderHeight(float delta) {
 		mHeaderView.setVisiableHeight((int) delta
 				+ mHeaderView.getVisiableHeight());
-		if (mEnablePullRefresh && !mPullRefreshing) { // δ����ˢ��״̬�����¼�ͷ
+		if (mEnablePullRefresh && !mPullRefreshing) { 
 			if (mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
 				mHeaderView.setState(ListViewHeader.STATE_READY);
 			} else {
@@ -390,5 +394,9 @@ public class PullRefreshLoadListView extends ListView implements OnScrollListene
 			mIsFooterReady = true;
 			addFooterView(mFooterView);
 		}
+	}
+	
+	public View getFooterView() {
+		return mFooterView;
 	}
 }

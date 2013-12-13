@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="2dip" >
+    android:layout_height="wrap_content"
+    android:gravity="top|center_horizontal"
+    android:orientation="horizontal"
+    android:padding="5dip" >
 
     <RelativeLayout
         android:id="@+id/xlistview_footer_content"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dip"
+        android:gravity="center"
         android:padding="1dip" >
 
-        <TextView
-            android:id="@+id/xlistview_footer_hint_textview"
+        <ImageView
+            android:id="@+id/listview_footer_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/get_more" 
+            android:layout_centerVertical="true"
+            android:src="@drawable/downtoload"
             android:visibility="gone"/>
+
+        <LinearLayout android:id="@+id/load_more_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/listview_footer_arrow"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/xlistview_footer_hint_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listview_footer_hint_ready"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/xlistview_header_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

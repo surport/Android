@@ -32,11 +32,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -57,7 +53,7 @@ import android.widget.ViewFlipper;
  */
 public class RuyiGuessActivity extends Activity implements IXListViewListener/*, OnGestureListener*/{
 	/**
-	 * 用户名
+	 * 用户编号
 	 */
 	private String mUserNo = "";
 	
@@ -82,7 +78,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 	private boolean mIsLogin = false;
 	
 	/**
-	 * true我竞猜过的问题
+	 * 是否从我的竞猜进入
 	 */
 	private boolean mIsMySelected = false;
 	
@@ -99,7 +95,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 	/**
 	 * 把参与题目的状态保存到map中，不用再去请求后台来改变当前页面的显示状态状态
 	 */
-	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
+//	private Map<Integer, Boolean> mLocalDataMap = new HashMap<Integer, Boolean>();
 	
 	/**
 	 * 分页请求的题目数、默认是10条
@@ -159,14 +155,11 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 			R.drawable.textview_orange_style,
 			R.drawable.textview_yellow_style };
 	
-//	private int mUnitPadValue = 0;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.buy_ruyiguess);
-//		mUnitPadValue = PublicMethod.getPxInt(1, RuyiGuessActivity.this);
 		LOCAL_DIR = LOCAL_DIR + getPackageName() + "/ruyijc/";
 		String jumpFlag = getIntent().getStringExtra(RuyiGuessConstant.JUMP_FLAG);
 		if (RuyiGuessConstant.JUMP_FLAG.equals(jumpFlag)) {
@@ -240,18 +233,17 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
-			if (requestCode == 1000) {//登陆成功后重新加载当前账户的参与状态
+//			if (requestCode == 1000) {//登陆成功后重新加载当前账户的参与状态
 				mPageIndex = 0;
 				mIsLogin = true;
 				mUserNo = mSharedPreferences.getStringValue(ShellRWConstants.USERNO);
 				mProgressdialog = PublicMethod.creageProgressDialog(this);
 				String count = String.valueOf(mQuestionsList.size());
 				Controller.getInstance(this).getRuyiGuessList(mHandler, mUserNo, 2, "0", 0, count);
-			} else if (requestCode == 1001){ //如果参与成功后把参与题目的状态保存到map对象中并重新加载
-				mLocalDataMap.put(mSelectedId, true);
-				mAdapter.notifyDataSetChanged();
-			}
-			
+//			} else if (requestCode == 1001){ //如果参与成功后把参与题目的状态保存到map对象中并重新加载
+//				mLocalDataMap.put(mSelectedId, true);
+//				mAdapter.notifyDataSetChanged();
+//			}
 		}
 	}
 
@@ -350,7 +342,6 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 			} else {
 				isLottery = false;
 			}
-			Log.i("yejc", "=====position="+position+"========info.getTimeRemaining()="+info.getTimeRemaining());
 			setTimeStyle(position, info.getTimeRemaining(), holder.time, isLottery, holder.endState, info);
 			holder.integral.setBackgroundResource(mIconArray[position%3]);
 			if (mIsMySelected) {
@@ -370,17 +361,16 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 				holder.participate.setVisibility(View.GONE);
 			} else {
 				holder.endState.setVisibility(View.GONE);
-//				holder.integral.setVisibility(View.VISIBLE);
 				holder.participate.setVisibility(View.VISIBLE);
 				holder.integral.setText(PublicMethod.formatString(mContext, 
 						R.string.buy_ruyi_guess_item_integral_two, info.getPrizePoolScore()));
 				if ("0".equals(info.getEndState())) { //竞猜是否结束 0:未结束;1:已结束
 					if (mIsLogin) {
-						if (mLocalDataMap.containsKey(position) 
-								&& mLocalDataMap.get(position)) {
-							holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
-							holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
-						} else {
+//						if (mLocalDataMap.containsKey(position) 
+//								&& mLocalDataMap.get(position)) {
+//							holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
+//							holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
+//						} else {
 							if ("0".equals(info.getParticipate())) { //是否参与竞猜 0:未参与;1:已参与
 								holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
 								holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_green);
@@ -388,7 +378,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 								holder.participate.setText(R.string.buy_ruyi_guess_btn_participate);//根据状态判断显示
 								holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_gray);
 							}
-						}
+//						}
 					} else {
 						holder.participate.setText(R.string.buy_ruyi_guess_btn_participate_jc);//根据状态判断显示
 						holder.participate.setBackgroundResource(R.drawable.buy_ruyiguess_item_state_green);
@@ -417,7 +407,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 			TextView time; //竞猜剩余时间
 			TextView participate; //参与状态
 			TextView endState; //待公布、已公布状态
-			View divider;
+			View divider;  //分割线
 			LinearLayout itemLayout;
 		}
 		
@@ -624,6 +614,11 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 		}
 	}
 	
+	/**
+	 * 解析json串
+	 * @param str
+	 * @param type
+	 */
 	private void parserJSON(String str, int type) {
 		if (str == null || "".equals(null)) {
 			Toast.makeText(RuyiGuessActivity.this, "网络异常！", Toast.LENGTH_SHORT).show();
@@ -637,7 +632,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 					if (type == 2) {
 						mPageIndex = 0;
 						mQuestionsList.clear();
-						mLocalDataMap.clear();
+//						mLocalDataMap.clear();
 						if (mAdapter != null) {
 							mAdapter.clearData();
 						}
@@ -689,12 +684,19 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 		}
 	}
 	
+	/**
+	 * 关闭联网对话框
+	 */
 	private void dismissDialog() {
 		if (mProgressdialog != null && mProgressdialog.isShowing()) {
 			mProgressdialog.dismiss();
 		}
 	}
 	
+	/**
+	 * 初始化图片列表
+	 * @param str
+	 */
 	private void initImageArray(String str) {
 		try {
 			JSONObject jsonObj = new JSONObject(str);
@@ -773,6 +775,11 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 		}
 	}
 
+	/**
+	 * logo自动滚动线程
+	 * @author win
+	 *
+	 */
 	private class ScrollTask implements Runnable {
 
 		public void run() {
@@ -800,6 +807,8 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 		mPageIndex++;
 		if (mPageIndex > mTotalPage - 1) {
 			mPageIndex = mTotalPage - 1;
+			onLoad();
+//			mPullListView.getFooterView().setVisibility(View.GONE);
 			Toast.makeText(this,
 					R.string.usercenter_hasgonelast, Toast.LENGTH_SHORT).show();
 		} else {
