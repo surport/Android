@@ -280,7 +280,11 @@ public class BuyActivity extends Activity implements OnClickListener {
         for (int i = 0; i < Constants.lotnoNameList.length; i++) {
     		Map<String, String> map = new HashMap<String, String>();
     		map.put("lotno", Constants.lotnoNameList[i][0]);
-    		map.put("caizhongSetting", shellRW.getStringValue(Constants.lotnoNameList[i][1]).toString());
+    		if (Constants.TWENTYBEL.equals(Constants.lotnoNameList[i][0])) {
+	    		map.put("caizhongSetting", Constants.CAIZHONG_CLOSE);
+    		} else {
+	    		map.put("caizhongSetting", shellRW.getStringValue(Constants.lotnoNameList[i][1]).toString());    		
+    		}
     		caizhongSettingList.add(map);
         }
 	}
