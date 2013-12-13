@@ -273,7 +273,7 @@
             android:id="@+id/scLayout"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/grey" >
+            android:background="@color/white" >
 
             <LinearLayout
                 android:id="@+id/LinearLayout02"
@@ -287,18 +287,18 @@
                     android:id="@+id/faqi"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/hongse"
+                    android:background="@drawable/huise"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="方案信息"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <LinearLayout
                     android:id="@+id/faqixinxi"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="#E1E0DF"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="vertical" >
 
@@ -386,11 +386,11 @@
                     android:id="@+id/fangan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/hongse"
+                    android:background="@drawable/huise"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="方案详情"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -404,13 +404,12 @@
                         android:id="@+id/LinearLayout02"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="#E5FBF9"
+                        android:background="#F3F3F3"
                         android:orientation="horizontal" >
 
                         <TextView
                             android:layout_width="75dip"
                             android:layout_height="wrap_content"
-                            android:background="#E1F7F4"
                             android:gravity="center"
                             android:text="发起人认购"
                             android:textColor="@color/black" />
@@ -474,6 +473,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:background="@color/white"
                         android:paddingRight="3dip" >
 
                         <TextView
@@ -603,13 +603,14 @@
                         android:gravity="left|center_vertical"
                         android:paddingLeft="10dip"
                         android:text="方案内容"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <LinearLayout
                         android:id="@+id/fanganneirongLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:background="@color/white" >
 
                         <TextView
                             android:id="@+id/join_detail_dianji_neirong"
@@ -651,7 +652,7 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="方案描述"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <TextView
@@ -660,6 +661,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text=""
+                    android:background="@color/white"
                     android:textColor="@color/black"
                     android:textSize="15sp" >
                 </TextView>
@@ -703,7 +705,7 @@
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="参与人员"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <ListView
@@ -724,7 +726,8 @@
                     android:gravity="center"
                     android:text="点击箭头了解参与人员详情"
                     android:textColor="@color/black"
-                    android:textSize="15dip" >
+                    android:textSize="15dip"
+                    android:background="@color/white" >
                 </TextView>
 
                 <LinearLayout

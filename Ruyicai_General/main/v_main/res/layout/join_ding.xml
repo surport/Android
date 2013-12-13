@@ -257,11 +257,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="35dip"
                     android:layout_marginTop="5dip"
-                    android:background="@drawable/hongse"
+                    android:background="@drawable/huise"
                     android:gravity="left|center_vertical"
                     android:paddingLeft="10dip"
                     android:text="@string/ding_btn_amt_title"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -275,7 +275,7 @@
                         android:id="@+id/ding_buy_group1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:background="#22333333"
+                        android:background="#F3F3F3"
                         android:gravity="center_vertical"
                         android:orientation="horizontal" >
 
