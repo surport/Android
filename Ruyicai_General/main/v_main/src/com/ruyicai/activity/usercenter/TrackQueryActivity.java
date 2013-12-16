@@ -481,13 +481,13 @@ public class TrackQueryActivity extends InquiryParentActivity implements Handler
 		int StringId = 0;
 		switch (stateInt) {
 		case 0:
-			if (lastnum.equals("0")) {
-				StringId = R.string.usercenter_str_hasClosed;
-				text.setTextColor(0xffd4d4d4);
-			} else {
+//			if (lastnum.equals("0")) {
+//				StringId = R.string.usercenter_str_hasClosed;
+//				text.setTextColor(0xffd4d4d4);
+//			} else {
 				StringId = R.string.usercenter_str_running;
 				text.setTextColor(0xff006600);
-			}
+//			}
 			break;
 		case 2:
 
