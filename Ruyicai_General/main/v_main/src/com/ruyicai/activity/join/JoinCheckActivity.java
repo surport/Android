@@ -176,6 +176,13 @@ public class JoinCheckActivity extends InquiryParentActivity {
 		joinCheckNet();
 		init();
 	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		joinCheckNet();
+		mListView.invalidate();
+	}
 
 	private void initUserInfo() {
 		RWSharedPreferences shellRW = new RWSharedPreferences(JoinCheckActivity.this, "addInfo");
