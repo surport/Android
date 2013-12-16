@@ -2,8 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="5dip" 
-    android:background="@color/grey_little">
+    android:padding="5dip" >
 
     <com.ruyicai.activity.buy.guess.view.RectangularProgressBar
         android:id="@+id/ruyi_guess_progressbar"
@@ -15,7 +14,6 @@
         android:id="@+id/guess_item_option_layout"
         android:layout_width="fill_parent"
         android:layout_height="42dip"
-        android:padding="2dip"
         android:gravity="center_vertical"
         android:orientation="horizontal" 
         android:background="@android:color/transparent">
@@ -24,13 +22,15 @@
             android:id="@+id/ruyi_guess_dynamic_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="3dip"
+            android:layout_margin="5dip"
             android:background="@drawable/buy_ruyi_guess_radio_normal" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip">
 
             <TextView
                 android:id="@+id/ruyi_guess_dynamic_number"
@@ -39,9 +39,8 @@
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:paddingLeft="3dip"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/ruyi_guess_dynamic_text"
@@ -53,7 +52,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/ruyi_guess_dynamic_number"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
         </RelativeLayout>
     </LinearLayout>
 
