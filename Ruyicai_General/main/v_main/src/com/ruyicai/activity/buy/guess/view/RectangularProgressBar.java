@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -15,6 +14,7 @@ import android.view.View;
  * 
  */
 public class RectangularProgressBar extends View {
+
 	/**
 	 * 画笔对象的引用
 	 */
@@ -24,8 +24,11 @@ public class RectangularProgressBar extends View {
 	 * 当前进度
 	 */
 	private float mProgress = 0;
-	
-	private int mColor = 0;
+
+	/**
+	 * 进度的颜色值
+	 */
+	private int mProgressColor;
 
 	public RectangularProgressBar(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
@@ -33,14 +36,24 @@ public class RectangularProgressBar extends View {
 	
 	public RectangularProgressBar(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		mPaint = new Paint();
+//		this.setWillNotDraw(false);
+//		TypedArray mTypedArray = context.obtainStyledAttributes(attrs,
+//				R.styleable.RectangularProgressBar);
+//		// 获取自定义属性和默认值
+//		mBackGroundColor = mTypedArray.getColor(
+//				R.styleable.RectangularProgressBar_rectangularBackgroundcolor, Color.RED);
+//		mProgressColor = mTypedArray.getColor(
+//				R.styleable.RectangularProgressBar_rectangularProgressColor, Color.GREEN);
+//		
+//		mTypedArray.recycle();
 	}
 	
-	public void init(int color, float progress) {
+	public void init(int progressColor,  float progress) {
 		mProgress = progress;
-		mColor = color;
-		mPaint = new Paint();
-		mPaint.setColor(color);
-		postInvalidate();
+		mProgressColor = progressColor;
+		mPaint.setColor(mProgressColor);
+//		postInvalidate();
 	}
 
 	@Override
@@ -57,21 +70,5 @@ public class RectangularProgressBar extends View {
 		path.lineTo(pWidth, height);
 		path.close(); // 使这些点构成封闭的多边形
 		canvas.drawPath(path, mPaint);
-		Log.i("yejc", "============mColor="+mColor);
 	}
-
-
-	/**
-	 * 获取进度.需要同步
-	 * 
-	 * @return
-	 */
-	public synchronized float getProgress() {
-		return mProgress;
-	}
-
-//	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//		setMeasuredDimension(getWidth(), getHeight());
-//	}
-
 }

@@ -170,6 +170,9 @@ public class InternetUtils {
 			try {
 				post.setURI(new URI(url));
 				response = hc.execute(post);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return "{error_code:0,message:网络连接超时}";
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "{error_code:0,message:"+e.getMessage()+"}";

@@ -801,6 +801,9 @@ public class BuyActivity extends Activity implements OnClickListener {
 						.get("caizhongSetting");
 				String lotno = caizhongSettingList.get(i).get("lotno");
 				
+				if (lotno.equals(Constants.LOTNO_RUYI_GUESS)) {
+					caizhongSetting = getOpenState(lotno, caizhongSetting);
+				}
 				
 				if (caizhongSetting.equals(Constants.CAIZHONG_OPEN)) {
 					newMap = new HashMap<String, String>();
@@ -816,6 +819,7 @@ public class BuyActivity extends Activity implements OnClickListener {
 			}
         	return newList;
         }
+        
         /**
          * 初始化彩种页面
          * @param view
@@ -1171,5 +1175,36 @@ public class BuyActivity extends Activity implements OnClickListener {
 			}
 			unregisterIntentReceivers();
 		}
+	}
+	
+	private String getOpenState(String lotno, String state) {
+		/**add by yejc 20131030 start*/
+		JSONObject jsonobj;
+		try {
+			jsonobj = PublicMethod.getJsonObjectByLoto(lotno);
+			RWSharedPreferences shellRW = new RWSharedPreferences(
+					BuyActivity.this, ShellRWConstants.CAIZHONGSETTING);
+			if (jsonobj == null) {
+				return shellRW.getStringValue(Constants.RYJCLABEL);
+//				shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
+//						Constants.CAIZHONG_CLOSE);
+//				shellRW.putStringValue(Constants.RYJCLABEL,
+//						Constants.CAIZHONG_CLOSE);
+//				return Constants.CAIZHONG_CLOSE;
+			} else{
+				shellRW.putStringValue(Constants.RYJC_SHOW_STATE,
+						Constants.CAIZHONG_OPEN);
+				if (!(Constants.CAIZHONG_CLOSE.equals(shellRW.getStringValue(Constants.RYJC_LAST_STATE)))) {
+					shellRW.putStringValue(Constants.RYJCLABEL,
+							Constants.CAIZHONG_OPEN);
+					return Constants.CAIZHONG_OPEN;
+				}
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		/**add by yejc 20131030 end*/
+		
+		return state;
 	}
 }
