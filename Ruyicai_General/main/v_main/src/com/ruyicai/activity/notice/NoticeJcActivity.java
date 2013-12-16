@@ -321,7 +321,6 @@ public class NoticeJcActivity extends Activity implements HandlerMsg {
 			holder.home.setText(info.getHome());
 			holder.away.setText(info.getAway());
 			
-			
 			if (Constants.LOTNO_JCZQ_RQSPF.equals(playMethodType)) {
 				holder.letPoint.setVisibility(View.VISIBLE);
 				if (!"".equals(info.getLetPoint()) && info.getLetPoint().startsWith("+")) {

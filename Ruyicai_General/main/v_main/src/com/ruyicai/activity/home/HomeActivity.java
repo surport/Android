@@ -553,21 +553,23 @@ public class HomeActivity extends Activity {
 		}
 
 		protected void onPostExecute(Integer result) {
-			if (softwareErrorCode.equals("true")) {
-				try {
-					HomeUpdate update = new HomeUpdate(HomeActivity.this,
-							new Handler(), softwareurl, softwaremessageStr,
-							softwaretitle);
-					update.setDialogNoBack();
-					update.showDialog();
-					update.createMyDialog();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return;
-			} else {
-				turnActivity();
-			}
+//			if (softwareErrorCode.equals("true")) {
+//				try {
+//					HomeUpdate update = new HomeUpdate(HomeActivity.this,
+//							new Handler(), softwareurl, softwaremessageStr,
+//							softwaretitle);
+//					update.setDialogNoBack();
+//					update.showDialog();
+//					update.createMyDialog();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//				return;
+//			} else {
+//				turnActivity();
+//			}
+			
+			turnActivity();
 		}
 	}
 

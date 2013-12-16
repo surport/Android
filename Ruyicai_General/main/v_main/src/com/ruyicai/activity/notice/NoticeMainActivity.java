@@ -810,7 +810,6 @@ public class NoticeMainActivity extends Activity implements OnRefreshListener {
 					startActivity(intent);
 				}
 				
-				// 内蒙快三
 				if (name.equals("重庆11选5")) {
 					NoticeActivityGroup.LOTNO = NoticeActivityGroup.ID_SUB_CQ11X5_LISTVIEW;
 					Intent intent = new Intent(NoticeMainActivity.this,

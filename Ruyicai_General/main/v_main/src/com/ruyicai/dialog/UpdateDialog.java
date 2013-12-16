@@ -83,6 +83,7 @@ public abstract class UpdateDialog extends BaseDialog {
 			pBar.setMessage("请稍候…");
 			pBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);// 设置风格为长进度条
 			pBar.setIndeterminate(false);
+			pBar.setCanceledOnTouchOutside(false);//add by yejc 20131212 
 			pBar.incrementProgressBy(1); // 增加和减少进度
 			downFile(url);
 		} else {

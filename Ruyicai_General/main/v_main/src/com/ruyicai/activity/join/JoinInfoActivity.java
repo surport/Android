@@ -161,7 +161,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		lottypeIndex = shellRW.getIntValue(lotnoPosition);
 		seletctitme = lottypeIndex;
 		initlotno(lottypeIndex);
-		initissue(lotno);
+		//initissue(lotno);
 		/** add by yejc 20130726 end */
 		isRefresh = false;
 		initViewInfos();
@@ -707,14 +707,14 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 		}
 	}
 
-	public void initissue(String type) {
-		if (type.equals("")) {
-			issue = "";
-		} else {
-			issue = getIssue(type);
-		}
-	}
-	
+//	public void initissue(String type) {
+//		if (type.equals("")) {
+//			issue = "";
+//		} else {
+//			issue = getIssue(type);
+//		}
+//	}
+//	
 
 	public void initlotno(int lottype) {
 		lotno = mLotnoArray[lottype];
@@ -1350,7 +1350,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			seletctitme = 0;
 			lottypeIndex = 0;
 			initlotno(lottypeIndex);
-			initissue(lotno);
+			//initissue(lotno);
 			isSelect = true;
 			initOrder();
 		}
@@ -1370,7 +1370,7 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			seletctitme = position;
 			lottypeIndex = position;
 			initlotno(lottypeIndex);
-			initissue(lotno);
+			//initissue(lotno);
 			isSelect = true;
 			initOrder();
 			popupwindow.dismiss();

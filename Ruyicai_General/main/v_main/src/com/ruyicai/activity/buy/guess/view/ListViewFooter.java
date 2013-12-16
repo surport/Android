@@ -12,6 +12,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,12 +22,19 @@ public class ListViewFooter extends LinearLayout {
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_READY = 1;
 	public final static int STATE_LOADING = 2;
+	private int mState = STATE_NORMAL;
 
 	private Context mContext;
 
 	private View mContentView;
-//	private View mProgressBar;
 	private TextView mHintView;
+	private Animation mRotateUpAnim;
+	private Animation mRotateDownAnim;
+	private final int ROTATE_ANIM_DURATION = 180;
+	private ImageView mArrowImageView;
+	private LinearLayout mLoadMoreLayout;
+	private TextView mFooterTimeView;
+	
 
 	public ListViewFooter(Context context) {
 		super(context);
@@ -37,17 +47,68 @@ public class ListViewFooter extends LinearLayout {
 	}
 
 	public void setState(int state) {
-		mHintView.setVisibility(View.INVISIBLE);
-//		mProgressBar.setVisibility(View.INVISIBLE);
-		if (state == STATE_READY) {
-			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText(R.string.listview_footer_hint_ready);
-		} else if (state == STATE_LOADING) {
-//			mProgressBar.setVisibility(View.VISIBLE);
-		} else {
-			mHintView.setVisibility(View.VISIBLE);
-			mHintView.setText(R.string.get_more);
+		if (state == mState) {
+			return;
 		}
+		
+		if (state == STATE_LOADING) { // 显示进度
+			mArrowImageView.clearAnimation();
+			mArrowImageView.setVisibility(View.INVISIBLE);
+		} else { // 显示箭头图片
+			mArrowImageView.setVisibility(View.VISIBLE);
+		}
+		
+		switch (state) {
+		case STATE_NORMAL:
+			if (mState == STATE_READY) {
+				mArrowImageView.startAnimation(mRotateDownAnim);
+			}else if (mState == STATE_LOADING) {
+				mArrowImageView.clearAnimation();
+			} /*else {
+				hide();
+			}*/
+			mArrowImageView.setVisibility(View.GONE);
+			mHintView.setVisibility(View.GONE);
+			mFooterTimeView.setVisibility(View.GONE);
+			mHintView.setText(R.string.listview_footer_up_pull);
+			break;
+		case STATE_READY:
+			if (mState != STATE_READY) {
+				mArrowImageView.clearAnimation();
+				mArrowImageView.startAnimation(mRotateUpAnim);
+				mFooterTimeView.setVisibility(View.VISIBLE);
+				mHintView.setVisibility(View.VISIBLE);
+				mHintView.setText(R.string.listview_footer_hint_ready);
+			}
+			break;
+		case STATE_LOADING:
+			mArrowImageView.clearAnimation();
+			mFooterTimeView.setVisibility(View.VISIBLE);
+			mHintView.setVisibility(View.VISIBLE);
+			mHintView.setText(R.string.ruyi_guess_loading);
+			break;
+		}
+
+		mState = state;
+		
+		
+//		if (state == STATE_READY) {
+//			mHintView.setVisibility(View.VISIBLE);
+//			mHintView.setText(R.string.listview_footer_hint_ready);
+//			mArrowImageView.setVisibility(View.VISIBLE);
+//			mArrowImageView.clearAnimation();
+//			mArrowImageView.startAnimation(mRotateDownAnim);
+//		} else if (state == STATE_LOADING) {
+//			mArrowImageView.clearAnimation();
+//			mArrowImageView.setVisibility(View.INVISIBLE);
+//			mHintView.setText(R.string.ruyi_guess_loading);
+//		} else {
+//			mArrowImageView.clearAnimation();
+//			mHintView.setVisibility(View.VISIBLE);
+//			mArrowImageView.setVisibility(View.VISIBLE);
+////			mHintView.setText(R.string.listview_footer_hint_ready); 
+//		}
+		
 	}
 
 	public void setBottomMargin(int height) {
@@ -70,7 +131,6 @@ public class ListViewFooter extends LinearLayout {
 	 */
 	public void normal() {
 		mHintView.setVisibility(View.VISIBLE);
-//		mProgressBar.setVisibility(View.GONE);
 	}
 
 	/**
@@ -78,7 +138,6 @@ public class ListViewFooter extends LinearLayout {
 	 */
 	public void loading() {
 		mHintView.setVisibility(View.GONE);
-//		mProgressBar.setVisibility(View.VISIBLE);
 	}
 
 	/**
@@ -109,10 +168,26 @@ public class ListViewFooter extends LinearLayout {
 		moreView.setLayoutParams(new LinearLayout.LayoutParams(
 				android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
 
+		mArrowImageView = (ImageView) findViewById(R.id.listview_footer_arrow);
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
-//		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
+		mFooterTimeView = (TextView) moreView
+				.findViewById(R.id.xlistview_header_time);
 		mHintView = (TextView) moreView
 				.findViewById(R.id.xlistview_footer_hint_textview);
+		mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
+		mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
+		mRotateUpAnim.setFillAfter(true);
+		mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+				0.5f);
+		mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
+		mRotateDownAnim.setFillAfter(true);
+	}
+	
+	public TextView getHeaderTimeView() {
+		return mFooterTimeView;
 	}
 
 }

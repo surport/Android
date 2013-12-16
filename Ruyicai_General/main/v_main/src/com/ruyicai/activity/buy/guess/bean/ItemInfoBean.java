@@ -2,91 +2,120 @@ package com.ruyicai.activity.buy.guess.bean;
 
 public class ItemInfoBean {
 	/**
-	 * ¾º²Â±àºÅ
+	 * ç«çŒœID
 	 */
 	private String id = "";
-	
+
 	/**
-	 * ¾º²Â±êÌâ
+	 * é¢˜ç›®
 	 */
 	private String title = "";
-	
+
 	/**
-	 * ¾º²ÂÌâÄ¿ÃèÊö
+	 * é¢˜ç›®è¯¦æƒ…
 	 */
 	private String detail = "";
-	
+
 	/**
-	 * ²ÎÓë×´Ì¬
+	 * ç»“æŸçŠ¶æ€
 	 */
 	private String participate = "";
-	
+
 	/**
-	 * ½áÊø×´Ì¬
+	 * ç»“æŸçŠ¶æ€ 
 	 */
 	private String endState = "";
-	
+
 	/**
-	 * ¿ª½±×´Ì¬
+	 * å¼€å¥–çŠ¶æ€
 	 */
 	private String lotteryState = "";
-	
+
 	/**
-	 * Àë½ØÖ¹Ê±¼äÊ£ÓàµÄÃëÊı
+	 * å‰©ä½™ç§’æ•°
 	 */
 	private Long timeRemaining = 0L;
-	
+
 	/**
-	 * ½±³Ø»ı·Ö
+	 * å¥–æ± ç§¯åˆ†
 	 */
 	private String prizePoolScore = "";
+
+	/**
+	 * æˆ‘æŠ•å…¥çš„ç§¯åˆ†
+	 */
+	private String payScore = "";
+
+	public String getPayScore() {
+		return payScore;
+	}
+
+	public void setPayScore(String payScore) {
+		this.payScore = payScore;
+	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getDetail() {
 		return detail;
 	}
+
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+
 	public String getParticipate() {
 		return participate;
 	}
+
 	public void setParticipate(String participate) {
 		this.participate = participate;
 	}
+
 	public String getEndState() {
 		return endState;
 	}
+
 	public void setEndState(String endState) {
 		this.endState = endState;
 	}
+
 	public String getLotteryState() {
 		return lotteryState;
 	}
+
 	public void setLotteryState(String lotteryState) {
 		this.lotteryState = lotteryState;
 	}
+
 	public Long getTimeRemaining() {
 		return timeRemaining;
 	}
+
 	public void setTimeRemaining(Long timeRemaining) {
 		this.timeRemaining = timeRemaining;
 	}
+
 	public String getPrizePoolScore() {
 		return prizePoolScore;
 	}
+
 	public void setPrizePoolScore(String prizePoolScore) {
 		this.prizePoolScore = prizePoolScore;
 	}
-	
+
 }

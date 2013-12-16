@@ -110,7 +110,7 @@ public class AccountWithdrawActivity extends Activity implements HandlerMsg {
 	boolean zhankai = true;// 提现记录失败展开原因
 	private static final String[] allBankName = { "中国工商银行", "中国农业银行", "中国建设银行",
 			"中国民生银行", "招商银行", "中国邮政储蓄银行", "交通银行", "兴业银行", "中信银行", "中国光大银行",
-			"广东发展银行", "上海浦东发展银行", "深圳发展银行", "杭州银行" };
+			"广东发展银行", "上海浦东发展银行", "深圳发展银行", "杭州银行", "中国银行" };
 	String allName[] = null;
 	List allcountries = null;
 	ArrayAdapter<String> adapter;
