@@ -234,7 +234,7 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 			BallTable ballTable = areaNums[j].table;
 			int[] zhuMa = ballTable.getHighlightBallNOs();
 			if (j != 0) {
-				zhumas += " , ";
+				zhumas += ",";
 			}
 			for (int i = 0; i < ballTable.getHighlightBallNOs().length; i++) {
 				if (highttype.equals("SSC")) {
@@ -250,21 +250,23 @@ public class SscFiveStar extends ZixuanAndJiXuan {
 			showEditTitle(this.type);
 		} else {
 			builder.append(zhumas);
-			String zhuma[] = zhumas.split("\\,");
-			for (int i = 0; i < zhuma.length; i++) {
-				if (i != 0) {
-					length += zhuma[i].length() + 1;
-				} else {
-					length += zhuma[i].length();
-				}
-				if (i != zhuma.length - 1) {
-					builder.setSpan(new ForegroundColorSpan(Color.BLACK),
-							length, length + 1, Spanned.SPAN_COMPOSING);
-				}
-				builder.setSpan(new ForegroundColorSpan(areaNums[i].textColor),
-						length - zhuma[i].length(), length,
-						Spanned.SPAN_COMPOSING);
-			}
+//			String zhuma[] = zhumas.split("\\,");
+//			for (int i = 0; i < zhuma.length; i++) {
+//				if (i != 0) {
+//					length += zhuma[i].length() + 1;
+//				} else {
+//					length += zhuma[i].length();
+//				}
+//				if (i != zhuma.length - 1) {
+//					builder.setSpan(new ForegroundColorSpan(Color.BLACK),
+//							length, length + 1, Spanned.SPAN_COMPOSING);
+//				}
+//				builder.setSpan(new ForegroundColorSpan(areaNums[i].textColor),
+//						length - zhuma[i].length(), length,
+//						Spanned.SPAN_COMPOSING);
+//			}
+			builder.setSpan(new ForegroundColorSpan(areaNums[0].textColor), 0,
+					zhumas.length(), Spanned.SPAN_COMPOSING);
 			editZhuma.setText(builder, BufferType.EDITABLE);
 			showEditTitle(NULL);
 		}

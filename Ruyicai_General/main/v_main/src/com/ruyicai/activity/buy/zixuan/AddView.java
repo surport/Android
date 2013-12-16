@@ -620,6 +620,17 @@ public class AddView {
 				addSeparator(lotoNo, touzhuType, builder, i);
 				upLength = builder.length();
 			}
+			
+			if (lotoNo.equals(Constants.LOTNO_SSC)) {
+				if (touzhuType.equals("2start_zhixuan")
+						|| touzhuType.equals("3start")
+						|| touzhuType.equals("5start_zhixuan")
+						|| touzhuType.equals("5start_tongxuan")) {
+					builder.setSpan(
+							new ForegroundColorSpan(getColors().get(0)), 0,
+							builder.length(), Spanned.SPAN_COMPOSING);
+				}
+			}
 			textCode.setText(builder, BufferType.EDITABLE);
 		}
 

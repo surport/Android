@@ -336,7 +336,7 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 				if (j == 0) {
 					zhumas += "-,-,-,";
 				} else {
-					zhumas += " , ";
+					zhumas += ",";
 				}
 
 			}
@@ -360,27 +360,29 @@ public class SscTwoStar extends ZixuanAndJiXuan {
 			builder.append(zhumas);
 			String zhuma[] = null;
 			if (TWOSTARTYPE == Constants.SSC_TWOSTAR_ZHIXUAN) {
-				zhuma = zhumas.split("\\,");
-
+				builder.setSpan(new ForegroundColorSpan(areaNums[0].textColor), 0,
+						zhumas.length(), Spanned.SPAN_COMPOSING);
+				editZhuma.setText(builder, BufferType.EDITABLE);
+				showEditTitle(NULL);
 			} else {
 				zhuma = zhumas.split("\\|");
-			}
-			for (int i = 0; i < zhuma.length; i++) {
-				if (i != 0) {
-					length += zhuma[i].length() + 1;
-				} else {
-					length += zhuma[i].length();
-				}
-				if (i != zhuma.length - 1 && !zhuma[i].equals("-")) {
-					builder.setSpan(new ForegroundColorSpan(Color.BLACK),
-							length, length + 1, Spanned.SPAN_COMPOSING);
-				}
-				builder.setSpan(new ForegroundColorSpan(Color.RED), length
-						- zhuma[i].length(), length, Spanned.SPAN_COMPOSING);
+				for (int i = 0; i < zhuma.length; i++) {
+					if (i != 0) {
+						length += zhuma[i].length() + 1;
+					} else {
+						length += zhuma[i].length();
+					}
+					if (i != zhuma.length - 1 && !zhuma[i].equals("-")) {
+						builder.setSpan(new ForegroundColorSpan(Color.BLACK),
+								length, length + 1, Spanned.SPAN_COMPOSING);
+					}
+					builder.setSpan(new ForegroundColorSpan(Color.RED), length
+							- zhuma[i].length(), length, Spanned.SPAN_COMPOSING);
 
+				}
+				editZhuma.setText(builder, BufferType.EDITABLE);
+				showEditTitle(NULL);
 			}
-			editZhuma.setText(builder, BufferType.EDITABLE);
-			showEditTitle(NULL);
 		}
 	}
 
