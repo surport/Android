@@ -586,10 +586,9 @@ public class RuyiGuessDetailActivity extends Activity{
 				RectangularProgressBar progress = (RectangularProgressBar) itemLayout
 						.findViewById(R.id.ruyi_guess_progressbar);
 				String participants = options.get(i).getParticipants();
-				progress.setWillNotDraw(false);
-//				progress.postInvalidate();
+				int progressColor = getResources().getColor(mProgressBarColor[i % 5]);
 				if ("".equals(participants) || "0".equals(participants)) {
-					progress.init(getResources().getColor(mProgressBarColor[i % 5]), 0f);
+					progress.init(progressColor, 0f);
 					number.setText("0%");
 				} else {
 					Long people = 0L;
@@ -604,7 +603,7 @@ public class RuyiGuessDetailActivity extends Activity{
 						DecimalFormat df = new DecimalFormat("0.000");// 格式化小数，不足的补0
 						String formatStr = df.format(percentage);
 						percentage = Float.valueOf(formatStr);
-						progress.init(getResources().getColor(mProgressBarColor[i % 5]), percentage);
+						progress.init(progressColor, percentage);
 					}
 					String result = new DecimalFormat("000.0").format(percentage*100);
 					percentage = Float.valueOf(result);

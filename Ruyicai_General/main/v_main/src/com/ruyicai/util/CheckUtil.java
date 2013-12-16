@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.ruyicai.activity.buy.BuyActivity;
 import com.ruyicai.constant.Constants;
 import com.ruyicai.constant.ShellRWConstants;
 
@@ -99,6 +100,7 @@ public class CheckUtil {
 		}
 		return true;
 	}
+	
 	
 	/**
 	 * 检查彩种的发售情况
