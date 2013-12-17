@@ -1326,5 +1326,7 @@
     <string name="ruyi_guess_loading">正在加载...</string>
     <string name="buy_ruyi_guess_wait_open">"待公布"</string>
     <string name="buy_ruyi_guess_open">"已开奖"</string>
+    <string name="buy_ruyi_guess_iswin">"已中奖"</string>
+    <string name="buy_ruyi_guess_nowin">"未中奖"</string>
     
 </resources>

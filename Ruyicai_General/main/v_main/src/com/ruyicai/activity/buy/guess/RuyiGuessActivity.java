@@ -349,7 +349,11 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 						R.string.buy_ruyi_guess_mythrow_score, info.getPayScore()));
 				if (isLottery) {
 					holder.endState.setVisibility(View.VISIBLE);
-					holder.endState.setText(R.string.buy_ruyi_guess_open);
+					if ("1".equals(info.getIsWin())) {
+						holder.endState.setText(R.string.buy_ruyi_guess_iswin);
+					} else {
+						holder.endState.setText(R.string.buy_ruyi_guess_nowin);
+					}
 				} else {
 					if (info.getTimeRemaining() > 0) {
 						holder.endState.setVisibility(View.GONE);
@@ -650,6 +654,7 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 						info.setPrizePoolScore(itemObj.getString("prizePoolScore"));//竞猜奖池积分
 						info.setEndState(itemObj.getString("isEnd"));//竞猜是否截止 0:未结束;1:已结束
 						info.setPayScore(itemObj.getString("payScore"));  //我的投入
+						info.setIsWin(itemObj.getString("isWin"));  //是否中奖
 						info.setLotteryState(itemObj.getString("state"));//竞猜开奖状态 0:未开奖;1:开奖中;2:已开奖
 						String remainTime = itemObj.getString("time_remaining").trim();//竞猜剩余时间
 						try {

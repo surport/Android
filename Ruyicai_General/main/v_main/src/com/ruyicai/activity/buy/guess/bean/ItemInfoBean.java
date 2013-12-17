@@ -45,6 +45,19 @@ public class ItemInfoBean {
 	 * 我投入的积分
 	 */
 	private String payScore = "";
+	
+	/**
+	 * 是否中奖
+	 */
+	private String isWin = "";
+
+	public String getIsWin() {
+		return isWin;
+	}
+
+	public void setIsWin(String isWin) {
+		this.isWin = isWin;
+	}
 
 	public String getPayScore() {
 		return payScore;
