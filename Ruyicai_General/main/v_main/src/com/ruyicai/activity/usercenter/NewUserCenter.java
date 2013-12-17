@@ -590,7 +590,9 @@ public class NewUserCenter extends Activity implements MyDialogListener {
 		// 留言
 		if (str.equals("我的消息")) {
 //			getFeedbackListNet();
-			Controller.getInstance(NewUserCenter.this).getFeedbackListNet(handler, userno);
+			Intent feedListIntent = new Intent(NewUserCenter.this,
+					FeedbackListActivity.class);
+			startActivity(feedListIntent);
 		}
 		// 余额查询
 		if (this.getString(R.string.ruyihelper_balanceInquiry).equals(str)) {

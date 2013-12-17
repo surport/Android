@@ -133,7 +133,8 @@ public class FeedbackListActivity extends Activity {
 	ShowSelectTextBroadCast selectTextBroadCast = new ShowSelectTextBroadCast();
 	List<SystemInfoBean> infoList;
 	OperatingDataBases operatingDb;
-	private boolean isFirstMessage = true;
+	private boolean isFromFeedBack = false;
+//	private boolean isFirstMessage = true;
 	/**add by yejc 20130419 end*/
 
 	@Override
@@ -235,24 +236,7 @@ public class FeedbackListActivity extends Activity {
 					/**add by yejc 20130422 end*/
 				} else if (tabId.equals(titles[2])) {
 //					editBut.setVisibility(View.VISIBLE);
-					type = 2;
-					feedback.setText(R.string.usercenter_submitfeedback);
-					initLinear(message, linearId[2], initmessage());
-					feedbackcount.setVisibility(View.GONE);
-					if (!msgReadStateId.equals("")) {
-						msgUpdateReadState(msgReadStateId);// 更新已读状态
-					}
-					
-					/**add by yejc 20130422 start*/
-					if (isMessageEdit) {
-						editBut.setText(R.string.my_message_edit_cancel);
-						messageEditLayout.setVisibility(View.VISIBLE);
-						submitLayout.setVisibility(View.GONE);
-					} else {
-						editBut.setText(R.string.my_message_edit_text);
-						submitLayout.setVisibility(View.VISIBLE);
-					}
-					latterEditLayout.setVisibility(View.GONE);
+					initFeedBackPage();
 					/**add by yejc 20130422 end*/
 				}
 			}
@@ -260,6 +244,27 @@ public class FeedbackListActivity extends Activity {
 
 		}
 	};
+	
+	private void initFeedBackPage() {
+		type = 2;
+		feedback.setText(R.string.usercenter_submitfeedback);
+		initLinear(message, linearId[2], initmessage());
+		feedbackcount.setVisibility(View.GONE);
+		if (!msgReadStateId.equals("")) {
+			msgUpdateReadState(msgReadStateId);// 更新已读状态
+		}
+		
+		/**add by yejc 20130422 start*/
+		if (isMessageEdit) {
+			editBut.setText(R.string.my_message_edit_cancel);
+			messageEditLayout.setVisibility(View.VISIBLE);
+			submitLayout.setVisibility(View.GONE);
+		} else {
+			editBut.setText(R.string.my_message_edit_text);
+			submitLayout.setVisibility(View.VISIBLE);
+		}
+		latterEditLayout.setVisibility(View.GONE);
+	}
 
 	/**
 	 * 初始化LinearLayout,为TabHost下的LinearLayout添加View
@@ -334,27 +339,27 @@ public class FeedbackListActivity extends Activity {
 				R.layout.usercenter_feedbacklist, null);
 		feedbackList = (ListView) tabSpecLinearView
 				.findViewById(R.id.usercenter_feedback_list);
-		try {
+//		try {
 			/**add by yejc 20130708 start*/
-			Intent intent = getIntent();
-			boolean isFromUserCenter = intent.getBooleanExtra("isFromUserCenter", false);
-			if (isFromUserCenter) {
-				JSONArray feedBackArray = new JSONArray(this.getIntent()
-						.getStringExtra("feedBackArray"));
-				initListViewAfterNet(feedBackArray);
-			} else {
-//				dialog.show();
+//			Intent intent = getIntent();
+//			boolean isFromUserCenter = intent.getBooleanExtra("isFromUserCenter", false);
+//			if (isFromUserCenter) {
+//				JSONArray feedBackArray = new JSONArray(this.getIntent()
+//						.getStringExtra("feedBackArray"));
+//				initListViewAfterNet(feedBackArray);
+//			} else {
+				showDialog(0);
 				Controller.getInstance(FeedbackListActivity.this).getFeedbackListNet(handler, userno);
-			}
-			/**add by yejc 20130708 end*/
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+//			}
+//			/**add by yejc 20130708 end*/
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		}
 		return tabSpecLinearView;
 	}
 
 	private void initListViewAfterNet(JSONArray feedarray) {
-		if(isFirstMessage){
+//		if(isFirstMessage){
 			feedList.clear();
 			for (int i = 0; i < feedarray.length(); i++) {
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -375,13 +380,15 @@ public class FeedbackListActivity extends Activity {
 				}
 				feedList.add(map);
 			}
-			isFirstMessage = false;
-		}
+//			isFirstMessage = false;
+//		}
 		
 		if (!msgReadStateId.equals("")) {
 			msgReadStateId = msgReadStateId.substring(0,
 					msgReadStateId.length() - 1);
 		}
+		
+		dialog.dismiss();
 
 		listAdapter = new FeedbackListAdapter(this,
 				feedList);
@@ -401,6 +408,7 @@ public class FeedbackListActivity extends Activity {
 				} else {
 					Intent intent1 = new Intent(FeedbackListActivity.this,
 							FeedBack.class);
+					isFromFeedBack = true;
 					startActivity(intent1);
 				}
 				
@@ -1295,6 +1303,11 @@ public class FeedbackListActivity extends Activity {
 		IntentFilter filter = new IntentFilter(BROADCAST_ACTION);    
         registerReceiver(selectTextBroadCast, filter);
         /**add by yejc 20130419 end*/
+        
+        if(isFromFeedBack){
+        	initFeedBackPage();
+        	isFromFeedBack = false;
+        }
 		MobclickAgent.onResume(this);// BY贺思明 2012-7-24
 	}
 
