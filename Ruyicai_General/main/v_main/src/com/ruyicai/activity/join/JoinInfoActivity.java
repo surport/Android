@@ -864,9 +864,9 @@ public class JoinInfoActivity extends Activity implements HandlerMsg {
 			
 			
 			holder.name.setText( getusername(info.getName()));
-			holder.atm.setText("￥"+(Integer.parseInt(info.getAllAtm())-Integer.parseInt(info.getAtm())) + "元");
+			holder.atm.setText((Integer.parseInt(info.getAllAtm())-Integer.parseInt(info.getAtm())) + "元");
 			holder.lestbuy.setText(info.getMinAmt()+"元");
-			holder.allAtm.setText("￥"+info.getAllAtm() + "元");
+			holder.allAtm.setText(info.getAllAtm() + "元");
 			holder.baodi.setBackgroundResource(cricleTextColor(Integer.parseInt(info.getSafe())));
 			holder.baodi.setText("保"+info.getSafe()+"%");
 			int ProgressCount=Integer.parseInt(info.getProgress()+"");
