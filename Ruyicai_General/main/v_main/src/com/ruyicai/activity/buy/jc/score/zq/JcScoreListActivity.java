@@ -1,5 +1,6 @@
 package com.ruyicai.activity.buy.jc.score.zq;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -398,6 +399,8 @@ public class JcScoreListActivity extends Activity {
 				convertView = mInflater.inflate(R.layout.jc_score_list_iteam,
 						null);
 				holder1 = new ViewHolder();
+				holder1.index = (TextView) convertView
+						.findViewById(R.id.jc_score_text_index);
 				holder1.teamName = (TextView) convertView
 						.findViewById(R.id.jc_score_text_team_name);
 				holder1.hTeam = (TextView) convertView
@@ -427,6 +430,7 @@ public class JcScoreListActivity extends Activity {
 			final ViewHolder holder = holder1;
 			holder.teamName.setText(info.getTeamName());
 			holder.hTeam.setText(info.gethTeam());
+			holder.index.setText(String.format("%03d", (position + 1)));
 			/**add by yejc 20130807 start*/
 			if (tabIndex == 2) {
 				String state = info.getMatchState();
@@ -544,6 +548,7 @@ public class JcScoreListActivity extends Activity {
 		}
 
 		public class ViewHolder {
+			TextView index;
 			TextView teamName;// 联赛名称
 			TextView hTeam;// 主队
 			TextView vTeam;// 客队
