@@ -306,7 +306,7 @@ public class BetQueryActivity extends InquiryParentActivity implements HandlerMs
 			final String prizeqihao = (String) mList.get(position)
 					.getBatchCode();
 			final String amount = (String) mList.get(position).getAmount();
-			final String fPayMoney = "￥" + Long.valueOf(CheckUtil.isNull(amount))/100;
+			final String fPayMoney = "￥" + String.format("%.2f", Double.valueOf(CheckUtil.isNull(amount))/100);
 			String payString = getString(R.string.usercenter_winprize_payMoney);// 投注金额字
 			SpannableStringBuilder fPayMoneyStringBuilder = new SpannableStringBuilder(
 					payString + fPayMoney);
@@ -383,7 +383,8 @@ public class BetQueryActivity extends InquiryParentActivity implements HandlerMs
 						|| Constants.LOTNO_JCLQ_DXF.equals(lotno)
 						|| Constants.LOTNO_JCLQ_HUN.equals(lotno)) {
 					holder.predictmoney.setVisibility(View.VISIBLE);
-					holder.prizemoney.setVisibility(View.GONE);
+					holder.prizemoney.setVisibility(View.VISIBLE);
+					holder.prizemoney.setText("状态：未开奖");
 					String expectPrizeAmt = info.getExpectPrizeAmt()
 							.replaceAll("元", "");
 					SpannableStringBuilder fexpectPrizeAmtStringBuilder = new SpannableStringBuilder(
