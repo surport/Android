@@ -347,21 +347,22 @@ public class RuyiGuessActivity extends Activity implements IXListViewListener/*,
 			if (mIsMySelected) {
 				holder.integral.setText(PublicMethod.formatString(mContext, 
 						R.string.buy_ruyi_guess_mythrow_score, info.getPayScore()));
-				if (isLottery) {
-					holder.endState.setVisibility(View.VISIBLE);
-					if ("1".equals(info.getIsWin())) {
-						holder.endState.setText(R.string.buy_ruyi_guess_iswin);
-					} else {
-						holder.endState.setText(R.string.buy_ruyi_guess_nowin);
-					}
+				
+				if (info.getTimeRemaining() > 0) {
+					holder.endState.setVisibility(View.GONE);
 				} else {
-					if (info.getTimeRemaining() > 0) {
-						holder.endState.setVisibility(View.GONE);
+					holder.endState.setVisibility(View.VISIBLE);
+					if (isLottery) {
+						if ("1".equals(info.getIsWin())) {
+							holder.endState.setText(R.string.buy_ruyi_guess_iswin);
+						} else {
+							holder.endState.setText(R.string.buy_ruyi_guess_nowin);
+						}
 					} else {
 						holder.endState.setText(R.string.buy_ruyi_guess_wait_open);
-						holder.endState.setVisibility(View.VISIBLE);
 					}
 				}
+				
 				holder.participate.setVisibility(View.GONE);
 			} else {
 				holder.endState.setVisibility(View.GONE);
